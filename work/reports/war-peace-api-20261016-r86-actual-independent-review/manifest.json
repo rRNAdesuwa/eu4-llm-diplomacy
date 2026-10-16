@@ -1,0 +1,261 @@
+{
+  "author_graph_recursive_expansion": false,
+  "engine_metadata_only_count": 38,
+  "files": {
+    "work/r86_build_source_20261016.py": {
+      "bytes": 26811,
+      "sha256": "3fde4767bc13f3a6ff3a4aabaea0d896b0b785b9a1e0dd4a350647107d15a58d"
+    },
+    "work/r86_check_actual_20261016.py": {
+      "bytes": 4049,
+      "sha256": "5eb2a5aea1b96b3ccd1f1641ca09178dba2cf9ee010b552a82d742ae26ed4bbf"
+    },
+    "work/r86_seal_actual_20261016.py": {
+      "bytes": 22457,
+      "sha256": "a4d48a05c0d6a868d5eb60e186480cb841fd061b0bdf1a13ae3b7657e4101115"
+    },
+    "work/reports/war-peace-api-20261015-r27-truce-literal-anchors/war/anchors.json": {
+      "bytes": 12398,
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/PROTOCOL.md": {
+      "bytes": 3510,
+      "sha256": "e0a170ec89bd3fef5f77a51387d3dd615fdcc1a70827e018f3480605517580bf"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/budget.json": {
+      "bytes": 928,
+      "sha256": "cc15ff668fda174685181fb7349e1ab5613531193a0405a5aff1467c10cf755c"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/entry-seed.json": {
+      "bytes": 9256,
+      "sha256": "b1765705ff97112640173079605d3ab077837052be5c4cbeeeb85e71c59d4689"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/main-template.py.inc": {
+      "bytes": 12572,
+      "sha256": "a8fe76ef58ec2ec213c123c8e80e2fec8f0e38d2e001c8ab0214b015f3e177aa"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/produce.py": {
+      "bytes": 24180,
+      "sha256": "29bb97220b025814190a858e36cc24ce67373ed27304e5e7c69e9d4aa013b978"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/source-delta.json": {
+      "bytes": 1404,
+      "sha256": "34786ceb74024398183cd537d1b71c1f44488707facea0ea4b940ec419ce472a"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/source-manifest.json": {
+      "bytes": 21830,
+      "sha256": "a6d3c5282e46c9ede2da9c6cfaee29edb584636941411714a081331bcd584ab8"
+    },
+    "work/reports/war-peace-api-20261016-r84-selector-call-rcx-crosswalk/rcx-window-evidence.json": {
+      "bytes": 20778,
+      "sha256": "df3fe934afd5cfc590a2efa84af7baf68b6c35aaf49094835d036081f81a3e42"
+    },
+    "work/reports/war-peace-api-20261016-r85-cc220-cache-source-plan/manifest.json": {
+      "bytes": 4519,
+      "sha256": "96c00855db91be222e5b8d6b2e2daea93f61570ceacab6062d256edace18f365"
+    },
+    "work/reports/war-peace-api-20261016-r85-cc220-cache-source-plan/source-plan.json": {
+      "bytes": 5867,
+      "sha256": "a4acbf1da5b9003de85d5714d8bf234eff90d650d3cf8bb5998eee388a133201"
+    },
+    "work/reports/war-peace-api-20261016-r85-root-source-plan-review/findings.json": {
+      "bytes": 11396,
+      "sha256": "35917a2a6ba162a6ef16c2b17c14408f866799fdd7df2e9c799969d946364dd7"
+    },
+    "work/reports/war-peace-api-20261016-r85-root-source-plan-review/source-build-authorization.json": {
+      "bytes": 3232,
+      "sha256": "e46d8394585796331bde23ff22f95d78c0c45458b28893ff3016c7a70ceada90"
+    },
+    "work/reports/war-peace-api-20261016-r85-second-fixed-cache-metadata/findings.json": {
+      "bytes": 855,
+      "sha256": "e30e13feed275e57852e8cc2e22334db197c2e7a59db6432625fc3d23a03c048"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/accounting-assertion-diagnostic.json": {
+      "bytes": 533,
+      "sha256": "b493f741b03a36c70d5f0722f4287387f43df9e482bd2dd722fdb172cb6d5a67"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/build-review-r2.py": {
+      "bytes": 3520,
+      "sha256": "e30f273634442f8802d7cb6f857a56e8cf9e02972feffb04e5edc00512344b2e"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/failure.json": {
+      "bytes": 13164,
+      "sha256": "0333872a3e22bc46f91b1479c76cb0e1ad8e6300d79c77ef82cc1d87cbd95556"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/findings.json": {
+      "bytes": 5580,
+      "sha256": "550c1edf7beee1ea7e5ae8e85f40c7ef556ede12bb27e2e6a4c8b1e5c2bad726"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/initial-preflight.json": {
+      "bytes": 19568,
+      "sha256": "de1fbb1318e1e11fc978de26cb6a07094fe3057d592366586928f0d34b39d2a3"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/precision-corrigendum.json": {
+      "bytes": 1713,
+      "sha256": "2c4fab900dd774369a40507a0414fb6a81c2d1cf451505d9b91c5726ebb83304"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/preview-r4.json": {
+      "bytes": 70323,
+      "sha256": "e6c15fe7d02c25e48a3d58c055144dd8695fdc4c357cfec09d9d67c6c3420c11"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/report.md": {
+      "bytes": 960,
+      "sha256": "3c4d54c8400861bec0bea563bbe933f1b917aa665f0caf5e6295d066b541584b"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/review-claim.json": {
+      "bytes": 128,
+      "sha256": "79d23f761d8260c38273ba1ecaf1aef567b94529234cec2f53a1e76ddca63028"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/review-r2-claim.json": {
+      "bytes": 128,
+      "sha256": "79d23f761d8260c38273ba1ecaf1aef567b94529234cec2f53a1e76ddca63028"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/review-r2.py": {
+      "bytes": 30622,
+      "sha256": "1badf5bb551acfca7387b4bafaeaaa5726958ca477826210f0378edd93757a44"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/review.py": {
+      "bytes": 30193,
+      "sha256": "d9e904c21ac7f7f99be7476b37d4e644f205d2f78de2c81a6df618e586eb4122"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/review.stderr.log": {
+      "bytes": 782,
+      "sha256": "8265b5f13374c4f782e18a34fdeb2a30ce26685b7a885e505e31c3ddab6d22a4"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/review.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/revision-construction-failure.json": {
+      "bytes": 447,
+      "sha256": "e1564d792518ce03c9ecea74ec81f90f9051b80da5583fbf75edccf3b140e2dc"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/revision-r2.json": {
+      "bytes": 3313,
+      "sha256": "1a941068c7481adb0f4e38874951d6b9fe37d452d3f2608c622b42826fcdabb6"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/verification.json": {
+      "bytes": 24077,
+      "sha256": "fcc2994462a52fc47cac968b7f6cb9f821af29b4ba611f949a6feae3f85475d3"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/PROTOCOL.md": {
+      "bytes": 2852,
+      "sha256": "8cfa2be9e4f81c9552a154f72758c234f40c933913d84ee7b02b47cb6d23044f"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/actual-manifest.json": {
+      "bytes": 16602,
+      "sha256": "69e7167005ff08e09ca29e790786f6055512614debecc72f31d3b37d0583df72"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/contract.json": {
+      "bytes": 5478,
+      "sha256": "ddea250f47187a4b6b47075186a2ca54c09157168b3b2db9d016b3a5b81e5943"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/delivery.json": {
+      "bytes": 2361,
+      "sha256": "9c105e1af4a8d17ccd93bbb3f5742cc6da85a47bc1f9aadb3c451ac07786b402"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/filecheck.json": {
+      "bytes": 9951,
+      "sha256": "1510e66afd2daec1c1073e1e40bec775d23d3c73ed043008c3f0b566d4da1b10"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/publication-manifest.json": {
+      "bytes": 2046,
+      "sha256": "3adbbe1cb903be634603c72e39c4accc69c1f913505b4cb167ef3b38e1065b1c"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/raw-replay.json": {
+      "bytes": 4456,
+      "sha256": "805159cd07d160c73f43baede15816cf822e542bc972f5ba323e89e190e494fc"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/read-accounting.json": {
+      "bytes": 16246,
+      "sha256": "b5e9b7c2a12620375c6f240f9ddfc3b6f0399ec0833dd9522874efe8dc4b1556"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/report.md": {
+      "bytes": 1947,
+      "sha256": "0f3a1ea9a0a5ed9232df0fa355554ae5ccf0564a36f86ce059e241ddf3b4c9b9"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/root-execution-witness.json": {
+      "bytes": 673,
+      "sha256": "9744d0b4e85b16ff01ae93862640dddd6571bf6f92652dbc4e9e4f39504b8726"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/seal-claim.json": {
+      "bytes": 262,
+      "sha256": "65d4893a5806df140d31a3b75f3678b8119d77b4f280c1a6fdeb9c4151c297c3"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/selected-cfg.json": {
+      "bytes": 15248,
+      "sha256": "d8126c5c08e73e84c3f12df83fe84abe55eccf43f45e976cf2c9cbe54c8f47ab"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/budget.json": {
+      "bytes": 1035,
+      "sha256": "3b22397c57457a13f2c25fecd08eb540f8b9ec0afee87151b5673b254b8736e7"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/capture.json": {
+      "bytes": 85315,
+      "sha256": "e3a06664b11a14f483705cd3ae4852b0cd562a85ab46ac7395bfc428673bb28f"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/check_prepared.py": {
+      "bytes": 7217,
+      "sha256": "0249f03fa9e83a5d5b68c03f803465a1897e616cac6767c31f081639d5b58831"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/claim.json": {
+      "bytes": 12761,
+      "sha256": "d16e8a207844dd6d254292baed70e38c442365139eb9647e4fb763acf92a74c0"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/entry-seed.json": {
+      "bytes": 5917,
+      "sha256": "905f9599f13f637a93950d61f29bdbccbea3e839c4776fb260f0dcfcdef9dc09"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/main-template.py.inc": {
+      "bytes": 14298,
+      "sha256": "1eea59a475929dbfa8712c8ebb221d55c7a4e051f028ee85f1578a6afc1d7698"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/owned-code.json": {
+      "bytes": 635,
+      "sha256": "65d0c63efdc37f369bb8aa4f0f55a0a5c3d59c79db8bc37e98723a30048fde82"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/produce.py": {
+      "bytes": 27099,
+      "sha256": "0a3c13e779e4da424316b0e3a3ff3f86f49a460243f18b14c91644ca717522b4"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/run-authorization.json": {
+      "bytes": 3987,
+      "sha256": "3a7f3b87fef91f83b2909f66c5d61410abd8680ff3bb171f6a3c664c90a32cd5"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/source-delta.json": {
+      "bytes": 3205,
+      "sha256": "fc1abadbb9e73e06408285125c7a6e6915ae6bb52aa9734d01e81785b756986c"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/source-manifest.json": {
+      "bytes": 22473,
+      "sha256": "74f6c8f8eeeadea9e4216c7b37e2a8034e9fb7967d8dfe7167c7ee1ffd143472"
+    },
+    "work/reports/war-peace-api-20261016-r86-root-raw-entry-review/findings.json": {
+      "bytes": 2606,
+      "sha256": "88e3e3300e041bb3bf48acdccb38e2f6e4e9cbcc502bd629e5d94c5e49c02878"
+    },
+    "work/reports/war-peace-api-20261016-r86-root-raw-entry-review/manifest.json": {
+      "bytes": 4110,
+      "sha256": "08079d699f8fe50752af7307adb803592178982d937839d958e7571600b341d1"
+    },
+    "work/reports/war-peace-api-20261016-r86-source-independent-review/findings.json": {
+      "bytes": 4081,
+      "sha256": "075c2b62c093453b838957669c1872d3a14c20e39a073e13df32ca05d411e2ef"
+    },
+    "work/reports/war-peace-api-20261016-r86-source-independent-review/manifest.json": {
+      "bytes": 23017,
+      "sha256": "4d16d2851e7796c516c435d504838d4cb93fb1a571a4707fb3c178680a952dc4"
+    }
+  },
+  "findings": {
+    "bytes": 5580,
+    "path": "work/reports/war-peace-api-20261016-r86-actual-independent-review/findings.json",
+    "sha256": "550c1edf7beee1ea7e5ae8e85f40c7ef556ede12bb27e2e6a4c8b1e5c2bad726"
+  },
+  "native_ready": false,
+  "passed": true,
+  "pin_count": 61,
+  "schema": "EU4-R86-INDEPENDENT-REVIEW-MANIFEST/1",
+  "sealed": true,
+  "world_lease": false
+}

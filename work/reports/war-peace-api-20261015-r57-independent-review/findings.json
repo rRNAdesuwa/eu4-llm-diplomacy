@@ -1,0 +1,169 @@
+{
+  "schema": "EU4-R57-INDEPENDENT-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "subject_manifest": {
+    "bytes": 15393,
+    "sha256": "844e3cb62f19047878a0849844dcd13c14c0413da9cbb18459af1236b90b2150"
+  },
+  "subject_directory": "work/reports/war-peace-api-20261015-r57-nonzero-gold-helper",
+  "blocking_findings": [],
+  "review_scope": {
+    "selected_original_text_JSON_sources": 38,
+    "subject_local_file_pins_verified": 23,
+    "nonengine_source_pins_verified": 17,
+    "seed_review_extension_pins_verified": 2,
+    "engine_pins_actual_rehash_or_import": 0,
+    "engine_pin_declarations_compared": 38,
+    "all_selected_original_sources_final_guard_equal": true,
+    "no_recursive_source_or_PE_scan": true
+  },
+  "machine_evidence_replay": {
+    "owned_RVA_range": [
+      "0x9b46a0",
+      "0x9b4a65"
+    ],
+    "owned_bytes": 965,
+    "retained_rows": 214,
+    "raw_contiguous_and_disassembly_and_selected_equal": true,
+    "recorded_control_edges": 39,
+    "direct_CALL_sites": 13,
+    "unique_CALL_targets": 12,
+    "branch_sites": 26,
+    "all_branch_targets_on_local_retained_boundaries": true,
+    "normal_RET": "0x9b49e7",
+    "abnormal_INT3": "0x9b49ed",
+    "normal_CFG_closed": false,
+    "syntactic_reachability_limit": "All retained rows reachable in nondeterministic local CFG with external CALL normal-return fallthrough assumed. Not dynamic path coverage or proof all normal paths return.",
+    "explicit_stores": {
+      "total": 21,
+      "stack": 10,
+      "slot_selected_object_field": 2,
+      "allocator_return_alias": 6,
+      "RIP_module": 3
+    },
+    "MOVUPS_raw_store_sites": [
+      "0x9b495c",
+      "0x9b4a2e"
+    ],
+    "implicit_stack_writes_not_in_explicit_store_count": true,
+    "selected_raw_width_GP_anchors_checked": 69
+  },
+  "validated_dataflow": [
+    {
+      "range": [
+        "0x9b46bc",
+        "0x9b471a"
+      ],
+      "fact": "Incoming RCX/RDX/R8 captured as RSI/RDI/RBX; logical R8>>32 then signed16 BX selects table*8. RDX DWORD copied to steadyRSP+70 (entryRSP+8), passed as &T to338540 with RCX=A,EDX12,R9D0. Fresh DB/table/A then339c10(RCX=A,RDX=&T); R8/R9 not locally re-established.",
+      "limit": "A is selected by signed slot only; no full handle/bounds/type/identity authentication. Normal callee ABI preserves nonvolatile register values, not addressed contents."
+    },
+    {
+      "range": [
+        "0x9b471a",
+        "0x9b4787"
+      ],
+      "fact": "Post-callee signed T lower-bounded to1000; fresh signed N=*originalKptr. Unsigned32(N+0x189373)<=0x39580d chooses signed32 IMUL1000/CDQ/IDIV versus signed64 IMUL1000/CQO/IDIV. Sign-extend low32 quotient, multiply signed moduleDWORD233f324, retain low64, signed high-half multiply by20c49ba5e353f7cf, SAR7 and sign correction; EDX low32 is eventual delta.",
+      "limit": "The T==0 fallback after signed T>=1000 is locally contradictory; input memory may change through previous callees. No currency or treasury_milli meaning inferred."
+    },
+    {
+      "range": [
+        "0x9b4787",
+        "0x9b47b6"
+      ],
+      "fact": "Fresh DB/table/A; ADDmod32 DWORD[A+bd4],EDX; reload DWORD sign bit then store0 if set. It is a concrete direct field write.",
+      "limit": "Same signed slot does not prove same object across fresh lookup, nor field meaning, direction or positive payment."
+    },
+    {
+      "range": [
+        "0x9b47b6",
+        "0x9b484b"
+      ],
+      "fact": "Actual unaligned QWORD[S+22]>>32 signed16 selects B; copy fresh *originalKptr into T and3387f0(B,20,&T,0). Later fresh S+22/DB/table/B; only CMP DWORD[B+bb0],1000 at9b4838 followed by signed JGE9b4842, then fresh *Kptr signed>0 gate.",
+      "limit": "Component+30 is never directly read. B+bb0 is not directly written in this body; external callee writes remain unreviewed here. The rows list includes4842 as the controlling branch, not a second memory load."
+    },
+    {
+      "range": [
+        "0x9b4851",
+        "0x9b4a65"
+      ],
+      "fact": "GS58/module guard, A+1280 vector-shaped scan and conditional string-shaped allocation/copy/message-shaped calls; explicit module2329458/9460/9448 stores. 1a41c6c return leads to INT3.",
+      "limit": "No type, logical notification identity, full resource effect, allocation failure safety, exception closure or loop termination proved. Call return aliases may alias world/other inputs; categories are provenance, not disjointness."
+    }
+  ],
+  "precision_notes": [
+    "The authoritative capture has214 rows/965B,13 CALL sites/12 targets,26 branches/39 recorded edges. Earlier oral14/24 was not a capture revision.",
+    "Both0F1100 instructions are memory-destination MOVUPS writes despite retained Capstone access flags read=true/write=false; the subject raw-store audit already corrects them.",
+    "Subject bb0 rows9b4838/9b4842 describe CMP plus branch; only9b4838 reads the field.",
+    "Preparation budget/source manifest retain source-only stage/false authorization fields as historical preimages; separate exact authorization/extension/claim/receipt bind the one later acquisition.",
+    "R57 external callees were not followed in this scope. This is not a global absence claim; separately reported retained338540/3387f0 bodies are outside this audit."
+  ],
+  "producer_witnesses_not_independently_reacquired": {
+    "EXE_SHA_before_after": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+    "engine_version": "Capstone5.0.7",
+    "engine_dependency_pin_count": 38,
+    "source_guard_full55_plus2": true,
+    "physical_PE_bytes": 76926213,
+    "PE_SHA_bytes": 76925008,
+    "pdata_physical_bytes": 240,
+    "pdata_unique_bytes": 204,
+    "code_bytes": 965,
+    "decoder_input_bytes": 3195,
+    "decoder_unique_input_bytes": 965,
+    "decoder_overlap_bytes": 2230,
+    "peak_committed_bytes": 39178240,
+    "software_memory_limit_bytes": 805306368,
+    "hard_job_object": false,
+    "elapsed_ns": 716461500,
+    "elapsed_scope": "producer subprocess launch through collected exit, source/review/decoder guards and two SHA included; extension/auth creation excluded",
+    "direct_owned_child_collected_exit0": true
+  },
+  "unknowns": [
+    "S+22 and object A/B business identities",
+    "full-handle/country authentication and slot bounds",
+    "338540/339c10/3387f0 transitive alias and resource effects within this scope",
+    "amount units, signed payment direction, currency or treasury binding",
+    "9844d0 collection/weights and recipient completeness",
+    "allocation/exception/INT3 and arbitrary alias safety",
+    "actual native result/request acceptance/API effect, persistence or lifetime"
+  ],
+  "review_resources": {
+    "selected_original_physical_bytes": 1707058,
+    "retained_inspection_bytes": 3347964,
+    "combined_selected_input_bytes": 5055022,
+    "limit_bytes": 33554432,
+    "max_original_file_bytes": 333500,
+    "per_source_limit_bytes": 4194304,
+    "measured_python_tracemalloc_peak_bytes": 1933074,
+    "committed_memory_independently_measured": false,
+    "bounded_retained_inputs_no_target_work": true,
+    "reviewer_errors_preserved": 2,
+    "all_shells_collected": true
+  },
+  "actual_review_operations": {
+    "PE_opens_hashes": 0,
+    "decoder_loads_or_new_decode_bytes": 0,
+    "author_programs": 0,
+    "old_or_new_test_suites": 0,
+    "CLI": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "sender_authorized": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "positive_gold_payment_verified": false,
+    "input_types_verified": false,
+    "unit_mapping_verified": false,
+    "payer_payee_direction_verified": false,
+    "complete_recipient_mapping_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

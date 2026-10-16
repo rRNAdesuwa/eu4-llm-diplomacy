@@ -1,0 +1,391 @@
+{
+  "actual_authorized": false,
+  "engine_metadata_only": {
+    "work/deps/capstone-5.0.7/capstone/__init__.py": {
+      "bytes": 43729,
+      "sha256": "0417ae554252be8e8d03e328054fad4c3cec6cf4895deecec637078380840f8b"
+    },
+    "work/deps/capstone-5.0.7/capstone/arm.py": {
+      "bytes": 2154,
+      "sha256": "00ea7442a1496d84aca469bfa3542290eafe22898b5be0dece9294865b9508ba"
+    },
+    "work/deps/capstone-5.0.7/capstone/arm64.py": {
+      "bytes": 2428,
+      "sha256": "834979e887315fae9a447698502f6866c246cb99b65c84b8b6fdef8087181284"
+    },
+    "work/deps/capstone-5.0.7/capstone/arm64_const.py": {
+      "bytes": 81768,
+      "sha256": "f358d461b1f45a8d91d8e308ca82e5b35c5d2e5c135d8ed07d8cdc86456a5418"
+    },
+    "work/deps/capstone-5.0.7/capstone/arm_const.py": {
+      "bytes": 17295,
+      "sha256": "1b00d7b48be4b72b730272486d4fd2057cb8019e67f1bd145bcabb1b988d1c67"
+    },
+    "work/deps/capstone-5.0.7/capstone/bpf.py": {
+      "bytes": 1438,
+      "sha256": "f879595fbc413bfa74600b4cbaa7a2cdd7200b2f92e718ad31fb36844e7c0f9d"
+    },
+    "work/deps/capstone-5.0.7/capstone/bpf_const.py": {
+      "bytes": 2160,
+      "sha256": "070717e28a68ee7e1e8b29cb9a299f5e462be81d9ad6c83dccce5f771fe22e7e"
+    },
+    "work/deps/capstone-5.0.7/capstone/evm.py": {
+      "bytes": 383,
+      "sha256": "29f35d3953b2eeb976e02af3cdbf3a78066d4d5a750588da0672e48bc5aa0385"
+    },
+    "work/deps/capstone-5.0.7/capstone/evm_const.py": {
+      "bytes": 3292,
+      "sha256": "b3a60498c0ac455098d884574829875deb83a4176a052480249a9d3e93f42b6d"
+    },
+    "work/deps/capstone-5.0.7/capstone/lib/capstone.dll": {
+      "bytes": 7572480,
+      "sha256": "46b7c385efe50db4def8aa99aa351c44ea28b1f3c2ccbc4ca41dbb2a02340e39"
+    },
+    "work/deps/capstone-5.0.7/capstone/m680x.py": {
+      "bytes": 2065,
+      "sha256": "24d56b8f6e9c12d73f830f26de36d02461e4d73a3091943e6c90884181efe41d"
+    },
+    "work/deps/capstone-5.0.7/capstone/m680x_const.py": {
+      "bytes": 8885,
+      "sha256": "a8ceebe6e6213da834406e7a56c1f808fad554c5ed85a986b0ef8647db3718da"
+    },
+    "work/deps/capstone-5.0.7/capstone/m68k.py": {
+      "bytes": 2438,
+      "sha256": "0567bf26e32a274b086d296fdcc078dcbda2c66280f941e5986b30eecc647bc8"
+    },
+    "work/deps/capstone-5.0.7/capstone/m68k_const.py": {
+      "bytes": 10489,
+      "sha256": "79de0ea42977ad2875fd73a34ddb55fc2ace58dac45b0ee8aff0ae138c7a8faa"
+    },
+    "work/deps/capstone-5.0.7/capstone/mips.py": {
+      "bytes": 1001,
+      "sha256": "c23b6e5d5df2be6f728dda2da2a8f805d4d1500e383aebf555da1fa9650639e8"
+    },
+    "work/deps/capstone-5.0.7/capstone/mips_const.py": {
+      "bytes": 18592,
+      "sha256": "80a325c59a8a88918d1ebc55268e07461841ddde50d034a545d31cdf44668324"
+    },
+    "work/deps/capstone-5.0.7/capstone/mos65xx.py": {
+      "bytes": 998,
+      "sha256": "f9b525569fcae4768ac4b2230a46468a571e934717f14d52910e243d0b279e9a"
+    },
+    "work/deps/capstone-5.0.7/capstone/mos65xx_const.py": {
+      "bytes": 3393,
+      "sha256": "22762e23dec6d011f75068cac995f4c05f6cf5c93c207502eeb11d0cd4a136f3"
+    },
+    "work/deps/capstone-5.0.7/capstone/ppc.py": {
+      "bytes": 1384,
+      "sha256": "1ee21161d21902744379624d87048138272a99c6bd98623256baa065038bf03d"
+    },
+    "work/deps/capstone-5.0.7/capstone/ppc_const.py": {
+      "bytes": 45023,
+      "sha256": "4284db74b7db3a0e3eda043970096c047df81d9b0a81c13b3b5b70ca623d4b0b"
+    },
+    "work/deps/capstone-5.0.7/capstone/riscv.py": {
+      "bytes": 1104,
+      "sha256": "c40beee7bd99d3f1cc329203020def06140a786d17e2ec963feefb12e0c8e872"
+    },
+    "work/deps/capstone-5.0.7/capstone/riscv_const.py": {
+      "bytes": 10953,
+      "sha256": "6ac81243404207d74b3190c37180b6353a001191c7df5d04fd25f89b624abdd1"
+    },
+    "work/deps/capstone-5.0.7/capstone/sh.py": {
+      "bytes": 1478,
+      "sha256": "d50212075a918e94b41f1e67f838a3b70bc44d19941f33b6d502e5359c967592"
+    },
+    "work/deps/capstone-5.0.7/capstone/sh_const.py": {
+      "bytes": 7154,
+      "sha256": "a19a1837892a0eaa9bc3e5cd3638625471d705a35b08aa26994ad108928125be"
+    },
+    "work/deps/capstone-5.0.7/capstone/sparc.py": {
+      "bytes": 1127,
+      "sha256": "389867d194a7bef779466a5283953cb2b30d2e84368e80112677cfaa0334097c"
+    },
+    "work/deps/capstone-5.0.7/capstone/sparc_const.py": {
+      "bytes": 9738,
+      "sha256": "aef73803efe9a2e0e109fe05e0b791f33e62d41c54ed32cd2773837960d1ddae"
+    },
+    "work/deps/capstone-5.0.7/capstone/systemz.py": {
+      "bytes": 1115,
+      "sha256": "9e75611fb8930ef665b04a80e14ca0735953f69d2f0fdb608f96ea172cef7f2d"
+    },
+    "work/deps/capstone-5.0.7/capstone/sysz_const.py": {
+      "bytes": 56291,
+      "sha256": "98ad76240b48eff060f96fc0986933c904cbdfd654866eb49e7ee5879db2908e"
+    },
+    "work/deps/capstone-5.0.7/capstone/tms320c64x.py": {
+      "bytes": 1672,
+      "sha256": "597bf661d25e283c007c9ee76defb422f41e4279aae5bbd8b5736400109cf6b3"
+    },
+    "work/deps/capstone-5.0.7/capstone/tms320c64x_const.py": {
+      "bytes": 7257,
+      "sha256": "643aeb59e96e2eb10f6ca4e9d27db9c00d83195cf442dea453418ac2df0cb94b"
+    },
+    "work/deps/capstone-5.0.7/capstone/tricore.py": {
+      "bytes": 1123,
+      "sha256": "6716ed4579dadec5c476a0a704c35421860cdaaf20796c7d9c5ebfceb5c4e3cb"
+    },
+    "work/deps/capstone-5.0.7/capstone/tricore_const.py": {
+      "bytes": 12010,
+      "sha256": "95d640cfc8d698f162edc68646c4829cd25289ee47d2869815b33b7839d32bae"
+    },
+    "work/deps/capstone-5.0.7/capstone/wasm.py": {
+      "bytes": 1627,
+      "sha256": "8fb19dfb59cd7175ab0e55b8b7c2d37e150c237ed6060862be6ec3e98bf21d6d"
+    },
+    "work/deps/capstone-5.0.7/capstone/wasm_const.py": {
+      "bytes": 5132,
+      "sha256": "e03e231892153456070055f39a53ed3205feeb24e7d768a2b193adcbe26cffc5"
+    },
+    "work/deps/capstone-5.0.7/capstone/x86.py": {
+      "bytes": 2816,
+      "sha256": "08cbb0a02ff152bcf1fbd7c4f8850b3ade38c25b9f0a6a9b900a55ee75e87c67"
+    },
+    "work/deps/capstone-5.0.7/capstone/x86_const.py": {
+      "bytes": 45756,
+      "sha256": "83cf4550d9256f5f9b8e218b9b732e46d83ef602b463a01d6eeb778deb28e040"
+    },
+    "work/deps/capstone-5.0.7/capstone/xcore.py": {
+      "bytes": 1082,
+      "sha256": "67a3bab5ec77998bf88f320b61be7110318454be2252ff2a02f42ca4aab56a8c"
+    },
+    "work/deps/capstone-5.0.7/capstone/xcore_const.py": {
+      "bytes": 3424,
+      "sha256": "34367710ee0501621fb8b325890cae740ff38075d3ef66b36de9b8b4dcec227f"
+    }
+  },
+  "flat_text_files": 51,
+  "native_ready": false,
+  "passed": true,
+  "sealed": true,
+  "source_pins": {
+    "work/reports/peace-divisor-successor-proposal-20261016-r1/manifest.json": {
+      "bytes": 6573,
+      "sha256": "695823e43994247dac2e59f430ddf1d30e3ace18497ec7cde2194633ce9e82f3"
+    },
+    "work/reports/peace-divisor-successor-proposal-20261016-r1/proposal.json": {
+      "bytes": 9547,
+      "sha256": "c14b8d0f9441b860bb128ef6ddb201d386df85bf604ce395636dc8b99859ee5e"
+    },
+    "work/reports/peace-divisor-successor-proposal-20261016-r1/selected-seed.json": {
+      "bytes": 5440,
+      "sha256": "41946c4a562e088d7dcc8f56f0a96ce22cec9d7a1e75f6b44102c151d13ceee0"
+    },
+    "work/reports/server-vtable-current-reference-owner-20261016-r2/produce.py": {
+      "bytes": 26805,
+      "sha256": "902a2908148870876719f8b086553ea553e87cf9000703af61787be87d9a875d"
+    },
+    "work/reports/server-vtable-current-reference-owner-20261016-r2/source-manifest.json": {
+      "bytes": 24090,
+      "sha256": "ba3735d36f60978d6bfff31c6740eabacd3427b7944832d888999882db52a6c4"
+    },
+    "work/reports/server-vtable-current-reference-owner-source-independent-review-20261016-r2/findings.json": {
+      "bytes": 7896,
+      "sha256": "0d379a3bbd3879d948e0ff9dd8cacf2453855e9ddcafb5977c592da88a4fc3cc"
+    },
+    "work/reports/war-peace-api-20261015-r27-truce-literal-anchors/war/anchors.json": {
+      "bytes": 12398,
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    "work/reports/war-peace-api-20261016-r69-actual-independent-review/findings.json": {
+      "bytes": 6300,
+      "sha256": "529f00a30baeba2c1f600018455c1e050f6061429951da8ce2daf9c44de17f56"
+    },
+    "work/reports/war-peace-api-20261016-r69-actual-independent-review/manifest.json": {
+      "bytes": 13503,
+      "sha256": "bceee11bb0cc11bb648d0b2e8d65b9862df971ecc10e161118ee762e3acf8058"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/capture.json": {
+      "bytes": 82235,
+      "sha256": "16125c7d31832311ef0b67019b01011b2703699f05408feb33ca881692f14c65"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/contract.json": {
+      "bytes": 7825,
+      "sha256": "cf685af0d0287802ed06d830e804ee12c75865c4b527b3a676f3950cc96ef6cc"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/selected-evidence.json": {
+      "bytes": 19444,
+      "sha256": "e3f4d304acf93f674ec407c4cfdd330a5163ea8e328bc6a8afe5deab893a237f"
+    },
+    "work/reports/war-peace-api-20261016-r71-actual-independent-review/findings.json": {
+      "bytes": 8035,
+      "sha256": "40dbb7199f02244bcf1f95dba475db87171a81e226b7e0238004f788312cb045"
+    },
+    "work/reports/war-peace-api-20261016-r71-actual-independent-review/manifest.json": {
+      "bytes": 12660,
+      "sha256": "9bcd6706361cb07936763b868f9f384e399194f4900f774ef91fe042c2eb3a96"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-contract.json": {
+      "bytes": 12229,
+      "sha256": "3d370deb33fc006ecb8a0cee93e8744bc112da8fffe66154afee3dfe9f92ff98"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-manifest.json": {
+      "bytes": 24771,
+      "sha256": "df5a1d0e3918347ff95d7199b184adefed4a816b2f08dc3dd2bba4576823777f"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-selected-evidence.json": {
+      "bytes": 41810,
+      "sha256": "12f1041c5d62da5d28fa9234e06e7081b3a2a73ad028ad83219e17a22917e5ae"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/owned-code.json": {
+      "bytes": 1168,
+      "sha256": "75273a3a5b75655703a01cfd5b1276f18d4089e5663c5d9bb3d4454dad716160"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/produce.py": {
+      "bytes": 22257,
+      "sha256": "f3968623dfa79dedf603d8b6274159e4d152dbacc6d2a12300750a1f9509a937"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/source-manifest.json": {
+      "bytes": 21135,
+      "sha256": "6f46db3d7acb1b34391b9f821fb2347b507dac2ee18393b64d74d51f2a5b0722"
+    },
+    "work/reports/war-peace-api-20261016-r73-actual-independent-review/findings.json": {
+      "bytes": 5251,
+      "sha256": "5794b82df03b9fd1f407d3384f81fb366349f6cc7133c010f50d2206cfa2fd88"
+    },
+    "work/reports/war-peace-api-20261016-r73-actual-independent-review/intake-receipt.json": {
+      "bytes": 11401,
+      "sha256": "7ac2916c70f131aa14149af07da3b0babd902067232fb2ef23ab294a6a705297"
+    },
+    "work/reports/war-peace-api-20261016-r73-actual-independent-review/raw-replay.json": {
+      "bytes": 3420,
+      "sha256": "7a65fd855fcab090fce058f913d116827a0a33e235bf3a71b1a86bdf6b4a64d8"
+    },
+    "work/reports/war-peace-api-20261016-r73-actual-independent-review/retained-files.json": {
+      "bytes": 754973,
+      "sha256": "3c831c75b19a8e5e63e7364cf265d590ccf6d01bde9216caffd9ff20a01b8379"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/PROTOCOL.md": {
+      "bytes": 3155,
+      "sha256": "bab80138c5c1f2631783dfc5c7466df5b9315ddbdf65704f5807d590eb84283a"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-contract.json": {
+      "bytes": 13212,
+      "sha256": "5eb88b02b2a454104799c18703af2f7fdf3487e507661f6af6cad013ceb41857"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-delivery.json": {
+      "bytes": 1720,
+      "sha256": "aab3b40d6ad9cc4e123c33515062329217178f18d1693f905f73a43cca290f8a"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-final-filecheck.json": {
+      "bytes": 7684,
+      "sha256": "425311602d583ee7f8672d3dc84fded7053ed8fb38929801c325aed976a08b91"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-manifest.json": {
+      "bytes": 24623,
+      "sha256": "a5eb1ebbfe46c9d590aa118729a330499a226d828458248c45530ada0feb987b"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-publication-manifest.json": {
+      "bytes": 2326,
+      "sha256": "31998bcfd764c9afae7e1e262652fe579d5943ba343ed7e0c253e7b106aca542"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-report.md": {
+      "bytes": 1426,
+      "sha256": "e8bae4d6221d054ddec26de46e5b05c991afbe7b296aaad2c81f876b5a798b48"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-run.json": {
+      "bytes": 823,
+      "sha256": "855d0fc0b88d0b6d41c01da4e8ab591fcdd7abdb259601bf2f3627296b5f259a"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-seal-run.json": {
+      "bytes": 507,
+      "sha256": "33f39fe8b5b1f2a54bf6c43a46e4a4e7c735a8496f8a760af1a34e9169b66212"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-seal-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-seal-stdout.txt": {
+      "bytes": 659,
+      "sha256": "7055d658f36dddd6f0a38b662c206f7f718621f53a324391809145ab091e45b1"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-selected-evidence.json": {
+      "bytes": 8070,
+      "sha256": "724057630e576f976d48ad6e3044cdbdde7d0359e98bfd27f992f285cb680eea"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-stdout.txt": {
+      "bytes": 266,
+      "sha256": "59c75d1a21fbdd4729338eebdf9386e529a84da209553cafa0b70a7ac335a32e"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-verification.json": {
+      "bytes": 22701,
+      "sha256": "52eb3bd157918b1463f832ebe8dc6aeec47e630644420d7f631d09fa1eac2112"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/budget.json": {
+      "bytes": 1922,
+      "sha256": "aa8842cc3577f9e54e2797125145b8edb58eecd25198ca22302d2718e4e32d81"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/capture.json": {
+      "bytes": 73174,
+      "sha256": "362d4112a31856da813b1a4c5499fa4bb5257b227c4f1ba72be5d91ef9f06b6c"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/claim.json": {
+      "bytes": 12216,
+      "sha256": "d2ead07b947b746eeba570e19d73bb0c7d414c60520bfe66e8fb89e31ff2c525"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/entry-seed.json": {
+      "bytes": 21609,
+      "sha256": "34014d40471b0f79a9ed37a5013461e4afa1a31d43e22f4558080375a6ca3ca4"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/owned-code.json": {
+      "bytes": 906,
+      "sha256": "531d218c6d62d25eedee87756f347cb6089fd5f32afeec51ceb634f22760482c"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/prepare.py": {
+      "bytes": 24422,
+      "sha256": "2cbc9b052de4da046c935081678672ec2a4acc9a17ae756510146e540a928316"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/produce.py": {
+      "bytes": 23386,
+      "sha256": "d23bc4861c7d1a2fe17ecfde2090eda3ee77a9c87cbf9f45649817b51705800b"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/run-authorization.json": {
+      "bytes": 2698,
+      "sha256": "c30dfb4b2b22cebb853ccda30a282dc3ad6f91101570f6669cc9828a410bf6ce"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/seal_actual.py": {
+      "bytes": 18859,
+      "sha256": "28a4886b100fa2dba8ce9b86ab971bb460fe826f3d93a8b0094144d8ac75318e"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/source-delta.json": {
+      "bytes": 1315,
+      "sha256": "b80487495667b8d2256816d991b87f11d24a7dc355a2075c92215cb22c63117a"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/source-manifest.json": {
+      "bytes": 24203,
+      "sha256": "7d06b37f47bdda3a77898f185434994d5f4f0c85d0e856eb0e9fe30bd877ca3f"
+    },
+    "work/reports/war-peace-api-20261016-r73-entry-root-review/findings.json": {
+      "bytes": 2515,
+      "sha256": "7fb5775b39a1c715f2d44a4475fda1d52b23fcacac2f4e117615f9b02b0b03f4"
+    },
+    "work/reports/war-peace-api-20261016-r73-entry-root-review/manifest.json": {
+      "bytes": 2649,
+      "sha256": "2dafb89a56acab3bf03c2be22f9b3385f2e7d6ee9f40cb2972a11020117545e4"
+    },
+    "work/reports/war-peace-api-20261016-r73-root-authorization/receipt.json": {
+      "bytes": 4007,
+      "sha256": "cf7edf7c71cccf9ff0b5ee31526802c15f49236ba818cc5fda2ec1597f9141ac"
+    },
+    "work/reports/war-peace-api-20261016-r73-source-independent-review/findings.json": {
+      "bytes": 4775,
+      "sha256": "6bec005ad6564656891e5b69928476dfba8846f4cb84eb454f1d70d4215aec92"
+    },
+    "work/reports/war-peace-api-20261016-r73-source-independent-review/manifest.json": {
+      "bytes": 16907,
+      "sha256": "7f5f59b865bb785a4678f291a6103c86e5c73080c364c05b845cecf38cc33e56"
+    },
+    "work/review_r73_actual_20261016.py": {
+      "bytes": 22595,
+      "sha256": "034bd0f8d61776b33d960ce90f436c94be763167587e03a1398cedda7797a8bb"
+    }
+  },
+  "subject_manifest": {
+    "bytes": 24623,
+    "sha256": "a5eb1ebbfe46c9d590aa118729a330499a226d828458248c45530ada0feb987b"
+  }
+}

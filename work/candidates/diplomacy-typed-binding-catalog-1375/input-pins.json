@@ -1,0 +1,94 @@
+{
+  "bridge/diplomacy_api.py": {
+    "bytes": 34284,
+    "sha256": "2887e6af632b50be136d88cbfeaa6b861e7760ab34d534e5935e1596f2b33f6a"
+  },
+  "bridge/diplomacy_catalog.json": {
+    "bytes": 1304602,
+    "sha256": "0fbbf97d7e43f72cba9e45a4536fcca0f3d7b52517d01e24554bee623b7795e1"
+  },
+  "work/candidates/curry-favors-contract-1375/contract.json": {
+    "bytes": 5734,
+    "sha256": "c26365d6119b39ba560230278528de4c5198c8bef5901919adf35ec87c5ca19d"
+  },
+  "work/candidates/curry-favors-contract-1375/report.json": {
+    "bytes": 1144488,
+    "sha256": "10c33ee19481cf0c9b0f300e539fe7baee5065526463e3380b5bc08ebfabcf89"
+  },
+  "work/candidates/curry-favors-contract-1375/review.json": {
+    "bytes": 4432,
+    "sha256": "883292a180d0987587ab2a0d29c5a6f0578f95748b041190919d30af94eca5d7"
+  },
+  "work/candidates/spy-action-contracts-1375/report.json": {
+    "bytes": 1446454,
+    "sha256": "274221df57719404edfcacd7451ebc28c678369dab9d4377e6201be5db734774"
+  },
+  "work/candidates/spy-action-contracts-1375/review.json": {
+    "bytes": 1031,
+    "sha256": "d01a7a88961d3a9fad47479ebbef2304cca1fc1214521a3f98eca31738e6ef8c"
+  },
+  "work/candidates/spy-extra-parameter-contracts-1375/facts.json": {
+    "bytes": 9375,
+    "sha256": "0c30c929a0411386a9082d4ab0f07688e43089cd84782285af1a834e62b5f684"
+  },
+  "work/candidates/spy-extra-parameter-contracts-1375/report.json": {
+    "bytes": 1413899,
+    "sha256": "966dc543779755a56274fb58e63a61928ff0aee3c274d5e4a0422bb557311b53"
+  },
+  "work/candidates/spy-extra-parameter-contracts-1375/review.json": {
+    "bytes": 2777,
+    "sha256": "4d7b135bf5cb813749dd2b12406fcec139ba20e079b56c73772960bbdd81fd18"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/report.json": {
+    "bytes": 291016,
+    "sha256": "76f5e60a7dbbed7508ee2e6cf124fe39c24cbaa978e51d02963f3a5fc8bff92f"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/review.json": {
+    "bytes": 4036,
+    "sha256": "1bc91ed02a3668a4c61991fe4612bbaebd63a775dea34e3b9f35dc1f4163aaab"
+  },
+  "work/candidates/subject-military-focus-contract-1375/contract.json": {
+    "bytes": 6590,
+    "sha256": "16fa8859bd567066f092eb6889d5762f932774ba410689bd55ec21c55c89c1e8"
+  },
+  "work/candidates/subject-military-focus-contract-1375/report.json": {
+    "bytes": 543787,
+    "sha256": "7be628d0e30f1c2e0d92b89d40b3757f310659865dd3d49427114e5a64cedffb"
+  },
+  "work/candidates/subject-military-focus-contract-1375/review.json": {
+    "bytes": 2295,
+    "sha256": "1281e7ef653ad4d566bc5490de5feb0f7bb12271a8c2225f198d744f4f165df3"
+  },
+  "work/candidates/subject-toggle-contracts-1375/contract.json": {
+    "bytes": 13154,
+    "sha256": "aeb3013fca05f889c1a0f7df6d72cab53a427f0242d9f1e3d53e6852a2981c90"
+  },
+  "work/candidates/subject-toggle-contracts-1375/report.json": {
+    "bytes": 1102475,
+    "sha256": "ac0853a35387f67af7a1b8c4dcb9173f1efd2c44e438eb1193b9ccd10307b291"
+  },
+  "work/candidates/subject-toggle-contracts-1375/review.json": {
+    "bytes": 3396,
+    "sha256": "b0b78faf4a97416b3657e1f3102f2099d5743490f535cea53d9f24147c8640b3"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/review.json": {
+    "bytes": 2479,
+    "sha256": "84be84f82878707ef5ae18e6b58bd5dac3f195e528c372e08cf67a71eddeb16b"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/review.json": {
+    "bytes": 10863,
+    "sha256": "14ed360b28f4e0c0d407a91003a41029fa063cda961f53f9187fba104d4d7b5d"
+  },
+  "work/review-results/v18-spy-core-action-catalog-20261008a/review.json": {
+    "bytes": 24886,
+    "sha256": "3069c9cd23782283da344c87df303e1c2cbfd998d23940d8dc4bf4851a877dc6"
+  },
+  "work/review-results/v18-spy-no-send-native-inventory-20261008a/review.json": {
+    "bytes": 3906,
+    "sha256": "610b031dfe33fedb41182fd7baf14f9eb25bfdff1de1552d80c719f0db679dc0"
+  },
+  "work/runtime/unpacked-1.37.5/base/common/new_diplomatic_actions/00_diplomatic_actions.txt": {
+    "bytes": 132685,
+    "sha256": "69757c4ec1ae1604882d1ed1f90cde2370550e4d533f9f8173ff09cebf6e5bc9"
+  }
+}

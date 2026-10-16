@@ -1,0 +1,396 @@
+{
+  "schema": "R59-INDEPENDENT-REVIEW-MANIFEST/1",
+  "sealed": true,
+  "passed": true,
+  "subject_manifest": {
+    "bytes": 14507,
+    "sha256": "633a4ba43344f5b4041470189e93b2caafd01271b795b6516d1793f0d173beaa"
+  },
+  "subject_contract": {
+    "bytes": 9565,
+    "sha256": "c688a89a6cdb668cbbb7696558580271e2f6dc2d285e1b3dc9ac59e9394fda69"
+  },
+  "source_pins": {
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/manifest.json": {
+      "bytes": 14507,
+      "sha256": "633a4ba43344f5b4041470189e93b2caafd01271b795b6516d1793f0d173beaa"
+    },
+    "work/reports/war-peace-api-20261015-r58-pending-id-source/produce.py": {
+      "bytes": 20530,
+      "sha256": "672f1c38f0d16e45d1ca4556f81af37e713cc79737843e6710314ec240778899"
+    },
+    "work/reports/war-peace-api-20261015-r58-pending-id-source/source-manifest.json": {
+      "bytes": 23244,
+      "sha256": "19c0d8932948185507fd8ea4e80e7d2bc435f7de24260244de46f939652d8c41"
+    },
+    "work/reports/war-peace-api-20261015-r58-pending-id-source/manifest.json": {
+      "bytes": 13949,
+      "sha256": "f989fde03fae380c52ff0694bdb009116cec96877ace3c6f5f4e44326bc4edcf"
+    },
+    "work/reports/war-peace-api-20261015-r58-pending-id-source/selected-evidence.json": {
+      "bytes": 11062,
+      "sha256": "912c5ff0bca2986cee3e7d9ae4f487b569eb2a7414755d0eed60221b14d0c2bf"
+    },
+    "work/reports/war-peace-api-20261015-r58-pending-id-source/owned-code.json": {
+      "bytes": 591,
+      "sha256": "5ecb80bc70b0c10ce30741ee6c05d5d844a25fa9c18a7c1964c991685a94d1dc"
+    },
+    "work/reports/war-peace-api-20261015-r58-pending-id-source/contract.json": {
+      "bytes": 6262,
+      "sha256": "bdf98826b1746f19d2cb0ebc301e057a6be09430cc247034b79a803388803c9c"
+    },
+    "work/reports/war-peace-api-20261015-r58-independent-review/findings.json": {
+      "bytes": 4475,
+      "sha256": "1b7537c364fc2bebeb21670294da7e550da75378c9a2b331d1c0a0491e14b8ad"
+    },
+    "work/reports/war-peace-api-20261015-r58-independent-review/manifest.json": {
+      "bytes": 10402,
+      "sha256": "1341150111f1f040b00810ae6a9e599c7d21a9a776194bb1f6a1ff766dc39fc0"
+    },
+    "work/reports/war-peace-api-20261015-r28-truce-literal-consumer/war/produce.py": {
+      "bytes": 13121,
+      "sha256": "14c106cc117e4e946f0a9b5353459d7b1c4ad0382187140d54ddd730f8b81dcc"
+    },
+    "work/reports/war-peace-api-20261015-r27-truce-literal-anchors/war/anchors.json": {
+      "bytes": 12398,
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    "work/reports/war-peace-api-20261015-r23-truce-observation-contract/war/selected-decode.json": {
+      "bytes": 16926,
+      "sha256": "e38c687f4f6d4f3321cddad7c7910112350491acb19cd2090fe8f74e868c08bc"
+    },
+    "work/discover_diplomacy.py": {
+      "bytes": 29147,
+      "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/prepare.py": {
+      "bytes": 18635,
+      "sha256": "3d4ad10b5676e52ff1288e8d7c791c5729c4a7903f44fed9ff2ac327037a46c3"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/produce.py": {
+      "bytes": 22614,
+      "sha256": "95395e855f9282e01cb59be528e1e8188d16506bdcfeb0b49d6294f64b391cd4"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/entry-seed.json": {
+      "bytes": 3235,
+      "sha256": "08c82a8bc83e717f96dda7fe7405d474c0e2d2a5bd59a666b9a36c9672ec19c7"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/budget.json": {
+      "bytes": 1903,
+      "sha256": "8364761d120a5fa9799cf907c2bed3093b27fd4b1cce597bca90b3e77a78c398"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/PROTOCOL.md": {
+      "bytes": 2433,
+      "sha256": "b567c96cc76d2df9348a58e29859e84db5b5c09f12f8b65e898a03e94ac353f9"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/check_preparation.py": {
+      "bytes": 3134,
+      "sha256": "3f85824e29e330cfa3533e996abb32f58a8fdb5027fda65c05a37cb003b366dc"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/source-manifest.json": {
+      "bytes": 20530,
+      "sha256": "ae2168d74fb483a210f575f8343f25bac023dec7dd22dea68087d288036d1291"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/preparation-IO.json": {
+      "bytes": 9609,
+      "sha256": "69e1ce2ffd7de529d120080228f033f13448a262827dc22a75c6839f624b8da9"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/preparation.json": {
+      "bytes": 1002,
+      "sha256": "f2b46d3ca79ea362a4fcb3b2ccf27a0917c787a94c8cdd99f357bef67fa3690e"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/preparation-filecheck.json": {
+      "bytes": 3043,
+      "sha256": "8efae4ff51a6f03843fe6cb29f04b4e6f6415a91dc1029569ae2d7e3d7a5195e"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/run_once.py": {
+      "bytes": 4358,
+      "sha256": "b59f4622de8298ff073122a39986e1564432185afa6571094800547d3fc8042a"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/run-authorization.json": {
+      "bytes": 1579,
+      "sha256": "cc6eb335db516c3c84ea032d670ea0bed841365648d4bd2d9ced6350869260ea"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/claim.json": {
+      "bytes": 12412,
+      "sha256": "630cec9adf28819f74cd27e9d8e5269cfbf072ac33cb4b363e8f9666a14dc90d"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/producer.stdout.json": {
+      "bytes": 469,
+      "sha256": "4d5d173c132c59bfaec0c0f6d6116787ed0cc33ab0aa2701c3859bf7522da68b"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/producer.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/acquisition-receipt.json": {
+      "bytes": 1848,
+      "sha256": "d74ace323e1f26de4faed39ec886212a2dac112d16c859415e3b4874bb3724dd"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/capture.json": {
+      "bytes": 104164,
+      "sha256": "a74721614ef632ee0875089e296f81c8f25c0787dfa1c678353fa3f9e5a21483"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/owned-code.json": {
+      "bytes": 891,
+      "sha256": "305e85db6e323e3366f5cc84f5832491a901cc980d9c26a211a5342d0fa1650e"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/selected-evidence.json": {
+      "bytes": 43799,
+      "sha256": "620fd427b7c6ff9c2a29991628bfc962140aab270ac1ffc7ee2a878cb5ff9b4b"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/disassembly.txt": {
+      "bytes": 1767,
+      "sha256": "052150ab2e8a528b0d67ec0fdbcb81e16a5e16c5cc73b5cea051093cfe0c42a6"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/contract.json": {
+      "bytes": 9565,
+      "sha256": "c688a89a6cdb668cbbb7696558580271e2f6dc2d285e1b3dc9ac59e9394fda69"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/report.md": {
+      "bytes": 2266,
+      "sha256": "f731a9ac6866eeb3c7c92b03427dce2edefddaa02fec2783d05331803473150a"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/seal_actual.py": {
+      "bytes": 16376,
+      "sha256": "f0ef104bcf99a78cf6599e58805a213525a1ec76d09483a4abaebbda5eef8edc"
+    },
+    "work/reports/war-peace-api-20261016-r59-pending-id-kind5/verify.py": {
+      "bytes": 2187,
+      "sha256": "73625fd3c33fb24a1dda0a1a614a9df001be2c48d448caedff39ee8e407e9304"
+    },
+    "work/reports/war-peace-api-20261016-r59-entry-root-review/findings.json": {
+      "bytes": 4921,
+      "sha256": "43f345f17fcc37a7e4a857013c819d80879143cb9195192c053a4f49ed81dae6"
+    },
+    "work/reports/war-peace-api-20261016-r59-entry-root-review/manifest.json": {
+      "bytes": 3976,
+      "sha256": "1624ccee7ac850603b8d0eab32544c63bfdb3637445b987b3947f15b2532dafc"
+    }
+  },
+  "artifact_pins": {
+    "acquire.py": {
+      "bytes": 1865,
+      "sha256": "6edaea3aaccbba0e350ce65792765dd1ef23cae455dd1e9039b48dbe291bf3af"
+    },
+    "acquisition.json": {
+      "bytes": 10662,
+      "sha256": "9c7e83fdf0fb4ccb5d0d1c9fedaf44538643c7add86a7ee6edf9aaf9ee431d20"
+    },
+    "check_review.py": {
+      "bytes": 1524,
+      "sha256": "05b58e4687b9ee57dce59590acd0b268179bceb6ba30f8e6b594d7875a9b7329"
+    },
+    "findings.json": {
+      "bytes": 7859,
+      "sha256": "8cdc789336619307d0f75f6aed0f3761b3a43a41cabe663c99ae7763b508d382"
+    },
+    "initial-read.json": {
+      "bytes": 230,
+      "sha256": "b6263f559ed7cd8f23ea836b1d6d454e9c1dac02f7d6d428d939b2a2afc59f65"
+    },
+    "inspection-01.json": {
+      "bytes": 535,
+      "sha256": "2da8bbe2959dad3c3c59b073396aba834ab9c063a6a6d421cac2ec40eeea4602"
+    },
+    "inspection-02.json": {
+      "bytes": 551,
+      "sha256": "2242b33322efcf7c3dd762dec97c290dbf5309440846dcd5cb4b05a02548dc7d"
+    },
+    "inspection-03.json": {
+      "bytes": 363,
+      "sha256": "2e656c1a138678911a3fca5b215d417c607cdf212af11712f55af4b3f654be80"
+    },
+    "physical-read-ledger.json": {
+      "bytes": 23331,
+      "sha256": "ae1bea6b02cf1b494cecd8429604a570aae87c092cd4273ce933a15cca5968a8"
+    },
+    "replay.json": {
+      "bytes": 2709,
+      "sha256": "b4752b1e4bdf0f6dcd7e49de979a354f7454e8eff7fd4cddcf1009ff508566dc"
+    },
+    "replay.py": {
+      "bytes": 12072,
+      "sha256": "7f8296529c9b1cf1124de3c27a3a2d28dcb9e03e4cfb53186fcb4ec6bf14b433"
+    },
+    "report.md": {
+      "bytes": 2242,
+      "sha256": "4d6a6ac6a7c4e7191bc404f9d30a5202a89c635e77cd428402e7f17fad1600f4"
+    },
+    "seal_review.py": {
+      "bytes": 12149,
+      "sha256": "34c93553e939e40bc86bfab718272faee802375ee16b445893f42d7145fd1644"
+    },
+    "snapshots/01-produce.py": {
+      "bytes": 20530,
+      "sha256": "672f1c38f0d16e45d1ca4556f81af37e713cc79737843e6710314ec240778899"
+    },
+    "snapshots/02-source-manifest.json": {
+      "bytes": 23244,
+      "sha256": "19c0d8932948185507fd8ea4e80e7d2bc435f7de24260244de46f939652d8c41"
+    },
+    "snapshots/03-manifest.json": {
+      "bytes": 13949,
+      "sha256": "f989fde03fae380c52ff0694bdb009116cec96877ace3c6f5f4e44326bc4edcf"
+    },
+    "snapshots/04-selected-evidence.json": {
+      "bytes": 11062,
+      "sha256": "912c5ff0bca2986cee3e7d9ae4f487b569eb2a7414755d0eed60221b14d0c2bf"
+    },
+    "snapshots/05-owned-code.json": {
+      "bytes": 591,
+      "sha256": "5ecb80bc70b0c10ce30741ee6c05d5d844a25fa9c18a7c1964c991685a94d1dc"
+    },
+    "snapshots/06-contract.json": {
+      "bytes": 6262,
+      "sha256": "bdf98826b1746f19d2cb0ebc301e057a6be09430cc247034b79a803388803c9c"
+    },
+    "snapshots/07-findings.json": {
+      "bytes": 4475,
+      "sha256": "1b7537c364fc2bebeb21670294da7e550da75378c9a2b331d1c0a0491e14b8ad"
+    },
+    "snapshots/08-manifest.json": {
+      "bytes": 10402,
+      "sha256": "1341150111f1f040b00810ae6a9e599c7d21a9a776194bb1f6a1ff766dc39fc0"
+    },
+    "snapshots/09-produce.py": {
+      "bytes": 13121,
+      "sha256": "14c106cc117e4e946f0a9b5353459d7b1c4ad0382187140d54ddd730f8b81dcc"
+    },
+    "snapshots/10-anchors.json": {
+      "bytes": 12398,
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    "snapshots/11-selected-decode.json": {
+      "bytes": 16926,
+      "sha256": "e38c687f4f6d4f3321cddad7c7910112350491acb19cd2090fe8f74e868c08bc"
+    },
+    "snapshots/12-discover_diplomacy.py": {
+      "bytes": 29147,
+      "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+    },
+    "snapshots/13-prepare.py": {
+      "bytes": 18635,
+      "sha256": "3d4ad10b5676e52ff1288e8d7c791c5729c4a7903f44fed9ff2ac327037a46c3"
+    },
+    "snapshots/14-produce.py": {
+      "bytes": 22614,
+      "sha256": "95395e855f9282e01cb59be528e1e8188d16506bdcfeb0b49d6294f64b391cd4"
+    },
+    "snapshots/15-entry-seed.json": {
+      "bytes": 3235,
+      "sha256": "08c82a8bc83e717f96dda7fe7405d474c0e2d2a5bd59a666b9a36c9672ec19c7"
+    },
+    "snapshots/16-budget.json": {
+      "bytes": 1903,
+      "sha256": "8364761d120a5fa9799cf907c2bed3093b27fd4b1cce597bca90b3e77a78c398"
+    },
+    "snapshots/17-PROTOCOL.md": {
+      "bytes": 2433,
+      "sha256": "b567c96cc76d2df9348a58e29859e84db5b5c09f12f8b65e898a03e94ac353f9"
+    },
+    "snapshots/18-check_preparation.py": {
+      "bytes": 3134,
+      "sha256": "3f85824e29e330cfa3533e996abb32f58a8fdb5027fda65c05a37cb003b366dc"
+    },
+    "snapshots/19-source-manifest.json": {
+      "bytes": 20530,
+      "sha256": "ae2168d74fb483a210f575f8343f25bac023dec7dd22dea68087d288036d1291"
+    },
+    "snapshots/20-preparation-IO.json": {
+      "bytes": 9609,
+      "sha256": "69e1ce2ffd7de529d120080228f033f13448a262827dc22a75c6839f624b8da9"
+    },
+    "snapshots/21-preparation.json": {
+      "bytes": 1002,
+      "sha256": "f2b46d3ca79ea362a4fcb3b2ccf27a0917c787a94c8cdd99f357bef67fa3690e"
+    },
+    "snapshots/22-preparation-filecheck.json": {
+      "bytes": 3043,
+      "sha256": "8efae4ff51a6f03843fe6cb29f04b4e6f6415a91dc1029569ae2d7e3d7a5195e"
+    },
+    "snapshots/23-run_once.py": {
+      "bytes": 4358,
+      "sha256": "b59f4622de8298ff073122a39986e1564432185afa6571094800547d3fc8042a"
+    },
+    "snapshots/24-run-authorization.json": {
+      "bytes": 1579,
+      "sha256": "cc6eb335db516c3c84ea032d670ea0bed841365648d4bd2d9ced6350869260ea"
+    },
+    "snapshots/25-claim.json": {
+      "bytes": 12412,
+      "sha256": "630cec9adf28819f74cd27e9d8e5269cfbf072ac33cb4b363e8f9666a14dc90d"
+    },
+    "snapshots/26-producer.stdout.json": {
+      "bytes": 469,
+      "sha256": "4d5d173c132c59bfaec0c0f6d6116787ed0cc33ab0aa2701c3859bf7522da68b"
+    },
+    "snapshots/27-producer.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "snapshots/28-acquisition-receipt.json": {
+      "bytes": 1848,
+      "sha256": "d74ace323e1f26de4faed39ec886212a2dac112d16c859415e3b4874bb3724dd"
+    },
+    "snapshots/29-capture.json": {
+      "bytes": 104164,
+      "sha256": "a74721614ef632ee0875089e296f81c8f25c0787dfa1c678353fa3f9e5a21483"
+    },
+    "snapshots/30-owned-code.json": {
+      "bytes": 891,
+      "sha256": "305e85db6e323e3366f5cc84f5832491a901cc980d9c26a211a5342d0fa1650e"
+    },
+    "snapshots/31-selected-evidence.json": {
+      "bytes": 43799,
+      "sha256": "620fd427b7c6ff9c2a29991628bfc962140aab270ac1ffc7ee2a878cb5ff9b4b"
+    },
+    "snapshots/32-disassembly.txt": {
+      "bytes": 1767,
+      "sha256": "052150ab2e8a528b0d67ec0fdbcb81e16a5e16c5cc73b5cea051093cfe0c42a6"
+    },
+    "snapshots/33-contract.json": {
+      "bytes": 9565,
+      "sha256": "c688a89a6cdb668cbbb7696558580271e2f6dc2d285e1b3dc9ac59e9394fda69"
+    },
+    "snapshots/34-report.md": {
+      "bytes": 2266,
+      "sha256": "f731a9ac6866eeb3c7c92b03427dce2edefddaa02fec2783d05331803473150a"
+    },
+    "snapshots/35-seal_actual.py": {
+      "bytes": 16376,
+      "sha256": "f0ef104bcf99a78cf6599e58805a213525a1ec76d09483a4abaebbda5eef8edc"
+    },
+    "snapshots/36-verify.py": {
+      "bytes": 2187,
+      "sha256": "73625fd3c33fb24a1dda0a1a614a9df001be2c48d448caedff39ee8e407e9304"
+    },
+    "snapshots/37-findings.json": {
+      "bytes": 4921,
+      "sha256": "43f345f17fcc37a7e4a857013c819d80879143cb9195192c053a4f49ed81dae6"
+    },
+    "snapshots/38-manifest.json": {
+      "bytes": 3976,
+      "sha256": "1624ccee7ac850603b8d0eab32544c63bfdb3637445b987b3947f15b2532dafc"
+    },
+    "subject-manifest.json": {
+      "bytes": 14507,
+      "sha256": "633a4ba43344f5b4041470189e93b2caafd01271b795b6516d1793f0d173beaa"
+    }
+  },
+  "engine_witness_pin_count": 38,
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "native_ID_semantics_verified": false,
+    "native_ID_uniqueness_verified": false,
+    "counter_update_or_wrap_verified": false,
+    "bridge_request_ID_binding_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "new_scope_authorized": false
+  }
+}

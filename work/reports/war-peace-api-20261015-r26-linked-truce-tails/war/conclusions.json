@@ -1,0 +1,103 @@
+{
+  "schema": "EU4-R26-LINKED-TRUCE-TAILS-CONCLUSIONS-CORRIGENDUM/1",
+  "status": "selected_tail_bytes_verified_false_RET_closed_and_call_INT3_tail_identified",
+  "base_manifest": {
+    "bytes": 11626,
+    "sha256": "e73c64d929f38504ee1f3ac570e7a4e1997838e8fcf1858fabfd9cb825f5627a"
+  },
+  "base_sources_unchanged": true,
+  "conclusion_prepublication_correction": "Initial file-only conclusions run used defaultGBK when reading its UTF8 producerpreimage and stopped before writes. Corrected to explicitUTF8; no codewindow read/decoder/source-evidence change.",
+  "false_2f": {
+    "prior_AL_zero": "0x2f160b XOR AL,AL",
+    "tail_raw": "4883c4205bc3",
+    "tail": "ADD RSP,0x20; POP RBX; RET",
+    "false_normal_RET": "0x2f1612",
+    "other_retained_normal_RET": "0x2f160a",
+    "selected_normal_AL": "0or1; no fullRAX normalization claim",
+    "ordinary_false_epilogue_closed": true,
+    "callee_contracts_or_exception_paths_closed": false
+  },
+  "tail_7ae": {
+    "raw": "90488bc8e897cfcaffcc",
+    "instructions": "NOP; MOV RCX,RAX; CALL0x45b280; INT3",
+    "preceding_call": "0x7ae2db ->0x45b260",
+    "additional_callsite": "0x7ae2e4",
+    "additional_unfollowed_callee": "0x45b280",
+    "callee_argument_assignment": "RCX receives preceding45b260 RAX; other call state not upgraded",
+    "if_45b260_returns_normally": "executesNOP, thenMOV RCX,RAX andCALL45b280",
+    "if_45b280_returns_normally": "next instructionINT3 at0x7ae2e9",
+    "normal_RET_in_new_tail": false,
+    "jump_back_to_7ae2be_in_new_tail": false,
+    "prior_other_branch_byte_RET": "0x7ae2be MOVZX EAX,byte[RAX] ->normalRET7ae2c6",
+    "all_7ae_normal_paths_closed": false,
+    "callee_nonreturn_proven": false,
+    "SEH_or_exception_class_or_business_operation_proven": false
+  },
+  "corrigenda": [
+    {
+      "source": "sealed contract.json byte_7a.post_45b260_validation",
+      "obsolete_phrase": "before its jump",
+      "cause": "old template residual; actual selected tail has nojump",
+      "replacement": "MOV RCX,RAX; CALL45b280; if normalreturn executesINT3; no normalRET or jumpback in this tail.",
+      "original_artifact_modified": false
+    },
+    {
+      "source": "sealed contract.json status=unknown_tail_semantics",
+      "clarification": "Retained tail instructions and absence of jump/normalRET are now explicit facts; unknown remains callee/exception semantics. This does not promote all paths to normal completion."
+    }
+  ],
+  "accounting": {
+    "attempt01_code_reads": 2,
+    "attempt01_physical_code_bytes": 13,
+    "attempt01_decoder_input": 16,
+    "attempt01_raw_retained": false,
+    "attempt01_count_grade": "source AST plus complete retained tool-error transcript witness",
+    "attempt02_code_reads": 2,
+    "attempt02_physical_code_bytes": 13,
+    "attempt02_decoder_input": 16,
+    "cumulative_physical_code_reads": 4,
+    "cumulative_physical_code_bytes": 26,
+    "cumulative_decoder_input": 32,
+    "unique_new_code_coverage": 13,
+    "unique_new_instruction_input": 16,
+    "reused_partial_raw_now_decoded": 3,
+    "retained_old_decode": 253,
+    "joined_instruction_bytes": 269,
+    "no_whole_function_redecode": true,
+    "new_code_read_by_this_conclusions_script": 0
+  },
+  "resources": {
+    "attempt02_own_peak_committed_bytes": 23953408,
+    "memory_guard_bytes": 805306368,
+    "hard_stop_bytes": 1073741824,
+    "hard_job_object_installed": false,
+    "attempt01_peak_not_retained": true
+  },
+  "unchanged_unknowns": [
+    "all five7ae callees including new45b280 effects/lifetime/failure",
+    "R9/R10 preservation across2f externalcall",
+    "literal232e9c8/1c38150 contents",
+    "businessclasses/ownership",
+    "transitivepurepredicate",
+    "truceobject/expiry/dateunits/removed",
+    "peacecompletion/requestcausality",
+    "worldlease/atomicity"
+  ],
+  "authority": {
+    "callable": false,
+    "native_ready": false,
+    "side_effect_free_transitive": false,
+    "world_lifetime_lease": false,
+    "truce_expiry_known": false,
+    "peace_completion_verified": false,
+    "reader_implemented": false,
+    "runtime_calls_performed": false
+  },
+  "new_decode_bytes_this_conclusion": 0,
+  "target_process_accesses": 0,
+  "Frida_operations": 0,
+  "game_native_calls": 0,
+  "requests_published": 0,
+  "tests_run": 0,
+  "independent_review_completed": false
+}

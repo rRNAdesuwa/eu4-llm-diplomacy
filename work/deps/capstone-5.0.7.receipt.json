@@ -1,0 +1,421 @@
+{
+  "schema": 1,
+  "distribution": "capstone",
+  "version": "5.0.7",
+  "install_scope": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\deps\\capstone-5.0.7",
+  "only_binary": true,
+  "no_dependencies": true,
+  "global_python_changed": false,
+  "prior_TEMP_missing": true,
+  "files": {
+    "capstone/arm.py": {
+      "bytes": 2154,
+      "sha256": "00ea7442a1496d84aca469bfa3542290eafe22898b5be0dece9294865b9508ba"
+    },
+    "capstone/arm64.py": {
+      "bytes": 2428,
+      "sha256": "834979e887315fae9a447698502f6866c246cb99b65c84b8b6fdef8087181284"
+    },
+    "capstone/arm64_const.py": {
+      "bytes": 81768,
+      "sha256": "f358d461b1f45a8d91d8e308ca82e5b35c5d2e5c135d8ed07d8cdc86456a5418"
+    },
+    "capstone/arm_const.py": {
+      "bytes": 17295,
+      "sha256": "1b00d7b48be4b72b730272486d4fd2057cb8019e67f1bd145bcabb1b988d1c67"
+    },
+    "capstone/bpf.py": {
+      "bytes": 1438,
+      "sha256": "f879595fbc413bfa74600b4cbaa7a2cdd7200b2f92e718ad31fb36844e7c0f9d"
+    },
+    "capstone/bpf_const.py": {
+      "bytes": 2160,
+      "sha256": "070717e28a68ee7e1e8b29cb9a299f5e462be81d9ad6c83dccce5f771fe22e7e"
+    },
+    "capstone/evm.py": {
+      "bytes": 383,
+      "sha256": "29f35d3953b2eeb976e02af3cdbf3a78066d4d5a750588da0672e48bc5aa0385"
+    },
+    "capstone/evm_const.py": {
+      "bytes": 3292,
+      "sha256": "b3a60498c0ac455098d884574829875deb83a4176a052480249a9d3e93f42b6d"
+    },
+    "capstone/m680x.py": {
+      "bytes": 2065,
+      "sha256": "24d56b8f6e9c12d73f830f26de36d02461e4d73a3091943e6c90884181efe41d"
+    },
+    "capstone/m680x_const.py": {
+      "bytes": 8885,
+      "sha256": "a8ceebe6e6213da834406e7a56c1f808fad554c5ed85a986b0ef8647db3718da"
+    },
+    "capstone/m68k.py": {
+      "bytes": 2438,
+      "sha256": "0567bf26e32a274b086d296fdcc078dcbda2c66280f941e5986b30eecc647bc8"
+    },
+    "capstone/m68k_const.py": {
+      "bytes": 10489,
+      "sha256": "79de0ea42977ad2875fd73a34ddb55fc2ace58dac45b0ee8aff0ae138c7a8faa"
+    },
+    "capstone/mips.py": {
+      "bytes": 1001,
+      "sha256": "c23b6e5d5df2be6f728dda2da2a8f805d4d1500e383aebf555da1fa9650639e8"
+    },
+    "capstone/mips_const.py": {
+      "bytes": 18592,
+      "sha256": "80a325c59a8a88918d1ebc55268e07461841ddde50d034a545d31cdf44668324"
+    },
+    "capstone/mos65xx.py": {
+      "bytes": 998,
+      "sha256": "f9b525569fcae4768ac4b2230a46468a571e934717f14d52910e243d0b279e9a"
+    },
+    "capstone/mos65xx_const.py": {
+      "bytes": 3393,
+      "sha256": "22762e23dec6d011f75068cac995f4c05f6cf5c93c207502eeb11d0cd4a136f3"
+    },
+    "capstone/ppc.py": {
+      "bytes": 1384,
+      "sha256": "1ee21161d21902744379624d87048138272a99c6bd98623256baa065038bf03d"
+    },
+    "capstone/ppc_const.py": {
+      "bytes": 45023,
+      "sha256": "4284db74b7db3a0e3eda043970096c047df81d9b0a81c13b3b5b70ca623d4b0b"
+    },
+    "capstone/riscv.py": {
+      "bytes": 1104,
+      "sha256": "c40beee7bd99d3f1cc329203020def06140a786d17e2ec963feefb12e0c8e872"
+    },
+    "capstone/riscv_const.py": {
+      "bytes": 10953,
+      "sha256": "6ac81243404207d74b3190c37180b6353a001191c7df5d04fd25f89b624abdd1"
+    },
+    "capstone/sh.py": {
+      "bytes": 1478,
+      "sha256": "d50212075a918e94b41f1e67f838a3b70bc44d19941f33b6d502e5359c967592"
+    },
+    "capstone/sh_const.py": {
+      "bytes": 7154,
+      "sha256": "a19a1837892a0eaa9bc3e5cd3638625471d705a35b08aa26994ad108928125be"
+    },
+    "capstone/sparc.py": {
+      "bytes": 1127,
+      "sha256": "389867d194a7bef779466a5283953cb2b30d2e84368e80112677cfaa0334097c"
+    },
+    "capstone/sparc_const.py": {
+      "bytes": 9738,
+      "sha256": "aef73803efe9a2e0e109fe05e0b791f33e62d41c54ed32cd2773837960d1ddae"
+    },
+    "capstone/systemz.py": {
+      "bytes": 1115,
+      "sha256": "9e75611fb8930ef665b04a80e14ca0735953f69d2f0fdb608f96ea172cef7f2d"
+    },
+    "capstone/sysz_const.py": {
+      "bytes": 56291,
+      "sha256": "98ad76240b48eff060f96fc0986933c904cbdfd654866eb49e7ee5879db2908e"
+    },
+    "capstone/tms320c64x.py": {
+      "bytes": 1672,
+      "sha256": "597bf661d25e283c007c9ee76defb422f41e4279aae5bbd8b5736400109cf6b3"
+    },
+    "capstone/tms320c64x_const.py": {
+      "bytes": 7257,
+      "sha256": "643aeb59e96e2eb10f6ca4e9d27db9c00d83195cf442dea453418ac2df0cb94b"
+    },
+    "capstone/tricore.py": {
+      "bytes": 1123,
+      "sha256": "6716ed4579dadec5c476a0a704c35421860cdaaf20796c7d9c5ebfceb5c4e3cb"
+    },
+    "capstone/tricore_const.py": {
+      "bytes": 12010,
+      "sha256": "95d640cfc8d698f162edc68646c4829cd25289ee47d2869815b33b7839d32bae"
+    },
+    "capstone/wasm.py": {
+      "bytes": 1627,
+      "sha256": "8fb19dfb59cd7175ab0e55b8b7c2d37e150c237ed6060862be6ec3e98bf21d6d"
+    },
+    "capstone/wasm_const.py": {
+      "bytes": 5132,
+      "sha256": "e03e231892153456070055f39a53ed3205feeb24e7d768a2b193adcbe26cffc5"
+    },
+    "capstone/x86.py": {
+      "bytes": 2816,
+      "sha256": "08cbb0a02ff152bcf1fbd7c4f8850b3ade38c25b9f0a6a9b900a55ee75e87c67"
+    },
+    "capstone/x86_const.py": {
+      "bytes": 45756,
+      "sha256": "83cf4550d9256f5f9b8e218b9b732e46d83ef602b463a01d6eeb778deb28e040"
+    },
+    "capstone/xcore.py": {
+      "bytes": 1082,
+      "sha256": "67a3bab5ec77998bf88f320b61be7110318454be2252ff2a02f42ca4aab56a8c"
+    },
+    "capstone/xcore_const.py": {
+      "bytes": 3424,
+      "sha256": "34367710ee0501621fb8b325890cae740ff38075d3ef66b36de9b8b4dcec227f"
+    },
+    "capstone/__init__.py": {
+      "bytes": 43729,
+      "sha256": "0417ae554252be8e8d03e328054fad4c3cec6cf4895deecec637078380840f8b"
+    },
+    "capstone-5.0.7.dist-info/INSTALLER": {
+      "bytes": 4,
+      "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508"
+    },
+    "capstone-5.0.7.dist-info/LICENSE.TXT": {
+      "bytes": 1718,
+      "sha256": "404bd0cb0137ffb797258f844f53e5273f9b6d5781a1a359a2880411f49a4f30"
+    },
+    "capstone-5.0.7.dist-info/METADATA": {
+      "bytes": 3418,
+      "sha256": "17d76b4bb72903bf76e0c089f4ff02d8a81d65553cdeddfb0d988248ec4a9f02"
+    },
+    "capstone-5.0.7.dist-info/RECORD": {
+      "bytes": 5377,
+      "sha256": "10bd58799ad4e317a392cc1e87a17d920a649d21c0b76c6e64a541235a8051b4"
+    },
+    "capstone-5.0.7.dist-info/REQUESTED": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "capstone-5.0.7.dist-info/top_level.txt": {
+      "bytes": 9,
+      "sha256": "56c1f96e71b2e141ae32eee253f90d7a19cb2d9be56d940a76af5b90617100a2"
+    },
+    "capstone-5.0.7.dist-info/WHEEL": {
+      "bytes": 97,
+      "sha256": "954d2ebdda888c0e874734e98d9d47f8321f3929249066add906bbe074cb3439"
+    },
+    "capstone/lib/capstone.dll": {
+      "bytes": 7572480,
+      "sha256": "46b7c385efe50db4def8aa99aa351c44ea28b1f3c2ccbc4ca41dbb2a02340e39"
+    },
+    "capstone/__pycache__/arm.cpython-312.pyc": {
+      "bytes": 4339,
+      "sha256": "25261230c7dd964380cb54555174c1d677eeddfe60be0f19134cbfd42d684e80"
+    },
+    "capstone/__pycache__/arm64.cpython-312.pyc": {
+      "bytes": 5051,
+      "sha256": "93e5463e07a999e6d9ace53d655d923fe40d36da0e98d79e4aedbc69e3e98f51"
+    },
+    "capstone/__pycache__/arm64_const.cpython-312.pyc": {
+      "bytes": 112007,
+      "sha256": "452361927d723ae670cc2008f720af94dc6a81059530e00ce3c24c3c56b014d1"
+    },
+    "capstone/__pycache__/arm_const.cpython-312.pyc": {
+      "bytes": 24351,
+      "sha256": "0c670b4166f0d1359095ed08d732d58d66196f548c0b5fba014c1a62fabe311e"
+    },
+    "capstone/__pycache__/bpf.cpython-312.pyc": {
+      "bytes": 3276,
+      "sha256": "41487e49f5f1d8173fc703eaff4227c4265c904764fa8cecdce0c6dd1ae71e58"
+    },
+    "capstone/__pycache__/bpf_const.cpython-312.pyc": {
+      "bytes": 3116,
+      "sha256": "a13d06f77e333f5e36176de2c09d7c7fd3d4ab644d581cc0392386fbe9542074"
+    },
+    "capstone/__pycache__/evm.cpython-312.pyc": {
+      "bytes": 900,
+      "sha256": "b74cd3f29088899b2589a7182ff02e444b6f78d1ab8c207525b950f9be07d049"
+    },
+    "capstone/__pycache__/evm_const.cpython-312.pyc": {
+      "bytes": 4734,
+      "sha256": "31c900f44cebb5709511e30d1354c26d8a1f568b4c29eb56131bceb76a17b871"
+    },
+    "capstone/__pycache__/m680x.cpython-312.pyc": {
+      "bytes": 4312,
+      "sha256": "da6e336d758d4499ccb7e72767f678e31df738382aad20e8c79e3d90783ddf99"
+    },
+    "capstone/__pycache__/m680x_const.cpython-312.pyc": {
+      "bytes": 12825,
+      "sha256": "99ed22420ba167c544f20a6a06653bda08850b2a5555637cc247b087f4438586"
+    },
+    "capstone/__pycache__/m68k.cpython-312.pyc": {
+      "bytes": 4947,
+      "sha256": "09b7bba9a5cf525e03ddce34ca320d875df31bc29d67ddfd9f335977f4b9dc8b"
+    },
+    "capstone/__pycache__/m68k_const.cpython-312.pyc": {
+      "bytes": 15004,
+      "sha256": "eca36158647e3eaa20bebb9af9cbc40246433a0ed0aef73c3ea80006c00fc060"
+    },
+    "capstone/__pycache__/mips.cpython-312.pyc": {
+      "bytes": 2324,
+      "sha256": "77e7e642d580f717d3811458c92cc500c410304581592dffff28d8c2c77cbbd1"
+    },
+    "capstone/__pycache__/mips_const.cpython-312.pyc": {
+      "bytes": 26383,
+      "sha256": "aeed13fb2f75ed57fad580d153eb729eadbc318265f4095901e1f07e5210b3d8"
+    },
+    "capstone/__pycache__/mos65xx.cpython-312.pyc": {
+      "bytes": 2255,
+      "sha256": "b4ff46abb7df4b3fdc3617fd3cf97dc0be501eea83dc554eb53cdf6a7480e95b"
+    },
+    "capstone/__pycache__/mos65xx_const.cpython-312.pyc": {
+      "bytes": 4708,
+      "sha256": "31a7d2460a3944ccc2d049e3191e9d11d2bb589371fed1bda5acc5e49d5e3698"
+    },
+    "capstone/__pycache__/ppc.cpython-312.pyc": {
+      "bytes": 3109,
+      "sha256": "9a19a9afb9c989100691279d9a3106c4d5d1be181f53150be0212989aacaf404"
+    },
+    "capstone/__pycache__/ppc_const.cpython-312.pyc": {
+      "bytes": 66317,
+      "sha256": "a0b4965af9831e1fcb9ec61dc2541b9c708cfdfb42edcf7b0d716d359b24cbfa"
+    },
+    "capstone/__pycache__/riscv.cpython-312.pyc": {
+      "bytes": 2442,
+      "sha256": "6889c23eab277111d6e0878dbd0dd6b8211d15991399266f5ed53a32cbde763a"
+    },
+    "capstone/__pycache__/riscv_const.cpython-312.pyc": {
+      "bytes": 14217,
+      "sha256": "390090fc7e803148248a489f3bb5320610c22df94ea135448d8db9746aaf6e28"
+    },
+    "capstone/__pycache__/sh.cpython-312.pyc": {
+      "bytes": 3229,
+      "sha256": "2e8ca7d43532e98ea9f6c7b88f1bd7e09b5727048ee513733db75895fbba8383"
+    },
+    "capstone/__pycache__/sh_const.cpython-312.pyc": {
+      "bytes": 9955,
+      "sha256": "369be868930525c1b5b2cb5c1518675ca3f5674e582531d14358f0afe01ce4f6"
+    },
+    "capstone/__pycache__/sparc.cpython-312.pyc": {
+      "bytes": 2546,
+      "sha256": "505f38cfc566955480b85a46129f985e805838b578b62d050dcac953d576a009"
+    },
+    "capstone/__pycache__/sparc_const.cpython-312.pyc": {
+      "bytes": 13265,
+      "sha256": "93ac3f94571731cec10da8a4992510cc97d1d693fba72a9fd32f1654c4aa35c8"
+    },
+    "capstone/__pycache__/systemz.cpython-312.pyc": {
+      "bytes": 2514,
+      "sha256": "8b9a1819655f9e51dc5b30c6981cd0da5602fa31f23daef9928794f250bb281a"
+    },
+    "capstone/__pycache__/sysz_const.cpython-312.pyc": {
+      "bytes": 83776,
+      "sha256": "c262e803643ffb4915cc44a6a099e6b31bb5250b6ba203041d9554d56afb2c89"
+    },
+    "capstone/__pycache__/tms320c64x.cpython-312.pyc": {
+      "bytes": 3465,
+      "sha256": "d39255ec9d4b084fa9c34b59c04dfdc9b50aaec0b793efa484c9280d1d97cd71"
+    },
+    "capstone/__pycache__/tms320c64x_const.cpython-312.pyc": {
+      "bytes": 9489,
+      "sha256": "f0285c28872b7dc36b90f7ff6c837dc11c3b72784f09db0f46584265b15580c6"
+    },
+    "capstone/__pycache__/tricore.cpython-312.pyc": {
+      "bytes": 2502,
+      "sha256": "e340a0923f100b9a293fd15684e8c7905701debc6a293f970ee0da3652ac8ad6"
+    },
+    "capstone/__pycache__/tricore_const.cpython-312.pyc": {
+      "bytes": 16859,
+      "sha256": "7c0382b6db14107c41dc3cab1a810cb98cb4a8553839da52e0f28c6711755309"
+    },
+    "capstone/__pycache__/wasm.cpython-312.pyc": {
+      "bytes": 3457,
+      "sha256": "8a2984d2b2b2a201a914d4bcde4c4a1d61ac7117f365d38627126c8cd7a75af7"
+    },
+    "capstone/__pycache__/wasm_const.cpython-312.pyc": {
+      "bytes": 6777,
+      "sha256": "a2031e706924285a4b76f1d8ae4d63b1add1de4fc99af02c4e8ea96c92d3eded"
+    },
+    "capstone/__pycache__/x86.cpython-312.pyc": {
+      "bytes": 5575,
+      "sha256": "611e111653fa214b50fed3f18f9589d6b75e808ddc9e38ca827ddd0ac8a77400"
+    },
+    "capstone/__pycache__/x86_const.cpython-312.pyc": {
+      "bytes": 66436,
+      "sha256": "9cef0ecbb66fe57559eac07cd643f41467ec1d9882de1c3b0402a59be53272fa"
+    },
+    "capstone/__pycache__/xcore.cpython-312.pyc": {
+      "bytes": 2431,
+      "sha256": "73bda147883b66523e4802b991228646f1855d0cb5a6f042de8627778e5b0da2"
+    },
+    "capstone/__pycache__/xcore_const.cpython-312.pyc": {
+      "bytes": 4866,
+      "sha256": "4c9dae0eb17aba4b4d33b97fe062bfa2bab736b64626d2b5bd0d6d4be9e9bdaa"
+    },
+    "capstone/__pycache__/__init__.cpython-312.pyc": {
+      "bytes": 52527,
+      "sha256": "7b84cb6a4628625b0354c0dbddff0704d823b22a261d9398e21c71f2bbed0b00"
+    },
+    "capstone/include/capstone/arm.h": {
+      "bytes": 20872,
+      "sha256": "55b51767f8a9118eb73a34ed231eb6ffe3ace5df3326e42fee430778f5628d30"
+    },
+    "capstone/include/capstone/arm64.h": {
+      "bytes": 86980,
+      "sha256": "335cd0305922e852777cdcaa0e38479d07d1333d46cc8cde0fe90c03ce776c9b"
+    },
+    "capstone/include/capstone/bpf.h": {
+      "bytes": 4308,
+      "sha256": "864014559514848b914b26310c912eaf42a1c54ab30cb9f89d6edf6393a79eef"
+    },
+    "capstone/include/capstone/capstone.h": {
+      "bytes": 34412,
+      "sha256": "8d119a76a0c75d86773e09967bbe2d660a2226804076b7476ca54726f09e571d"
+    },
+    "capstone/include/capstone/evm.h": {
+      "bytes": 4574,
+      "sha256": "1defbf3926651d481ae0fd9942f3811ceac6a79df28fbd5d58eb6b0423d8b34d"
+    },
+    "capstone/include/capstone/m680x.h": {
+      "bytes": 12857,
+      "sha256": "6d20cb54b1c882aa874ea364e98c880484fdee65e046d0a172a31b82400eb141"
+    },
+    "capstone/include/capstone/m68k.h": {
+      "bytes": 14468,
+      "sha256": "91f23e01a3addcb9b8b18de5d2fd2946134fac782cc7833144187b259f145a98"
+    },
+    "capstone/include/capstone/mips.h": {
+      "bytes": 18000,
+      "sha256": "8f806d3f8f86f84a36a6c2e586c10191c8494a8e6cb036db5ed020c5ae402158"
+    },
+    "capstone/include/capstone/mos65xx.h": {
+      "bytes": 5991,
+      "sha256": "7ef12404e03725a1d807f46bfac06de0c45981b353532ab67efb4e07e4e46ce9"
+    },
+    "capstone/include/capstone/platform.h": {
+      "bytes": 4132,
+      "sha256": "06ccad6778eea6a94930f10e20e24ae4287014a4dc87cc66b9f13198371d838c"
+    },
+    "capstone/include/capstone/ppc.h": {
+      "bytes": 40378,
+      "sha256": "d1d5bf90bf03ccf479262cf90d003ccd271f941a369e0e5556076afc3a55caba"
+    },
+    "capstone/include/capstone/riscv.h": {
+      "bytes": 13799,
+      "sha256": "6d112f486553896607746315340b69db991242d81e8c33b30f02e0c339ade25a"
+    },
+    "capstone/include/capstone/sh.h": {
+      "bytes": 8238,
+      "sha256": "a3be96c93a2b91682ff0bcd3ba0a1303a6f30fce8aa9105d52a84d0467b60aa4"
+    },
+    "capstone/include/capstone/sparc.h": {
+      "bytes": 11817,
+      "sha256": "59f988c98630a9c3f70282a1095861f48bfcfd58f6d104f24f378a17eaf767ca"
+    },
+    "capstone/include/capstone/systemz.h": {
+      "bytes": 47232,
+      "sha256": "32da6c63cd358ba7002814b2a0f77d0fd617347ead2c30cddc8e9f8075740b87"
+    },
+    "capstone/include/capstone/tms320c64x.h": {
+      "bytes": 8621,
+      "sha256": "e30f98590a301d65e413951a663ea6cd15f7f9992543bd52dcc6f1205ee0a061"
+    },
+    "capstone/include/capstone/tricore.h": {
+      "bytes": 13257,
+      "sha256": "c0bcc689644f0066cbae95d3b6e9370545336aa5415c329990f273f01e736c23"
+    },
+    "capstone/include/capstone/wasm.h": {
+      "bytes": 6441,
+      "sha256": "f2861adc7692734ddf9e955f6eba5c00ea5462eb30f8c2da2239b4718febff53"
+    },
+    "capstone/include/capstone/x86.h": {
+      "bytes": 45041,
+      "sha256": "e150421101a4467c7f1ff6418f16a97f7504df27af6f2d86c44b13b8f3f7b8a0"
+    },
+    "capstone/include/capstone/xcore.h": {
+      "bytes": 5154,
+      "sha256": "5f81adf0761c57cf61306e4f683f27cedcc9f50d7a308a374c389d16e490c297"
+    }
+  },
+  "purpose": "Restore same-version bounded ordinary PE disassembly for subsequent knowledge/war memory observer layouts; old reports preserved"
+}

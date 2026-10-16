@@ -1,0 +1,149 @@
+{
+  "schema": "EU4-WAR-PEACE-LOOKUP-V6-SOURCE-SCOPE-PROPOSAL/2",
+  "sealed": true,
+  "stage": "author_planning_not_candidate_build_source_ready_or_query_authorization",
+  "supersedes_unbuilt_scope_only": {
+    "path": "work/reports/war-peace-api-lookup-v6-plan-20261016-r1/plan.json",
+    "bytes": 8375,
+    "sha256": "2ee490e3ac1c0780666b3edf13e8aef3b959dceabd6aa8419e76ded27e410051"
+  },
+  "R1_artifacts_modified": false,
+  "author_role": "war_api authored lookupv5 and R79 actual/source, reviewed R78 and R80 full. This R2 is author planning, not non-author v6 review. Independent v6 source/engine/data/receipt review remains required.",
+  "baseline": {
+    "entries": 59,
+    "direct_JSON_sources": 74,
+    "index_pin": {
+      "bytes": 185792,
+      "sha256": "a8b70f547513def34f88c1dd19e73e573c63fe209aeced61f397db8b22556e6c"
+    },
+    "data_manifest_pin": {
+      "bytes": 14774,
+      "sha256": "39efa19ba26675647379f6be182b26be727762d5eaf906f0be822b7ca0dba69c"
+    },
+    "source_manifest_pin": {
+      "bytes": 19355,
+      "sha256": "1c1b0acd82b7ad100c8e6085deb5e994b92defd8212bf61d2a3a5db2b6cdf27f"
+    },
+    "wrapper_pin": {
+      "bytes": 3602,
+      "sha256": "653530b8d60e789f33786819e43de7d057142de5c75c6841469d2802928a9da6"
+    },
+    "engine_pin": {
+      "bytes": 16583,
+      "sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466"
+    }
+  },
+  "planned_scope": {
+    "result_entry_count_if_ready": 60,
+    "old58_rows": "strict dataequal, all fields/evidence intact",
+    "generator_existing_fields": "strict v5 equality except exact evidence prefix plus append",
+    "generator_new_keys": [
+      "later_checked_context",
+      "historical_base_scope"
+    ],
+    "generator_contexts_only": [
+      "R75 selected NULL successor return contract",
+      "R77 conditional caller fragment composition"
+    ],
+    "original_generator_later_conditional_context_and_unresolved": "unchanged, historical scope; no rewriting v5 NULL-unread text",
+    "R79_direct_context": "removed from this unbuilt R2 plan only; all R79 history remains frozen",
+    "new97bd30_entry": "Wait for R81 full acceptance; combine R80 selected prefix with later suffix context, without wholefunction/formal/type/unit/effect claims.",
+    "R80_selected_current_facts": {
+      "complete_rows": 13,
+      "complete_bytes": 62,
+      "partial_owned_bytes": 2,
+      "QWORD_loads": 8,
+      "RET_seen": false,
+      "known_function_extent": false
+    },
+    "sources_current89_future94": "old74+R75/R77ten+R80five+R81futurefive=94<=96; no engine expansion",
+    "R79_metadata_fence_provenance": "Only inherited R80/R81 accepted contract/full witness; no direct R79 selected JSON reauthentication or separate97bd30 duplicate entry."
+  },
+  "engine_wrapper_plan": {
+    "engine_file_to_reuse": "work/candidates/war-peace-api-lookup-1375-v5/query_engine.py",
+    "engine_sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466",
+    "engine_bytes_unchanged": true,
+    "engine96cap_unchanged": true,
+    "copy_or_new_engine_fork_planned": false,
+    "wrapper_allowed_delta": [
+      "DATA_SHA new frozen data hash",
+      "tool_revision5to6 in result metadata",
+      "help revision5to6",
+      "BASE path only if needed, prefer existingv5 exactpath"
+    ],
+    "wrapper_logic_AST_unchanged": [
+      "base_bytes",
+      "engine",
+      "Parser",
+      "query invocation/error/flag behavior"
+    ],
+    "DATA_revision_is_not_current_process_authentication": true
+  },
+  "dependencies": {
+    "R75_R77": "accepted exact10JSONs reused as fixed independent witnesses, not full recursive re-review",
+    "R80": "accepted full review81bb504d pinned exact five JSON roles",
+    "R81": "No final/actual/full schema or facts assumed; five future roles null and mutable files not read",
+    "v6_build": "Not authorized by this proposal",
+    "v6_publication": "Requires non-author full v6 source/data/first receipts acceptance and root publication"
+  },
+  "future_verification_plan": {
+    "first_queries_max": 4,
+    "first_queries": [
+      "check",
+      "catalog",
+      "lookup 0x993570",
+      "lookup 0x97bd30"
+    ],
+    "each_once_only": true,
+    "execute_now": false,
+    "source_checks": [
+      "old58 strict equality",
+      "generator oldfields exact except evidence append and new2keys",
+      "old74 direct JSON pins unchanged",
+      "94 refs fixed valid used pointers",
+      "accepted ea030 query engine exactbytes and96cap unchanged",
+      "wrapper metadata-only ASTdelta",
+      "allauthority false; no fragment standalone entry"
+    ],
+    "no_old_suite_parser_fixture_query_reruns": true,
+    "must_preserve_new_failures_and_successful_queries_not_repeat": true
+  },
+  "future_budgets": {
+    "build_plus_seal_bytes": 33554432,
+    "first_four_query_batch_bytes": 67108864,
+    "ordinary_file_bytes": 4194304,
+    "software_memory_bytes": 805306368,
+    "one_GiB_stop": true,
+    "old74_metadata_source_bytes": 2321371,
+    "new15_known_bytes": 260330,
+    "conditional_R81_five_source_total_allowance": 1048576,
+    "conditional_new_index_allowance": 524288,
+    "conditional_new_data_allowance": 65536,
+    "conditional_perpass_bytes": 4220101,
+    "conditional_perquery_two_passes_three_query_engine_pins_wrapper_allowance": 8506335,
+    "controller_allowance": 8388608,
+    "conditional_fourquery_plus_controller_upper": 42413948,
+    "not_universal_OS_loader_IO_bound": true,
+    "query_engine_is_python_lookup_source_not_Capstone_decoder": true,
+    "future_unknown_file_sizes_exceed_allowance": "Recompute and stop before batch/budget exceedance; do not silently expand.",
+    "accepted_query_engine_aggregate32MiB": "Successful graph acceptance; a refusal may charge one next perfile-bounded source before checking aggregate. No guard hardening planned."
+  },
+  "authority": {
+    "candidate_built": false,
+    "queries_executed": false,
+    "tests_executed": false,
+    "native_ready": false,
+    "callable": false,
+    "sender_authorized": false,
+    "selected_effect_verified": false,
+    "gameplay_effect_verified": false,
+    "process_authenticated": false,
+    "reader_adoption_allowed": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "actual_authorized": false
+  },
+  "old_files_modified": false,
+  "v6_candidate_created": false
+}

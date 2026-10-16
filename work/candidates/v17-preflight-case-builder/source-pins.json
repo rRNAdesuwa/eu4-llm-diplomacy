@@ -1,0 +1,18 @@
+{
+  "work/candidates/v14-directional-preflight-review/reviewer.py": {
+    "bytes": 30192,
+    "sha256": "25deb003bb940f87d82c92ec88956544231f0b7fe339474ed2138c5f3d478a90"
+  },
+  "work/candidates/v17-acceptance-experiment-review/preflight.py": {
+    "bytes": 27892,
+    "sha256": "07ba6a80143cc6a2a1ba2351a8d80036ef76cc141a257917465dfdd094d4bdd9"
+  },
+  "work/candidates/v17-acceptance-experiment-review/review.json": {
+    "bytes": 36326,
+    "sha256": "f8189cd56ae43268f7ee388e8a3daa72cc8993ae62bbfa2ab8d6292b4f829584"
+  },
+  "work/candidates/v17-acceptance-experiment-review/reviewer.py": {
+    "bytes": 20752,
+    "sha256": "7007d45d98b704c344595618228c1b627513469d9bafd059ef1303d60c4181a0"
+  }
+}

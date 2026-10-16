@@ -1,0 +1,96 @@
+{
+  "schema": "EU4-R60-INDEPENDENT-FULL-FILE-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_manifest": {
+    "bytes": 13753,
+    "sha256": "bb537f3b7e537d59fde9cde59e0a941f3c9bafed7b9ed59c4795cd9f1859fa64"
+  },
+  "subject_path": "work/reports/war-peace-api-20261016-r60-balance-sink/manifest.json",
+  "scope": "36 actual pins plus independently retained verification;38 engine pins producer witness only. Whole selected258B/57rows normal CFG and raw side effects, not transitive/runtime/exception proof.",
+  "checks": [
+    {
+      "id": "pins-and-entry",
+      "passed": true,
+      "summary": "36 actual source/output pins independently stat-stable hashed;2 retained wrapper directCALL/context sequences match original native JSON references and resolve3383b0. Root narrow seed and prior crosswalk reviews remain scoped.38 engine files were not opened."
+    },
+    {
+      "id": "raw-pdata-CFG",
+      "passed": true,
+      "summary": "All57 rows concatenate exactly258ownedbytes/SHA9540bac2.19 rawpdata/17unique tuple conversions match[3383b0,3384b2).2CALL+10branch signeddisplacements match; acyclic localgraph has60syntacticnormal routes toRET3384b1, not proof of feasible runtime routes or normal externalreturn."
+    },
+    {
+      "id": "formals",
+      "passed": true,
+      "summary": "IncomingRDX->RSI=M pointer andRCX->RDI=C. OptionalbranchreadsDWORD[M]forfiftharg before14d4eb0;338417 rereadsDWORD[M]aftercalls. NonvolatileABI preservespointerregisters, not the pointedDWORD/Cfields. IncomingR8/R9 and stack formalmeaning opaque."
+    },
+    {
+      "id": "wrapped-BB0-sequence",
+      "passed": true,
+      "summary": "338417 loadEDX[M],338419 ADD EDX,[C+BB0],33841f storewrap32 immediately.338425/JLE and338439/JGE signedtests choose optionalupper00ca9a3b(+1e9) orlower003665c4(-1e9).3staticsites, at most2localBB0writes on a normalroute, never widened pre-add saturation.",
+      "arithmetic_example": "raw+1e9 plus+2e9 wraps to-1294967296 thenclamps-1e9; this demonstrates why arbitraryprecision pre-add clamp is a different operation.",
+      "point_limit": "Only explicit localBB0sequence complete at33844b. LaterunknownB+388alias and concurrency may change the same storage; no finalworld/atomicclaim."
+    },
+    {
+      "id": "module-and-callees",
+      "passed": true,
+      "summary": "14d4c80 receives originalC/M and incomingunknownR8/R9. Itsreturnedptr+38 bit0 gates optionalglobal1fd10c4 save/set1/14d4eb0/restoreBL. Thatcall receives moduleaddresses/R9=&stackcopyC20 and onlylowDWORD fiftharg[M], upperDWORDunknown. NormalABI/exceptions/aliasboundaries preserved; bothcallees unread."
+    },
+    {
+      "id": "tail-extra-write",
+      "passed": true,
+      "summary": "G=QWORD[module233fe78]; G7484NZ thenchooseQWORD1e68 onlyifG1e66==7/G1e6fNZ else1e60. Compare16bits32..47 againstC20; equalityloadsB=G1e00, B2c==30hex ORsDWORD[B388],40hex. Slots are notfullhandles orcertifiedcountryidentity; RMWisadditionalwrite."
+    },
+    {
+      "id": "all-stores-and-return",
+      "passed": true,
+      "summary": "11explicitdestinationwrites=5stack+2modulebyte+3CBB0+1B388. Implicit1push/1pop/2CALLstackwrites/RETread separated. RAX is latestcallee return whenG7484zero, selectedQWORD>>32 onmismatch, orBpointer onmatch; no newbalance/BOOL return is set."
+    },
+    {
+      "id": "resource-separation",
+      "passed": true,
+      "summary": "DoubleSHA76925008+pdata228+code258=76925494. Decoder815physicalinput/258union/557overlap. Producer143sourceevents22988805 excludes finalcapturepin118195; sum23107000. Receiptthroughsealer31706554 plus subsequent15172verificationpin=31721726<32MiB, not allOSloaderIO. Engine/PE/peak31330304 are producerwitnesses, not independent reruns."
+    }
+  ],
+  "limits": [
+    "No names/units/paymentamount ranges orcompletegoldsettlement inferred fromBB0arithmetic.",
+    "RCX/C/M/G/B typeidentity, fullallocationbounds, arbitraryaliasrelationships, lifetime andexceptions remainunknown.",
+    "No new oracle/runtimeprofile ornativecallpermission; staticlocalnormal closure doesnot closeexternalcallee orworldstate.",
+    "Source budget counts thisindependent review separately fromauthorstage; authorreceipt accounting doesnot includeallPython/OSloaderIO.",
+    "Own acquisitionguard peak12070912 was measured duringboundedsource reads; independent finalsealer peak is separate below."
+  ],
+  "resources": {
+    "actual_pin_count": 36,
+    "decoder_witness_count": 38,
+    "source_events": 41,
+    "physical_original_source_bytes": 2726181,
+    "individual_bound": 4194304,
+    "total_bound": 25165824,
+    "acquisition_read_phase_peak_private_or_pagefile_bytes": 12070912,
+    "independent_final_sealer_peak_private_or_pagefile_bytes": 18976768,
+    "software_guard_bytes": 805306368,
+    "PE_opens": 0,
+    "decoder_files_opened": 0,
+    "decoder_imports": 0,
+    "author_programs_executed": 0,
+    "tests_run": 0,
+    "game_process_access": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "shells_collected": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "ownership_verified": false,
+    "reader_adoption_allowed": false,
+    "currency_units_verified": false,
+    "full_peace_payment_verified": false,
+    "current_runtime_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

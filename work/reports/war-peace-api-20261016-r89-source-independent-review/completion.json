@@ -1,0 +1,39 @@
+{
+  "schema": "EU4-R89-INDEPENDENT-SOURCE-REVIEW-COMPLETION/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "final_pins": {
+    "findings": {
+      "bytes": 8161,
+      "sha256": "4e6dde469b15894e5adf4c6ed2a7db020a6f60dfde78e38443d4228adc3cb7bf"
+    },
+    "manifest": {
+      "bytes": 39360,
+      "sha256": "c0e77980d8cf377282bac0503c8d1a605a237e8995e766a263663c1176da9329"
+    },
+    "verification": {
+      "bytes": 551,
+      "sha256": "4dc15f3e274a5a991f207d4e733d9d154575f04e614abfb46e0e97ac49b1d0ce"
+    },
+    "checked_pins": 93,
+    "source_upper": 18183468,
+    "retained_upper": 1873370,
+    "actual_authorized": false,
+    "pause_requested": true
+  },
+  "seal_and_first_filecheck_tool_result": {
+    "chunk_id": "99767b",
+    "wall_time_seconds": 0.2576817,
+    "exit_code": 0,
+    "original_token_count": 114,
+    "output": "{\"findings\": {\"bytes\": 8161, \"sha256\": \"4e6dde469b15894e5adf4c6ed2a7db020a6f60dfde78e38443d4228adc3cb7bf\"}, \"manifest\": {\"bytes\": 39360, \"sha256\": \"c0e77980d8cf377282bac0503c8d1a605a237e8995e766a263663c1176da9329\"}, \"verification\": {\"bytes\": 551, \"sha256\": \"4dc15f3e274a5a991f207d4e733d9d154575f04e614abfb46e0e97ac49b1d0ce\"}, \"checked_pins\": 93, \"source_upper\": 18183468, \"retained_upper\": 1873370, \"actual_authorized\": false, \"pause_requested\": true}\r\n"
+  },
+  "all_shells_collected": true,
+  "user_pause_observed": true,
+  "work_stopped_after_bounded_file_review": true,
+  "future_actual_authorized": false,
+  "author_program_runs": 0,
+  "PE_engine_decoder_tests_game": 0,
+  "note": "No further sampling/build/grant. Findings six subject fields are PIN-ONLY; full references are separately retained. Future root raw review and grant not issued here."
+}

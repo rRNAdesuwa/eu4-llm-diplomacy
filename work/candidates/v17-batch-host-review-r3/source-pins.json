@@ -1,0 +1,82 @@
+{
+  "tools/request_diplomacy_lab_v17.py": {
+    "bytes": 8697,
+    "sha256": "4cfc15afcca2e6c3f2496008e2ae6d385567963aecb981bda735acca38df86c2"
+  },
+  "tools/verify_diplomacy_acceptance_v17.py": {
+    "bytes": 20313,
+    "sha256": "2ff9065cea99239c90ed504465eeb9ff2c76c67f8fee8b8479881fd0d4c3eb14"
+  },
+  "work/candidates/v17-batch-action-matrix-1375/plan.json": {
+    "bytes": 27171,
+    "sha256": "f63080fd20ee949dc44ec76b819deac7b00eae71ae05220cc268f3a715b23a6b"
+  },
+  "work/candidates/v17-batch-action-matrix-1375/review.json": {
+    "bytes": 4128,
+    "sha256": "1e5554ac4e4d52309f2fbd1b21ace8f486c370226a5557b355a8a754860815a4"
+  },
+  "work/candidates/v17-batch-host-review-r2/batch.py": {
+    "bytes": 21607,
+    "sha256": "be415a99727cf765684e338cf97c11dddc0f9e66db88efdcba6dcf7c5e3f6f5d"
+  },
+  "work/candidates/v17-batch-host-review-r2/review.json": {
+    "bytes": 459,
+    "sha256": "2f7526fad339a071776fcf98b58d839b4628d2320a7b5bd9a7e0e83f59bf61d5"
+  },
+  "work/candidates/v17-batch-host-review-r2/test_batch.py": {
+    "bytes": 15111,
+    "sha256": "7f937a3b9e935dda59d6e95c212e81910b34a6770ba6dd7617a53087a208de35"
+  },
+  "work/candidates/v17-batch-host-review/batch.py": {
+    "bytes": 20243,
+    "sha256": "40cc6caeec6d19d74c784187379d0fa2863c5f53e594935646d0c3b2f5181743"
+  },
+  "work/candidates/v17-batch-host-review/review.json": {
+    "bytes": 860,
+    "sha256": "1ee193562d5d0a80c9915d3156bbcf519b2a503f8b97e869c207f1ca0a109a81"
+  },
+  "work/candidates/v17-batch-host-review/test_batch.py": {
+    "bytes": 13680,
+    "sha256": "5368455cc526c42b041b819cbd3445c5db6d47284476c79b71cef19e76d5b3ad"
+  },
+  "work/native/lab_protocol_v17_1375.py": {
+    "bytes": 76229,
+    "sha256": "5bce16b8c951850cbbdc47c88e1edb0cd5b565d3dae2f9785246a92656afa202"
+  },
+  "work/native/run_lab_speed_v17_1375.py": {
+    "bytes": 11526,
+    "sha256": "ed3967c54bdc4f9e31b6b534753688f6b37531538c9d5d23338d35591d3eefec"
+  },
+  "work/native/v17/pair-engine-1375.h": {
+    "bytes": 5377,
+    "sha256": "f5257b31ca81e3c886f501433cce1da3eaba0da868bec3225412cb03fee2a526"
+  },
+  "work/native/v17/research-lab-1375.cpp": {
+    "bytes": 58756,
+    "sha256": "3f2ca8c56275d741a3bd02a30b292056b8e37a10a3cfe62a9e4c0dcff306338d"
+  },
+  "work/review-results/v17-batch-host-native-inventory-20261008a/counterexamples.json": {
+    "bytes": 10182,
+    "sha256": "015f3dd0f75bffd071c9d86cbfac7abe9a026d403cf4c4cb18f91f1595b89db2"
+  },
+  "work/review-results/v17-batch-host-native-inventory-20261008a/review.json": {
+    "bytes": 10533,
+    "sha256": "f3c9adcd9170784201c19e838f2c553962451443852ae714f983a0d6bb48ee39"
+  },
+  "work/review-results/v17-batch-host-r2-native-inventory-20261008a/review.json": {
+    "bytes": 11726,
+    "sha256": "34933e297c32e633b1a6cecf02b11efd4b7af387dd58a5d1276ce647fcc55eb5"
+  },
+  "work/review-results/v17-batch-host-r2-native-inventory-20261008a/targeted-results.json": {
+    "bytes": 2729,
+    "sha256": "6f2ba93a3d9e7b55f1337b1543db3402fc431d8b1a15c4757b080e8b8eedfd67"
+  },
+  "work/run_lab_step_v17_1375.py": {
+    "bytes": 3562,
+    "sha256": "9c42a335ee733ababbc952679f18144a0c42545c01d61daf6833b8d54a9343d5"
+  },
+  "work/runtime/native1375-v17/build.json": {
+    "bytes": 6903,
+    "sha256": "b7cf7bb7b31cddf621729e0d541404d80bdb155c6f804082e2a25f651c97067d"
+  }
+}

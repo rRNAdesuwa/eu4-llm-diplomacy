@@ -1,0 +1,107 @@
+{
+  "schema": "EU4-V6-R2-PROPOSAL-INDEPENDENT-FINDINGS/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "conditional_proposal_accepted": true,
+  "subject_plan": {
+    "bytes": 6338,
+    "sha256": "5c01dca5b49738fa099484e8bd93886f89d0bcb5d1d1fc24bf5acb6f2d02ff81"
+  },
+  "subject_manifest": {
+    "bytes": 6526,
+    "sha256": "271c8daf02b8a30a7c9fd913dac3407a686cccded75f0db5644f9ddbb6596155"
+  },
+  "subject_inventory": {
+    "bytes": 23137,
+    "sha256": "322428ed65a052544db31265baa6442a91e7bc3f3db83b572206b18fed97e552"
+  },
+  "subject_reference_plan": {
+    "bytes": 32112,
+    "sha256": "3763e6ad7f98c9f0467bc58d9448d5663170c4d273a7a5c5244631f9c5f2f4d5"
+  },
+  "subject_preservation": {
+    "bytes": 11773,
+    "sha256": "93165800eaab543dfff99dc229191354276496c092d525dd32e43e466da7f6a7"
+  },
+  "subject_verification": {
+    "bytes": 340,
+    "sha256": "c01818251c6ee345f4c01ac73ea8b447ef5d81967644a173989870e2dd35e5a9"
+  },
+  "scope": "complete non-author retained-only source/range proposal R2 review; not v6 build/source-ready/query/publication acceptance",
+  "role_disclosure": "War authored this proposal and v5/R79. Reviewer was R80/R81 sourcepeer, R79 full reviewer and R69/R75/R72r2 author. Selected accepted full witnesses are fixed only, no recursive re-certification. R1 direct files are hashed only as R2 explicit inputs; R1 prior audit/errors are not re-audited.",
+  "checks": {
+    "all32_direct_pins_exact": true,
+    "actual_v5_shape59entries74metadata": true,
+    "all58_old_rows_canonical_and_generator_baseline_match": true,
+    "all_original_generator_fields_preserved_by_plan": true,
+    "generator_new_keys_only_later_checked_context_historical_base_scope": true,
+    "generator_evidence_old_prefix_must_remain_exact": true,
+    "R75_R77_only_new_generator_contexts": true,
+    "R79_direct5_and_context_removed_only_from_unbuilt_plan": true,
+    "new15_sources_each_used_in58_valid_refs": true,
+    "all58_ref_value_types_canonical_hashes_match": true,
+    "old74_metadata_exact_no_body_reauthentication": true,
+    "current89_future94_within_unchanged96": true,
+    "future_R81_five_path_SHA_pointers_null": true,
+    "ea030_Python_lookup_engine_exact_unchanged_source_no_execution": true,
+    "wrapper_delta_proposal_metadata_only": true,
+    "conditional_budget_arithmetic_correct": true
+  },
+  "limits": [
+    "Conditional proposal approval does not authorize build or any query/test/publication.",
+    "Future old58/gen equality and wrapper AST delta must be checked on the real built v6, which does not exist as review subject.",
+    "R81 actual/final/full roles are unknown/null here; mutable files were not opened, return semantics not predicted.",
+    "Old74 pins are metadata comparison only; their bodies and recursive/native-engine closure were not reauthenticated.",
+    "94 sources is conditional on exact5 future sources; stop/revise if extras or sizes exceed planned allowances, never expand96 silently.",
+    "32MiB engine aggregate is successful-graph acceptance; refused graph may charge the next bounded file before aggregate rejection. No hardening is claimed.",
+    "Historical generator unresolved/NULL-unread text remains v5 base; supplements need explicit scope and cannot imply full-function/API/native/effect/lease proof."
+  ],
+  "author_resources_witness": {
+    "25flat_plus_controller_source": 26,
+    "completed_read_bytes": 1198836,
+    "upper_bytes": 4344564,
+    "filecheck_bytes": 693222
+  },
+  "review_resources": {
+    "completed_explicit_bytes": 1543100,
+    "manual_allowance": 1048576,
+    "seal_check_reserve": 2097152,
+    "prior_failed_review_completed_bytes": 1387124,
+    "upper_bytes": 6075952,
+    "limit_bytes": 8388608,
+    "peak_private_bytes": 14704640
+  },
+  "operations": {
+    "author_program_execution": 0,
+    "CLI_queries": 0,
+    "fixtures_tests": 0,
+    "build": 0,
+    "PE_stat_open_hash": 0,
+    "native_decoder_engine_body_access": 0,
+    "decoder_execution": 0,
+    "mutable_R81_files_read": 0,
+    "old74_body_reads": 0,
+    "own_R1_R2_failures_preserved": true,
+    "own_R2_phase_precision": "25 before +1 own_source_before vs26 after",
+    "LEA_not_an_actual_memory_load": true,
+    "game_process": 0,
+    "native_calls": 0
+  },
+  "authority": {
+    "candidate_built": false,
+    "queries_executed": false,
+    "tests_executed": false,
+    "native_ready": false,
+    "callable": false,
+    "sender_authorized": false,
+    "selected_effect_verified": false,
+    "gameplay_effect_verified": false,
+    "process_authenticated": false,
+    "reader_adoption_allowed": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "actual_authorized": false
+  }
+}

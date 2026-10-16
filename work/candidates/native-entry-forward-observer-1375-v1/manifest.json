@@ -1,0 +1,229 @@
+{
+  "schema": "EU4-NATIVE-ENTRY-FORWARD-OFFLINE-MANIFEST/1",
+  "files": [
+    {
+      "path": "build-attempt-01/assemble.stdout.txt",
+      "bytes": 7013,
+      "sha256": "f4bfe3d4b117029cfee02f5b12d6b13a5dcd96acc9cf7ee73908a7e8e69c7d9c"
+    },
+    {
+      "path": "build-attempt-01/environment.cmd",
+      "bytes": 155,
+      "sha256": "ad4edfc9eae246edbdd01d341406fc02bcca6f9c0434bc62e2b915ff14919ba7"
+    },
+    {
+      "path": "build-attempt-01/environment.stdout.txt",
+      "bytes": 5856,
+      "sha256": "25e89143aec45c517019eca1bf8c788bbbe219cc7524970b46d0a83d0a6d4fb2"
+    },
+    {
+      "path": "build-attempt-01/receipt.json",
+      "bytes": 5846,
+      "sha256": "604966caebd618b1c0bd8b892d94fbdea18b079c627e1ccfcb0eb141148d340c"
+    },
+    {
+      "path": "build-attempt-02/assemble.stdout.txt",
+      "bytes": 165,
+      "sha256": "062a8c071b6b11b018dd4980d699d957a55a56e5d89e81522881adce316e3441"
+    },
+    {
+      "path": "build-attempt-02/compile.stdout.txt",
+      "bytes": 24,
+      "sha256": "5308e733ca4f1e73fed5f232f06300079276234317b4c699c10f014a5fc6e343"
+    },
+    {
+      "path": "build-attempt-02/entry_forward_model.obj",
+      "bytes": 3789,
+      "sha256": "68eaae2e95c8aa74c4a9b0b3f9306a39ca95080fcc8579ff81569a801fea6064"
+    },
+    {
+      "path": "build-attempt-02/environment.cmd",
+      "bytes": 155,
+      "sha256": "ad4edfc9eae246edbdd01d341406fc02bcca6f9c0434bc62e2b915ff14919ba7"
+    },
+    {
+      "path": "build-attempt-02/environment.stdout.txt",
+      "bytes": 5856,
+      "sha256": "25e89143aec45c517019eca1bf8c788bbbe219cc7524970b46d0a83d0a6d4fb2"
+    },
+    {
+      "path": "build-attempt-02/link.stdout.txt",
+      "bytes": 839,
+      "sha256": "061d2c8858f01e8a3c48f74cf65dbf310ba8ae1d5deda21c0acc5135a7759126"
+    },
+    {
+      "path": "build-attempt-02/receipt.json",
+      "bytes": 8874,
+      "sha256": "6cf86d6dbd39477f6498875e8628c6d29b4ac22ca3744f4083bb29f04a538447"
+    },
+    {
+      "path": "build-attempt-02/test_forward_model.obj",
+      "bytes": 37992,
+      "sha256": "a14def71f24e8e441be3a2904918da4d10cb8258eface693146974fcce0c92c2"
+    },
+    {
+      "path": "build-attempt-03/assemble.stdout.txt",
+      "bytes": 165,
+      "sha256": "062a8c071b6b11b018dd4980d699d957a55a56e5d89e81522881adce316e3441"
+    },
+    {
+      "path": "build-attempt-03/compile.stdout.txt",
+      "bytes": 24,
+      "sha256": "5308e733ca4f1e73fed5f232f06300079276234317b4c699c10f014a5fc6e343"
+    },
+    {
+      "path": "build-attempt-03/entry_forward_model.obj",
+      "bytes": 3789,
+      "sha256": "de70a50ea0bcd6cb3aacb902d2498a98c0af0a5222c81180d84f31c5f25530f6"
+    },
+    {
+      "path": "build-attempt-03/environment.cmd",
+      "bytes": 155,
+      "sha256": "ad4edfc9eae246edbdd01d341406fc02bcca6f9c0434bc62e2b915ff14919ba7"
+    },
+    {
+      "path": "build-attempt-03/environment.stdout.txt",
+      "bytes": 5856,
+      "sha256": "25e89143aec45c517019eca1bf8c788bbbe219cc7524970b46d0a83d0a6d4fb2"
+    },
+    {
+      "path": "build-attempt-03/link.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build-attempt-03/receipt.json",
+      "bytes": 9169,
+      "sha256": "fc423d30b3752a5e27023c0badfbf3df0fe5a32a806709621ad19979b08ec1df"
+    },
+    {
+      "path": "build-attempt-03/run.stdout.txt",
+      "bytes": 416,
+      "sha256": "cba0aae9a7538238d62b13d810bb66bcd4114d08024ebd700cea340f174a30ad"
+    },
+    {
+      "path": "build-attempt-03/test_forward_model.exe",
+      "bytes": 165888,
+      "sha256": "da194a84202e657e620759b744e6b58b425d1de62d35f8ac1796b23fa707746b"
+    },
+    {
+      "path": "build-attempt-03/test_forward_model.obj",
+      "bytes": 37992,
+      "sha256": "6aa2de16e874516e98d8db142091953f70357161ebcb6dc5a55da36b8f204af8"
+    },
+    {
+      "path": "build-attempt-04/assemble.stdout.txt",
+      "bytes": 165,
+      "sha256": "062a8c071b6b11b018dd4980d699d957a55a56e5d89e81522881adce316e3441"
+    },
+    {
+      "path": "build-attempt-04/compile.stdout.txt",
+      "bytes": 24,
+      "sha256": "5308e733ca4f1e73fed5f232f06300079276234317b4c699c10f014a5fc6e343"
+    },
+    {
+      "path": "build-attempt-04/entry_forward_model.obj",
+      "bytes": 3789,
+      "sha256": "a0486bd0ceaaba9b16b260b33c3d4becd47f5289008b54e909ff04b97bdac3fd"
+    },
+    {
+      "path": "build-attempt-04/environment.cmd",
+      "bytes": 385,
+      "sha256": "128862bb8c60cb35216af17612d9083a355f85a94d4bd716aa9c2040f01b2e0a"
+    },
+    {
+      "path": "build-attempt-04/environment.stdout.txt",
+      "bytes": 5847,
+      "sha256": "2d92846b3b0b398f8b57625208b0aa0369277b15947666377c0a6e01ba6942da"
+    },
+    {
+      "path": "build-attempt-04/link.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build-attempt-04/receipt.json",
+      "bytes": 9168,
+      "sha256": "2473fbf604ab009b97d898fc3f4dad30300cce179d37fb902e74ae43ec7d61ae"
+    },
+    {
+      "path": "build-attempt-04/run.stdout.txt",
+      "bytes": 416,
+      "sha256": "cba0aae9a7538238d62b13d810bb66bcd4114d08024ebd700cea340f174a30ad"
+    },
+    {
+      "path": "build-attempt-04/test_forward_model.exe",
+      "bytes": 165888,
+      "sha256": "e358e4b0322fc387bcee3e627facbfa6aa39558ffcabb20ec3c11db65da294b5"
+    },
+    {
+      "path": "build-attempt-04/test_forward_model.obj",
+      "bytes": 37992,
+      "sha256": "516eac0ba0f658849bce25fdc90dba519092eb3a50f2328bb87706cca9a6ad87"
+    },
+    {
+      "path": "build_offline.py",
+      "bytes": 8515,
+      "sha256": "07d00f61dff8db5b0f622b87ee439a332b551940a9cd25134262f4f8b36dfd2d"
+    },
+    {
+      "path": "check_prepared.py",
+      "bytes": 4112,
+      "sha256": "0414cd8bebbdc8dabd32c97fc66cd6eb5049e9a912fe4c6997e05dcf0100bf1f"
+    },
+    {
+      "path": "DESIGN.md",
+      "bytes": 4210,
+      "sha256": "93fd73fc969813299fbd3c22c08354762558393a1789a34f7d6568e3d3e3c29f"
+    },
+    {
+      "path": "entry_forward_model.asm",
+      "bytes": 6574,
+      "sha256": "aba916a14289d9c48a88a5c7974aec92b3cd370d3bd5ef90e9694ae7688e28d0"
+    },
+    {
+      "path": "environment-redaction.json",
+      "bytes": 1826,
+      "sha256": "ed8026bca17f3fd592b043202c850dcb17c56dbc322a677e4d67f8d44adb76b3"
+    },
+    {
+      "path": "forward_layout.h",
+      "bytes": 2426,
+      "sha256": "ca5a94cbf847344ba79676c1c1a2172eb41c81369fc09b14986ec90d67b260b2"
+    },
+    {
+      "path": "independent-source-ready.json",
+      "bytes": 4950,
+      "sha256": "13ffca14e1a5ace7b99e38ad33746a0314ef813be7cb4f70ffa7ae5b9ab4e170"
+    },
+    {
+      "path": "SELFTEST.md",
+      "bytes": 2932,
+      "sha256": "f24032cc2b06af8dc3aab74b5e73a08c57ab4ff1b00d4e42b4a2d42d94166844"
+    },
+    {
+      "path": "source-pins.json",
+      "bytes": 1508,
+      "sha256": "739fdd0da412d79e4032569ca3bea9b7355f9046ec63d780fa0c0780c925d45e"
+    },
+    {
+      "path": "test_forward_model.cpp",
+      "bytes": 16354,
+      "sha256": "08aa2a077300b7c133f6b482320e63574cca772ff9e199219c85c36f6863e927"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 3447,
+      "sha256": "0c2a82dfe6638c3cc8f79673d632bddb9f745531f33e58801cd5cb5b611a3ce9"
+    }
+  ],
+  "adopted_attempt": "04",
+  "independent_review": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\native-entry-forward-observer-review-20261015-r1\\independent-source-ready.json",
+    "bytes": 4950,
+    "sha256": "13ffca14e1a5ace7b99e38ad33746a0314ef813be7cb4f70ffa7ae5b9ab4e170"
+  },
+  "historical_environment_hashes": "historical only; redaction mapping is mandatory",
+  "native_ready": false,
+  "game_provenance_authenticated": false
+}

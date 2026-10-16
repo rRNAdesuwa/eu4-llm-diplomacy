@@ -1,0 +1,856 @@
+{
+  "schema": "whitepeace_followup_findings_1375_v1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "analysis_sha256": "9ff4e42b8ece239a05e2a6c1f02b0a5c61ea777ee178903b986d434a4b8ee898",
+  "evidence_kind": "ordinary bounded disk Capstone; not REA/Ghidra decompilation",
+  "observations_count": 11,
+  "facts": [
+    {
+      "id": "P01_parameterized_offer_and_request_ABI",
+      "observations": [
+        "975d40 writes offer+10=R8 giver, +18=RDX taker, +20=R9B; it calls candidate enumeration 97ed00.",
+        "598af0 writes actor to action+10 and+18, recipient to+20, both dates from argument6; deep-copies argument5 into embedded offer+48 and initializes force+208 to0."
+      ],
+      "inference": "Demand=true fixes actor as taker and recipient as giver; minimum white peace uses the real war-bound constructor followed by 97ae50 reset.",
+      "unknowns": [
+        "Candidate enumeration is not pure: world/TLS/script/global/logging dependencies remain."
+      ],
+      "evidence": [
+        {
+          "rva": "0x975d71",
+          "bytes": "4c894110",
+          "instruction": "mov qword ptr [rcx + 0x10], r8",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x975d40",
+          "json_pointer": "/evidence_index/0x975d71"
+        },
+        {
+          "rva": "0x975d75",
+          "bytes": "48895118",
+          "instruction": "mov qword ptr [rcx + 0x18], rdx",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x975d40",
+          "json_pointer": "/evidence_index/0x975d75"
+        },
+        {
+          "rva": "0x975d79",
+          "bytes": "44884920",
+          "instruction": "mov byte ptr [rcx + 0x20], r9b",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x975d40",
+          "json_pointer": "/evidence_index/0x975d79"
+        },
+        {
+          "rva": "0x975f14",
+          "bytes": "e8e78d0000",
+          "instruction": "call 0x97ed00",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x975d40",
+          "json_pointer": "/evidence_index/0x975f14"
+        },
+        {
+          "rva": "0x598b04",
+          "bytes": "48895110",
+          "instruction": "mov qword ptr [rcx + 0x10], rdx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598af0",
+          "json_pointer": "/evidence_index/0x598b04"
+        },
+        {
+          "rva": "0x598b08",
+          "bytes": "48895118",
+          "instruction": "mov qword ptr [rcx + 0x18], rdx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598af0",
+          "json_pointer": "/evidence_index/0x598b08"
+        },
+        {
+          "rva": "0x598b0c",
+          "bytes": "4c894120",
+          "instruction": "mov qword ptr [rcx + 0x20], r8",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598af0",
+          "json_pointer": "/evidence_index/0x598b0c"
+        },
+        {
+          "rva": "0x598b10",
+          "bytes": "8b442458",
+          "instruction": "mov eax, dword ptr [rsp + 0x58]",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598af0",
+          "json_pointer": "/evidence_index/0x598b10"
+        },
+        {
+          "rva": "0x598b45",
+          "bytes": "488b542450",
+          "instruction": "mov rdx, qword ptr [rsp + 0x50]",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598af0",
+          "json_pointer": "/evidence_index/0x598b45"
+        },
+        {
+          "rva": "0x598b4a",
+          "bytes": "e8f1d33d00",
+          "instruction": "call 0x975f40",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598af0",
+          "json_pointer": "/evidence_index/0x598b4a"
+        },
+        {
+          "rva": "0x598b4f",
+          "bytes": "c6830802000000",
+          "instruction": "mov byte ptr [rbx + 0x208], 0",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598af0",
+          "json_pointer": "/evidence_index/0x598b4f"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P02_independent_graphs_and_destruction",
+      "observations": [
+        "59ba40 allocates0x210 and deep-copies source embedded offer via975f40; its second date is copied from source+28.",
+        "598b60 invokes embedded offer cleanup then conditionally frees the outer request when low bit of destructor argument is set."
+      ],
+      "inference": "Three private owned graphs must remain disjoint. In-place original uses deleting-dtor flag0; engine clone uses flag1; standalone offer uses9761c0. Never memcpy or use CRT delete on native clone.",
+      "unknowns": [
+        "Partial constructor/clone/destructor exceptions have no established rollback; persistent storage and durable claim must remain quarantined."
+      ],
+      "evidence": [
+        {
+          "rva": "0x59ba4d",
+          "bytes": "b910020000",
+          "instruction": "mov ecx, 0x210",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x59ba40",
+          "json_pointer": "/evidence_index/0x59ba4d"
+        },
+        {
+          "rva": "0x59ba52",
+          "bytes": "e87d784901",
+          "instruction": "call 0x1a332d4",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x59ba40",
+          "json_pointer": "/evidence_index/0x59ba52"
+        },
+        {
+          "rva": "0x59ba8e",
+          "bytes": "8b4328",
+          "instruction": "mov eax, dword ptr [rbx + 0x28]",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x59ba40",
+          "json_pointer": "/evidence_index/0x59ba8e"
+        },
+        {
+          "rva": "0x59ba91",
+          "bytes": "89472c",
+          "instruction": "mov dword ptr [rdi + 0x2c], eax",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x59ba40",
+          "json_pointer": "/evidence_index/0x59ba91"
+        },
+        {
+          "rva": "0x59bad1",
+          "bytes": "e86aa43d00",
+          "instruction": "call 0x975f40",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x59ba40",
+          "json_pointer": "/evidence_index/0x59bad1"
+        },
+        {
+          "rva": "0x598b60",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598b60",
+          "json_pointer": "/evidence_index/0x598b60"
+        },
+        {
+          "rva": "0x598b8f",
+          "bytes": "e85c091a01",
+          "instruction": "call 0x17394f0",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598b60",
+          "json_pointer": "/evidence_index/0x598b8f"
+        },
+        {
+          "rva": "0x9761c0",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x9761c0",
+          "json_pointer": "/evidence_index/0x9761c0"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P03_normal_command_gate",
+      "observations": [
+        "4e9930 clones action through virtual+b0 and places clone in command+50.",
+        "14ca210 consumes caller holder before checking context+58 transport and context bytes+55/+80d.",
+        "Command vtable1c814b0 virtual58 and80 are both8f450(false)."
+      ],
+      "inference": "If both context bytes are0 this command fails that ordinary gate; their business meaning is unresolved and must not be patched. True means the transport virtual30 returned, not execution or AI acceptance.",
+      "unknowns": [
+        "False already cleared caller holder: disposal/retention of the stolen command is not closed. Exception ownership is unknown; no retry/reclaim."
+      ],
+      "evidence": [
+        {
+          "rva": "0x4e9940",
+          "bytes": "ff90b0000000",
+          "instruction": "call qword ptr [rax + 0xb0]",
+          "source": "work/reports/native-peace-gui-send-1375.json",
+          "function_rva": "0x4e9930",
+          "json_pointer": "/evidence_index/0x4e9940"
+        },
+        {
+          "rva": "0x4e9991",
+          "bytes": "48895850",
+          "instruction": "mov qword ptr [rax + 0x50], rbx",
+          "source": "work/reports/native-peace-gui-send-1375.json",
+          "function_rva": "0x4e9930",
+          "json_pointer": "/evidence_index/0x4e9991"
+        },
+        {
+          "rva": "0x14ca210",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/native-peace-gui-send-1375.json",
+          "function_rva": "0x14ca210",
+          "json_pointer": "/evidence_index/0x14ca210"
+        },
+        {
+          "rva": "0x14ca234",
+          "bytes": "4883795800",
+          "instruction": "cmp qword ptr [rcx + 0x58], 0",
+          "source": "work/reports/native-peace-gui-send-1375.json",
+          "function_rva": "0x14ca210",
+          "json_pointer": "/evidence_index/0x14ca234"
+        },
+        {
+          "rva": "0x14ca244",
+          "bytes": "80795500",
+          "instruction": "cmp byte ptr [rcx + 0x55], 0",
+          "source": "work/reports/native-peace-gui-send-1375.json",
+          "function_rva": "0x14ca210",
+          "json_pointer": "/evidence_index/0x14ca244"
+        },
+        {
+          "rva": "0x14ca24a",
+          "bytes": "80b90d08000000",
+          "instruction": "cmp byte ptr [rcx + 0x80d], 0",
+          "source": "work/reports/native-peace-gui-send-1375.json",
+          "function_rva": "0x14ca210",
+          "json_pointer": "/evidence_index/0x14ca24a"
+        },
+        {
+          "rva": "0x14ca259",
+          "bytes": "ff9080000000",
+          "instruction": "call qword ptr [rax + 0x80]",
+          "source": "work/reports/native-peace-gui-send-1375.json",
+          "function_rva": "0x14ca210",
+          "json_pointer": "/evidence_index/0x14ca259"
+        },
+        {
+          "rva": "0x14ca269",
+          "bytes": "ff5058",
+          "instruction": "call qword ptr [rax + 0x58]",
+          "source": "work/reports/native-peace-gui-send-1375.json",
+          "function_rva": "0x14ca210",
+          "json_pointer": "/evidence_index/0x14ca269"
+        },
+        {
+          "rva": "0x8f450",
+          "bytes": "32c0",
+          "instruction": "xor al, al",
+          "source": "this_report",
+          "function_rva": "0x8f450",
+          "json_pointer": "/evidence_index/0x8f450"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P04_AI_response_ordinary_boundary",
+      "observations": [
+        "4ea1e0 clears/reserves a reason-record buffer, invokes action virtual120, and tests returned score >=1.",
+        "59bee0 has game+23a1/actor-player override99999, force+208 with mode=false override1000, and ordinary fallback1bf150."
+      ],
+      "inference": "Keep force=0 and require ordinary context. Use the normal command/AI route; a transport true is not an accepted response.",
+      "unknowns": [
+        "1bf150 concrete acceptance criteria and reason record element ownership remain unclosed; current save AI score is not observed."
+      ],
+      "evidence": [
+        {
+          "rva": "0x4ea1e0",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "this_report",
+          "function_rva": "0x4ea1e0",
+          "json_pointer": "/evidence_index/0x4ea1e0"
+        },
+        {
+          "rva": "0x59bef7",
+          "bytes": "4180baa123000000",
+          "instruction": "cmp byte ptr [r10 + 0x23a1], 0",
+          "source": "this_report",
+          "function_rva": "0x59bee0",
+          "json_pointer": "/evidence_index/0x59bef7"
+        },
+        {
+          "rva": "0x59bf58",
+          "bytes": "4180bb0802000000",
+          "instruction": "cmp byte ptr [r11 + 0x208], 0",
+          "source": "this_report",
+          "function_rva": "0x59bee0",
+          "json_pointer": "/evidence_index/0x59bf58"
+        },
+        {
+          "rva": "0x59bfb7",
+          "bytes": "e89431c2ff",
+          "instruction": "call 0x1bf150",
+          "source": "this_report",
+          "function_rva": "0x59bee0",
+          "json_pointer": "/evidence_index/0x59bfb7"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P05_accepted_reply_to_effect",
+      "observations": [
+        "598ed0 checks both relationship war indexes and refreshes offer auxiliary state before branching on action state.",
+        "Accepted state branch reaches59a6ea ->976730."
+      ],
+      "inference": "Native response state2 applies the offer; invoking the effect or modifying state to2 is outside this adapter.",
+      "unknowns": [
+        "Full transitive world effects and reply/command destruction are not proved exception safe."
+      ],
+      "evidence": [
+        {
+          "rva": "0x598f47",
+          "bytes": "488b4a50",
+          "instruction": "mov rcx, qword ptr [rdx + 0x50]",
+          "source": "this_report",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x598f47"
+        },
+        {
+          "rva": "0x598fa2",
+          "bytes": "488b4a50",
+          "instruction": "mov rcx, qword ptr [rdx + 0x50]",
+          "source": "this_report",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x598fa2"
+        },
+        {
+          "rva": "0x5994eb",
+          "bytes": "418b442434",
+          "instruction": "mov eax, dword ptr [r12 + 0x34]",
+          "source": "this_report",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x5994eb"
+        },
+        {
+          "rva": "0x59a6ea",
+          "bytes": "e841c03d00",
+          "instruction": "call 0x976730",
+          "source": "this_report",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x59a6ea"
+        },
+        {
+          "rva": "0x978b20",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "this_report",
+          "function_rva": "0x978b20",
+          "json_pointer": "/evidence_index/0x978b20"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P06_whitepeace_zero_gold_application",
+      "observations": [
+        "976730 reads selected descriptor type, subtracts1 and unsigned-compares against0x19; type0 falls through the out-of-range direct component virtual98 path.",
+        "Gold vtable1cd2440 virtual98=9b4040 tests component+30; amount0 branches to return before transfer helpers."
+      ],
+      "inference": "The exactly one type0/definition0/value0 conservative white-peace shape does not enter gold transfer helpers; no switch guess is needed.",
+      "unknowns": [
+        "This says nothing about the other selected term types or the rest of offer application."
+      ],
+      "evidence": [
+        {
+          "rva": "0x977d11",
+          "bytes": "8b08",
+          "instruction": "mov ecx, dword ptr [rax]",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x977d11"
+        },
+        {
+          "rva": "0x977d13",
+          "bytes": "ffc9",
+          "instruction": "dec ecx",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x977d13"
+        },
+        {
+          "rva": "0x977d15",
+          "bytes": "83f919",
+          "instruction": "cmp ecx, 0x19",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x977d15"
+        },
+        {
+          "rva": "0x977ed1",
+          "bytes": "ff9098000000",
+          "instruction": "call qword ptr [rax + 0x98]",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x977ed1"
+        },
+        {
+          "rva": "0x9b405a",
+          "bytes": "83793000",
+          "instruction": "cmp dword ptr [rcx + 0x30], 0",
+          "source": "this_report",
+          "function_rva": "0x9b4040",
+          "json_pointer": "/evidence_index/0x9b405a"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P07_native_member_removal_and_terminal_mark",
+      "observations": [
+        "Offer application calls98ffb0 with the resolved borrowed war.",
+        "98ffb0 calls d8ba80/RemoveAttacker and d8e6b0/RemoveDefender on applicable participants;190990 removes a matching slot from a side vector.",
+        "The application records war+48 as the side vector; when it has <8 bytes,981b30(offer,false)==true leads to war+210=1.",
+        "d94890 writes country+2884=1 for each remaining side member."
+      ],
+      "inference": "Minimum white-peace application includes native participant removal and a terminal state mark; d94890 is a dirty/member marker, not a war destructor.",
+      "unknowns": [
+        "Other removal helpers and final war retirement/index removal/deallocation remain unclosed. war+210 business enum name is inferred, not a runtime observation."
+      ],
+      "evidence": [
+        {
+          "rva": "0x9784cc",
+          "bytes": "e8df7a0100",
+          "instruction": "call 0x98ffb0",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x9784cc"
+        },
+        {
+          "rva": "0x990215",
+          "bytes": "e866b83f00",
+          "instruction": "call 0xd8ba80",
+          "source": "this_report",
+          "function_rva": "0x98ffb0",
+          "json_pointer": "/evidence_index/0x990215"
+        },
+        {
+          "rva": "0x990291",
+          "bytes": "e81ae43f00",
+          "instruction": "call 0xd8e6b0",
+          "source": "this_report",
+          "function_rva": "0x98ffb0",
+          "json_pointer": "/evidence_index/0x990291"
+        },
+        {
+          "rva": "0xd8baf4",
+          "bytes": "4c8d05353af900",
+          "instruction": "lea r8, [rip + 0xf93a35]",
+          "rip_target": "0x1d1f530",
+          "ascii": "RemoveAttacker, %s, %d",
+          "source": "this_report",
+          "function_rva": "0xd8ba80",
+          "json_pointer": "/evidence_index/0xd8baf4"
+        },
+        {
+          "rva": "0xd8e741",
+          "bytes": "4c8d05400df900",
+          "instruction": "lea r8, [rip + 0xf90d40]",
+          "rip_target": "0x1d1f488",
+          "ascii": "RemoveDefender, %s, %d, %d, %d",
+          "source": "this_report",
+          "function_rva": "0xd8e6b0",
+          "json_pointer": "/evidence_index/0xd8e741"
+        },
+        {
+          "rva": "0xd8be44",
+          "bytes": "e8474b40ff",
+          "instruction": "call 0x190990",
+          "source": "this_report",
+          "function_rva": "0xd8ba80",
+          "json_pointer": "/evidence_index/0xd8be44"
+        },
+        {
+          "rva": "0xd8e9bf",
+          "bytes": "e8cc1f40ff",
+          "instruction": "call 0x190990",
+          "source": "this_report",
+          "function_rva": "0xd8e6b0",
+          "json_pointer": "/evidence_index/0xd8e9bf"
+        },
+        {
+          "rva": "0x1909a8",
+          "bytes": "488b12",
+          "instruction": "mov rdx, qword ptr [rdx]",
+          "source": "this_report",
+          "function_rva": "0x190990",
+          "json_pointer": "/evidence_index/0x1909a8"
+        },
+        {
+          "rva": "0x190a08",
+          "bytes": "48894308",
+          "instruction": "mov qword ptr [rbx + 8], rax",
+          "source": "this_report",
+          "function_rva": "0x190990",
+          "json_pointer": "/evidence_index/0x190a08"
+        },
+        {
+          "rva": "0x9779a6",
+          "bytes": "48894df0",
+          "instruction": "mov qword ptr [rbp - 0x10], rcx",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x9779a6"
+        },
+        {
+          "rva": "0x978896",
+          "bytes": "482b01",
+          "instruction": "sub rax, qword ptr [rcx]",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x978896"
+        },
+        {
+          "rva": "0x97889d",
+          "bytes": "7344",
+          "instruction": "jae 0x9788e3",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x97889d"
+        },
+        {
+          "rva": "0x9788a4",
+          "bytes": "e887920000",
+          "instruction": "call 0x981b30",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x9788a4"
+        },
+        {
+          "rva": "0x9788b2",
+          "bytes": "c7801002000001000000",
+          "instruction": "mov dword ptr [rax + 0x210], 1",
+          "source": "this_report",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x9788b2"
+        },
+        {
+          "rva": "0xd948d1",
+          "bytes": "c6828428000001",
+          "instruction": "mov byte ptr [rdx + 0x2884], 1",
+          "source": "this_report",
+          "function_rva": "0xd94890",
+          "json_pointer": "/evidence_index/0xd948d1"
+        },
+        {
+          "rva": "0xd9491e",
+          "bytes": "c6828428000001",
+          "instruction": "mov byte ptr [rdx + 0x2884], 1",
+          "source": "this_report",
+          "function_rva": "0xd94890",
+          "json_pointer": "/evidence_index/0xd9491e"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P08_four_indexes_not_pause_as_epoch",
+      "observations": [
+        "The earlier full88 CFG uses country+1548/+1554 separately from the relationship-root+50/+5c war index; d94480 dereferences war without a null guard."
+      ],
+      "inference": "The new Reader decoder rejects missing/duplicate/signed-negative/over-budget indexes, requires all four matches identical and nonnull, and resolves every side member against db+118/country+20 full identity. Its digest detects raw differences only.",
+      "unknowns": [
+        "Paused and repeated identical roots/date do not prove a world epoch, same-thread nonreentrancy or an engine lifetime lease. Actual providers are mandatory."
+      ],
+      "evidence": [
+        {
+          "rva": "0x59b630",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/war-peace-api-20261013-r2/peace/analysis.json",
+          "function_rva": "0x59b630",
+          "json_pointer": "/evidence_index/0x59b630"
+        },
+        {
+          "rva": "0xd94480",
+          "bytes": "48895c2410",
+          "instruction": "mov qword ptr [rsp + 0x10], rbx",
+          "source": "work/reports/war-peace-api-20261013-r2/peace/analysis.json",
+          "function_rva": "0xd94480",
+          "json_pointer": "/evidence_index/0xd94480"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P09_authenticated_current_thread_TLS",
+      "observations": [
+        "97e1f0/97e500 and97ed00 test TLS gate globals and access literal GS58 array element0; initializer1a33458 uses module index233c574 and can set TLS+c=1.",
+        "TLS+10 is read by native branches and is not initialized by this slice."
+      ],
+      "inference": "The compile-only Win64 sampler must run on a separately certified native callback thread. With gateB enabled it refuses module index!=0 or+c!=1, preventing this known lazy-init path; preserves observed gate10 instead of inventing a value.",
+      "unknowns": [
+        "The callback/thread provenance and host world lease are external prerequisites. TLS sampling does not close dynamic conditions, fallback globals or logging side effects."
+      ],
+      "evidence": [
+        {
+          "rva": "0x97e210",
+          "bytes": "803dbf1c9c0100",
+          "instruction": "cmp byte ptr [rip + 0x19c1cbf], 0",
+          "rip_target": "0x233fed6",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x97e1f0",
+          "json_pointer": "/evidence_index/0x97e210"
+        },
+        {
+          "rva": "0x97e219",
+          "bytes": "65488b042558000000",
+          "instruction": "mov rax, qword ptr gs:[0x58]",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x97e1f0",
+          "json_pointer": "/evidence_index/0x97e219"
+        },
+        {
+          "rva": "0x97e222",
+          "bytes": "488b18",
+          "instruction": "mov rbx, qword ptr [rax]",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x97e1f0",
+          "json_pointer": "/evidence_index/0x97e222"
+        },
+        {
+          "rva": "0x97e230",
+          "bytes": "e88b520b01",
+          "instruction": "call 0x1a334c0",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x97e1f0",
+          "json_pointer": "/evidence_index/0x97e230"
+        },
+        {
+          "rva": "0x97e23a",
+          "bytes": "803c1800",
+          "instruction": "cmp byte ptr [rax + rbx], 0",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x97e1f0",
+          "json_pointer": "/evidence_index/0x97e23a"
+        },
+        {
+          "rva": "0x97eecb",
+          "bytes": "65488b042558000000",
+          "instruction": "mov rax, qword ptr gs:[0x58]",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x97ed00",
+          "json_pointer": "/evidence_index/0x97eecb"
+        },
+        {
+          "rva": "0x1a33467",
+          "bytes": "8b0d07919000",
+          "instruction": "mov ecx, dword ptr [rip + 0x909107]",
+          "rip_target": "0x233c574",
+          "source": "work/reports/native-peace-candidate-boundaries-1375.json",
+          "function_rva": "0x1a33458",
+          "json_pointer": "/evidence_index/0x1a33467"
+        },
+        {
+          "rva": "0x1a33487",
+          "bytes": "42c6040201",
+          "instruction": "mov byte ptr [rdx + r8], 1",
+          "source": "work/reports/native-peace-candidate-boundaries-1375.json",
+          "function_rva": "0x1a33458",
+          "json_pointer": "/evidence_index/0x1a33487"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P10_no_send_candidate_not_runtime_proof",
+      "observations": [
+        "The isolated C++ candidate has10 possible operations: ctor/reset/request ctor/clone/three normal checks/three owner-specific cleanups.",
+        "It requires durable claim, flushable audit, exact-image/epoch/lifetime/thread/TLS/side-effect guards, full graph inspection and disjointness. Each call has before/after guards; uncertain stages freeze without speculative cleanup."
+      ],
+      "inference": "The candidate and real Reader decoder are compilable integration units. Win64 bindings are compiled separately and not linked into or invoked by offline tests; no sender/export/hook/install exists.",
+      "unknowns": [
+        "A real bounded inspector now supports a strict empty-auxiliary shape only. Dynamic trigger-class review and real epoch/lifetime/thread providers are still missing. Consequently current candidate production_ready=false and actual no-send runtime remains unexecuted."
+      ],
+      "evidence": [
+        {
+          "rva": "0x975d40",
+          "bytes": "48895c2410",
+          "instruction": "mov qword ptr [rsp + 0x10], rbx",
+          "source": "work/reports/native-peace-parameters-1375.json",
+          "function_rva": "0x975d40",
+          "json_pointer": "/evidence_index/0x975d40"
+        },
+        {
+          "rva": "0x598af0",
+          "bytes": "48894c2408",
+          "instruction": "mov qword ptr [rsp + 8], rcx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598af0",
+          "json_pointer": "/evidence_index/0x598af0"
+        },
+        {
+          "rva": "0x59ba40",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x59ba40",
+          "json_pointer": "/evidence_index/0x59ba40"
+        },
+        {
+          "rva": "0x59b450",
+          "bytes": "48895c2410",
+          "instruction": "mov qword ptr [rsp + 0x10], rbx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x59b450",
+          "json_pointer": "/evidence_index/0x59b450"
+        },
+        {
+          "rva": "0x59b630",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/war-peace-api-20261013-r2/peace/analysis.json",
+          "function_rva": "0x59b630",
+          "json_pointer": "/evidence_index/0x59b630"
+        },
+        {
+          "rva": "0x59b8d0",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/war-peace-api-20261013-r2/peace/analysis.json",
+          "function_rva": "0x59b8d0",
+          "json_pointer": "/evidence_index/0x59b8d0"
+        },
+        {
+          "rva": "0x598b60",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x598b60",
+          "json_pointer": "/evidence_index/0x598b60"
+        },
+        {
+          "rva": "0x9761c0",
+          "bytes": "48895c2408",
+          "instruction": "mov qword ptr [rsp + 8], rbx",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x9761c0",
+          "json_pointer": "/evidence_index/0x9761c0"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "id": "P11_fixed_component_ownership_and_reader_inspector",
+      "observations": [
+        "Pinned40 component clone cases allocate only0x30/38/40/48-byte objects. Their actual vtable deleting destructors are179550/1795c0/1795f0/99af60.",
+        "All four destructors rebind base vtable and optionally free only that outer allocation; no nested payload destruction occurs.",
+        "white_inspector.cpp actually reads four participant vectors, up to128 fixed-class candidate objects,40 selected alias buckets, owner-self and three exactly empty native hash containers."
+      ],
+      "inference": "This supports a real narrow owned-graph inspector rather than the default empty-offer checker. It excludes borrowed countries/provinces/definitions, requires one selected zero gold, and compares normalized semantic bytes across copies. Any unsupported nonempty auxiliary vector/hash, oversized allocation or unknown class rejects.",
+      "unknowns": [
+        "No actual constructed game offer has been observed. This strict shape may reject a valid offer with nonempty auxiliary state; general hash payload ownership and dynamic trigger safety remain outside the supported schema."
+      ],
+      "evidence": [
+        {
+          "rva": "0x179568",
+          "bytes": "ba30000000",
+          "instruction": "mov edx, 0x30",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x179550",
+          "json_pointer": "/evidence_index/0x179568"
+        },
+        {
+          "rva": "0x17956d",
+          "bytes": "e87eff5b01",
+          "instruction": "call 0x17394f0",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x179550",
+          "json_pointer": "/evidence_index/0x17956d"
+        },
+        {
+          "rva": "0x1795d8",
+          "bytes": "ba38000000",
+          "instruction": "mov edx, 0x38",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x1795c0",
+          "json_pointer": "/evidence_index/0x1795d8"
+        },
+        {
+          "rva": "0x1795dd",
+          "bytes": "e80eff5b01",
+          "instruction": "call 0x17394f0",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x1795c0",
+          "json_pointer": "/evidence_index/0x1795dd"
+        },
+        {
+          "rva": "0x179608",
+          "bytes": "ba40000000",
+          "instruction": "mov edx, 0x40",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x1795f0",
+          "json_pointer": "/evidence_index/0x179608"
+        },
+        {
+          "rva": "0x17960d",
+          "bytes": "e8defe5b01",
+          "instruction": "call 0x17394f0",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x1795f0",
+          "json_pointer": "/evidence_index/0x17960d"
+        },
+        {
+          "rva": "0x99af78",
+          "bytes": "ba48000000",
+          "instruction": "mov edx, 0x48",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x99af60",
+          "json_pointer": "/evidence_index/0x99af78"
+        },
+        {
+          "rva": "0x99af7d",
+          "bytes": "e86ee5d900",
+          "instruction": "call 0x17394f0",
+          "source": "work/reports/native-owned-peace-1375.json",
+          "function_rva": "0x99af60",
+          "json_pointer": "/evidence_index/0x99af7d"
+        }
+      ],
+      "runtime_verified": false
+    }
+  ],
+  "limits": {
+    "new_cfgs": 14,
+    "reused_cfgs": 29,
+    "new_decoded_bytes": 29027,
+    "new_decode_budget_bytes": 32768,
+    "memory_guard_bytes": 805306368,
+    "capstone_version": "5.0.7"
+  },
+  "runtime_verified": false,
+  "production_ready": false,
+  "native_game_calls": 0,
+  "process_access": false
+}

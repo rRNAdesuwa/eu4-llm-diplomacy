@@ -1,0 +1,130 @@
+{
+  "work/candidates/v21-core-pair-nosend-1375/validate.py": {
+    "bytes": 12608,
+    "sha256": "35a3a339f594051da06de4122adf785454b3cf3a3d00919fc1f324b7c5c285f4"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/README.md": {
+    "bytes": 5993,
+    "sha256": "d19d96efcec5a18a8c412819e8375e91629df3ac0fceab5ccf5886121f07e115"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/adapter/component/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/adapter/native_pair_engine.cpp": {
+    "bytes": 13222,
+    "sha256": "1102d170d13d92f95347f01381f7b8cce1874abf08fca1bc65ccb7ecf73ded16"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/adapter/native_pair_engine.h": {
+    "bytes": 4773,
+    "sha256": "f17589286bbf90fe888db9bf3c5f320259347c90808150c6360096dc134f480f"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/adapter/test_native_pair_engine.cpp": {
+    "bytes": 17902,
+    "sha256": "356dcbb6447dad9cbbad1962a6ff6810ea51f6e3541ca7306ad04a23651546c5"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/build_test.cmd": {
+    "bytes": 2525,
+    "sha256": "e9394102273533a6755082044df009da156e25a9cb78f34442894dec8aa4b6e8"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/input-pins.json": {
+    "bytes": 4403,
+    "sha256": "a9431841f85ff84387c55205b898347fde8cfa2883b8d242d0134f21f06a601e"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/pair_component.cpp": {
+    "bytes": 23662,
+    "sha256": "28d1f1c535f9623eca10aacb640e2b716e9f67ddae848d0c95ea70b0abc70587"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/prepare.py": {
+    "bytes": 2662,
+    "sha256": "d5f8ebc0d57f526371b7afd0e5c6374828ba1974566c23d32830fd34b9d5a4b4"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/profile-registry.json": {
+    "bytes": 6894,
+    "sha256": "04da164a2ef23f088243d933dd773b03fed06e253eda49617f3d5a384fe77e91"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/r3-delta.diff": {
+    "bytes": 9678,
+    "sha256": "e2f0b1c94d3865d2bd7e1fb06153f282d0b2c8cf6f89d5075dd7f89584ebfc10"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/seal.py": {
+    "bytes": 3263,
+    "sha256": "0a14489bcd47e686123423630183fd95031da0b6ad93fbf5080a4995d69fe4aa"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/test_pair_component.cpp": {
+    "bytes": 17782,
+    "sha256": "f684df2d411a0accc55ef717dc95c9884cd7286a4f010f0a5b22a6b2d465110e"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/test_r2_counter.cpp": {
+    "bytes": 7638,
+    "sha256": "80ebb9dd41fd67fbee12db620cfd87ec02a407ba7c2b21948b09ec9a80880f84"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/test_r3_integration.cpp": {
+    "bytes": 7191,
+    "sha256": "64bce640703b796a504803042a481ef32982287ae697cd043e471fed26474342"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/typed_fixture.h": {
+    "bytes": 3078,
+    "sha256": "2ab818ad7ea93385d29b7c0193dab8f2a4975dd915fe3b30e0f0294827bb28e7"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/validate.py": {
+    "bytes": 7529,
+    "sha256": "1604016fe2fa303f804ff42b920f03975fa2f747f3332aebff4a1da3b36559c3"
+  },
+  "work/candidates/v24-pair-send-core-1375/README.md": {
+    "bytes": 734,
+    "sha256": "08f34af0543defd5e75b9c14df8469df476ea8bb6b7c8efc7efeab8f69bead3e"
+  },
+  "work/candidates/v24-pair-send-core-1375/build_test.cmd": {
+    "bytes": 617,
+    "sha256": "91def7608d84080a1e106462abc444a0b864453222820c7fb71994cb2264a97b"
+  },
+  "work/candidates/v24-pair-send-core-1375/development-attempt1/validation.json": {
+    "bytes": 11381,
+    "sha256": "c40f11d9ccb70b161ca004b697f5d8dcaa54548175d1e487b6ddc4243369a3c9"
+  },
+  "work/candidates/v24-pair-send-core-1375/input-pins.json": {
+    "bytes": 3683,
+    "sha256": "08ea161157dd6e866d4b41cd3d037130cc7b9694921860cfab7b51b48de844b7"
+  },
+  "work/candidates/v24-pair-send-core-1375/pair_component.h": {
+    "bytes": 36,
+    "sha256": "2709eaa27aa3a84e50d53fba22f09e93d8f6d6834578ed99106ee2be5314a1f8"
+  },
+  "work/candidates/v24-pair-send-core-1375/pair_send.cpp": {
+    "bytes": 25735,
+    "sha256": "71debbb462121ecfbd25db660547ac402289036a145cb71a1abbc8509c77d5a4"
+  },
+  "work/candidates/v24-pair-send-core-1375/pair_send.h": {
+    "bytes": 1657,
+    "sha256": "eff58f320fab82573040028a7a85e98f54f553dd8b1f0ee9594565c5d4217bf3"
+  },
+  "work/candidates/v24-pair-send-core-1375/test_pair_component.cpp": {
+    "bytes": 17782,
+    "sha256": "f684df2d411a0accc55ef717dc95c9884cd7286a4f010f0a5b22a6b2d465110e"
+  },
+  "work/candidates/v24-pair-send-core-1375/test_send.cpp": {
+    "bytes": 5659,
+    "sha256": "8e6f06655b6654a95fe134d63d591e1143ac301ba65c21bc307ad5356c9d04ab"
+  },
+  "work/candidates/v24-pair-send-core-1375/validate.py": {
+    "bytes": 1585,
+    "sha256": "215491a1cb7b885ed73daa10fce4aa3c2c1a672db5a629464101fbe48821fc33"
+  },
+  "work/create_pair24_send_core_1375.py": {
+    "bytes": 15474,
+    "sha256": "1da5e160e39b548c1610329e535a3479f814973b2b922e306ab4046fbb25534d"
+  },
+  "work/create_pair24_send_core_r2_1375.py": {
+    "bytes": 2156,
+    "sha256": "33d7f9d6be9cc142c352f88c94489bb72645a18f58c62d6304ecba0eddc64924"
+  }
+}

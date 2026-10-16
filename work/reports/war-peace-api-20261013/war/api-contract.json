@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "status": "research_design_only_no_executor",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "action": "declare_war",
+  "runtime_verified": false,
+  "public_schema_complete": false,
+  "native_identity": {
+    "token_id": "0x293b",
+    "object_bytes": 152,
+    "vtable_rva": "0x1c80d90",
+    "factory_rva": "0x35d210",
+    "factory_case_rva": "0x35d32a",
+    "constructor_rva": "0x500480",
+    "local_check_rva": "0x508db0",
+    "full_check_rva": "0x50a0a0",
+    "clone_rva": "0x50b8f0",
+    "destructor_rva": "0x500520",
+    "wrapper_rva": "0x4e9930",
+    "effect_rva": "0x501290"
+  },
+  "candidate_external_fields": {
+    "actor": "Exact TAG resolved to authenticated live full country handle.",
+    "target": "Exact TAG resolved to authenticated live full country handle.",
+    "casus_belli": "Discriminated selection: none, or an available CB definition/instance selected by stable symbolic identity and authenticated current actor/target binding. A free string is not an engine pointer.",
+    "war_goal": "Typed optional projection selected according to the CB; none is represented internally by the nowargoal singleton. Specific projection can include definition name, province ID, country TAG, region/continent name, subject TAG or rebel identity as required by the specific goal.",
+    "attacker": "Candidate array of unique exact TAGs; native vector semantics still need a normal selection-site proof.",
+    "promised_land": "Candidate array of unique exact TAGs; native vector semantics and subset constraints remain unresolved.",
+    "full_ally": "Candidate array of unique exact TAGs; co-belligerent/UI mapping and membership constraints remain unresolved."
+  },
+  "internal_only_fields": {
+    "stability_0x40": "Fix false for ordinary candidate calls. True suppresses native stability cost; never expose as an ordinary diplomacy option.",
+    "succession_0x41": "Special internal path, not an ordinary externally selectable option.",
+    "colonialwar_0x42": "Special internal path, not an ordinary externally selectable option.",
+    "date": "Capture from the held live game generation on the engine thread.",
+    "envoy_state_value_id": "Initialize only through proven native construction and common diplomacy policy."
+  },
+  "unsupported_fields": ["raw_rva", "raw_pointer", "raw_handle", "raw_goal_bytes", "attacker_call_all", "ignore_costs", "skip_checks"],
+  "goal_factory_cases": [
+    {"name": "take_colony", "enum": 0},
+    {"name": "take_core", "enum": 1},
+    {"name": "take_border", "enum": 2},
+    {"name": "take_province", "enum": 3},
+    {"name": "take_capital", "enum": 4},
+    {"name": "defend_capital", "enum": 5},
+    {"name": "defend_country", "enum": 6},
+    {"name": "naval_superiority", "enum": 7},
+    {"name": "superiority", "enum": 8},
+    {"name": "take_region", "enum": 9},
+    {"name": "blockade_ports", "enum": 10}
+  ],
+  "future_verification_cases": [
+    {"case": "no_cb", "required_observations": ["nowargoal/nocasusbelli identity", "native costs and truce consequences", "exact new war and both sides", "save/reload persistence"], "executed": false},
+    {"case": "core_reconquest", "required_observations": ["authenticated available CB and goal definition", "province identity and core/ownership", "native costs", "exact war goal and both sides", "save/reload persistence"], "executed": false},
+    {"case": "multiple_participants", "required_observations": ["normal caller mapping for all ally vectors", "ally response and promised land state", "co-belligerent designation", "exact war sides and original actors", "save/reload persistence"], "executed": false}
+  ],
+  "blocked_until": [
+    "Current CB-instance selection and live definition resolution are closed.",
+    "Normal declaration wrapper/sender caller and all participant selection semantics are closed.",
+    "Independent no-send ownership/lifecycle validation succeeds with exact binary and engine-thread context.",
+    "Full common/local/goal preflight, observation and audit contract are implemented.",
+    "No existing TAG-only registry or frozen DLL is modified by this research contract."
+  ]
+}

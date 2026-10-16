@@ -1,0 +1,326 @@
+{
+  "bridge/diplomacy_api.py": {
+    "bytes": 34284,
+    "sha256": "2887e6af632b50be136d88cbfeaa6b861e7760ab34d534e5935e1596f2b33f6a"
+  },
+  "bridge/diplomacy_lab_http.py": {
+    "bytes": 30081,
+    "sha256": "92ee036dac122b278f8a9e1c9aefbd624554a6808cc67eb7d62931c1fb2d66b0"
+  },
+  "bridge/diplomacy_lab_http_v17.py": {
+    "bytes": 4399,
+    "sha256": "f3d6f4c4cb5ec73bb8b39fc7beb833c26d675346183cd45fa96c1af7cc0167c4"
+  },
+  "bridge/native_build.py": {
+    "bytes": 3582,
+    "sha256": "2f8f7f1781f10084ed85cae59f876080a9cd0efcf9810e1fc394561682048925"
+  },
+  "bridge/native_pair_backend.py": {
+    "bytes": 50002,
+    "sha256": "0d8e36b56db7e37b3d36134de7a0c27130468bfdb8de6c2710a3ffddf7a96915"
+  },
+  "tools/request_diplomacy_lab_v17.py": {
+    "bytes": 8697,
+    "sha256": "4cfc15afcca2e6c3f2496008e2ae6d385567963aecb981bda735acca38df86c2"
+  },
+  "tools/serve_diplomacy_lab_v17.py": {
+    "bytes": 1550,
+    "sha256": "52092daf2c939f6da0f32328e805c263366364effbe8ec56ca99e81be108f6ab"
+  },
+  "tools/verify_diplomacy_acceptance_v17.py": {
+    "bytes": 20313,
+    "sha256": "2ff9065cea99239c90ed504465eeb9ff2c76c67f8fee8b8479881fd0d4c3eb14"
+  },
+  "tools/verify_diplomacy_command_v17.py": {
+    "bytes": 8806,
+    "sha256": "47bb8b76d10b1c5a017c27e53a22385d96a70f829aa7073e78745d5128af3041"
+  },
+  "tools/verify_diplomacy_lifecycle_v17.py": {
+    "bytes": 27645,
+    "sha256": "39cb22d0a8ed1bd64ad658cfc056d0d12ebe602b2658420c5904e066bf25db48"
+  },
+  "tools/verify_diplomacy_owned_peace_v17.py": {
+    "bytes": 11481,
+    "sha256": "5a13527dbc64e87ee7436664a2dd0eed54fce1016930e394f3e2e21105edbd4f"
+  },
+  "tools/verify_diplomacy_preview_v17.py": {
+    "bytes": 12807,
+    "sha256": "2ce0267878a7b22e05b7b41867b302172d6b482935b5ac29b35f0fa199d4e888"
+  },
+  "work/candidates/spy-action-contracts-1375/report.json": {
+    "bytes": 1446454,
+    "sha256": "274221df57719404edfcacd7451ebc28c678369dab9d4377e6201be5db734774"
+  },
+  "work/candidates/spy-action-contracts-1375/review.json": {
+    "bytes": 1031,
+    "sha256": "d01a7a88961d3a9fad47479ebbef2304cca1fc1214521a3f98eca31738e6ef8c"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/constructor_model.py": {
+    "bytes": 4439,
+    "sha256": "10e59edb6a9bfda66773bbdc21d2ba4d7f2014f1842a5ff8a4de039587d7f0f4"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/report.json": {
+    "bytes": 291016,
+    "sha256": "76f5e60a7dbbed7508ee2e6cf124fe39c24cbaa978e51d02963f3a5fc8bff92f"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/review.json": {
+    "bytes": 4036,
+    "sha256": "1bc91ed02a3668a4c61991fe4612bbaebd63a775dea34e3b9f35dc1f4163aaab"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/source-index.json": {
+    "bytes": 3072,
+    "sha256": "b1291f700a8dbb34a65f15a0cc76a4f6d8c2996c13a8cb35c64787e9e83ad3f6"
+  },
+  "work/candidates/spy-modifier-observer-1375/observer.py": {
+    "bytes": 20533,
+    "sha256": "d386524d543d96509fe4230e5fd02b01bc7f404f5419054ae2a84f66fdb13e48"
+  },
+  "work/candidates/spy-modifier-observer-1375/report.json": {
+    "bytes": 472872,
+    "sha256": "e385e400841d9e012a4be2ed0261ae2dab311c5bf396f42c588d74f5508575d4"
+  },
+  "work/candidates/spy-modifier-observer-1375/review.json": {
+    "bytes": 1280,
+    "sha256": "9b9830cf4eafbc5620fa53810ce1b790dfec9c96a44afb9f45b93660ec73ee85"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/candidate-index.json": {
+    "bytes": 1781,
+    "sha256": "515d3f4149e49c28f8ceb13bb148b0c26942daf6caf49155ad27046b9214b3cf"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/projection.py": {
+    "bytes": 24382,
+    "sha256": "313fbafd18b29f3cd0d4edab672b2ac39d867e0f5f383568601548a46b5b5fbe"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/review.json": {
+    "bytes": 1187,
+    "sha256": "e0928f24bd11c6baf5fa3188963dc88e6d4428d68f6fc496d6cf391ef5c3ed8c"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/DRAFT.md": {
+    "bytes": 692,
+    "sha256": "c5cb22310b36f927ca6f1ef01c3d0be082b7c88c3ef71d875c6f65c1835bb4b4"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/README.md": {
+    "bytes": 7189,
+    "sha256": "ba7a5aaf3158ed689f45f100d9b29d649df3df179607ac77c3e76c9c2f67d717"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/candidate-index.json": {
+    "bytes": 1755,
+    "sha256": "598cd3bc1005b03d16dd2361bb0ea340a8d3ebf174a747d5a2ceceb5f7c89aa4"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/log-contract.json": {
+    "bytes": 2383,
+    "sha256": "08cace7d4ce73941745b1739802cb59f3b0d00b525dc60ecfb341290cb144022"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/model.py": {
+    "bytes": 13864,
+    "sha256": "96f0205740025c51f06b90d86c75b96432e338bec0b0d5fe6729b8a9848f18d1"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/plan.json": {
+    "bytes": 8448,
+    "sha256": "79b421064b8369fe7f417b50a61f0b12196f8cb0019e2d2b1ccb108b6bce64e6"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/prepare.py": {
+    "bytes": 1456,
+    "sha256": "a1f50d436c5c12b2e38e90445f7133747adeb7399e893ef9639e9b128c139ac3"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/protocol.py": {
+    "bytes": 5103,
+    "sha256": "3da952bc3ab0836f951a3df091972655792de82f33c07be5f4e679603131604d"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/review.json": {
+    "bytes": 2479,
+    "sha256": "84be84f82878707ef5ae18e6b58bd5dac3f195e528c372e08cf67a71eddeb16b"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/source-pins.json": {
+    "bytes": 8000,
+    "sha256": "efe9326280931b3ef91bb13ecdb3754668e2eba999097cb380bd89a0c1d3af2e"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/test_contract.py": {
+    "bytes": 11670,
+    "sha256": "4e08af1538e0bd1515f6c3a54977535c1a04c993be5e5a9a5f86b9e9c38c489d"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/test_sources.py": {
+    "bytes": 3914,
+    "sha256": "52d6310fc286ae439014cb863b13d42b17aee4f2c46217729455367c9e712de5"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/candidate-index.json": {
+    "bytes": 1677,
+    "sha256": "f0ea0c1d7899b36e8c6201ad9dc39d0f034ce9aef7e9a05473a1b4e29d4064fd"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/contract.json": {
+    "bytes": 7050,
+    "sha256": "31e6bf18b43e94d3c4ff603e3d87ac82faef843b8233ac97d05812da1675e7d3"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/pins.h": {
+    "bytes": 3439,
+    "sha256": "c9bb4ad8595bb09bba03d630bf03ca9babe5c22faa604d406f5a51aaf8f27fbd"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/review.json": {
+    "bytes": 10863,
+    "sha256": "14ed360b28f4e0c0d407a91003a41029fa063cda961f53f9187fba104d4d7b5d"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/source-pins.json": {
+    "bytes": 10040,
+    "sha256": "553e280a6294036a6f46ce1a28e4f45b6a791a0840829dbedf1c110364ef09b3"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/spy_core.cpp": {
+    "bytes": 19571,
+    "sha256": "be276541836f50137d38a3c1250357a0dc614d76d20ba6a61bf37a53c58a0819"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/spy_core.h": {
+    "bytes": 3797,
+    "sha256": "290d2db8201bd51901e5d2e080f4bb76952e548f23ec6e82b1df17def1d68321"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/test_spy_core.cpp": {
+    "bytes": 21671,
+    "sha256": "0986f485331bd8274e1f5ff730754aaec766745729b522565250d6e3ff3339dd"
+  },
+  "work/local_config.py": {
+    "bytes": 2818,
+    "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001"
+  },
+  "work/native/inject_lab_v17_1375.py": {
+    "bytes": 3064,
+    "sha256": "a3144a3e802989587b9c29d03bafffe32b444893a8f62640bcbf7d598120fd45"
+  },
+  "work/native/inject_probe.py": {
+    "bytes": 23802,
+    "sha256": "18a6e5d7cfab4607a4b964d23002b71b8c9352d41c8324f1c9e5740534ea0b4f"
+  },
+  "work/native/lab_protocol_v17_1375.py": {
+    "bytes": 76229,
+    "sha256": "5bce16b8c951850cbbdc47c88e1edb0cd5b565d3dae2f9785246a92656afa202"
+  },
+  "work/native/lab_protocol_v9_1375.py": {
+    "bytes": 44722,
+    "sha256": "0b94213f9fd052a262ca3a700ad19466f388ac34a28d0ce8ff5370fe91383f9e"
+  },
+  "work/native/record_lab_v17_build.py": {
+    "bytes": 485,
+    "sha256": "97862d46b4d331f8a9e4fe2c2f12a2711079842665b088416a1540851a7ee43e"
+  },
+  "work/native/run_lab_speed_v17_1375.py": {
+    "bytes": 11526,
+    "sha256": "ed3967c54bdc4f9e31b6b534753688f6b37531538c9d5d23338d35591d3eefec"
+  },
+  "work/native/test-fixture-v17-1375.cpp": {
+    "bytes": 16443,
+    "sha256": "f1b03d939a211bd40729323d7c6f96f7e925fe292c441c14e35adf43cff62285"
+  },
+  "work/native/test-fixture-v17-1375.h": {
+    "bytes": 3043,
+    "sha256": "228d8bb198b676e0dc01e6f00356d78ff154a707a7a913457e89b9d0835bad5c"
+  },
+  "work/native/v17/build-lab-1375.cmd": {
+    "bytes": 3277,
+    "sha256": "6722ab68efa061031cc8f3bbd139164c5bff543bb428f24d09ffefc629f88f00"
+  },
+  "work/native/v17/default-contract.h": {
+    "bytes": 7148,
+    "sha256": "bf87b29fec436d8a9ba16c9e9f3a69f2336d7f94c9004ddc58f3b385342d3853"
+  },
+  "work/native/v17/lab-request-1375.h": {
+    "bytes": 10197,
+    "sha256": "aa84e95f0a3b8e917d751bf6e2589ac29505c4f28afdaea19a4bfda5fa53523c"
+  },
+  "work/native/v17/owned-peace-host-1375.inc": {
+    "bytes": 6631,
+    "sha256": "b2b0f5c34a40769cc1840e99fa71366b7384e8371426933935bbd4d9fd4d83d8"
+  },
+  "work/native/v17/owned-peace-stage-1375.h": {
+    "bytes": 3613,
+    "sha256": "70d754113ab115f3c480abfce5e638056ce54c0297aac6ae12244b3b5c612fbc"
+  },
+  "work/native/v17/pair-command-v6-1375.cpp": {
+    "bytes": 47559,
+    "sha256": "dc06cf5d19f7d528e4a1224f7d1ebabd9de426509a37d20e863167a3c2c4bbcc"
+  },
+  "work/native/v17/pair-engine-1375.cpp": {
+    "bytes": 84162,
+    "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e"
+  },
+  "work/native/v17/pair-engine-1375.h": {
+    "bytes": 5377,
+    "sha256": "f5257b31ca81e3c886f501433cce1da3eaba0da868bec3225412cb03fee2a526"
+  },
+  "work/native/v17/pair-preview-v6-1375.cpp": {
+    "bytes": 37527,
+    "sha256": "cf14d82d4ce804a3ca7ee38d586f688d1259686dddd449be40c9a30bb7ec7b57"
+  },
+  "work/native/v17/pair-probe-v6-1375.cpp": {
+    "bytes": 37905,
+    "sha256": "a605392c57846c3df532b290be6960fac1ead144a7611e3cee3eda81c60ffcca"
+  },
+  "work/native/v17/peace-owned-lifecycle-1375.cpp": {
+    "bytes": 10565,
+    "sha256": "60bd30614b16eaf67d1dcb8f85463d1e7df4de44418b4b9fb62ad8b014a1a067"
+  },
+  "work/native/v17/peace-owned-lifecycle-1375.h": {
+    "bytes": 2648,
+    "sha256": "56389ed955d527925dcd836ad5e54dd20cc4aa88cc9e4e872685653af19eb1d9"
+  },
+  "work/native/v17/pins.h": {
+    "bytes": 11708,
+    "sha256": "321c97c0ff0551d0c34d2091563865ecfafe2e8bb3397aa6a37571f509f72fae"
+  },
+  "work/native/v17/research-frame-v6-1375.asm": {
+    "bytes": 1582,
+    "sha256": "3d5da5aea5408d4991fce7bb19275025e7d28bcbbfc90c08d82e797ad09d30f0"
+  },
+  "work/native/v17/research-lab-1375.cpp": {
+    "bytes": 58756,
+    "sha256": "3f2ca8c56275d741a3bd02a30b292056b8e37a10a3cfe62a9e4c0dcff306338d"
+  },
+  "work/native/v17/research-lab-bootstrap-1375.inc": {
+    "bytes": 14376,
+    "sha256": "8d4c4c27f30d6800d095c35b97dc9c88b9dcfbcd6a8c838f362d64c9824b71db"
+  },
+  "work/native/v17/test-acceptance-1375.cpp": {
+    "bytes": 20957,
+    "sha256": "9435fb758cd9c1cf45bfa6180bae9856551c64223c3e6c7c74c04f3f94d2fefb"
+  },
+  "work/native/v17/test-acceptance-1375.h": {
+    "bytes": 3891,
+    "sha256": "c1835f812ee230303fb2f26814d1c848c55706d14afe4fadf863c01fed078328"
+  },
+  "work/native/v17/test-controls-1375.cpp": {
+    "bytes": 13259,
+    "sha256": "c955ca8a4527a1fe6f5a8418b601eece2363a47c3c82cd3be2b261798f869615"
+  },
+  "work/native/v17/test-controls-1375.h": {
+    "bytes": 2929,
+    "sha256": "7efc2ca22d723941086a2e68ed63fc4d6a80392bd78d7902884f437863b338e7"
+  },
+  "work/probe_diplomacy_current.py": {
+    "bytes": 24900,
+    "sha256": "a5a0b775a701466cf5f4c85db671e37f81c165daf5fddd2080b71ed6f147bb38"
+  },
+  "work/review-results/spy-modifier-observer-external-api-20261008a/review.json": {
+    "bytes": 1500,
+    "sha256": "9786876a03fdbf0aed09a72f55f12129c4aeebbd16f6032f7696aabf71992ea4"
+  },
+  "work/review-results/spy-modifier-observer-native-inventory-20261008a/review.json": {
+    "bytes": 3828,
+    "sha256": "cba5fc6a916bdeaae7d9f4b8d903d992120357788b8fe011e0c0ae86c5131f00"
+  },
+  "work/review-results/v18-spy-core-action-catalog-20261008a/review.json": {
+    "bytes": 24886,
+    "sha256": "3069c9cd23782283da344c87df303e1c2cbfd998d23940d8dc4bf4851a877dc6"
+  },
+  "work/review-results/v18-spy-no-send-native-inventory-20261008a/review.json": {
+    "bytes": 3906,
+    "sha256": "610b031dfe33fedb41182fd7baf14f9eb25bfdff1de1552d80c719f0db679dc0"
+  },
+  "work/review-results/v18-spy-projection-r2-native-inventory-20261008a/review.json": {
+    "bytes": 53783,
+    "sha256": "573259762a4bc4d0a3e3a3cbdabc9ba0066668abfbe81aa3bff0be339c07398e"
+  },
+  "work/runtime/native1375-v17/build.json": {
+    "bytes": 6903,
+    "sha256": "b7cf7bb7b31cddf621729e0d541404d80bdb155c6f804082e2a25f651c97067d"
+  },
+  "work/runtime/native1375-v17/eu4_pair_lab_v17_1375.dll": {
+    "bytes": 330752,
+    "sha256": "d8b962b19d489fd366f346416bb72a8958f3dc53b504a29ec835d3b99cafa1ee"
+  }
+}

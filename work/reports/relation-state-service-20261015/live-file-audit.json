@@ -1,0 +1,815 @@
+{
+  "schema": "EU4-RELATION-LIVE-FILE-AUDIT/1",
+  "passed": true,
+  "source_pins": {
+    "work/reports/relation-effect-observer-20261015/live-80340-current-relations.json": {
+      "bytes": 92009,
+      "sha256": "4fcfddb5e8551a132a188a601aa74d9d45a4e663e7591d27c711d76594edbbe9"
+    },
+    "work/reports/native-pair-effects-1375.json": {
+      "bytes": 2190321,
+      "sha256": "b67e9e3ec3d333ad5603c9bcb7a70d614bab1107f283c6f01d99e7c744730ae0"
+    },
+    "work/reports/native-pair-extension-v10-1375.json": {
+      "bytes": 2862211,
+      "sha256": "0c1731b0b29b296da73dc406fb31544ada59c17c275d17d623677b16998698bd"
+    },
+    "work/reports/native-pair-extension-effects-v10-1375.json": {
+      "bytes": 313488,
+      "sha256": "b6f4b69db38f5e3eae0c3cebf1fa5298701b86a98e8299d6f0e9759b84861f62"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json": {
+      "bytes": 40324,
+      "sha256": "c4f6c2fc4e3a37153b3d4ba8f099204001bd8e64af4aacfd9c8cf0a4c024a57e"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/static.json": {
+      "bytes": 1160839,
+      "sha256": "874d2135b8e92bab67993664660ce5349762d64ed25e1a56467cb7412e889703"
+    },
+    "bridge/relation_effect_reader.py": {
+      "bytes": 18588,
+      "sha256": "68c3df68df43d1bf045057678ed86c33dd8a2d50500880c132d99f66053ec855"
+    },
+    "bridge/tests/test_relation_effect_reader.py": {
+      "bytes": 15528,
+      "sha256": "867ef32ad033b5d4e7304948d24c563d226b4cbb7ab2e793613ad4735d301082"
+    },
+    "bridge/tests/test_effect_observer_memory.py": {
+      "bytes": 27717,
+      "sha256": "263338baf4016d6b878c8821ac73e5270b30dc4d92887035ae7ea5041f211f54"
+    },
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/tag_command_backend.py": {
+      "bytes": 25398,
+      "sha256": "74279bf8cb77d800ad53711e799260672b20b7d20cf6bee997527eaa29c55c53"
+    },
+    "bridge/tag_actions_1375_v31.json": {
+      "bytes": 30294,
+      "sha256": "dfcd2cf16b7a6198dd9fc6ea619a0bad54ee58750a70a676f866be827c3771fb"
+    },
+    "bridge/tag_action_conditions_1375.json": {
+      "bytes": 1607903,
+      "sha256": "116c84b4a50ea566cbbb4232fb9b0c9f19cfb1f416e60d4e791ced72d589de90"
+    },
+    "bridge/diplomacy_research_evidence.json": {
+      "bytes": 517166,
+      "sha256": "142a5d63ec22fa3e547f89bb3fd96030275814faa1b12ef421e1a920a0acc4e5"
+    },
+    "work/reports/diplomacy-corrective-20261014/current-action-validation.json": {
+      "bytes": 280643,
+      "sha256": "809e29df52bf5db78512f389d2ad1d21873b1263caf1154b910940b80722fb80"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/runtime/batch-after-save-selected.json": {
+      "bytes": 890073,
+      "sha256": "fbc64841a2c85904f75a2effa66b0593d43d4c6cf6572d3fcd66d9717a24240e"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/runtime/first-two-results.json": {
+      "bytes": 6238,
+      "sha256": "daec77bddc8d3c9d298b4106c3d80cb8fe78cf73f31065a9409d954ca59e560b"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/src/work/candidates/v24-pair-send-core-r2-1375/pair_send.h": {
+      "bytes": 1657,
+      "sha256": "eff58f320fab82573040028a7a85e98f54f553dd8b1f0ee9594565c5d4217bf3"
+    },
+    "work/deps/capstone-5.0.7.receipt.json": {
+      "bytes": 16560,
+      "sha256": "eb1b2b12f707487387126b1f6453222c00fa744f02cba6125e44b94568a0a2df"
+    },
+    "work/discover_diplomacy.py": {
+      "bytes": 29147,
+      "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+    },
+    "work/reports/relation-effect-observer-20261015/static.json": {
+      "bytes": 34263,
+      "sha256": "71c92b810ed1b1d281f25fa5d4af6c1605f6c343318498bdfb0ddc751a86110c"
+    },
+    "work/reports/relation-effect-observer-20261015/report.md": {
+      "bytes": 6896,
+      "sha256": "a6b68bb61faab30d40d4a9f693ea60314e4c9d0ed2bfcc994b638eb070c6386f"
+    },
+    "work/reports/relation-effect-observer-20261015/contract.json": {
+      "bytes": 12925,
+      "sha256": "88b4d9c9b63d6dd3d4b6703abeb8fbfc876227170ec5ead51604bd83d83ecf61"
+    },
+    "work/reports/relation-effect-observer-20261015/prepare_static.py": {
+      "bytes": 4781,
+      "sha256": "6e4236f8167cc8738ade336042307d53545cb3e1aa9f117e76c2a657c317a457"
+    },
+    "work/reports/relation-effect-observer-20261015/verify.py": {
+      "bytes": 2132,
+      "sha256": "ed5f7c6d97f7028e3359129e8ffb6c26d3d1e3709023daf3eb035968b9fd163c"
+    },
+    "work/reports/relation-effect-observer-20261015/seal.py": {
+      "bytes": 7175,
+      "sha256": "b5cd99fe98970cce5235089d14d7a3de7eccb543109f50a8dd023b704c636b95"
+    },
+    "bridge/relation_effect_reader_manifest_1375.json": {
+      "bytes": 4986,
+      "sha256": "a7f49bca379b725e2987d425c849272b6ca05fe9ad6c3aa6579deead2c80e753"
+    },
+    "work/capture_relation_observer_live_20261015.py": {
+      "bytes": 4261,
+      "sha256": "840c7bcfdf56d44b532f423802d536e8d842cb7d5ecf0e6fb43724c1ca44c71c"
+    }
+  },
+  "cases": [
+    {
+      "action": "offer_alliance",
+      "actor": "FRA",
+      "target": "POR",
+      "status": "current_relation_observed",
+      "two_pass_equal": true,
+      "complete_handle_slots": [
+        122,
+        189
+      ],
+      "physical_indexes": [
+        {
+          "side": "actor",
+          "container": "0x19852329ce0",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x197af038490",
+          "capacity": 8,
+          "count": 5,
+          "selected_slot": 189,
+          "selected_pointer": "0x1989addda20",
+          "decoded_entries": [
+            {
+              "slot": 128,
+              "pointer": "0x1989adde150"
+            },
+            {
+              "slot": 116,
+              "pointer": "0x1989adde5b0"
+            },
+            {
+              "slot": 50,
+              "pointer": "0x1989adde3d0"
+            },
+            {
+              "slot": 189,
+              "pointer": "0x1989addda20"
+            },
+            {
+              "slot": 188,
+              "pointer": "0x1989adde650"
+            }
+          ]
+        },
+        {
+          "side": "target",
+          "container": "0x198525b4d48",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x197b094d830",
+          "capacity": 32,
+          "count": 19,
+          "selected_slot": 122,
+          "selected_pointer": "0x1989addda20",
+          "decoded_entries": [
+            {
+              "slot": 44,
+              "pointer": "0x1989ad21cb0"
+            },
+            {
+              "slot": 46,
+              "pointer": "0x1989ad224d0"
+            },
+            {
+              "slot": 49,
+              "pointer": "0x1989ad22a70"
+            },
+            {
+              "slot": 62,
+              "pointer": "0x1989ad040c0"
+            },
+            {
+              "slot": 65,
+              "pointer": "0x1989ad03710"
+            },
+            {
+              "slot": 116,
+              "pointer": "0x1989addd840"
+            },
+            {
+              "slot": 122,
+              "pointer": "0x1989addda20"
+            },
+            {
+              "slot": 158,
+              "pointer": "0x1989ade3f60"
+            },
+            {
+              "slot": 173,
+              "pointer": "0x1989ade8380"
+            },
+            {
+              "slot": 64,
+              "pointer": "0x1989adea310"
+            },
+            {
+              "slot": 185,
+              "pointer": "0x1989adea9a0"
+            },
+            {
+              "slot": 100,
+              "pointer": "0x1989adea590"
+            },
+            {
+              "slot": 126,
+              "pointer": "0x1989adea5e0"
+            },
+            {
+              "slot": 115,
+              "pointer": "0x1989adeb030"
+            },
+            {
+              "slot": 206,
+              "pointer": "0x1989adeb080"
+            },
+            {
+              "slot": 217,
+              "pointer": "0x1989adeb350"
+            },
+            {
+              "slot": 121,
+              "pointer": "0x1989addd4d0"
+            },
+            {
+              "slot": 111,
+              "pointer": "0x1989adeb3a0"
+            },
+            {
+              "slot": 834,
+              "pointer": "0x1989adeb3f0"
+            }
+          ]
+        }
+      ],
+      "object": {
+        "address": "0x1989addda20",
+        "bytes": 72,
+        "vtable_rva": "0x1c7a740",
+        "marker": 357,
+        "first_handle": "0x100007a00415246",
+        "second_handle": "0x10000bd00524f50",
+        "started_raw_date": 56458416,
+        "removed": 0,
+        "insertion_failed": 0,
+        "requested_direction_matches": true,
+        "sha256": "0ff0dbd8d2e7ccddcdcd0dec1b29cd28135fb067ad0b1fd54b6c8ddd524e499e"
+      },
+      "duration_ms": 1.358
+    },
+    {
+      "action": "offer_alliance",
+      "actor": "POR",
+      "target": "FRA",
+      "status": "current_relation_observed",
+      "two_pass_equal": true,
+      "complete_handle_slots": [
+        189,
+        122
+      ],
+      "physical_indexes": [
+        {
+          "side": "actor",
+          "container": "0x198525b4d48",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x197b094d830",
+          "capacity": 32,
+          "count": 19,
+          "selected_slot": 122,
+          "selected_pointer": "0x1989addda20",
+          "decoded_entries": [
+            {
+              "slot": 44,
+              "pointer": "0x1989ad21cb0"
+            },
+            {
+              "slot": 46,
+              "pointer": "0x1989ad224d0"
+            },
+            {
+              "slot": 49,
+              "pointer": "0x1989ad22a70"
+            },
+            {
+              "slot": 62,
+              "pointer": "0x1989ad040c0"
+            },
+            {
+              "slot": 65,
+              "pointer": "0x1989ad03710"
+            },
+            {
+              "slot": 116,
+              "pointer": "0x1989addd840"
+            },
+            {
+              "slot": 122,
+              "pointer": "0x1989addda20"
+            },
+            {
+              "slot": 158,
+              "pointer": "0x1989ade3f60"
+            },
+            {
+              "slot": 173,
+              "pointer": "0x1989ade8380"
+            },
+            {
+              "slot": 64,
+              "pointer": "0x1989adea310"
+            },
+            {
+              "slot": 185,
+              "pointer": "0x1989adea9a0"
+            },
+            {
+              "slot": 100,
+              "pointer": "0x1989adea590"
+            },
+            {
+              "slot": 126,
+              "pointer": "0x1989adea5e0"
+            },
+            {
+              "slot": 115,
+              "pointer": "0x1989adeb030"
+            },
+            {
+              "slot": 206,
+              "pointer": "0x1989adeb080"
+            },
+            {
+              "slot": 217,
+              "pointer": "0x1989adeb350"
+            },
+            {
+              "slot": 121,
+              "pointer": "0x1989addd4d0"
+            },
+            {
+              "slot": 111,
+              "pointer": "0x1989adeb3a0"
+            },
+            {
+              "slot": 834,
+              "pointer": "0x1989adeb3f0"
+            }
+          ]
+        },
+        {
+          "side": "target",
+          "container": "0x19852329ce0",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x197af038490",
+          "capacity": 8,
+          "count": 5,
+          "selected_slot": 189,
+          "selected_pointer": "0x1989addda20",
+          "decoded_entries": [
+            {
+              "slot": 128,
+              "pointer": "0x1989adde150"
+            },
+            {
+              "slot": 116,
+              "pointer": "0x1989adde5b0"
+            },
+            {
+              "slot": 50,
+              "pointer": "0x1989adde3d0"
+            },
+            {
+              "slot": 189,
+              "pointer": "0x1989addda20"
+            },
+            {
+              "slot": 188,
+              "pointer": "0x1989adde650"
+            }
+          ]
+        }
+      ],
+      "object": {
+        "address": "0x1989addda20",
+        "bytes": 72,
+        "vtable_rva": "0x1c7a740",
+        "marker": 357,
+        "first_handle": "0x100007a00415246",
+        "second_handle": "0x10000bd00524f50",
+        "started_raw_date": 56458416,
+        "removed": 0,
+        "insertion_failed": 0,
+        "requested_direction_matches": true,
+        "sha256": "0ff0dbd8d2e7ccddcdcd0dec1b29cd28135fb067ad0b1fd54b6c8ddd524e499e"
+      },
+      "duration_ms": 0.871
+    },
+    {
+      "action": "royal_marriage",
+      "actor": "ORL",
+      "target": "BRI",
+      "status": "current_relation_observed",
+      "two_pass_equal": true,
+      "complete_handle_slots": [
+        126,
+        116
+      ],
+      "physical_indexes": [
+        {
+          "side": "actor",
+          "container": "0x19852350aa8",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x1989ae06100",
+          "capacity": 2,
+          "count": 2,
+          "selected_slot": 116,
+          "selected_pointer": "0x1989adda230",
+          "decoded_entries": [
+            {
+              "slot": 116,
+              "pointer": "0x1989adda230"
+            },
+            {
+              "slot": 242,
+              "pointer": "0x1989ae30d80"
+            }
+          ]
+        },
+        {
+          "side": "target",
+          "container": "0x198522ef7f8",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x1978282a5a0",
+          "capacity": 1,
+          "count": 1,
+          "selected_slot": 126,
+          "selected_pointer": "0x1989adda230",
+          "decoded_entries": [
+            {
+              "slot": 126,
+              "pointer": "0x1989adda230"
+            }
+          ]
+        }
+      ],
+      "object": {
+        "address": "0x1989adda230",
+        "bytes": 64,
+        "vtable_rva": "0x1c80be0",
+        "marker": 357,
+        "first_handle": "0x100007e004c524f",
+        "second_handle": "0x100007400495242",
+        "started_raw_date": 56461320,
+        "removed": 0,
+        "insertion_failed": 0,
+        "requested_direction_matches": true,
+        "sha256": "10eee533df9113bc1ad560d390fdcc3a22ebd240d58928d7855cdcbe27d0522f"
+      },
+      "duration_ms": 0.876
+    },
+    {
+      "action": "guarantee",
+      "actor": "FRA",
+      "target": "SAV",
+      "status": "current_relation_observed",
+      "two_pass_equal": true,
+      "complete_handle_slots": [
+        122,
+        210
+      ],
+      "physical_indexes": [
+        {
+          "side": "actor",
+          "container": "0x19852329e00",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x197995dbf30",
+          "capacity": 1,
+          "count": 1,
+          "selected_slot": 210,
+          "selected_pointer": "0x1989adde470",
+          "decoded_entries": [
+            {
+              "slot": 210,
+              "pointer": "0x1989adde470"
+            }
+          ]
+        },
+        {
+          "side": "target",
+          "container": "0x19852680f40",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x1978282a240",
+          "capacity": 1,
+          "count": 1,
+          "selected_slot": 122,
+          "selected_pointer": "0x1989adde470",
+          "decoded_entries": [
+            {
+              "slot": 122,
+              "pointer": "0x1989adde470"
+            }
+          ]
+        }
+      ],
+      "object": {
+        "address": "0x1989adde470",
+        "bytes": 72,
+        "vtable_rva": "0x1c817d8",
+        "marker": 357,
+        "first_handle": "0x100007a00415246",
+        "second_handle": "0x10000d200564153",
+        "started_raw_date": 56459304,
+        "removed": 0,
+        "insertion_failed": 0,
+        "requested_direction_matches": true,
+        "sha256": "679c58995a87fecfa5e87ff8efefbe4f09820f7b3a2bc26013d91d7ac5ae6b91"
+      },
+      "duration_ms": 0.707
+    },
+    {
+      "action": "guarantee",
+      "actor": "SAV",
+      "target": "FRA",
+      "status": "reverse_relation_observed",
+      "two_pass_equal": true,
+      "complete_handle_slots": [
+        210,
+        122
+      ],
+      "physical_indexes": [
+        {
+          "side": "actor",
+          "container": "0x19852680f40",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x1978282a240",
+          "capacity": 1,
+          "count": 1,
+          "selected_slot": 122,
+          "selected_pointer": "0x1989adde470",
+          "decoded_entries": [
+            {
+              "slot": 122,
+              "pointer": "0x1989adde470"
+            }
+          ]
+        },
+        {
+          "side": "target",
+          "container": "0x19852329e00",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x197995dbf30",
+          "capacity": 1,
+          "count": 1,
+          "selected_slot": 210,
+          "selected_pointer": "0x1989adde470",
+          "decoded_entries": [
+            {
+              "slot": 210,
+              "pointer": "0x1989adde470"
+            }
+          ]
+        }
+      ],
+      "object": {
+        "address": "0x1989adde470",
+        "bytes": 72,
+        "vtable_rva": "0x1c817d8",
+        "marker": 357,
+        "first_handle": "0x100007a00415246",
+        "second_handle": "0x10000d200564153",
+        "started_raw_date": 56459304,
+        "removed": 0,
+        "insertion_failed": 0,
+        "requested_direction_matches": false,
+        "sha256": "679c58995a87fecfa5e87ff8efefbe4f09820f7b3a2bc26013d91d7ac5ae6b91"
+      },
+      "duration_ms": 0.605
+    },
+    {
+      "action": "offer_alliance",
+      "actor": "FRA",
+      "target": "ENG",
+      "status": "pair_absent_observed",
+      "two_pass_equal": true,
+      "complete_handle_slots": [
+        122,
+        46
+      ],
+      "physical_indexes": [
+        {
+          "side": "actor",
+          "container": "0x19852329ce0",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x197af038490",
+          "capacity": 8,
+          "count": 5,
+          "selected_slot": 46,
+          "selected_pointer": null,
+          "decoded_entries": [
+            {
+              "slot": 128,
+              "pointer": "0x1989adde150"
+            },
+            {
+              "slot": 116,
+              "pointer": "0x1989adde5b0"
+            },
+            {
+              "slot": 50,
+              "pointer": "0x1989adde3d0"
+            },
+            {
+              "slot": 189,
+              "pointer": "0x1989addda20"
+            },
+            {
+              "slot": 188,
+              "pointer": "0x1989adde650"
+            }
+          ]
+        },
+        {
+          "side": "target",
+          "container": "0x19852047540",
+          "vtable_rva": "0x1c3a538",
+          "array": "0x1978c8038c0",
+          "capacity": 64,
+          "count": 36,
+          "selected_slot": 122,
+          "selected_pointer": null,
+          "decoded_entries": [
+            {
+              "slot": 189,
+              "pointer": "0x1989ad224d0"
+            },
+            {
+              "slot": 222,
+              "pointer": "0x1989ad21da0"
+            },
+            {
+              "slot": 185,
+              "pointer": "0x1989ad215d0"
+            },
+            {
+              "slot": 838,
+              "pointer": "0x1989ad21c10"
+            },
+            {
+              "slot": 150,
+              "pointer": "0x1989ad222a0"
+            },
+            {
+              "slot": 151,
+              "pointer": "0x1989ad22840"
+            },
+            {
+              "slot": 215,
+              "pointer": "0x1989ad22890"
+            },
+            {
+              "slot": 834,
+              "pointer": "0x1989ad21a30"
+            },
+            {
+              "slot": 828,
+              "pointer": "0x1989ad21df0"
+            },
+            {
+              "slot": 668,
+              "pointer": "0x1989ad21ad0"
+            },
+            {
+              "slot": 138,
+              "pointer": "0x1989ad21b70"
+            },
+            {
+              "slot": 47,
+              "pointer": "0x1989ad21850"
+            },
+            {
+              "slot": 57,
+              "pointer": "0x1989ad029a0"
+            },
+            {
+              "slot": 58,
+              "pointer": "0x1989ad025e0"
+            },
+            {
+              "slot": 59,
+              "pointer": "0x1989ad02810"
+            },
+            {
+              "slot": 63,
+              "pointer": "0x1989ad03800"
+            },
+            {
+              "slot": 65,
+              "pointer": "0x1989ad03df0"
+            },
+            {
+              "slot": 99,
+              "pointer": "0x1989add9d30"
+            },
+            {
+              "slot": 113,
+              "pointer": "0x1989addb7c0"
+            },
+            {
+              "slot": 116,
+              "pointer": "0x1989addcbc0"
+            },
+            {
+              "slot": 121,
+              "pointer": "0x1989adddac0"
+            },
+            {
+              "slot": 132,
+              "pointer": "0x1989addf0f0"
+            },
+            {
+              "slot": 146,
+              "pointer": "0x1989ade1cb0"
+            },
+            {
+              "slot": 161,
+              "pointer": "0x1989ade52c0"
+            },
+            {
+              "slot": 162,
+              "pointer": "0x1989ade60d0"
+            },
+            {
+              "slot": 166,
+              "pointer": "0x1989ade67b0"
+            },
+            {
+              "slot": 178,
+              "pointer": "0x1989ade7e80"
+            },
+            {
+              "slot": 179,
+              "pointer": "0x1989ade8ec0"
+            },
+            {
+              "slot": 184,
+              "pointer": "0x1989ade9e60"
+            },
+            {
+              "slot": 188,
+              "pointer": "0x1989adeb2b0"
+            },
+            {
+              "slot": 205,
+              "pointer": "0x1989adf0440"
+            },
+            {
+              "slot": 210,
+              "pointer": "0x1989adefb30"
+            },
+            {
+              "slot": 221,
+              "pointer": "0x1989adf4540"
+            },
+            {
+              "slot": 831,
+              "pointer": "0x1989afe03e0"
+            },
+            {
+              "slot": 833,
+              "pointer": "0x1989afe00c0"
+            },
+            {
+              "slot": 846,
+              "pointer": "0x1989afe2140"
+            }
+          ]
+        }
+      ],
+      "object": null,
+      "duration_ms": 1.501
+    }
+  ],
+  "reported_live_rpm_budget": {
+    "calls": 2325,
+    "bytes": 52162,
+    "largest_read": 11040
+  },
+  "audit_game_process_accessed": false,
+  "new_RPM_calls": 0,
+  "native_calls": 0,
+  "requests_published": 0,
+  "new_API_effect_tested": false,
+  "global_membership_verified": false,
+  "limitations": [
+    "File-only verification of retained bytes, not a new runtime observation.",
+    "Country headers, full TAG table and relation record raw bytes were checked by the pinned live producer/reader but were not retained as raw bytes in this receipt.",
+    "Index capacity is allocation metadata, not an allocator ownership proof.",
+    "Two equal passes do not prove atomicity, world epoch, lifetime lease, request causality or global registration."
+  ]
+}

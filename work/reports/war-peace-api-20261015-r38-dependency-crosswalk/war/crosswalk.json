@@ -1,0 +1,105 @@
+{
+  "schema": "EU4-R38-CONDITIONAL-DEPENDENCY-GETTER-CROSSWALK/1",
+  "status": "conditional_layout_match",
+  "native_entry_rva": "0x3d79f0",
+  "evidence": "R37 machine contract plus exact frozen reader AST; no process or new native decode",
+  "reader": {
+    "path": "bridge/diplomacy_effect_observer.py",
+    "source_fragments": {
+      "relation": {
+        "start_line": 159,
+        "end_line": 179,
+        "utf8_source_sha256": "52307b4fcc559446adeb1b5a92ead4ef2ce62ae973239a65f866e755f3e8feb8"
+      },
+      "index": {
+        "start_line": 182,
+        "end_line": 198,
+        "utf8_source_sha256": "1d2366390d30233a038b6f61e36218ce80ddee0270326b6cee74d4bb9a084e89"
+      },
+      "dependency_key": {
+        "start_line": 201,
+        "end_line": 209,
+        "utf8_source_sha256": "e86401c5d70e4353ab146464703cf8907c208aafcc68f891a4e184b69eb8b016"
+      },
+      "sample_pair": {
+        "start_line": 212,
+        "end_line": 272,
+        "utf8_source_sha256": "2052bede13cbdd5d11444d8e2033405425d1434c7a6c033989ebedbcbf3c4b67"
+      }
+    },
+    "dependency_vtable_rva": "0x1c81758"
+  },
+  "mapping": [
+    {
+      "native": "D=QWORD[pairrow]",
+      "reader": "relation validates typed owner root and row root/complete endpoints",
+      "condition": "selected pair is C and its valid linked-country full handle; positive slots only"
+    },
+    {
+      "native": "V=QWORD[D+0x128]; N=signed32[D+0x134]",
+      "reader": "index(root,0x128,other_slot,count): <Qii> array/capacity/used",
+      "condition": "D equals the validated relation root and used is bounded/coherent"
+    },
+    {
+      "native": "16B entry, DWORD key then QWORD P at+8",
+      "reader": "<i4xQ> entries; selected other-country slot",
+      "condition": "unique positive slot keys; native first-match and reader unique selection then agree"
+    },
+    {
+      "native": "U=QWORD[P+0x40] on P nonzero",
+      "reader": "typed dependency object body+0x40 passed to dependency_key",
+      "condition": "P agrees in both country indexes, vtable1c81758, removed byte28=0, full endpoints match"
+    }
+  ],
+  "interpretation": "Under the frozen reader profile, U follows the dependency-definition pointer path already used to read a dependency key. This is a conditional profile association, not new native RTTI/class/ownership proof.",
+  "extra_reader_guards_not_present_in_native": [
+    "country/root/full-handle and complete pair identity",
+    "signed used/capacity, allocation and positive slot bounds",
+    "unique keys and both-country object agreement",
+    "dependency vtable, removal byte and full endpoint checks",
+    "definition key string length/capacity/NUL/ASCII grammar"
+  ],
+  "limits": [
+    "No total equivalence on malformed slots, invalid pointers, duplicates or incoherent concurrent memory.",
+    "The key reader does not validate a definition vtable; no new exact definition class or size is claimed.",
+    "Native return U can be zero. No blanket success or arbitrary-input safety follows.",
+    "Definition+0x11a and +0x1c8 business meaning remain unknown; no inferred field name is substituted.",
+    "This does not evaluate b1e020 or the full506d70 predicate, truce expiry, peace completion, or any original request.",
+    "No object/world lease or atomic snapshot follows from this file-only association."
+  ],
+  "source_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/manifest.json": {
+      "bytes": 13430,
+      "sha256": "32f25c9962879be7867db1c0c67c5fb12f1c37e54b9d787dbc58c4798c2a6511"
+    },
+    "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/contract.json": {
+      "bytes": 7709,
+      "sha256": "24ca7959cc69478b25bc0bd3266b62f3da6d9a57b03f1c74a4884acfee50cecb"
+    },
+    "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/selected-cfg.json": {
+      "bytes": 53888,
+      "sha256": "fdd76416a42c5cc2b000707909eb6a0afcdd4a1aaca990c2c957d1207f83bb00"
+    },
+    "work/reports/war-peace-api-20261015-r37-independent-review/war/findings.json": {
+      "bytes": 2197,
+      "sha256": "a7d820973f9634d4046ae7d9077fb54f9ea989e5e3165f604e490265503779df"
+    },
+    "work/reports/war-peace-api-20261015-r37-independent-review/war/manifest.json": {
+      "bytes": 8191,
+      "sha256": "e65646df2d9ad1dbcf4940586b760c01468cce8f896240743d86b1e572e57c39"
+    }
+  },
+  "runtime_reader_added": false,
+  "native_ready": false,
+  "process_accesses": 0,
+  "PE_reads": 0,
+  "decoder_operations": 0,
+  "tests_run": 0,
+  "game_native_calls": 0,
+  "requests_published": 0,
+  "API_effects_added": 0
+}

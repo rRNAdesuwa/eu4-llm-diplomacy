@@ -1,0 +1,113 @@
+{
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "findings": [
+    {
+      "id": "ask_march_reversed_local_delegate",
+      "actions": ["ask_for_march"],
+      "kind": "observation",
+      "summary": "ask_for_march 的 local80 在 context gate 后构造 designate_march 临时对象：临时 actor=原 target、临时 target=原 actor，mode(+0x38)=1、envoy(+0x30)=-1，再直接调用 0x514080。因此无自身 failure-key 不代表无条件；它复用反向设立卫戍国的战争、primitive、吞并索引、精确领主和 vassal/client_vassal 检查。",
+      "rvas": ["0x515d70", "0x515dca", "0x515de0", "0x515df1", "0x515dff", "0x515e0a", "0x515e21", "0x514080"],
+      "unknowns": ["没有当前 TAG pair 的完整字段采样或实际失败分支。", "primitive/helper 与 TLS 的全部运行依赖仍未闭合。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly-manifest.json", "work/reports/rea-diplomacy-20261013/four-candidate-conditions.md", "work/reports/rea-diplomacy-20261013/four-candidate-bounded-disassembly.txt"]
+    },
+    {
+      "id": "ask_march_two_legacy_hook_scopes",
+      "actions": ["ask_for_march"],
+      "kind": "observation",
+      "summary": "ask_for_march 在反向 designate_march 的 local80 返回后，仍无条件对原 ask 对象调用 0x4ebdb0，并将两者结果做 AND。反向叶自身能到达的 legacy hook 使用 designate token 和领主→附属方向；外层另用 ask token 0x3021 和附属→领主方向。因此两次 hook 的对象和 scope 不相同。",
+      "rvas": ["0x515e21", "0x515e26", "0x515e2f", "0x515e38", "0x515ef0", "0x5144a6", "0x4ebdb0"],
+      "unknowns": ["当前已加载 legacy registry 与条件内容未读取；内层因硬编码条件失败时可能尚未调用其 legacy hook。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/reports/rea-diplomacy-20261013/four-candidate-bounded-disassembly.txt", "work/runtime/tag31-native-rejection-leaf-20261013.json"]
+    },
+    {
+      "id": "knowledge_request_reverses_provider_recipient",
+      "actions": ["knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "knowledge_sharing 的 local80=0x529c00 以 r9=0 尾调共享条件体 0x529c10；ask_knowledge_sharing 的 local80 构造 vtable=0x1c7f320、mode=1 的反向 knowledge_sharing 临时对象，以 r9b=1 调同一条件体。因此 offer 为 provider=actor/recipient=target，ask 为 provider=target/recipient=actor。r9 的差异在已解码条件体及 0x529760 中仅选择 ask/offer 提示文本，不交换第二次角色。",
+      "rvas": ["0x529c00", "0x529c03", "0x52beab", "0x52bebf", "0x52bedd", "0x52bee8", "0x52bef3", "0x52befa", "0x529c27", "0x529de6", "0x5297c5"],
+      "unknowns": ["本结论只覆盖 local 条件委托，不等于两种动作的发送、AI接受或效果回调完全相同。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly-manifest.json"]
+    },
+    {
+      "id": "three_full88_preserve_original_sender",
+      "actions": ["ask_for_march", "knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "三族 full88 都先将原对象及原第三参数交给公共 0x4e9d00；tooltip=null 时直接保留公共返回值，非空时追加说明但不改结果。共同冷却/外交官门槛使用原请求 actor，而反向临时对象只进入 local80。因此请求动作须核请求方→目标方的冷却与请求方外交官，不能照反向 provider/overlord 一侧采样。",
+      "rvas": ["0x515e6d", "0x515e78", "0x52bf1d", "0x52bf28", "0x529efd", "0x529f08", "0x4e9d30", "0x4ea019", "0x4ea09e", "0x4ea1a8"],
+      "unknowns": ["未观察实时冷却、外交官 ID 排除容器、完整 actor 活动性或实际叶可达性。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/reports/rea-diplomacy-20261013/four-candidate-bounded-disassembly.txt"]
+    },
+    {
+      "id": "three_common_slots_exclude_relation_cost_only",
+      "actions": ["ask_for_march", "knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "本三族 vtable+0x100 都返回 true、+0x108 都返回 false、+0x118 都输出零。因此固定 profile 下公共关系成本不足分支不可达；普通模式的冷却和外交官门槛仍启用。这不排除本地条件、legacy hook 或接受/效果阶段费用。",
+      "rvas": ["0x1c80440", "0x1c7f0c0", "0x1c7f320", "0x8f440", "0x8f450", "0xe66b0", "0x4e9dc7", "0x4e9dcf"],
+      "unknowns": ["未对任何现场 action 对象核验 vtable；不泛化到其他 family。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly-manifest.json", "work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/reports/rea-diplomacy-20261013/four-candidate-bounded-disassembly.txt"]
+    },
+    {
+      "id": "knowledge_pair_index_and_provider_range",
+      "actions": ["knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "共享知识叶先在 provider→recipient relation.root 的 +0x50 数组/+0x5c count（16字节步长）查 recipient index，命中即拒绝并关联 ISATWAR 提示。随后用 provider 的 +0x23b0 WORD 距离缓存[recipient_index]*1000 与 provider 的 0x350150 计算值作 signed <= 比较，等于上限允许。两个缓存长度各至少2字节才读缓存，否则距离值走0分支；该机器路径没有把缓存缺失视作拒绝。",
+      "rvas": ["0x529cb1", "0x529cc5", "0x529cd4", "0x529cdd", "0x529d51", "0x529d65", "0x529d7f", "0x529d8b", "0x529d9b", "0x529da2", "0x350150"],
+      "unknowns": ["距离缓存构建、失效规则、目标索引完整界限未解码，不能据静态0分支把缺失快照填0。", "range helper 的 modifier getter/动态覆盖提供方未完整展开；实时值未读取。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly-manifest.json"]
+    },
+    {
+      "id": "knowledge_both_participants_must_have_empty_share_counts",
+      "actions": ["knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "0x529760 在 tooltip=null 时要求 provider 和 recipient 的两个 signed DWORD count（country+0x17dc、+0x17c4）均不大于0。任一正数直接 false，不只检查该 pair 是否已经互相分享。非空 tooltip 才读取对应对象并选择 WE/THEY_HAVE_KNOWLEDGE_SHARING 等文本；其对象读取和去重显示不构成 null-tooltip 下的合法性例外。",
+      "rvas": ["0x52982b", "0x52983b", "0x529912", "0x529922", "0x529a71", "0x529a7b", "0x529a7d", "0x529a8d", "0x529bdb"],
+      "unknowns": ["两容器的创建/清理生命周期和完整字段语义尚未追踪；不能以存档没记录代替 native count=0。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt"]
+    },
+    {
+      "id": "knowledge_candidate_requires_owned_incomplete_progress",
+      "actions": ["knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "0x529760 首先要求 0xa70c30(provider,recipient) 返回非空。后者按 registry 顺序遍历候选 id，要求 provider+0xc68[id] DWORD非零且recipient同字段为零；还必须在 recipient+0x14b0→+0x28→+0x40 对象的 +0x88/+0x90 索引向量中找到合格项：以game+0x1ca8基址和0x2e10步长定位对象，其+0x468 packed handle的index须等于recipient，且+0xd0[id] signed DWORD <100000。无该区域对象、空列表、无符合项均返回null；满足后返回第一个候选。",
+      "rvas": ["0x5297a1", "0x5297a9", "0xa70c71", "0xa70c83", "0xa70cc9", "0xa70cf1", "0xa70d03", "0xa70d18", "0xa70d2b", "0xa70d3d", "0xa70d4b", "0xa70d54", "0xa70d5c", "0xa70d91"],
+      "unknowns": ["recipient该区域对象的精确业务类型尚未独立验证；不能把所有省份都纳入该向量。", "registry顺序未采样，不证明按年份排序。", "字段与当前世界状态均未运行核验。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly-manifest.json"]
+    },
+    {
+      "id": "knowledge_candidate_capital_area_interpretation",
+      "actions": ["knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "inference",
+      "summary": "结合 NO_INSTITUTION_TO_SHARE 分支、候选/进度字段及原版说明所说的首都区域传播，0xa70c30 的机器条件可解释为：提供方已接纳、接收方未接纳，并且接收方首都区域中至少一块自有省份尚未传播满该思潮。与已接纳状态有差异但区域进度均满的 pair 仍可能没有可分享候选。",
+      "rvas": ["0x5297bb", "0xa70c71", "0xa70cf1", "0xa70d03", "0xa70d54"],
+      "unknowns": ["首都/区域对象路径的语义仍需独立写入或访问方证据确认；本条因此保留为 inference。", "进度100000解释为100%来自游戏定点表示与文字交叉推断，原始比较数值见observation。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/runtime/unpacked-1.37.5/base/localisation/rule_britannia_l_english.yml"]
+    },
+    {
+      "id": "ask_knowledge_uses_offer_legacy_scope",
+      "actions": ["knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "共享条件体最后的 legacy hook 0x529e0d 收到 knowledge_sharing 对象。ask 的临时对象 vtable 也是 knowledge_sharing，+0x98返回0x3776；ask自身+0x98虽返回0x3edc，但本次解码的ask local/full链没有另一次对原ask对象的legacy调用。因此该链的knowledge_sharing脚本ROOT为provider、FROM为recipient，ask中相对公开请求方向反转。",
+      "rvas": ["0x52bee8", "0x52befa", "0x529e0a", "0x529e0d", "0x529fa0", "0x52bfc0", "0x4ebdb0"],
+      "unknowns": ["没有将该有限链的缺失调用结论泛化到发送、AI接受或其他按钮路径。", "当前legacy registry、Mod覆盖与条件是否为空没有实时证明。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt", "work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly-manifest.json", "work/runtime/tag31-native-rejection-leaf-20261013.json"]
+    },
+    {
+      "id": "knowledge_false_mode_cannot_cancel",
+      "actions": ["knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "knowledge_sharing共享叶在mode(+0x38)=0时，tooltip=null直接false；非空tooltip只显示 ONLY_CANCELLED_BY_WAR_OR_EXPIRY 后也false。ask临时对象把mode固定为1，故改公开动作的mode不能得到一条已证明的普通取消知识分享路径。当前绑定均保持原有true，未新增取消动作。",
+      "rvas": ["0x529d28", "0x529d2c", "0x529e26", "0x529e29", "0x529e8c", "0x529ec2", "0x52bedd"],
+      "unknowns": ["战争/到期自动终止与效果清理路径未在本轮研究。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt"]
+    },
+    {
+      "id": "three_context_gates_and_nonpure_registry",
+      "actions": ["ask_for_march", "knowledge_sharing", "ask_knowledge_sharing"],
+      "kind": "observation",
+      "summary": "ask_for_march gate 直接通过条件为byte[233ff94]!=0且byte[233fed6]==0；知识共享条件体使用233ff38代替233ff94。否则两者读取GS:[58]第0项TLS，+c为0时调用初始化1a334c0，要求+10非零。知识候选getter 855ad0 还含懒初始化、分配及全局写入分支，因此不能把调用这些谓词包装成纯只读采样。",
+      "rvas": ["0x515d8a", "0x515d9a", "0x515db3", "0x515dbd", "0x529c31", "0x529c41", "0x529c5a", "0x529c68", "0x855aee", "0x855b16", "0x855b1b", "0x855b3a"],
+      "unknowns": ["未证明全局位对应哪一个DLC或授权名称。", "没有正确执行线程TLS、registry初始化状态或这些门槛的运行值。"],
+      "evidence_files": ["work/reports/rea-api-discovery-20261013/conditions/conditions-disassembly.txt"]
+    }
+  ]
+}

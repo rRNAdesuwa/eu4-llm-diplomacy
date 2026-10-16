@@ -1,0 +1,61 @@
+{
+  "schema": "origin_c02_pins_v1",
+  "files": {
+    "work/AGENTS.md": {
+      "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187",
+      "size_bytes": 959
+    },
+    "work/candidates/origin-c01-unwind-relocation-1375/review.json": {
+      "sha256": "a6be91aea1b6c8a3d02e1a22b1ddf3ddf29abd3b26364d943ab102fef2d7829d",
+      "size_bytes": 1072
+    },
+    "work/candidates/origin-c01-unwind-relocation-1375/report.json": {
+      "sha256": "efa8afad07aa9fdef4aed8cf9ea4108bbe4d7145ed7b1795374c320b10708fb8",
+      "size_bytes": 133985
+    },
+    "work/candidates/origin-c01-unwind-relocation-1375/README.md": {
+      "sha256": "e13ea8c020680b6afc396d64f9602da84b81ca98440100b29f9b95d19c2244ea",
+      "size_bytes": 4546
+    },
+    "work/candidates/origin-c01-unwind-relocation-1375/trace.py": {
+      "sha256": "d17d041e1314b3560ebc125490503ed345115ebddb7b2605ab0073a628cfb988",
+      "size_bytes": 11265
+    },
+    "work/candidates/origin-native-integration-plan-1375/review.json": {
+      "sha256": "8ccb82c9a172e35444b4156661355b3e6defe84be3db0940a96d4f0781fc9caf",
+      "size_bytes": 1475
+    },
+    "work/candidates/origin-native-integration-plan-1375/plan.json": {
+      "sha256": "cfa82fff948a353cc58005865d6453570c03abc3f5b426a10ccfdfa683efd73b",
+      "size_bytes": 47131
+    },
+    "work/candidates/origin-native-integration-plan-1375/pins.json": {
+      "sha256": "dec6d723e5a6cdc4b541061dce407ec24fde03bb00312e77e77cd2eef3f030e1",
+      "size_bytes": 4040
+    },
+    "work/candidates/origin-native-integration-plan-1375/README.md": {
+      "sha256": "949b02535f742290bf81bdadae858c3ff355a9be2454c75dbc170c4266e1b671",
+      "size_bytes": 11777
+    },
+    "work/candidates/origin-native-capture-1375-v2/review.json": {
+      "sha256": "163d01dfedd55e2089ca9db0903a02b14c44d40173e89b64334fa143da868d0b",
+      "size_bytes": 1158
+    },
+    "work/candidates/origin-native-capture-1375-v2/capture-core.h": {
+      "sha256": "ca876b0ba84e39be1680d34a66d855b4c2ef78b64366cbce362e75619d856b39",
+      "size_bytes": 8215
+    },
+    "work/candidates/origin-native-capture-1375-v2/capture-core.cpp": {
+      "sha256": "a39c7b14322e40c6f5fe5b31b4dea838297e0dc06acdcdcd7422f7b3356a6add",
+      "size_bytes": 9916
+    },
+    "work/candidates/origin-native-capture-1375-v2/sites.json": {
+      "sha256": "307fa0ee1210b759ce6d1c79d6ab97818f578d0b2ea2c2bb90576a2a98ddc28c",
+      "size_bytes": 80048
+    },
+    "work/candidates/origin-native-capture-1375-v2/README.md": {
+      "sha256": "30ac0e6506b0e97a344adfaf2b49f5e83595fcc7f499479065c5c64250d3e45c",
+      "size_bytes": 12886
+    }
+  }
+}

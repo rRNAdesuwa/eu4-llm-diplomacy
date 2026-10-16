@@ -1,0 +1,140 @@
+{
+  "schema": "EU4-LOOKUP-V6-BOUNDED-BUILD-GRANT/1",
+  "owner": "/root/war_api",
+  "plan_revision": 2,
+  "accepted_fixed_inputs": {
+    "work/reports/war-peace-api-lookup-v6-plan-20261016-r2/plan.json": {
+      "bytes": 6338,
+      "sha256": "5c01dca5b49738fa099484e8bd93886f89d0bcb5d1d1fc24bf5acb6f2d02ff81"
+    },
+    "work/reports/war-peace-api-lookup-v6-plan-20261016-r2/manifest.json": {
+      "bytes": 6526,
+      "sha256": "271c8daf02b8a30a7c9fd913dac3407a686cccded75f0db5644f9ddbb6596155"
+    },
+    "work/reports/war-peace-api-lookup-v6-plan-independent-review-20261016-r2/findings.json": {
+      "bytes": 4707,
+      "sha256": "dbd27562f95e85c951a8ab487fb3a0bcfb4bd0c6525ea7ef630a8c4a9b6cf6ab"
+    },
+    "work/reports/war-peace-api-lookup-v6-plan-independent-review-20261016-r2/manifest.json": {
+      "bytes": 10026,
+      "sha256": "5cc68caf6281bb58224e1d0794b574986703c0c1fa1db17cf7c2c0e289e48cae"
+    },
+    "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json": {
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/manifest.json": {
+      "bytes": 15918,
+      "sha256": "91ed106282413b91fbc5d34a2cd096c7f41f1569a2df4ab0bf33ffa0c571a9c4"
+    },
+    "work/reports/war-peace-api-20261016-r81-actual-independent-review/findings.json": {
+      "bytes": 10070,
+      "sha256": "88b77deb6932d216717adcff1edebd5eecfce6ddf1bc0137c0c1fcbec5302847"
+    },
+    "work/reports/war-peace-api-20261016-r81-actual-independent-review/manifest.json": {
+      "bytes": 14590,
+      "sha256": "10d2348d4c5d1292576f5e05f04e55e5816d32bfb6b7d281ad4d2a847a68a703"
+    },
+    "work/reports/war-peace-api-20261016-r81-actual-independent-review/lookup-source-roles.json": {
+      "bytes": 1522,
+      "sha256": "ab5a636933ed3e0e5a55591dcc588456fb1159b6c118c7f1e91c719d8f5a47ca"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/index.json": {
+      "bytes": 185792,
+      "sha256": "a8b70f547513def34f88c1dd19e73e573c63fe209aeced61f397db8b22556e6c"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/data-manifest.json": {
+      "bytes": 14774,
+      "sha256": "39efa19ba26675647379f6be182b26be727762d5eaf906f0be822b7ca0dba69c"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/war_peace_lookup.py": {
+      "bytes": 3602,
+      "sha256": "653530b8d60e789f33786819e43de7d057142de5c75c6841469d2802928a9da6"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/query_engine.py": {
+      "bytes": 16583,
+      "sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466"
+    }
+  },
+  "accepted_R81_five_roles": {
+    "author_actual_manifest": {
+      "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-manifest.json",
+      "bytes": 16550,
+      "sha256": "eb8f4a1171c388c1805093a0c41143e1f5f2bc54c08602b235d6ad15850c78c3"
+    },
+    "author_contract": {
+      "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-contract.json",
+      "bytes": 6046,
+      "sha256": "e2196dd433efbe68d57a1c37ed4b74242a4bfb5f0d00a910e732390ca29fc558"
+    },
+    "author_selected_evidence": {
+      "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-selected-evidence.json",
+      "bytes": 17878,
+      "sha256": "480b65763ec022ea2bbde70dcca9435ac713e67e4816852c3fc51be8a134dc3c"
+    },
+    "independent_full_findings": {
+      "path": "work/reports/war-peace-api-20261016-r81-actual-independent-review/findings.json",
+      "bytes": 10070,
+      "sha256": "88b77deb6932d216717adcff1edebd5eecfce6ddf1bc0137c0c1fcbec5302847"
+    },
+    "independent_full_manifest": {
+      "path": "work/reports/war-peace-api-20261016-r81-actual-independent-review/manifest.json",
+      "bytes": 14590,
+      "sha256": "10d2348d4c5d1292576f5e05f04e55e5816d32bfb6b7d281ad4d2a847a68a703"
+    }
+  },
+  "candidate_directory": "work/candidates/war-peace-api-lookup-1375-v6",
+  "allowed_work": [
+    "Build and freeze the R2-plan offline lookup candidate once after exact current schema inspection.",
+    "Keep original58 rows exactly equal; preserve every old generator field except evidence append, adding only later_checked_context and historical_base_scope.",
+    "Add R75/R77 generator contexts and one machine-contract-only peace.generator_selector_callee at97bd30 from accepted R80/R81.",
+    "Use exactly94 direct JSON sources: old74 plus R75/R77ten plus R80/R81ten; every source referenced from entry evidence.",
+    "Reuse the exact existing v5 ea030 Python engine and96cap; no engine fork or logic change.",
+    "Wrapper delta limited to frozen DATA_SHA, revision/help5to6 and necessary BASE path; preserve all logic AST.",
+    "Seal source/data/manifest and recompute actual build/query budgets before first query batch.",
+    "Run first four queries once each: check, catalog, lookup0x993570, lookup0x97bd30; retain all outputs, failures and resource receipts."
+  ],
+  "exclusive_claim_required_before_build": true,
+  "first_query_count_limit": 4,
+  "no_repeat_on_failure": true,
+  "limits": {
+    "build_plus_seal_bytes": 33554432,
+    "first_query_batch_bytes": 67108864,
+    "ordinary_file_bytes": 4194304,
+    "software_memory_bytes": 805306368,
+    "one_GiB_stop": true
+  },
+  "required_precision": [
+    "R80 historical partial/noRET and R79 bounded unknown remain frozen; later R81 context is explicit.",
+    "A known machine CALL entry is not an authorized callable diplomacy API or proved whole function.",
+    "No type, fullhandle, uniqueness, valid bounds, nonnegative count, termination, object lifetime, units, recipient or gameplay effect is proved.",
+    "Aggregate32MiB engine bound is successful graph acceptance, not universal failed-read or OS IO ceiling.",
+    "Preserve first-query Job/peak/read/accounting evidence without re-running prior fixtures or tests."
+  ],
+  "excluded": [
+    "PE or native decoder access",
+    "game queries or actions",
+    "Frida",
+    "native calls",
+    "old tests or fixtures",
+    "new parser or guard tests",
+    "R82 new source incorporation",
+    "public capability-map or acceptance publication",
+    "ZIP/release packaging",
+    "any change to frozen v1-v5 or prior reports"
+  ],
+  "publication_condition": "Non-author complete v6 source/data/first-receipt review and separate root acceptance are still required.",
+  "user_context": {
+    "current_EU4_state_reported": "main_menu_or_loading",
+    "second_game_query_authorized_here": false
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "sender_authorized": false,
+    "selected_effect_verified": false,
+    "reader_adoption_allowed": false,
+    "world_lease": false,
+    "atomic_snapshot": false
+  }
+}

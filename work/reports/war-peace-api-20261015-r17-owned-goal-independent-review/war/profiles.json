@@ -1,0 +1,332 @@
+{
+  "schema": "EU4-OWN-BUFFER-BODY-ONLY-ABI-STATIC-PROFILES/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "complete_retained_functions": [
+    {
+      "start": "0x500480",
+      "end_exclusive": "0x50051f",
+      "bytes": 159,
+      "sha256": "74c22155842a5e3c1dd88fa940d4d41ead4bc8e26ea28c175b86ea01affbc6f1",
+      "raw_hex": "48895c241048894c2408574883ec20488bd9c741086501000048895110488951184c8941208b44245089412889412cc74130ffffffff33ff89793466c74138010089793c488d05c50878014889014488494066897941488b4c2458e810a689004889434848897b5048897b5848897b6048897b6848897b7048897b784889bb800000004889bb880000004889bb90000000488bc3488b5c24384883c4205fc3"
+    },
+    {
+      "start": "0x500520",
+      "end_exclusive": "0x500554",
+      "bytes": 52,
+      "sha256": "38de8eaa3a246b8b5e82106e4a18351827b348120d5a122a6fad886a2cdadbdd",
+      "raw_hex": "48895c2408574883ec208bda488bf9e82c000000f6c301740dba98000000488bcfe8aa8f2301488b5c2430488bc74883c4205fc3"
+    },
+    {
+      "start": "0x500560",
+      "end_exclusive": "0x5005cd",
+      "bytes": 109,
+      "sha256": "0808d89a5533654c24f9564076b762dff383e7c32fdddcd13ca74e9a29615e27",
+      "raw_hex": "40534883ec20488bd9488d0520087801488901488b4948488b01ff507884c0741e488b4b484885c9740a488b01ba01000000ff10488b0595fae30148894348488d8b80000000e815e5b8ff488d4b68e80ce5b8ff488d4b50e803e5b8ff488d05b4df73014889034883c4205bc3"
+    },
+    {
+      "start": "0x8eac0",
+      "end_exclusive": "0x8eb1b",
+      "bytes": 91,
+      "sha256": "3836d9bee596679bf07b5feca610fad862668e3c8ca5affd68f62496ec8f6f89",
+      "raw_hex": "40534883ec20488bd9488b094885c9743e488b5310482bd14883e2f84881fa0010000072184c8b41f84883c227492bc8488d41f84883f81f771b498bc8e8eea96a0133c048890348894308488943104883c4205bc3e852319b01cc"
+    },
+    {
+      "start": "0x8f450",
+      "end_exclusive": "0x8f453",
+      "bytes": 3,
+      "sha256": "01cb47d078b4841b8408ec4fe278efa83115c6f6e101972987507d2b2b57dcf0",
+      "raw_hex": "32c0c3"
+    },
+    {
+      "start": "0x9b120",
+      "end_exclusive": "0x9b125",
+      "bytes": 5,
+      "sha256": "01b97d2da374096b4359dfb781da44ea9eb61ba0541de9f2d557cfad9adef8d3",
+      "raw_hex": "488b4110c3"
+    }
+  ],
+  "rejected_ctor_profile": {
+    "entry": "0x500480",
+    "result": "not_world_borrow_elimination",
+    "input_goal": "nonnull raw owned storage with real sentinel vtable",
+    "unavoidable": "call d9aaf0→virtual58→read signed32 definition+38",
+    "enum11_12_or_unsigned_gt12": "returns current read2340030; not supplied owned goal",
+    "zero_definition": "9b120 returns0, next read at0x38; no guard",
+    "eight_byte_fake_header": "insufficient for virtual58 goal+10 read and not a native CWarGoal"
+  },
+  "body_only_profile": {
+    "entry": "0x500560",
+    "status": "static_selected_data_feasible_for_separate_review_only",
+    "buffers": [
+      {
+        "name": "A",
+        "bytes": 152,
+        "writable": true,
+        "exclusive": true,
+        "initial": "zero entire buffer; A+48=G"
+      },
+      {
+        "name": "G",
+        "bytes": 96,
+        "writable": true,
+        "exclusive": true,
+        "initial": "zero entire buffer; G+0=authenticated module base+1d207f8"
+      }
+    ],
+    "disjoint_and_retained_for_entire_call": true,
+    "profile_alignment_at_least": 16,
+    "vector_offsets": [
+      [
+        80,
+        88,
+        96
+      ],
+      [
+        104,
+        112,
+        120
+      ],
+      [
+        128,
+        136,
+        144
+      ]
+    ],
+    "all_nine_vector_qwords_zero": true,
+    "body_selected_rows": [
+      {
+        "rva": "0x500560",
+        "bytes": "4053"
+      },
+      {
+        "rva": "0x500562",
+        "bytes": "4883ec20"
+      },
+      {
+        "rva": "0x500566",
+        "bytes": "488bd9"
+      },
+      {
+        "rva": "0x500569",
+        "bytes": "488d0520087801"
+      },
+      {
+        "rva": "0x500570",
+        "bytes": "488901"
+      },
+      {
+        "rva": "0x500573",
+        "bytes": "488b4948"
+      },
+      {
+        "rva": "0x500577",
+        "bytes": "488b01"
+      },
+      {
+        "rva": "0x50057a",
+        "bytes": "ff5078"
+      },
+      {
+        "rva": "0x50057d",
+        "bytes": "84c0"
+      },
+      {
+        "rva": "0x50057f",
+        "bytes": "741e"
+      },
+      {
+        "rva": "0x50059f",
+        "bytes": "488d8b80000000"
+      },
+      {
+        "rva": "0x5005a6",
+        "bytes": "e815e5b8ff"
+      },
+      {
+        "rva": "0x5005ab",
+        "bytes": "488d4b68"
+      },
+      {
+        "rva": "0x5005af",
+        "bytes": "e80ce5b8ff"
+      },
+      {
+        "rva": "0x5005b4",
+        "bytes": "488d4b50"
+      },
+      {
+        "rva": "0x5005b8",
+        "bytes": "e803e5b8ff"
+      },
+      {
+        "rva": "0x5005bd",
+        "bytes": "488d05b4df7301"
+      },
+      {
+        "rva": "0x5005c4",
+        "bytes": "488903"
+      },
+      {
+        "rva": "0x5005c7",
+        "bytes": "4883c420"
+      },
+      {
+        "rva": "0x5005cb",
+        "bytes": "5b"
+      },
+      {
+        "rva": "0x5005cc",
+        "bytes": "c3"
+      }
+    ],
+    "goal_false_leaf_rows": [
+      {
+        "rva": "0x8f450",
+        "bytes": "32c0"
+      },
+      {
+        "rva": "0x8f452",
+        "bytes": "c3"
+      }
+    ],
+    "vector_null_leaf_rows": [
+      {
+        "rva": "0x8eac0",
+        "bytes": "4053"
+      },
+      {
+        "rva": "0x8eac2",
+        "bytes": "4883ec20"
+      },
+      {
+        "rva": "0x8eac6",
+        "bytes": "488bd9"
+      },
+      {
+        "rva": "0x8eac9",
+        "bytes": "488b09"
+      },
+      {
+        "rva": "0x8eacc",
+        "bytes": "4885c9"
+      },
+      {
+        "rva": "0x8eacf",
+        "bytes": "743e"
+      },
+      {
+        "rva": "0x8eb0f",
+        "bytes": "4883c420"
+      },
+      {
+        "rva": "0x8eb13",
+        "bytes": "5b"
+      },
+      {
+        "rva": "0x8eb14",
+        "bytes": "c3"
+      }
+    ],
+    "virtual_call": {
+      "at": "0x50057a",
+      "read_slot": "module_base+0x1d20870",
+      "bytes": 8,
+      "required_runtime_pointer": "authenticated_module_base+0x8f450",
+      "disk_pointer_is_preferred_VA_not_runtime_raw_memcmp": true
+    },
+    "direct_calls": [
+      {
+        "at": "0x5005a6",
+        "target": "0x8eac0",
+        "receiver": "A+0x80"
+      },
+      {
+        "at": "0x5005af",
+        "target": "0x8eac0",
+        "receiver": "A+0x68"
+      },
+      {
+        "at": "0x5005b8",
+        "target": "0x8eac0",
+        "receiver": "A+0x50"
+      }
+    ],
+    "data_reads": [
+      {
+        "at": "0x500573",
+        "source": "A+48",
+        "bytes": 8,
+        "expected": "G"
+      },
+      {
+        "at": "0x500577",
+        "source": "G+0",
+        "bytes": 8,
+        "expected": "module_base+1d207f8"
+      },
+      {
+        "at": "0x50057a",
+        "source": "module vtable+78",
+        "bytes": 8,
+        "expected": "module_base+8f450"
+      },
+      {
+        "at": "0x8eac9",
+        "source": "A+80/A+68/A+50 on separate calls",
+        "bytes_each": 8,
+        "expected": 0
+      }
+    ],
+    "data_writes": [
+      {
+        "at": "0x500570",
+        "destination": "A+0",
+        "bytes": 8,
+        "value": "module_base+1c80d90"
+      },
+      {
+        "at": "0x5005c4",
+        "destination": "A+0",
+        "bytes": 8,
+        "value": "module_base+1c3e578"
+      }
+    ],
+    "skipped": [
+      {
+        "span": "500581..50059f",
+        "reason": "AL0 branch; skips deleting virtual0 and2340030 read/reset"
+      },
+      {
+        "span": "8ead1..8eb0f plus8eb15 invalid-parameter path",
+        "reason": "NULL begin branch; skips capacity/heap/free/CRT operations"
+      }
+    ],
+    "other_memory": "Own current Win64 call stack: saved RBX, call return slots and prologue/epilogue stack operations only",
+    "normal_stack_below_entry_Q_max_bytes": 88,
+    "Win64_home_alignment_and_return_provenance_still_host_obligations": true,
+    "expected_owned_postimage": "Only A[0:8] ends at base vtable1c3e578; A+48 staysG, vectors stayzero, all G unchanged",
+    "scalar_return_is_success_contract": false,
+    "constructor_called": false,
+    "class_construction_equivalent": false,
+    "full_native_lifecycle": false,
+    "war_or_noCB_semantics": false,
+    "remaining_static_callee_or_allocator_gap_on_selected_normal_path": false,
+    "host_module_code_storage_ABI_unwind_execution_review_still_required": true
+  },
+  "excluded_entries": [
+    "0x500480 ctor",
+    "0x50b8f0 clone",
+    "0x500520 deleting wrapper",
+    "0xd9a050 goal deleting entry",
+    "check/execute/send and world definitions"
+  ],
+  "authority": {
+    "native_ready": false,
+    "implementation_authorized": false,
+    "sender_authorized": false,
+    "world_lease": false,
+    "sentinel_header_lease": false,
+    "gameplay_effect": false
+  }
+}

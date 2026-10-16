@@ -1,0 +1,193 @@
+{
+  "R88_cache_inventory_witness_only": "No exact body in two explicitly checked caches; not global repository absence. No large cache reread here.",
+  "actual_authorized": false,
+  "call_row_pointer": "/analysis/instructions/45",
+  "call_site_rva": "0xcc305",
+  "callable": false,
+  "callee_entry_RSP": "CallerF-8 from implicit CALL push. F=Q87-0x48 from fixed R86/R87 contract, henceQ89=Q87-0x50 only under its normal stack/alias premises.",
+  "caller_GP_assignment_rows": [
+    {
+      "bytes": "4c8bcf",
+      "immediates": [],
+      "memory_operands": [],
+      "mnemonic": "mov",
+      "operands": "r9, rdi",
+      "raw_memory_write_review": {
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b",
+        "raw_hex": "4c8bcf",
+        "status": "unclassified_requires_manual_review"
+      },
+      "registers_read": [
+        "rdi"
+      ],
+      "registers_written": [
+        "r9"
+      ],
+      "rva": "0xcc2f9"
+    },
+    {
+      "bytes": "4d8bc4",
+      "immediates": [],
+      "memory_operands": [],
+      "mnemonic": "mov",
+      "operands": "r8, r12",
+      "raw_memory_write_review": {
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b",
+        "raw_hex": "4d8bc4",
+        "status": "unclassified_requires_manual_review"
+      },
+      "registers_read": [
+        "r12"
+      ],
+      "registers_written": [
+        "r8"
+      ],
+      "rva": "0xcc2fc"
+    },
+    {
+      "bytes": "488bd6",
+      "immediates": [],
+      "memory_operands": [],
+      "mnemonic": "mov",
+      "operands": "rdx, rsi",
+      "raw_memory_write_review": {
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b",
+        "raw_hex": "488bd6",
+        "status": "unclassified_requires_manual_review"
+      },
+      "registers_read": [
+        "rsi"
+      ],
+      "registers_written": [
+        "rdx"
+      ],
+      "rva": "0xcc2ff"
+    },
+    {
+      "bytes": "488bcb",
+      "immediates": [],
+      "memory_operands": [],
+      "mnemonic": "mov",
+      "operands": "rcx, rbx",
+      "raw_memory_write_review": {
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b",
+        "raw_hex": "488bcb",
+        "status": "unclassified_requires_manual_review"
+      },
+      "registers_read": [
+        "rbx"
+      ],
+      "registers_written": [
+        "rcx"
+      ],
+      "rva": "0xcc302"
+    },
+    {
+      "bytes": "e856daffff",
+      "immediates": [
+        826720
+      ],
+      "memory_operands": [],
+      "mnemonic": "call",
+      "operands": "0xc9d60",
+      "raw_memory_write_review": {
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "e8",
+        "raw_hex": "e856daffff",
+        "status": "unclassified_requires_manual_review"
+      },
+      "registers_read": [
+        "rsp",
+        "rip"
+      ],
+      "registers_written": [
+        "rsp"
+      ],
+      "rva": "0xcc305"
+    }
+  ],
+  "caller_capture_pin": {
+    "bytes": 140752,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/capture.json",
+    "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+  },
+  "caller_contract_pin": {
+    "bytes": 7679,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/contract.json",
+    "sha256": "5e114f5c0efd47cbf92279bdf0d638732a40ae3b8a9d0f554d56c51df2304845"
+  },
+  "caller_owned_pin": {
+    "bytes": 1099,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/owned-code.json",
+    "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+  },
+  "firstappend_subset": "Only conditional C three-zero header andD0 with no necessary header/stack/alias mutation gives GP(C,S,1,1). This is not a universal or dynamic precondition.",
+  "fixed_raw_window": {
+    "begin": "0xc9d60",
+    "bytes": 256,
+    "end_exclusive": "0xc9e60",
+    "seeds": [
+      "0xc9d60"
+    ]
+  },
+  "gap_policy": {
+    "completed_valid_ordered_gap_allowed": true,
+    "contained_nonexact_allowed": true,
+    "invalid_or_budget_incomplete": "unknown0code",
+    "must_record_function_metadata_unknown_for_gap": true,
+    "no_leaf_function_ABI_unwind_global_absence_inference": true,
+    "no_metadata_search_retry_or_raw_rewindow": true,
+    "selected_256raw_independent_of_metadata": true
+  },
+  "metadata_policy": {
+    "cached_raw_mapping_and_table_count_bounds_required": true,
+    "global_sorted_table_premise_explicit": true,
+    "maximum_physical_bytes": 384,
+    "maximum_search_records": 29,
+    "maximum_selected_previous_next_records": 3,
+    "maximum_total_records": 32,
+    "metadata_never_selects_code_extent": true,
+    "mode": "bounded_lower_bound_diagnostic_only",
+    "positive_local_ordered_disjoint_validation_required": true,
+    "record_bytes": 12
+  },
+  "native_ready": false,
+  "next_rva": "0xcc30a",
+  "owned_raw_byte_offset": 159,
+  "ownership_transfer_verified": false,
+  "preCALL_register_sources": {
+    "R8": "MOV R8,R12; selected count-shaped local arithmetic, not proven units/type",
+    "R9": "MOV R9,RDI; selected capacity-shaped local arithmetic, not proven allocator contract",
+    "RAX_XMM_flags": "No new binding at these MOVs; prior unknown callee effects remain unknown",
+    "RCX": "MOV RCX,RBX; opaqueC fromR87/R86 entryRCX under normal/nonvolatile conditions",
+    "RDX": "MOV RDX,RSI; opaqueS from unknown950b0 postRAX, retained under normal/nonvolatile conditions"
+  },
+  "raw_call": "e856daffff",
+  "schema": "EU4-R89-DIRECT-CALL-PREFIX-SEED/1",
+  "seed_semantics": {
+    "0xc9d60": "direct_CALL_encoding_target_not_safe_callable_proof"
+  },
+  "signed_rel32": -9642,
+  "target_rva": "0xc9d60",
+  "upstream_full_review": {
+    "findings": {
+      "bytes": 12526,
+      "path": "work/reports/war-peace-api-20261016-r87-actual-independent-review/findings.json",
+      "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+    },
+    "manifest": {
+      "bytes": 30861,
+      "path": "work/reports/war-peace-api-20261016-r87-actual-independent-review/manifest.json",
+      "sha256": "26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd"
+    }
+  }
+}

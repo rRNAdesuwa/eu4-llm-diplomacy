@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "process_accessed": false,
+  "runtime_verified": false,
+  "findings": [
+    {
+      "id": "war_sink_pending_handoff",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "14ca870 uses transport+48=8b0e0 to obtain the pending+c8 container, moves raw command pointers into context+140..148..150 vector, frees only20h list nodes and clears source list. A second virtual88 list is handled separately.",
+      "rvas": [
+        "0x14ca8aa",
+        "0x14ca8da",
+        "0x14ca91a",
+        "0x14ca927"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Second list business semantics and all delayed/drop gates remain separate."
+      ]
+    },
+    {
+      "id": "war_sink_gate_is_not_execution",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "Wrapper command+40=4e8630 returns bool after cooldown/cost/local80 conditions.14cab30 false removes/destructs command; true enters execution. It does not itself call action effect.",
+      "rvas": [
+        "0x14cab30",
+        "0x4e8775",
+        "0x4e8796"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Native full88 is not re-run at this execution gate."
+      ]
+    },
+    {
+      "id": "war_sink_native_execution_holder",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "Context temporarily sets7d4, constructs std-function-style self-pointing holder vt1d8c8b0 with command+8;14d4e70->14d4e30->10a0f20 dispatches holder+10=14cea10 which tailcalls command+48=4e7c50.",
+      "rvas": [
+        "0x14caf06",
+        "0x14caf25",
+        "0x14caf44",
+        "0x14d4e5d",
+        "0x10a0f34",
+        "0x14ceae0"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Native holder is not a public pointer ABI; fatal/exception unwind remains unproven."
+      ]
+    },
+    {
+      "id": "war_sink_action_apply",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "4e7c50 rechecks action local80 then4e8054 calls4ea820. Public apply checks country existence and dispatches action+48; declarewar slot resolves501290.",
+      "rvas": [
+        "0x4e7c71",
+        "0x4e8054",
+        "0x4ea899",
+        "0x4ea8cd"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "local or country gate may prevent effect despite earlier sender success."
+      ]
+    },
+    {
+      "id": "war_sink_normal_consumption_callback",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "Normal context consumption removes the command from vector and deleting-destructs it, then optionally calls ctx+838 with ctx+830. The command pointer is already dead at that callback.",
+      "rvas": [
+        "0x14cb123",
+        "0x14cb13b",
+        "0x14cb143",
+        "0x14cb14f",
+        "0x14cb156"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Callback registration/restore/exclusive ownership is not established."
+      ]
+    },
+    {
+      "id": "war_sink_sequence_serialization",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "Base command serializer14c6290 writes DWORD+4c with tokendb; base parser14c63c0 maps the same token back to+4c. The prior sender queue clone explicitly preserves this native sequence.",
+      "rvas": [
+        "0x14c6316",
+        "0x14c6319",
+        "0x14c6457"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Native serial and external V31 packet.sequence are independent; mapping requires legitimate native observation."
+      ]
+    },
+    {
+      "id": "war_sink_first_world_commit",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "Effect allocates218B war and callsd859b0; attacker join d89cd0 then defenderd8caf0 must both succeed before501921 C06d0 appends pointer to game233fe78+1e28 polymorphic array. Joinfalse branches delete uncommitted war at502e58. Date is written at501930.",
+      "rvas": [
+        "0x501804",
+        "0x50181f",
+        "0x501862",
+        "0x50189d",
+        "0x501921",
+        "0x501930",
+        "0x502e58",
+        "0xc0747",
+        "0xc0758"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Effect costs/callbacks precede allocation; failure is not a no-side-effect guarantee."
+      ]
+    },
+    {
+      "id": "war_sink_pair_map_commit",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "Join helpers calla689c0->28ad30->28d810 to set accurate pair byte46 bit4 and populate/replace other-slot to war-pointer records in relation root+48 array (data+50,countDWORD+5c,stride16) in both directions.",
+      "rvas": [
+        "0xd8e3a4",
+        "0xd8e3ea",
+        "0xa689ef",
+        "0x28ad77",
+        "0x28d91f",
+        "0x28d927"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Country+1548/+1554 index creation is not newly traced here; use independent existing evidence and new fresh observations."
+      ]
+    },
+    {
+      "id": "war_sink_goal_backpointer",
+      "kind": "observation",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "War constructord859b0 clones goal into war+160, then writes selected goal+48=war. Primary attacker/defender full handles are+150/+158.",
+      "rvas": [
+        "0xd85b01",
+        "0xd85b08",
+        "0xd85b12",
+        "0xd85b17",
+        "0xd85c1b",
+        "0xd85c22"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": []
+    },
+    {
+      "id": "war_sink_no_cb_backpointer_alias",
+      "kind": "inference",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "Because noCB clone returns shared nowargoal, game war construction writes that shared object backpointer. It is not stable or exclusive war identity; the no-send adapter must neither clear it nor require it remainszero.",
+      "rvas": [
+        "0xd85b12",
+        "0xd85c22"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Shared sentinel may subsequently be updated by another normal war construction."
+      ]
+    },
+    {
+      "id": "war_sink_host_callback_source",
+      "kind": "observation",
+      "evidence_category": "repository_source_inspection",
+      "claim": "Frozen V31 source uses pinned native10a6ec0 pre-prologue callback, preserved volatile registers/unwind, owner-thread and active CAS guards, fresh world/pair/date checks and retained quarantine. Existing profiles do not include this complex declaration contract.",
+      "rvas": [],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/host-source.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "This is source inspection, not a fresh installed-hook or native lifecycle observation."
+      ]
+    },
+    {
+      "id": "war_sink_host_epoch_limit",
+      "kind": "observation",
+      "evidence_category": "repository_source_inspection",
+      "claim": "Existing guard assigns world_witness=1 constant and bootstrap records strict_SP/world_epoch=false. No reliable native epoch, reload exclusion or new declaration TLS/lifetime proof is supplied by these flags.",
+      "rvas": [],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/host-source.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Same-frame callback is not a reliable epoch/lifetime lock."
+      ]
+    },
+    {
+      "id": "war_sink_result_observation_contract",
+      "kind": "inference",
+      "evidence_category": "ordinary_offline_capstone_not_REA",
+      "claim": "A future actual result receipt must independently bind external request to native serial and execution action, then observe global war membership plus leaders/side/goal/date/bidirectional pair identity and separate selected costs/persistence; void apply and senderbool cannot substitute.",
+      "rvas": [
+        "0x501921",
+        "0x4ea8cd",
+        "0x14cb156"
+      ],
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sink/disassembly.json"
+      ],
+      "process_accessed": false,
+      "runtime_verified": false,
+      "unknowns": [
+        "Concurrent native AI and reentrant callbacks need causal isolation or an explicit ambiguity result."
+      ]
+    }
+  ]
+}

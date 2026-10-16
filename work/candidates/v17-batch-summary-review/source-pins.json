@@ -1,0 +1,186 @@
+{
+  "tools/request_diplomacy_lab_v17.py": {
+    "bytes": 8697,
+    "sha256": "4cfc15afcca2e6c3f2496008e2ae6d385567963aecb981bda735acca38df86c2"
+  },
+  "tools/verify_diplomacy_acceptance_v17.py": {
+    "bytes": 20313,
+    "sha256": "2ff9065cea99239c90ed504465eeb9ff2c76c67f8fee8b8479881fd0d4c3eb14"
+  },
+  "tools/verify_diplomacy_command_v17.py": {
+    "bytes": 8806,
+    "sha256": "47bb8b76d10b1c5a017c27e53a22385d96a70f829aa7073e78745d5128af3041"
+  },
+  "tools/verify_diplomacy_lifecycle_v17.py": {
+    "bytes": 27645,
+    "sha256": "39cb22d0a8ed1bd64ad658cfc056d0d12ebe602b2658420c5904e066bf25db48"
+  },
+  "tools/verify_diplomacy_owned_peace_v17.py": {
+    "bytes": 11481,
+    "sha256": "5a13527dbc64e87ee7436664a2dd0eed54fce1016930e394f3e2e21105edbd4f"
+  },
+  "tools/verify_diplomacy_preview_v17.py": {
+    "bytes": 12807,
+    "sha256": "2ce0267878a7b22e05b7b41867b302172d6b482935b5ac29b35f0fa199d4e888"
+  },
+  "work/candidates/ordinary-insult-observer-1375/observer.py": {
+    "bytes": 25839,
+    "sha256": "708adae32bf5f16db3678b70ffedb6e855ff8755fd0456044f666db1b4595638"
+  },
+  "work/candidates/v17-batch-action-matrix-1375/plan.json": {
+    "bytes": 27171,
+    "sha256": "f63080fd20ee949dc44ec76b819deac7b00eae71ae05220cc268f3a715b23a6b"
+  },
+  "work/candidates/v17-batch-action-matrix-1375/review.json": {
+    "bytes": 4128,
+    "sha256": "1e5554ac4e4d52309f2fbd1b21ace8f486c370226a5557b355a8a754860815a4"
+  },
+  "work/candidates/v17-batch-census-r3/census.py": {
+    "bytes": 12996,
+    "sha256": "e57c5bd452aca2f3a8182fd932510301f34a848f1f89d5d3d5db6f9470370159"
+  },
+  "work/candidates/v17-batch-census-r3/review.json": {
+    "bytes": 2046,
+    "sha256": "2ce87813fd95d5de4975ca23bf3331fda00deedb443c4b29544fb04252195d4a"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/README.md": {
+    "bytes": 6712,
+    "sha256": "d19aae4d8db8276e1572c21cdbd84724712ece6f97157ea7e10585a94d40edcd"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/adapter.py": {
+    "bytes": 28330,
+    "sha256": "643cba7e7f8b930d85b694d5a48fc7cf29780e176f462a87a4a38a5e97f64316"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/lineage.json": {
+    "bytes": 924,
+    "sha256": "56edcee73ffe4dedd8cf9fb7480f2214c3aa513bbad448098d73379c47c7cc3e"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/repair.diff": {
+    "bytes": 22980,
+    "sha256": "13094280a3c2654618c437eccadb46a0f6b3199867df608219b8843bd0cee5ec"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/review.json": {
+    "bytes": 1473,
+    "sha256": "316498cde2958d3e7e88c89e178f7ac26034b5022f43e35e94b00addd2c4f264"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/source-pins.json": {
+    "bytes": 5750,
+    "sha256": "6d84a44fce587fc55b439a116f7e96f761a9077c7468cb558f5ae8030f81e4aa"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/test_adapter.py": {
+    "bytes": 17114,
+    "sha256": "a518a79bf865912df66de8d5d9a4d37ade683c911cbc92820a18360565227c41"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/test_pause_transition.py": {
+    "bytes": 9275,
+    "sha256": "fd6eada1427884554586ef97dbe305e976eff41b2a87d8e804f29c588580f041"
+  },
+  "work/candidates/v17-batch-cli-adapter-r2/validate.py": {
+    "bytes": 891,
+    "sha256": "1c8d43b0cddbd0120df993a091402f87db805944ce3d3ad3a1ea94207abde178"
+  },
+  "work/candidates/v17-batch-cli-adapter/README.md": {
+    "bytes": 4261,
+    "sha256": "8429d8f2e920cc73224a6a70bb7e64f18651ca4d4a1899796fc9d13e7c5e58b4"
+  },
+  "work/candidates/v17-batch-cli-adapter/adapter.py": {
+    "bytes": 26545,
+    "sha256": "45e41864003944617d01d12aa0932e281499acbe7be3435f6a2d25a39368ecb5"
+  },
+  "work/candidates/v17-batch-cli-adapter/candidate-index.json": {
+    "bytes": 842,
+    "sha256": "4a1face77dc976ce4129049809afdf4248164937e138502c6dc61ea5285cea44"
+  },
+  "work/candidates/v17-batch-cli-adapter/review.json": {
+    "bytes": 1086,
+    "sha256": "7ea939d994b86d6c2124f7ac074e2d59de72dcb49c3a3e7e7d0b569867c7d854"
+  },
+  "work/candidates/v17-batch-cli-adapter/source-pins.json": {
+    "bytes": 4335,
+    "sha256": "dfcec397788a358cee9ec087b970d598c2b05319ce86f3435b080f47117e9760"
+  },
+  "work/candidates/v17-batch-cli-adapter/test_adapter.py": {
+    "bytes": 16875,
+    "sha256": "3018ddfd735005512d747951a7368c7fab62be19a01a9bc02184c8877af54439"
+  },
+  "work/candidates/v17-batch-cli-adapter/validate.py": {
+    "bytes": 891,
+    "sha256": "1c8d43b0cddbd0120df993a091402f87db805944ce3d3ad3a1ea94207abde178"
+  },
+  "work/candidates/v17-batch-cli-adapter/validation-results/validation.json": {
+    "bytes": 12462,
+    "sha256": "9ad83825d5aa9d808cfa197fee512ce84d44a65019cfec7da9f98da429e221ee"
+  },
+  "work/candidates/v17-batch-host-review-r3/batch.py": {
+    "bytes": 21875,
+    "sha256": "75a1fdd1657862c1e019cc25e711a45a095909c18eeef1570d2c61db20a8b23e"
+  },
+  "work/candidates/v17-batch-host-review-r3/candidate-index.json": {
+    "bytes": 1024,
+    "sha256": "3c079311c94eeeb8cbe900e1a30c94d793d41b736909637742f2e9e0a568df42"
+  },
+  "work/candidates/v17-batch-host-review-r3/review.json": {
+    "bytes": 404,
+    "sha256": "0096deea8f9eb8fbff7e5bc291aaaa0ea2f0b272ea7e834e976503568fd696fd"
+  },
+  "work/native/lab_protocol_v17_1375.py": {
+    "bytes": 76229,
+    "sha256": "5bce16b8c951850cbbdc47c88e1edb0cd5b565d3dae2f9785246a92656afa202"
+  },
+  "work/native/run_lab_speed_v17_1375.py": {
+    "bytes": 11526,
+    "sha256": "ed3967c54bdc4f9e31b6b534753688f6b37531538c9d5d23338d35591d3eefec"
+  },
+  "work/native/v17/pair-engine-1375.cpp": {
+    "bytes": 84162,
+    "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e"
+  },
+  "work/native/v17/research-lab-1375.cpp": {
+    "bytes": 58756,
+    "sha256": "3f2ca8c56275d741a3bd02a30b292056b8e37a10a3cfe62a9e4c0dcff306338d"
+  },
+  "work/native/v17/test-controls-1375.cpp": {
+    "bytes": 13259,
+    "sha256": "c955ca8a4527a1fe6f5a8418b601eece2363a47c3c82cd3be2b261798f869615"
+  },
+  "work/probe_diplomacy_current.py": {
+    "bytes": 24900,
+    "sha256": "a5a0b775a701466cf5f4c85db671e37f81c165daf5fddd2080b71ed6f147bb38"
+  },
+  "work/probe_diplomacy_relations_v7_1375.py": {
+    "bytes": 30743,
+    "sha256": "ff28f8bbcac46411d3405cc76e501e0984fd592c72c9196d5abbe005f3529805"
+  },
+  "work/probe_pair_effects_1375.py": {
+    "bytes": 26397,
+    "sha256": "e5ae9d341c57e7cc79169b708c1d37ccf79ac3d09e88c953e1d4bcbb3ab1cf67"
+  },
+  "work/probe_pair_extension_v10_1375.py": {
+    "bytes": 18665,
+    "sha256": "b29a9352df4ad26dd87b5087bdd98d95476dda70b735b3492d3c068b3f85deef"
+  },
+  "work/probe_pair_extension_v11_1375.py": {
+    "bytes": 25868,
+    "sha256": "ab60e44f1ebdbf79cf276f62b0e3b76b5fbdc90dd6092fb7289f010527b04e5b"
+  },
+  "work/review-results/v17-batch-adapter-native-inventory-20261008a/review.json": {
+    "bytes": 16302,
+    "sha256": "8f7763d49da5801d4f60820c1add9c35e3dfb2413d7a9042e55301c4c9d80509"
+  },
+  "work/review-results/v17-batch-adapter-r2-action-catalog-20261008a/review.json": {
+    "bytes": 3591,
+    "sha256": "146527174c33b3a31216e56719b5077dd069fb71af31144ecc86f475cb67cbbd"
+  },
+  "work/review-results/v17-batch-host-r3-native-inventory-20261008a/review.json": {
+    "bytes": 12669,
+    "sha256": "4cbcbe1e92c312bc0b860b70a251b4f8a5142bcc2d54255df191de45b30d8dbf"
+  },
+  "work/run_lab_step_v17_1375.py": {
+    "bytes": 3562,
+    "sha256": "9c42a335ee733ababbc952679f18144a0c42545c01d61daf6833b8d54a9343d5"
+  },
+  "work/runtime/native1375-v17/build.json": {
+    "bytes": 6903,
+    "sha256": "b7cf7bb7b31cddf621729e0d541404d80bdb155c6f804082e2a25f651c97067d"
+  }
+}

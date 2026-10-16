@@ -1,0 +1,1031 @@
+{
+  "schema": "EU4-R89-FOUR-NEW-SYNTHETIC-CASES/1",
+  "passed": true,
+  "failure": null,
+  "cases": [
+    {
+      "name": "new_exact_and_nonexact_diagnostics_keep_fixed_window",
+      "passed": true,
+      "runs": 1,
+      "evidence": {
+        "exact_extent16_not_window256": {
+          "fixture_raw_records": [
+            "009d0c00209d0c0034120000",
+            "609d0c00709d0c0034120000",
+            "009e0c00209e0c0034120000"
+          ],
+          "callback_reads": [
+            {
+              "index": 1,
+              "reason": "binary_search",
+              "raw_hex": "609d0c00709d0c0034120000"
+            },
+            {
+              "index": 2,
+              "reason": "binary_search",
+              "raw_hex": "009e0c00209e0c0034120000"
+            },
+            {
+              "index": 1,
+              "reason": "selected",
+              "raw_hex": "609d0c00709d0c0034120000"
+            },
+            {
+              "index": 0,
+              "reason": "previous",
+              "raw_hex": "009d0c00209d0c0034120000"
+            },
+            {
+              "index": 2,
+              "reason": "next",
+              "raw_hex": "009e0c00209e0c0034120000"
+            }
+          ],
+          "projection": {
+            "schema": "EU4-R89-DIAGNOSTIC-METADATA/1",
+            "entry_rva": "0xc9d60",
+            "fixed_raw_window": {
+              "begin": "0xc9d60",
+              "end_exclusive": "0xc9e60",
+              "bytes": 256,
+              "seeds": [
+                "0xc9d60"
+              ]
+            },
+            "requests": [
+              {
+                "index": 1,
+                "reason": "binary_search",
+                "returned_bytes": 12,
+                "raw_hex": "609d0c00709d0c0034120000",
+                "begin_rva": "0xc9d60",
+                "end_exclusive": "0xc9d70",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 2,
+                "reason": "binary_search",
+                "returned_bytes": 12,
+                "raw_hex": "009e0c00209e0c0034120000",
+                "begin_rva": "0xc9e00",
+                "end_exclusive": "0xc9e20",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 1,
+                "reason": "selected",
+                "returned_bytes": 12,
+                "raw_hex": "609d0c00709d0c0034120000",
+                "begin_rva": "0xc9d60",
+                "end_exclusive": "0xc9d70",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 0,
+                "reason": "previous",
+                "returned_bytes": 12,
+                "raw_hex": "009d0c00209d0c0034120000",
+                "begin_rva": "0xc9d00",
+                "end_exclusive": "0xc9d20",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 2,
+                "reason": "next",
+                "returned_bytes": 12,
+                "raw_hex": "009e0c00209e0c0034120000",
+                "begin_rva": "0xc9e00",
+                "end_exclusive": "0xc9e20",
+                "unwind_rva_unfollowed": "0x1234"
+              }
+            ],
+            "search_completed": true,
+            "search_low": 2,
+            "search_high": 2,
+            "selected": {
+              "index": 1,
+              "reason": "selected",
+              "returned_bytes": 12,
+              "raw_hex": "609d0c00709d0c0034120000",
+              "begin_rva": "0xc9d60",
+              "end_exclusive": "0xc9d70",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            "previous": {
+              "index": 0,
+              "reason": "previous",
+              "returned_bytes": 12,
+              "raw_hex": "009d0c00209d0c0034120000",
+              "begin_rva": "0xc9d00",
+              "end_exclusive": "0xc9d20",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            "following": {
+              "index": 2,
+              "reason": "next",
+              "returned_bytes": 12,
+              "raw_hex": "009e0c00209e0c0034120000",
+              "begin_rva": "0xc9e00",
+              "end_exclusive": "0xc9e20",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            "metadata_valid": true,
+            "issues": [],
+            "classification": "exact_record",
+            "seed_pdata_gap": false,
+            "exact_record": true,
+            "function_metadata_unknown": false,
+            "code_extent_selected_from_metadata": false,
+            "global_sorted_table_assumed": true,
+            "global_sorted_table_verified": false,
+            "returned_metadata_bytes": 60,
+            "maximum_search_records": 29,
+            "maximum_total_records": 32,
+            "whole_function_verified": false,
+            "callable": false
+          }
+        },
+        "contained_local_span64_not_window256": {
+          "fixture_raw_records": [
+            "009d0c00209d0c0034120000",
+            "409d0c00809d0c0034120000",
+            "009e0c00209e0c0034120000"
+          ],
+          "callback_reads": [
+            {
+              "index": 1,
+              "reason": "binary_search",
+              "raw_hex": "409d0c00809d0c0034120000"
+            },
+            {
+              "index": 2,
+              "reason": "binary_search",
+              "raw_hex": "009e0c00209e0c0034120000"
+            },
+            {
+              "index": 1,
+              "reason": "selected",
+              "raw_hex": "409d0c00809d0c0034120000"
+            },
+            {
+              "index": 0,
+              "reason": "previous",
+              "raw_hex": "009d0c00209d0c0034120000"
+            },
+            {
+              "index": 2,
+              "reason": "next",
+              "raw_hex": "009e0c00209e0c0034120000"
+            }
+          ],
+          "projection": {
+            "schema": "EU4-R89-DIAGNOSTIC-METADATA/1",
+            "entry_rva": "0xc9d60",
+            "fixed_raw_window": {
+              "begin": "0xc9d60",
+              "end_exclusive": "0xc9e60",
+              "bytes": 256,
+              "seeds": [
+                "0xc9d60"
+              ]
+            },
+            "requests": [
+              {
+                "index": 1,
+                "reason": "binary_search",
+                "returned_bytes": 12,
+                "raw_hex": "409d0c00809d0c0034120000",
+                "begin_rva": "0xc9d40",
+                "end_exclusive": "0xc9d80",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 2,
+                "reason": "binary_search",
+                "returned_bytes": 12,
+                "raw_hex": "009e0c00209e0c0034120000",
+                "begin_rva": "0xc9e00",
+                "end_exclusive": "0xc9e20",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 1,
+                "reason": "selected",
+                "returned_bytes": 12,
+                "raw_hex": "409d0c00809d0c0034120000",
+                "begin_rva": "0xc9d40",
+                "end_exclusive": "0xc9d80",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 0,
+                "reason": "previous",
+                "returned_bytes": 12,
+                "raw_hex": "009d0c00209d0c0034120000",
+                "begin_rva": "0xc9d00",
+                "end_exclusive": "0xc9d20",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 2,
+                "reason": "next",
+                "returned_bytes": 12,
+                "raw_hex": "009e0c00209e0c0034120000",
+                "begin_rva": "0xc9e00",
+                "end_exclusive": "0xc9e20",
+                "unwind_rva_unfollowed": "0x1234"
+              }
+            ],
+            "search_completed": true,
+            "search_low": 2,
+            "search_high": 2,
+            "selected": {
+              "index": 1,
+              "reason": "selected",
+              "returned_bytes": 12,
+              "raw_hex": "409d0c00809d0c0034120000",
+              "begin_rva": "0xc9d40",
+              "end_exclusive": "0xc9d80",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            "previous": {
+              "index": 0,
+              "reason": "previous",
+              "returned_bytes": 12,
+              "raw_hex": "009d0c00209d0c0034120000",
+              "begin_rva": "0xc9d00",
+              "end_exclusive": "0xc9d20",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            "following": {
+              "index": 2,
+              "reason": "next",
+              "returned_bytes": 12,
+              "raw_hex": "009e0c00209e0c0034120000",
+              "begin_rva": "0xc9e00",
+              "end_exclusive": "0xc9e20",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            "metadata_valid": true,
+            "issues": [],
+            "classification": "contained_nonexact",
+            "seed_pdata_gap": false,
+            "exact_record": false,
+            "function_metadata_unknown": true,
+            "code_extent_selected_from_metadata": false,
+            "global_sorted_table_assumed": true,
+            "global_sorted_table_verified": false,
+            "returned_metadata_bytes": 60,
+            "maximum_search_records": 29,
+            "maximum_total_records": 32,
+            "whole_function_verified": false,
+            "callable": false
+          }
+        }
+      }
+    },
+    {
+      "name": "new_valid_ordered_gap_does_not_invent_function",
+      "passed": true,
+      "runs": 1,
+      "evidence": {
+        "fixture_raw_records": [
+          "009d0c00209d0c0034120000",
+          "009e0c00209e0c0034120000"
+        ],
+        "callback_reads": [
+          {
+            "index": 1,
+            "reason": "binary_search",
+            "raw_hex": "009e0c00209e0c0034120000"
+          },
+          {
+            "index": 0,
+            "reason": "binary_search",
+            "raw_hex": "009d0c00209d0c0034120000"
+          },
+          {
+            "index": 0,
+            "reason": "selected",
+            "raw_hex": "009d0c00209d0c0034120000"
+          },
+          {
+            "index": 1,
+            "reason": "next",
+            "raw_hex": "009e0c00209e0c0034120000"
+          }
+        ],
+        "projection": {
+          "schema": "EU4-R89-DIAGNOSTIC-METADATA/1",
+          "entry_rva": "0xc9d60",
+          "fixed_raw_window": {
+            "begin": "0xc9d60",
+            "end_exclusive": "0xc9e60",
+            "bytes": 256,
+            "seeds": [
+              "0xc9d60"
+            ]
+          },
+          "requests": [
+            {
+              "index": 1,
+              "reason": "binary_search",
+              "returned_bytes": 12,
+              "raw_hex": "009e0c00209e0c0034120000",
+              "begin_rva": "0xc9e00",
+              "end_exclusive": "0xc9e20",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            {
+              "index": 0,
+              "reason": "binary_search",
+              "returned_bytes": 12,
+              "raw_hex": "009d0c00209d0c0034120000",
+              "begin_rva": "0xc9d00",
+              "end_exclusive": "0xc9d20",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            {
+              "index": 0,
+              "reason": "selected",
+              "returned_bytes": 12,
+              "raw_hex": "009d0c00209d0c0034120000",
+              "begin_rva": "0xc9d00",
+              "end_exclusive": "0xc9d20",
+              "unwind_rva_unfollowed": "0x1234"
+            },
+            {
+              "index": 1,
+              "reason": "next",
+              "returned_bytes": 12,
+              "raw_hex": "009e0c00209e0c0034120000",
+              "begin_rva": "0xc9e00",
+              "end_exclusive": "0xc9e20",
+              "unwind_rva_unfollowed": "0x1234"
+            }
+          ],
+          "search_completed": true,
+          "search_low": 1,
+          "search_high": 1,
+          "selected": {
+            "index": 0,
+            "reason": "selected",
+            "returned_bytes": 12,
+            "raw_hex": "009d0c00209d0c0034120000",
+            "begin_rva": "0xc9d00",
+            "end_exclusive": "0xc9d20",
+            "unwind_rva_unfollowed": "0x1234"
+          },
+          "previous": null,
+          "following": {
+            "index": 1,
+            "reason": "next",
+            "returned_bytes": 12,
+            "raw_hex": "009e0c00209e0c0034120000",
+            "begin_rva": "0xc9e00",
+            "end_exclusive": "0xc9e20",
+            "unwind_rva_unfollowed": "0x1234"
+          },
+          "metadata_valid": true,
+          "issues": [],
+          "classification": "completed_ordered_gap",
+          "seed_pdata_gap": true,
+          "exact_record": false,
+          "function_metadata_unknown": true,
+          "code_extent_selected_from_metadata": false,
+          "global_sorted_table_assumed": true,
+          "global_sorted_table_verified": false,
+          "returned_metadata_bytes": 48,
+          "maximum_search_records": 29,
+          "maximum_total_records": 32,
+          "whole_function_verified": false,
+          "callable": false
+        }
+      }
+    },
+    {
+      "name": "new_overlap_and_short_record_fail_closed",
+      "passed": true,
+      "runs": 1,
+      "evidence": {
+        "overlap": {
+          "fixture_raw_records": [
+            "009d0c00209e0c0034120000",
+            "009e0c00409e0c0034120000"
+          ],
+          "callback_reads": [
+            {
+              "index": 1,
+              "reason": "binary_search",
+              "raw_hex": "009e0c00409e0c0034120000"
+            },
+            {
+              "index": 0,
+              "reason": "binary_search",
+              "raw_hex": "009d0c00209e0c0034120000"
+            }
+          ],
+          "projection": {
+            "schema": "EU4-R89-DIAGNOSTIC-METADATA/1",
+            "entry_rva": "0xc9d60",
+            "fixed_raw_window": {
+              "begin": "0xc9d60",
+              "end_exclusive": "0xc9e60",
+              "bytes": 256,
+              "seeds": [
+                "0xc9d60"
+              ]
+            },
+            "requests": [
+              {
+                "index": 1,
+                "reason": "binary_search",
+                "returned_bytes": 12,
+                "raw_hex": "009e0c00409e0c0034120000",
+                "begin_rva": "0xc9e00",
+                "end_exclusive": "0xc9e40",
+                "unwind_rva_unfollowed": "0x1234"
+              },
+              {
+                "index": 0,
+                "reason": "binary_search",
+                "returned_bytes": 12,
+                "raw_hex": "009d0c00209e0c0034120000",
+                "begin_rva": "0xc9d00",
+                "end_exclusive": "0xc9e20",
+                "unwind_rva_unfollowed": "0x1234"
+              }
+            ],
+            "search_completed": false,
+            "search_low": 0,
+            "search_high": 1,
+            "selected": null,
+            "previous": null,
+            "following": null,
+            "metadata_valid": false,
+            "issues": [
+              "observed_metadata_overlap_or_order"
+            ],
+            "classification": "unknown_invalid_or_incomplete_metadata",
+            "seed_pdata_gap": false,
+            "exact_record": false,
+            "function_metadata_unknown": true,
+            "code_extent_selected_from_metadata": false,
+            "global_sorted_table_assumed": true,
+            "global_sorted_table_verified": false,
+            "returned_metadata_bytes": 24,
+            "maximum_search_records": 29,
+            "maximum_total_records": 32,
+            "whole_function_verified": false,
+            "callable": false
+          }
+        },
+        "short": {
+          "fixture_raw_records": [
+            "609d0c00809d0c00341200"
+          ],
+          "callback_reads": [
+            {
+              "index": 0,
+              "reason": "binary_search",
+              "raw_hex": "609d0c00809d0c00341200"
+            }
+          ],
+          "projection": {
+            "schema": "EU4-R89-DIAGNOSTIC-METADATA/1",
+            "entry_rva": "0xc9d60",
+            "fixed_raw_window": {
+              "begin": "0xc9d60",
+              "end_exclusive": "0xc9e60",
+              "bytes": 256,
+              "seeds": [
+                "0xc9d60"
+              ]
+            },
+            "requests": [
+              {
+                "index": 0,
+                "reason": "binary_search",
+                "returned_bytes": 11,
+                "raw_hex": "609d0c00809d0c00341200"
+              }
+            ],
+            "search_completed": false,
+            "search_low": 0,
+            "search_high": 1,
+            "selected": null,
+            "previous": null,
+            "following": null,
+            "metadata_valid": false,
+            "issues": [
+              "short_or_invalid_metadata"
+            ],
+            "classification": "unknown_invalid_or_incomplete_metadata",
+            "seed_pdata_gap": false,
+            "exact_record": false,
+            "function_metadata_unknown": true,
+            "code_extent_selected_from_metadata": false,
+            "global_sorted_table_assumed": true,
+            "global_sorted_table_verified": false,
+            "returned_metadata_bytes": 11,
+            "maximum_search_records": 29,
+            "maximum_total_records": 32,
+            "whole_function_verified": false,
+            "callable": false
+          }
+        }
+      }
+    },
+    {
+      "name": "new_single_seed_call_fallthrough_and_exact_window",
+      "passed": true,
+      "runs": 1,
+      "evidence": {
+        "raw_hex": "e812da6a00c3cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "decode_starts": [
+          "0xc9d60",
+          "0xc9d65"
+        ],
+        "projection": {
+          "explicit_seeds": [
+            "0xc9d60"
+          ],
+          "instructions": [
+            {
+              "rva": "0xc9d60",
+              "bytes": "e812da6a00",
+              "mnemonic": "call"
+            },
+            {
+              "rva": "0xc9d65",
+              "bytes": "c3",
+              "mnemonic": "ret"
+            }
+          ],
+          "seed_semantics": {
+            "0xc9d60": "direct_CALL_encoding_target_not_safe_callable_proof"
+          },
+          "actual_CALL_callee_reachability_proved_by_this_worklist": false,
+          "edges": [
+            {
+              "site": "0xc9d60",
+              "kind": "call",
+              "target_rva": "0x777777",
+              "inside_owned_window": false,
+              "callee_followed": false,
+              "local_branch_target_enqueued": false,
+              "fallthrough": "0xc9d65",
+              "fallthrough_requires_unknown_callee_normal_return": true
+            }
+          ],
+          "terminals": [
+            {
+              "kind": "normal_ret",
+              "rva": "0xc9d65"
+            }
+          ],
+          "reused_row_starts": [],
+          "reused_terminal_starts": [],
+          "attempted_decode_starts": [
+            "0xc9d60",
+            "0xc9d65"
+          ],
+          "lookahead_inputs": [
+            {
+              "rva": "0xc9d60",
+              "bytes": 15
+            },
+            {
+              "rva": "0xc9d65",
+              "bytes": 15
+            }
+          ],
+          "instruction_count": 2,
+          "decoded_unique_bytes": 6,
+          "undecoded_owned_intervals": [
+            [
+              "0xc9d66",
+              "0xc9e60"
+            ]
+          ],
+          "decoder_input_total_bytes": 30,
+          "decoder_input_unique_bytes": 20,
+          "decoder_overlap_bytes": 10,
+          "local_normal_CFG_closed": true,
+          "whole_function_closed": false,
+          "external_CALL_normal_return_assumed_for_fallthrough": true,
+          "dynamic_reachability_verified": false
+        },
+        "wrong255byte_window_refused_before_decode": true
+      }
+    }
+  ],
+  "source_manifest": {
+    "bytes": 29452,
+    "sha256": "208d34192f5aed513bcf0586c607eb6a4397a59693575d0014745ee48780d8fd"
+  },
+  "source_prepost_equal": true,
+  "source_reads": [
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\source-manifest.json",
+      "bytes": 29452,
+      "sha256": "208d34192f5aed513bcf0586c607eb6a4397a59693575d0014745ee48780d8fd"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\build_r89_source_20261016.py",
+      "bytes": 23249,
+      "sha256": "809837a8b93e4b112ea152653f255a70b76da6671845ac1a8b020af5aabffa86"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\frida-entry-observer-1375-v1\\job_tree.py",
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261015-r27-truce-literal-anchors\\war\\anchors.json",
+      "bytes": 12398,
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r86-cc220-actual-source\\produce.py",
+      "bytes": 27099,
+      "sha256": "0a3c13e779e4da424316b0e3a3ff3f86f49a460243f18b14c91644ca717522b4"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r86-source-independent-review\\findings.json",
+      "bytes": 4081,
+      "sha256": "075c2b62c093453b838957669c1872d3a14c20e39a073e13df32ca05d411e2ef"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-actual-independent-review\\findings.json",
+      "bytes": 12526,
+      "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-actual-independent-review\\manifest.json",
+      "bytes": 30861,
+      "sha256": "26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\PROTOCOL.md",
+      "bytes": 3530,
+      "sha256": "9019a3abaeec09b793e44ffed081461191405df23c6032d7ff6f012bf671ffa2"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\actual-manifest.json",
+      "bytes": 34662,
+      "sha256": "71e766158fdaf6f80a2dc55bf5c4fb8177bfcfcdaee35f1f7860c1fec0828b0d"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\contract.json",
+      "bytes": 7679,
+      "sha256": "5e114f5c0efd47cbf92279bdf0d638732a40ae3b8a9d0f554d56c51df2304845"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\selected-cfg.json",
+      "bytes": 47217,
+      "sha256": "659b804677b9ffb2635afcc34ae46c26cd6e9b815a7515bf1faa8d0173db4f40"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\capture.json",
+      "bytes": 140752,
+      "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\cfg_core.py",
+      "bytes": 5363,
+      "sha256": "54a11ab860dbf234645d16cd33ddfd1bfa4a3323a76f59d39f401e41a1b55550"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\launch_once.py",
+      "bytes": 4138,
+      "sha256": "4c8ae66eee0de433e4f19f0809759a6cbf804364f521aedfaba93ab680c0d203"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\owned-code.json",
+      "bytes": 1099,
+      "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\produce.py",
+      "bytes": 19265,
+      "sha256": "a418c6781b65cbf94672622f9aa3dbfc26e3e8df1135dd889c4f84e9187ff8e6"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\runtime_contract.py",
+      "bytes": 6667,
+      "sha256": "de314e4bff94667a3fab0ed49f72c9ba6467310a3218dd0c11f892e44aa6c32a"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\source-manifest.json",
+      "bytes": 26330,
+      "sha256": "e40ccf4eba10b12b7d626f0fc00b1bcdac50972d1a0a35559ba3756b64694817"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-source-independent-review\\findings.json",
+      "bytes": 6026,
+      "sha256": "73c9edd7d2447e7535b9d7760a11144071bdd5c9e2b47149d02cc7f4fa6eac68"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r88-c9d60-cache-metadata\\findings.json",
+      "bytes": 1900,
+      "sha256": "37b737b926ca54c0a750e17038c1625851edfce8860eba396be0349d01cba43a"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r88-c9d60-cache-metadata\\manifest.json",
+      "bytes": 2625,
+      "sha256": "e3aa44d71ff0ce0915acfd4e55da5d8500844b92e2d4bdeef17b06b82968b56c"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source-plan\\manifest.json",
+      "bytes": 4689,
+      "sha256": "89068eefa2db4dcd2d6ceb05cc03b3eccb62416558e52f612ce9d8aaefc25659"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source-plan\\proposal.json",
+      "bytes": 15747,
+      "sha256": "5aa951e2818b5525a969a16903707ed66e5ddb78e3524266ecb7b763f9a1237f"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\PROTOCOL.md",
+      "bytes": 3314,
+      "sha256": "aa68367055b0f8a0c41175f4da3385a85d7a65e0a7e5624bf9116df7224ff57d"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\budget.json",
+      "bytes": 1718,
+      "sha256": "405277c7b4b915bb4e7bbf0e27322c05bed202bb312f0314b64d700ce86b4fed"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cases_child.py",
+      "bytes": 6034,
+      "sha256": "43a8fcf519888f5bd9f3fe3095799d1f0f21b419eb39c99ec415f74cad9f907a"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cfg_core.py",
+      "bytes": 5317,
+      "sha256": "5f0b566a36b7a765c895dd0068941ab828e82d34c088fc33250d6083b9d43252"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\entry-seed.json",
+      "bytes": 6275,
+      "sha256": "e4f1e085c7e1b7147432508c51e355c0e30473b8813a149d4e7043e28ebdaf9e"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\launch_once.py",
+      "bytes": 4138,
+      "sha256": "b3b2083f94576b4bfd399b8a5dde0e910eba8268f498ce84e3a5cabfbbbd9c27"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\main-template.py.inc",
+      "bytes": 9838,
+      "sha256": "dfaa3980ba82c694e3281d85f3134a46c669c7a5fd3bb15d72da3be511092e85"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\metadata_core.py",
+      "bytes": 4120,
+      "sha256": "ea32c610a8b578911eb2c8696535b3becf3db20d86977d91bc2463f8b563b4d0"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\produce.py",
+      "bytes": 18739,
+      "sha256": "667e6cdd3d5e7390d0b5ce08d19ac127abee5824b7c68b102254ae3a94931ab0"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\run_cases_once.py",
+      "bytes": 3447,
+      "sha256": "765057076f0e0cbb00492c94f177d78be2989805db8be7044a827bbc1d0c68b3"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\runtime-template.py.inc",
+      "bytes": 6333,
+      "sha256": "3b7ce91ae3f0ad6430035f407df97c13fe037cccc4da848435e6abffcf1d0f16"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\runtime_contract.py",
+      "bytes": 7777,
+      "sha256": "824eba3705c3bd0b7f33917f40c6bfc34de9de31e1093115e3ad47ceab7f1e67"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\source-delta.json",
+      "bytes": 4622,
+      "sha256": "b469f85b0398dbb357dbb61a94c9e164b553f76638a3d80ff3dd99943febbb1a"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-root-source-authorization\\authorization.json",
+      "bytes": 9647,
+      "sha256": "c6e844b1d6f8e635d673caab18c5c2eade3c7faa2fa8109810f3bb95f003f012"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-root-source-authorization\\receipt.json",
+      "bytes": 7712,
+      "sha256": "42d43b23744c8f811b075c53ca85e46238c9867f8ccef46c4c043962d3d0fb5c"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\source-manifest.json",
+      "bytes": 29452,
+      "sha256": "208d34192f5aed513bcf0586c607eb6a4397a59693575d0014745ee48780d8fd"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\build_r89_source_20261016.py",
+      "bytes": 23249,
+      "sha256": "809837a8b93e4b112ea152653f255a70b76da6671845ac1a8b020af5aabffa86"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\frida-entry-observer-1375-v1\\job_tree.py",
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261015-r27-truce-literal-anchors\\war\\anchors.json",
+      "bytes": 12398,
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r86-cc220-actual-source\\produce.py",
+      "bytes": 27099,
+      "sha256": "0a3c13e779e4da424316b0e3a3ff3f86f49a460243f18b14c91644ca717522b4"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r86-source-independent-review\\findings.json",
+      "bytes": 4081,
+      "sha256": "075c2b62c093453b838957669c1872d3a14c20e39a073e13df32ca05d411e2ef"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-actual-independent-review\\findings.json",
+      "bytes": 12526,
+      "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-actual-independent-review\\manifest.json",
+      "bytes": 30861,
+      "sha256": "26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\PROTOCOL.md",
+      "bytes": 3530,
+      "sha256": "9019a3abaeec09b793e44ffed081461191405df23c6032d7ff6f012bf671ffa2"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\actual-manifest.json",
+      "bytes": 34662,
+      "sha256": "71e766158fdaf6f80a2dc55bf5c4fb8177bfcfcdaee35f1f7860c1fec0828b0d"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\contract.json",
+      "bytes": 7679,
+      "sha256": "5e114f5c0efd47cbf92279bdf0d638732a40ae3b8a9d0f554d56c51df2304845"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\selected-cfg.json",
+      "bytes": 47217,
+      "sha256": "659b804677b9ffb2635afcc34ae46c26cd6e9b815a7515bf1faa8d0173db4f40"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\capture.json",
+      "bytes": 140752,
+      "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\cfg_core.py",
+      "bytes": 5363,
+      "sha256": "54a11ab860dbf234645d16cd33ddfd1bfa4a3323a76f59d39f401e41a1b55550"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\launch_once.py",
+      "bytes": 4138,
+      "sha256": "4c8ae66eee0de433e4f19f0809759a6cbf804364f521aedfaba93ab680c0d203"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\owned-code.json",
+      "bytes": 1099,
+      "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\produce.py",
+      "bytes": 19265,
+      "sha256": "a418c6781b65cbf94672622f9aa3dbfc26e3e8df1135dd889c4f84e9187ff8e6"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\runtime_contract.py",
+      "bytes": 6667,
+      "sha256": "de314e4bff94667a3fab0ed49f72c9ba6467310a3218dd0c11f892e44aa6c32a"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\source-manifest.json",
+      "bytes": 26330,
+      "sha256": "e40ccf4eba10b12b7d626f0fc00b1bcdac50972d1a0a35559ba3756b64694817"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-source-independent-review\\findings.json",
+      "bytes": 6026,
+      "sha256": "73c9edd7d2447e7535b9d7760a11144071bdd5c9e2b47149d02cc7f4fa6eac68"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r88-c9d60-cache-metadata\\findings.json",
+      "bytes": 1900,
+      "sha256": "37b737b926ca54c0a750e17038c1625851edfce8860eba396be0349d01cba43a"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r88-c9d60-cache-metadata\\manifest.json",
+      "bytes": 2625,
+      "sha256": "e3aa44d71ff0ce0915acfd4e55da5d8500844b92e2d4bdeef17b06b82968b56c"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source-plan\\manifest.json",
+      "bytes": 4689,
+      "sha256": "89068eefa2db4dcd2d6ceb05cc03b3eccb62416558e52f612ce9d8aaefc25659"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source-plan\\proposal.json",
+      "bytes": 15747,
+      "sha256": "5aa951e2818b5525a969a16903707ed66e5ddb78e3524266ecb7b763f9a1237f"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\PROTOCOL.md",
+      "bytes": 3314,
+      "sha256": "aa68367055b0f8a0c41175f4da3385a85d7a65e0a7e5624bf9116df7224ff57d"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\budget.json",
+      "bytes": 1718,
+      "sha256": "405277c7b4b915bb4e7bbf0e27322c05bed202bb312f0314b64d700ce86b4fed"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cases_child.py",
+      "bytes": 6034,
+      "sha256": "43a8fcf519888f5bd9f3fe3095799d1f0f21b419eb39c99ec415f74cad9f907a"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cfg_core.py",
+      "bytes": 5317,
+      "sha256": "5f0b566a36b7a765c895dd0068941ab828e82d34c088fc33250d6083b9d43252"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\entry-seed.json",
+      "bytes": 6275,
+      "sha256": "e4f1e085c7e1b7147432508c51e355c0e30473b8813a149d4e7043e28ebdaf9e"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\launch_once.py",
+      "bytes": 4138,
+      "sha256": "b3b2083f94576b4bfd399b8a5dde0e910eba8268f498ce84e3a5cabfbbbd9c27"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\main-template.py.inc",
+      "bytes": 9838,
+      "sha256": "dfaa3980ba82c694e3281d85f3134a46c669c7a5fd3bb15d72da3be511092e85"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\metadata_core.py",
+      "bytes": 4120,
+      "sha256": "ea32c610a8b578911eb2c8696535b3becf3db20d86977d91bc2463f8b563b4d0"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\produce.py",
+      "bytes": 18739,
+      "sha256": "667e6cdd3d5e7390d0b5ce08d19ac127abee5824b7c68b102254ae3a94931ab0"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\run_cases_once.py",
+      "bytes": 3447,
+      "sha256": "765057076f0e0cbb00492c94f177d78be2989805db8be7044a827bbc1d0c68b3"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\runtime-template.py.inc",
+      "bytes": 6333,
+      "sha256": "3b7ce91ae3f0ad6430035f407df97c13fe037cccc4da848435e6abffcf1d0f16"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\runtime_contract.py",
+      "bytes": 7777,
+      "sha256": "824eba3705c3bd0b7f33917f40c6bfc34de9de31e1093115e3ad47ceab7f1e67"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\source-delta.json",
+      "bytes": 4622,
+      "sha256": "b469f85b0398dbb357dbb61a94c9e164b553f76638a3d80ff3dd99943febbb1a"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-root-source-authorization\\authorization.json",
+      "bytes": 9647,
+      "sha256": "c6e844b1d6f8e635d673caab18c5c2eade3c7faa2fa8109810f3bb95f003f012"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-root-source-authorization\\receipt.json",
+      "bytes": 7712,
+      "sha256": "42d43b23744c8f811b075c53ca85e46238c9867f8ccef46c4c043962d3d0fb5c"
+    }
+  ],
+  "source_bytes": 1150002,
+  "Capstone_imports": 0,
+  "PE_reads": 0,
+  "producer_main_executions": 0,
+  "old_cases_or_tests": 0,
+  "game_process_accesses": 0,
+  "native_game_calls": 0,
+  "metadata_callbacks_are_fabricated_bytes": true,
+  "fake_decoder_used": true,
+  "actual_authorized": false,
+  "native_ready": false
+}

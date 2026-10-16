@@ -1,0 +1,86 @@
+{
+  "PID_UI_game_native_operations": 0,
+  "all_previous_own_shells_collected": true,
+  "atomic_snapshot": false,
+  "author_defects": 0,
+  "author_files_modified": false,
+  "author_imports_or_executions": 0,
+  "author_sealer_memory": "Original0 is unavailable, correctednull/unvalidated; runtimeJob peak48107520 is a separate witness.",
+  "authorizes_retry": false,
+  "current_selected_absence_only": true,
+  "decoder_imports": 0,
+  "duration_scope_ms": {
+    "Job_seconds": 8.562,
+    "candidate_with_host_source_guards": 5722.485,
+    "controller_seconds": 8.688
+  },
+  "effective_source_upper": 23353805,
+  "final_heir_result_verified": false,
+  "first_filecheck": {
+    "exit_code": 0,
+    "explicit_bytes": 3328161,
+    "files": 89,
+    "tool_chunk": "b7b79f"
+  },
+  "journal_bytes": 55844,
+  "journal_calls": 2990,
+  "journal_largest": 11040,
+  "manual_preview_allowance": 6291456,
+  "native_ready": false,
+  "new_capture_or_query": false,
+  "new_internal_finish_reserve": 4194304,
+  "old_internal_finish_reserve": 2097152,
+  "original_request_effect_verified": false,
+  "own_failures": 1,
+  "own_peak_self_committed_bytes": 24289280,
+  "parent_source_cap": 33554432,
+  "passed": true,
+  "positive_task_body_verified": false,
+  "retained_cap": 8388608,
+  "review_executions": [
+    {
+      "exit_code": 1,
+      "reason": "Reviewer int0 versus boolFalse identity assertion; source/failure/stdout/stderr preserved.",
+      "source": "review.py",
+      "tool_chunk": "208fe0"
+    },
+    {
+      "exit_code": 0,
+      "source": "review_r2.py",
+      "tool_chunk": "b7d218"
+    }
+  ],
+  "revision_builder": {
+    "exit_code": 0,
+    "tool_chunk": "6e3221"
+  },
+  "schema": "EU4-SUPPORT-LIVE-INDEPENDENT-COMPLETION/1",
+  "sealed": true,
+  "sessions_listeners_created": 0,
+  "source_declared_unjournaled_entry_PE": {
+    "bytes": 8192,
+    "calls": 1,
+    "included_in_journal": false,
+    "replayed": false
+  },
+  "source_exact_formal_including_failed_review_and_diagnostic": 12868045,
+  "stage_bytes": {
+    "code_after": 4308,
+    "code_before": 4308,
+    "host_after": 300,
+    "host_before": 300,
+    "sample_1": 23314,
+    "sample_2": 23314
+  },
+  "stages": {
+    "code_after": 2,
+    "code_before": 2,
+    "host_after": 46,
+    "host_before": 46,
+    "sample_1": 1447,
+    "sample_2": 1447
+  },
+  "target_PE_env_or_engine_body_accesses": 0,
+  "tests_run": 0,
+  "world_lease": false
+}

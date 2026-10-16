@@ -1,0 +1,324 @@
+{
+  "schema": "EU4-R73-RETAINED-SELECTED-EVIDENCE/1",
+  "evidence_kind": "ordinary_locked_Capstone_not_REA_Evidence_ID",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "window": [
+    "0x993643",
+    "0x993658"
+  ],
+  "owned_code_pin": {
+    "bytes": 906,
+    "sha256": "531d218c6d62d25eedee87756f347cb6089fd5f32afeec51ceb634f22760482c"
+  },
+  "capture_pin": {
+    "bytes": 73174,
+    "sha256": "362d4112a31856da813b1a4c5499fa4bb5257b227c4f1ba72be5d91ef9f06b6c"
+  },
+  "raw_hex": "4c8b7c2478498bc64883c430415e415d415c5e5dc3",
+  "rows": [
+    {
+      "rva": "0x993643",
+      "bytes": "4c8b7c2478",
+      "mnemonic": "mov",
+      "operands": "r15, qword ptr [rsp + 0x78]",
+      "registers_read": [
+        "rsp"
+      ],
+      "registers_written": [
+        "r15"
+      ],
+      "memory_operands": [
+        {
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "displacement": 120,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "4c8b7c2478",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x993648",
+      "bytes": "498bc6",
+      "mnemonic": "mov",
+      "operands": "rax, r14",
+      "registers_read": [
+        "r14"
+      ],
+      "registers_written": [
+        "rax"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "498bc6",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x99364b",
+      "bytes": "4883c430",
+      "mnemonic": "add",
+      "operands": "rsp, 0x30",
+      "registers_read": [
+        "rsp"
+      ],
+      "registers_written": [
+        "rflags",
+        "rsp"
+      ],
+      "memory_operands": [],
+      "immediates": [
+        48
+      ],
+      "raw_memory_write_review": {
+        "raw_hex": "4883c430",
+        "status": "recognized_register_or_no_destination_form",
+        "explicit_memory_write": false,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "83",
+        "modrm_hex": "0xc4",
+        "mod": 3,
+        "group": 0
+      }
+    },
+    {
+      "rva": "0x99364f",
+      "bytes": "415e",
+      "mnemonic": "pop",
+      "operands": "r14",
+      "registers_read": [
+        "rsp"
+      ],
+      "registers_written": [
+        "rsp",
+        "r14"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "415e",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "5e"
+      }
+    },
+    {
+      "rva": "0x993651",
+      "bytes": "415d",
+      "mnemonic": "pop",
+      "operands": "r13",
+      "registers_read": [
+        "rsp"
+      ],
+      "registers_written": [
+        "rsp",
+        "r13"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "415d",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "5d"
+      }
+    },
+    {
+      "rva": "0x993653",
+      "bytes": "415c",
+      "mnemonic": "pop",
+      "operands": "r12",
+      "registers_read": [
+        "rsp"
+      ],
+      "registers_written": [
+        "rsp",
+        "r12"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "415c",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "5c"
+      }
+    },
+    {
+      "rva": "0x993655",
+      "bytes": "5e",
+      "mnemonic": "pop",
+      "operands": "rsi",
+      "registers_read": [
+        "rsp"
+      ],
+      "registers_written": [
+        "rsp",
+        "rsi"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "5e",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "5e"
+      }
+    },
+    {
+      "rva": "0x993656",
+      "bytes": "5d",
+      "mnemonic": "pop",
+      "operands": "rbp",
+      "registers_read": [
+        "rsp"
+      ],
+      "registers_written": [
+        "rsp",
+        "rbp"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "5d",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "5d"
+      }
+    },
+    {
+      "rva": "0x993657",
+      "bytes": "c3",
+      "mnemonic": "ret",
+      "operands": "",
+      "registers_read": [
+        "rsp"
+      ],
+      "registers_written": [
+        "rsp"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "c3",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "c3"
+      }
+    }
+  ],
+  "continuous_rows_raw_equal": true,
+  "row_count": 9,
+  "decoded_bytes": 21,
+  "manual_raw_semantics": [
+    "4c8b7c2478: MOV64 R15,[RSP+78], memory load only",
+    "498bc6: MOV64 RAX,R14 before later POP R14",
+    "4883c430: ADD64 RSP,30h register destination ModRM c4",
+    "415e/415d/415c/5e/5d: register POPs, implicitQWORD stack reads",
+    "c3: near RET, implicitQWORD returnaddress read"
+  ],
+  "explicit_memory_store_count": 0,
+  "explicit_D_or_header_access_count": 0,
+  "explicit_stack_loads": [
+    {
+      "site": "0x993643",
+      "address": "F+78=S69+20",
+      "bytes": 8
+    }
+  ],
+  "implicit_stack_reads": [
+    {
+      "site": "0x99364f",
+      "kind": "stack_qword_pop",
+      "target_register": "r14",
+      "address_relative_to_F": "0x30",
+      "RSP_increment": 8
+    },
+    {
+      "site": "0x993651",
+      "kind": "stack_qword_pop",
+      "target_register": "r13",
+      "address_relative_to_F": "0x38",
+      "RSP_increment": 8
+    },
+    {
+      "site": "0x993653",
+      "kind": "stack_qword_pop",
+      "target_register": "r12",
+      "address_relative_to_F": "0x40",
+      "RSP_increment": 8
+    },
+    {
+      "site": "0x993655",
+      "kind": "stack_qword_pop",
+      "target_register": "rsi",
+      "address_relative_to_F": "0x48",
+      "RSP_increment": 8
+    },
+    {
+      "site": "0x993656",
+      "kind": "stack_qword_pop",
+      "target_register": "rbp",
+      "address_relative_to_F": "0x50",
+      "RSP_increment": 8
+    },
+    {
+      "site": "0x993657",
+      "kind": "near_RET_stack_qword_read",
+      "address_relative_to_F": "0x58",
+      "RSP_increment": 8,
+      "target": "QWORD[F+58]",
+      "target_validity_and_no_alias_corruption_required": true
+    }
+  ],
+  "normal_path_stack_read_bytes": 56,
+  "CALLsites": 0,
+  "branchsites": 0,
+  "RETsites": 1,
+  "INT3sites": 0,
+  "local_CFG_closed": true,
+  "whole_function_closed": false,
+  "lookahead_total": 70,
+  "lookahead_unique": 21,
+  "lookahead_repeated": 49,
+  "source_current_facts_not_runtime_events": true,
+  "new_PE_reads": 0,
+  "new_decoder_invocations": 0,
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "independent_entry_callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "whole_function_closed": false,
+    "runtime_verified": false,
+    "persistence_verified": false
+  }
+}

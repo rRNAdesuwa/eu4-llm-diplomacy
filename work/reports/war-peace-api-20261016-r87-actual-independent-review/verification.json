@@ -1,0 +1,86 @@
+{
+  "PE_engine_decoder_tests_game_native": 0,
+  "author_programs_run": 0,
+  "blocking_findings": [],
+  "explicit_source_returned": 17899651,
+  "manifest_pin": {
+    "bytes": 30861,
+    "path": "work/reports/war-peace-api-20261016-r87-actual-independent-review/manifest.json",
+    "sha256": "26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd"
+  },
+  "manual_unknown_and_completion_reserve": 2097152,
+  "memory": {
+    "commit_or_peak_pagefile": 23175168,
+    "peak_working": 31408128,
+    "working": 29442048
+  },
+  "new_local_firstcheck": {
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/accounting.json": {
+      "bytes": 44265,
+      "sha256": "ff5eb91a342bd3e44bbcfb0db8817dde556349dade539d802337db7300e91341"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/failure-r1.json": {
+      "bytes": 1482,
+      "sha256": "869a27f1c27f6063056dfe60d0640419f05ce5375f3db467cea115bdc00f0f97"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/findings.json": {
+      "bytes": 12526,
+      "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/initial-shell.json": {
+      "bytes": 29008,
+      "sha256": "ab70ad6e6d45793604a1d0905fb67b83879206c953cb8bde5e7b3f148ee0e0ad"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/inspect_sources.py": {
+      "bytes": 2692,
+      "sha256": "7858b0af0d6d9a9ce6921b753916f60fe8219f16ec8cf6a164706b041412b3e2"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/plan.json": {
+      "bytes": 1457,
+      "sha256": "97264ec166cc5e3172fccd461e24961ee27e32d9cb32e29fb607bc44322dcf0d"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/raw-checks.json": {
+      "bytes": 22724,
+      "sha256": "f5776b5fd0d6d837fb03de69e1077ac91c8e15149e2e64f802a128704f634d9b"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/report.md": {
+      "bytes": 1891,
+      "sha256": "06e8d74a76a0745f49f0357c3524930a8a5daaf5b7218b056c9bd55c80b281f9"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/retained-source-buffers.json": {
+      "bytes": 1996544,
+      "sha256": "b70e714fb6939af6f0faa4b9dec35d980f7ab8eb5cccc16191fb5d8dc283a88c"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/review-r1-correction.json": {
+      "bytes": 1747,
+      "sha256": "c53b9edcdb379e4f2c4edfdb364ca0ac90566f1447bcd82a94291d8191f55c07"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/review-r2.py": {
+      "bytes": 32937,
+      "sha256": "d27bd6c18207fb5fe2029818b9c601b4191d2be1c8ef60391960a0cad65578ca"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/review.py": {
+      "bytes": 32020,
+      "sha256": "80f0a10cbffed0f14d9b7235d7fcbe00c6fa5dca157eeccdb6755a56d987187c"
+    }
+  },
+  "own_peak_commit": 23175168,
+  "passed": true,
+  "retained_completion_reserve": 262144,
+  "retained_known_files": 2210154,
+  "retained_limit": 8388608,
+  "retained_upper": 2472298,
+  "review_failures": [
+    {
+      "correction": "work/reports/war-peace-api-20261016-r87-actual-independent-review/review-r1-correction.json",
+      "path": "work/reports/war-peace-api-20261016-r87-actual-independent-review/failure-r1.json",
+      "scope": "reviewer schema expectation only; author unchanged; no acquisition repeated"
+    }
+  ],
+  "schema": "EU4-R87-INDEPENDENT-OWN-VERIFY/1",
+  "sealed": true,
+  "source_limit": 33554432,
+  "source_postguard_all_equal": true,
+  "source_postguard_count": 131,
+  "source_upper": 19996803
+}

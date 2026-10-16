@@ -1,0 +1,290 @@
+{
+  "schema": "EU4-R57-NONZERO-GOLD-HELPER-CONTRACT/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "evidence_kind": "ordinary Capstone5.0.7 single bounded offline function capture; no REA Evidence ID",
+  "entry": {
+    "rva": "0x9b46a0",
+    "exact_pdata": {
+      "index": 19453,
+      "rva": "0x249dfdc",
+      "file_offset": 37142492,
+      "raw_hex": "a0469b00654a9b000400e801",
+      "begin_rva": "0x9b46a0",
+      "end_exclusive": "0x9b4a65",
+      "unwind_rva": "0x1e80004"
+    },
+    "extent_bytes": 965,
+    "full_extent_owned": true,
+    "instructions": 214,
+    "decoded_unique_bytes": 965,
+    "new_external_callee_or_data_bytes": 0,
+    "normal_RET": "0x9b49e7",
+    "INT3": "0x9b49ed",
+    "local_normal_CFG_closed": false,
+    "local_normal_CFG_limit": "All direct branch destinations are in owned extent. Normal return requires valid memory, normal callees and loop termination; INT3 remains abnormal."
+  },
+  "input_provenance": {
+    "S": "incomingRCX ->RSI at9b46c2; opaque component from retained caller; RSI later reused at9b488a",
+    "Kptr": "incomingRDX ->RDI at9b46bf; addressable DWORD. Read at9b46e7,9b472b,9b47cd,9b4848; callee alias writes prevent equating these values by ordinary ABI.",
+    "H": "incomingR8 ->RBX; logical SHR32 then MOVSX RAX,BX; only signed16 bits32..47 used as slot for array indexing. Full TAG/generation/kind/valid are not checked.",
+    "R9_XMM": "incoming values are opaque. First338540 and later3387f0 explicitly setR9D0; 339c10 R8/R9 are unknown after previous call.",
+    "amount30": "No local component+30 memory access in this body. Caller nonzero gate neither proves Kptr positive nor describes units."
+  },
+  "slot_object_selection": {
+    "DB_global_rva": "0x233d8d0",
+    "table_field": "QWORD[DB+0x118]",
+    "A": "QWORD[table+8*sign16(H>>32)]; fresh DB/table/object loads at9b46c9..e3,9b46fe..4711,9b4787..4795 and later paths. Equal slot is not object identity/lifetime authority.",
+    "B": "QWORD[table+8*sign16(QWORD[S+0x22]>>32)] at9b47b6..c9; later reload at9b481a..4834. Exact unaligned field+22 is retained without invented component layout.",
+    "native_missing_guards": [
+      "No signed slot nonnegative/count bound",
+      "No fullhandle or country vtable/owner proof",
+      "No lease/epoch/root stability"
+    ],
+    "type_limit": "A/B are database-selected objects. This body alone does not certify their C++ class, country identity or full extent."
+  },
+  "resource_shaped_call_sites": [
+    {
+      "site": "0x9b46f9",
+      "target": "0x338540",
+      "RCX": "fresh A",
+      "EDX": 12,
+      "R8": "&localDWORD T initialized from[Kptr]",
+      "R9D": 0,
+      "unknown": "call body and actual resource/unit/direction, alias writes and return"
+    },
+    {
+      "site": "0x9b4715",
+      "target": "0x339c10",
+      "RCX": "freshly reselected A",
+      "RDX": "&same T after338540",
+      "R8_R9": "unknown volatile state after338540",
+      "unknown": "helper effect on T/object, class, units and return"
+    },
+    {
+      "site": "0x9b47df",
+      "target": "0x3387f0",
+      "RCX": "B from component+22 slot",
+      "EDX": 20,
+      "R8": "&localDWORD overwritten from fresh[Kptr]",
+      "R9D": 0,
+      "unknown": "actual debit/credit role, units and recipients; neither code12 nor20 is named here"
+    }
+  ],
+  "numeric_dataflow": {
+    "T": "signedDWORD atsteadyRSP+70 read after both first helpers,9b471a",
+    "D": "max_signed(T,1000). The explicit fallbackEAX=-1 at9b474a has contradictory T>=1000 and T==0 path conditions under the shown local instructions.",
+    "N": "fresh signedDWORD[Kptr] at9b472b, not assumed equal to pre-helper copy",
+    "division": "Unsigned uint32(N+0x189373)<=0x39580d selects signed32 IMUL1000/CDQ/IDIV D; else signed64 IMUL1000/CQO/IDIV sign64(D). Raw range test retained, no unsigned money conversion inferred.",
+    "Q": "sign_extend64(low32(division quotient)); denominator positive and fast-product selected range fits signed32. This is numerical truncation toward zero, not a business amount-unit contract.",
+    "G": "sign_extend64(DWORD[module+0x233f324]), module value not read",
+    "P": "signed64(low64(Q*G))",
+    "Hmul": "signed high64(P*0x20c49ba5e353f7cf)",
+    "V": "arithmetic_shift_right64(Hmul,7)",
+    "delta": "low32(V+logical_shift_right64(V,63))",
+    "direct_write": "Fresh A+bd4 DWORD := add_mod32(old,delta) at9b4799; if result signbit31 is1 store0 at9b47ac.",
+    "unit_and_field_meaning": "Unknown. Multipliers1000 and magic division-shaped arithmetic do not independently identify currency or treasury_milli."
+  },
+  "explicit_field_observations": [
+    {
+      "rows": [
+        "0x9b4799",
+        "0x9b479f",
+        "0x9b47ac"
+      ],
+      "object": "fresh A",
+      "offset": "0xbd4",
+      "width": 4,
+      "read": true,
+      "write": true,
+      "meaning": "scaled scalar add and clamp; field name unknown"
+    },
+    {
+      "rows": [
+        "0x9b4838",
+        "0x9b4842"
+      ],
+      "object": "fresh B",
+      "offset": "0xbb0",
+      "width": 4,
+      "read": true,
+      "write": false,
+      "condition": "signedDWORD>=1000 skips optional tail; no direct treasury write mapped"
+    },
+    {
+      "rows": [
+        "0x9b47e4",
+        "0x9b47eb",
+        "0x9b47f4",
+        "0x9b47fd",
+        "0x9b4806",
+        "0x9b4811"
+      ],
+      "object": "QWORD[module233fe78]",
+      "fields": [
+        "byte1e66",
+        "byte1e6f",
+        "QWORD1e68 or1e60"
+      ],
+      "meaning": "local selector then low16(high32) compare to Hslot; no fullhandle identity proof"
+    },
+    {
+      "rows": [
+        "0x9b4883",
+        "0x9b488a",
+        "0x9b4891"
+      ],
+      "object": "later A+1280 pointee",
+      "fields": [
+        "QWORD80 begin candidate",
+        "QWORD88 end candidate"
+      ],
+      "meaning": "8-byte stride/backward signed32-count loop; no cap/allocation/type/removed guard"
+    }
+  ],
+  "optional_tail": {
+    "gates": [
+      "Hslot equals selected module233fe78 handle slot",
+      "fresh B+bb0 signedDWORD<1000",
+      "fresh[Kptr] signedDWORD>0"
+    ],
+    "later": "GS58/thread storage and module2462a90 guard may enter initialization calls. Then A+1280 candidate vector scan compares string-shaped element+158 data/length/capacity to module2329448/9458/9460 via1a35650. Actual literals and helper body were not read.",
+    "match": "local string-shaped storage uses950b0(32), module constants and737ea0(&local); low16 AX ->EDX, RCX=laterA+2f0,R8D=29c77f8 ->7371f0. No effect/type/notification identity is inferred.",
+    "initialization": "conditional calls1a32f74/950b0/1a332bc/1a32f14 and stores2329458=12hex,2329460=1fhex,2329448=returned pointer. No pure/allocator/reentrancy/exception closure.",
+    "cleanup": "local storage capacity/allocator metadata checks may call17394f0 or1a41c6c thenINT3. No allocator-success or transitive-free proof."
+  },
+  "raw_store_summary": {
+    "explicit_total": 21,
+    "categories": {
+      "stack": 10,
+      "slot_selected_object_field": 2,
+      "allocator_shaped_call_return_alias": 6,
+      "RIP_module": 3
+    },
+    "raw0F11_additions": 2,
+    "implicit_push_pop_call_ret_stack_effects": "not included in21 explicit memory-destination stores",
+    "Capstone_memory_access_flags": "not sufficient alone; raw0f1100 stores were added. LEA/NOP memory-looking operands are not dereference claims."
+  },
+  "calls": [
+    {
+      "site_rva": "0x9b46f9",
+      "raw_hex": "e8423e98ff",
+      "target_rva": "0x338540",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b4715",
+      "raw_hex": "e8f65498ff",
+      "target_rva": "0x339c10",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b47df",
+      "raw_hex": "e80c4098ff",
+      "target_rva": "0x3387f0",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b48f9",
+      "raw_hex": "e8520d0801",
+      "target_rva": "0x1a35650",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b4942",
+      "raw_hex": "e869076eff",
+      "target_rva": "0x950b0",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b4976",
+      "raw_hex": "e82535d8ff",
+      "target_rva": "0x737ea0",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b498b",
+      "raw_hex": "e86028d8ff",
+      "target_rva": "0x7371f0",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b49c5",
+      "raw_hex": "e8264bd800",
+      "target_rva": "0x17394f0",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b49e8",
+      "raw_hex": "e87fd20801",
+      "target_rva": "0x1a41c6c",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b49f5",
+      "raw_hex": "e87ae50701",
+      "target_rva": "0x1a32f74",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b4a0c",
+      "raw_hex": "e89f066eff",
+      "target_rva": "0x950b0",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b4a4e",
+      "raw_hex": "e869e80701",
+      "target_rva": "0x1a332bc",
+      "callee_followed": false
+    },
+    {
+      "site_rva": "0x9b4a5b",
+      "raw_hex": "e8b4e40701",
+      "target_rva": "0x1a32f14",
+      "callee_followed": false
+    }
+  ],
+  "all_callees_unfollowed": true,
+  "return": "One normal RET; no normalized/typed business result. Caller9b4040 does not use helper RAX before replacing it. Normal ABI preserves registers, not pointed-to fields.",
+  "reader_consequence": "No positive-gold reader oracle completed: directbd4 meaning and three resource-shaped callees are unbound; recipient collection/weights still needs9844d0 independently. No single actor-target conservation assumption.",
+  "resources": {
+    "pdata_requests": 20,
+    "pdata_unique_records": 17,
+    "pdata_physical_bytes": 240,
+    "pdata_unique_bytes": 204,
+    "code_read_bytes": 965,
+    "decoded_unique_bytes": 965,
+    "decoder_input_bytes_with_overlap": 3195,
+    "decoder_input_unique_bytes": 965,
+    "decoder_input_overlap_bytes": 2230,
+    "two_EXE_SHA_bytes": 76925008,
+    "total_PE_physical_bytes": 76926213,
+    "peak_committed_bytes": 39178240,
+    "software_memory_guard_bytes": 805306368,
+    "hard_Job_object_installed": false,
+    "producer_subprocess_elapsed_ns": 716461500,
+    "elapsed_scope": "producer subprocess launch through collected exit, including source/review/decoder guards and two EXE hashes; extension/auth creation before timing",
+    "own_child_collected": true,
+    "game_process_access": 0,
+    "Frida_operations": 0,
+    "native_game_calls": 0,
+    "tests_run": 0,
+    "requests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "sender_authorized": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "positive_gold_payment_verified": false,
+    "input_types_verified": false,
+    "unit_mapping_verified": false,
+    "payer_payee_direction_verified": false,
+    "complete_recipient_mapping_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

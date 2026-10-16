@@ -1,0 +1,35 @@
+{
+  "schema": "EU4-ENTRY-FORWARD-DESIGN-INPUTS/1",
+  "target_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "inputs": {
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/build.json": {
+      "bytes": 13802,
+      "sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/src/work/candidates/v26-gap-curry-bootstrap-1375/frame.asm": {
+      "bytes": 1582,
+      "sha256": "3d5da5aea5408d4991fce7bb19275025e7d28bcbbfc90c08d82e797ad09d30f0"
+    },
+    "work/reports/war-peace-api-20261015-r6-main-frame/war/manifest.json": {
+      "bytes": 1416,
+      "sha256": "91048604c9c02c1a5529eedd1526ef8525b0025af464e28c9422eec9a8ed1ca0"
+    },
+    "work/reports/war-peace-api-20261015-r6-main-frame/war/findings.json": {
+      "bytes": 27400,
+      "sha256": "3c649fc92913121781f54707b2cfe4ca68f758c59deb5ebe1d2371160f1bbcaa"
+    },
+    "work/reports/war-peace-api-20261015-r6-entry-observer-r2/war/manifest.json": {
+      "bytes": 1931,
+      "sha256": "5c54d1d03bfa9a223ebc094802340be6a3c1eafec4c9c77f241c4647919b870f"
+    },
+    "work/reports/war-peace-api-20261015-r6-entry-observer-r2/war/candidate/entry_snapshot.py": {
+      "bytes": 13566,
+      "sha256": "8a4e563d7e66a5a9c5359e0e47d662175516fd4939bae0f3b63a15e177cd6bf9"
+    }
+  },
+  "new_disassembly_bytes": 0,
+  "source_only_model": true,
+  "game_process_accessed": false,
+  "native_ready": false,
+  "sealed": false
+}

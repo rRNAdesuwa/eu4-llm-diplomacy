@@ -1,0 +1,38 @@
+{
+  "child_unchanged_AST": [
+    "require",
+    "pin",
+    "decode",
+    "read",
+    "save",
+    "bootstrap",
+    "game_meter_class"
+  ],
+  "controller_unchanged_AST": [
+    "require",
+    "pin",
+    "decode",
+    "read",
+    "save",
+    "bootstrap",
+    "validate_capture",
+    "validate_io"
+  ],
+  "donor": "work/reports/peace-current-pending-v2-live-controller-20261016-r1/source-manifest.json",
+  "new": [
+    "exact text snapshot adapter",
+    "configuration ledger and selected-state closure check",
+    "schema2/config triple/four-subject source peer"
+  ],
+  "new_case_count_max": 8,
+  "original_candidate_or_donor_modified": false,
+  "real_config_operations": 0,
+  "runtime_contract_changed": [
+    "BUILD identity/shape",
+    "manifest schema2",
+    "once grant schema2",
+    "config raw triple metadata",
+    "adapter executable and peer subject"
+  ],
+  "runtime_grant_created": false
+}

@@ -1,0 +1,467 @@
+{
+  "schema": "EU4-R35-FORWARD-INPUT9-CONTRACT/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "evidence_type": "ordinary_fixedPE_owned_buffer_bounded_Capstone_CFG_and_static_inference_not_REA_or_runtime",
+  "required_parent_roots": {
+    "work/reports/war-peace-api-20261015-r34-forward-target-prefix/war/manifest.json": {
+      "bytes": 3115,
+      "sha256": "d4e7b940f535c1499c41929e35ea13a1efd184603993011093206dff70cc3628"
+    },
+    "work/reports/war-peace-api-20261015-r34-forward-target-prefix/war/selected-decode.json": {
+      "bytes": 21722,
+      "sha256": "8f9850c80d566b3194522e9a75ae2ff9d8afe9fbf665e133de9d59f574e01d2f"
+    },
+    "work/reports/war-peace-api-20261015-r34-forward-target-prefix/war/metadata.json": {
+      "bytes": 14945,
+      "sha256": "9191aa75a6c9d12ec553880fea608836e239773543de89c4ca9dc4214f9df315"
+    },
+    "work/reports/war-peace-api-20261015-r34-forward-target-prefix/war/contract.json": {
+      "bytes": 7034,
+      "sha256": "4d57b7efa54edf572592a5579dc53afa154e12f2ad1a842cd24272ad776eb58e"
+    }
+  },
+  "tail_raw_pin": {
+    "bytes": 6860,
+    "sha256": "c01458e988fe665b4b790456d5c4b21e99b86077b964f3adc4c9a45a0b5b119b"
+  },
+  "CFG_pass1_pin": {
+    "bytes": 118773,
+    "sha256": "b776ac68d878aca86198651cabc13cd46a07dd8533b7da602256343bb792e1f0"
+  },
+  "selected_case_pin": {
+    "bytes": 10920,
+    "sha256": "6e672d76b06cbcf7f15ff1f1bb4523d8c32d0a61fa09cfb21b5fec0aa38811ee"
+  },
+  "selected_CFG_pin": {
+    "bytes": 55142,
+    "sha256": "d29bce9609b0004e4454bf6a2aaa9f02e28de14027fc89b18b0367b14da3ef3a"
+  },
+  "scope": {
+    "function_extent": [
+      "0x6ec450",
+      "0x6eca91"
+    ],
+    "new_window": [
+      "0x6ec4b0",
+      "0x6eca91"
+    ],
+    "new_bytes": 1505,
+    "old_prefix_targeted_read_or_decode_repeated": false,
+    "old_prefix_reused_bytes": 96,
+    "input9_seed": "0x6ec4ba",
+    "no_linear_execution_claim_for_after_RET_bytes": true,
+    "known_table_region": [
+      "0x6ec9c4",
+      "0x6eca91"
+    ],
+    "complete_function_classification": false
+  },
+  "findings": [
+    {
+      "id": "input9_early_return_or_explicit_integer_state_update",
+      "kind": "observation",
+      "early_return_condition": "R14B0 and first dword[original RDI+2c] compares equal to ESI9, then BPL0",
+      "early_return_path": [
+        "0x6ec4ba",
+        "0x6ec4bf",
+        "0x6ec4c4",
+        "0x6ec68a",
+        "0x6ec6a4"
+      ],
+      "early_return_nonstack_stores_in_this_function": 0,
+      "changed_path_stores_before_first_followup_call": [
+        {
+          "site": "0x6ec53f",
+          "destination": "original receiver+0x30",
+          "size": 4,
+          "value": "current EAX from a second receiver+2c read",
+          "condition": "second EAX!=ESI9 and EAX!=0x49; no stable-memory/ABA assumption"
+        },
+        {
+          "site": "0x6ec542",
+          "destination": "original receiver+0x2c",
+          "size": 4,
+          "value": 9
+        },
+        {
+          "site": "0x6ec742",
+          "destination": "original receiver+0x40 via LEA RBX",
+          "size": 4,
+          "value": 7
+        }
+      ],
+      "boundary": "Actual machine stores on conditional reaching paths, not a truce object getter or proof of final values after unfollowed callees."
+    },
+    {
+      "id": "input9_selected_internal_table",
+      "kind": "observation",
+      "table": {
+        "input_value": 9,
+        "first_rva": "0x6eca4d",
+        "first_raw_hex": "06",
+        "slot": 6,
+        "second_rva": "0x6ec9dc",
+        "second_raw_hex": "3ec76e00",
+        "target_uint32_rva": "0x6ec73e",
+        "first_table_range": [
+          "0x6eca44",
+          "0x6eca91"
+        ],
+        "second_table_range": [
+          "0x6ec9c4",
+          "0x6eca44"
+        ],
+        "already_owned_bytes_used": 5,
+        "new_PE_bytes": 0
+      },
+      "selected_case": [
+        "0x6ec73e LEA RBX,[RDI+40]",
+        "0x6ec742 MOV dword[RBX],7",
+        "0x6ec748 JMP6ec57e"
+      ],
+      "boundary": "uint8 slot6 then uint32 RVA+modulebase, not signedrel32. Five parsed table bytes were already in the single1505B tail read."
+    },
+    {
+      "id": "conditional_followup_writes_and_callee_boundary",
+      "kind": "observation",
+      "original_receiver_write": {
+        "site": "0x6ec5a2",
+        "offset": "0x338",
+        "size": 1,
+        "value": 1,
+        "condition": "module+245af90 branch nonzero and earlier callees return normally"
+      },
+      "globals": [
+        {
+          "site": "0x6ec5a9",
+          "rva": "0x245af90",
+          "size": 1,
+          "value": 0
+        },
+        {
+          "site": "0x6ec613",
+          "rva": "0x245af91",
+          "size": 1,
+          "value": 0
+        }
+      ],
+      "other_pointer_stores": [
+        {
+          "site": "0x6ec5d8",
+          "destination": "current RCX+0x33a",
+          "size": 2,
+          "value": "0x101"
+        },
+        {
+          "site": "0x6ec5ed",
+          "destination": "current RDX+0x25a0",
+          "size": 1,
+          "value": 1
+        },
+        {
+          "site": "0x6ec665",
+          "destination": "current RCX+0x25a0",
+          "size": 1,
+          "value": 1
+        }
+      ],
+      "boundary": "These are conditional syntactic destinations. RCX/RDX/R8 provenance across unfollowed calls is not promoted to authenticated game/server/world object identity; only nonvolatile register preservation is assumed."
+    },
+    {
+      "id": "normal_control_successors_accounted_to_RET",
+      "kind": "observation",
+      "ret_sites": [
+        "0x6ec6a4"
+      ],
+      "external_direct_jumps": [],
+      "unresolved_selected_indirect_jumps": [],
+      "input_constants_pruned": [
+        {
+          "site": "0x6ec4bd",
+          "kind": "jne",
+          "target": "0x6ec52e",
+          "fallthrough": "0x6ec4bf",
+          "taken": false,
+          "reason": "R14B=0"
+        },
+        {
+          "site": "0x6ec4c2",
+          "kind": "jne",
+          "target": "0x6ec52e",
+          "fallthrough": "0x6ec4c4",
+          "taken": "unknown_memory_or_return_condition"
+        },
+        {
+          "site": "0x6ec4c7",
+          "kind": "je",
+          "target": "0x6ec68a",
+          "fallthrough": "0x6ec4cd",
+          "taken": true,
+          "reason": "BPL=0"
+        },
+        {
+          "site": "0x6ec533",
+          "kind": "je",
+          "target": "0x6ec542",
+          "fallthrough": "0x6ec535",
+          "taken": "unknown_memory_or_return_condition"
+        },
+        {
+          "site": "0x6ec538",
+          "kind": "je",
+          "target": "0x6ec542",
+          "fallthrough": "0x6ec53a",
+          "taken": false,
+          "reason": "ESI9 !=0x49"
+        },
+        {
+          "site": "0x6ec53d",
+          "kind": "je",
+          "target": "0x6ec542",
+          "fallthrough": "0x6ec53f",
+          "taken": "unknown_memory_or_return_condition"
+        },
+        {
+          "site": "0x6ec548",
+          "kind": "jne",
+          "target": "0x6ec4da",
+          "fallthrough": "0x6ec54a",
+          "taken": false,
+          "reason": "BPL=0"
+        },
+        {
+          "site": "0x6ec54d",
+          "kind": "ja",
+          "target": "0x6ec4da",
+          "fallthrough": "0x6ec54f",
+          "taken": false,
+          "reason": "unsignedESI9 <=0x4c"
+        },
+        {
+          "site": "0x6ec568",
+          "kind": "indirect_table_selected_input9",
+          "target": "0x6ec73e",
+          "taken": true
+        },
+        {
+          "site": "0x6ec748",
+          "kind": "jmp",
+          "target": "0x6ec57e",
+          "taken": true
+        },
+        {
+          "site": "0x6ec585",
+          "kind": "je",
+          "target": "0x6ec5b0",
+          "fallthrough": "0x6ec587",
+          "taken": "unknown_memory_or_return_condition"
+        },
+        {
+          "site": "0x6ec5b7",
+          "kind": "je",
+          "target": "0x6ec61a",
+          "fallthrough": "0x6ec5b9",
+          "taken": "unknown_memory_or_return_condition"
+        },
+        {
+          "site": "0x6ec5eb",
+          "kind": "je",
+          "target": "0x6ec5f4",
+          "fallthrough": "0x6ec5ed",
+          "taken": "unknown_memory_or_return_condition"
+        },
+        {
+          "site": "0x6ec623",
+          "kind": "je",
+          "target": "0x6ec66c",
+          "fallthrough": "0x6ec625",
+          "taken": "unknown_memory_or_return_condition"
+        },
+        {
+          "site": "0x6ec62a",
+          "kind": "je",
+          "target": "0x6ec66c",
+          "fallthrough": "0x6ec62c",
+          "taken": "unknown_memory_or_return_condition"
+        },
+        {
+          "site": "0x6ec67d",
+          "kind": "je",
+          "target": "0x6ec68a",
+          "fallthrough": "0x6ec67f",
+          "taken": "unknown_memory_or_return_condition"
+        }
+      ],
+      "boundary": "Only local input9 successor accounting closes, assuming valid referenced storage and normal ABI returns of unfollowed calls. Exceptions, reentry, world lifetime and return-value semantics remain unknown."
+    }
+  ],
+  "unfollowed_calls": [
+    {
+      "site": "0x6ec590",
+      "target": "0x76ed60",
+      "followed": false,
+      "normal_return_continuation": "0x6ec595"
+    },
+    {
+      "site": "0x6ec59b",
+      "target": "qword ptr [r8 + 0x2c0]",
+      "followed": false,
+      "normal_return_continuation": "0x6ec5a2"
+    },
+    {
+      "site": "0x6ec5c5",
+      "target": "0x76edd0",
+      "followed": false,
+      "normal_return_continuation": "0x6ec5ca"
+    },
+    {
+      "site": "0x6ec5f4",
+      "target": "0x6ebc50",
+      "followed": false,
+      "normal_return_continuation": "0x6ec5f9"
+    },
+    {
+      "site": "0x6ec60e",
+      "target": "0x10af270",
+      "followed": false,
+      "normal_return_continuation": "0x6ec613"
+    },
+    {
+      "site": "0x6ec61a",
+      "target": "0x13c3360",
+      "followed": false,
+      "normal_return_continuation": "0x6ec61f"
+    },
+    {
+      "site": "0x6ec62c",
+      "target": "0x13c3360",
+      "followed": false,
+      "normal_return_continuation": "0x6ec631"
+    },
+    {
+      "site": "0x6ec634",
+      "target": "0x13c3540",
+      "followed": false,
+      "normal_return_continuation": "0x6ec639"
+    },
+    {
+      "site": "0x6ec652",
+      "target": "0x12dd0c0",
+      "followed": false,
+      "normal_return_continuation": "0x6ec657"
+    },
+    {
+      "site": "0x6ec685",
+      "target": "0x10a8c30",
+      "followed": false,
+      "normal_return_continuation": "0x6ec68a"
+    }
+  ],
+  "analyst_inference": {
+    "labels_and_conditional_values": [
+      [
+        "political",
+        1
+      ],
+      [
+        "diplomacy",
+        5
+      ],
+      [
+        "military_access",
+        6
+      ],
+      [
+        "culture",
+        11
+      ],
+      [
+        "opinion",
+        7
+      ],
+      [
+        "coalition",
+        8
+      ]
+    ],
+    "condition_limits": "four helper-EAX0 branches do not prove helper strcmp/equality; culture/opinion inline8B includingNUL only",
+    "inference": "Lexical family plus integer state writes is consistent with display/view selection including diplomatic relation views.",
+    "inference_is_machine_fact": false,
+    "console_input_identity_proven": false,
+    "exact_Cpp_type_or_mapmode_name_proven": false,
+    "truce_object_expiry_inference_supported": false
+  },
+  "analyst_context_pins": {
+    "work/reports/war-peace-api-20261015-r33-truce-lexical-context/war/manifest.json": {
+      "bytes": 3575,
+      "sha256": "0908f0b2b5248dc8262b3493e1b353c47ca782e32cb41b49201eb2df2c151789"
+    },
+    "work/reports/war-peace-api-20261015-r33-truce-lexical-context/war/anchors.json": {
+      "bytes": 13472,
+      "sha256": "b7723bb607b50679576f447e724cae2f0cc95c59257614442c96755e3eaecc65"
+    },
+    "work/reports/war-peace-api-20261015-r33-truce-lexical-context/war/contract.json": {
+      "bytes": 6692,
+      "sha256": "473a154b23ab76a2379cb1a64f5c82f7dac2c76af88f5cf88059413b590d4d44"
+    },
+    "work/reports/war-peace-api-20261015-r33-independent-review/war/findings.json": {
+      "bytes": 6793,
+      "sha256": "b65837cafdb78efe4c31aca047053a61c6fea7877b088116080e4705a7895663"
+    }
+  },
+  "resources": {
+    "new_targeted_PE_bytes": 1505,
+    "inherited_raw_bytes": 96,
+    "new_unique_complete_instruction_bytes": 831,
+    "new_complete_instruction_rows": 186,
+    "selected_CFG_rows": 86,
+    "selected_CFG_instruction_bytes": 389,
+    "inherited_R34_input9_prelude_rows": 12,
+    "inherited_R34_input9_prelude_bytes": 45,
+    "decoder_invocations": 186,
+    "decoder_input_bytes_total": 2790,
+    "decoder_input_unique_byte_coverage": 878,
+    "decoder_repeated_lookahead_bytes": 1912,
+    "new_owned_table_bytes_parsed": 5,
+    "new_table_PE_reads": 0,
+    "new_pdata_rechecks": 0,
+    "full_PE_SHA_passes": 2,
+    "full_PE_SHA_bytes": 76925008,
+    "total_PE_bytes": 76926513,
+    "capture_runs": 1,
+    "owned_CFG_runs": 1,
+    "owned_selected_case_runs": 1,
+    "capture_peak_commit": 14663680,
+    "CFG_peak_commit": 22564864,
+    "case_peak_commit": 22126592,
+    "guard_bytes": 805306368,
+    "hard_job_object_installed": false,
+    "new_callee_or_literal_or_unwind_reads": 0,
+    "software_guard_own_process_only": true,
+    "all_shells_collected": true,
+    "game_process_accesses": 0,
+    "Frida_operations": 0,
+    "native_game_calls": 0,
+    "requests_published": 0,
+    "tests_run": 0
+  },
+  "unknowns": [
+    "Exact C++/business class, all integer enum names and actual caller/input producer.",
+    "Unfollowed direct/virtual callees side effects, return/exception/reentry and changes to fields+2c/+40 after stores.",
+    "Current object identity, aliases, ownership and valid lifetime; volatile pointer provenance after calls.",
+    "Other switch cases/whole function, typed truce/index/date/expiry/removed, peace effect and request causality."
+  ],
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "sender_authorized": false,
+    "world_lease": false,
+    "sentinel_header_lease": false,
+    "pure_getter_verified": false,
+    "typed_truce_layout_verified": false,
+    "truce_expiry_verified": false,
+    "peace_completion_verified": false,
+    "business_effect_verified": false
+  }
+}

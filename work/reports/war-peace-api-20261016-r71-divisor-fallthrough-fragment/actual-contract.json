@@ -1,0 +1,307 @@
+{
+  "schema": "EU4-R71-ACTUAL-AUTHOR-CONTRACT/1",
+  "sealed": true,
+  "stage": "SOURCE_READY_pending_non_author_full_review",
+  "author_is_source_designer": true,
+  "independent_full_review_complete": false,
+  "evidence_kind": "ordinary_locked_Capstone_not_REA_Evidence_ID",
+  "game": {
+    "bytes": 38462504,
+    "sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a"
+  },
+  "subject_source_manifest": {
+    "bytes": 21135,
+    "sha256": "6f46db3d7acb1b34391b9f821fb2347b507dac2ee18393b64d74d51f2a5b0722"
+  },
+  "subject_capture": {
+    "bytes": 95356,
+    "sha256": "4c6e547b5e3fca46ee9727034642a4fce410fd66819d652a93f725453fbd76a8"
+  },
+  "subject_owned": {
+    "bytes": 1168,
+    "sha256": "75273a3a5b75655703a01cfd5b1276f18d4089e5663c5d9bb3d4454dad716160"
+  },
+  "subject_selected_evidence": {
+    "bytes": 41810,
+    "sha256": "12f1041c5d62da5d28fa9234e06e7081b3a2a73ad028ad83219e17a22917e5ae"
+  },
+  "scope": {
+    "entry": "0x9935a7",
+    "end_exclusive": "0x993643",
+    "new_code_bytes": 156,
+    "inherited_fallthrough_not_new_function": true,
+    "cached_pdata": {
+      "reason": "next",
+      "index": 19161,
+      "rva": "0x249d22c",
+      "file_offset": 37138988,
+      "raw_hex": "a73599004336990008dde701",
+      "begin_rva": "0x9935a7",
+      "end_exclusive": "0x993643",
+      "unwind_rva": "0x1e7dd08"
+    },
+    "cached_fragment_fully_owned": true,
+    "whole_function_fully_owned": false,
+    "not_read": [
+      "0x993643",
+      "0x993658",
+      "0x97bd30",
+      "0xd959b0",
+      "0x996e30"
+    ],
+    "new_pdata_header_data_unwind_vtable_bytes": 0
+  },
+  "admission": {
+    "root_receipt_pin": {
+      "bytes": 3946,
+      "sha256": "3dedb6415807b4e78c2dcf98c4add74d3857a3c30a5108ba3552ab787ac0ee99"
+    },
+    "authorization_pin": {
+      "bytes": 2445,
+      "sha256": "7a7c99edb0ddeb8f23582fd5afb6c0dc638fd35e0deab5bafd879f7cbdc467c4"
+    },
+    "reviews": {
+      "work/reports/war-peace-api-20261016-r71-entry-root-review/findings.json": {
+        "bytes": 1999,
+        "sha256": "90c2a816b1b17252a603e2044cdb511d7a4bda6fa13a46749f58091ffcba02e2"
+      },
+      "work/reports/war-peace-api-20261016-r71-entry-root-review/manifest.json": {
+        "bytes": 5179,
+        "sha256": "7e9f93e6e2798917d0ca7f99e01a229104d1a4a1f0b0cb381aa02c7d632d0ea3"
+      },
+      "work/reports/war-peace-api-20261016-r69-actual-independent-review/findings.json": {
+        "bytes": 6300,
+        "sha256": "529f00a30baeba2c1f600018455c1e050f6061429951da8ce2daf9c44de17f56"
+      },
+      "work/reports/war-peace-api-20261016-r69-actual-independent-review/manifest.json": {
+        "bytes": 13503,
+        "sha256": "bceee11bb0cc11bb648d0b2e8d65b9862df971ecc10e161118ee762e3acf8058"
+      },
+      "work/reports/war-peace-api-20261016-r71-source-independent-review/findings.json": {
+        "bytes": 5825,
+        "sha256": "8b190f124f09a6a9d56195d9a4c192ccc2178f835f21e08f39d95b87cb1e40af"
+      },
+      "work/reports/war-peace-api-20261016-r71-source-independent-review/manifest.json": {
+        "bytes": 13536,
+        "sha256": "0a9f11edeb25bb881abf7dd6fa4f5cc0cd12b4e09f88b63a3ae90cd5bdc82925"
+      }
+    },
+    "single_actual_attempt": true,
+    "failure_files": [],
+    "source_engine_prepost_equal_producer_witness": true,
+    "direct_child_collected": true,
+    "root_new_scope_required_to_continue": true,
+    "upstream_review_role": "R69 full reviewer also designed its source; separate R69 independent source review remains bound. R71 source peer is not this author. No claim this author seal is independent full review."
+  },
+  "observations": [
+    {
+      "id": "O1",
+      "rvas": [
+        "0x9935ac",
+        "0x9935af",
+        "0x9935b2"
+      ],
+      "summary": "MOVSXD R15,R8D takes signed low32 of inherited R8; TEST R8D followed by JLE leaves this window at 993643 when signed value <=0. This does not authenticate a count."
+    },
+    {
+      "id": "O2",
+      "rvas": [
+        "0x9935d0",
+        "0x9935dc",
+        "0x9935e3",
+        "0x9935ec"
+      ],
+      "summary": "Each visited loop iteration rereads QWORD[current R13+70] then QWORD[base+RSI*8] into RDI. Unfollowed d959b0 receives RCX=R12,RDX=&F68,R8=that value; subsequent EBX is fresh DWORD[F68]. This fragment does not initialize F68 or prove callee writes it."
+    },
+    {
+      "id": "O3",
+      "rvas": [
+        "0x9935e8",
+        "0x9935f0",
+        "0x9935f4",
+        "0x9935f9",
+        "0x9935ff",
+        "0x993601",
+        "0x993605"
+      ],
+      "summary": "Constructs local12B DWORD at F20 and QWORD at F24. If fresh QWORD[P+8] != fresh QWORD[P+10], writes DWORD[cursor] and QWORD[cursor+4], then ADD64[P+8],12. Only equality is checked; no pointer/bounds/capacity validation or C++ record meaning is established."
+    },
+    {
+      "id": "O4",
+      "rvas": [
+        "0x99360c",
+        "0x993611",
+        "0x993614"
+      ],
+      "summary": "Equal branch calls 996e30 with RCX=current P,RDX=the compared cursor,R8=&F20; local intervening instructions do not change RDX. R9/XMM and callee effects unknown; no local header increment on this branch before the join."
+    },
+    {
+      "id": "O5",
+      "rvas": [
+        "0x993619"
+      ],
+      "summary": "The join performs ADD32[current R14],EBX. It is a 32-bit read-modify-write modulo2^32, not a 64-bit amount, not proof of units or final D; previous calls/alias writes may have changed the current destination."
+    },
+    {
+      "id": "O6",
+      "rvas": [
+        "0x99361c",
+        "0x99361f",
+        "0x993622",
+        "0x993629",
+        "0x993636",
+        "0x993642"
+      ],
+      "summary": "INC64 RSI then signed CMP/JL loops; positive-path epilogue MOV RAX,R14 precedes saved-register POPs. RAX is current R14 bits at that point, not the DWORD value. One RET is owned; external lowcount target and R69 null target remain unread."
+    }
+  ],
+  "conditional_inferences": [
+    {
+      "id": "I1",
+      "premises": [
+        "97bd30 returns normally, balances its CALL, and preserves required nonvolatile registers",
+        "valid memory and no alias mutation of saved/control stack needed for normal epilogue",
+        "each later external CALL returns normally and preserves needed nonvolatile registers"
+      ],
+      "projection": "Let S be R69 entry RSP, F=S-58h, W=original RCX, D=original RDX, P=original R8 header address. Then current R13=W,R14=D,RBP=P and initial RSI=0; R12 is post97bd30 nonzero RAX bits. These are conditional aliases, not newly reset Win64 parameters."
+    },
+    {
+      "id": "I2",
+      "premises": [
+        "I1",
+        "signed N=s32(low32(inherited R8))>0",
+        "all loop operations and callees return normally, preserve loop registers, and no exceptional control path occurs"
+      ],
+      "projection": "Normal local sequence visits indices0..N-1 and exits to the owned epilogue. Neither N nor current array bounds are authenticated; its base is freshly reloaded each iteration and memory may alias/change. This is not observed execution or a termination guarantee for arbitrary memory/callees."
+    },
+    {
+      "id": "I3",
+      "premises": [
+        "I1",
+        "unchanged valid saved/control stack on epilogue"
+      ],
+      "projection": "RAX=original borrowed D address on this owned positive-loop normal return; ADD RSP,30h and five POPs restore entry RSP S, then RET leaves S+8. Other paths/whole-function return are unknown."
+    }
+  ],
+  "frame": {
+    "S": "R69 entry RSP",
+    "F": "S-0x58 under balanced97bd30",
+    "saved_R15": "F+0x78=S+0x20",
+    "saved_RBX": "F+0x60=S+0x08",
+    "saved_RDI": "F+0x70=S+0x18",
+    "fresh_DWORD_local": "F+0x68=S+0x10",
+    "local12B": "F+0x20..F+0x2b = S-0x38..S-0x2d",
+    "conditional_R62_projection": {
+      "S": "Q62-0x90",
+      "D": "Q62+0x20=S+0xb0",
+      "P": "Q62-0x50=S+0x40",
+      "fresh_local_DWORD": "Q62-0x80"
+    },
+    "stack_or_header_alias_is_not_excluded": true
+  },
+  "call_contracts": [
+    {
+      "site": "0x9935e3",
+      "target": "0xd959b0",
+      "RCX": "current R12 nonzero raw post97bd30 return bits",
+      "RDX": "F+0x68 address, local DWORD not initialized by the retained fragment before this call",
+      "R8": "current RDI loaded from fresh base[currentRSI*8]",
+      "R9_XMM_stack_formals": "unknown",
+      "result": "RAX not consumed for local DWORD; fresh memory DWORD[F68] consumed after normal return",
+      "callee_followed": false
+    },
+    {
+      "site": "0x993614",
+      "target": "0x996e30",
+      "RCX": "current RBP header candidate",
+      "RDX": "cursor from fresh[P+8], numerically equal to fresh[P+10] at prior compare",
+      "R8": "F+0x20 address of local DWORD+QWORD12B",
+      "R9_XMM_stack_formals": "unknown",
+      "result": "RAX not used before ADD32[D],EBX; callee/header effects unknown",
+      "callee_followed": false
+    }
+  ],
+  "store_summary": {
+    "explicit": 9,
+    "syntactic_stack": 5,
+    "cursor_pointed": 2,
+    "header_ADD64": 1,
+    "D_ADD32": 1,
+    "does_not_prove_all_alias_targets_or_final_memory": true,
+    "important_alias_boundary": "Two cursor stores can alias header/D/stack; ADD64[P+8] rereads that location. Callees may alter pointed data, headers, saved stack, or D even if normal nonvolatile-register preservation is assumed."
+  },
+  "unresolved": [
+    "Meaning, type, ownership, extent and units of W/R12/E/local DWORD/12B record/D/header.",
+    "d959b0 may or may not initialize F68; no definition or semantics inferred from its name or address.",
+    "996e30 equal-cursor handling, allocation, capacity, and all side effects remain unexamined.",
+    "Lowcount target993643 and upstream null target993658 unread; whole normal CFG not closed.",
+    "Final D/header contents, total conservation, clamp/overflow policy beyond observed ADD32, recipient direction and gold semantics unknown.",
+    "Valid alias-free memory, world lifetime, safe call, live execution, native/bridge mapping and any operation effect are not established."
+  ],
+  "minimal_next_evidence_not_authorized": {
+    "candidate_target": "0xd959b0",
+    "known_callsite": "0x9935e3",
+    "raw_call": "e8c8234000",
+    "question": "Does this actual callee write the supplied local DWORD at RDX, and from which input field/width? No collection authorized or performed.",
+    "alternative_later_target": "0x996e30 only if equality/header-growth behavior becomes the selected separate question."
+  },
+  "resources": {
+    "actual_PE": {
+      "targeted_code_physical": 156,
+      "targeted_code_unique": 156,
+      "pdata": 0,
+      "header_data_unwind_vtable_callee": 0,
+      "full_SHA_reads": 76925008,
+      "total": 76925164
+    },
+    "decoded_rows": 42,
+    "decoded_unique": 156,
+    "lookahead_input_total": 565,
+    "lookahead_union": 156,
+    "lookahead_overlap": 409,
+    "branches": 4,
+    "calls": 2,
+    "owned_RET": 1,
+    "INT3": 0,
+    "partial": 0,
+    "loop_backedges": 1,
+    "source_through_capture": 16957772,
+    "source_capture_final_pin_bytes": 95356,
+    "source_including_final_capture_pin": 17053128,
+    "producer_source_budget": 33554432,
+    "source_events_through_capture": 144,
+    "producer_peak_committed_witness": 23527424,
+    "memory_software_guard": 805306368,
+    "hard_Job_installed": false,
+    "tree_peak_claimed": false,
+    "retained_budget": 16777216,
+    "wrapper_bytes_charged": 238959,
+    "manual_inspection_allowance_charged": 1048576,
+    "accounting_scope": "Explicit selected file reads and declared manual allowance; not all OS I/O. Producer peak is producer witness, not a hard Job guarantee."
+  },
+  "operations": {
+    "actual_producer_runs": 1,
+    "retained_seal_PE_reads": 0,
+    "retained_seal_decoder_runs": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "tests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "persistence_verified": false,
+    "authorizes_retry": false,
+    "runtime_verified": false,
+    "whole_function_closed": false,
+    "independent_entry_callable": false
+  }
+}

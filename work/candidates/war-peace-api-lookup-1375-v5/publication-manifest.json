@@ -1,0 +1,191 @@
+{
+  "PE_game_native": 0,
+  "additional_and_delivery_pins": {
+    "work/candidates/war-peace-api-lookup-1375-v5/AUTHOR_STATUS.md": {
+      "bytes": 1651,
+      "sha256": "c9ad0f21abeac8cb9b8e2e2a11121c13497ae016a9c906382e78e05e1a8c917e"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/author-manifest.json": {
+      "bytes": 28136,
+      "sha256": "a1eac6c6fbaa34f797aea4697bd96c529757c65672dea61ea8bba44d7b0bcef3"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/data-manifest.json": {
+      "bytes": 14774,
+      "sha256": "39efa19ba26675647379f6be182b26be727762d5eaf906f0be822b7ca0dba69c"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/delivery.json": {
+      "bytes": 2461,
+      "sha256": "c9149b6dddeb07d2016602f5ec72e8c3af58857bc86dff6021ac7232c897b2e6"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-bookkeeping-corrigendum.json": {
+      "bytes": 1961,
+      "sha256": "7322f1c15f28719fcb4be2752287578939e248f62aaf7ee99dc466d08c9dc926"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-preparation-failure-r1/complete-tool-stderr.txt": {
+      "bytes": 556,
+      "sha256": "894af64b7eccc876a7db333b41e42ac8d07f5d31e06dc430e83d37204d82c51c"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-preparation-failure-r1/stderr-provenance.json": {
+      "bytes": 659,
+      "sha256": "1fc207a10c810e873a56a272a4e282a4ef4c395a2f9ad4a1d779f501ea36fcad"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-preparation-receipt.json": {
+      "bytes": 6517,
+      "sha256": "18c06209c196f89435a04b98ad1296863b7d4fa52bcc0cef98c77e32734919ab"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-source-manifest.json": {
+      "bytes": 4523,
+      "sha256": "f7c46acfe65ab6e8114590f1b202f36c7feaddc55c29cfa188d836e41e09b79e"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/index.json": {
+      "bytes": 185792,
+      "sha256": "a8b70f547513def34f88c1dd19e73e573c63fe209aeced61f397db8b22556e6c"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/query_engine.py": {
+      "bytes": 16583,
+      "sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/source-manifest.json": {
+      "bytes": 19355,
+      "sha256": "1c1b0acd82b7ad100c8e6085deb5e994b92defd8212bf61d2a3a5db2b6cdf27f"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/verification.json": {
+      "bytes": 56520,
+      "sha256": "56056e311ae1cd8964cf46052df23652f8e84df17f9978928fca0cd0f52e69bc"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/war_peace_lookup.py": {
+      "bytes": 3602,
+      "sha256": "653530b8d60e789f33786819e43de7d057142de5c75c6841469d2802928a9da6"
+    },
+    "work/finalize_lookup_v5_metadata_20261016.py": {
+      "bytes": 7012,
+      "sha256": "78eaaed57545c128ba29960b2085ead064e9c5a745f637e1bd4541ae1025946d"
+    },
+    "work/repair_lookup_v5_fixture_prep_20261016.py": {
+      "bytes": 2658,
+      "sha256": "ce5719630f13d8663db6d44a3b48aea6e662700c50fd20ddfd43cd01503e00b0"
+    }
+  },
+  "all_shells_collected": true,
+  "author_manifest": {
+    "bytes": 28136,
+    "sha256": "a1eac6c6fbaa34f797aea4697bd96c529757c65672dea61ea8bba44d7b0bcef3"
+  },
+  "author_manifest_pin_count": 136,
+  "authority": {
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "callable": false,
+    "gameplay_effect_verified": false,
+    "native_ready": false,
+    "process_authenticated": false,
+    "selected_effect_verified": false,
+    "sender_authorized": false,
+    "world_lease": false
+  },
+  "combined_build_seal_metadata_upper": 22394731,
+  "first_clean_aggregate_only": true,
+  "first_queries": 4,
+  "fixture_physical_upper_separate": 14511033,
+  "fixture_synthetic_separate": 33556847,
+  "independent_review_passed": false,
+  "postseal_allowance": 131072,
+  "postseal_metadata_read_bytes": 561413,
+  "postseal_metadata_read_events": [
+    {
+      "bytes": 28136,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/author-manifest.json",
+      "sha256": "a1eac6c6fbaa34f797aea4697bd96c529757c65672dea61ea8bba44d7b0bcef3"
+    },
+    {
+      "bytes": 56520,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/verification.json",
+      "sha256": "56056e311ae1cd8964cf46052df23652f8e84df17f9978928fca0cd0f52e69bc"
+    },
+    {
+      "bytes": 51544,
+      "path": "work/reports/war-peace-api-lookup-v5-first-queries-20261016-r1/receipt.json",
+      "sha256": "5ccdf23bf7c2c20246c7972c0de55db074c9c7d519b0c429c369d704b2a6b767"
+    },
+    {
+      "bytes": 51881,
+      "path": "work/reports/war-peace-api-lookup-v5-aggregate-delta-20261016-r1/receipt.json",
+      "sha256": "85f7a5dc272bdaf918c2f2e9252a408fb9275bbc2f01b5f66a64fc06e739f2ce"
+    },
+    {
+      "bytes": 23438,
+      "path": "work/reports/war-peace-api-lookup-v5-guard-fixtures-20261016-r1/receipt.json",
+      "sha256": "46fb580a17e4a62cb173f7cbd7135213b15e9ffe53a7e3f50044b5a55c43a58d"
+    },
+    {
+      "bytes": 28136,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/author-manifest.json",
+      "sha256": "a1eac6c6fbaa34f797aea4697bd96c529757c65672dea61ea8bba44d7b0bcef3"
+    },
+    {
+      "bytes": 56520,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/verification.json",
+      "sha256": "56056e311ae1cd8964cf46052df23652f8e84df17f9978928fca0cd0f52e69bc"
+    },
+    {
+      "bytes": 2461,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/delivery.json",
+      "sha256": "c9149b6dddeb07d2016602f5ec72e8c3af58857bc86dff6021ac7232c897b2e6"
+    },
+    {
+      "bytes": 19355,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/source-manifest.json",
+      "sha256": "1c1b0acd82b7ad100c8e6085deb5e994b92defd8212bf61d2a3a5db2b6cdf27f"
+    },
+    {
+      "bytes": 14774,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/data-manifest.json",
+      "sha256": "39efa19ba26675647379f6be182b26be727762d5eaf906f0be822b7ca0dba69c"
+    },
+    {
+      "bytes": 185792,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/index.json",
+      "sha256": "a8b70f547513def34f88c1dd19e73e573c63fe209aeced61f397db8b22556e6c"
+    },
+    {
+      "bytes": 16583,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/query_engine.py",
+      "sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466"
+    },
+    {
+      "bytes": 3602,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/war_peace_lookup.py",
+      "sha256": "653530b8d60e789f33786819e43de7d057142de5c75c6841469d2802928a9da6"
+    },
+    {
+      "bytes": 4523,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-source-manifest.json",
+      "sha256": "f7c46acfe65ab6e8114590f1b202f36c7feaddc55c29cfa188d836e41e09b79e"
+    },
+    {
+      "bytes": 6517,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-preparation-receipt.json",
+      "sha256": "18c06209c196f89435a04b98ad1296863b7d4fa52bcc0cef98c77e32734919ab"
+    },
+    {
+      "bytes": 1961,
+      "path": "work/candidates/war-peace-api-lookup-1375-v5/fixture-bookkeeping-corrigendum.json",
+      "sha256": "7322f1c15f28719fcb4be2752287578939e248f62aaf7ee99dc466d08c9dc926"
+    },
+    {
+      "bytes": 2658,
+      "path": "work/repair_lookup_v5_fixture_prep_20261016.py",
+      "sha256": "ce5719630f13d8663db6d44a3b48aea6e662700c50fd20ddfd43cd01503e00b0"
+    },
+    {
+      "bytes": 7012,
+      "path": "work/finalize_lookup_v5_metadata_20261016.py",
+      "sha256": "78eaaed57545c128ba29960b2085ead064e9c5a745f637e1bd4541ae1025946d"
+    }
+  ],
+  "prior_failed_fixture_batch_remains_failed": true,
+  "query_physical_separate": 26445800,
+  "scope": "Additional local delivery provenance only; no machine/publication or independent approval",
+  "sealed": true,
+  "source_or_query_logic_changed": false
+}

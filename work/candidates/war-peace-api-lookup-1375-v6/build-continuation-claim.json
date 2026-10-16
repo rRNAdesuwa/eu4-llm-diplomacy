@@ -1,0 +1,32 @@
+{
+  "original_claim_unchanged": true,
+  "preserved_first_failure": {
+    "work/build_lookup_v6_20261016.py": {
+      "bytes": 29427,
+      "sha256": "5dda7f203b4e4c99c43e5d0891113c7dd9de760d0da8c035388da5828408fd1c"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v6/build-claim.json": {
+      "bytes": 244,
+      "sha256": "6cec078b3225d5f2d705b30a66e6ec4a208a49d7b9f20227af22cb730a84260e"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v6/build-failure.json": {
+      "bytes": 27390,
+      "sha256": "4aa14556a85a1663dbfa0748de6b836aac2995f22c5d485a9245cbf59bf499e6"
+    },
+    "work/reports/war-peace-api-lookup-v6-root-authorization-20261016-r2/authorization.json": {
+      "bytes": 6779,
+      "sha256": "6ff710b74288f303a01df3049aab67901d49f7f1f2fbcfe0a0423251ce237de5"
+    },
+    "work/reports/war-peace-api-lookup-v6-root-authorization-20261016-r2/receipt.json": {
+      "bytes": 6648,
+      "sha256": "e2eb2bdad426c40d08d2ba958e7ab24d4f0819ea829bd6c85e1262586949f7fc"
+    }
+  },
+  "queries_attempted_before": 0,
+  "root_supplement": {
+    "bytes": 1558,
+    "sha256": "3dcc95ab3cd1bc01ef310a431942e5e287487f1e7a515df82db312539258e9b2"
+  },
+  "schema": "EU4-LOOKUP-V6-BUILD-CONTINUATION/1",
+  "source_only": true
+}

@@ -1,0 +1,274 @@
+{
+  "schema": "EU4-LIVE-R2-REVIEW-ACCOUNTING-CORRIGENDUM/1",
+  "sealed": true,
+  "passed": true,
+  "primary_findings": {
+    "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/findings.json",
+    "bytes": 6495,
+    "sha256": "dc511e9549891bd56f3d5eade28fd220db7420d8303879918f9b9ca1e3489a7e"
+  },
+  "primary_source_upper_declared": 16828024,
+  "reason": "Primary4MiB preview allowance is superseded by this explicit retained-command preview ledger plus2MiB tool/publication reserve; no target/source scope or authorized32MiB cap changes.",
+  "all_three_formal_runs_returned": 12633720,
+  "all_three_formal_run_breakdown": [
+    3158430,
+    3158430,
+    6316860
+  ],
+  "preview_ledger": [
+    {
+      "tool_chunk": "9ee1a6",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/receipt.json",
+          "returned_bytes": 421298
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/actual-manifest.json",
+          "returned_bytes": 27958
+        }
+      ],
+      "returned_bytes": 449256
+    },
+    {
+      "tool_chunk": "3821b2",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/actual-manifest.json",
+          "returned_bytes": 27958
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/capture.json",
+          "returned_bytes": 929944
+        }
+      ],
+      "returned_bytes": 957902
+    },
+    {
+      "tool_chunk": "73640a",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/capture.json",
+          "returned_bytes": 929944
+        }
+      ],
+      "returned_bytes": 929944
+    },
+    {
+      "tool_chunk": "b0aa64",
+      "reads": [
+        {
+          "path": "work/candidates/peace-current-pending-observer-1375-v2/peace_current_pending.py",
+          "returned_bytes": 24249
+        },
+        {
+          "path": "bridge/diplomacy_effect_observer.py",
+          "returned_bytes": 25411
+        }
+      ],
+      "returned_bytes": 49660
+    },
+    {
+      "tool_chunk": "8f440a",
+      "reads": [
+        {
+          "path": "work/candidates/peace-current-pending-observer-1375-v2/peace_current_pending.py",
+          "returned_bytes": 24249
+        },
+        {
+          "path": "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py",
+          "returned_bytes": 16856
+        }
+      ],
+      "returned_bytes": 41105
+    },
+    {
+      "tool_chunk": "a9b28f",
+      "reads": [
+        {
+          "path": "work/capture_direct_truce_flags_20261015.py",
+          "returned_bytes": 12011
+        },
+        {
+          "path": "work/candidates/frida-entry-observer-1375-v1/capture_once.py",
+          "returned_bytes": 24560
+        },
+        {
+          "path": "bridge/diplomacy_effect_observer.py",
+          "returned_bytes": 25411
+        }
+      ],
+      "returned_bytes": 61982
+    },
+    {
+      "tool_chunk": "97c0ab",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-io.json",
+          "returned_bytes": 382278
+        },
+        {
+          "path": "work/candidates/frida-entry-observer-1375-v1/host-manifest.json",
+          "returned_bytes": 43987
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/capture.json",
+          "returned_bytes": 929944
+        },
+        {
+          "path": "bridge/diplomacy_effect_observer.py",
+          "returned_bytes": 25411
+        },
+        {
+          "path": "work/candidates/frida-entry-observer-1375-v1/capture_once.py",
+          "returned_bytes": 24560
+        }
+      ],
+      "returned_bytes": 1406180
+    },
+    {
+      "tool_chunk": "506bc8",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/live-completion.json",
+          "returned_bytes": 11530
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/live-delivery.json",
+          "returned_bytes": 4621
+        }
+      ],
+      "returned_bytes": 16151
+    },
+    {
+      "tool_chunk": "ec298c",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-io.json",
+          "returned_bytes": 382278
+        }
+      ],
+      "returned_bytes": 382278
+    },
+    {
+      "tool_chunk": "fc36fa",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review.py",
+          "returned_bytes": 24240
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/preflight.json",
+          "returned_bytes": 12027
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-failure.json",
+          "returned_bytes": 8622
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review.stdout.json",
+          "returned_bytes": 0
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review.stderr.log",
+          "returned_bytes": 626
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-failure.json",
+          "returned_bytes": 8622
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review.py",
+          "returned_bytes": 24240
+        }
+      ],
+      "returned_bytes": 78377
+    },
+    {
+      "tool_chunk": "5cfeb9",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review_r2.py",
+          "returned_bytes": 25089
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/preflight-r2.json",
+          "returned_bytes": 12027
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-r2-failure.json",
+          "returned_bytes": 8760
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review-r2.stdout.json",
+          "returned_bytes": 0
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review-r2.stderr.log",
+          "returned_bytes": 764
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-r2-failure.json",
+          "returned_bytes": 8760
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-failure.json",
+          "returned_bytes": 8622
+        },
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review_r2.py",
+          "returned_bytes": 25089
+        }
+      ],
+      "returned_bytes": 89111
+    },
+    {
+      "tool_chunk": "b0c253",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review.stderr.log",
+          "returned_bytes": 626
+        }
+      ],
+      "returned_bytes": 626
+    },
+    {
+      "tool_chunk": "195625",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review-r2.stderr.log",
+          "returned_bytes": 764
+        }
+      ],
+      "returned_bytes": 764
+    },
+    {
+      "tool_chunk": "4182f7",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review-r3.stdout.json",
+          "returned_bytes": 359
+        }
+      ],
+      "returned_bytes": 359
+    },
+    {
+      "tool_chunk": "d66606",
+      "reads": [
+        {
+          "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r1/check_review.py",
+          "returned_bytes": 3545
+        }
+      ],
+      "returned_bytes": 3545
+    }
+  ],
+  "measured_preview_returned": 4467240,
+  "additional_tool_and_publication_reserve": 2097152,
+  "effective_source_upper": 19198112,
+  "source_cap": 33554432,
+  "primary_files_unchanged": true,
+  "no_author_or_runtime_retry": true,
+  "ordinary_file_cap": 4194304,
+  "not_total_OS_IO": true
+}

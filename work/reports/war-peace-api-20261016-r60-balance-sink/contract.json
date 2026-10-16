@@ -1,0 +1,245 @@
+{
+  "schema": "EU4-R60-SHARED-SINK-STATIC-CONTRACT/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "target_exe": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4.exe",
+  "entry_rva": "0x3383b0",
+  "source_grade": "ordinary Capstone5.0.7 with retained raw opcode/rel32/rel8 crosschecks; not REA Evidence ID",
+  "scope": {
+    "pdata_range": [
+      "0x3383b0",
+      "0x3384b2"
+    ],
+    "owned_bytes": 258,
+    "decoded_rows": 57,
+    "whole_selected_pdata_owned": true,
+    "local_normal_CFG_closed": true,
+    "syntactic_normal_path_count": 60,
+    "normal_return_assumptions": "valid memory, normal external callee returns and preserved Win64 nonvolatile registers",
+    "callee_or_exception_closure": false,
+    "current_runtime_verified": false
+  },
+  "observations": [
+    {
+      "id": "r60.formals-and-fresh-input",
+      "kind": "observation",
+      "rvas": [
+        "0x3383bf",
+        "0x3383c2",
+        "0x3383e2",
+        "0x338417"
+      ],
+      "summary": "原RCX保持于RDI作为receiver C，原RDX保持于RSI作为DWORD输入指针 M。可选分支先读取DWORD[M]用于外调参数；338417在这些调用正常返回后再次读取DWORD[M]用于实际加法，不能假定两次读值相同。",
+      "limits": [
+        "Only concrete local consumption is proved; initial R8/R9 may be consumed by unexamined callees.",
+        "No exact C++ signature, type layout, ownership, valid input range or lifetime established."
+      ]
+    },
+    {
+      "id": "r60.direct-BB0-add-and-clamp",
+      "kind": "observation",
+      "rvas": [
+        "0x338417",
+        "0x338419",
+        "0x33841f",
+        "0x338425",
+        "0x33842b",
+        "0x33842d",
+        "0x338439",
+        "0x33843f",
+        "0x338441"
+      ],
+      "summary": "先读32位输入与C+BB0 DWORD，32位ADD产生模2^32的sum并立即写回。随后按signed32与+1000000000/-1000000000比较，必要时再写对应界限。没有在相加前检测/防止溢出。",
+      "machine_formula": "s = int32((uint32(load32(M)) + uint32(load32(C+0xBB0))) mod 2^32); store32(C+0xBB0,s); if s>1000000000 store upper; else if s<-1000000000 store lower",
+      "widths": {
+        "input": 4,
+        "receiver_field": 4,
+        "arithmetic_bits": 32
+      },
+      "upper": {
+        "raw": "00ca9a3b",
+        "signed32": 1000000000
+      },
+      "lower": {
+        "raw": "003665c4",
+        "signed32": -1000000000
+      },
+      "instruction_point": "Explicit BB0 write sequence has completed upon reaching0x33844b",
+      "limits": [
+        "Not an arbitrary-precision saturating addition.",
+        "Not a real observation of intermediate writes or an atomic update.",
+        "Later B+388 RMW may alias unknown storage; no final-world-value/alias-disjointness guarantee.",
+        "Currency unit and business settlement semantics are not proved by this arithmetic."
+      ]
+    },
+    {
+      "id": "r60.external-pointer-side-write",
+      "kind": "observation",
+      "rvas": [
+        "0x33844b",
+        "0x338452",
+        "0x33845b",
+        "0x33845f",
+        "0x338468",
+        "0x338481",
+        "0x338485",
+        "0x338489",
+        "0x33848e",
+        "0x338495",
+        "0x33849b"
+      ],
+      "summary": "G=QWORD[module+233fe78]；G+7484非零时按G+1e66==7且G+1e6f非零选择QWORD[G+1e68]，否则QWORD[G+1e60]。其bits32..47与QWORD[C+20]的bits32..47相等，且B=QWORD[G+1e00]满足DWORD[B+2c]==0x30时，OR DWORD[B+388],0x40。",
+      "limits": [
+        "Only a 16-bit shifted comparison, not full handle validation or an authenticated country match.",
+        "No business type/name or current G/B identity inferred.",
+        "This is an additional conditional memory write, so the function is not pure or only a BB0 store."
+      ]
+    },
+    {
+      "id": "r60.module-byte-and-unfollowed-calls",
+      "kind": "observation",
+      "rvas": [
+        "0x3383c5",
+        "0x3383ca",
+        "0x3383db",
+        "0x33840b",
+        "0x338411"
+      ],
+      "summary": "14d4c80返回指针的+38 bit0控制可选分支；分支保存module1fd10c4 byte、写1、调用14d4eb0，再按正常ABI恢复所存BL。两callee均未跟踪；异常时恢复不成立。",
+      "direct_call_arguments": [
+        {
+          "site": "0x3383c5",
+          "target": "0x14d4c80",
+          "RCX": "original C",
+          "RDX": "original M",
+          "R8": "incoming unknown",
+          "R9": "incoming unknown",
+          "stack": "unknown"
+        },
+        {
+          "site": "0x33840b",
+          "target": "0x14d4eb0",
+          "RCX": "module+1c57ba8",
+          "EDX": "0x5882",
+          "R8": "module+1c5b400",
+          "R9": "address of stack QWORD copied from C+20",
+          "fifth": "only lowDWORD written at caller RSP+20 from earlier DWORD[M]; upperDWORD unknown"
+        }
+      ],
+      "literal_data_read": false,
+      "limits": [
+        "LEA computes addresses; literal contents not read or decoded here."
+      ]
+    },
+    {
+      "id": "r60.return-is-path-dependent",
+      "kind": "observation",
+      "rvas": [
+        "0x338459",
+        "0x338485",
+        "0x33848c",
+        "0x33848e",
+        "0x338499",
+        "0x3384b1"
+      ],
+      "summary": "没有把clamped BB0设置为返回值，也没有规范化BOOL。G+7484为零的早退保留最近外调RAX；非零时比较失败返回选中QWORD右移32后的RAX，比较成功则返回B指针值（无论B+2c比较是否触发OR）。",
+      "path_projection": [
+        {
+          "condition": "G+7484==0 and optional call not selected",
+          "RAX": "14d4c80 return value"
+        },
+        {
+          "condition": "G+7484==0 and optional call returned normally",
+          "RAX": "14d4eb0 return value, unknown"
+        },
+        {
+          "condition": "G+7484!=0 and shifted16 fields unequal",
+          "RAX": "selected QWORD[G+1e68 or1e60] logically shifted right32"
+        },
+        {
+          "condition": "G+7484!=0 and shifted16 fields equal",
+          "RAX": "B=QWORD[G+1e00]"
+        }
+      ],
+      "limits": [
+        "No meaningful API return contract inferred; all projections conditional on the stated normal execution assumptions."
+      ]
+    }
+  ],
+  "writes": {
+    "explicit_total": 11,
+    "syntactic_stack": 5,
+    "module_byte": 2,
+    "receiver_BB0_sites": 3,
+    "conditional_external_RMW": 1,
+    "push_sites": 1,
+    "pop_sites": 1,
+    "CALL_sites_with_implicit_stack_write": 2,
+    "RET_stack_read_sites": 1,
+    "runtime_write_count_not_measured": true
+  },
+  "inference": [
+    {
+      "id": "r60.wrapper-to-BB0-candidate",
+      "kind": "inference",
+      "summary": "结合已独审两wrapper，3383b0现在有明确BB0加法写入证据，是收支路径的更小字段更新点。名称/单位/完整宣战议和结算/实际接收国家仍不能由此单独认定。",
+      "sources": [
+        "entry-seed.json",
+        "selected-evidence.json"
+      ]
+    }
+  ],
+  "unknowns": [
+    "14d4c80 and14d4eb0 bodies/effects/exception behavior",
+    "literal bytes at1c5b400/1c57ba8",
+    "complete country/class/type identity and valid memory/lifetime",
+    "actual amount units, positive-only ranges and settlement meaning",
+    "alias relationships between C/M/G/B and concurrent changes",
+    "current process identity and genuine original request causality",
+    "AI acceptance, full peace outcome and persistence",
+    "339c10 remains outside this scope"
+  ],
+  "resources": {
+    "PE_physical_bytes": 76925494,
+    "full_PE_SHA_bytes": 76925008,
+    "pdata_requests": 19,
+    "pdata_unique_records": 17,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 204,
+    "new_code_physical_bytes": 258,
+    "new_code_unique_bytes": 258,
+    "decoded_unique_bytes": 258,
+    "lookahead_physical_bytes": 815,
+    "lookahead_union_bytes": 258,
+    "lookahead_repeated_bytes": 557,
+    "producer_source_journal_bytes": 22988805,
+    "producer_final_stdout_pin_bytes": 118195,
+    "producer_total_explicit_source_file_bytes": 23107000,
+    "source_engine_limit": 33554432,
+    "peak_committed_bytes_producer_witness": 31330304,
+    "software_guard": 805306368,
+    "hard_job_installed": false,
+    "source_engine_prepost_equal": true,
+    "new_targeted_data_header_unwind_callee_bytes": 0
+  },
+  "operations": {
+    "actual_producer_runs": 1,
+    "retries": 0,
+    "game_process_accesses": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0,
+    "tests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "ownership_verified": false,
+    "reader_adoption_allowed": false,
+    "lease_verified": false,
+    "persistence_verified": false,
+    "authorizes_retry": false
+  }
+}

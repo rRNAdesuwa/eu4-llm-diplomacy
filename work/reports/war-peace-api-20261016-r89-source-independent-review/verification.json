@@ -1,0 +1,18 @@
+{
+  "schema": "EU4-R89-INDEPENDENT-FIRST-PINCHECK/1",
+  "passed": true,
+  "manifest_pin": {
+    "bytes": 39360,
+    "sha256": "c0e77980d8cf377282bac0503c8d1a605a237e8995e766a263663c1176da9329"
+  },
+  "checked_pins": 93,
+  "filecheck_returned": 2887281,
+  "total_source_returned": 16876445,
+  "source_upper": 18183468,
+  "all_subject_pins_unchanged": true,
+  "all_shells_collected_before_this_synchronous_command": true,
+  "author_program_runs": 0,
+  "PE_engine_decoder_tests_game": 0,
+  "actual_authorized": false,
+  "paused_after_completion": true
+}

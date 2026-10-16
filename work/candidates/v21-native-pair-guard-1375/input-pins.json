@@ -1,0 +1,110 @@
+{
+  "work/AGENTS.md": {
+    "bytes": 959,
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  },
+  "work/candidates/current-country-tag-cpp-1375/country_resolver.cpp": {
+    "bytes": 8010,
+    "sha256": "6e00438a553593813b3845d109287daf3fd3c9676e5feb2b7ceda099808c90dc"
+  },
+  "work/candidates/current-country-tag-cpp-1375/country_resolver.h": {
+    "bytes": 1955,
+    "sha256": "a1067c0b80ec3bb9b5ac77ca857a5d269626ebfb37060d41679ace4f70557ae2"
+  },
+  "work/candidates/current-country-tag-cpp-1375/review.json": {
+    "bytes": 709,
+    "sha256": "4ad511bc500dddf2fa9268359e924093afeb0396069782bde992664f472aa8ec"
+  },
+  "work/candidates/current-country-tag-cpp-1375/selected_pins.h": {
+    "bytes": 3009,
+    "sha256": "edc711aaefca337205201c4513010c64a0e0de7a9f8722d0724dc4d260bd09e6"
+  },
+  "work/candidates/current-country-tag-cpp-1375/test_country_resolver.cpp": {
+    "bytes": 7871,
+    "sha256": "a0f3954e7934e190d97092199a9a35358447272d2bdc48cad9c915f00fd8c394"
+  },
+  "work/candidates/v19-spy-restricted-host-r2-1375/core/v18-preimage/spy_core.h": {
+    "bytes": 3797,
+    "sha256": "290d2db8201bd51901e5d2e080f4bb76952e548f23ec6e82b1df17def1d68321"
+  },
+  "work/candidates/v19-spy-restricted-host-r2-1375/preflight/codec.h": {
+    "bytes": 5027,
+    "sha256": "671a4337762256f42789fd8a37450db24f04f060aa81af579dd0ceec2cb6c4fd"
+  },
+  "work/candidates/v19-spy-restricted-host-r2-1375/preflight/host.h": {
+    "bytes": 3946,
+    "sha256": "c4726204d2570e3b82930c1d7ba3e551aae34d63aa5c83847e59137d55534d95"
+  },
+  "work/candidates/v19-spy-restricted-host-r2-1375/preflight/native_env.cpp": {
+    "bytes": 11204,
+    "sha256": "de31fd72e5870020c5dbbef9d1ba176efb98d45d970c9d2f722576c065819fff"
+  },
+  "work/candidates/v19-spy-restricted-host-r2-1375/preflight/native_env.h": {
+    "bytes": 1427,
+    "sha256": "8aec96f180b37783560ff9b11583fdbc3b44bd7363c3b3c585e5f84474b3b243"
+  },
+  "work/candidates/v19-spy-restricted-host-r2-1375/review.json": {
+    "bytes": 9402,
+    "sha256": "b3553d5c291c83bf2d3159e7781f03dc521b90d1d4030f9ada78262e1243fcbd"
+  },
+  "work/candidates/v21-core-pair-nosend-1375/validate.py": {
+    "bytes": 12608,
+    "sha256": "35a3a339f594051da06de4122adf785454b3cf3a3d00919fc1f324b7c5c285f4"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.cpp": {
+    "bytes": 21944,
+    "sha256": "22dc8da31e3ec9baef1af453cc49b730c830bd21804d252ea189f680582cf53a"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/review.json": {
+    "bytes": 1124,
+    "sha256": "4675e39339d3f2c4f807da3d63b7ab6194dae74ee472d2a03c91b9cb0f3bbda7"
+  },
+  "work/candidates/v21-five-cancel-reader-1375/cancel_reader.cpp": {
+    "bytes": 12540,
+    "sha256": "626b1071ae8fa3ea6edc6fc03ed6ad20424688280f5bd211ad8a639b093be593"
+  },
+  "work/candidates/v21-five-cancel-reader-1375/cancel_reader.h": {
+    "bytes": 1032,
+    "sha256": "920044f857e1882bfe3bb516835f7f9b61e199c425bd6dba7cacf02baf20668a"
+  },
+  "work/candidates/v21-five-cancel-reader-1375/review.json": {
+    "bytes": 1405,
+    "sha256": "7d521c07a2846ce98f6b488f831b4e94eb732e694bde83e4db99481dc86fee9b"
+  },
+  "work/candidates/v21-five-cancel-reader-1375/source-index.json": {
+    "bytes": 1706,
+    "sha256": "4cabdc39082ba8491a637e26db63836500031f5670062951989c0f968b03eb59"
+  },
+  "work/candidates/v21-native-pair-port-1375/component/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_pair_engine.h": {
+    "bytes": 4773,
+    "sha256": "f17589286bbf90fe888db9bf3c5f320259347c90808150c6360096dc134f480f"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_platform.h": {
+    "bytes": 1518,
+    "sha256": "08b9fa77159a3f448b7b26a5beddf13d048b66a122be695e2168d082ef69da65"
+  },
+  "work/candidates/v21-native-pair-port-1375/review.json": {
+    "bytes": 1282,
+    "sha256": "0bbcf1e9f93e45e8822b733561b1a98323cc7f8b3c3d4ee1305586de8d8b6435"
+  },
+  "work/review-results/current-country-tag-cpp-favor-20261008a/review.json": {
+    "bytes": 1105,
+    "sha256": "caef4d0b932ddd9f82cb3cea6e49cecc0b752be8189eb2e1986e8ecf78d799dd"
+  },
+  "work/review-results/v19-host-r2-native-inventory-20261008a/review.json": {
+    "bytes": 50417,
+    "sha256": "09c2a3ed5b07feaa45931d851539fb2c64fc3f259ada372aff2a7d07bf90f80f"
+  },
+  "work/review-results/v21-pair-r2-action-catalog-20261008a/review.json": {
+    "bytes": 10919,
+    "sha256": "d60e69164605b6505d891448029622b3e7a2baa18a7dce397c79460cecb46e4f"
+  }
+}

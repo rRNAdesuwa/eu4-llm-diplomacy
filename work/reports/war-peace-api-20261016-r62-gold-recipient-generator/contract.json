@@ -1,0 +1,222 @@
+{
+  "schema": "EU4-R62-GENERATED-RECORDS-CONTRACT/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "entry": {
+    "rva": "0x9844d0",
+    "exact_pdata": {
+      "reason": "selected",
+      "index": 19115,
+      "rva": "0x249d004",
+      "file_offset": 37138436,
+      "raw_hex": "d04498007c4798003cc9e701",
+      "begin_rva": "0x9844d0",
+      "end_exclusive": "0x98477c",
+      "unwind_rva": "0x1e7c93c"
+    },
+    "extent_bytes": 684,
+    "rows": 174,
+    "full_extent_owned": true,
+    "CALL_sites": 8,
+    "unique_CALL_targets": 7,
+    "branches": 24,
+    "recorded_edges": 32,
+    "normal_RET": "0x984775",
+    "INT3": "0x98477b",
+    "normal_CFG_closed": false,
+    "external_normal_CALL_returns_assumed_for_fallthrough": true
+  },
+  "input_machine_contract": {
+    "RCX": "opaque W; savedRSI and entryQ+8, later recovered intoR12",
+    "RDX": "opaque output headerH; savedR14",
+    "R8_R9": "unknown atentry; no semantics inherited",
+    "XMM0": "caller proves zero128bits atentry, but firstcallee97b2c0 precedes anylocalXMMuse; callee consumption unknown",
+    "stack_frame": "7PUSH*8+SUB50hex =>steadyRSP=Q-88hex; steady+90=Q+8 originalW; steady+98=Q+10 originalRBX",
+    "type_limit": "No W/H type/vtable/fullcountry/lease authentication."
+  },
+  "first_scalar_and_dispatch": {
+    "site": "0x9844f7",
+    "callee": "0x97b2c0",
+    "RCX": "entryW",
+    "RDX": "&DWORD[steadyRSP+a0]=Q+18",
+    "T": "signed32DWORD[steadyRSP+a0] read after97b2c0 and signextendedRDI; requireT>0 tocontinue",
+    "initialization_limit": "No explicit localinitialization of T beforecall; helperwriting T is not proved because body unobserved.",
+    "dispatch": "975110 called with currentvolatileGP values not re-established; ALfalse chooses simpleappend, ALtrue chooses temporary-record path. Its business predicate unknown."
+  },
+  "simple_branch": {
+    "range": [
+      "0x98472d",
+      "0x98475e"
+    ],
+    "record_DWORD0": "low32T retainedEDI",
+    "record_QWORD4": "freshQWORD[originalW+18]",
+    "construction": "Write stackrecord atsteady+28(DWORD) and+2c(QWORD). If H.end!=H.capacity_candidate, write DWORD[end+0],QWORD[end+4],increment QWORD[H+8] by12. Else996e30(H,currentend,&local12Brecord).",
+    "limit": "Direct fieldorigins only; appendedhelper effects, types/units/recipient meaning and finalmembership not established."
+  },
+  "temporary_branch_setup": {
+    "site": "0x98453d",
+    "callee": "0x993570",
+    "RCX": "originalW restoredRSI",
+    "RDX": "&DWORD[steady+a8]=Q+20",
+    "R8": "&zero3Qheader[steady+38]",
+    "R9": "currentvolatileunknown",
+    "D": "signed32DWORD[steady+a8] aftercall, signextendedRSI; D>0 needed forrecordprocessing",
+    "input_header": "threeQwords atsteady38/40/48 explicitlyzeroed beforecall; B=postcall[38],E=postcall[40],capcandidate=[48]",
+    "initialization_limit": "D not explicitlyinitialized beforecall. 993570 write/alias/ownership effects unproved; postcall values not labelled knowncalleeoutputs.",
+    "count_formula": "signextend64(low32(low64(SAR64(submod64(E,B),2)*0xaaaaaaaaaaaaaaab)))",
+    "count_limit": "For valid bounded12Bgeometry this resembles elementcount; no span/alignment/cap/typedrecord safeguards added by this body."
+  },
+  "per_record_machine_construction": {
+    "range": [
+      "0x9845b0",
+      "0x98463c"
+    ],
+    "input_DWORD0": "a=signextend64(DWORD[currenttemprecord+0])",
+    "input_QWORD4": "q=QWORD[currenttemprecord+4], loadedunaligned intoRBX and copiedbitwise tooutputrecord",
+    "scaling_formula": [
+      "P=low64(a*T), RCX=P; withM=0x20c49ba5e353f7cf, RDX=signedhigh64(M*P), V=SAR64(RDX,7), L=low64(V+logicalSHR64(V,63)).",
+      "k=signed32(low32L). uint32(k+0x189373)<=0x39580d selects IMUL32(k,1000)/CDQ/IDIV32(D), then EBP=quotient.",
+      "Else signextend32k; IMUL64(k,1000)/CQO/IDIV64(signextendD), then RBP=fullquotient.",
+      "Only signedlow32EBP>0 appends a12B record withDWORD0=low32EBP andQWORD4=q. R15D accumulatesADD32(EBP)."
+    ],
+    "append": "Inline end!=cap writespayload andH.end+=12; equality calls996e30(H,end,&localrecord). Afterhelper, reload loopcount fromsteady20 andrestoreR9magicconstant.",
+    "loop": "InputpointerR13+=12; R8 full64 decrement; JNE fromSUB flags. Valid memory/normalcallee behavior and stableloopcounterstorage assumed, not authenticated.",
+    "limits": "Integers1000/magic scaling do not prove currency/unit/direction. Slowquotient low32positivity is not full64range guarantee. Callees may mutate temp/output/stack aliases."
+  },
+  "remainder_candidate_and_postprocess": {
+    "range": [
+      "0x98463c",
+      "0x9846da"
+    ],
+    "candidate": "Compare low16(high32 currentinputQWORD4) tolow16(high32 QWORD[originalW+18]); ifequal andcurrentoutputcountlow32!=0, rememberlastoutputrecord(end-12), elsekeeppriorcandidate.",
+    "T_reload": "When positive-countloop finishes, EDI is freshly reloaded fromstack+a0; not assumed equal to initialT acrosscalls. Count<=0 bypass retains originalRDI instead.",
+    "adjustment": "If signedEDI>signedR15D, subtractmod32 andADD DWORD[candidate] when candidate in[currentbegin,currentend), otherwiseADD firstrecordDWORD ifoutputnonempty.",
+    "postprocess": "994f00(RCX=H,RDX=&stack+a0), effectsunknown; can changeheader/records/scalar. Earlier directwrites do not prove finaloutputrecords.",
+    "limit": "Slotcomparison not fullhandle/type identity; candidate/bounds checks do not authenticate allrecords, recipients or amount conservation."
+  },
+  "cleanup_and_return": {
+    "temporary_storage": "If postcalltempB!=NULL, derives allocation-span-shaped value from[steady48]-B, validateslarge-buffer-offset shape or calls1a41c6c thenINT3; normalpath calls17394f0.",
+    "limit": "No callee allocator/free/exception ownership closure; no wholeprogramnormalreturn guarantee. RET984775 does not normalizeRAX and caller9b4081 overwritesRAX withheaderend."
+  },
+  "explicit_writes": {
+    "total": 21,
+    "stack": 13,
+    "output_header_end": 2,
+    "record_payload": 6
+  },
+  "unfollowed_calls": [
+    {
+      "site": "0x9844f7",
+      "raw_hex": "e8c46dffff",
+      "target": "0x97b2c0",
+      "callee_followed": false
+    },
+    {
+      "site": "0x98450c",
+      "raw_hex": "e8ff0bffff",
+      "target": "0x975110",
+      "callee_followed": false
+    },
+    {
+      "site": "0x98453d",
+      "raw_hex": "e82ef00000",
+      "target": "0x993570",
+      "callee_followed": false
+    },
+    {
+      "site": "0x984625",
+      "raw_hex": "e806280100",
+      "target": "0x996e30",
+      "callee_followed": false
+    },
+    {
+      "site": "0x9846d5",
+      "raw_hex": "e826080100",
+      "target": "0x994f00",
+      "callee_followed": false
+    },
+    {
+      "site": "0x984726",
+      "raw_hex": "e8c54ddb00",
+      "target": "0x17394f0",
+      "callee_followed": false
+    },
+    {
+      "site": "0x984759",
+      "raw_hex": "e8d2260100",
+      "target": "0x996e30",
+      "callee_followed": false
+    },
+    {
+      "site": "0x984776",
+      "raw_hex": "e8f1d40b01",
+      "target": "0x1a41c6c",
+      "callee_followed": false
+    }
+  ],
+  "unknowns": [
+    "97b2c0 actualTwrite/valueorigin",
+    "975110 predicate/GPconsumption",
+    "993570 D/headerwrites and semantic recordsource",
+    "996e30/994f00 finalheader/payloadmutation",
+    "W+18 andinputQWORD4 fulltype/countryidentity",
+    "T/D/inputDWORD monetaryunits or currency",
+    "complete recipients/weights/direction",
+    "normalcallee/alias/exception/lifetime",
+    "nativebusinessresult/peacecausality"
+  ],
+  "resources": {
+    "target_PE_hash_bytes": 76925008,
+    "pdata_requests": 19,
+    "pdata_unique_records": 16,
+    "pdata_physical_bytes": 228,
+    "new_code_bytes": 684,
+    "total_PE_physical_bytes": 76925920,
+    "decoder_input_total": 2557,
+    "decoder_input_unique": 684,
+    "decoder_overlap": 1873,
+    "source_journal_bytes_through_capture": 16403116,
+    "producer_postcapture_stdout_pin_bytes": 198722,
+    "producer_explicit_source_engine_bytes_including_stdout_pin": 16601838,
+    "producer_source_budget": 33554432,
+    "later_seal_budget": 16777216,
+    "combined_explicit_source_budget": 50331648,
+    "source_engine_before_after_equal": true,
+    "peak_committed_bytes_observed": 24289280,
+    "software_memory_guard": 805306368,
+    "hard_Job_installed": false,
+    "producer_subprocess_elapsed_ns": 431429100,
+    "elapsed_scope": "Producer launch through collected exit including source/engine guards/twoEXESHA; rootreview/auth creation excluded",
+    "owned_child_collected": true,
+    "new_code_or_target_read_after_actual": 0
+  },
+  "operations": {
+    "actual_static_acquisitions": 1,
+    "automatic_retries": 0,
+    "outside_callee_data_header_unwind_reads": 0,
+    "old_native_targeted_code_reacquisitions": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "tests": 0,
+    "requests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "currency_verified": false,
+    "recipient_direction_verified": false,
+    "recipient_type_or_fullhandle_verified": false,
+    "full_record_membership_verified": false,
+    "peace_completion_verified": false,
+    "AI_acceptance_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "persistence_verified": false,
+    "authorizes_retry": false
+  },
+  "author_sealing_is_not_independent_actual_review": true
+}

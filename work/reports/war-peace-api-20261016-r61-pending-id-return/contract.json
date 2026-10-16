@@ -1,0 +1,304 @@
+{
+  "schema": "EU4-R61-RETURN-SUFFIX-CONTRACT/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "scope": {
+    "fragment": [
+      "0x771cc7",
+      "0x771cf6"
+    ],
+    "new_code_bytes": 47,
+    "rows": 12,
+    "containing_record": [
+      "0x771cbd",
+      "0x771cf6"
+    ],
+    "record_index": 14174,
+    "offset_into_record": 10,
+    "record_extent": 57,
+    "full_record_owned": false,
+    "unselected10B_new_code_reads": 0,
+    "old38_183_new_code_or_decode_bytes": 0,
+    "independent_callable_entry": false,
+    "suffix_RET_count": 0,
+    "suffix_INT3_count": 1,
+    "suffix_CALL_count": 1,
+    "suffix_branches": 1,
+    "local_normal_CFG_closed": false,
+    "whole_function_or_all_input_semantics_closed": false
+  },
+  "inherited_state": {
+    "fragment_is_independent_callable_entry": false,
+    "original_entry_rva": "0x771be0",
+    "root_entry_RSP_symbol": "Q",
+    "RSP": "Q-0x48",
+    "RSI": "S=originalRCX at771be0",
+    "R14": "0x0000000000000005",
+    "RBP": "0x00000000ffffffff",
+    "freshbase_symbol": "P=QWORD[S+2508] freshly loaded771c98 after any42d850",
+    "slot_symbol": "V=DWORD[P+R14*4]=DWORD[P+0x14] read771c9f",
+    "RAX": "zero_extend64(V) afterMOV EAX,ECX771cac",
+    "RCX": "zero_extend64(V) fromMOV ECX memory771c9f",
+    "RDX": "P+0x14 formed771ca3",
+    "RBX": "entryRBX restored771cb3 fromQ+8",
+    "RDI": "entryRDI restored771cae fromQ+0x10",
+    "R15": "entryR15 restored771ca7 fromQ+0x18",
+    "R8": "pathdependent: noresize may original00000000ffffffff; resize sets1; after42d850 volatileunknown",
+    "R9": "unknown; originalunknown or clobberedby42d850; no preservation assertion",
+    "flags": "CMP EBPffffffff,-1 =>ZF1/CF0/SF0/OF0/PF1/AF0; JE taken",
+    "Q+0x20": "pathdependent: R58 wrotelowbyteR9B; R59resize setup overwrotelowDWORD1; remainingbytesnototherwiseproved",
+    "saved_stack_qwords": {
+      "Q-8": "originalRBP",
+      "Q-0x10": "originalRSI",
+      "Q-0x18": "originalR14"
+    },
+    "other_registers_XMM_and_stack_arguments": "unknown, no newABI defaults",
+    "conditions": "original caller/prefix/fragment normallyexecute; validmemory/calleeABI/nonvolatile and stackdiscipline, not current process authority"
+  },
+  "post_increment": {
+    "rows": [
+      "0x771cc7",
+      "0x771cc9",
+      "0x771ccb",
+      "0x771ccd"
+    ],
+    "input": "V=uint32DWORD slot5 loadedR59 fromfreshP=QWORD[S+2508]; RAX/RCXzeroextendedV,RDX=P+0x14",
+    "operation": "ECX=EAX(oldV); EAX=add_mod32(V,1); storeDWORD[RDX]=EAX; EAX=ECX(oldV)zeroextendsRAX",
+    "destination": "same inherited slot address P+0x14, not a new pointer or formalABI parameter",
+    "no_atomicity": "INC register and separateDWORDstore, no lock/atomicRMW; currentmemory may differ fromR59snapshot under races/alias writes",
+    "type": "physical32bitpostincrementreturn-old candidate; no stable ID/class/businessname inferred"
+  },
+  "normal_composition": {
+    "condition": "V!=0xffffffff, plus R58/R59 validmemory/normalcalleeABI/stack and buffer assumptions",
+    "branch": "771cd2 0f8525ffffff JNE771bfd; no externalcode read followed",
+    "retained_epilogue_rows": [
+      {
+        "rva": "0x771bfd",
+        "bytes": "4883c430",
+        "mnemonic": "add",
+        "operands": "rsp, 0x30",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rflags",
+          "rsp"
+        ],
+        "memory_operands": [],
+        "immediates": [
+          48
+        ],
+        "raw_memory_write_review": {
+          "raw_hex": "4883c430",
+          "prefix_hex": "48",
+          "status": "recognized_register_destination_form",
+          "explicit_memory_write": false,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "83",
+          "modrm_offset": 2,
+          "modrm_hex": "c4",
+          "mod": 3,
+          "group": 0
+        }
+      },
+      {
+        "rva": "0x771c01",
+        "bytes": "415e",
+        "mnemonic": "pop",
+        "operands": "r14",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp",
+          "r14"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "415e",
+          "prefix_hex": "41",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "5e"
+        }
+      },
+      {
+        "rva": "0x771c03",
+        "bytes": "5e",
+        "mnemonic": "pop",
+        "operands": "rsi",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp",
+          "rsi"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "5e",
+          "prefix_hex": "",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "5e"
+        }
+      },
+      {
+        "rva": "0x771c04",
+        "bytes": "5d",
+        "mnemonic": "pop",
+        "operands": "rbp",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp",
+          "rbp"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "5d",
+          "prefix_hex": "",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "5d"
+        }
+      },
+      {
+        "rva": "0x771c05",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": "",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "c3",
+          "prefix_hex": "",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "c3"
+        }
+      }
+    ],
+    "source_pin": {
+      "bytes": 11062,
+      "sha256": "912c5ff0bca2986cee3e7d9ae4f487b569eb2a7414755d0eed60221b14d0c2bf"
+    },
+    "stack": "RSPQ-48 +30hex ->Q-18; POPR14/RSi/RBP ->Q; RET consumesQ returnslot. R59 already restoredRBX/RDI/R15.",
+    "result": "Under those conditionalnormal assumptions, composed selected path returns zeroextendedoldV inRAX; slot was writtenV+1mod32.",
+    "result_range": "AnyoldV exceptffffffff is locally accepted, including0 and signbitsetvalues; no positive/signed-valid-ID rule.",
+    "limits": "Selected path composition only; generic EBP!=ffffffff first10B and otherfunctionpaths unread; no runtime reachability/currentworld/lifetime proof."
+  },
+  "max_bitpattern_path": {
+    "condition": "oldV==0xffffffff (32-bit equality, not signed range check)",
+    "already_happened": "registerINC wraps and DWORDslotstore writes0 beforeCMP branch",
+    "path": "JNE nottaken; twoLEA moduleaddresses, QWORD[steadyRSP+20]=firstaddress, RCX=&localQWORD,RDX=secondaddress ->CALL1a36038; ifcallee returns thenINT3",
+    "no_normal_local_return": true,
+    "callee_body_followed": false,
+    "exception_or_handler_semantics": "unknown",
+    "limits": "No autoretry/reusepermission. Whetherfailure unwinds/terminates/retainszerostore/currentworldstate is unverified."
+  },
+  "error_call": {
+    "site": "0x771cf0",
+    "raw_hex": "e843432c01",
+    "target": "0x1a36038",
+    "RCX": "&QWORD[steadyRSP+20]=Q-28",
+    "RDX": "secondmoduleaddress formed771cdf",
+    "R8": "inheritedpathdependentunknown",
+    "R9": "inheritedunknown",
+    "stack_arguments": "unknown",
+    "LEA_addresses": [
+      {
+        "site": "0x771cd8",
+        "address_rva": "0x1cb1298",
+        "is_data_dereference": false
+      },
+      {
+        "site": "0x771cdf",
+        "address_rva": "0x1fa4b48",
+        "is_data_dereference": false
+      }
+    ],
+    "module_literal_bytes_read": 0,
+    "name_or_exception_type_inferred": false
+  },
+  "write_summary": {
+    "explicit_sites": 2,
+    "slot_DWORD_sites": 1,
+    "error_stack_QWORD_sites": 1,
+    "error_stack_location": "steadyRSP+20=Q-28, distinctfromoriginalQ+20 home slot",
+    "implicit_error_CALL_returnslot_write": 1,
+    "new_push_pop_RET_sites": 0,
+    "field_or_module_stores_other_than_slot": 0
+  },
+  "unknowns": [
+    "slot/globalID uniqueness",
+    "otherkindslots andvalidselectorbusinessmeaning",
+    "counterinitialization/reset/reload/epochs",
+    "concurrentatomicity andlostupdates",
+    "errorhandlerbody/exceptiontype/termination/persistence",
+    "callerrequest+3c/bridgeIDmapping beyondretainednormalconsumer",
+    "world/type/ownership/lifetime",
+    "generic unselected10B and completefunctionsemantics"
+  ],
+  "resources": {
+    "two_EXE_SHA_bytes": 76925008,
+    "pdata_requests": 19,
+    "pdata_unique_records": 16,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 192,
+    "new_code_bytes": 47,
+    "total_PE_physical_bytes": 76925283,
+    "decoder_input_bytes": 153,
+    "decoder_input_union": 47,
+    "decoder_overlap_bytes": 106,
+    "producer_source_events": 131,
+    "producer_source_journal_bytes": 16704822,
+    "source_budget": 33554432,
+    "source_journal_scope": "successful producerrecordedIO throughcapturepublication, not allOSloaderIO/failureconstructoraccess",
+    "peak_committed_bytes_producer_witness": 22892544,
+    "software_guard_bytes": 805306368,
+    "hard_Job_installed": false,
+    "producer_subprocess_elapsed_ns": 451763000,
+    "elapsed_scope": "producerlaunch-through-collectedexit including source/engine guards/twoSHA; authorization creation excluded",
+    "owned_child_collected": true
+  },
+  "failure_precision": "Currentrun succeeded. Genericfailurejournal and peNone are not proof of completeIO orno targetopen inconstructor; frozenpeerprecision retained.",
+  "operations": {
+    "actual_runs": 1,
+    "automatic_retries": 0,
+    "PE_or_decoder_runs_by_sealer": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "tests": 0,
+    "requests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "global_ID_uniqueness_verified": false,
+    "counter_reset_or_epoch_verified": false,
+    "bridge_request_ID_binding_verified": false,
+    "ownership_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

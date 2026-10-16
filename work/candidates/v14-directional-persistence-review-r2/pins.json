@@ -1,0 +1,162 @@
+{
+  "files": {
+    "bridge/diplomacy_api.py": {
+      "sha256": "2887e6af632b50be136d88cbfeaa6b861e7760ab34d534e5935e1596f2b33f6a",
+      "size_bytes": 34284
+    },
+    "bridge/native_build.py": {
+      "sha256": "2f8f7f1781f10084ed85cae59f876080a9cd0efcf9810e1fc394561682048925",
+      "size_bytes": 3582
+    },
+    "tools/verify_diplomacy_lifecycle.py": {
+      "sha256": "149509cbb6753b094dc108cb13bbd9d57db8e98b7e50eefaeadfb3f83cc3d12f",
+      "size_bytes": 25366
+    },
+    "work/candidates/directional-pair-observer-1375/evidence-contract.json": {
+      "sha256": "fb1e47ca36655a1ef371e8ef5e85ae7bd77de0e747c50a19cf06d787de8307a7",
+      "size_bytes": 29556
+    },
+    "work/candidates/directional-pair-observer-1375/observer.py": {
+      "sha256": "acb38546adea4d1fef88803a1057e465d7e5ff297fe4959760757d3b7fce1496",
+      "size_bytes": 16803
+    },
+    "work/candidates/v14-directional-experiment-review/review.json": {
+      "sha256": "5a83f3e267f6179f980cc9e45b16d0c12e0c0ee6b7c454261630a155d986ede8",
+      "size_bytes": 4530
+    },
+    "work/candidates/v14-directional-persistence-review/README.md": {
+      "sha256": "3d3806641d085f5102ab7320c74ed552100b6b41d406203fc9f56eafc3520684",
+      "size_bytes": 7040
+    },
+    "work/candidates/v14-directional-persistence-review/case-template.json": {
+      "sha256": "edb9849bd061a6579d84d8f9d512eb9d8a84650c7cbb5f147ed9e4c0f10bf198",
+      "size_bytes": 129
+    },
+    "work/candidates/v14-directional-persistence-review/contract.json": {
+      "sha256": "c246a127031480971af626018a35c05298ae4f84a3660c9e44f713c47275aabe",
+      "size_bytes": 3073
+    },
+    "work/candidates/v14-directional-persistence-review/matcher.py": {
+      "sha256": "84debe9a44bd2638011ac11ff4c6d7d234c5322cc3f4fa3ac8fd0b55659a3b41",
+      "size_bytes": 27789
+    },
+    "work/candidates/v14-directional-persistence-review/pins.json": {
+      "sha256": "b19d2e41ed9b482522f9ec50243baa0272ae00cf1130836abb569c61af59069f",
+      "size_bytes": 3827
+    },
+    "work/candidates/v14-directional-persistence-review/prepare.py": {
+      "sha256": "ae0567a64b0844771a0f65517a16f1b8fe8634ddceabd55a531aae2e7bb2b04d",
+      "size_bytes": 1301
+    },
+    "work/candidates/v14-directional-persistence-review/review.json": {
+      "sha256": "6f2d5702be4c6d412d5d11417c9427eca11c340b0ab3cf0a4219f8f2605c9c8a",
+      "size_bytes": 4858
+    },
+    "work/candidates/v14-directional-persistence-review/test_matcher.py": {
+      "sha256": "f3a9bf1ca753c2b6bf793c1e3e2f47121efd1f87d1d2b16841063bf85c7850b1",
+      "size_bytes": 17687
+    },
+    "work/candidates/v14-directional-persistence-review/verify_tests.py": {
+      "sha256": "43ebef07d4de8252fdd6f2837a2d5b81a0989df8829105cb449ff6544830c61b",
+      "size_bytes": 1678
+    },
+    "work/inspect_diplomacy_save.py": {
+      "sha256": "53c3ed0f74e0c43efa3e5e8185339ba22e031259cc6e0c1780d57fbb7cd51836",
+      "size_bytes": 18625
+    },
+    "work/local_config.py": {
+      "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001",
+      "size_bytes": 2818
+    },
+    "work/probe_diplomacy_current.py": {
+      "sha256": "a5a0b775a701466cf5f4c85db671e37f81c165daf5fddd2080b71ed6f147bb38",
+      "size_bytes": 24900
+    },
+    "work/probe_diplomacy_relations_v7_1375.py": {
+      "sha256": "ff28f8bbcac46411d3405cc76e501e0984fd592c72c9196d5abbe005f3529805",
+      "size_bytes": 30743
+    },
+    "work/probe_pair_effects_1375.py": {
+      "sha256": "e5ae9d341c57e7cc79169b708c1d37ccf79ac3d09e88c953e1d4bcbb3ab1cf67",
+      "size_bytes": 26397
+    },
+    "work/probe_pair_extension_v10_1375.py": {
+      "sha256": "b29a9352df4ad26dd87b5087bdd98d95476dda70b735b3492d3c068b3f85deef",
+      "size_bytes": 18665
+    },
+    "work/reports/native-pair-extension-effects-v10-1375.json": {
+      "sha256": "b6f4b69db38f5e3eae0c3cebf1fa5298701b86a98e8299d6f0e9759b84861f62",
+      "size_bytes": 313488
+    },
+    "work/reports/native-pair-extension-v10-1375.json": {
+      "sha256": "0c1731b0b29b296da73dc406fb31544ada59c17c275d17d623677b16998698bd",
+      "size_bytes": 2862211
+    },
+    "work/runtime/native1375-v14/directional-final-save-snapshot-18356.json": {
+      "sha256": "1415ce0a7a7f49805f4100a5e42214b31d3404b2fe07cd4d5b1f288c59be838f",
+      "size_bytes": 161027
+    },
+    "work/runtime/native1375-v14/directional-positive-save-snapshot-18356.json": {
+      "sha256": "3365dce90b7f90fff1447070b1c31bb91f03160b3c1930335ed6d02b4dfcc876",
+      "size_bytes": 155386
+    }
+  },
+  "lineage": {
+    "prior_review_sha256": "6f2d5702be4c6d412d5d11417c9427eca11c340b0ab3cf0a4219f8f2605c9c8a",
+    "prior_sources": {
+      "README.md": {
+        "sha256": "3d3806641d085f5102ab7320c74ed552100b6b41d406203fc9f56eafc3520684",
+        "size_bytes": 7040
+      },
+      "case-template.json": {
+        "sha256": "edb9849bd061a6579d84d8f9d512eb9d8a84650c7cbb5f147ed9e4c0f10bf198",
+        "size_bytes": 129
+      },
+      "contract.json": {
+        "sha256": "c246a127031480971af626018a35c05298ae4f84a3660c9e44f713c47275aabe",
+        "size_bytes": 3073
+      },
+      "matcher.py": {
+        "sha256": "84debe9a44bd2638011ac11ff4c6d7d234c5322cc3f4fa3ac8fd0b55659a3b41",
+        "size_bytes": 27789
+      },
+      "pins.json": {
+        "sha256": "b19d2e41ed9b482522f9ec50243baa0272ae00cf1130836abb569c61af59069f",
+        "size_bytes": 3827
+      },
+      "prepare.py": {
+        "sha256": "ae0567a64b0844771a0f65517a16f1b8fe8634ddceabd55a531aae2e7bb2b04d",
+        "size_bytes": 1301
+      },
+      "test_matcher.py": {
+        "sha256": "f3a9bf1ca753c2b6bf793c1e3e2f47121efd1f87d1d2b16841063bf85c7850b1",
+        "size_bytes": 17687
+      },
+      "verify_tests.py": {
+        "sha256": "43ebef07d4de8252fdd6f2837a2d5b81a0989df8829105cb449ff6544830c61b",
+        "size_bytes": 1678
+      }
+    }
+  },
+  "saves": {
+    "final": {
+      "date": "1444.12.7",
+      "filename": "llm_diplomacy_1375_v14_final_cancellations_20261008a.eu4",
+      "raw_date": 56457600,
+      "sha256": "42a2ccb5d69c41697eaa7222dbfde6c8039c2a4275b546315dda0ac46242a463",
+      "size_bytes": 36370490,
+      "snapshot_path": "work/runtime/native1375-v14/directional-final-save-snapshot-18356.json",
+      "snapshot_sha256": "1415ce0a7a7f49805f4100a5e42214b31d3404b2fe07cd4d5b1f288c59be838f"
+    },
+    "positive": {
+      "date": "1444.12.1",
+      "filename": "llm_diplomacy_1375_v14_positive_military_alliance_subsidies_20261008a.eu4",
+      "raw_date": 56457456,
+      "sha256": "ec7d782cb472f271fa79f7eda7b9a5ba7fc717f8f4bc1303c30c85f77c9dbb9f",
+      "size_bytes": 36150844,
+      "snapshot_path": "work/runtime/native1375-v14/directional-positive-save-snapshot-18356.json",
+      "snapshot_sha256": "3365dce90b7f90fff1447070b1c31bb91f03160b3c1930335ed6d02b4dfcc876"
+    }
+  },
+  "schema_version": 1
+}

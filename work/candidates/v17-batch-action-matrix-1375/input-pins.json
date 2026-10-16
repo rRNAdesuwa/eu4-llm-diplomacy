@@ -1,0 +1,58 @@
+{
+  "files": {
+    "docs/native-pair-cancel-1375.md": {
+      "bytes": 11428,
+      "sha256": "4622b766f208528b6b9f0126874c76909adffddc9119f7652f2fc1c7c7288ee0"
+    },
+    "docs/native-pair-extension-effects-v10-1375.md": {
+      "bytes": 7220,
+      "sha256": "bc9047857c26acb135361a416f5f2365e096c35d787fdc67df69e9295fde0672"
+    },
+    "docs/native-pair-extension-v11-1375.md": {
+      "bytes": 8095,
+      "sha256": "858af02e59069c1274bccf35477a93628745d329af5076dd1c3bc57fcc05d993"
+    },
+    "docs/native-test-fixture-1375.md": {
+      "bytes": 9497,
+      "sha256": "a60767b9c7a9845492f21b2f0c5bafd4d95980beb16950dfbaecb9430f64ed6e"
+    },
+    "work/candidates/directional-experiment-plan-v14-1375/README.md": {
+      "bytes": 8353,
+      "sha256": "a182a88db3c2569cd5d4ab86f19c504c9862ae33c98d6e3c3dffa004a3a570f4"
+    },
+    "work/candidates/fixture-v17-1375/mod/llm_diplomacy_test/common/defines/zz_llm_diplomacy_test.lua": {
+      "bytes": 128,
+      "sha256": "0b6e7ab147648f8d5b42688f71e88ab27ef09bfd38fa28e775a7b61fff989b93"
+    },
+    "work/candidates/fixture-v17-1375/mod/llm_diplomacy_test/common/event_modifiers/llm_diplomacy_test.txt": {
+      "bytes": 274,
+      "sha256": "93227038a3b55dda162927b4e842c508131d50c8784aa74c36bde39f7aeda54a"
+    },
+    "work/candidates/fixture-v17-1375/mod/llm_diplomacy_test/events/llmt_fixture.txt": {
+      "bytes": 1900,
+      "sha256": "86b8b187e446e06277b1602022b34bbb509677be6f63ffb48e135243f1c70da5"
+    },
+    "work/candidates/offered-fleet-ai-response-1375/report.json": {
+      "bytes": 591251,
+      "sha256": "f7eeae58d29902ca3999c7bd00e47dacde43e64c72ca215a6df47417e015eee5"
+    },
+    "work/candidates/ordinary-insult-observer-1375/README.md": {
+      "bytes": 7565,
+      "sha256": "1aa7bf1665e9f42eb130bfe15a456bf70c59ad5b223231c18ad4afd7f7d0e41b"
+    },
+    "work/native/lab_protocol_v17_1375.py": {
+      "bytes": 76229,
+      "sha256": "5bce16b8c951850cbbdc47c88e1edb0cd5b565d3dae2f9785246a92656afa202"
+    },
+    "work/native/v17/pair-engine-1375.cpp": {
+      "bytes": 84162,
+      "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e"
+    },
+    "work/runtime/unpacked-1.37.5/base/history/diplomacy/French_alliances.txt": {
+      "bytes": 11869,
+      "sha256": "1428887396f36b1568afc9f86bb58f82cdab8ba0c31e0dea9ade7e2f112a8c51"
+    }
+  },
+  "no_process_access": true,
+  "schema_version": 1
+}

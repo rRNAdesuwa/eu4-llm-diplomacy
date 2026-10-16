@@ -1,0 +1,95 @@
+{
+  "schema": "peace_range_corrective_contract_1375_r5_v1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "production_ready": false,
+  "addresses": "RVA; actual current module requires loaded-image authentication",
+  "entrypoints": {
+    "collect_world": "actual bounded Reader decoder; TLS authentication remains external",
+    "inspect_white_shape": "rebuilds supported world bounds through actual Reader; rejects unknown referent extent",
+    "run_once": "always Reason::unproved_borrowed_world_graph; no Host callbacks/claim/allocation/native calls"
+  },
+  "scope": {
+    "snapshot_field": "known_borrow_ranges_excluded",
+    "borrow_scope": "known_referents_only",
+    "whole_world_allocation_graph_proved": false,
+    "epoch_or_lifetime_proved": false,
+    "mixed_R3_R5_structs_allowed": false
+  },
+  "fixed_outer_ranges": {
+    "country": {
+      "bytes": 39800,
+      "hex": "9b78",
+      "vtable_rva": "1c574a0"
+    },
+    "game": {
+      "bytes": 29976,
+      "hex": "7518",
+      "vtable_rva": "1cb00c8"
+    },
+    "database": {
+      "bytes": 2048,
+      "hex": "800",
+      "lookup_vtable_rva": "1c38348"
+    },
+    "war": {
+      "bytes": 536,
+      "hex": "218",
+      "vtable_rva": "1d1f768"
+    }
+  },
+  "buffers": {
+    "country_lookup": "db+118 data; signed cap120/count124; fullcap*8",
+    "relations": "root+18/20/28 begin/end/cap; fullcap-begin; stride48",
+    "war_index": "root+50data; signed cap58/count5c; fullcap*16",
+    "war_sides": "war+48/50/58 and78/80/88; fullcap-begin; stride8"
+  },
+  "root_identity": "root==country+14f8; root+10==country; record+0root/+8ownerfullhandle/+10otherfullhandle; relation slot insideend",
+  "country_handle_policy": "byte7valid!=0; byte6kind0; signed16slot>=0&&slot<count<=4096; uppercaseTAGbytes0..2; byte3zero; exactlookup/country+20 andsupportedtype",
+  "overlap": "half-open fullinterval compare in both insertion orders; borrow-borrow may overlap; anyown-own orown-borrow overlap rejects",
+  "unknown_classes_rejected": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    14,
+    15,
+    19,
+    20,
+    27,
+    28,
+    30,
+    31,
+    37,
+    39
+  ],
+  "supported_component_classes": "gold0 withamount0, or fixedsize30 base-only classes; every other derived payload rejects",
+  "budgets": {
+    "world_reads": 4096,
+    "world_read_bytes": 65536,
+    "white_reads_including_world_rebuild": 4096,
+    "white_read_bytes": 131072,
+    "borrowed_ranges": 512,
+    "owned_ranges": 256,
+    "country_lookup_capacity": 4096,
+    "relations_capacity": 4096,
+    "index_capacity": 64,
+    "war_side_capacity": 64,
+    "candidate_components": 128
+  },
+  "missing": [
+    "complete transitive world allocation ownership",
+    "real current native callback/TLS/epoch/war-specific lifetime",
+    "dynamic side-effect/reload closure",
+    "ordinary whitepeace final retirement scheduler",
+    "actualnative constructed shape acceptance"
+  ],
+  "tests": {
+    "new_synthetic_checks": 57,
+    "old_counterexamples_executed": 3,
+    "native_calls": 0,
+    "native_bindings_linked": false,
+    "host_lease_proved": false
+  }
+}

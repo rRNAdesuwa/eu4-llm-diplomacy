@@ -1,0 +1,281 @@
+{
+  "schema": "EU4-R73-NONPOSITIVE-EXIT-CONTRACT/1",
+  "sealed": true,
+  "stage": "author_retained_source_ready_pending_nonauthor_full_review",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "source_pins": {
+    "work/reports/peace-divisor-successor-proposal-20261016-r1/manifest.json": {
+      "bytes": 6573,
+      "sha256": "695823e43994247dac2e59f430ddf1d30e3ace18497ec7cde2194633ce9e82f3"
+    },
+    "work/reports/peace-divisor-successor-proposal-20261016-r1/proposal.json": {
+      "bytes": 9547,
+      "sha256": "c14b8d0f9441b860bb128ef6ddb201d386df85bf604ce395636dc8b99859ee5e"
+    },
+    "work/reports/peace-divisor-successor-proposal-20261016-r1/selected-seed.json": {
+      "bytes": 5440,
+      "sha256": "41946c4a562e088d7dcc8f56f0a96ce22cec9d7a1e75f6b44102c151d13ceee0"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/capture.json": {
+      "bytes": 82235,
+      "sha256": "16125c7d31832311ef0b67019b01011b2703699f05408feb33ca881692f14c65"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/contract.json": {
+      "bytes": 7825,
+      "sha256": "cf685af0d0287802ed06d830e804ee12c75865c4b527b3a676f3950cc96ef6cc"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/selected-evidence.json": {
+      "bytes": 19444,
+      "sha256": "e3f4d304acf93f674ec407c4cfdd330a5163ea8e328bc6a8afe5deab893a237f"
+    },
+    "work/reports/war-peace-api-20261016-r69-actual-independent-review/findings.json": {
+      "bytes": 6300,
+      "sha256": "529f00a30baeba2c1f600018455c1e050f6061429951da8ce2daf9c44de17f56"
+    },
+    "work/reports/war-peace-api-20261016-r69-actual-independent-review/manifest.json": {
+      "bytes": 13503,
+      "sha256": "bceee11bb0cc11bb648d0b2e8d65b9862df971ecc10e161118ee762e3acf8058"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-contract.json": {
+      "bytes": 12229,
+      "sha256": "3d370deb33fc006ecb8a0cee93e8744bc112da8fffe66154afee3dfe9f92ff98"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-selected-evidence.json": {
+      "bytes": 41810,
+      "sha256": "12f1041c5d62da5d28fa9234e06e7081b3a2a73ad028ad83219e17a22917e5ae"
+    },
+    "work/reports/war-peace-api-20261016-r71-actual-independent-review/findings.json": {
+      "bytes": 8035,
+      "sha256": "40dbb7199f02244bcf1f95dba475db87171a81e226b7e0238004f788312cb045"
+    },
+    "work/reports/war-peace-api-20261016-r71-actual-independent-review/manifest.json": {
+      "bytes": 12660,
+      "sha256": "9bcd6706361cb07936763b868f9f384e399194f4900f774ef91fe042c2eb3a96"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/produce.py": {
+      "bytes": 22257,
+      "sha256": "f3968623dfa79dedf603d8b6274159e4d152dbacc6d2a12300750a1f9509a937"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/source-manifest.json": {
+      "bytes": 21135,
+      "sha256": "6f46db3d7acb1b34391b9f821fb2347b507dac2ee18393b64d74d51f2a5b0722"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-manifest.json": {
+      "bytes": 24771,
+      "sha256": "df5a1d0e3918347ff95d7199b184adefed4a816b2f08dc3dd2bba4576823777f"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/owned-code.json": {
+      "bytes": 1168,
+      "sha256": "75273a3a5b75655703a01cfd5b1276f18d4089e5663c5d9bb3d4454dad716160"
+    },
+    "work/reports/war-peace-api-20261015-r27-truce-literal-anchors/war/anchors.json": {
+      "bytes": 12398,
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    "work/reports/server-vtable-current-reference-owner-20261016-r2/produce.py": {
+      "bytes": 26805,
+      "sha256": "902a2908148870876719f8b086553ea553e87cf9000703af61787be87d9a875d"
+    },
+    "work/reports/server-vtable-current-reference-owner-20261016-r2/source-manifest.json": {
+      "bytes": 24090,
+      "sha256": "ba3735d36f60978d6bfff31c6740eabacd3427b7944832d888999882db52a6c4"
+    },
+    "work/reports/server-vtable-current-reference-owner-source-independent-review-20261016-r2/findings.json": {
+      "bytes": 7896,
+      "sha256": "0d379a3bbd3879d948e0ff9dd8cacf2453855e9ddcafb5977c592da88a4fc3cc"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/prepare.py": {
+      "bytes": 24422,
+      "sha256": "2cbc9b052de4da046c935081678672ec2a4acc9a17ae756510146e540a928316"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/produce.py": {
+      "bytes": 23386,
+      "sha256": "d23bc4861c7d1a2fe17ecfde2090eda3ee77a9c87cbf9f45649817b51705800b"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/entry-seed.json": {
+      "bytes": 21609,
+      "sha256": "34014d40471b0f79a9ed37a5013461e4afa1a31d43e22f4558080375a6ca3ca4"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/source-delta.json": {
+      "bytes": 1315,
+      "sha256": "b80487495667b8d2256816d991b87f11d24a7dc355a2075c92215cb22c63117a"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/budget.json": {
+      "bytes": 1922,
+      "sha256": "aa8842cc3577f9e54e2797125145b8edb58eecd25198ca22302d2718e4e32d81"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/PROTOCOL.md": {
+      "bytes": 3155,
+      "sha256": "bab80138c5c1f2631783dfc5c7466df5b9315ddbdf65704f5807d590eb84283a"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/source-manifest.json": {
+      "bytes": 24203,
+      "sha256": "7d06b37f47bdda3a77898f185434994d5f4f0c85d0e856eb0e9fe30bd877ca3f"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/run-authorization.json": {
+      "bytes": 2698,
+      "sha256": "c30dfb4b2b22cebb853ccda30a282dc3ad6f91101570f6669cc9828a410bf6ce"
+    },
+    "work/reports/war-peace-api-20261016-r73-root-authorization/receipt.json": {
+      "bytes": 4007,
+      "sha256": "cf7edf7c71cccf9ff0b5ee31526802c15f49236ba818cc5fda2ec1597f9141ac"
+    },
+    "work/reports/war-peace-api-20261016-r73-entry-root-review/findings.json": {
+      "bytes": 2515,
+      "sha256": "7fb5775b39a1c715f2d44a4475fda1d52b23fcacac2f4e117615f9b02b0b03f4"
+    },
+    "work/reports/war-peace-api-20261016-r73-entry-root-review/manifest.json": {
+      "bytes": 2649,
+      "sha256": "2dafb89a56acab3bf03c2be22f9b3385f2e7d6ee9f40cb2972a11020117545e4"
+    },
+    "work/reports/war-peace-api-20261016-r73-source-independent-review/findings.json": {
+      "bytes": 4775,
+      "sha256": "6bec005ad6564656891e5b69928476dfba8846f4cb84eb454f1d70d4215aec92"
+    },
+    "work/reports/war-peace-api-20261016-r73-source-independent-review/manifest.json": {
+      "bytes": 16907,
+      "sha256": "7f5f59b865bb785a4678f291a6103c86e5c73080c364c05b845cecf38cc33e56"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/capture.json": {
+      "bytes": 73174,
+      "sha256": "362d4112a31856da813b1a4c5499fa4bb5257b227c4f1ba72be5d91ef9f06b6c"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/owned-code.json": {
+      "bytes": 906,
+      "sha256": "531d218c6d62d25eedee87756f347cb6089fd5f32afeec51ceb634f22760482c"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-run.json": {
+      "bytes": 823,
+      "sha256": "855d0fc0b88d0b6d41c01da4e8ab591fcdd7abdb259601bf2f3627296b5f259a"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/claim.json": {
+      "bytes": 12216,
+      "sha256": "d2ead07b947b746eeba570e19d73bb0c7d414c60520bfe66e8fb89e31ff2c525"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-stdout.txt": {
+      "bytes": 266,
+      "sha256": "59c75d1a21fbdd4729338eebdf9386e529a84da209553cafa0b70a7ac335a32e"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/seal_actual.py": {
+      "bytes": 18859,
+      "sha256": "28a4886b100fa2dba8ce9b86ab971bb460fe826f3d93a8b0094144d8ac75318e"
+    }
+  },
+  "owned_code_pin": {
+    "bytes": 906,
+    "sha256": "531d218c6d62d25eedee87756f347cb6089fd5f32afeec51ceb634f22760482c"
+  },
+  "capture_pin": {
+    "bytes": 73174,
+    "sha256": "362d4112a31856da813b1a4c5499fa4bb5257b227c4f1ba72be5d91ef9f06b6c"
+  },
+  "selected_evidence_pin": {
+    "bytes": 8070,
+    "sha256": "724057630e576f976d48ad6e3044cdbdde7d0359e98bfd27f992f285cb680eea"
+  },
+  "scope": {
+    "entry_rva": "0x993643",
+    "end_exclusive": "0x993658",
+    "bytes": 21,
+    "kind": "inherited_branch_fragment_not_independent_Win64_function",
+    "cached_pdata": {
+      "reason": "binary_search",
+      "index": 19162,
+      "rva": "0x249d238",
+      "file_offset": 37139000,
+      "raw_hex": "433699005836990024dde701",
+      "begin_rva": "0x993643",
+      "end_exclusive": "0x993658",
+      "unwind_rva": "0x1e7dd24"
+    },
+    "new_metadata": 0,
+    "NULL_exit_at_end_unread": true
+  },
+  "observations": [
+    {
+      "id": "raw_local_epilogue",
+      "rvas": [
+        "0x993643",
+        "0x993648",
+        "0x99364b",
+        "0x993657"
+      ],
+      "summary": "Nine continuous instructions consume21B: stack-loadR15,copycurrentR14toRAX,ADD RSP30,fivePOPs,RET. No directD/header memory access, explicit memory write,CALL,conditional branch orINT3 in this selected fragment."
+    },
+    {
+      "id": "RAX_before_restore",
+      "rvas": [
+        "0x993648",
+        "0x99364f"
+      ],
+      "summary": "RAX takes currentR14 bits BEFORE POP restoresR14. It returns pointer-shaped bits; no dereference or conversion toDWORD amount occurs."
+    },
+    {
+      "id": "stack_sources",
+      "rvas": [
+        "0x993643",
+        "0x99364f",
+        "0x993651",
+        "0x993653",
+        "0x993655",
+        "0x993656",
+        "0x993657"
+      ],
+      "summary": "Explicit QWORD[F+78] load plus implicit POP QWORDs atF30/F38/F40/F48/F50 and RET QWORD atF58. These are reads; empty explicit-memory operand lists do not erase implicit stack behavior."
+    }
+  ],
+  "conditional_projection": {
+    "path": "Only the R69 post97bd30 nonnull route followed by R71 TEST32 R8D/JLE signedlow32<=0. Positive R71 loop, itsF60/F70 saves andd959b0/996e30 calls are bypassed.",
+    "frame": "If the original5push/sub30 frame and97bd30 normal balanced call hold,F=S69-58. ADD30 andfivePOPs yield preRET RSP=S69; normal nearRET yieldsS69+8.",
+    "R15": "Reads currentQWORD[F+78]. Equals the R71 saved oldR15 bits only under valid saved-memory/nointerveningalias-corruption premises; it no longer retains the signextended low32 count after this load.",
+    "RAX": "CurrentR14 at993648. Equals original D pointer only if prior97bd30 preserves the R14 alias set by R69; not the saved caller R14 restored by laterPOP and notDWORD[D].",
+    "D_and_header": "This21B has no additional direct access to either. Their current/final contents are not proven unchanged over the full function; earlier97bd30 and aliases may change them. R69 oldDzero and caller headerzero are not carried as invariants.",
+    "normal_return": "Requires every stackread valid and saved/controlstack uncorrupted, valid returntarget and priorcallee/ABI premises. Local normalCFG closure is static, not observed execution or arbitrary-input safety.",
+    "business": "No unit, recipient, amount correctness, result application, ownership orworldlease proof."
+  },
+  "remaining_unknown": [
+    "R69 NULL target993658 is outside the window and unread.",
+    "Unfollowed97bd30 behavior and all prioraliases remain unknown.",
+    "Positivepathd959b0/996e30 remain unfollowed; no statement that allcallees leaveD/header unchanged.",
+    "Whole-function semantics, finalD, originalpeace request/settlement/effect/lifetime are not established."
+  ],
+  "resource_witness": {
+    "PE_physical": 76925029,
+    "PE_doubleSHA": 76925008,
+    "new_code_physical_and_unique": 21,
+    "new_pdata": 0,
+    "decoder_lookahead": 70,
+    "decoder_union": 21,
+    "decoder_repeat": 49,
+    "source_journal_through_capture": 17382203,
+    "post_capture_print_pin_read": 73174,
+    "producer_source_including_print_pin": 17455377,
+    "producer_peak_committed": 24043520,
+    "software_guard": 805306368,
+    "hard_Job_installed": false,
+    "direct_elapsed_ms": 403.9216,
+    "all_static_execution_metrics_are_producer_witnesses": true,
+    "not_all_OS_import_loader_IO": true,
+    "no_producer_rerun": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "independent_entry_callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "whole_function_closed": false,
+    "runtime_verified": false,
+    "persistence_verified": false
+  }
+}

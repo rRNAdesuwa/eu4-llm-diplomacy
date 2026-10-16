@@ -1,0 +1,115 @@
+{
+  "all_shells_collected": true,
+  "author_frozen_sources_need_change": false,
+  "author_resource_witness": {
+    "PE_separate": 76925029,
+    "postcapture_print_pin": 73174,
+    "producer_peak": 24043520,
+    "retained_frozen_upper": 3309008,
+    "retained_manual_allowance": 1048576,
+    "retained_measured": 1890702,
+    "retained_measured_plus_manual": 2939278,
+    "source_through_capture": 17382203,
+    "source_total": 17455377
+  },
+  "authority": {
+    "amount_units_verified": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "callable": false,
+    "external_ABA_excluded": false,
+    "further_actual_authorized": false,
+    "independent_entry_callable": false,
+    "native_ready": false,
+    "persistence_verified": false,
+    "reader_adoption_allowed": false,
+    "recipient_direction_verified": false,
+    "runtime_verified": false,
+    "selected_effect_verified": false,
+    "whole_function_closed": false,
+    "world_lease": false
+  },
+  "blocking_findings": [],
+  "checks": {
+    "all_current_flat_source_prepost_equal": true,
+    "author_combined_pins": 43,
+    "author_outputs": 3,
+    "author_sources": 40,
+    "conditional_inherited_R14_R15_frame_boundaries": true,
+    "engine38_metadata_not_opened": true,
+    "full_explicit_flat_files": 51,
+    "local_exit_and_seven_stack_QWORD_reads": true,
+    "publication_exact_pins": 7,
+    "raw21_and_nine_rows_exact": true,
+    "rawbuffer_guard_preparse_two_basepin_calls": true,
+    "soleclaim_no_rerun": true,
+    "source_engine_PE_auth_postguards_and_normal_close_before_publish_retained": true,
+    "three_reviews_and_newgrant_exact": true
+  },
+  "independent_resources": {
+    "complete_stage_upper": 6178320,
+    "explicit_intake_and_audit": 2144086,
+    "limit": 25165824,
+    "manual_cache_queries": 1509946,
+    "other_manual_allowance": 524288,
+    "own_peak": 25456640,
+    "sealing_and_check_reserve": 2000000
+  },
+  "operations": {
+    "Frida": 0,
+    "PE": 0,
+    "author_programs": 0,
+    "decoder": 0,
+    "engine_body": 0,
+    "game": 0,
+    "native": 0,
+    "requests": 0,
+    "tests": 0
+  },
+  "passed": true,
+  "precision_notes": [
+    "MOV RAX,R14 occurs before POPR14. Return is currentR14 bits, and only conditionally originalD pointer; it is not a new balance/amount, boolean or DWORD[D] return.",
+    "One explicit stack QWORD load plus5 POPs andRET give7 reads/56B. POP/RET missing explicit memory operands do not erase reads. No explicit writes or direct D/header dereference in selected21B does not prove their aliases disjoint or wholefunction contents unchanged.",
+    "R15 reads current[F+78], the address earlier used to saveR15; equality to the saved value needs memory/alias integrity. F+78=S69+20 is an address identity, not a prior memory-copy source.",
+    "Local oneRET CFG closure assumes valid stack/return target and priornormal frame. It does not close R69 NULL993658/unfollowed97bd30 or arbitrary-input behavior; no new independent Win64 entry ABI is inferred.",
+    "Source R73 rawmanifest buffer is pinned before parsing/source-selected engine access, pre/post calls use authorizedbasepin and first exterior checks remain. Before/after hashes and normal close are retained source/acquisition witnesses, not an atomic/ABA proof.",
+    "All51 explicit source/publication files are repinned;38 decoder metadata remains unopened and whole recursive history is not expanded. Full engine/PE/timing/peak and direct-child collection are producer witnesses.",
+    "Source17455377 includes postcapture73174 print-pin read; target76925029 is separate. Retained measured1890702+manual1048576=2939278, frozenupper3309008 covers named later small publication reads; no wholeOS/loader or hardJob claim."
+  ],
+  "raw_replay": {
+    "bytes": 3420,
+    "sha256": "7a65fd855fcab090fce058f913d116827a0a33e235bf3a71b1a86bdf6b4a64d8"
+  },
+  "reviewer_role": "Nonauthor of R73 D producer/actual/sealer; same reviewer previously source-peer and historical R69 template designer/R71 full reviewer. Root raw review/grant and validation_audit R69 acquisition remain distinct retained witnesses; no engine reauthentication.",
+  "schema": "EU4-R73-ACTUAL-INDEPENDENT-REVIEW/1",
+  "scope": "Full retained sole21B inherited branch acquisition/raw/conditional exit audit; no new actual operation",
+  "sealed": true,
+  "subject_actual_manifest": {
+    "bytes": 24623,
+    "sha256": "a5eb1ebbfe46c9d590aa118729a330499a226d828458248c45530ada0feb987b"
+  },
+  "subject_capture_pin": {
+    "bytes": 73174,
+    "sha256": "362d4112a31856da813b1a4c5499fa4bb5257b227c4f1ba72be5d91ef9f06b6c"
+  },
+  "subject_contract": {
+    "bytes": 13212,
+    "sha256": "5eb88b02b2a454104799c18703af2f7fdf3487e507661f6af6cad013ceb41857"
+  },
+  "subject_manifest": {
+    "bytes": 24623,
+    "sha256": "a5eb1ebbfe46c9d590aa118729a330499a226d828458248c45530ada0feb987b"
+  },
+  "subject_owned": {
+    "bytes": 906,
+    "sha256": "531d218c6d62d25eedee87756f347cb6089fd5f32afeec51ceb634f22760482c"
+  },
+  "subject_publication_manifest": {
+    "bytes": 2326,
+    "sha256": "31998bcfd764c9afae7e1e262652fe579d5943ba343ed7e0c253e7b106aca542"
+  },
+  "subject_selected_evidence": {
+    "bytes": 8070,
+    "sha256": "724057630e576f976d48ad6e3044cdbdde7d0359e98bfd27f992f285cb680eea"
+  }
+}

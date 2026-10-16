@@ -1,0 +1,196 @@
+{
+  "atomic_snapshot": false,
+  "author_preview_only": true,
+  "authorizes_retry": false,
+  "callable": false,
+  "evidence_kind": "ordinary locked Capstone5.0.7 capture; not REA EvidenceID or runtime execution",
+  "further_actual_authorized": false,
+  "general_branch_limits": [
+    "The other path may make two1a35750 calls and uses fresh header reads; neither callee body is followed.",
+    "INT3 after8f400/95050 does not establish that those callees never return or fully characterize exceptions.",
+    "Source worklist flags remainlocalCFGfalse/wholefunctionfalse. The owned normal epilogue is conditional and does not certify every possible input or callee path.",
+    "No world/class/definition/header lease, actual allocator extent, firstappend final header, complete C++ lifetime or native readiness is established."
+  ],
+  "independent_actual_review_pending": true,
+  "inherited_machine_state": {
+    "C": "R86 entryRCX, retained inRBX under normalcallee/nonvolatile conditions",
+    "D": "R86 entryRDX insertion-position-shaped opaque value, retained inR15",
+    "E": "R86 entryR8, retained inR13; raw QWORD payload is fresh-read atcc2a3",
+    "F": "Q-0x48, whereQ isR86 entryRSP; R87 is an inherited fragment, not independent Win64 entry",
+    "R9_XMM_flags": "No new formal contract; unknown or instruction-local only",
+    "RBP": "SAR64((D-M64[C]) mod2^64,3)",
+    "entry_R8": "0x1fffffffffffffff",
+    "entry_RAX": "SAR64((M64[C+8]-M64[C]) mod2^64,3)",
+    "entry_RCX": "(M64[C+0x10]-M64[C]) mod2^64",
+    "entry_RDX": "M64[C]"
+  },
+  "native_ready": false,
+  "next_single_gap": "c9d60 atcc305 is the precise candidate for a separate future source-reviewed scope; no new acquisition is authorized here.",
+  "normal_firstappend_selected_conditions": [
+    "R86 entry has C with all three QWORD header values0 and D=0; the corresponding R86/R87 reads observe that state.",
+    "C/E/stack are valid for all selected accesses; E is readable for8B atcc2a3. Every reached external callee returns normally with Win64 nonvolatile registers and RSP preserved.",
+    "The opaque950b0 returnS is valid writable8B; its body/allocation semantics/extent are unverified. Any needed noalias between S/E/C and stack/return/homes, and no header or saved-slot mutation across external calls, are additional premises rather than derived guarantees.",
+    "Fresh M64[C] and M64[C+8] remain0 throughcc2b5; no call or aliased explicit store has changed the header assumptions used for this selected path."
+  ],
+  "normal_firstappend_steps": [
+    {
+      "fact": "capCount0,size0,index0 implyR12=1 andRDI=1; JBE selectscc2c6, CMOVAE does not replace1, JA is false, thenJMPcc28c.",
+      "sites": [
+        "0xcc26b",
+        "0xcc277",
+        "0xcc27b",
+        "0xcc287",
+        "0xcc2c6",
+        "0xcc2ca",
+        "0xcc2d0",
+        "0xcc2d7",
+        "0xcc2d9"
+      ]
+    },
+    {
+      "arguments": {
+        "R8": "0x1fffffffffffffff",
+        "R9_XMM": "unknown",
+        "RCX": "8",
+        "RDX": "0"
+      },
+      "fact": "Unknown callee; allocation candidate only, no allocator proof.",
+      "raw_call": "e80d8efcff",
+      "site": "0xcc29e",
+      "target": "0x950b0"
+    },
+    {
+      "fact": "LetS=postcallRAX. FreshV=M64[E] is written byMOV[S+8*index]=V; index0 givesM64[S]=V. RSI=S andR14=S+8*index. This is a raw payload store, not header update or ownership transfer.",
+      "sites": [
+        "0xcc2a3",
+        "0xcc2a7",
+        "0xcc2aa",
+        "0xcc2b8"
+      ]
+    },
+    {
+      "arguments": {
+        "R8": "0",
+        "R9_XMM": "unknown",
+        "RCX": "S",
+        "RDX": "0"
+      },
+      "fact": "D0 equals freshend0, so selected path skipscc2e1. ZeroR8 does not prove no dereference, sideeffect or callback in the unexamined callee.",
+      "sites": [
+        "0xcc2b1",
+        "0xcc2b5",
+        "0xcc2bf",
+        "0xcc2c1",
+        "0xcc2c4",
+        "0xcc2f4"
+      ],
+      "target": "0x1a35750"
+    },
+    {
+      "arguments": {
+        "R8": "1",
+        "R9": "1",
+        "RCX": "C",
+        "RDX": "S",
+        "XMM": "unknown"
+      },
+      "fact": "Under the preceding normal/alias premises this exact GP tuple is presented. Header mutation, old/new allocation cleanup and ownership effects remain unknown.",
+      "raw_call": "e856daffff",
+      "sites": [
+        "0xcc2f9",
+        "0xcc2fc",
+        "0xcc2ff",
+        "0xcc302",
+        "0xcc305"
+      ],
+      "target": "0xc9d60"
+    }
+  ],
+  "normal_return_and_stack": {
+    "RSP": "F+28 afterADD; fourPOP reachF+48=Q; RET readsM64[Q] and reachesQ+8.",
+    "borrows_alive_proved": false,
+    "home_addresses": {
+      "F+20": "Q-28",
+      "F+50": "Q+8",
+      "F+58": "Q+10",
+      "F+60": "Q+18"
+    },
+    "preconditions": "All reached callee normal/nonvolatile/RSP contract; valid stack/homes/return slot; no intervening alias or callee write corrupts saved values.",
+    "restores": [
+      "cc30a RSIfromF+50",
+      "cc312 R14fromF+20",
+      "cc317 RDIfromF+58",
+      "cc31c R12fromF+60",
+      "cc321 ADDRSP,28",
+      "cc325 POPR15",
+      "cc327 POPR13",
+      "cc329 POPRBP",
+      "cc32a POPRBX",
+      "cc32b RET"
+    ],
+    "save_sites": {
+      "R12": "cc272 M64[F+60]=R12",
+      "R14": "cc299 M64[F+20]=R14",
+      "RDI": "cc266 M64[F+58]=RDI",
+      "RSI": "cc28c M64[F+50]=RSI"
+    },
+    "slot_result": "cc30f MOVRAX,R14 occurs beforecc312 restoresR14. Thus the conditional normal epilogue returns the previously computed rawS+8*index; it does not return a newly read vector header or an acceptance code."
+  },
+  "ownership_transfer_verified": false,
+  "raw_replay_pin": {
+    "bytes": 13889,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/raw-replay.json",
+    "sha256": "9de0e07360d4cd10d5efed87ca8b8cd9b40a9a408c7b83e7d765f3fbe9e89331"
+  },
+  "raw_window": {
+    "begin": "0xcc266",
+    "bytes": 256,
+    "end_exclusive": "0xcc366",
+    "seeds": [
+      "0xcc266",
+      "0xcc32c"
+    ]
+  },
+  "reader_adoption_allowed": false,
+  "schema": "EU4-R87-CONDITIONAL-MACHINE-CONTRACT/1",
+  "scope": {
+    "INT3": [
+      "0xcc331",
+      "0xcc337"
+    ],
+    "cc266": "normal sequential R86 frontier",
+    "cc32c": "explicit hypothetical/syntactic seed; not normal sequentially reachable after the R86 SAR3 comparison",
+    "cc32c_current_pdata": "record1257 covers6B; explicit gap exception was not needed in this actual capture",
+    "instructions": 61,
+    "local_normal_CFG_closed_source_flag": false,
+    "normal_RET": "0xcc32b",
+    "static_CALL_sites": 6,
+    "unique_decoded_bytes": 210,
+    "unique_unfollowed_targets": 5
+  },
+  "sealed": true,
+  "selected_cfg_pin": {
+    "bytes": 47217,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/selected-cfg.json",
+    "sha256": "659b804677b9ffb2635afcc34ae46c26cd6e9b815a7515bf1faa8d0173db4f40"
+  },
+  "selected_effect_verified": false,
+  "subject_capture_pin": {
+    "bytes": 140752,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/capture.json",
+    "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+  },
+  "subject_owned_pin": {
+    "bytes": 1099,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/owned-code.json",
+    "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+  },
+  "subject_source_manifest": {
+    "bytes": 26330,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/source-manifest.json",
+    "sha256": "e40ccf4eba10b12b7d626f0fc00b1bcdac50972d1a0a35559ba3756b64694817"
+  },
+  "whole_function_closed": false,
+  "window_is_function_extent": false,
+  "world_lease": false
+}

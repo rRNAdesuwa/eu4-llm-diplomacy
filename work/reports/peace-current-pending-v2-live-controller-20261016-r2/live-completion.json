@@ -1,0 +1,281 @@
+{
+  "accounting": {
+    "accounting_not_whole_OS_IO": true,
+    "first_preview_failed_read_bytes": 449256,
+    "old_r2_source_delivery_retained": 503154,
+    "read_requests_are_not_physical_returned_bytes": true,
+    "retained_cap": 8388608,
+    "retained_cumulative": 2331610,
+    "runtime_child_attempted_requested": {
+      "delegated_fixed_host": 6464602114,
+      "game_disk": 119545856,
+      "ordinary": 6334509890
+    },
+    "runtime_child_explicit_returned": {
+      "delegated_fixed_host": 2302461254,
+      "game_disk": 115387512,
+      "ordinary": 92044380
+    },
+    "runtime_controller_budget": 33554432,
+    "runtime_controller_returned_including_seal": 4728545,
+    "runtime_read_attempts": {
+      "delegated_fixed_host": 6167,
+      "game_disk": 115,
+      "ordinary": 1296
+    },
+    "second_preview_read_bytes": 1379200,
+    "selected_route_explicit_returned_upper_with_manual": 2518499836,
+    "source_budget": 33554432,
+    "source_build_and_first_tests_upper_including_manual": 1546535
+  },
+  "all_shells_collected": true,
+  "authority": {
+    "AI_acceptance_verified": false,
+    "AI_rejection_verified": false,
+    "Frida_called": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "callable": false,
+    "game_fields_written": 0,
+    "native_action_mapping_verified": false,
+    "native_game_calls": 0,
+    "native_ready": false,
+    "original_request_correlated": false,
+    "peace_completed": false,
+    "persistence_verified": false,
+    "requests_published": 0,
+    "selected_effect_verified": false,
+    "world_lease": false
+  },
+  "authorization_sha256": "e0c3af80e785c385ea0c65e2f719e0cfa9570a6c83b2de8c84afd3749180c1d7",
+  "capture_errors": [],
+  "capture_utc": "2026-10-16T05:38:42.540279+00:00",
+  "close_os_return_checked": false,
+  "commit_after_context_exit": true,
+  "control_passed": true,
+  "current_state_observed": true,
+  "game_opens": [
+    {
+      "closed": true,
+      "eof": true,
+      "fstat_bytes": 38462504,
+      "full_expected_hash": true,
+      "mode": "rb",
+      "normal_context_exit": true,
+      "opened": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4.exe",
+      "returned": 38462504,
+      "sha256_so_far": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a"
+    },
+    {
+      "closed": true,
+      "eof": true,
+      "fstat_bytes": 38462504,
+      "full_expected_hash": true,
+      "mode": "rb",
+      "normal_context_exit": true,
+      "opened": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4.exe",
+      "returned": 38462504,
+      "sha256_so_far": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a"
+    },
+    {
+      "closed": true,
+      "eof": true,
+      "fstat_bytes": 38462504,
+      "full_expected_hash": true,
+      "mode": "rb",
+      "normal_context_exit": true,
+      "opened": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4.exe",
+      "returned": 38462504,
+      "sha256_so_far": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a"
+    }
+  ],
+  "game_successful_opens": 3,
+  "held_handle_cleared": true,
+  "identity_purpose": "Fresh readonly nonce, not installed session or original request",
+  "independent_live_replay_pending": true,
+  "job": {
+    "completed_command_descendants_terminated": false,
+    "cumulative_process_refusal_bound": 8,
+    "direct_child_collected": true,
+    "environment_logged": false,
+    "error": null,
+    "existing_target_game_assigned_to_job": false,
+    "exit_code": 0,
+    "hard_active_process_limit": 8,
+    "job_active_processes_final": 0,
+    "job_total_processes": 2,
+    "memory_limit": 805306368,
+    "output_writer_may_overshoot_before_refusal": true,
+    "peak_job_commit": 46456832,
+    "peak_process_commit": 45178880,
+    "per_stream_output_acceptance_bound": 2097152,
+    "seconds": 10.985,
+    "target_cleanup_proven_by_job": false
+  },
+  "loaded_code_prepost_present": true,
+  "normal_context_exit": true,
+  "open_refusals": [],
+  "pins_provenance": "Frozen controller actual-manifest and controller tool result; post-live metadata was parsed without rerunning a checker/hash closure.",
+  "producer_pins": {
+    "actual-manifest.json": {
+      "bytes": 27958,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/actual-manifest.json",
+      "sha256": "ac63b83d63b2e8b469e0db0d568d88fecae96dde7a5ebe466bb80fa64b51f283"
+    },
+    "attempt-start.json": {
+      "bytes": 642,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/attempt-start.json",
+      "sha256": "f2b64108766caa811f63eb28bffdd38267567b18902efe39b66eff23b68e079f"
+    },
+    "capture.json": {
+      "bytes": 929944,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/capture.json",
+      "sha256": "482f13ffcf7f54177bd736795153f9e8996921c361af429dd15f98d5122f4c9e"
+    },
+    "child-claim.json": {
+      "bytes": 341,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-claim.json",
+      "sha256": "dafbf84cfc9ed6a6cc0e8d35c0de11b86554919ba52be32896e1bf3ef5c347fa"
+    },
+    "child-io.json": {
+      "bytes": 382278,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-io.json",
+      "sha256": "2c15a378f92bb6efc838b426893c0c5fcfef918361b06e9a1207c953e5a3041d"
+    },
+    "child-status-start.json": {
+      "bytes": 589,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-status-start.json",
+      "sha256": "0fbf5a85fdfb3e80c8236fd9893054173ebff258130cb098d8d343d3925866ca"
+    },
+    "claim.json": {
+      "bytes": 929,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/claim.json",
+      "sha256": "09d079e89adf97aa17c62b9fbe7b03ecbe533491c4b3335eff96c003205b70d5"
+    },
+    "job.json": {
+      "bytes": 603,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/job.json",
+      "sha256": "651324ad5ac90b756158e394b6f6d9f4dc6bbaeaca28581fb6022e5773b7bf71"
+    },
+    "receipt.json": {
+      "bytes": 421298,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/receipt.json",
+      "sha256": "44c1eeab3ca7fe25dc54a3087a208dbebd9bce23f5118e372d16ebc1ee435583"
+    },
+    "source-after.json": {
+      "bytes": 7387,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-after.json",
+      "sha256": "bfdef75cfe0093f1f3dc18fbb9841f9784619434267b84157ba4cf55a8b1f564"
+    },
+    "source-before.json": {
+      "bytes": 7387,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-before.json",
+      "sha256": "bfdef75cfe0093f1f3dc18fbb9841f9784619434267b84157ba4cf55a8b1f564"
+    },
+    "stderr.txt": {
+      "bytes": 0,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.txt": {
+      "bytes": 929944,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/stdout.txt",
+      "sha256": "482f13ffcf7f54177bd736795153f9e8996921c361af429dd15f98d5122f4c9e"
+    }
+  },
+  "raw_ordered_journal_count": 2967,
+  "retained_preview_failure": {
+    "actual_query_repeated": false,
+    "adjustment": "Read exactly the same manifest/receipt plus capture under the already-authorized8MiB retained aggregate; no source/guard/actual modification.",
+    "first_reads": [
+      "actual-manifest.json",
+      "receipt.json"
+    ],
+    "read_bytes": 449256,
+    "reason": "Voluntary preview aggregate1MiB cap stopped before reading929944B capture",
+    "tool_result": {
+      "chunk_id": "c2b570",
+      "exit_code": 1,
+      "original_token_count": 37,
+      "output": "Traceback (most recent call last):\r\n  File \"<stdin>\", line 9, in <module>\r\n  File \"<stdin>\", line 7, in read\r\nRuntimeError: Retained preview bound\r\n",
+      "wall_time_seconds": 0.3152432
+    }
+  },
+  "rpm_budget": {
+    "bytes_requested": 77718,
+    "bytes_returned": 77718,
+    "calls_attempted": 2967,
+    "largest": 11040,
+    "limits": {
+      "bytes": 524288,
+      "calls": 4096,
+      "single_read": 65536
+    },
+    "scope": "Includes entryPE8192, host/code prepost, both tables/queues and every selected RPM attempt"
+  },
+  "runtime_final_tool_result": {
+    "chunk_id": "147939",
+    "exit_code": 0,
+    "original_token_count": 228,
+    "output": "{\"status\": \"selected_peace_queue_absent\", \"control_passed\": true, \"current_state_observed\": true, \"receipt\": {\"bytes\": 421298, \"sha256\": \"44c1eeab3ca7fe25dc54a3087a208dbebd9bce23f5118e372d16ebc1ee435583\"}, \"manifest\": {\"bytes\": 27958, \"sha256\": \"ac63b83d63b2e8b469e0db0d568d88fecae96dde7a5ebe466bb80fa64b51f283\"}, \"status_attempts\": 1, \"job\": {\"exit_code\": 0, \"error\": null, \"seconds\": 10.985, \"job_total_processes\": 2, \"job_active_processes_final\": 0, \"peak_process_commit\": 45178880, \"peak_job_commit\": 46456832, \"memory_limit\": 805306368, \"direct_child_collected\": true, \"hard_active_process_limit\": 8, \"cumulative_process_refusal_bound\": 8, \"per_stream_output_acceptance_bound\": 2097152, \"output_writer_may_overshoot_before_refusal\": true, \"completed_command_descendants_terminated\": false, \"existing_target_game_assigned_to_job\": false, \"target_cleanup_proven_by_job\": false, \"environment_logged\": false}}\r\n",
+    "wall_time_seconds": 1.29e-05
+  },
+  "runtime_start_tool_result": {
+    "chunk_id": "bb8a28",
+    "original_token_count": 0,
+    "output": "",
+    "session_id": 71009,
+    "wall_time_seconds": 10.009055
+  },
+  "sample_count": 2,
+  "schema": "EU4-PEACE-V2-R2-SOLE-LIVE-COMPLETION/1",
+  "scope": "One new R2 current-inbox observation. No original request, acceptance/rejection, peace completion, world lease, full I/O or OS CloseHandle return is established. R1 unknown remains frozen. No checker, further query, old tests, diplomacy request, native game call, Frida, save, reload or UI input after this sole attempt.",
+  "sealed": true,
+  "selected_queue_presence": false,
+  "selected_two_pass_equal": true,
+  "selection": {
+    "actor": "FRA",
+    "creation": "01dd5d0e670312c4",
+    "pid": 98548,
+    "target": "ENG"
+  },
+  "source_prepost_equal": true,
+  "status": "selected_peace_queue_absent",
+  "status_attempts": 1,
+  "text_configuration": {
+    "configuration_values_logged": false,
+    "events": [
+      {
+        "accepted": true,
+        "binary_closed": true,
+        "error": null,
+        "opened": true,
+        "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\local.env",
+        "raw_pin": {
+          "bytes": 226,
+          "sha256": "84abda5840824badc9fd5daef7f5faedd61e5c2a01e329843b2bd5a5caeb7658"
+        },
+        "requested": 227,
+        "returned": 226,
+        "virtual_closed": true,
+        "virtual_normal_exit": true
+      }
+    ],
+    "expected_pin": {
+      "bytes": 226,
+      "sha256": "84abda5840824badc9fd5daef7f5faedd61e5c2a01e329843b2bd5a5caeb7658"
+    },
+    "maximum_bytes": 65536,
+    "maximum_snapshots": 16,
+    "opened_snapshots": 1,
+    "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\local.env",
+    "physical_category": "ordinary",
+    "real_path_override_argument": false,
+    "schema": "EU4-EXACT-CONFIG-SNAPSHOT/1",
+    "snapshot_attempts": 1,
+    "virtual_reads_add_physical_bytes": false
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "bridge/native/tag_command_1375/src/work/candidates/current-country-tag-cpp-r2-1375/country_resolver.cpp": {
+    "bytes": 8224,
+    "sha256": "ccd41f4e288227fcc8583819e697063b8a322feddb76e2dc9b196a77e5f0c34e"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/current-country-tag-cpp-r2-1375/country_resolver.h": {
+    "bytes": 1955,
+    "sha256": "a1067c0b80ec3bb9b5ac77ca857a5d269626ebfb37060d41679ace4f70557ae2"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/current-country-tag-cpp-r2-1375/selected_pins.h": {
+    "bytes": 3009,
+    "sha256": "edc711aaefca337205201c4513010c64a0e0de7a9f8722d0724dc4d260bd09e6"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-core-pair-nosend-r2-1375/pair_component.h": {
+    "bytes": 6641,
+    "sha256": "e2f099b9895bed0c33c60b540f33a757adf0ccd8e25e4f0b952cc04c1c7fcadf"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-five-cancel-reader-1375/cancel_reader.cpp": {
+    "bytes": 12866,
+    "sha256": "ed7feaaed7ee73df71e8a858600c3036dfc7a82398e1f71644e718b2918ad50d"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-five-cancel-reader-1375/cancel_reader.h": {
+    "bytes": 1032,
+    "sha256": "920044f857e1882bfe3bb516835f7f9b61e199c425bd6dba7cacf02baf20668a"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-native-pair-guard-r3-1375/native_env.cpp": {
+    "bytes": 11930,
+    "sha256": "7d5788338a900a32dd48b6eca9daf7c92a3faa546c6e08c67dc032bf68ba34ec"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-native-pair-guard-r3-1375/native_env.h": {
+    "bytes": 1472,
+    "sha256": "54cc7daac0bd15cddd79aec7845e84a0351e11c7f5a58473039d474c56a06223"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-native-pair-guard-r3-1375/native_guard.cpp": {
+    "bytes": 10611,
+    "sha256": "9c10190189b7b83d9ba939bec2057ebd4a1a415ed906dd90de0221a0a751ee13"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-native-pair-guard-r3-1375/native_guard.h": {
+    "bytes": 2536,
+    "sha256": "1c903c91d5ab1339e4dd9db112e9983841cda7c95616460b74e474e713ae5c3b"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-native-pair-port-r2-1375/native_pair_engine.h": {
+    "bytes": 4795,
+    "sha256": "2bee1d052e4eed96519ccf15dd1dff592fa7d29616f9d5e16f792fbe00710f60"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v21-native-pair-port-r2-1375/native_platform.h": {
+    "bytes": 1518,
+    "sha256": "08b9fa77159a3f448b7b26a5beddf13d048b66a122be695e2168d082ef69da65"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-core-r2-1375/pair_send.cpp": {
+    "bytes": 27495,
+    "sha256": "91e36ddbab36db9853eba71855983aa9f638a87e432665c7a279dbf250cf3f1f"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-core-r2-1375/pair_send.h": {
+    "bytes": 1657,
+    "sha256": "eff58f320fab82573040028a7a85e98f54f553dd8b1f0ee9594565c5d4217bf3"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-port-r2-1375/native_pair_engine.cpp": {
+    "bytes": 15689,
+    "sha256": "e66663a0d825046f1285396ce90385786ec3b7d81e685dcc82b4296afbe4cf54"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-port-r2-1375/native_pair_engine.h": {
+    "bytes": 5266,
+    "sha256": "a59a93f030c2a14da96e0ce4d0d40eebf3272f0938a1d58fb1b2ebf0e0a442ab"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-port-r2-1375/native_pins.h": {
+    "bytes": 4138,
+    "sha256": "53ccfea372b7d214067372bb735137a580bf31faacf849ce043f34360a7788ee"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-port-r2-1375/native_platform.cpp": {
+    "bytes": 7575,
+    "sha256": "d627a8192d4a3e2a2c1853691235898e2c713fbfff8ae04f9b7d922d18a3f0a8"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-port-r2-1375/native_platform.h": {
+    "bytes": 2206,
+    "sha256": "642eee1e6f8dfbff09ff898a5d34034e3134e60ed491f5415387dc52b3170512"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-port-r2-1375/sender_pins.h": {
+    "bytes": 664,
+    "sha256": "bf361b86ed568dfb94e6ffeed1b97e0b0230849fd8fd96123f7fc48298845fcb"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-port-r2-1375/submission_guard.cpp": {
+    "bytes": 4300,
+    "sha256": "1a710dfc6a24b028787123c77785facebb2807fd493034a0b1dfb3ee4101beba"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v24-pair-send-port-r2-1375/submission_guard.h": {
+    "bytes": 1311,
+    "sha256": "ee651b036aba6e6ba0e16f5e8330f70fef24f638d1a8ee9105c35daffa9d982b"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/bootstrap.cpp": {
+    "bytes": 13887,
+    "sha256": "4a1b76171612b75f1361df0d8fba6715f8890245d1204b81ca4377958d53c92a"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/build_test.cmd": {
+    "bytes": 3228,
+    "sha256": "9d66de572bbba9a208b91fd1db352e26e0ca9b3eee6a1d0c4172623a2fe6e9f1"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/codec.h": {
+    "bytes": 5211,
+    "sha256": "7feda564249d0a60f98217f8ba4697eb631ea400c9b6af511c354a23c958d19f"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/frame.asm": {
+    "bytes": 1582,
+    "sha256": "3d5da5aea5408d4991fce7bb19275025e7d28bcbbfc90c08d82e797ad09d30f0"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/installer.cpp": {
+    "bytes": 4200,
+    "sha256": "c3e2cce82a55f8badca5893a58539ed682388bdebc412ad054195b69609c53d9"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/installer.h": {
+    "bytes": 302,
+    "sha256": "df69cc29b93c8a70fb1f347e513dbb7e7b6edc6b55f484e28b721e239bf64e75"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/test_actor_guard.cpp": {
+    "bytes": 4260,
+    "sha256": "c3bd1fb0bc8b8c067bebe370c6811611d615e3fea523a3efdd4ebd3597e53803"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/test_codec.cpp": {
+    "bytes": 3779,
+    "sha256": "30e8087fdd63e9af94ee97d4999a5de71128d3a2bf10dcd4163f211082559b83"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/thread_freeze.inc": {
+    "bytes": 5776,
+    "sha256": "3fe7cbec05ccdfbf8cbaf5a74da3058a7ed0c969baf48c41ca65174801feb6c4"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v19-spy-restricted-host-r2-1375/preflight/codec.h": {
+    "bytes": 5027,
+    "sha256": "671a4337762256f42789fd8a37450db24f04f060aa81af579dd0ceec2cb6c4fd"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v19-spy-restricted-host-r2-1375/preflight/host.h": {
+    "bytes": 3946,
+    "sha256": "c4726204d2570e3b82930c1d7ba3e551aae34d63aa5c83847e59137d55534d95"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v19-spy-restricted-host-r2-1375/core/v18-preimage/pins.h": {
+    "bytes": 3439,
+    "sha256": "c9bb4ad8595bb09bba03d630bf03ca9babe5c22faa604d406f5a51aaf8f27fbd"
+  },
+  "bridge/native/tag_command_1375/src/work/candidates/v19-spy-restricted-host-r2-1375/core/v18-preimage/spy_core.h": {
+    "bytes": 3797,
+    "sha256": "290d2db8201bd51901e5d2e080f4bb76952e548f23ec6e82b1df17def1d68321"
+  },
+  "bridge/native/tag_command_1375/build_test.cmd": {
+    "bytes": 3863,
+    "sha256": "8df20901c137e3b1b83bc4ebc1c896cd86477a16c0431cec2b44281ce69c0213"
+  }
+}

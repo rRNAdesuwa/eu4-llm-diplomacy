@@ -1,0 +1,3 @@
+# Paused draft
+
+This directory currently contains only an unsealed pure Python wire-protocol draft. No native host, publisher, test completion or readiness is claimed. Work paused for the separately authorized stopped-batch timing repair R6. Proposed scope: five fixed positive spy actions, FRA to ENG, state 0 and envoy -1; explicit owner-thread lifecycle, full family +0x88 preview, and owned 0x58 command/gate/destruction only. No sends, false modes, acceptance override or production registration. Full family previews can mutate lazy caches and are not read-only. The existing five-family static report and modifier observer remain the source contracts; no new ABI has been invented.

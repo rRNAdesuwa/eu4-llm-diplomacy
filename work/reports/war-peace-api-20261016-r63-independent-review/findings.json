@@ -1,0 +1,113 @@
+{
+  "schema": "EU4-R63-INDEPENDENT-FINDINGS/1",
+  "sealed": true,
+  "passed": true,
+  "subject_manifest": {
+    "bytes": 14796,
+    "sha256": "965c8f654428410f47ff327a7de28252c9650d8ae02f2f8876560881a6ffdca5"
+  },
+  "subject_contract": {
+    "bytes": 7894,
+    "sha256": "e515d681b968f8f30f5aad8df900a97b38f0ee44aa8286e1e5c22d399fbc48f0"
+  },
+  "blocking_findings": [],
+  "author_frozen_source_needs_change": false,
+  "raw_review": {
+    "bytes": 38849,
+    "sha256": "e10af675508a5cccf95d0fa4eb5c9558bf4c71aa68f3bf2085cd805d73bce340"
+  },
+  "checks": {
+    "actual_source_pins": 40,
+    "additional_accounting_pins": 9,
+    "engine_witness_pins_unopened": 38,
+    "all49rows_199bytes_match": true,
+    "rel32_rel8_targets_recomputed": true,
+    "local_normal_CFG": true,
+    "CALL_sites": 2,
+    "branch_sites": 4,
+    "control_transfer_records": 6,
+    "RET_sites": 1,
+    "INT3_sites": 0,
+    "explicit_stores": 15,
+    "stack_stores": 13,
+    "output_DWORD_stores": 2,
+    "MOVUPS_raw_store_recovered": true,
+    "XMM0_padding_unknown_retained": true,
+    "cached_pdata_section_arithmetic": true,
+    "source_and_engine_witness_before_after": true,
+    "original_files_independent_postguard_equal": true
+  },
+  "machine_contract": {
+    "RCX": "opaque W forwarded to97b8a0",
+    "RDX": "savedout DWORD pointer in RBX",
+    "first_call": "97b8a0(W,&descriptor,&raw16selector,R9B=1); high56R9 unknown",
+    "count1": "fresh descriptorDATA->QWORDelement->DWORD+30 ->savedout",
+    "other": "savedoutDWORD=0",
+    "RAX": "savedout pointer, not scalar",
+    "final_output_after_cleanup": "unknown under unfollowed17394f0 aliases",
+    "class_units_direction_recipient_amount": "unknown"
+  },
+  "precision_notes": [
+    "Incoming/caller XMM0 zero is a conditional retained-prefix fact. Body XORPS zero is later replaced by MOVAPS of a 16B selector with padding24..27 uninitialized.",
+    "R9B=1 initializes only eight bits. Firstcall floating/XMM consumption and full prototype remain unknown.",
+    "Count1 path dereferences B and E before any NULL/type/fullhandle checks; none are invented by the audit.",
+    "CMP flags survive JMP349 to JE368. Count1 cleanup has no extra NULL test; other branch tests fresh B.",
+    "All explicit output stores precede optional cleanup. No finalT invariant, pure/readonly/world lifetime or effect follows.",
+    "15 explicit store sites omit PUSH/CALL implicit stack writes and RET stack reads.",
+    "Retained2973458/combined20052363 are documented explicit upper accounts including250000 manual-console allowance, not exact allOS physical I/O.",
+    "Producer source/engine/PE/elapsed/peak execution is retained witness only. This review did not re-open PE or engine or rerun source/decoder."
+  ],
+  "resource_witness": {
+    "source_through_capture": 16971754,
+    "capture_pin_read": 107151,
+    "producer_source_including_stdoutpin": 17078905,
+    "retained_upper": 2973458,
+    "manual_console_allowance": 250000,
+    "combined_explicit_upper": 20052363,
+    "PE_twoSHA": 76925008,
+    "pdata": 228,
+    "code": 199,
+    "PE_total": 76925435,
+    "decoder_inputs": 690,
+    "decoder_unique": 199,
+    "decoder_overlap": 491,
+    "producer_peak": 22822912,
+    "elapsed_ns": 433912200,
+    "elapsed_scope": "Owned producer launch through collected exit; includes source/engine guards/twoPE SHA; authorization/preparation excluded.",
+    "hard_Job": false,
+    "direct_child_collected_exit0": true
+  },
+  "independent_resources": {
+    "known_explicit_data_read_bytes_before_own_final_seal": 3891963,
+    "source_file_cap": 4194304,
+    "source_budget": 25165824,
+    "self_peak_bytes": 23236608,
+    "memory_guard": 805306368,
+    "not_all_OS_interpreter_tool_source_loading_IO": true
+  },
+  "operations": {
+    "PE_reads": 0,
+    "engine_opens": 0,
+    "decoder_imports": 0,
+    "author_program_runs": 0,
+    "old_tests": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0
+  },
+  "authority": {
+    "callable": false,
+    "native_ready": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "peace_completion_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  },
+  "all_shells_collected": true,
+  "next_scope_auto_authorized": false
+}

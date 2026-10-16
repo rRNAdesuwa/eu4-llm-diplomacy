@@ -1,0 +1,376 @@
+{
+  "schema": "EU4-R80-ACTUAL-MANIFEST/1",
+  "sealed": true,
+  "stage": "author_sealed_pending_non_author_full_review",
+  "files": {
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/source-manifest.json": {
+      "bytes": 24123,
+      "sha256": "42b2d958a64df12ea3083402db08519226218876c51d526dae3285cc95bf5ce2"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/produce.py": {
+      "bytes": 24180,
+      "sha256": "29bb97220b025814190a858e36cc24ce67373ed27304e5e7c69e9d4aa013b978"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/source-manifest.json": {
+      "bytes": 21830,
+      "sha256": "a6d3c5282e46c9ede2da9c6cfaee29edb584636941411714a081331bcd584ab8"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/entry-seed.json": {
+      "bytes": 9256,
+      "sha256": "b1765705ff97112640173079605d3ab077837052be5c4cbeeeb85e71c59d4689"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/capture.json": {
+      "bytes": 69473,
+      "sha256": "97f3cf26d8bac7ad0fa7674da900c8284906e19c9a07033c6a2cba4e47605506"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/actual-contract.json": {
+      "bytes": 3281,
+      "sha256": "52d792d5a5e5ce865adf0eca6959850cf6c8f37cc6df15f6f44354941f8f1fda"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/actual-selected-evidence.json": {
+      "bytes": 10307,
+      "sha256": "ca882c2fbb33c3e76013a5c8e7d4528d3f83783875315b6313b31f141cf2c240"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/owned-code.json": {
+      "bytes": 609,
+      "sha256": "1d92edeaa15977881bfd94447292c63eaf93ab190aa5f14ae09435d2fd2c0be8"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/selected-evidence.json": {
+      "bytes": 19444,
+      "sha256": "e3f4d304acf93f674ec407c4cfdd330a5163ea8e328bc6a8afe5deab893a237f"
+    },
+    "work/reports/server-vtable-current-reference-owner-20261016-r2/produce.py": {
+      "bytes": 26805,
+      "sha256": "902a2908148870876719f8b086553ea553e87cf9000703af61787be87d9a875d"
+    },
+    "work/reports/server-vtable-current-reference-owner-20261016-r2/source-manifest.json": {
+      "bytes": 24090,
+      "sha256": "ba3735d36f60978d6bfff31c6740eabacd3427b7944832d888999882db52a6c4"
+    },
+    "work/reports/server-vtable-current-reference-owner-source-independent-review-20261016-r2/findings.json": {
+      "bytes": 7896,
+      "sha256": "0d379a3bbd3879d948e0ff9dd8cacf2453855e9ddcafb5977c592da88a4fc3cc"
+    },
+    "work/reports/server-vtable-current-reference-owner-source-independent-review-20261016-r2/manifest.json": {
+      "bytes": 15775,
+      "sha256": "9875840d31adc6c69ba1f59ada5e0004a1aeddf582c431bac6bf754915357556"
+    },
+    "work/reports/war-peace-api-20261016-r79-source-independent-review/findings.json": {
+      "bytes": 5645,
+      "sha256": "76b84b9b2315af87dde111f04f306f3cf5855bc25a5f9fa3ed93183499b8a9cc"
+    },
+    "work/reports/war-peace-api-20261016-r79-source-independent-review/manifest.json": {
+      "bytes": 14493,
+      "sha256": "b1c2be763ce00c1337a6bdeec1840afedd9620a33d161eb132cac2081c6e0da4"
+    },
+    "work/reports/war-peace-api-20261015-r27-truce-literal-anchors/war/anchors.json": {
+      "bytes": 12398,
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    "work/reports/war-peace-api-20261016-r79-null-selector-callee/actual-manifest.json": {
+      "bytes": 15510,
+      "sha256": "7ca8e3bc5f0280b5a908ad624e03be91d2be85f2465f7da5ef98fee95b264523"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/preparation-inputs.json": {
+      "bytes": 3537,
+      "sha256": "7af2c25bc2a3ea5aa6fc8508725871ac5718bc5da02328b978b3ce56bc1534ad"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/upstream-review-shape.json": {
+      "bytes": 1408,
+      "sha256": "ce4000eafa9c79b9a0dacd6c7971340f67150b15cbdbe99110e8829f45e07773"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/prepare.py": {
+      "bytes": 18813,
+      "sha256": "b5828f1fd9fd5933c3fa0d14b1753c2ea7897f60413e471b0fc6e639cfb5d2ac"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/check_prepared.py": {
+      "bytes": 2117,
+      "sha256": "b4817e560ba9a45f398177e151ec78dc1a0f1d9674522bc7e17b4c37f9521dee"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/main-template.py.inc": {
+      "bytes": 11710,
+      "sha256": "e1f4875d4dce9f581ddf6889a353ebdf8ca4c49196f8170fca4d3e46466f536f"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/produce.py": {
+      "bytes": 24738,
+      "sha256": "60009c332eedc75f766200e611930a299d1ec0dcb04f161dd8917c9a7c359c90"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/entry-seed.json": {
+      "bytes": 10512,
+      "sha256": "a48da80c1e754b13033d0733656e27d0f13ec51d1146bec76675e41185e58384"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/budget.json": {
+      "bytes": 871,
+      "sha256": "e5e80c443edbf498ed66ef149241faeeb2fee78c45807683e3874a3366c26453"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/source-delta.json": {
+      "bytes": 1555,
+      "sha256": "5ab94e5b484e8f6f0e60315479d6d8f0da8754ceed3059fb5d62fde4018bdff0"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/PROTOCOL.md": {
+      "bytes": 3751,
+      "sha256": "f0095c012920465fdd499574bb34db8ba62f58eab4843af3b222a2730296a820"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/capture.json": {
+      "bytes": 78062,
+      "sha256": "b02239c0a90e463e1ed14330634df1114e2c5f80370740143ea27d30cc7bfa01"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/owned-code.json": {
+      "bytes": 698,
+      "sha256": "17ad37416b8798e5f5ffc40a482aa471637ace5e62da5030cc1b11144e7d7598"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/run-authorization.json": {
+      "bytes": 3189,
+      "sha256": "15d03c4bef7b831153fc3e0eb754967942e25aeca43651bec2c05ff8f7562b07"
+    },
+    "work/reports/war-peace-api-20261016-r80-entry-independent-review/findings.json": {
+      "bytes": 2604,
+      "sha256": "91e942aa27bb11618ce0f2f54b266eed5d35bc388e3f412c3c4911eb76cfc302"
+    },
+    "work/reports/war-peace-api-20261016-r80-entry-independent-review/manifest.json": {
+      "bytes": 8565,
+      "sha256": "05acc4a73652d08f51c0e27d588ed31e46cb5c9f09ae0347429381c6c1a99ef5"
+    },
+    "work/reports/war-peace-api-20261016-r79-actual-independent-review/findings.json": {
+      "bytes": 9030,
+      "sha256": "8d2277950f717a9d5769bb20c8bb0fe9ce699180247c51dc63b8bccd24fbdf9b"
+    },
+    "work/reports/war-peace-api-20261016-r79-actual-independent-review/manifest.json": {
+      "bytes": 11402,
+      "sha256": "aaca888b33d4cce78f1781448c76526b7a034be82fb0aea152ad1d972e009211"
+    },
+    "work/reports/war-peace-api-20261016-r80-source-independent-review/findings.json": {
+      "bytes": 5682,
+      "sha256": "32d177b2c0d0b93748f8949072928957325d165daf809820f2cb1293dc0477bd"
+    },
+    "work/reports/war-peace-api-20261016-r80-source-independent-review/manifest.json": {
+      "bytes": 11278,
+      "sha256": "d0c9283279a810d9eb78e00a771e7b71ed9849ef892f1fdb2f66072915cbc3b7"
+    },
+    "work/reports/war-peace-api-20261016-r80-root-authorization/receipt.json": {
+      "bytes": 6806,
+      "sha256": "fcac8b649b094744545b6b17cc5d365ccc57e165dc5ffea1c10734ba1b3774b9"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-command.json": {
+      "bytes": 1364,
+      "sha256": "355e7580e5a6f65eacc286751792cb99c66a6505317523e03aab0c31d6a697d9"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual.stdout.txt": {
+      "bytes": 208,
+      "sha256": "a2868cad8f1666528bc006cdfd1f2f02f387d3d2bc6bde2a48913b11e56f4d11"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/claim.json": {
+      "bytes": 13781,
+      "sha256": "9eac9a489b6791df448864084d5840fb89b2e4a15fe95ee2e9c36ff55c25ba6c"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/BOUNDARIES.md": {
+      "bytes": 1283,
+      "sha256": "5f8196c32523c415642c3ed0121176b228a42ebb090deeca2208708a6f08cb3a"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-seal-claim.json": {
+      "bytes": 74,
+      "sha256": "9b92988adaadee8312fa0bde0f70e02981485d68d2889c346b282daf271f94c9"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/seal_actual.py": {
+      "bytes": 18675,
+      "sha256": "f749278839f642c9a3597b2a052586b03359c8399f89d6f79d6788f937eb4722"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/check_actual.py": {
+      "bytes": 1659,
+      "sha256": "96277e7a5a3662623d1e0e6d8161d50f7c4d2eb2051e579dccb4598f9b2983e7"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json": {
+      "bytes": 15924,
+      "sha256": "6bd48ab81e3a493f7115d81585a6f3f4c02f926662b33b6b0cf5b2c485cb794a"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json": {
+      "bytes": 5247,
+      "sha256": "b73969a9eabc1c874998f38e29ea0911b050755b290c0188e9725a6563abe73c"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-report.md": {
+      "bytes": 1434,
+      "sha256": "e25d6dfffe8ff3f7db422d10cec5f0e049313af8664bdee9d6d509fc637bb6df"
+    },
+    "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-read-accounting.json": {
+      "bytes": 14909,
+      "sha256": "3c3ce006f659405a5635c79561b190c275fed5a746fd3295c5ba0e795d5d29d2"
+    }
+  },
+  "file_count": 49,
+  "decoder_expected_witness_pins": {
+    "work/deps/capstone-5.0.7/capstone/arm.py": {
+      "bytes": 2154,
+      "sha256": "00ea7442a1496d84aca469bfa3542290eafe22898b5be0dece9294865b9508ba"
+    },
+    "work/deps/capstone-5.0.7/capstone/arm64.py": {
+      "bytes": 2428,
+      "sha256": "834979e887315fae9a447698502f6866c246cb99b65c84b8b6fdef8087181284"
+    },
+    "work/deps/capstone-5.0.7/capstone/arm64_const.py": {
+      "bytes": 81768,
+      "sha256": "f358d461b1f45a8d91d8e308ca82e5b35c5d2e5c135d8ed07d8cdc86456a5418"
+    },
+    "work/deps/capstone-5.0.7/capstone/arm_const.py": {
+      "bytes": 17295,
+      "sha256": "1b00d7b48be4b72b730272486d4fd2057cb8019e67f1bd145bcabb1b988d1c67"
+    },
+    "work/deps/capstone-5.0.7/capstone/bpf.py": {
+      "bytes": 1438,
+      "sha256": "f879595fbc413bfa74600b4cbaa7a2cdd7200b2f92e718ad31fb36844e7c0f9d"
+    },
+    "work/deps/capstone-5.0.7/capstone/bpf_const.py": {
+      "bytes": 2160,
+      "sha256": "070717e28a68ee7e1e8b29cb9a299f5e462be81d9ad6c83dccce5f771fe22e7e"
+    },
+    "work/deps/capstone-5.0.7/capstone/evm.py": {
+      "bytes": 383,
+      "sha256": "29f35d3953b2eeb976e02af3cdbf3a78066d4d5a750588da0672e48bc5aa0385"
+    },
+    "work/deps/capstone-5.0.7/capstone/evm_const.py": {
+      "bytes": 3292,
+      "sha256": "b3a60498c0ac455098d884574829875deb83a4176a052480249a9d3e93f42b6d"
+    },
+    "work/deps/capstone-5.0.7/capstone/m680x.py": {
+      "bytes": 2065,
+      "sha256": "24d56b8f6e9c12d73f830f26de36d02461e4d73a3091943e6c90884181efe41d"
+    },
+    "work/deps/capstone-5.0.7/capstone/m680x_const.py": {
+      "bytes": 8885,
+      "sha256": "a8ceebe6e6213da834406e7a56c1f808fad554c5ed85a986b0ef8647db3718da"
+    },
+    "work/deps/capstone-5.0.7/capstone/m68k.py": {
+      "bytes": 2438,
+      "sha256": "0567bf26e32a274b086d296fdcc078dcbda2c66280f941e5986b30eecc647bc8"
+    },
+    "work/deps/capstone-5.0.7/capstone/m68k_const.py": {
+      "bytes": 10489,
+      "sha256": "79de0ea42977ad2875fd73a34ddb55fc2ace58dac45b0ee8aff0ae138c7a8faa"
+    },
+    "work/deps/capstone-5.0.7/capstone/mips.py": {
+      "bytes": 1001,
+      "sha256": "c23b6e5d5df2be6f728dda2da2a8f805d4d1500e383aebf555da1fa9650639e8"
+    },
+    "work/deps/capstone-5.0.7/capstone/mips_const.py": {
+      "bytes": 18592,
+      "sha256": "80a325c59a8a88918d1ebc55268e07461841ddde50d034a545d31cdf44668324"
+    },
+    "work/deps/capstone-5.0.7/capstone/mos65xx.py": {
+      "bytes": 998,
+      "sha256": "f9b525569fcae4768ac4b2230a46468a571e934717f14d52910e243d0b279e9a"
+    },
+    "work/deps/capstone-5.0.7/capstone/mos65xx_const.py": {
+      "bytes": 3393,
+      "sha256": "22762e23dec6d011f75068cac995f4c05f6cf5c93c207502eeb11d0cd4a136f3"
+    },
+    "work/deps/capstone-5.0.7/capstone/ppc.py": {
+      "bytes": 1384,
+      "sha256": "1ee21161d21902744379624d87048138272a99c6bd98623256baa065038bf03d"
+    },
+    "work/deps/capstone-5.0.7/capstone/ppc_const.py": {
+      "bytes": 45023,
+      "sha256": "4284db74b7db3a0e3eda043970096c047df81d9b0a81c13b3b5b70ca623d4b0b"
+    },
+    "work/deps/capstone-5.0.7/capstone/riscv.py": {
+      "bytes": 1104,
+      "sha256": "c40beee7bd99d3f1cc329203020def06140a786d17e2ec963feefb12e0c8e872"
+    },
+    "work/deps/capstone-5.0.7/capstone/riscv_const.py": {
+      "bytes": 10953,
+      "sha256": "6ac81243404207d74b3190c37180b6353a001191c7df5d04fd25f89b624abdd1"
+    },
+    "work/deps/capstone-5.0.7/capstone/sh.py": {
+      "bytes": 1478,
+      "sha256": "d50212075a918e94b41f1e67f838a3b70bc44d19941f33b6d502e5359c967592"
+    },
+    "work/deps/capstone-5.0.7/capstone/sh_const.py": {
+      "bytes": 7154,
+      "sha256": "a19a1837892a0eaa9bc3e5cd3638625471d705a35b08aa26994ad108928125be"
+    },
+    "work/deps/capstone-5.0.7/capstone/sparc.py": {
+      "bytes": 1127,
+      "sha256": "389867d194a7bef779466a5283953cb2b30d2e84368e80112677cfaa0334097c"
+    },
+    "work/deps/capstone-5.0.7/capstone/sparc_const.py": {
+      "bytes": 9738,
+      "sha256": "aef73803efe9a2e0e109fe05e0b791f33e62d41c54ed32cd2773837960d1ddae"
+    },
+    "work/deps/capstone-5.0.7/capstone/systemz.py": {
+      "bytes": 1115,
+      "sha256": "9e75611fb8930ef665b04a80e14ca0735953f69d2f0fdb608f96ea172cef7f2d"
+    },
+    "work/deps/capstone-5.0.7/capstone/sysz_const.py": {
+      "bytes": 56291,
+      "sha256": "98ad76240b48eff060f96fc0986933c904cbdfd654866eb49e7ee5879db2908e"
+    },
+    "work/deps/capstone-5.0.7/capstone/tms320c64x.py": {
+      "bytes": 1672,
+      "sha256": "597bf661d25e283c007c9ee76defb422f41e4279aae5bbd8b5736400109cf6b3"
+    },
+    "work/deps/capstone-5.0.7/capstone/tms320c64x_const.py": {
+      "bytes": 7257,
+      "sha256": "643aeb59e96e2eb10f6ca4e9d27db9c00d83195cf442dea453418ac2df0cb94b"
+    },
+    "work/deps/capstone-5.0.7/capstone/tricore.py": {
+      "bytes": 1123,
+      "sha256": "6716ed4579dadec5c476a0a704c35421860cdaaf20796c7d9c5ebfceb5c4e3cb"
+    },
+    "work/deps/capstone-5.0.7/capstone/tricore_const.py": {
+      "bytes": 12010,
+      "sha256": "95d640cfc8d698f162edc68646c4829cd25289ee47d2869815b33b7839d32bae"
+    },
+    "work/deps/capstone-5.0.7/capstone/wasm.py": {
+      "bytes": 1627,
+      "sha256": "8fb19dfb59cd7175ab0e55b8b7c2d37e150c237ed6060862be6ec3e98bf21d6d"
+    },
+    "work/deps/capstone-5.0.7/capstone/wasm_const.py": {
+      "bytes": 5132,
+      "sha256": "e03e231892153456070055f39a53ed3205feeb24e7d768a2b193adcbe26cffc5"
+    },
+    "work/deps/capstone-5.0.7/capstone/x86.py": {
+      "bytes": 2816,
+      "sha256": "08cbb0a02ff152bcf1fbd7c4f8850b3ade38c25b9f0a6a9b900a55ee75e87c67"
+    },
+    "work/deps/capstone-5.0.7/capstone/x86_const.py": {
+      "bytes": 45756,
+      "sha256": "83cf4550d9256f5f9b8e218b9b732e46d83ef602b463a01d6eeb778deb28e040"
+    },
+    "work/deps/capstone-5.0.7/capstone/xcore.py": {
+      "bytes": 1082,
+      "sha256": "67a3bab5ec77998bf88f320b61be7110318454be2252ff2a02f42ca4aab56a8c"
+    },
+    "work/deps/capstone-5.0.7/capstone/xcore_const.py": {
+      "bytes": 3424,
+      "sha256": "34367710ee0501621fb8b325890cae740ff38075d3ef66b36de9b8b4dcec227f"
+    },
+    "work/deps/capstone-5.0.7/capstone/__init__.py": {
+      "bytes": 43729,
+      "sha256": "0417ae554252be8e8d03e328054fad4c3cec6cf4895deecec637078380840f8b"
+    },
+    "work/deps/capstone-5.0.7/capstone/lib/capstone.dll": {
+      "bytes": 7572480,
+      "sha256": "46b7c385efe50db4def8aa99aa351c44ea28b1f3c2ccbc4ca41dbb2a02340e39"
+    }
+  },
+  "decoder_witness_only_not_rehashed_by_sealer": true,
+  "before_after_sources_equal": true,
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "reader_adoption_allowed": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false,
+    "whole_function_closed": false,
+    "function_extent_known": false,
+    "callee_formals_verified": false,
+    "returned_pointer_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false
+  }
+}

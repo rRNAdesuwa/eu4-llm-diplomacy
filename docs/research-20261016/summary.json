@@ -1,0 +1,65 @@
+{
+  "schema": "EU4-PUBLIC-RESEARCH-SNAPSHOT/1",
+  "date": "2026-10-16",
+  "upstream_base": "6092de98c4ed09964543b3ea2ac98e5dbcbe9876",
+  "game_version": "1.37.5",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "snapshot_kind": "source and selected evidence; not a playable release",
+  "historical_validation": {
+    "original_batch": {
+      "bindings": 120,
+      "dispatched": 41,
+      "refused": 77,
+      "unknown": 2
+    },
+    "selected_effect_signals": 48,
+    "historical_persistence": 44,
+    "repair_candidates": 42,
+    "all120_effects_complete": false
+  },
+  "readonly_tools": {
+    "descriptive_accepted_entries": 7,
+    "pending_active_world_entries": 0,
+    "stable_request_effect_profiles": 15,
+    "stable_source_pins": 98,
+    "peace_v2_live_coverage": "selected empty target inbox only",
+    "support_heir_v1_live_coverage": "bilateral missing-key only",
+    "positive_bodies_live_verified": false
+  },
+  "offline_lookup": {
+    "accepted_version": 6,
+    "records": 60,
+    "fixed_json_sources": 94,
+    "references": 346,
+    "v7": "plan only: 61 records and 95 sources; not built or run"
+  },
+  "native_research": {
+    "r86_r87": "full independent raw review and root acceptance",
+    "r89": "source review passed; no actual authorization or acquisition",
+    "final_c9d60_header_storage_ownership": "unknown",
+    "native_ready": false,
+    "war_peace_executor_complete": false
+  },
+  "evidence_policy": "Published original pins describe local sealed graphs. Selected evidence is included; full host graphs, process captures and historical build/log trees remain local. An absent dependency fails closed. Do not regenerate pins to bypass checks.",
+  "publication_validation": "file-only export: standalone Python AST (declared .inc.py fragments excluded), JSON decoding, source pre/post SHA; no project imports, old tests, CLI queries, game reads or dispatch",
+  "scope_exclusions": [
+    "credentials and local.env",
+    "game files and saves",
+    "raw process captures and running logs",
+    "new compiled binaries and third-party dependency engines",
+    "duplicate historical build/review snapshots",
+    "code containing developer-local absolute paths"
+  ],
+  "exported_original_files": 3118,
+  "source_bytes_read": 98228342,
+  "source_budget": 134217728,
+  "public_bytes_written_before_new_editorial_documents": 48279680,
+  "retained_budget": 67108864,
+  "omitted_count": 65,
+  "permissions": {
+    "publishes_game_requests": false,
+    "native_execution": false,
+    "retry": false
+  },
+  "historical_evidence_paths": "Immutable JSON may record the original game installation path; it is not runtime configuration or a personal user directory."
+}

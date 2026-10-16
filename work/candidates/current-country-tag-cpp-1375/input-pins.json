@@ -1,0 +1,38 @@
+{
+  "work/AGENTS.md": {
+    "bytes": 959,
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  },
+  "work/candidates/current-country-tag-resolver-1375/layout.py": {
+    "bytes": 1660,
+    "sha256": "3aea89eb797282a55ca5810253a6b638cbf3d5e627713d764be2ffd245259a1f"
+  },
+  "work/candidates/current-country-tag-resolver-1375/resolver.py": {
+    "bytes": 11963,
+    "sha256": "0378f980a9eed280dedc08a18eff92b31dc17566eb031cd29218e51bf4e42370"
+  },
+  "work/candidates/current-country-tag-resolver-1375/review.json": {
+    "bytes": 4597,
+    "sha256": "83dcb5580a325cc63e98882948573d4263bc7762e976d6f3c034ac13b70c4264"
+  },
+  "work/candidates/current-country-tag-resolver-1375/source-index.json": {
+    "bytes": 3047,
+    "sha256": "f4525e12314b9ab09269b758fe60f9d45e98b90f0151d61a6fe17aa04ecb870b"
+  },
+  "work/candidates/v21-core-pair-nosend-1375/validate.py": {
+    "bytes": 12608,
+    "sha256": "35a3a339f594051da06de4122adf785454b3cf3a3d00919fc1f324b7c5c285f4"
+  },
+  "work/review-results/current-country-tag-resolver-independent-20261008a/report.json": {
+    "bytes": 8248,
+    "sha256": "2ac712c7def6958fc98c94b58385f3a40c3ddc923456f484893e0dde43f161fb"
+  },
+  "work/review-results/current-country-tag-resolver-independent-20261008a/review.json": {
+    "bytes": 1026,
+    "sha256": "0288b01333ebb1695f77d5af9f46329995fa0d27ae49e0c04ed556506ec3e67d"
+  },
+  "work/review-results/current-country-tag-resolver-independent-20261008a/validation.json": {
+    "bytes": 17197,
+    "sha256": "94353a46a34a7e1bbfb4398532255ca87816d88873265c204e15b671784ab5c4"
+  }
+}

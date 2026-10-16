@@ -1,4 +1,4 @@
-[English](README_EN.md) | [简体中文](README.md)
+[English](Readme_EN.md) | [简体中文](Readme.md)
 
 # EU4 LLM Diplomacy
 
@@ -14,7 +14,9 @@ We have confirmed that the diplomatic interfaces exposed by the game itself are 
 
 This project is currently in **early experimental development**.
 
-The following capabilities have currently been implemented or validated on EU4 1.37.4:
+2026-10-16: [EU4 1.37.5 research checkpoint](docs/research-20261016-en.md) is now available with 120 TAG action bindings, direct runtime observers and a 60-record war/peace evidence index. The original batch contains 41 dispatches, 77 refusals and 2 unknowns; historical selected effects cover 48 actions, with 44 persistence records. Full effect validation, a callable 1.37.5 war/peace executor and LLM integration remain incomplete. Research is paused; this is a source snapshot. See the [tool catalog](docs/runtime-capability-map-1375-v8.json) and [Chinese evidence report](docs/research-20261016.md).
+
+The following are historical capabilities validated on EU4 1.37.4:
 
 - Exporting part of the game state through a custom Mod;
 - Intercepting the native AI's authority to declare war and negotiate peace, while establishing an authorization path for externally initiated peace actions;
@@ -45,7 +47,7 @@ For the current research status, experiment records, and technical validation, s
 >
 > The main purpose of making this repository public is open development, technical discussion, collaboration, and reproducible experimental research—in other words, recruiting contributors and collaborating, if we manage to find any. This is still far from being a playable release.
 >
-> The current bridge only targets Europa Universalis IV version 1.37.4 and relies on runtime interfaces obtained through reverse engineering, DLL injection, and hooking. Compatibility with other versions is not guaranteed. Running experimental builds may cause game crashes, save corruption, or other unexpected behavior. Please use disposable test saves only, or make sure reliable backups are available.
+> The historical release targets Europa Universalis IV 1.37.4; the newer research source targets a separately pinned 1.37.5 executable. They use different profiles and must not share DLL addresses or validation claims. The project relies on reverse engineering, DLL injection, and hooking. Compatibility with other versions is not guaranteed. Running experimental builds may cause game crashes, save corruption, or other unexpected behavior. Please use disposable test saves only, or make sure reliable backups are available.
 
 ## Contributing
 

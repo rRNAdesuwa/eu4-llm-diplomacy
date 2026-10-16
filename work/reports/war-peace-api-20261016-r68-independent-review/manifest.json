@@ -1,0 +1,245 @@
+{
+  "schema": "EU4-R68-INDEPENDENT-REVIEW-MANIFEST/1",
+  "sealed": true,
+  "source_pins": {
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/manifest.json": {
+      "bytes": 12209,
+      "sha256": "4076e33975e93c315b4b073d80c7aa26bdafc8b059b48da12132fa58821a7a75"
+    },
+    "work/reports/war-peace-api-20261016-r62-gold-recipient-generator/manifest.json": {
+      "bytes": 14300,
+      "sha256": "d3516fdbc60b2c66115b9a0aa907daace7e5a8adac0c5dbd4c53f0840eba6db4"
+    },
+    "work/reports/war-peace-api-20261016-r62-gold-recipient-generator/contract.json": {
+      "bytes": 9485,
+      "sha256": "b72b70f5f78c5e95f5e7984dc415dd4b4fab3ecbbaa72034e6081f0ae0e2295b"
+    },
+    "work/reports/war-peace-api-20261016-r62-gold-recipient-generator/owned-code.json": {
+      "bytes": 1868,
+      "sha256": "b0ef4b734752e052ff5e86456f68d5e52a6eded74ab808bbc3a722c46ac84c06"
+    },
+    "work/reports/war-peace-api-20261016-r62-gold-recipient-generator/selected-evidence.json": {
+      "bytes": 231099,
+      "sha256": "cd2a38590b2e88d7962451ab961a305888a11d606e10bd847629186ea808101c"
+    },
+    "work/reports/war-peace-api-20261016-r66-generated-record-postprocess/manifest.json": {
+      "bytes": 15233,
+      "sha256": "ccf2263abe0d7b538f6b28dcd8df86afb7f50e7a05931c6b48d1a7e7dda7e6a2"
+    },
+    "work/reports/war-peace-api-20261016-r66-generated-record-postprocess/contract.json": {
+      "bytes": 8319,
+      "sha256": "1440ddf1b3da152a643899a64d1c02226da8becd9080a4204fa1beaf6d10dc2e"
+    },
+    "work/reports/war-peace-api-20261016-r66-generated-record-postprocess/owned-code.json": {
+      "bytes": 881,
+      "sha256": "7a8d4de931b655d3292cde59d28bc7ca4e8a8bbf95e9abed54f1401abf94f42e"
+    },
+    "work/reports/war-peace-api-20261016-r66-generated-record-postprocess/selected-native.json": {
+      "bytes": 36055,
+      "sha256": "15ed38b7235bffe2768a0a55c1963ddddf7c4897e1b60c2994e740af0d13de68"
+    },
+    "work/reports/war-peace-api-20261016-r66-generated-record-postprocess/entry-seed.json": {
+      "bytes": 4721,
+      "sha256": "3f59299fe0acbef1c1827d48e93445a76c049a2eceb805cb18d8cff42255ef03"
+    },
+    "work/reports/war-peace-api-20261016-r67-entry-helper-register-contract/manifest.json": {
+      "bytes": 23396,
+      "sha256": "127d80f4872757fb06dec003fb8746bbbcb649ed456d769db052c4f6d8b18e79"
+    },
+    "work/reports/war-peace-api-20261016-r67-entry-helper-register-contract/contract.json": {
+      "bytes": 6922,
+      "sha256": "af029d3cd895116e69cbc45a8b78a2ad8fde7773b7ef18f621b719b140ddfb56"
+    },
+    "work/reports/war-peace-api-20261016-r67-entry-helper-register-contract/owned-code.json": {
+      "bytes": 657,
+      "sha256": "9eb1156223f3cb12068726a1777c5bdd6fe0a2e61ba00a20505f109b66dc4e0a"
+    },
+    "work/reports/war-peace-api-20261016-r67-entry-helper-register-contract/selected-evidence.json": {
+      "bytes": 21503,
+      "sha256": "60c2a151f4c3d268b9042b587d0c480e53dfc1ef4a48f7305b76bfb5316c3d1b"
+    },
+    "work/reports/war-peace-api-20261016-r67-entry-helper-register-contract/entry-seed.json": {
+      "bytes": 9961,
+      "sha256": "460b09544e559155dc5153b223df04e36dadb3fef4866cea7bdf3fde6579f975"
+    },
+    "work/reports/war-peace-api-20261016-r62-independent-review/findings.json": {
+      "bytes": 6819,
+      "sha256": "8efc64a9385ca1472f6d4cf3c913f755ed8cdfffcd5082b1c55e87821aac15ad"
+    },
+    "work/reports/war-peace-api-20261016-r62-independent-review/manifest.json": {
+      "bytes": 12593,
+      "sha256": "660065e49bac4d637b609fa218058a79034fd9d5f5f7fe24c1f902f57695d42c"
+    },
+    "work/reports/war-peace-api-20261016-r66-independent-review/findings.json": {
+      "bytes": 5711,
+      "sha256": "9f4f95352be92800da6c7e1d93a237f7875f45ca7a6ed4d3d0ec2ecc163c0005"
+    },
+    "work/reports/war-peace-api-20261016-r66-independent-review/manifest.json": {
+      "bytes": 13196,
+      "sha256": "29faa23e023e72f12d63a3a990b8dedfd6f93dee6e58d369785b8c4dc274726f"
+    },
+    "work/reports/war-peace-api-20261016-r67-actual-independent-review/findings.json": {
+      "bytes": 5833,
+      "sha256": "fcbacb45bbe9647c9a01d77f57f3ced70f4d77ac5497ec82c3a82acddf223a39"
+    },
+    "work/reports/war-peace-api-20261016-r67-actual-independent-review/manifest.json": {
+      "bytes": 11693,
+      "sha256": "a1788deb8c2fe81f19999a20d8c68b88a6424d0ff800cd98751d4f75ebd5c905"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/budget.json": {
+      "bytes": 757,
+      "sha256": "49777972c883637b5b93cdbda8b8005bbfe22c087b2b521a0be318c5f885ad3a"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/PROTOCOL.md": {
+      "bytes": 2273,
+      "sha256": "24eca0b8e66989a4b5d8e760e11199c822bc11e9c93be2e242439295542ad5c9"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/build_projection.py": {
+      "bytes": 22018,
+      "sha256": "a65c49140a61eaa474bc6a957454ac5374fa6f9f94fe01fdcb6246ba0a34e468"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/source-freeze.json": {
+      "bytes": 539,
+      "sha256": "f4d879dca55e2154b883ace3e200355678fdb8973c73d9b5f2f2378fde163fb9"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/analysis-claim.json": {
+      "bytes": 56,
+      "sha256": "9e8c9998ebd7d10ca3b5fa3609e8011986b728486e51759978053b74528ead05"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/raw-crosscheck.json": {
+      "bytes": 27675,
+      "sha256": "d314abccc57066c22f599a696c64bcc2fbb90d32ff913dc4ec05cd25ce7d694e"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/projection.json": {
+      "bytes": 11854,
+      "sha256": "dd77472acae9252cf604d52af2f4ee318517abe9a7bad175deb5814ee1d3fc60"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/source-pins.json": {
+      "bytes": 4206,
+      "sha256": "b9877ba94ac1b4cec10ccd0756c27ba444551ed29950a2a68eb6134a7edfe3b1"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/read-accounting.json": {
+      "bytes": 12634,
+      "sha256": "5c7e40be0076403f6c4cb66c75cd81b4d269a2d663dde5d229a9396235acc64a"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/report.md": {
+      "bytes": 6587,
+      "sha256": "33c6f65895ab8165cd4d100fdf4b8bc5e5f67a6a34a3b707f7f39784b8ba24b5"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/build-tool-result.json": {
+      "bytes": 1057,
+      "sha256": "a12afa61f26034eb960c1352fc2c403c52764fbb9315e6bd37ff5aab3c5f9553"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/seal.py": {
+      "bytes": 3155,
+      "sha256": "b24bcc3b59fc595669e2c5de6e8fb6432c8f8e898795ef1f45dc33a39c03c5fc"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/final-manifest.json": {
+      "bytes": 1952,
+      "sha256": "bfd0b9abf4790f42de52a7ebd35d7598f7884262e049e16c53db3597cb528685"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/verification.json": {
+      "bytes": 5787,
+      "sha256": "d4a5a7cc07fccd551b43166310f988c2dde8069909d1fcd72d35b0e63e023203"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/check-tool-result.json": {
+      "bytes": 689,
+      "sha256": "8a7aca8c8e5473c5453ae08d4c45024d29bb80495e161e6e434f66baf8bf2263"
+    },
+    "work/reports/war-peace-api-20261016-r68-fixed-frame-projection/delivery.json": {
+      "bytes": 2530,
+      "sha256": "40e6e2b24ea7655d15fd639e4e399c7684ed5392571b324619f10493bfdee2fa"
+    }
+  },
+  "local_pins": {
+    "work/reports/war-peace-api-20261016-r68-independent-review/retained-files.json": {
+      "bytes": 1128905,
+      "sha256": "dc612d08781b29621cc5868b6791cec45da12a3c2421becd4b7ed6e957aa2dfe"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/raw-projection-replay.json": {
+      "bytes": 29995,
+      "sha256": "ca69a27d3d5846b151b3a7ded9b4867b9bf385d7f757bba6099a85706bdfa22a"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/findings.json": {
+      "bytes": 5100,
+      "sha256": "9ecf5a7f93726b780a395ae4ccc392467ddcda77e1f15008035dd08fa266c3f2"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/report.md": {
+      "bytes": 364,
+      "sha256": "8875c4fe6ee0fef1355b146e9c1811a69cc0f37b32c14f27646bb725ba257eb6"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/review-failure.json": {
+      "bytes": 382,
+      "sha256": "5071b7bace5a4c1208cffda0969a74dc062a3eb4a31b1bb83c1c269a51fcfb20"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/reviewer-r1-preimage.py": {
+      "bytes": 17231,
+      "sha256": "baff7c970c562b466d4d16529a69857084c3c6b4bd1db53a116f9b7ce34959a1"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/reviewer-r1-preimage.json": {
+      "bytes": 449,
+      "sha256": "cbdddbfb423a029174fc8bddec56c62386a9644631d96046fdb5abcc0a307f7a"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/review-r2-failure.json": {
+      "bytes": 381,
+      "sha256": "cc38fe8db4cc9a4f40a5b7613d85cb99a31f1eae3ecd1eefd5dea7d2d886336b"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/reviewer-r2-preimage.py": {
+      "bytes": 17678,
+      "sha256": "34461abcc0376b69eb391369105c5b71676b4ea64d0af27180cdb5486aede8ea"
+    },
+    "work/reports/war-peace-api-20261016-r68-independent-review/reviewer-r2-preimage.json": {
+      "bytes": 399,
+      "sha256": "da7d72c5f0bac0e95d36870ea524971d486d3ebb61bd0ec3b2e8bcb58599945d"
+    },
+    "work/retain_r68_review_20261016.py": {
+      "bytes": 3289,
+      "sha256": "92933b7320d6fdba1a60fd7b91cdceea44e3e6a89e7420dd276fc2810ea7efee"
+    },
+    "work/review_r68_projection_20261016.py": {
+      "bytes": 18079,
+      "sha256": "b5aad65e7c83fb4a528ef6bf4491b21701f2b1f9a156f6affb1c1168c13fe306"
+    }
+  },
+  "source_scope": "20flatupstream+12authorlocal+authorrootmanifest+4finalmetadata files;37explicit files, norecursion",
+  "findings": {
+    "bytes": 5100,
+    "sha256": "9ecf5a7f93726b780a395ae4ccc392467ddcda77e1f15008035dd08fa266c3f2"
+  },
+  "operations": {
+    "PE_stat_open": 0,
+    "engine_stat_open": 0,
+    "instruction_decoder": 0,
+    "author_programs": 0,
+    "CLI": 0,
+    "tests": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "saves": 0,
+    "reloads": 0,
+    "new_callee_follow": 0,
+    "new_native_code_bytes": 0,
+    "new_native_data_bytes": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "original_request_effect_verified": false,
+    "peace_acceptance_verified": false,
+    "peace_completion_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "gold_conservation_verified": false,
+    "object_ownership_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "persistence_verified": false,
+    "authorizes_retry": false,
+    "runtime_capture_authorized": false,
+    "further_static_actual_authorized": false
+  }
+}

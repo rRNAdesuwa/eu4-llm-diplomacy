@@ -1,0 +1,131 @@
+{
+  "schema": "EU4-OWNED-BODY-INDEPENDENT-LIVE-FILE-AUDIT/1",
+  "status": "one_top_level_game_body_normal_return_raw_ABI_postimage_verified",
+  "findings": [],
+  "capture": {
+    "bytes": 61600,
+    "sha256": "61fe1eecb69fedaa392a4d40893163887bb49fd8cad417553387741e17f563e3"
+  },
+  "production_manifest": {
+    "bytes": 6216,
+    "sha256": "a9af7b19b34d2b0be71bd2881f958100b8ee49e8110182eafb6b3de8484c663d"
+  },
+  "production_source_pins": 29,
+  "frozen_host_local_pins": 215,
+  "selected_external_pins": 11,
+  "production_exact_seal_transformation_verified": true,
+  "source_ready": {
+    "bytes": 5706,
+    "sha256": "ae68de5afe71970b3b87393d8aa9e8d024dd5721fa283b156473fd6e5d699fa9"
+  },
+  "REA_evidence_id": "ev_c4caa336fe548e29133151dcc5d6489588676a99b300a0ef1658317a349fd4ed",
+  "whole_render_reconstructed": {
+    "bytes": 21292,
+    "sha256": "ad22c78de7f5851e053ef4f2f7de6b17d9bd40c2656401dcbfe4f33903288bd8"
+  },
+  "pure_parser_equals_recorded_evaluation": true,
+  "owned_payload_equals_unique_REA_send": true,
+  "native_call_accounting": {
+    "target_rva": "0x500560",
+    "signature": "void(pointer)",
+    "explicit_top_level_attempted": 1,
+    "normal_wrapper_returned": 1,
+    "spent": true,
+    "zero_native_call_observation": false,
+    "nested_static_calls_dynamically_counted": false
+  },
+  "fresh_context": {
+    "observer_nonce": "59d7cac4e345765f134c555ae0b09ca9",
+    "attempts": 1,
+    "thread_id": 35220,
+    "Q": "0x000000919bffdd88",
+    "five_returns_mainholder_world_sources_replayed": true,
+    "historical_Q_input_or_dereference_by_auditor": false
+  },
+  "owned_raw": {
+    "A": "0x00000198015e4660",
+    "G": "0x00000198015e4910",
+    "sizes": [
+      152,
+      96
+    ],
+    "alignment": 16,
+    "disjoint": true,
+    "explicit_JS_write_requests": 4,
+    "explicit_JS_write_bytes": 264,
+    "each_full_snapshot_bytes": 248,
+    "A_final_vptr": "0x00007ff7050ee578",
+    "changed_A_byte_offsets": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "rest_A_unchanged": true,
+    "all_G_unchanged": true,
+    "intermediate_native_stores_observed": false
+  },
+  "read_accounting": {
+    "script_requests": 56,
+    "script_requested_exact_bytes": 1290,
+    "retained_script_raw_bytes": 1226,
+    "script_prefix_bytes_not_inline": 64,
+    "each_script_and_host_code_slot_guard_bytes": 211,
+    "host_each_pre_post_counter": {
+      "bytes": 300,
+      "calls": 46,
+      "largest": 32
+    },
+    "host_each_retained_raw_bytes": 74,
+    "independent_host_post_prefix_raw_bytes": 32
+  },
+  "authentication_layers": {
+    "pure_parser_host_authenticated": false,
+    "pure_parser_code_restore_verified": false,
+    "outer_held_identity_bound": true,
+    "outer_independent_prefix_restored": true,
+    "native_entry_authenticated": false
+  },
+  "cleanup": {
+    "script_detach_flush_prefix_reported": true,
+    "REA_inner_outer_cleanup_null": true,
+    "host_loaded_and_world_projection_pre_post_equal": true,
+    "normal_held_context_exit_per_pinned_source": true,
+    "Job_exit0": true,
+    "Job_total": 2,
+    "Job_active_final": 0,
+    "Job_peak_commit": 390508544,
+    "Job_seconds": 3.765,
+    "forced_descendants": false,
+    "all_Frida_resources_unmapped_proven": false
+  },
+  "limits": [
+    "Files/pure Evidence and body parser replay only. No producer/capture, process, Frida, REA, oldQ/heap dereference or test is run.",
+    "This is1 explicit top-level game machine-body attempt and normal NativeFunction-wrapper return, with owned raw ABI test-double postimages. It is not the prior zero-native-call observation or a constructor/deleting/free/game-sender entry test.",
+    "CurrentQ/tid may equal older records numerically. This nonce/script/rawREA and callback source are new; no retained historical pointer is supplied as an input or read by this audit.",
+    "Owned postimages support final A[0:8]=B+1c3e578, all remainingA/G unchanged. They do not trace the intermediate two native stores or prove exhaustive total memory writes. Framework/hook/native stores are outside264B JS-write counters.",
+    "1226B owned stack/world/code/slot/buffer raw is retained;64B script prefix reads are represented by counters and cleanup statements. Separate host prefix raw provides independent selected restoration evidence.",
+    "Host each46reads300B projection retains only74B raw. Identity, full module lists, loaded PE header, full roots and normal handle close remain pinned-producer witnesses. Setup RPM and kernel operations are outside these selected counters.",
+    "Pure parser hostauth/restore flags remainfalse; outer held-process/prefix verification is separate evidence. Content Evidence ID is not a signature and selected11 external pins are not a complete dependency/OS closure.",
+    "Code/world/ASLR-slot prepost equality is non-atomic, excludes no ABA or transient modification and proves no world/header/module lease or full Frida agent unmapping. Soft JS deadline is not a native timeout.",
+    "Jobactive0 covers the new CLI tree only, not target-agent memory or all target resources; existing game was not placed in that job.",
+    "No legal C++ construction, constructor equivalence, full lifecycle, noCB semantics, declarewar/peace API, gameplay effect, TLS/xstate/exceptional unwind or future native/sender readiness follows."
+  ],
+  "native_game_objects_constructed": 0,
+  "new_API_effects": 0,
+  "war_declared": false,
+  "peace_concluded": false,
+  "native_ready": false,
+  "native_ABI_ready": false,
+  "sender_authorized": false,
+  "native_entry_authenticated": false,
+  "world_lease": false,
+  "lifetime_lease": false,
+  "sentinel_header_lease": false,
+  "atomic_snapshot": false,
+  "process_accessed_by_auditor": false,
+  "Frida_called_by_auditor": false,
+  "tests_reexecuted": false
+}

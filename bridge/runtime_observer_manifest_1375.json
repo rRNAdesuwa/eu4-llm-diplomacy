@@ -1,0 +1,28 @@
+{
+  "schema": "EU4-RUNTIME-OBSERVER-MANIFEST/2",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "read_only": true,
+  "native_calls": 0,
+  "source_pins": {
+    "tools/eu4_runtime_observer_r2.py": {
+      "bytes": 2124,
+      "sha256": "63b1ef1021b0da4f836570b5f9edcae274e5a4518f1bbe0690d2c00d3839b7cc"
+    },
+    "bridge/tests/test_runtime_observer_guard.py": {
+      "bytes": 2801,
+      "sha256": "57cc824f7cd5db6348b40af90878f30062860872c98793b68ea4a289d48a19da"
+    },
+    "tools/build_runtime_observer_manifest.py": {
+      "bytes": 1115,
+      "sha256": "3dafbbfd78878fc3d8c1e463cb0e2a036af94ca7dbf17464d8225007fa63f352"
+    },
+    "bridge/war_state_service_manifest_1375.json": {
+      "bytes": 1356,
+      "sha256": "a7eb83536a173da571b15fd2ba33112856d08f06c5065cdb8f8cc7bd265fe1cb"
+    },
+    "bridge/diplomacy_live_observer_manifest_1375.json": {
+      "bytes": 3602,
+      "sha256": "f7a2a64aa2c9fbc79a843af0b4c1b81cb7df22e3d09104a3fb718b06306b43ca"
+    }
+  }
+}

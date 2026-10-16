@@ -1,0 +1,117 @@
+{
+  "schema": "EU4DIPLOMACY-RELATION-READER-MANIFEST/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "native_manifest_sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a",
+  "source_pins": {
+    "work/reports/native-pair-effects-1375.json": {
+      "bytes": 2190321,
+      "sha256": "b67e9e3ec3d333ad5603c9bcb7a70d614bab1107f283c6f01d99e7c744730ae0"
+    },
+    "work/reports/native-pair-extension-v10-1375.json": {
+      "bytes": 2862211,
+      "sha256": "0c1731b0b29b296da73dc406fb31544ada59c17c275d17d623677b16998698bd"
+    },
+    "work/reports/native-pair-extension-effects-v10-1375.json": {
+      "bytes": 313488,
+      "sha256": "b6f4b69db38f5e3eae0c3cebf1fa5298701b86a98e8299d6f0e9759b84861f62"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json": {
+      "bytes": 40324,
+      "sha256": "c4f6c2fc4e3a37153b3d4ba8f099204001bd8e64af4aacfd9c8cf0a4c024a57e"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/static.json": {
+      "bytes": 1160839,
+      "sha256": "874d2135b8e92bab67993664660ce5349762d64ed25e1a56467cb7412e889703"
+    },
+    "bridge/relation_effect_reader.py": {
+      "bytes": 18588,
+      "sha256": "68c3df68df43d1bf045057678ed86c33dd8a2d50500880c132d99f66053ec855"
+    },
+    "bridge/tests/test_relation_effect_reader.py": {
+      "bytes": 15528,
+      "sha256": "867ef32ad033b5d4e7304948d24c563d226b4cbb7ab2e793613ad4735d301082"
+    },
+    "bridge/tests/test_effect_observer_memory.py": {
+      "bytes": 27717,
+      "sha256": "263338baf4016d6b878c8821ac73e5270b30dc4d92887035ae7ea5041f211f54"
+    },
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/tag_command_backend.py": {
+      "bytes": 25398,
+      "sha256": "74279bf8cb77d800ad53711e799260672b20b7d20cf6bee997527eaa29c55c53"
+    },
+    "bridge/tag_actions_1375_v31.json": {
+      "bytes": 30294,
+      "sha256": "dfcd2cf16b7a6198dd9fc6ea619a0bad54ee58750a70a676f866be827c3771fb"
+    },
+    "bridge/tag_action_conditions_1375.json": {
+      "bytes": 1607903,
+      "sha256": "116c84b4a50ea566cbbb4232fb9b0c9f19cfb1f416e60d4e791ced72d589de90"
+    },
+    "bridge/diplomacy_research_evidence.json": {
+      "bytes": 517166,
+      "sha256": "142a5d63ec22fa3e547f89bb3fd96030275814faa1b12ef421e1a920a0acc4e5"
+    },
+    "work/reports/diplomacy-corrective-20261014/current-action-validation.json": {
+      "bytes": 280643,
+      "sha256": "809e29df52bf5db78512f389d2ad1d21873b1263caf1154b910940b80722fb80"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/runtime/batch-after-save-selected.json": {
+      "bytes": 890073,
+      "sha256": "fbc64841a2c85904f75a2effa66b0593d43d4c6cf6572d3fcd66d9717a24240e"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/runtime/first-two-results.json": {
+      "bytes": 6238,
+      "sha256": "daec77bddc8d3c9d298b4106c3d80cb8fe78cf73f31065a9409d954ca59e560b"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/src/work/candidates/v24-pair-send-core-r2-1375/pair_send.h": {
+      "bytes": 1657,
+      "sha256": "eff58f320fab82573040028a7a85e98f54f553dd8b1f0ee9594565c5d4217bf3"
+    },
+    "work/deps/capstone-5.0.7.receipt.json": {
+      "bytes": 16560,
+      "sha256": "eb1b2b12f707487387126b1f6453222c00fa744f02cba6125e44b94568a0a2df"
+    },
+    "work/discover_diplomacy.py": {
+      "bytes": 29147,
+      "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+    },
+    "work/reports/relation-effect-observer-20261015/static.json": {
+      "bytes": 34263,
+      "sha256": "71c92b810ed1b1d281f25fa5d4af6c1605f6c343318498bdfb0ddc751a86110c"
+    },
+    "work/reports/relation-effect-observer-20261015/report.md": {
+      "bytes": 6896,
+      "sha256": "a6b68bb61faab30d40d4a9f693ea60314e4c9d0ed2bfcc994b638eb070c6386f"
+    },
+    "work/reports/relation-effect-observer-20261015/contract.json": {
+      "bytes": 12925,
+      "sha256": "88b4d9c9b63d6dd3d4b6703abeb8fbfc876227170ec5ead51604bd83d83ecf61"
+    },
+    "work/reports/relation-effect-observer-20261015/prepare_static.py": {
+      "bytes": 4781,
+      "sha256": "6e4236f8167cc8738ade336042307d53545cb3e1aa9f117e76c2a657c317a457"
+    },
+    "work/reports/relation-effect-observer-20261015/verify.py": {
+      "bytes": 2132,
+      "sha256": "ed5f7c6d97f7028e3359129e8ffb6c26d3d1e3709023daf3eb035968b9fd163c"
+    },
+    "work/reports/relation-effect-observer-20261015/seal.py": {
+      "bytes": 7175,
+      "sha256": "b5cd99fe98970cce5235089d14d7a3de7eccb543109f50a8dd023b704c636b95"
+    }
+  },
+  "actions": [
+    "offer_alliance",
+    "royal_marriage",
+    "guarantee"
+  ],
+  "memory_guard_bytes": 805306368,
+  "newly_decoded_bytes": 16,
+  "maximum_newly_decoded_bytes": 16384,
+  "native_calls": 0,
+  "game_process_accessed": false
+}

@@ -1,0 +1,93 @@
+{
+  "files": {
+    "docs/native-epoch-sp-closure-1375.md": {
+      "sha256": "ddcdd80c5178f4000a4c1bc563410ca2df427b6a0fb3e0683c01b8fbd658475d",
+      "size_bytes": 7710
+    },
+    "docs/native-origin-witness-observer-1375.md": {
+      "sha256": "c1831e7a67d5db0ed3f7cc358ea03fe9fd299dbccd47bbc245128fbffe052481",
+      "size_bytes": 9426
+    },
+    "docs/native-single-player-context-1375.md": {
+      "sha256": "dd2b1e2ffc1be1a95b598973be74d96436e037f85f04678fbea981a7d50e334e",
+      "size_bytes": 7140
+    },
+    "docs/native-single-player-origin-1375.md": {
+      "sha256": "e93233ecd9a284f48131ec91857726352f2eeaea9c4d57cf6c02f45dbdb1394d",
+      "size_bytes": 7540
+    },
+    "docs/native-world-epoch-1375.md": {
+      "sha256": "163c1a6090a25ca7d4d2113c1aaef254d97f04a7cb438b65b9e97db81c71b9d2",
+      "size_bytes": 6118
+    },
+    "work/candidates/origin-native-capture-1375-v2/README.md": {
+      "sha256": "30ac0e6506b0e97a344adfaf2b49f5e83595fcc7f499479065c5c64250d3e45c",
+      "size_bytes": 12886
+    },
+    "work/candidates/origin-native-capture-1375-v2/capture-core.cpp": {
+      "sha256": "a39c7b14322e40c6f5fe5b31b4dea838297e0dc06acdcdcd7422f7b3356a6add",
+      "size_bytes": 9916
+    },
+    "work/candidates/origin-native-capture-1375-v2/capture-core.h": {
+      "sha256": "ca876b0ba84e39be1680d34a66d855b4c2ef78b64366cbce362e75619d856b39",
+      "size_bytes": 8215
+    },
+    "work/candidates/origin-native-capture-1375-v2/pins.h": {
+      "sha256": "df9dacabc7192c322d31942d95926e89b1ae3ed304c1d56411781462f2b79a1e",
+      "size_bytes": 6744
+    },
+    "work/candidates/origin-native-capture-1375-v2/review-results-external-api-20261008a.json": {
+      "sha256": "d38e7a632934b83babe0973c1df1915dec3e4e4069e0d7dc1c6d4099f6bec464",
+      "size_bytes": 11479
+    },
+    "work/candidates/origin-native-capture-1375-v2/review.json": {
+      "sha256": "163d01dfedd55e2089ca9db0903a02b14c44d40173e89b64334fa143da868d0b",
+      "size_bytes": 1158
+    },
+    "work/candidates/origin-native-capture-1375-v2/sites.json": {
+      "sha256": "307fa0ee1210b759ce6d1c79d6ab97818f578d0b2ea2c2bb90576a2a98ddc28c",
+      "size_bytes": 80048
+    },
+    "work/candidates/origin-native-capture-1375-v2/test_capture_core.cpp": {
+      "sha256": "ef867be7135b7f25062a425c06e3e636e04669c86f51eda7a41a0b3c150faeaa",
+      "size_bytes": 6604
+    },
+    "work/candidates/origin-native-capture-1375-v2/validation-results/validation-results.json": {
+      "sha256": "cc832fe45fa7449acbdd23aafe0aa5078a3d2509c3a204a52109a353a823e535",
+      "size_bytes": 4907
+    },
+    "work/candidates/origin-witness-observer-1375/observer.py": {
+      "sha256": "8baef67aa4d4aa24eeff4eab18de18c56d6e140b7a4d0c897c3ac38a5f9752d4",
+      "size_bytes": 15743
+    },
+    "work/candidates/origin-witness-observer-1375/test_observer.py": {
+      "sha256": "89d55c9bd1ca827802ef50ad4513a48675ef83486b977839940532f002ce2246",
+      "size_bytes": 6520
+    },
+    "work/candidates/origin-witness-observer-1375/test_review_counterexamples.py": {
+      "sha256": "41e10e8bb452417bd6e8a50392df620d57174f55177f0752dad38b98c2493b21",
+      "size_bytes": 3936
+    },
+    "work/reports/native-epoch-sp-closure-1375.json": {
+      "sha256": "24e112d11e0c3252ce70e1641b835ce160863e3bc72faa13d2b1f44a92662808",
+      "size_bytes": 1665629
+    },
+    "work/reports/native-origin-witness-observer-1375.json": {
+      "sha256": "1a6808bfe956d7738b1498fd693b099de9acd276a340deb4c93e3f83a0c03517",
+      "size_bytes": 95012
+    },
+    "work/reports/native-single-player-context-1375.json": {
+      "sha256": "0943d8f4b142daf260cbc4ea407fe4b05d6ad9898aa6c40ba44dc25788162bbf",
+      "size_bytes": 472111
+    },
+    "work/reports/native-single-player-origin-1375.json": {
+      "sha256": "0622c8a67f085984db81aa3c5d2e15675ded40f8466bc7b41643b10ca10a7788",
+      "size_bytes": 1183529
+    },
+    "work/reports/native-world-epoch-1375.json": {
+      "sha256": "d4ee6ad5c8a3577dff2209ec5884978862552c700338e07ef669bd866a30de05",
+      "size_bytes": 2522266
+    }
+  },
+  "schema_version": 1
+}

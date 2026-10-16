@@ -1,0 +1,97 @@
+{
+  "clean_three_case_pass_claimed": false,
+  "files": {
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-bookkeeping-corrigendum.json": {
+      "bytes": 1961,
+      "sha256": "7322f1c15f28719fcb4be2752287578939e248f62aaf7ee99dc466d08c9dc926"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-preparation-failure-r1/failure.json": {
+      "bytes": 712,
+      "sha256": "7272f2bcb0bed0fb1dcbf2e28c806a73cfc203b507ba7e754df791f5c75b1b51"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-preparation-failure-r1/fixture-bookkeeping-corrigendum.json": {
+      "bytes": 1961,
+      "sha256": "7322f1c15f28719fcb4be2752287578939e248f62aaf7ee99dc466d08c9dc926"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-delta-preparation-failure-r1/prepare_fixture_delta.py": {
+      "bytes": 9605,
+      "sha256": "9d2944d5d96ee64238ca6ec0de16f3d19a3e69e98b8fa4076a4187f403d7bfc5"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-failure-preimage-r1/build-receipt.json": {
+      "bytes": 22730,
+      "sha256": "5d6a448efbde183879d14b8e5f2709c6ee2d08a100edfbf34e91dc49e9131468"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-failure-preimage-r1/guard_fixtures.py": {
+      "bytes": 5404,
+      "sha256": "3de88d6b40d70fb4c679ba622db2f83691db94d506b773b0147544cfcdf08605"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-failure-preimage-r1/run_first.py": {
+      "bytes": 7207,
+      "sha256": "1baa7ecf874f33a3971e9698242bab63b61a198d24650b4f03f1d936afcb18b0"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-failure-preimage-r1/seal_candidate.py": {
+      "bytes": 8981,
+      "sha256": "cfbc396e8964ac39506ee4829a5894bb2e78299c0370ea187798b33034f0d214"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/fixture-failure-preimage-r1/source-manifest.json": {
+      "bytes": 19355,
+      "sha256": "1c1b0acd82b7ad100c8e6085deb5e994b92defd8212bf61d2a3a5db2b6cdf27f"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/guard_aggregate.py": {
+      "bytes": 2987,
+      "sha256": "1e0318423cf88e8750c3b94496b9297359ec59060fea1ce03a4c85f677eff13a"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/prepare_fixture_delta.py": {
+      "bytes": 9605,
+      "sha256": "9d2944d5d96ee64238ca6ec0de16f3d19a3e69e98b8fa4076a4187f403d7bfc5"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/prepare_fixture_delta_r2.py": {
+      "bytes": 10114,
+      "sha256": "54cf3f04fd57aae1830b1c091ecce5333959cc2ad60f756f1228e2fb20f7b484"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/query_engine.py": {
+      "bytes": 16583,
+      "sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/run_fixture_delta.py": {
+      "bytes": 4954,
+      "sha256": "e253258af2fe073afd830566d2fd4d063e59809196d7809cc2a602898e7bc6ac"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/seal_candidate_r2.py": {
+      "bytes": 10269,
+      "sha256": "6d851a5aea875e6e3ee310bb821fc822ee07cc44f968e31f0edb9d0be809472a"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/source-manifest.json": {
+      "bytes": 19355,
+      "sha256": "1c1b0acd82b7ad100c8e6085deb5e994b92defd8212bf61d2a3a5db2b6cdf27f"
+    },
+    "work/reports/war-peace-api-lookup-v5-guard-fixtures-20261016-r1/00.stderr.txt": {
+      "bytes": 709,
+      "sha256": "66dfdc9aaf083edc407aff55311bdc946a3201f48c0d385e54578d8b4f7516db"
+    },
+    "work/reports/war-peace-api-lookup-v5-guard-fixtures-20261016-r1/00.stdout.json": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/reports/war-peace-api-lookup-v5-guard-fixtures-20261016-r1/claim.json": {
+      "bytes": 369,
+      "sha256": "12fbb91de4c4714de1393bac85e966d295e80cb51b759afcb5a4e66bf0f5e59d"
+    },
+    "work/reports/war-peace-api-lookup-v5-guard-fixtures-20261016-r1/receipt.json": {
+      "bytes": 23438,
+      "sha256": "46fb580a17e4a62cb173f7cbd7135213b15e9ffe53a7e3f50044b5a55c43a58d"
+    }
+  },
+  "first_aggregate_only": true,
+  "fixture_cumulative_physical_limit": 16777216,
+  "independent_review_passed": false,
+  "original_canonical_manifest": {
+    "bytes": 19355,
+    "sha256": "1c1b0acd82b7ad100c8e6085deb5e994b92defd8212bf61d2a3a5db2b6cdf27f"
+  },
+  "prior_batch_still_failed": true,
+  "prior_cases_rerun": false,
+  "sealed": true,
+  "source_engine_index_data_wrapper_changed": false,
+  "synthetic_limit": 41943040
+}

@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "purpose": "v13_candidate_input_pins",
+  "inputs": [
+    {
+      "path": "bridge/diplomacy_lab_http_v12.py",
+      "role": "frozen_v12_host",
+      "sha256": "93e704d9cc947b26c2b711b3f3aeea377b714c4b248b57efc00e3425886df132",
+      "bytes": 2199
+    },
+    {
+      "path": "tools/request_diplomacy_lab_v12.py",
+      "role": "frozen_v12_host",
+      "sha256": "30337eb58d2a653254aee43e94d790024c61c86a24dbe15c55a514ce022173d7",
+      "bytes": 7924
+    },
+    {
+      "path": "tools/serve_diplomacy_lab_v12.py",
+      "role": "frozen_v12_host",
+      "sha256": "f047cef49c8547ce857def6d9d043a48363d4c37c60c43a41d1088ba4786bc8d",
+      "bytes": 1550
+    },
+    {
+      "path": "work/candidates/fixture-v12-1375/mod/llm_diplomacy_test/common/defines/zz_llm_diplomacy_test.lua",
+      "role": "frozen_fixture_source",
+      "sha256": "0b6e7ab147648f8d5b42688f71e88ab27ef09bfd38fa28e775a7b61fff989b93",
+      "bytes": 128
+    },
+    {
+      "path": "work/candidates/fixture-v12-1375/mod/llm_diplomacy_test/common/event_modifiers/llm_diplomacy_test.txt",
+      "role": "frozen_fixture_source",
+      "sha256": "93227038a3b55dda162927b4e842c508131d50c8784aa74c36bde39f7aeda54a",
+      "bytes": 274
+    },
+    {
+      "path": "work/candidates/fixture-v12-1375/mod/llm_diplomacy_test/common/opinion_modifiers/llmt_fixture.txt",
+      "role": "frozen_fixture_source",
+      "sha256": "e573d472613d0680a13dfaca86081a61b400058d1f6c2b1295781cdf0cfc0ad1",
+      "bytes": 51
+    },
+    {
+      "path": "work/candidates/fixture-v12-1375/mod/llm_diplomacy_test/descriptor.mod",
+      "role": "frozen_fixture_source",
+      "sha256": "7ce2acecbfae4c4e87566b365e0e6322bd814953ea69687396015603081a7947",
+      "bytes": 94
+    },
+    {
+      "path": "work/candidates/fixture-v12-1375/mod/llm_diplomacy_test/events/llmt_fixture.txt",
+      "role": "frozen_fixture_source",
+      "sha256": "86b8b187e446e06277b1602022b34bbb509677be6f63ffb48e135243f1c70da5",
+      "bytes": 1900
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/README.md",
+      "role": "reviewed_owned_peace_source",
+      "sha256": "f3e65f4c77c870c1644dd0e182ee2a95546c23bd0c0b86f32187d55d1694822e",
+      "bytes": 5675
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/default-contract.h",
+      "role": "reviewed_owned_peace_source",
+      "sha256": "bf87b29fec436d8a9ba16c9e9f3a69f2336d7f94c9004ddc58f3b385342d3853",
+      "bytes": 7148
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/default-layout-evidence.json",
+      "role": "reviewed_owned_peace_evidence",
+      "sha256": "71a9bd5c95b5738264353dcf1e8aac204820366f0c4627917b681b36d324f6e0",
+      "bytes": 104890
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/peace-owned-lifecycle-1375.cpp",
+      "role": "reviewed_owned_peace_source",
+      "sha256": "60bd30614b16eaf67d1dcb8f85463d1e7df4de44418b4b9fb62ad8b014a1a067",
+      "bytes": 10565
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/peace-owned-lifecycle-1375.h",
+      "role": "reviewed_owned_peace_source",
+      "sha256": "56389ed955d527925dcd836ad5e54dd20cc4aa88cc9e4e872685653af19eb1d9",
+      "bytes": 2648
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/pins.h",
+      "role": "reviewed_owned_peace_source",
+      "sha256": "321c97c0ff0551d0c34d2091563865ecfafe2e8bb3397aa6a37571f509f72fae",
+      "bytes": 11708
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/prepare.py",
+      "role": "reviewed_owned_peace_source",
+      "sha256": "d1247e7e9a288c370bff718a548870cae6b3e403696bdde0554037ffd6cdb60a",
+      "bytes": 8809
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/review.json",
+      "role": "reviewed_owned_peace_evidence",
+      "sha256": "d54536724c804f436aef58b59722cb768bc6c40e77787d676837b871faa97fec",
+      "bytes": 1284
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/test_contract.cpp",
+      "role": "reviewed_owned_peace_source",
+      "sha256": "3f85254c7c59c4cbae3ce6f14b67766480c01d250371c64598287605853468dd",
+      "bytes": 9310
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/v13-integration-design.md",
+      "role": "reviewed_owned_peace_evidence",
+      "sha256": "e92a8291524ad9f26b0b51693a057ef949d243ce092bca8a434b1d99aa265cb4",
+      "bytes": 8186
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/validation-results/20261007T205931Z-0bd138f75a5e42628fef83fcb0d03ada/validation.json",
+      "role": "prior_isolated_compile_validation",
+      "sha256": "6833295d82c5d892a84fba1d5f33a914b252daa3d7c09361c49e3a04931b3201",
+      "bytes": 3040
+    },
+    {
+      "path": "work/candidates/owned-peace-lifecycle-review/validation-results/lifecycle-object-20261007T210445Z-66896e43a4734f6bb87a39305726fa15/validation.json",
+      "role": "prior_isolated_compile_validation",
+      "sha256": "bc005b3b25cef090fafe88d9cb03f1797e427a7b7f8b74a1dd641d96d3b8a10e",
+      "bytes": 3432
+    },
+    {
+      "path": "work/native/inject_lab_v12_1375.py",
+      "role": "frozen_v12_host",
+      "sha256": "58056a924de14ffbe13630fe7fc072a588ac7949bfaa80effc588da22c4efbf8",
+      "bytes": 3026
+    },
+    {
+      "path": "work/native/lab_protocol_v12_1375.py",
+      "role": "frozen_v12_host",
+      "sha256": "d7528aaa03620e9be71e87a708f3d5785b799c88e550539e02743891929e49d9",
+      "bytes": 52488
+    },
+    {
+      "path": "work/native/record_lab_v12_build.py",
+      "role": "frozen_v12_host",
+      "sha256": "ae5fc5c77df371cc1691105ba4490a3af81d3d9ff8df9c46d27193084cb26dd3",
+      "bytes": 485
+    },
+    {
+      "path": "work/native/run_lab_speed_v12_1375.py",
+      "role": "frozen_v12_host",
+      "sha256": "61a16b1c66b67f3b26ece7a2855ad10f98ad903a6c3f98400d11e59a2454331b",
+      "bytes": 11526
+    },
+    {
+      "path": "work/native/test-fixture-v12-1375.cpp",
+      "role": "frozen_v12_native",
+      "sha256": "979ec94aa6cd3747b68e2910ad75dcb2ee1e4d4dc60ff4e5d446abcfd88cdb68",
+      "bytes": 16443
+    },
+    {
+      "path": "work/native/test-fixture-v12-1375.h",
+      "role": "frozen_v12_native",
+      "sha256": "f1d3a9cc25d7a845a66062ecd06366fee2a369cda2c0e3c6d6ff2fb499724e06",
+      "bytes": 3043
+    },
+    {
+      "path": "work/native/v12/build-lab-1375.cmd",
+      "role": "frozen_v12_native",
+      "sha256": "643fff3b9a5e77a61bd7ef4c9eb2c047567bd78e2da1a8db83a1ec89a9689d7a",
+      "bytes": 2528
+    },
+    {
+      "path": "work/native/v12/lab-request-1375.h",
+      "role": "frozen_v12_native",
+      "sha256": "48acecad758eb9e9649878bcbebd19935eda30a42cee19b6a4cfdd6a818e49df",
+      "bytes": 3754
+    },
+    {
+      "path": "work/native/v12/pair-command-v6-1375.cpp",
+      "role": "frozen_v12_native",
+      "sha256": "dc06cf5d19f7d528e4a1224f7d1ebabd9de426509a37d20e863167a3c2c4bbcc",
+      "bytes": 47559
+    },
+    {
+      "path": "work/native/v12/pair-engine-1375.cpp",
+      "role": "frozen_v12_native",
+      "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e",
+      "bytes": 84162
+    },
+    {
+      "path": "work/native/v12/pair-engine-1375.h",
+      "role": "frozen_v12_native",
+      "sha256": "f5257b31ca81e3c886f501433cce1da3eaba0da868bec3225412cb03fee2a526",
+      "bytes": 5377
+    },
+    {
+      "path": "work/native/v12/pair-preview-v6-1375.cpp",
+      "role": "frozen_v12_native",
+      "sha256": "cf14d82d4ce804a3ca7ee38d586f688d1259686dddd449be40c9a30bb7ec7b57",
+      "bytes": 37527
+    },
+    {
+      "path": "work/native/v12/pair-probe-v6-1375.cpp",
+      "role": "frozen_v12_native",
+      "sha256": "a605392c57846c3df532b290be6960fac1ead144a7611e3cee3eda81c60ffcca",
+      "bytes": 37905
+    },
+    {
+      "path": "work/native/v12/research-frame-v6-1375.asm",
+      "role": "frozen_v12_native",
+      "sha256": "3d5da5aea5408d4991fce7bb19275025e7d28bcbbfc90c08d82e797ad09d30f0",
+      "bytes": 1582
+    },
+    {
+      "path": "work/native/v12/research-lab-1375.cpp",
+      "role": "frozen_v12_native",
+      "sha256": "93c3f7ad2f18edb038ae45c0650721b73a216ccec0cc7cdddeb88a79a022e79d",
+      "bytes": 43429
+    },
+    {
+      "path": "work/native/v12/research-lab-bootstrap-1375.inc",
+      "role": "frozen_v12_native",
+      "sha256": "79aceb83897908a401fc454e71cecb9abf239d5f9d9ac45f873855964adccd5b",
+      "bytes": 14176
+    },
+    {
+      "path": "work/native/v12/test-controls-1375.cpp",
+      "role": "frozen_v12_native",
+      "sha256": "c955ca8a4527a1fe6f5a8418b601eece2363a47c3c82cd3be2b261798f869615",
+      "bytes": 13259
+    },
+    {
+      "path": "work/native/v12/test-controls-1375.h",
+      "role": "frozen_v12_native",
+      "sha256": "7efc2ca22d723941086a2e68ed63fc4d6a80392bd78d7902884f437863b338e7",
+      "bytes": 2929
+    },
+    {
+      "path": "work/reports/native-owned-peace-1375.json",
+      "role": "static_evidence",
+      "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d",
+      "bytes": 1302642
+    },
+    {
+      "path": "work/reports/native-peace-gui-send-1375.json",
+      "role": "static_evidence",
+      "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64",
+      "bytes": 215213
+    },
+    {
+      "path": "work/runtime/native1375-v12/build.json",
+      "role": "frozen_v12_manifest",
+      "sha256": "652fb6901a43d3918397209a165c2ccd3adb5fd64dbe8b8757391f24d1797914",
+      "bytes": 2697
+    },
+    {
+      "path": "work/runtime/native1375-v12/eu4_pair_lab_v12_1375.dll",
+      "role": "frozen_v12_dll",
+      "sha256": "465a20166e1dd04ea7360f6ea83ed02e3afee59a26048b1651ee6862f118cebd",
+      "bytes": 295936
+    }
+  ]
+}

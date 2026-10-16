@@ -7,3 +7,19 @@ local.env
 config.local.ps1
 dist/
 /work/native/automatic-war-script.path
+
+# Local research outputs; tracked historical files remain historical.
+work/deps/
+work/publication/
+**/build-*/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.dmp
+*.eu4
+*.request
+*.claim
+*.dll
+*.exe

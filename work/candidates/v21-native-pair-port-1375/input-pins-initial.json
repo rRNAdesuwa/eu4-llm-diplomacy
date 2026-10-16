@@ -1,0 +1,34 @@
+{
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.cpp": {
+    "bytes": 21944,
+    "sha256": "22dc8da31e3ec9baef1af453cc49b730c830bd21804d252ea189f680582cf53a"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/review.json": {
+    "bytes": 1124,
+    "sha256": "4675e39339d3f2c4f807da3d63b7ab6194dae74ee472d2a03c91b9cb0f3bbda7"
+  },
+  "work/native/v17/pair-engine-1375.cpp": {
+    "bytes": 84162,
+    "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e"
+  },
+  "work/candidates/v19-spy-send-core-1375/spy_send_core.cpp": {
+    "bytes": 25003,
+    "sha256": "300cb5f9f4923d4ced45906e2ccdcf5f26b275b7f18f51e9e2059357000e429a"
+  },
+  "work/candidates/v19-spy-restricted-host-r2-1375/preflight/native_env.cpp": {
+    "bytes": 11204,
+    "sha256": "de31fd72e5870020c5dbbef9d1ba176efb98d45d970c9d2f722576c065819fff"
+  },
+  "work/candidates/curry-favors-contract-1375/report.json": {
+    "bytes": 1144488,
+    "sha256": "10c33ee19481cf0c9b0f300e539fe7baee5065526463e3380b5bc08ebfabcf89"
+  },
+  "work/AGENTS.md": {
+    "bytes": 959,
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  }
+}

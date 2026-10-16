@@ -1,0 +1,13 @@
+{
+  "work/AGENTS.md": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187",
+  "work/discover_diplomacy.py": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318",
+  "work/map_diplomacy_fields.py": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85",
+  "work/trace_change_subject_type.py": "8bc16d94e8f6104a79ce541c6de0843894293e158f44efb6c47f27b9b8dec6da",
+  "work/reports/native-diplomacy-1.37.5.json": "c64df6e043c9e7a498a25082e0e768902764e4a271ab3579f0eaddb2f1391633",
+  "work/reports/native-action-fields-1375.json": "cfabb4622b7c82f9e2476a82352f91fa5d0f8ba0f8150e75aac47fb4aeaddc96",
+  "work/reports/native-pair-extension-v10-1375.json": "0c1731b0b29b296da73dc406fb31544ada59c17c275d17d623677b16998698bd",
+  "work/reports/native-pair-extension-v11-1375.json": "ac4559379e218aaf1fa8ffc1dd7dc6b8332ed5b7bf681c4b66bfc59349944344",
+  "work/candidates/spy-action-contracts-1375/report.json": "274221df57719404edfcacd7451ebc28c678369dab9d4377e6201be5db734774",
+  "work/candidates/curry-favors-contract-1375/report.json": "10c33ee19481cf0c9b0f300e539fe7baee5065526463e3380b5bc08ebfabcf89",
+  "work/runtime/unpacked-1.37.5/base/common/defines.lua": "e3cf26836c70f8825a2ffd93160b2a09cdad29f78355787d07803138eb156f18"
+}

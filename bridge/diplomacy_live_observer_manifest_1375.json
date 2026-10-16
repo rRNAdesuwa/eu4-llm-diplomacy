@@ -1,0 +1,95 @@
+{
+  "schema": "EU4DIPLOMACY-LIVE-OBSERVER-MANIFEST/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "native_manifest_sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a",
+  "source_pins": {
+    "bridge/diplomacy_live_observer.py": {
+      "bytes": 23456,
+      "sha256": "7bb4dd1358128a3126119f4c8f1a777b3d70ce0eae1e9b7a8aaf9ac86fa1702b"
+    },
+    "tools/observe_diplomacy_live.py": {
+      "bytes": 6039,
+      "sha256": "db683cd2ce6cce3996f97e92361f4e8de74e89398587173a771c4c5554d5255c"
+    },
+    "bridge/tests/test_diplomacy_live_observer.py": {
+      "bytes": 20728,
+      "sha256": "8cc90b7fee7eebce1d2e6c54cef4c98220459bd66726969ae4c2946fe49d3890"
+    },
+    "bridge/knowledge_effect_reader_v2.py": {
+      "bytes": 8484,
+      "sha256": "071751ee1cd325541a8ff41540cb1f684c77a4039d6711221354d565fd452982"
+    },
+    "bridge/knowledge_effect_reader_v2_manifest_1375.json": {
+      "bytes": 1891,
+      "sha256": "0de127018998d2e1dd6d06b3c9c6651dce037a7fc495a4ab11845c4a89ba8509"
+    },
+    "bridge/diplomacy_reply_observer.py": {
+      "bytes": 27263,
+      "sha256": "7a7fdea49ee86b888336089b4982f1d2ff719d3eab9c530fb92f84c19a225761"
+    },
+    "bridge/diplomacy_reply_observer_manifest_1375.json": {
+      "bytes": 3739,
+      "sha256": "31f3c1d936b751433ecf1dcbf989fb50e2cb65f529651bd23976060fb1e07580"
+    },
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/diplomacy_observer_manifest_1375.json": {
+      "bytes": 3988,
+      "sha256": "a75dab49e101ac95f2a714032829c4b52629fd78db04db0bd3896df1ce24143e"
+    },
+    "bridge/diplomacy_effect_profiles.py": {
+      "bytes": 22643,
+      "sha256": "d4e23953c204f5c0f72e2227530e5f823e8bff8dbc1b15eeda4b6531654a0433"
+    },
+    "bridge/diplomacy_observer_service.py": {
+      "bytes": 4598,
+      "sha256": "139727da50f8357418fb9885b7b0415b146081de8fd05b9497835d6b5a5066ec"
+    },
+    "bridge/tag_command_backend.py": {
+      "bytes": 25398,
+      "sha256": "74279bf8cb77d800ad53711e799260672b20b7d20cf6bee997527eaa29c55c53"
+    },
+    "bridge/tag_command_audit.py": {
+      "bytes": 8109,
+      "sha256": "9e90cd180818166fac9754a65d68203b84eb24b57569c3605f5b28e69c1b289d"
+    },
+    "work/freeze_diplomacy_live_observer_20261015.py": {
+      "bytes": 3988,
+      "sha256": "1f97fd92ccb07c147d388725af325a64291ba7687413173d945dd7fefabb508b"
+    },
+    "work/reports/diplomacy-live-observer-20261015-r1/README.md": {
+      "bytes": 4225,
+      "sha256": "96ad8dac8b7b7502052904f5c2c770a299f62b6324aa9c173f137e6d03714f09"
+    }
+  },
+  "knowledge_pair_profiles": [
+    "knowledge_sharing",
+    "ask_knowledge_sharing"
+  ],
+  "recipient_reply_profiles": [
+    "ask_for_march"
+  ],
+  "read_only": true,
+  "native_calls": 0,
+  "requests_published": 0,
+  "saves_written": 0,
+  "R1_core_changes": false,
+  "R2_changes": false,
+  "frozen_knowledge_R1_changes": false,
+  "automatic_command_retry": false,
+  "AI_acceptance_verified": false,
+  "exact_external_request_id_causality_verified": false,
+  "knowledge_institution_completion_verified": false,
+  "limits": {
+    "knowledge_shared_calls": 4096,
+    "knowledge_shared_bytes": 524288,
+    "response_bytes": 262144
+  },
+  "limitations": [
+    "Preparation observes intent and publisher-lock absence; it is not an atomic publisher lease.",
+    "Selected sharing pair activation is not completed institution adoption.",
+    "No atomic world epoch, exact external causality, persistence or AI acceptance is proved."
+  ]
+}

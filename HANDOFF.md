@@ -1,3 +1,11 @@
+## 2026-10-16 当前研究检查点：已暂停，整理上传
+
+先读[本次研究进展](docs/research-20261016.md)和[机器摘要](docs/research-20261016/summary.json)。本快照基于上游6092de98，保留原1.37.4历史。1.37.5当前为120绑定、原批次41派发/77拒绝/2未知、48选定效果信号/44历史持久化/42修复候选，完整效果与war/peace执行器尚未完成。
+
+[工具目录v8](docs/runtime-capability-map-1375-v8.json)7入口已有受限验收；最新只证明和平空目标队列与支持继承人双向missing-key，阳性body仍未实机验证。R86/R87完整raw审及root接受已完成；R89仅SOURCE-READY，无actual授权或采集。lookup当前已验v6（60/94/346），v7（61/95）只方案。原始合同的历史pending标签保留，以较新独审和root文件确定接受状态。
+
+源码来源与文档路径替换见[来源表](docs/research-20261016/source-provenance.json)。完整宿主图、进程capture、大型分析、个人配置和构建记录保留本地，缺失依赖必须拒绝，不能重建pin绕过。上传时只做文件验证，没有复跑旧测试、查询或游戏操作。用户要求暂停后续逆向；任何历史成功/派发/未知及未闭合拥有权动作禁止重发。以下是上游历史记录，不是当前进程授权。
+
 # EU4 LLM 外交桥接交接
 
 **窗口模式后台测试增量（2026-10-07）：当前 PID31872 / control v3 / POR / 1445.2.5 / 暂停。** 用户关闭游戏后，助手重启并载入 `llm_control_por_recall_after_20261007.eu4`，自动确认成就提示。配置 fullScreen=no、borderless=no；约5秒测试中前台PID一直为3652，游戏帧3302→3940，后台暂停请求消费成功，日期不变。证据 `work/runtime/windowed-background-control.json` 和 `windowed-before/after.json`。可先在聊天前台继续操作，不需默认每步请求切回游戏；最小化与长时间后台闭环未验收。该进程没有召回模块，不重复注入。
