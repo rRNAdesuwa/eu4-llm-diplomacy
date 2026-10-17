@@ -1,0 +1,58 @@
+{
+  "fixture_version": 1,
+  "description": "Observed R32 Military Access outbound native relation responses used by the bridge result-recovery contract test.",
+  "events": [
+    {
+      "fixture_id": "r32_military_access_bur_rejected_response",
+      "source_path": "work/runtime/diplomacy-query-20261015-r32-military-access-a/military-access-execution-f326ceacb6654afcb26ceacdab4a4fd4/native-events-slice.jsonl",
+      "source_file_sha256": "31e2e3445def13005472987fdbaf7e830760ef6b8658c7e8dc5a1a0b7574c210",
+      "event_sha256": "467bcdee0f807692bb3c21dcd49383cd526ecbe5629f17da761aaaea657782af",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_diplomacy_relation_response_result",
+        "request_id": "r32a_access_bur_001",
+        "session_id": "20852-1dd5c9f70472f56",
+        "action_id": "ask_military_access",
+        "actor": "FRA",
+        "recipient": "BUR",
+        "phase": "initiate",
+        "date_raw": 56463768,
+        "outcome": "rejected",
+        "native_state": 1,
+        "native_variant": 1,
+        "family": "military_access",
+        "military_access_before": false,
+        "military_access_after": false,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "pending_removed": false
+      }
+    },
+    {
+      "fixture_id": "r32_military_access_sav_accepted_response",
+      "source_path": "work/runtime/diplomacy-query-20261015-r32-military-access-a/military-access-execution-4391ee4ac87a4d47bf1d4037609c5dde/native-events-slice.jsonl",
+      "source_file_sha256": "fa4d0a485f6dab42f4c7ca9ed01a6f299feb3ef763fb25697b4a6c66f8c04298",
+      "event_sha256": "46e6bdc95ef2729ef334a3aa1e366a00149cb9773190fbb7e9c0a4e50d7d544a",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_diplomacy_relation_response_result",
+        "request_id": "r32a_access_sav_001",
+        "session_id": "20852-1dd5c9f70472f56",
+        "action_id": "ask_military_access",
+        "actor": "FRA",
+        "recipient": "SAV",
+        "phase": "initiate",
+        "date_raw": 56463888,
+        "outcome": "accepted",
+        "native_state": 2,
+        "native_variant": 1,
+        "family": "military_access",
+        "military_access_before": false,
+        "military_access_after": true,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "pending_removed": false
+      }
+    }
+  ]
+}

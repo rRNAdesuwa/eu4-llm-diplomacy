@@ -1,0 +1,2845 @@
+{
+  "schema_version": 1,
+  "title": "EU4 联盟外交链路与证据索引",
+  "scope": "r17c archived queries/observation + r18 bounded static records + completed persistent Ghidra default analysis and two cached function dossiers; research only",
+  "updated": "2026-10-14",
+  "binary": {
+    "version": "1.37.4",
+    "sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+    "image_base": "0x140000000",
+    "architecture": "x86_64",
+    "format": "pe"
+  },
+  "runtime_baseline": {
+    "product": "Europa Universalis IV 1.37.4",
+    "image": "eu4.exe",
+    "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+    "observer_dll_sha256": "e4c14dadfcfe13f967e3d6ca220b0a81e27680af15cad221f1055cd3c8256c87",
+    "runtime_session": "60892-1dd5b1d26b30a9b",
+    "runtime_player": "POR",
+    "runtime_observation_window": "35-day observer experiment; paused/date/POR identity remained stable"
+  },
+  "sources": [
+    {
+      "id": "s_static_action",
+      "path": "work/runtime/alliance-static-20261013/alliance-static-audit.md",
+      "kind": "static",
+      "line": 15,
+      "lines": "15-19,35-57",
+      "sha256": "98e6f38412a2974dc77e6477f76b7b07b304b25ba9e53261e63b4198ea8ae82e",
+      "local_only": true
+    },
+    {
+      "id": "s_vtable",
+      "path": "work/runtime/alliance-static-20261013/alliance-vtable-extended.json",
+      "kind": "static",
+      "line": 1,
+      "lines": "1",
+      "sha256": "945aaf3569c56fd687a5a5b9e1211c0b2fd6f52f8eaf13c1bccc7f6429bc370b",
+      "local_only": true
+    },
+    {
+      "id": "s_gui",
+      "path": "work/runtime/alliance-static-20261013/gui-alliance-rule-coverage-20261013.md",
+      "kind": "static",
+      "line": 15,
+      "lines": "15-30,55-62,86-92",
+      "sha256": "7be4f0b8286bccd2de1743cd7aafdc154aa30b469f53250efaf0c7d9f8105b97",
+      "local_only": true
+    },
+    {
+      "id": "s_response",
+      "path": "work/runtime/alliance-static-20261013/response-chain-native-summary-20261013.md",
+      "kind": "static",
+      "line": 7,
+      "lines": "7-19,23-52,68",
+      "sha256": "f1462dcb6b9d19048a8d15b7b8679e46b27ac88763b633605132573358d827f2",
+      "local_only": true
+    },
+    {
+      "id": "s_delivery",
+      "path": "work/runtime/alliance-static-20261013/delivery-decision-flow-20261013.md",
+      "kind": "static",
+      "line": 20,
+      "lines": "20-32,36-59,88",
+      "sha256": "ef1e1e2d9d87b167c57b6469a9184d5897636a5b2135161d82602a216c9967d0",
+      "local_only": true
+    },
+    {
+      "id": "s_decision",
+      "path": "work/runtime/alliance-static-20261013/decision-semantics-branch-map-20261013.md",
+      "kind": "static",
+      "line": 3,
+      "lines": "3-5,7-19,21-43,45-51,64,66-70",
+      "sha256": "e1a9a9b6004e37a672f27a285d38bf0fdaf6978436586af6c037e9157e135763",
+      "local_only": true
+    },
+    {
+      "id": "s_route",
+      "path": "work/runtime/alliance-static-20261013/incoming-authority-route-20261013-r17.md",
+      "kind": "static",
+      "line": 18,
+      "lines": "18-35,57-59,82-102,112",
+      "sha256": "e9bf5d2395c743f5687d78a9b199fc64df296ce54a9348045695bbad8c08afca",
+      "local_only": true
+    },
+    {
+      "id": "s_transport",
+      "path": "work/runtime/alliance-static-20261013/transport-protocol-report-20261013.md",
+      "kind": "static",
+      "line": 3,
+      "lines": "3,7-20,24-32",
+      "sha256": "e044a32a4034da5d63cc0055c2b1d9607a2454a2e773adeff7cf06448980c003",
+      "local_only": true
+    },
+    {
+      "id": "s_break_r18",
+      "path": "work/runtime/alliance-static-20261013/direct-break-source-role-20261013-r18.md",
+      "kind": "static",
+      "line": 5,
+      "lines": "5-18,20-30,39-71",
+      "sha256": "266ea0b30a151b8670a48f198b50c68a265afbfef01a67246987bf84ddab6da8",
+      "local_only": true
+    },
+    {
+      "id": "s_authority_entry",
+      "path": "work/runtime/alliance-static-20261013/authority-entry-coverage.md",
+      "kind": "static",
+      "line": 8,
+      "lines": "8-12,27-36",
+      "sha256": "55c77c107099866c5640a4f1b8adbb2f378ab9b2061e73d319b2b5245d415a2b",
+      "local_only": true
+    },
+    {
+      "id": "s_prebusiness",
+      "path": "work/runtime/alliance-static-20261013/authority-entry-prebusiness-effects.md",
+      "kind": "static",
+      "line": 8,
+      "lines": "8-10,17-21,31-35",
+      "sha256": "049cb422ed630d6abbbd346637dfca273d36e1bc106c677132aac80a5a7ed17b",
+      "local_only": true
+    },
+    {
+      "id": "s_r17c_validation",
+      "path": "work/runtime/alliance-query-20261013-r17c/r17c-protocol-validation-002.md",
+      "kind": "runtime",
+      "line": 3,
+      "lines": "3-23",
+      "sha256": "29027cbd9e6763533b8b6a5c7fc000b5b268e0142787090bf03ea60053ab1130",
+      "local_only": true,
+      "identity": {
+        "product": "Europa Universalis IV 1.37.4",
+        "image": "eu4.exe",
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "observer_dll_sha256": "e4c14dadfcfe13f967e3d6ca220b0a81e27680af15cad221f1055cd3c8256c87",
+        "runtime_session": "60892-1dd5b1d26b30a9b",
+        "runtime_player": "POR",
+        "runtime_observation_window": "35-day observer experiment; paused/date/POR identity remained stable"
+      }
+    },
+    {
+      "id": "s_continuity",
+      "path": "work/runtime/alliance-query-20261013-r17c/protocol-continuity-core.json",
+      "kind": "runtime",
+      "line": 10,
+      "lines": "10-18,87-92,125,199-200,384-386",
+      "sha256": "ed9c5aae97c51c7314591f49d5c6ca9e1f06787b0a62dcb66882ea182366cffc",
+      "local_only": true,
+      "identity": {
+        "product": "Europa Universalis IV 1.37.4",
+        "image": "eu4.exe",
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "observer_dll_sha256": "e4c14dadfcfe13f967e3d6ca220b0a81e27680af15cad221f1055cd3c8256c87",
+        "runtime_session": "60892-1dd5b1d26b30a9b",
+        "runtime_player": "POR",
+        "runtime_observation_window": "35-day observer experiment; paused/date/POR identity remained stable"
+      }
+    },
+    {
+      "id": "s_receive",
+      "path": "work/runtime/alliance-static-20261013/incoming-receive-contract-20261013-r17c.md",
+      "kind": "static",
+      "line": 5,
+      "lines": "5-13",
+      "sha256": "c0f2ea7fe6da3d64b5743a03c294b9b7f136fa5492c7832e8ac24bafd1f9c1d0",
+      "local_only": true
+    },
+    {
+      "id": "s_runtime_route",
+      "path": "work/runtime/alliance-query-20261013-r17c/route-runtime-new.md",
+      "kind": "runtime",
+      "line": 3,
+      "lines": "3,8-27",
+      "sha256": "6ad861540f33434823e5654d79c54cab7bb45748dffd1a6e7539b627f83541fd",
+      "local_only": true,
+      "identity": {
+        "product": "Europa Universalis IV 1.37.4",
+        "image": "eu4.exe",
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "observer_dll_sha256": "e4c14dadfcfe13f967e3d6ca220b0a81e27680af15cad221f1055cd3c8256c87",
+        "runtime_session": "60892-1dd5b1d26b30a9b",
+        "runtime_player": "POR",
+        "runtime_observation_window": "35-day observer experiment; paused/date/POR identity remained stable"
+      }
+    },
+    {
+      "id": "s_live_state",
+      "path": "work/runtime/alliance-query-20261013-r17c/live-state-integrity.json",
+      "kind": "runtime",
+      "line": 8,
+      "lines": "8,14,20",
+      "sha256": "3419ad44c34db643115bb081ffa3f4e8ae4ad1bf8f389232a8aa80f9b81f5d6b",
+      "local_only": true,
+      "identity": {
+        "product": "Europa Universalis IV 1.37.4",
+        "image": "eu4.exe",
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "observer_dll_sha256": "e4c14dadfcfe13f967e3d6ca220b0a81e27680af15cad221f1055cd3c8256c87",
+        "runtime_session": "60892-1dd5b1d26b30a9b",
+        "runtime_player": "POR",
+        "runtime_observation_window": "35-day observer experiment; paused/date/POR identity remained stable"
+      }
+    },
+    {
+      "id": "s_lifecycle",
+      "path": "work/native/alliance-lifecycle.inc",
+      "kind": "source",
+      "line": 19,
+      "lines": "19-27,102-106,138-170,217-312,359-430,490-569",
+      "sha256": "373c9a9738ad4304b87722c21492b151aafa71515286e7aaa53035ed5ab30042",
+      "local_only": false
+    },
+    {
+      "id": "s_protocol",
+      "path": "work/native/alliance-protocol-observer.inc",
+      "kind": "source",
+      "line": 3,
+      "lines": "3-29,47-61,63-83,86-130,132-188,200-244",
+      "sha256": "d2278f22c99ca98dbd79cb1213540048e8e47042a3559e369088c3b1e9a0c7be",
+      "local_only": false
+    },
+    {
+      "id": "s_query",
+      "path": "work/native/alliance-query.inc",
+      "kind": "source",
+      "line": 31,
+      "lines": "31-66,105-249",
+      "sha256": "628143d66c8dfde1b25917edd4a0625ef4f591ae60d14fa99c532628f58871fb",
+      "local_only": false
+    },
+    {
+      "id": "s_observer",
+      "path": "work/native/diplomacy-observer-v10.cpp",
+      "kind": "source",
+      "line": 122,
+      "lines": "122-125,263-317",
+      "sha256": "0d1007456fb215e65d596e155ac7eaa6ee94659ceb68234b2c2d786610670ea3",
+      "local_only": false
+    },
+    {
+      "id": "s_field_static",
+      "path": "work/runtime/alliance-static-20261013/protocol-observer-review-20261013-r17b.md",
+      "kind": "static",
+      "line": 7,
+      "lines": "7,30-35,75",
+      "sha256": "72e2d585db418d3c2c4a65f1f9d91b854cc6e4edd8dc621307b31f07dd68748c",
+      "local_only": true
+    },
+    {
+      "id": "s_selector240",
+      "path": "work/runtime/alliance-static-20261013/response-chain-request-ui-caller-82900a.txt",
+      "kind": "static",
+      "line": 75,
+      "lines": "75-96",
+      "sha256": "fc089af624acd89495b5262a9fcf7adc3a0192b53ac956c6c2ce5429e32b9916",
+      "local_only": true
+    },
+    {
+      "id": "s_selector240_helper",
+      "path": "work/runtime/alliance-static-20261013/response-chain-ui-class-1066300-1067100.txt",
+      "kind": "static",
+      "line": 405,
+      "lines": "405-420",
+      "sha256": "d6662fbdab1d9106a7b619244747ff06e4d11be8a181a348621e3f14bb65baba",
+      "local_only": true
+    },
+    {
+      "id": "s_r18_default",
+      "path": "work/runtime/alliance-static-20261013/wrapper-sender-field-20261013-r18-default.txt",
+      "kind": "static",
+      "line": 7,
+      "lines": "7-22,50-82",
+      "sha256": "b2bf4c320d93dc3e60961653e6cee8ef19afeca9daf35fe89bb0e7801b65162b",
+      "local_only": true
+    },
+    {
+      "id": "s_r18_h125b",
+      "path": "work/runtime/alliance-static-20261013/wrapper-sender-field-20261013-r18-helper-125b.txt",
+      "kind": "static",
+      "line": 18,
+      "lines": "18-41",
+      "sha256": "db8327f27b124181d29e7ea2e1d1b48ed8a33b6c8b19e806f4d64ac1b75fe119",
+      "local_only": true
+    },
+    {
+      "id": "s_r18_a512",
+      "path": "work/runtime/alliance-static-20261013/wrapper-sender-field-20261013-r18-helper-a512.txt",
+      "kind": "static",
+      "line": 22,
+      "lines": "22-50,95-133",
+      "sha256": "8648e039d4c3c894c19c351dd8d97db4caf6dba036ee8dbde351ec90b14fc3a5",
+      "local_only": true
+    },
+    {
+      "id": "s_r18_reader",
+      "path": "work/runtime/alliance-static-20261013/wrapper-sender-field-20261013-r18-reader.txt",
+      "kind": "static",
+      "line": 7,
+      "lines": "7-78",
+      "sha256": "7fc7d2fa84efb4910d7bd4f001e6c0325a2e0420b6a2138a47f7031953b52e96",
+      "local_only": true
+    },
+    {
+      "id": "s_reason",
+      "path": "work/runtime/alliance-static-20261013/reason-layout-static-summary.md",
+      "kind": "static",
+      "line": 9,
+      "lines": "9-13,22-25,53",
+      "sha256": "4cd78408c0f8a02be44c1a6954c3429327437777c9edaaa468ea85f7c183598f",
+      "local_only": true
+    },
+    {
+      "id": "s_ledger",
+      "path": "work/native/alliance-authority-ledger.h",
+      "kind": "source",
+      "line": 3,
+      "lines": "3-9,18-27,45-75,77-139,240-352,355-530,543-693,750-765,903-939",
+      "sha256": "3e5d6b495275154ef5692db380a34931eeda24421eef2285e6b0056635f7f4c2",
+      "local_only": false
+    },
+    {
+      "id": "s_fixture",
+      "path": "work/runtime/alliance-query-20261013-r17c/authority-ledger-fixture/verification.json",
+      "kind": "static",
+      "line": 2,
+      "lines": "2-7,24-27,38-63",
+      "sha256": "0a1ed12d95986d60f394232c98449d0a0bdd991cb6434bc2d98aabd6ff82f1ad",
+      "local_only": true
+    },
+    {
+      "id": "s_fixture_latest",
+      "path": "work/runtime/alliance-query-20261013-r17c/authority-ledger-fixture/review-003/verification.json",
+      "kind": "static",
+      "line": 1,
+      "lines": "1-27",
+      "sha256": "4d721a1ad269dcdd9fbc541134d6a4464934f206ebd9e016f770fc9e5a902ef4",
+      "local_only": true
+    },
+    {
+      "id": "s_query_validation",
+      "path": "work/runtime/validation-alliance-20261013T141723Z-2c9ee9dfd801/validation-report.json",
+      "kind": "runtime",
+      "line": 1,
+      "sha256": "e3f8e2705af4f7da8be5456aec61744d2a36df25d66fef3c9a31cfb423feb362",
+      "local_only": true,
+      "identity": {
+        "product": "Europa Universalis IV 1.37.4",
+        "image": "eu4.exe",
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "observer_dll_sha256": "e4c14dadfcfe13f967e3d6ca220b0a81e27680af15cad221f1055cd3c8256c87",
+        "runtime_session": "60892-1dd5b1d26b30a9b",
+        "runtime_player": "POR",
+        "runtime_observation_window": "35-day observer experiment; paused/date/POR identity remained stable"
+      }
+    },
+    {
+      "id": "s_transport_owner",
+      "path": "work/runtime/alliance-query-20261013-r12/transport-owner-live.json",
+      "kind": "runtime",
+      "line": 1,
+      "sha256": "1184460fab0e461b700cce5d6f6dab8b13d520c2f7d02be988a60c88db1b5186",
+      "local_only": true,
+      "identity": {
+        "build": "r12",
+        "scope": "archived owner/slot observation only; not a send receipt"
+      }
+    },
+    {
+      "id": "s_current_handoff",
+      "path": "HANDOFF.md",
+      "kind": "source",
+      "line": 1,
+      "sha256": "8224a4f30eae8514a4b4999bd7c470d5dd87ee224612a0eae1fcb768633d4398",
+      "local_only": false
+    },
+    {
+      "id": "s_current_plan",
+      "path": "docs/外交接口开发方案.md",
+      "kind": "source",
+      "line": 1,
+      "sha256": "78c9a575651d399b2def51a2ab12d42356e9cb5447fefb96603eb53fbbe28335",
+      "local_only": false
+    },
+    {
+      "id": "s_rea_attempt_mcp",
+      "path": "work/runtime/rea-alliance-20261014/mcp-import-attempt.json",
+      "kind": "rea",
+      "line": 1,
+      "local_only": true,
+      "sha256": "5675ed58d6b5146cdb80af2d436ec2f2c45ceeaa5126f7745a18daaf6c356a48",
+      "status": "failed_attempt_not_function_evidence"
+    },
+    {
+      "id": "s_rea_attempt_cli",
+      "path": "work/runtime/rea-alliance-20261014/receive-function.json",
+      "kind": "rea",
+      "line": 1,
+      "local_only": true,
+      "sha256": "5142cc036a0bb9a8fefee6558c39e0274eedac9590ef26b094c42e3996367581",
+      "status": "failed_attempt_not_function_evidence"
+    },
+    {
+      "id": "s_rea_retry_run",
+      "path": "work/runtime/rea-alliance-20261014/retry-run.json",
+      "kind": "rea",
+      "line": 1,
+      "local_only": true,
+      "sha256": "7654520190ace70d8882882f7bf3a7b335b199dca5b43016aba3a6ef675c07dc",
+      "status": "failed_attempt_not_function_evidence"
+    },
+    {
+      "id": "s_rea_receive_seeded",
+      "path": "work/runtime/rea-diagnostics-20261014/seeded-receive-v3/evidence.json",
+      "kind": "rea",
+      "line": 1,
+      "local_only": true,
+      "sha256": "17c650c9b2f57881051563ee89d64b9bec66ede020788212541366aab19f02be",
+      "status": "successful_bounded_function_evidence",
+      "evidence_id": "ev_6062bf4522b8b95a026fe3359d8b9d87ea83a1bacab95e31cc4b7f221770f61b",
+      "analyzer_preset": "eu4-declared-seeds-pdata-noanalysis-v2"
+    },
+    {
+      "id": "s_rea_seeded_run",
+      "path": "work/runtime/rea-diagnostics-20261014/seeded-receive-v3/run.json",
+      "kind": "rea",
+      "line": 1,
+      "local_only": true,
+      "sha256": "349a6fcd9df7d3f2b4b7456a9920db51ab604aa70e5b1823e4c14c47bddf14c7",
+      "status": "successful_analysis_run_metadata",
+      "evidence_id": "ev_6062bf4522b8b95a026fe3359d8b9d87ea83a1bacab95e31cc4b7f221770f61b",
+      "analyzer_preset": "eu4-declared-seeds-pdata-noanalysis-v2"
+    },
+    {
+      "id": "s_ghidra_full_build",
+      "path": "work/runtime/ghidra-full/b23fa0e1f698d31b-20261014T054913Z-6dda97/build.json",
+      "kind": "static",
+      "line": 11,
+      "lines": "3-11,14-41,57-68",
+      "sha256": "de1c738fa2bc9027ceacadabb7828d9890f5f9ff57ec4cde60494968f927333a",
+      "local_only": true,
+      "status": "complete",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "analysis_profile": "ghidra-default-auto-analysis"
+    },
+    {
+      "id": "s_ghidra_full_analysis_status",
+      "path": "work/runtime/ghidra-full/b23fa0e1f698d31b-20261014T054913Z-6dda97/analysis-status.json",
+      "kind": "static",
+      "line": 8,
+      "lines": "2-12",
+      "sha256": "acac9ec68f4b1e66fdb7f47126566c3f55aaca6791645eb40d2e9f5cd1cc0827",
+      "local_only": true,
+      "status": "default_auto_analysis_completed",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+    },
+    {
+      "id": "s_rea_cache_receive_evidence",
+      "path": "work/runtime/rea-diagnostics-20261014/cache-receive/evidence.json",
+      "kind": "rea",
+      "line": 1,
+      "lines": "1",
+      "sha256": "80f5e55edf3b15b1aabeac435f6d47fef500d34629a6f08573af2f937ea6e920",
+      "local_only": true,
+      "status": "successful_cached_function_evidence",
+      "evidence_id": "ev_91f5176ff75ebd94ee4d4923c4243832da5041ab5ba46d8870ec4203aa8a38a0",
+      "analyzer_preset": "eu4-persistent-default-analysis-v1",
+      "analysis_profile_digest": "b0cb1a440ffe654cdb6c8d5c62e7f6ce6a5b45b422ea7bce2096e5af759482bb",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+    },
+    {
+      "id": "s_rea_cache_receive_run",
+      "path": "work/runtime/rea-diagnostics-20261014/cache-receive/run.json",
+      "kind": "rea",
+      "line": 15,
+      "lines": "2-16,19-26",
+      "sha256": "9a57c7081851e712aafb11872d38432bf3843e17ed0f1694580e1a8f9fa6ec94",
+      "local_only": true,
+      "status": "completed",
+      "evidence_id": "ev_91f5176ff75ebd94ee4d4923c4243832da5041ab5ba46d8870ec4203aa8a38a0",
+      "analyzer_preset": "eu4-persistent-default-analysis-v1",
+      "analysis_profile_digest": "b0cb1a440ffe654cdb6c8d5c62e7f6ce6a5b45b422ea7bce2096e5af759482bb",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "exit_code": 0,
+      "database_unchanged": true,
+      "query_reanalysis": false
+    },
+    {
+      "id": "s_rea_cache_clone_evidence",
+      "path": "work/runtime/rea-diagnostics-20261014/cache-clone/evidence.json",
+      "kind": "rea",
+      "line": 1,
+      "lines": "1",
+      "sha256": "a55f891182790131d9335a4306f9a9984b141c89b262dc01563d16ea81b7fe8a",
+      "local_only": true,
+      "status": "successful_cached_function_evidence",
+      "evidence_id": "ev_3d3eb2d2b8d144c60ee12abdd05e880422124d2e765bd74d3a25c5f81cc948d2",
+      "analyzer_preset": "eu4-persistent-default-analysis-v1",
+      "analysis_profile_digest": "b0cb1a440ffe654cdb6c8d5c62e7f6ce6a5b45b422ea7bce2096e5af759482bb",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+    },
+    {
+      "id": "s_rea_cache_clone_run",
+      "path": "work/runtime/rea-diagnostics-20261014/cache-clone/run.json",
+      "kind": "rea",
+      "line": 15,
+      "lines": "2-16,19-26",
+      "sha256": "87c4530335a93674b0b18f75bc4f971faa76859c19eb687d2078f1487b1ff860",
+      "local_only": true,
+      "status": "completed",
+      "evidence_id": "ev_3d3eb2d2b8d144c60ee12abdd05e880422124d2e765bd74d3a25c5f81cc948d2",
+      "analyzer_preset": "eu4-persistent-default-analysis-v1",
+      "analysis_profile_digest": "b0cb1a440ffe654cdb6c8d5c62e7f6ce6a5b45b422ea7bce2096e5af759482bb",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "exit_code": 0,
+      "database_unchanged": true,
+      "query_reanalysis": false
+    }
+  ],
+  "nodes": [
+    {
+      "id": "alliance.action.layout",
+      "label": "联盟动作对象候选（Offer/Break 共用部分布局）",
+      "stage": "object construction; initiate candidate; dissolve/break candidate; response clone",
+      "status": "static_observed",
+      "sources": [
+        "s_static_action",
+        "s_decision",
+        "s_lifecycle",
+        "s_query"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_static_action",
+          "lines": "15-19,35,41-57"
+        },
+        {
+          "source_id": "s_decision",
+          "lines": "21-25"
+        },
+        {
+          "source_id": "s_lifecycle",
+          "lines": "19-27,138-170,346-363"
+        },
+        {
+          "source_id": "s_query",
+          "lines": "145-176"
+        }
+      ],
+      "limitations": [
+        "The +0x18 offeror/actor and +0x20 recipient roles are conditionally established for the normal Offer constructor; live response-object field reuse, namespace, authority and save semantics remain unknown."
+      ],
+      "fields": {
+        "+0x00": "vtable",
+        "+0x08": "discriminator 0x165",
+        "+0x10": "offer constructor copies RDX handle; offeror/actor-side candidate",
+        "+0x18": "offer constructor mirror of +0x10; offeror/actor-side mirror for normal constructor",
+        "+0x20": "offer constructor copies R8 handle; recipient-side field for normal constructor",
+        "+0x28": "date/int candidate",
+        "+0x2c": "date2c",
+        "+0x30": "envoy/source-related field candidate; often -1",
+        "+0x34": "temporary response/state field",
+        "+0x38": "variant; Offer candidate 1, Break candidate 0",
+        "+0x3c": "proposal/custom field candidate"
+      },
+      "slots_or_calls": [
+        "constructor writes vtable and fields",
+        "vtable+0x00 -> 0x129450 dtor",
+        "vtable+0x20 -> 0x4e8b70 field helper",
+        "vtable+0x40 -> 0x4e9960 wrapper/response construction",
+        "vtable+0xb0 -> 0x513090 clone",
+        "vtable+0x98 -> 0x512d70 action id"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "runtime_session": "60892-1dd5b1d26b30a9b",
+        "runtime_shape_check": "vtable/discriminator/handle canonicality checks in observer"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "constructor": "0x50f780",
+        "clone": "0x513090",
+        "vtable": "0x1c80720"
+      },
+      "rva": "0x50f780"
+    },
+    {
+      "id": "alliance.action.vtable",
+      "label": "联盟动作 vtable 与规则槽位",
+      "stage": "eligibility; reason generation; clone/dispatch",
+      "status": "static_observed",
+      "sources": [
+        "s_vtable",
+        "s_static_action",
+        "s_reason"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_vtable",
+          "lines": "1"
+        },
+        {
+          "source_id": "s_static_action",
+          "lines": "19-29,47,55-57"
+        },
+        {
+          "source_id": "s_reason",
+          "lines": "9-13,22-25"
+        }
+      ],
+      "limitations": [
+        "The slots prove bounded targets and rule/data flow; they do not prove an externally callable submission ABI."
+      ],
+      "fields": {},
+      "slots_or_calls": {
+        "+0x70": "0x512d80 description",
+        "+0x80": "0x511d90 validity/predicate",
+        "+0x88": "0x512ca0 display/rule predicate",
+        "+0x90": "0x512a00 initiate/send gate candidate",
+        "+0x98": "0x512d70 returns 0x293d",
+        "+0xb0": "0x513090 clone",
+        "+0xb8": "0x4ea210 generic check/dispatch",
+        "+0xd0": "0x50f150 variant gate",
+        "+0xd8": "0x4ea2b0 branch predicate",
+        "+0xe8": "0x513270 short name",
+        "+0x120": "0x513120 reason vector"
+      },
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "callable_abi_verified": false
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "recorded_locations": "0x1c80720"
+      },
+      "rva": "0x1c80720"
+    },
+    {
+      "id": "alliance.gui.selector",
+      "label": "联盟 GUI 列表与 action 0x293d visibility",
+      "stage": "initiate UI selection/list population",
+      "status": "static_observed",
+      "sources": [
+        "s_gui",
+        "s_query"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_gui",
+          "lines": "15-30,55-62,86-92"
+        },
+        {
+          "source_id": "s_query",
+          "lines": "31-66"
+        }
+      ],
+      "limitations": [
+        "This covers fixed initiate variant selection and native visibility/rules. It does not identify Accept/Decline, sender, business result or save/reload."
+      ],
+      "fields": {
+        "country": "+0x1510 relation table",
+        "relation_row": "recipient_slot * 72",
+        "custom_action": "null for alliance path"
+      },
+      "slots_or_calls": [
+        "0xf0bde1 -> 0x35c260(actor_country, recipient_handle, output)",
+        "0x35c260 -> relation row + 0x35c180 -> 0x35a920",
+        "0x35c357/0x35c379 request action id 0x293d variants 1/0",
+        "visibility true -> 0x35a8b0 writes both handles and variant"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "list_population": "0xf0bc30",
+        "list_builder": "0x35c260",
+        "visibility_selector": "0x35a920",
+        "create_action": "0x35a8b0"
+      },
+      "rva": "0xf0bc30"
+    },
+    {
+      "id": "alliance.query.observer",
+      "label": "r17c read-only initiate query",
+      "stage": "query/eligibility only",
+      "status": "runtime_observed",
+      "sources": [
+        "s_query",
+        "s_r17c_validation",
+        "s_observer",
+        "s_query_validation"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_query",
+          "lines": "105-249"
+        },
+        {
+          "source_id": "s_r17c_validation",
+          "lines": "19-23"
+        },
+        {
+          "source_id": "s_observer",
+          "lines": "263-317"
+        }
+      ],
+      "limitations": [
+        "A successful predicate or reason vector is not authority, submission, acceptance, or business success."
+      ],
+      "fields": {
+        "query_output": "native visibility, common gates, validity, diagnostics, reason count",
+        "submitted": false
+      },
+      "slots_or_calls": [
+        "0x512ca0",
+        "0x511d90",
+        "0x512a00",
+        "0x4ea210",
+        "0x513120",
+        "0x4ea210 reason path"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "runtime_session": "60892-1dd5b1d26b30a9b",
+        "native_execution_enabled": false
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "recorded_locations": "0x50f780 plus bounded vtable calls"
+      },
+      "rva": "0x50f780"
+    },
+    {
+      "id": "protocol.wrapper",
+      "label": "generic protocol wrapper",
+      "stage": "wrapper construction; field read; clone; generic execution",
+      "status": "static_observed",
+      "sources": [
+        "s_protocol",
+        "s_response",
+        "s_transport"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_protocol",
+          "lines": "3-29,47-61,86-130,132-188"
+        },
+        {
+          "source_id": "s_response",
+          "lines": "23-33"
+        },
+        {
+          "source_id": "s_transport",
+          "lines": "12,16-20"
+        }
+      ],
+      "limitations": [
+        "The wrapper is a local object and execution entry candidate. No deserializer/network/server receipt is proven by this node."
+      ],
+      "fields": {
+        "+0x44": "response action id candidate 0x2934",
+        "+0x48": "origin uint16",
+        "+0x4a": "flags byte",
+        "+0x4c": "sequence uint32",
+        "+0x50": "embedded action"
+      },
+      "slots_or_calls": [
+        "wrapper vtable 0x1c814b0 +0x08 -> 0xd2f280 outer serializer",
+        "wrapper vtable +0x10 -> 0x4e8470 payload serializer",
+        "wrapper vtable +0x48 -> 0x4e7c80 executor",
+        "wrapper vtable +0x50 -> 0x4e8460 action id/dispatch slot",
+        "wrapper vtable +0x60 -> 0x4e8550 clone"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "runtime_session": "60892-1dd5b1d26b30a9b",
+        "observer_forward_count_contract": 1
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "clone": "0x4e8550",
+        "wrapper_ctor": "0x4e9960",
+        "generic_executor": "0x4e7c80",
+        "generic_reader": "0x4e84c0"
+      },
+      "rva": "0x4e8550"
+    },
+    {
+      "id": "protocol.header",
+      "label": "wrapper protocol identity fields",
+      "stage": "serialization; receive clone; entry reconstruction",
+      "status": "static_observed",
+      "sources": [
+        "s_transport",
+        "s_receive",
+        "s_lifecycle"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_transport",
+          "lines": "7-12,24-30"
+        },
+        {
+          "source_id": "s_receive",
+          "lines": "5,7-11"
+        },
+        {
+          "source_id": "s_lifecycle",
+          "lines": "238-246,304-305"
+        }
+      ],
+      "limitations": [
+        "Initial ffff/0/0 is a transfer/constructor marker, not a wildcard authorization. Sequence equality alone is not identity and has no proven business meaning."
+      ],
+      "fields": {
+        "origin": "+0x48 uint16",
+        "flags": "+0x4a byte",
+        "sequence": "+0x4c uint32"
+      },
+      "slots_or_calls": [
+        "0x1580270 rewrites origin and allocates sequence when flags are zero",
+        "0x15801e2 receive path copies source +0x4c"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "runtime_session": "60892-1dd5b1d26b30a9b"
+      },
+      "address_role": "grouped_machine_locations"
+    },
+    {
+      "id": "protocol.receive.reconstruction",
+      "label": "receive wrapper reconstruction at 0x15800c0",
+      "stage": "incoming receive/clone/relink",
+      "status": "static_observed",
+      "sources": [
+        "s_receive",
+        "s_continuity"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_receive",
+          "lines": "5-13"
+        },
+        {
+          "source_id": "s_continuity",
+          "lines": "10-18,87-92,199-200"
+        }
+      ],
+      "limitations": [
+        "List writes were statically observed but not separately runtime-observed; network source, authority and business acceptance are unknown. r17c only provides two local clone-to-entry candidate chains."
+      ],
+      "fields": {
+        "source_wrapper": "+0x118",
+        "returned_wrapper_sequence_copy": "+0x4c",
+        "receive_list": "+0xc8 head/+0xd0 tail/+0xd8 count candidate"
+      },
+      "slots_or_calls": [
+        "receive structure +0x118 -> wrapper",
+        "wrapper vtable +0x60 at caller return 0x15801e2",
+        "receive list +0xc8/+0xd0/+0xd8"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "runtime_session": "60892-1dd5b1d26b30a9b"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "recorded_locations": "0x15800c0..0x158026e"
+      },
+      "rva": "0x15800c0"
+    },
+    {
+      "id": "protocol.serialization.ring",
+      "label": "serialization and native ring enqueue",
+      "stage": "serialization/ring queue boundary",
+      "status": "static_observed",
+      "sources": [
+        "s_transport",
+        "s_continuity"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_transport",
+          "lines": "3,7-20,24-32"
+        },
+        {
+          "source_id": "s_continuity",
+          "lines": "16-18,384-386"
+        }
+      ],
+      "limitations": [
+        "This proves an object enters a native ring queue. It does not prove network send, server receipt, authority, acceptance or save/reload."
+      ],
+      "fields": {
+        "transport+0x128": "counter pointer",
+        "queue+0x80": "ticket source",
+        "queue+0x18": "ring count increment"
+      },
+      "slots_or_calls": [
+        "serialize outer 0xd2f280",
+        "payload 0x4e8470",
+        "ring helper 0x1580ef0",
+        "ring write 0x1580d60"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "recorded_locations": "0x1580270; helper 0x1580ef0/0x1580d60"
+      },
+      "rva": "0x1580270"
+    },
+    {
+      "id": "protocol.generic_executor",
+      "label": "response generic executor",
+      "stage": "response decision/execution candidate",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery",
+        "s_response"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_delivery",
+          "lines": "20-32,36-48"
+        },
+        {
+          "source_id": "s_response",
+          "lines": "23-33,49-52"
+        }
+      ],
+      "limitations": [
+        "The path is side-effecting and not a safe query. For variant!=0, the newer 0x50f7c0 branch map conditionally identifies state 2 as acceptance and state 1 as rejection; actual external event, receipt, owner type and persistence remain unproven."
+      ],
+      "fields": {
+        "action+0x34": "state input/output candidate",
+        "clone+0x34": "assigned 1 or 2 on predicate result",
+        "action+0x38": "variant gate context"
+      },
+      "slots_or_calls": [
+        "0x4ea850",
+        "action +0xd0 -> 0x50f150",
+        "action +0xb0 -> 0x513090",
+        "clone +0xf0 and +0xb8 -> 0x4ea210"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "recorded_locations": "0x4e7c80"
+      },
+      "rva": "0x4e7c80"
+    },
+    {
+      "id": "alliance.decision.branch_semantics",
+      "label": "0x50f7c0 条件限定的联盟响应/业务分支语义",
+      "stage": "response decision; in-memory business side effect candidate; notification formatting",
+      "status": "static_observed",
+      "sources": [
+        "s_decision",
+        "s_static_action"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_decision",
+          "lines": "3-5,7-19,21-43,45-51,66-70"
+        },
+        {
+          "source_id": "s_static_action",
+          "lines": "17,35,55-57"
+        }
+      ],
+      "limitations": [
+        "This establishes conditional static branch semantics and message perspectives only. It does not prove an observed Accept/Reject event, owner type, server acknowledgement, final relation mutation, or disk save/reload effect. The +0x18/+0x20 role qualification is for the normal Offer constructor; live response reuse remains unknown."
+      ],
+      "fields": {
+        "+0x18": "offeror/actor mirror for normal Offer constructor; current-country comparison selects notification perspective",
+        "+0x20": "recipient for normal Offer constructor; recipient equality identifies decision country",
+        "+0x34": "handler branch state: 2 acceptance, 1 rejection when +0x38 != 0",
+        "+0x38": "variant: nonzero Offer/response, zero Break/Cancel"
+      },
+      "slots_or_calls": [
+        "current/observer handle selected from global context 0x14233fe58",
+        "+0x38 == 0 -> Break/Cancel path at 0x5113f5",
+        "+0x38 != 0 and +0x34 == 2 -> acceptance path at 0x50f846",
+        "+0x38 != 0 and +0x34 == 1 -> rejection path at 0x510e17",
+        "acceptance side effect calls 0x4ec500 at 0x510e0d"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "native_invoked": false
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "recorded_locations": "0x50f7c0"
+      },
+      "rva": "0x50f7c0"
+    },
+    {
+      "id": "protocol.recipient.route",
+      "label": "recipient roster and queue/clone route",
+      "stage": "recipient routing after generic gates",
+      "status": "static_observed",
+      "sources": [
+        "s_route",
+        "s_runtime_route",
+        "s_delivery"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_route",
+          "lines": "18-35,57-59,97-102"
+        },
+        {
+          "source_id": "s_runtime_route",
+          "lines": "13,21-27"
+        },
+        {
+          "source_id": "s_delivery",
+          "lines": "51-59"
+        }
+      ],
+      "limitations": [
+        "Machine branches are proven; roster meaning, player/AI/controlled semantics and business queue meaning are not. A queue write is not a safe submission API."
+      ],
+      "fields": {
+        "roster_element": "DWORD[global+0x1d48 + signed_recipient_id*4]",
+        "recipient_id": "signed16((packed>>32)&0xffff)",
+        "recipient_queue": "+0x18d8 head/+0x18e0 tail/+0x18e8 count"
+      },
+      "slots_or_calls": [
+        "global+0x1d48/+0x1d50 roster candidate",
+        "0x2cd5a0 secondary predicate",
+        "action +0xb0 clone",
+        "recipient country +0x18d8/+0x18e0/+0x18e8 queue"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "runtime_session": "60892-1dd5b1d26b30a9b"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "recorded_locations": "0x4e8163..0x4e81c5; queue edge 0x4e8235; continuation 0x4e8333"
+      },
+      "rva": "0x4e8163"
+    },
+    {
+      "id": "response.ui.dispatch",
+      "label": "request UI response handlers and response wrapper dispatch",
+      "stage": "UI response/accept-decline candidate",
+      "status": "static_observed",
+      "sources": [
+        "s_response",
+        "s_static_action"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_response",
+          "lines": "7-19,23-52"
+        },
+        {
+          "source_id": "s_static_action",
+          "lines": "49-57"
+        }
+      ],
+      "limitations": [
+        "The newer 0x50f7c0 branch map conditionally establishes state 2 as acceptance and state 1 as rejection for variant!=0; the actual UI event, owner type, receipt and business/save side effects remain unproven and are not safe for observer invocation."
+      ],
+      "fields": {
+        "request_this+0x238": "embedded alliance request/action object",
+        "action+0x34": "temporary state overwritten then restored",
+        "wrapper+0x50": "cloned action"
+      },
+      "slots_or_calls": {
+        "request_vtable+0x50": "0x10668e0 writes state 2 and dispatches wrapper",
+        "request_vtable+0x60": "0x1067cd0 relation selection/handler path",
+        "request_vtable+0x98": "0x1066a20 writes state 1 and dispatches wrapper",
+        "wrapper+0x48": "0x4e7c80"
+      },
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "request_ui": "0x1067840",
+        "state2_handler": "0x10668e0",
+        "state1_handler": "0x1066a20",
+        "dispatcher": "0x14ca110"
+      },
+      "rva": "0x1067840"
+    },
+    {
+      "id": "direct_break.helper",
+      "label": "DirectBreakAlliance shared helper and seven callers",
+      "stage": "break/dissolve pre-business and business handler candidate",
+      "status": "static_observed",
+      "sources": [
+        "s_break_r18",
+        "s_authority_entry",
+        "s_prebusiness"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_break_r18",
+          "lines": "5-18,20-30,39-71"
+        },
+        {
+          "source_id": "s_authority_entry",
+          "lines": "8-12"
+        },
+        {
+          "source_id": "s_prebusiness",
+          "lines": "8-10,17-21,31-35"
+        }
+      ],
+      "limitations": [
+        "No caller is proven native AI, treaty, event, script or player UI. The shared helper is unsafe as a global controlled-FRA blocker; 0x3d24f4 is already after owner/list mutations."
+      ],
+      "fields": {
+        "RCX": "owner/context candidate",
+        "RDX": "packed handle candidate",
+        "R8B": "side-effect flag; voluntary/AI/variant meaning unknown",
+        "owner+0x2250/+0x2258": "pending list mutation in helper"
+      },
+      "slots_or_calls": [
+        "callers: 0x2aab1f, 0x2ab95c, 0x2d618b, 0x2edbfa, 0x2ee021, 0x6cf08d, 0x766cc8",
+        "first allocator 0x3d23c6",
+        "country vector append 0x3d2449 -> 0x385b70",
+        "0x3d24f4 -> 0x50f7c0"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "recorded_locations": "0x3d2350..0x3d25c5; direct handler 0x50f7c0 at 0x3d24f4"
+      },
+      "rva": "0x3d2350"
+    },
+    {
+      "id": "protocol.field.selector240",
+      "label": "selector/field 0x240 dispatch candidate",
+      "stage": "request/field dispatch; possible response metadata path",
+      "status": "static_observed",
+      "sources": [
+        "s_selector240",
+        "s_selector240_helper",
+        "s_field_static",
+        "s_r17c_validation"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_selector240",
+          "lines": "75-96"
+        },
+        {
+          "source_id": "s_selector240_helper",
+          "lines": "405-420"
+        },
+        {
+          "source_id": "s_field_static",
+          "lines": "7,30-35"
+        },
+        {
+          "source_id": "s_r17c_validation",
+          "lines": "8-14"
+        }
+      ],
+      "limitations": [
+        "Numeric reuse is not semantic identity. No source proves 0x240 is an owner, namespace, sender, acceptance or player-control field."
+      ],
+      "fields": {
+        "field_id": "R8D in generic reader",
+        "observed_other_field_ids": "0xc7/0xcc/0xdb and action discriminator 0x165 in r18 reader dispatch",
+        "0x240": "numeric selector observed; semantic field/namespace unresolved"
+      },
+      "slots_or_calls": [
+        "0x828f96 passes ECX=0x240 to 0x1a33230 then calls 0x106ac80",
+        "0x1066849 passes EDX=0x240 to 0x1739420",
+        "reader ABI has R8D=field_id"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "runtime_session": "60892-1dd5b1d26b30a9b"
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "request_ui_callsite": "0x828f96",
+        "helper_callsite": "0x1066849",
+        "generic_reader": "0x4e84c0",
+        "alliance_field_helper": "0x4e8b70"
+      },
+      "rva": "0x828f96"
+    },
+    {
+      "id": "protocol.r18.sender_helpers",
+      "label": "r18 wrapper sender/field helper candidates",
+      "stage": "field formatting/dispatch; sender hypothesis only",
+      "status": "static_observed",
+      "sources": [
+        "s_r18_reader",
+        "s_r18_default",
+        "s_r18_h125b",
+        "s_r18_a512"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_r18_reader",
+          "lines": "7-78"
+        },
+        {
+          "source_id": "s_r18_default",
+          "lines": "7-22,50-82"
+        },
+        {
+          "source_id": "s_r18_h125b",
+          "lines": "18-41"
+        },
+        {
+          "source_id": "s_r18_a512",
+          "lines": "22-50,95-133"
+        }
+      ],
+      "limitations": [
+        "These are static helper relationships only. They do not prove sender identity, network transmission, response receipt, authorization or business persistence."
+      ],
+      "fields": {
+        "reader input": "RCX object, RDX context/record, R8D field id",
+        "default helper": "reads object+0x34 and output/context structures; allocates 0x20 local string-like object",
+        "a512 helper": "checks RDX/R9, calls 0x1a6037c and writes output structures",
+        "helper semantics": "unknown"
+      },
+      "slots_or_calls": [
+        "reader field branch 0xc7 -> 0x170b9e0 with wrapper+0x48",
+        "reader field branches 0xcc/0xdb -> 0x170f650/0x170b9e0 with context+0x444",
+        "reader tail-jumps/default-calls 0x1709d00",
+        "0x125b340 -> 0x1a51254 with R8=-1 and R9=original RDX"
+      ],
+      "verification_identity": {
+        "pe_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+        "runtime_verified": false
+      },
+      "address_role": "grouped_machine_locations",
+      "addresses": {
+        "default": "0x1709d00",
+        "helper_125b": "0x125b340",
+        "helper_a512": "0x1a51254",
+        "reader": "0x14c52c0"
+      },
+      "rva": "0x1709d00"
+    },
+    {
+      "id": "fixture.authority_ledger",
+      "label": "allocation-free authority/lifecycle ledger fixture",
+      "stage": "design guard and verification fixture, not native runtime",
+      "status": "fixture_verified",
+      "sources": [
+        "s_ledger",
+        "s_fixture_latest",
+        "s_fixture"
+      ],
+      "source_coordinates": [
+        {
+          "source_id": "s_ledger",
+          "lines": "3-9,18-27,77-139,240-352,355-530,543-693,750-765,903-939"
+        },
+        {
+          "source_id": "s_fixture_latest",
+          "lines": "1-27"
+        },
+        {
+          "source_id": "s_fixture",
+          "lines": "2-7,24-27,38-63"
+        }
+      ],
+      "limitations": [
+        "The latest review-003 fixture is a proposed safety contract and regression oracle. Its phase/state mapping cannot prove native state semantics, sender, allocator or business save/reload; the base 145-check verification is historical baseline only.",
+        "review-003: 163 checks; not compiled into or enabled in r17c"
+      ],
+      "fields": {
+        "phases": "initiate/accept/reject/dissolve design enum",
+        "payload": "exact nine-field equality",
+        "header": "origin/flags/sequence exact equality",
+        "identity": "address+generation",
+        "stages": "seed/serialize/incoming_preclone/postclone/consume/destructor/expiry"
+      },
+      "slots_or_calls": [],
+      "verification_identity": {
+        "provenance": "independent C++17 Windows fixture; review-003",
+        "checks": 163,
+        "failures": 0,
+        "capacity": 64,
+        "native_calls": false,
+        "latest_fixture_sha256": "48cf9018de35949c7f077066350780755c6c8486cfe2df637717791e0f3dfd92",
+        "historical_baseline_checks": 145
+      },
+      "address_role": "grouped_machine_locations"
+    },
+    {
+      "id": "fn.alliance.construct",
+      "label": "普通联盟动作构造",
+      "rva": "0x50f780",
+      "stage": "construct",
+      "status": "static_observed",
+      "sources": [
+        "s_static_action"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.alliance.clone",
+      "label": "联盟动作 clone",
+      "rva": "0x513090",
+      "stage": "clone",
+      "status": "static_observed",
+      "sources": [
+        "s_static_action"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.alliance.validity",
+      "label": "联盟动作 validity",
+      "rva": "0x511d90",
+      "stage": "query",
+      "status": "static_observed",
+      "sources": [
+        "s_vtable"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.alliance.initiation",
+      "label": "联盟发起 gate",
+      "rva": "0x512a00",
+      "stage": "query",
+      "status": "static_observed",
+      "sources": [
+        "s_vtable"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.alliance.reasons",
+      "label": "联盟理由向量",
+      "rva": "0x513120",
+      "stage": "query",
+      "status": "static_observed",
+      "sources": [
+        "s_reason"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.alliance.business",
+      "label": "联盟接受/拒绝/断盟业务分支",
+      "rva": "0x50f7c0",
+      "stage": "business",
+      "status": "static_observed",
+      "sources": [
+        "s_decision"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.wrapper.construct",
+      "label": "response wrapper 构造",
+      "rva": "0x4e9960",
+      "stage": "construct",
+      "status": "static_observed",
+      "sources": [
+        "s_response"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.wrapper.clone",
+      "label": "wrapper clone",
+      "rva": "0x4e8550",
+      "stage": "receive/clone",
+      "status": "static_observed",
+      "sources": [
+        "s_protocol",
+        "s_rea_cache_clone_evidence"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Cached static dossier does not establish an externally callable ABI or business runtime verification.",
+        "Indirect callers, semantic types and runtime authority remain unresolved."
+      ]
+    },
+    {
+      "id": "fn.wrapper.reader",
+      "label": "wrapper field reader",
+      "rva": "0x4e84c0",
+      "stage": "receive/read",
+      "status": "static_observed",
+      "sources": [
+        "s_protocol"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.wrapper.executor",
+      "label": "generic executor",
+      "rva": "0x4e7c80",
+      "stage": "execute",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.action.preprocess",
+      "label": "动作 metric / 业务前处理",
+      "rva": "0x4ea850",
+      "stage": "execute/prebusiness",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.delivery.native",
+      "label": "原生响应 delivery / ownership",
+      "rva": "0xbfe50",
+      "stage": "handoff/respond",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.wrapper.serializer",
+      "label": "payload serializer",
+      "rva": "0x4e8470",
+      "stage": "serialize",
+      "status": "static_observed",
+      "sources": [
+        "s_protocol"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.dispatcher",
+      "label": "owner/transport dispatcher",
+      "rva": "0x14ca110",
+      "stage": "handoff",
+      "status": "static_observed",
+      "sources": [
+        "s_response"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.transport.ring",
+      "label": "header allocation / serialization / ring",
+      "rva": "0x1580270",
+      "stage": "transport",
+      "status": "static_observed",
+      "sources": [
+        "s_transport"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.receive.reconstruct",
+      "label": "接收重建 / sequence restore",
+      "rva": "0x15800c0",
+      "stage": "receive",
+      "status": "static_observed",
+      "sources": [
+        "s_receive",
+        "s_rea_receive_seeded",
+        "s_rea_cache_receive_evidence"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Cached static dossier is evidence from the completed default-analysis database; it does not establish an externally callable ABI or business runtime verification.",
+        "Global indirect-caller semantics, semantic types and runtime authority remain unresolved."
+      ]
+    },
+    {
+      "id": "fn.ui.state2",
+      "label": "UI 状态 2 响应处理器",
+      "rva": "0x10668e0",
+      "stage": "respond",
+      "status": "static_observed",
+      "sources": [
+        "s_response"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.ui.state1",
+      "label": "UI 状态 1 响应处理器",
+      "rva": "0x1066a20",
+      "stage": "respond",
+      "status": "static_observed",
+      "sources": [
+        "s_response"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.ui.request",
+      "label": "请求 UI 构造",
+      "rva": "0x1067840",
+      "stage": "respond",
+      "status": "static_observed",
+      "sources": [
+        "s_response"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.break.helper",
+      "label": "DirectBreak 共用 helper",
+      "rva": "0x3d2350",
+      "stage": "dissolve",
+      "status": "static_observed",
+      "sources": [
+        "s_prebusiness"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.recipient.secondary",
+      "label": "recipient secondary predicate",
+      "rva": "0x2cd5a0",
+      "stage": "routing",
+      "status": "static_observed",
+      "sources": [
+        "s_route"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "fn.alliance.field_helper",
+      "label": "联盟 field helper",
+      "rva": "0x4e8b70",
+      "stage": "receive/read",
+      "status": "static_observed",
+      "sources": [
+        "s_field_static"
+      ],
+      "address_role": "procedure_entry",
+      "limitations": [
+        "Static seed only; complete externally callable ABI and business runtime verification are not established."
+      ]
+    },
+    {
+      "id": "runtime.local_clone_entry",
+      "label": "r17c 两条局部 clone→entry 样本",
+      "stage": "receive/entry",
+      "status": "runtime_observed",
+      "sources": [
+        "s_continuity",
+        "s_r17c_validation"
+      ],
+      "limitations": [
+        "2 local samples; full stage/key chains = 0; no bridge send or business acceptance."
+      ]
+    },
+    {
+      "id": "gap.sender_identity",
+      "label": "真实 sender / owner 身份",
+      "stage": "transport/authority",
+      "status": "unknown",
+      "sources": [
+        "s_current_handoff",
+        "s_transport"
+      ],
+      "limitations": [
+        "Native transport header is not yet an authorization identity or independent receipt."
+      ]
+    },
+    {
+      "id": "gap.authorized_submit",
+      "label": "桥接单次 intent 的授权提交",
+      "stage": "authority/submit",
+      "status": "unknown",
+      "sources": [
+        "s_current_plan"
+      ],
+      "limitations": [
+        "Fixture verification does not establish native execution."
+      ]
+    },
+    {
+      "id": "gap.business_persistence",
+      "label": "联盟业务后果与保存重载",
+      "stage": "business/persistence",
+      "status": "unknown",
+      "sources": [
+        "s_current_plan"
+      ],
+      "limitations": [
+        "Existing control/query save tests do not verify alliance business acceptance."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "e01",
+      "from": "alliance.action.layout",
+      "to": "alliance.action.vtable",
+      "kind": "constructor/clone install the observed vtable and copy the 0x40-byte action shape",
+      "status": "static_observed",
+      "sources": [
+        "s_static_action",
+        "s_lifecycle"
+      ],
+      "source_coordinates": [
+        "s_static_action:15-19",
+        "s_lifecycle:138-170"
+      ],
+      "limitations": [
+        ""
+      ]
+    },
+    {
+      "id": "e02",
+      "from": "alliance.gui.selector",
+      "to": "alliance.query.observer",
+      "kind": "GUI visibility/list path and observer query both use action id 0x293d and native selector/rule gates",
+      "status": "static_observed",
+      "sources": [
+        "s_gui",
+        "s_query"
+      ],
+      "source_coordinates": [
+        "s_gui:15-30",
+        "s_query:31-66,145-176"
+      ],
+      "limitations": [
+        "No submission or business consequence follows from this edge."
+      ]
+    },
+    {
+      "id": "e03",
+      "from": "alliance.query.observer",
+      "to": "fixture.authority_ledger",
+      "kind": "query output can be an input fact for a future ledger decision, but is not itself authority",
+      "status": "inferred",
+      "sources": [
+        "s_query",
+        "s_ledger"
+      ],
+      "source_coordinates": [
+        "s_query:242",
+        "s_ledger:3-9,240-267"
+      ],
+      "limitations": [
+        "No native query result is accepted as authority by the fixture automatically."
+      ]
+    },
+    {
+      "id": "e04",
+      "from": "protocol.wrapper",
+      "to": "protocol.header",
+      "kind": "wrapper exposes origin/flags/sequence fields at +0x48/+0x4a/+0x4c",
+      "status": "static_observed",
+      "sources": [
+        "s_protocol",
+        "s_lifecycle"
+      ],
+      "source_coordinates": [
+        "s_protocol:47-61",
+        "s_lifecycle:238-246"
+      ],
+      "limitations": [
+        "Field business names and authorization meaning remain unknown."
+      ]
+    },
+    {
+      "id": "e05",
+      "from": "protocol.receive.reconstruction",
+      "to": "protocol.wrapper",
+      "kind": "receive path calls wrapper clone slot +0x60 and relinks returned wrapper",
+      "status": "static_observed",
+      "sources": [
+        "s_receive",
+        "s_protocol"
+      ],
+      "source_coordinates": [
+        "s_receive:5",
+        "s_protocol:86-130"
+      ],
+      "limitations": [
+        "Receive-list writes were not separately runtime observed."
+      ]
+    },
+    {
+      "id": "e06",
+      "from": "protocol.receive.reconstruction",
+      "to": "alliance.action.layout",
+      "kind": "two r17c CAS→POR local samples preserve clone return wrapper/action and nine-field payload at later entry",
+      "status": "runtime_observed",
+      "sources": [
+        "s_receive",
+        "s_continuity",
+        "s_r17c_validation"
+      ],
+      "source_coordinates": [
+        "s_receive:7-11",
+        "s_continuity:87-92,125,199-200",
+        "s_r17c_validation:13-23"
+      ],
+      "limitations": [
+        "Only 2 local chains; full stage chain/key chain zero; authorization, receipt and business result unknown."
+      ]
+    },
+    {
+      "id": "e07",
+      "from": "protocol.serialization.ring",
+      "to": "protocol.receive.reconstruction",
+      "kind": "both touch wrapper serialization/clone boundaries, but no causal sender-to-receive proof exists",
+      "status": "unknown",
+      "sources": [
+        "s_transport",
+        "s_r17c_validation"
+      ],
+      "source_coordinates": [
+        "s_transport:16-20,32",
+        "s_r17c_validation:19-23"
+      ],
+      "limitations": [
+        "Serialization_begin is not submission; ring enqueue is not network/server receipt."
+      ]
+    },
+    {
+      "id": "e08",
+      "from": "protocol.serialization.ring",
+      "to": "protocol.header",
+      "kind": "0x1580270 rewrites origin and allocates sequence when flags are zero before ring enqueue",
+      "status": "static_observed",
+      "sources": [
+        "s_transport"
+      ],
+      "source_coordinates": [
+        "s_transport:7-12,20"
+      ],
+      "limitations": [
+        "The resulting fields are not a proven server identity or business transaction ID."
+      ]
+    },
+    {
+      "id": "e09",
+      "from": "protocol.wrapper",
+      "to": "protocol.generic_executor",
+      "kind": "response wrapper vtable +0x48 reaches 0x4e7c80 with embedded action +0x50",
+      "status": "static_observed",
+      "sources": [
+        "s_response",
+        "s_delivery"
+      ],
+      "source_coordinates": [
+        "s_response:23-33",
+        "s_delivery:20-48"
+      ],
+      "limitations": [
+        "Side effects and native owner context make this unsuitable for read-only invocation."
+      ]
+    },
+    {
+      "id": "e10",
+      "from": "protocol.generic_executor",
+      "to": "protocol.recipient.route",
+      "kind": "after gates, executor chooses queue edge 0x4e8235, continuation 0x4e8333 or clone edge 0x4e81c5",
+      "status": "static_observed",
+      "sources": [
+        "s_route"
+      ],
+      "source_coordinates": [
+        "s_route:18-35,97-102"
+      ],
+      "limitations": [
+        "Branch labels are machine destinations, not player/AI/controlled or acceptance semantics."
+      ]
+    },
+    {
+      "id": "e11",
+      "from": "protocol.recipient.route",
+      "to": "alliance.action.layout",
+      "kind": "queue and clone edges call action vtable +0xb0 and carry packed recipient/action values",
+      "status": "static_observed",
+      "sources": [
+        "s_route"
+      ],
+      "source_coordinates": [
+        "s_route:31-35"
+      ],
+      "limitations": [
+        "Recipient direction and action owner semantics remain unknown."
+      ]
+    },
+    {
+      "id": "e12",
+      "from": "response.ui.dispatch",
+      "to": "protocol.wrapper",
+      "kind": "state handler clones action into 0x58-byte response wrapper and dispatches it",
+      "status": "static_observed",
+      "sources": [
+        "s_response"
+      ],
+      "source_coordinates": [
+        "s_response:23-33"
+      ],
+      "limitations": [
+        "This does not identify Accept/Decline or prove business acceptance."
+      ]
+    },
+    {
+      "id": "e13",
+      "from": "response.ui.dispatch",
+      "to": "protocol.generic_executor",
+      "kind": "wrapper +0x48 is generic executor entry after response dispatch",
+      "status": "static_observed",
+      "sources": [
+        "s_response"
+      ],
+      "source_coordinates": [
+        "s_response:33,49-52"
+      ],
+      "limitations": [
+        "No safe external caller ABI and no native response receipt."
+      ]
+    },
+    {
+      "id": "e14",
+      "from": "direct_break.helper",
+      "to": "alliance.action.layout",
+      "kind": "helper constructs the same discriminator/vtable action with variant 0 before 0x50f7c0",
+      "status": "static_observed",
+      "sources": [
+        "s_static_action",
+        "s_prebusiness"
+      ],
+      "source_coordinates": [
+        "s_static_action:35",
+        "s_prebusiness:21"
+      ],
+      "limitations": [
+        "It is a shared helper; no caller source/actor direction is proven."
+      ]
+    },
+    {
+      "id": "e15",
+      "from": "direct_break.helper",
+      "to": "protocol.generic_executor",
+      "kind": "both are execution/business candidates but are separate paths; no equivalence is assumed",
+      "status": "unknown",
+      "sources": [
+        "s_break_r18",
+        "s_delivery"
+      ],
+      "source_coordinates": [
+        "s_break_r18:61-71",
+        "s_delivery:88"
+      ],
+      "limitations": [
+        "Do not merge the r17c response path with DirectBreak callers or call 0x3d2350 globally."
+      ]
+    },
+    {
+      "id": "e16",
+      "from": "protocol.field.selector240",
+      "to": "protocol.r18.sender_helpers",
+      "kind": "0x240 appears in UI/helper dispatch slices while the generic reader separately treats R8D as a field id; no direct call or xref connecting these namespaces was recovered",
+      "status": "unknown",
+      "sources": [
+        "s_selector240",
+        "s_r18_reader",
+        "s_r18_default"
+      ],
+      "source_coordinates": [
+        "s_selector240:89-96",
+        "s_r18_reader:31-51",
+        "s_r18_default:20-22"
+      ],
+      "limitations": [
+        "Do not promote numeric equality to a cross-namespace path. A direct caller/record relation, semantic field decode and sender relation are all missing."
+      ]
+    },
+    {
+      "id": "e17",
+      "from": "protocol.r18.sender_helpers",
+      "to": "protocol.header",
+      "kind": "helpers access/output adjacent protocol fields in bounded code, but no proven send/receipt write is present",
+      "status": "unknown",
+      "sources": [
+        "s_r18_default",
+        "s_r18_a512",
+        "s_r18_reader"
+      ],
+      "source_coordinates": [
+        "s_r18_default:50-82",
+        "s_r18_a512:22-50,95-133",
+        "s_r18_reader:45-73"
+      ],
+      "limitations": [
+        "r18 records are static-only and must not be named sender implementation."
+      ]
+    },
+    {
+      "id": "e18",
+      "from": "fixture.authority_ledger",
+      "to": "protocol.receive.reconstruction",
+      "kind": "fixture models exact identity/payload/header checks for a future receive claim",
+      "status": "inferred",
+      "sources": [
+        "s_ledger",
+        "s_fixture_latest",
+        "s_fixture"
+      ],
+      "source_coordinates": [
+        "s_ledger:355-530,750-765",
+        "s_fixture_latest:1-27",
+        "s_fixture:38-63"
+      ],
+      "limitations": [
+        "No native implementation or phase chain is implied; fixture state34 mapping is not native proof."
+      ]
+    },
+    {
+      "id": "e19",
+      "from": "fixture.authority_ledger",
+      "to": "direct_break.helper",
+      "kind": "fixture destructor/generation rules identify the evidence needed around pre/post clone lifetime",
+      "status": "inferred",
+      "sources": [
+        "s_ledger"
+      ],
+      "source_coordinates": [
+        "s_ledger:543-693"
+      ],
+      "limitations": [
+        "It does not identify the native allocator or authorize interception."
+      ]
+    },
+    {
+      "id": "e20",
+      "from": "alliance.decision.branch_semantics",
+      "to": "alliance.action.layout",
+      "kind": "0x50f7c0 uses normal Offer field roles: +0x18 offeror/actor mirror and +0x20 recipient for current-country notification/decision tests",
+      "status": "static_observed",
+      "sources": [
+        "s_decision",
+        "s_static_action"
+      ],
+      "source_coordinates": [
+        "s_decision:21-31,35-41",
+        "s_static_action:17"
+      ],
+      "limitations": [
+        "The qualification is limited to the normal Offer constructor; live response field reuse remains unknown."
+      ]
+    },
+    {
+      "id": "e21",
+      "from": "protocol.generic_executor",
+      "to": "alliance.decision.branch_semantics",
+      "kind": "generic response execution supplies state 1/2 and variant context consumed by the 0x50f7c0 conditional decision branches",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery",
+        "s_decision"
+      ],
+      "source_coordinates": [
+        "s_delivery:20-32",
+        "s_decision:11-18,27-43"
+      ],
+      "limitations": [
+        "This is a machine-level dataflow; it is not an observed UI action, server receipt or disk persistence proof."
+      ]
+    },
+    {
+      "id": "e_wrapper_business_slot",
+      "from": "alliance.action.vtable",
+      "to": "fn.alliance.business",
+      "kind": "alliance action vtable +0x48 -> 0x50f7c0",
+      "status": "static_observed",
+      "sources": [
+        "s_vtable"
+      ]
+    },
+    {
+      "id": "e_executor_preprocess",
+      "from": "fn.wrapper.executor",
+      "to": "fn.action.preprocess",
+      "kind": "state-zero path calls 0x4ea850 before recipient routing",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery"
+      ],
+      "limitations": [
+        "Global/country writes and conditional business-slot invocation; not a read-only query."
+      ]
+    },
+    {
+      "id": "e_preprocess_business",
+      "from": "fn.action.preprocess",
+      "to": "fn.alliance.business",
+      "kind": "endpoint guards then alliance action vtable +0x48",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery",
+        "s_vtable"
+      ]
+    },
+    {
+      "id": "e_response_delivery",
+      "from": "fn.wrapper.executor",
+      "to": "fn.delivery.native",
+      "kind": "after response clone/state/wrapper creation, output slot is passed to 0xbfe50",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery"
+      ]
+    },
+    {
+      "id": "e_native_delivery_dispatch",
+      "from": "fn.delivery.native",
+      "to": "fn.dispatcher",
+      "kind": "server +0x80 context then dispatcher with wrapper output slot",
+      "status": "static_observed",
+      "sources": [
+        "s_delivery"
+      ]
+    },
+    {
+      "id": "e_dispatch_ring",
+      "from": "fn.dispatcher",
+      "to": "fn.transport.ring",
+      "kind": "context transport +0x30, resolved for archived r12 owner only",
+      "status": "runtime_observed",
+      "sources": [
+        "s_response",
+        "s_transport_owner"
+      ],
+      "limitations": [
+        "Object/slot binding is not an observed complete dispatch or business send receipt."
+      ]
+    },
+    {
+      "id": "e_missing_submit",
+      "from": "gap.authorized_submit",
+      "to": "gap.sender_identity",
+      "kind": "required authority provenance",
+      "status": "unknown",
+      "sources": [
+        "s_current_handoff"
+      ]
+    },
+    {
+      "id": "e_missing_persistence",
+      "from": "fn.alliance.business",
+      "to": "gap.business_persistence",
+      "kind": "required actual business / save-reload evidence",
+      "status": "unknown",
+      "sources": [
+        "s_current_plan"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "alliance.action.layout",
+      "fields": {
+        "+0x00": "vtable",
+        "+0x08": "discriminator 0x165",
+        "+0x10": "offer constructor copies RDX handle; offeror/actor-side candidate",
+        "+0x18": "offer constructor mirror of +0x10; offeror/actor-side mirror for normal constructor",
+        "+0x20": "offer constructor copies R8 handle; recipient-side field for normal constructor",
+        "+0x28": "date/int candidate",
+        "+0x2c": "date2c",
+        "+0x30": "envoy/source-related field candidate; often -1",
+        "+0x34": "temporary response/state field",
+        "+0x38": "variant; Offer candidate 1, Break candidate 0",
+        "+0x3c": "proposal/custom field candidate"
+      },
+      "sources": [
+        "s_static_action",
+        "s_decision",
+        "s_lifecycle",
+        "s_query"
+      ],
+      "limitations": [
+        "The +0x18 offeror/actor and +0x20 recipient roles are conditionally established for the normal Offer constructor; live response-object field reuse, namespace, authority and save semantics remain unknown."
+      ]
+    },
+    {
+      "id": "alliance.gui.selector",
+      "fields": {
+        "country": "+0x1510 relation table",
+        "relation_row": "recipient_slot * 72",
+        "custom_action": "null for alliance path"
+      },
+      "sources": [
+        "s_gui",
+        "s_query"
+      ],
+      "limitations": [
+        "This covers fixed initiate variant selection and native visibility/rules. It does not identify Accept/Decline, sender, business result or save/reload."
+      ]
+    },
+    {
+      "id": "alliance.query.observer",
+      "fields": {
+        "query_output": "native visibility, common gates, validity, diagnostics, reason count",
+        "submitted": false
+      },
+      "sources": [
+        "s_query",
+        "s_r17c_validation",
+        "s_observer"
+      ],
+      "limitations": [
+        "A successful predicate or reason vector is not authority, submission, acceptance, or business success."
+      ]
+    },
+    {
+      "id": "protocol.wrapper",
+      "fields": {
+        "+0x44": "response action id candidate 0x2934",
+        "+0x48": "origin uint16",
+        "+0x4a": "flags byte",
+        "+0x4c": "sequence uint32",
+        "+0x50": "embedded action"
+      },
+      "sources": [
+        "s_protocol",
+        "s_response",
+        "s_transport"
+      ],
+      "limitations": [
+        "The wrapper is a local object and execution entry candidate. No deserializer/network/server receipt is proven by this node."
+      ]
+    },
+    {
+      "id": "protocol.header",
+      "fields": {
+        "origin": "+0x48 uint16",
+        "flags": "+0x4a byte",
+        "sequence": "+0x4c uint32"
+      },
+      "sources": [
+        "s_transport",
+        "s_receive",
+        "s_lifecycle"
+      ],
+      "limitations": [
+        "Initial ffff/0/0 is a transfer/constructor marker, not a wildcard authorization. Sequence equality alone is not identity and has no proven business meaning."
+      ]
+    },
+    {
+      "id": "protocol.receive.reconstruction",
+      "fields": {
+        "returned_wrapper_sequence_copy": "+0x4c",
+        "receive_list": "+0xc8 head/+0xd0 tail/+0xd8 count candidate",
+        "queue_structure_candidate": "+0x118 pointer; exact native type unknown",
+        "source_wrapper": "output of call RVA 0x1581120 at 0x1580173; current-frame stack +0x60, then loaded at 0x158018a"
+      },
+      "sources": [
+        "s_receive",
+        "s_continuity",
+        "s_rea_receive_seeded"
+      ],
+      "limitations": [
+        "List writes were statically observed but not separately runtime-observed; network source, authority and business acceptance are unknown. r17c only provides two local clone-to-entry candidate chains."
+      ]
+    },
+    {
+      "id": "protocol.serialization.ring",
+      "fields": {
+        "transport+0x128": "counter pointer",
+        "queue+0x80": "ticket source",
+        "queue+0x18": "ring count increment"
+      },
+      "sources": [
+        "s_transport",
+        "s_continuity"
+      ],
+      "limitations": [
+        "This proves an object enters a native ring queue. It does not prove network send, server receipt, authority, acceptance or save/reload."
+      ]
+    },
+    {
+      "id": "protocol.generic_executor",
+      "fields": {
+        "action+0x34": "state input/output candidate",
+        "clone+0x34": "assigned 1 or 2 on predicate result",
+        "action+0x38": "variant gate context"
+      },
+      "sources": [
+        "s_delivery",
+        "s_response"
+      ],
+      "limitations": [
+        "The path is side-effecting and not a safe query. For variant!=0, the newer 0x50f7c0 branch map conditionally identifies state 2 as acceptance and state 1 as rejection; actual external event, receipt, owner type and persistence remain unproven."
+      ]
+    },
+    {
+      "id": "alliance.decision.branch_semantics",
+      "fields": {
+        "+0x18": "offeror/actor mirror for normal Offer constructor; current-country comparison selects notification perspective",
+        "+0x20": "recipient for normal Offer constructor; recipient equality identifies decision country",
+        "+0x34": "handler branch state: 2 acceptance, 1 rejection when +0x38 != 0",
+        "+0x38": "variant: nonzero Offer/response, zero Break/Cancel"
+      },
+      "sources": [
+        "s_decision",
+        "s_static_action"
+      ],
+      "limitations": [
+        "This establishes conditional static branch semantics and message perspectives only. It does not prove an observed Accept/Reject event, owner type, server acknowledgement, final relation mutation, or disk save/reload effect. The +0x18/+0x20 role qualification is for the normal Offer constructor; live response reuse remains unknown."
+      ]
+    },
+    {
+      "id": "protocol.recipient.route",
+      "fields": {
+        "roster_element": "DWORD[global+0x1d48 + signed_recipient_id*4]",
+        "recipient_id": "signed16((packed>>32)&0xffff)",
+        "recipient_queue": "+0x18d8 head/+0x18e0 tail/+0x18e8 count"
+      },
+      "sources": [
+        "s_route",
+        "s_runtime_route",
+        "s_delivery"
+      ],
+      "limitations": [
+        "Machine branches are proven; roster meaning, player/AI/controlled semantics and business queue meaning are not. A queue write is not a safe submission API."
+      ]
+    },
+    {
+      "id": "response.ui.dispatch",
+      "fields": {
+        "request_this+0x238": "embedded alliance request/action object",
+        "action+0x34": "temporary state overwritten then restored",
+        "wrapper+0x50": "cloned action"
+      },
+      "sources": [
+        "s_response",
+        "s_static_action"
+      ],
+      "limitations": [
+        "The newer 0x50f7c0 branch map conditionally establishes state 2 as acceptance and state 1 as rejection for variant!=0; the actual UI event, owner type, receipt and business/save side effects remain unproven and are not safe for observer invocation."
+      ]
+    },
+    {
+      "id": "direct_break.helper",
+      "fields": {
+        "RCX": "owner/context candidate",
+        "RDX": "packed handle candidate",
+        "R8B": "side-effect flag; voluntary/AI/variant meaning unknown",
+        "owner+0x2250/+0x2258": "pending list mutation in helper"
+      },
+      "sources": [
+        "s_break_r18",
+        "s_authority_entry",
+        "s_prebusiness"
+      ],
+      "limitations": [
+        "No caller is proven native AI, treaty, event, script or player UI. The shared helper is unsafe as a global controlled-FRA blocker; 0x3d24f4 is already after owner/list mutations."
+      ]
+    },
+    {
+      "id": "protocol.field.selector240",
+      "fields": {
+        "field_id": "R8D in generic reader",
+        "observed_other_field_ids": "0xc7/0xcc/0xdb and action discriminator 0x165 in r18 reader dispatch",
+        "0x240": "numeric selector observed; semantic field/namespace unresolved"
+      },
+      "sources": [
+        "s_selector240",
+        "s_selector240_helper",
+        "s_field_static",
+        "s_r17c_validation"
+      ],
+      "limitations": [
+        "Numeric reuse is not semantic identity. No source proves 0x240 is an owner, namespace, sender, acceptance or player-control field."
+      ]
+    },
+    {
+      "id": "protocol.r18.sender_helpers",
+      "fields": {
+        "reader input": "RCX object, RDX context/record, R8D field id",
+        "default helper": "reads object+0x34 and output/context structures; allocates 0x20 local string-like object",
+        "a512 helper": "checks RDX/R9, calls 0x1a6037c and writes output structures",
+        "helper semantics": "unknown"
+      },
+      "sources": [
+        "s_r18_reader",
+        "s_r18_default",
+        "s_r18_h125b",
+        "s_r18_a512"
+      ],
+      "limitations": [
+        "These are static helper relationships only. They do not prove sender identity, network transmission, response receipt, authorization or business persistence."
+      ]
+    },
+    {
+      "id": "fixture.authority_ledger",
+      "fields": {
+        "phases": "initiate/accept/reject/dissolve design enum",
+        "payload": "exact nine-field equality",
+        "header": "origin/flags/sequence exact equality",
+        "identity": "address+generation",
+        "stages": "seed/serialize/incoming_preclone/postclone/consume/destructor/expiry"
+      },
+      "sources": [
+        "s_ledger",
+        "s_fixture_latest",
+        "s_fixture"
+      ],
+      "limitations": [
+        "The latest review-003 fixture is a proposed safety contract and regression oracle. Its phase/state mapping cannot prove native state semantics, sender, allocator or business save/reload; the base 145-check verification is historical baseline only."
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_owner_namespace",
+      "title": "谁是授权 owner，且 actor/recipient handle 属于哪个命名空间？",
+      "priority": "P0",
+      "status": "open",
+      "nodes": [
+        "alliance.action.layout",
+        "protocol.header",
+        "gap.sender_identity"
+      ],
+      "sources": [
+        "s_static_action",
+        "s_break_r18",
+        "s_ledger"
+      ],
+      "current_evidence": "正常 Offer 构造中 +0x18 是 offeror/actor 镜像、+0x20 是 recipient；DirectBreak RCX/RDX 形状已知，但授权 owner 类型、命名空间和响应对象字段复用仍未知。",
+      "next_step": "只读运行时把 object handle、country table entry、wrapper context 与同帧 owner/recipient identity 对齐，并记录生成代数；不调用执行槽位。"
+    },
+    {
+      "id": "q_selector_240",
+      "title": "selector/field 0x240 的真实字段、命名空间和业务阶段是什么？",
+      "priority": "P0",
+      "status": "open",
+      "nodes": [
+        "protocol.field.selector240",
+        "protocol.r18.sender_helpers"
+      ],
+      "sources": [
+        "s_selector240",
+        "s_selector240_helper",
+        "s_field_static",
+        "s_r17c_validation"
+      ],
+      "current_evidence": "两个 UI/helper callsite 传入 0x240；generic reader 的 R8D 确认为 field id；r17c 观察到 field-read 计数但没有语义解码。",
+      "next_step": "围绕 0x828f96、0x1066849、0x4e84c0/0x4e8b70 做有界 caller/record 对齐，优先匹配输入 record+0x30、context+0x444 与实际对象字段；保持静态/只读。"
+    },
+    {
+      "id": "q_controlled_route",
+      "title": "recipient roster 与 0x4e8235/0x4e8333/0x4e81c5 分支是否真的是 controlled/player/AI 路由？",
+      "priority": "P0",
+      "status": "open",
+      "nodes": [
+        "protocol.recipient.route"
+      ],
+      "sources": [
+        "s_route",
+        "s_runtime_route"
+      ],
+      "current_evidence": "signed recipient id、global+0x1d48/+0x1d50 roster test 和三个机器分支已证实；runtime roster 只有 POR 非零条目，语义仍 unknown。",
+      "next_step": "在同一运行时 session 只读验证多个已知 country 的 roster entry、owner context 和 branch outcome；不能把硬编码 FRA/POR 映射当语义证明。"
+    },
+    {
+      "id": "q_sender_receipt",
+      "title": "谁真正发送 wrapper，网络/服务器 receipt 在哪个边界可观察？",
+      "priority": "P1",
+      "status": "open",
+      "nodes": [
+        "protocol.serialization.ring",
+        "protocol.receive.reconstruction",
+        "gap.sender_identity"
+      ],
+      "sources": [
+        "s_transport",
+        "s_r17c_validation",
+        "s_protocol",
+        "s_r18_default"
+      ],
+      "current_evidence": "0x1580270 只证明重写 header、序列化和 native ring enqueue；r18 helper/field records 只有静态对象/输出关系；r17c 明确 submit_receipt=false。",
+      "next_step": "先被动对齐 ring entry、transport owner、dispatcher 和后续 incoming clone 的同一完整 key；只有出现独立 receipt/ack 与业务状态变化后才提高证据级别。"
+    },
+    {
+      "id": "q_break_callers",
+      "title": "七个 DirectBreak caller 中哪一个是 controlled 国家的主动 AI 断盟，哪些是维护/强制/event 路径？",
+      "priority": "P1",
+      "status": "open",
+      "nodes": [
+        "direct_break.helper"
+      ],
+      "sources": [
+        "s_break_r18"
+      ],
+      "current_evidence": "七个 caller、RCX/RDX/R8B 形状和局部列表条件已知；没有 caller 具备已证实的 AI/controlled gate，0x766cc8 只是候选。",
+      "next_step": "被动记录每个 callsite 前后的 owner/handle、controlled/is_ai 比较和来源上下文；先做分类，不做 helper 全局拦截。"
+    },
+    {
+      "id": "q_allocator_boundary",
+      "title": "break/response 业务链最早的 allocator、owner-list mutation 与可隔离边界在哪里？",
+      "priority": "P1",
+      "status": "partial",
+      "nodes": [
+        "direct_break.helper",
+        "fixture.authority_ledger"
+      ],
+      "sources": [
+        "s_prebusiness",
+        "s_delivery",
+        "s_ledger"
+      ],
+      "current_evidence": "DirectBreak 0x3d2350 在 0x3d23c6 分配并在 0x3d2406/0x3d2449 修改 owner/list/vector；0x3d24f4 的 0x50f7c0 已太晚。response generic executor 也会 clone/分配/队列。",
+      "next_step": "仅以静态有界写入和被动事件验证 allocator 生命周期、对象 generation 和 pre/post clone 时序；不要在 0x50f7c0 或 0x4e7c80 直接执行。"
+    },
+    {
+      "id": "q_accept_reject_persistence",
+      "title": "在已知 state 1/2 分支语义后，实际 Accept/Reject 事件、owner 类型、业务保存和 save/reload 重载在哪里？",
+      "priority": "P2",
+      "status": "partial",
+      "nodes": [
+        "alliance.decision.branch_semantics",
+        "gap.business_persistence"
+      ],
+      "sources": [
+        "s_decision",
+        "s_response",
+        "s_delivery",
+        "s_ledger"
+      ],
+      "current_evidence": "更新的 0x50f7c0 静态分支图在 variant!=0 条件下将 state2 定位为 acceptance、state1 定位为 rejection，并用 MILALLACCEPT/REJECT 等 key 和本地化确认消息视角；仍未观察实际事件、owner 类型、服务器确认或磁盘后果。",
+      "next_step": "在授权的真实 UI 状态变化中被动记录 state、wrapper/action identity、关系表变化、保存前后对象身份；必须同时保留 receipt/业务成功证据。"
+    },
+    {
+      "id": "q_full_stage_chain",
+      "title": "如何把 initiate→serialize→send→receive→execute→business/save 连接成可验证的完整链？",
+      "priority": "P1",
+      "status": "open",
+      "nodes": [
+        "runtime.local_clone_entry",
+        "gap.authorized_submit",
+        "gap.business_persistence"
+      ],
+      "sources": [
+        "s_r17c_validation",
+        "s_continuity",
+        "s_live_state"
+      ],
+      "current_evidence": "r17c 只有两条 local clone→entry candidate；serialization_begin=2、command entry=2，但 full stage/key chain=0，native execution/bridge submission/acceptance gate=false。",
+      "next_step": "逐阶段为同一 request/payload/header/object generation 建立独立 receipt，任何缺失阶段保持 unknown；不要用 sequence-only 或同帧地址替代授权。"
+    }
+  ],
+  "historical_reconciliations": [
+    {
+      "id": "c_state_semantics",
+      "topic": "response state 1/2 report scope",
+      "claims": [
+        {
+          "claim": "generic executor/previous branch audit maps state 2 to acceptance and state 1 to rejection",
+          "source": "s_delivery:20"
+        },
+        {
+          "claim": "older response report left Accept/Reject semantics unknown within its bounded scope",
+          "source": "s_response:19,49-52"
+        },
+        {
+          "claim": "newer branch map proves conditional semantics for variant!=0 via branch conditions and MILALLACCEPT/REJECT/localisation",
+          "source": "s_decision:11-18,27-43"
+        },
+        {
+          "claim": "fixture design encodes accept->2/reject->1",
+          "source": "s_ledger:750-765"
+        }
+      ],
+      "resolution": "resolved as a scope update: for variant!=0, static native semantics are state2=acceptance and state1=rejection; actual event, owner type, server receipt and disk/business persistence remain unknown; fixture mapping remains design-only"
+    },
+    {
+      "id": "c_sequence_identity",
+      "topic": "clone/entry sequence continuity",
+      "claims": [
+        {
+          "claim": "two r17c local CAS→POR entries retain source sequence after clone",
+          "source": "s_receive:7-11"
+        },
+        {
+          "claim": "transport assigns origin/sequence before ring enqueue and initial ffff/0/0 is a transfer marker",
+          "source": "s_transport:7-20"
+        }
+      ],
+      "resolution": "sequence is retained as one field in a local candidate key; it is not a proven identity, authorization or send receipt"
+    },
+    {
+      "id": "c_stage_scope",
+      "topic": "r17c stage-chain scope",
+      "claims": [
+        {
+          "claim": "local clone→entry candidate observed twice",
+          "source": "s_continuity:87-92,199-200"
+        },
+        {
+          "claim": "full stage/key chain zero and submission/acceptance false",
+          "source": "s_r17c_validation:13-23; s_continuity:384-386"
+        }
+      ],
+      "resolution": "retain as two local candidate edges only; no full chain label"
+    },
+    {
+      "id": "receive-queue-pointer-rea-20261014",
+      "topic": "receive +0x118 pointer and source wrapper extraction",
+      "claims": [
+        {
+          "claim": "older receive contract describes wrapper extraction via receive +0x118 in abbreviated form",
+          "source": "s_receive:5"
+        },
+        {
+          "claim": "bounded REA assembly distinguishes +0x118 queue-structure pointer from wrapper returned through current-frame stack out-pointer by RVA 0x1581120",
+          "source": "s_rea_receive_seeded:1"
+        }
+      ],
+      "resolution": "Clarify pointer levels in the object registry and document; preserve the original report. Exact native queue type, network source and authority remain unknown."
+    }
+  ],
+  "analysis_runs": [
+    {
+      "id": "rea-mcp-receive-20261014",
+      "mode": "MCP",
+      "status": "failed",
+      "operation": "analyze_function",
+      "procedure_va": "0x1415800c0",
+      "procedure_rva": "0x15800c0",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "rea_version": "6.4.0",
+      "ghidra_version": "12.1.4",
+      "java_heap": "512M",
+      "timeout_ms": 330000,
+      "error_code": "provider_timeout",
+      "successful_evidence_ids": [],
+      "raw_output": "work/runtime/rea-alliance-20261014/mcp-import-attempt.json",
+      "memory_peak_committed_bytes": 821698560,
+      "cleanup": {
+        "session_closed": true,
+        "recorded_analysis_processes_gone": true
+      },
+      "limitations": [
+        "First import/function query did not return successful analysis; no pseudocode observation was obtained."
+      ]
+    },
+    {
+      "id": "rea-cli-receive-20261014",
+      "mode": "official CLI",
+      "status": "failed",
+      "operation": "analyze_function",
+      "procedure_va": "0x1415800c0",
+      "procedure_rva": "0x15800c0",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "rea_version": "6.4.0",
+      "ghidra_version": "12.1.4",
+      "java_heap": "512M",
+      "timeout_ms": 900000,
+      "error_code": "provider_timeout",
+      "exit_code": 1,
+      "elapsed_seconds": 904.34,
+      "successful_evidence_ids": [],
+      "raw_output": "work/runtime/rea-alliance-20261014/receive-function.json",
+      "run_record": "work/runtime/rea-alliance-20261014/retry-run.json",
+      "memory_peak_committed_bytes": 866865152,
+      "cleanup": {
+        "recorded_analysis_processes_gone": true
+      },
+      "limitations": [
+        "Longer startup deadline did not resolve the first import/function-query timeout; no successful Evidence."
+      ]
+    },
+    {
+      "id": "rea-local-seeded-receive-20261014",
+      "mode": "official CLI with project process-local adapter",
+      "status": "succeeded",
+      "operation": "analyze_function",
+      "procedure_va": "0x1415800c0",
+      "procedure_rva": "0x15800c0",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "rea_version": "6.4.0",
+      "ghidra_version": "12.1.4",
+      "java_heap": "512M",
+      "analyzer_preset": "eu4-declared-seeds-pdata-noanalysis-v2",
+      "declared_nodes": [
+        "fn.receive.reconstruct",
+        "fn.wrapper.clone"
+      ],
+      "adapter_sha256": "deee361c63b67e12360d94d49a7f9da67f9da5e048c74195c7aab6bc27e8fec8",
+      "decode_script_sha256": "8456416282b0830f3c0a9d1b9bfeb061e674099fb08d9f75cc78828e06f2b071",
+      "declared_ranges_sha256": "e116128b7e07d935f8b9094c035f06657f63e7250d6ad7c6aa8b9a68166d37aa",
+      "seed_file_sha256": "10cd5251291706bed8ae252b60f262f0fa1ba2426d818c345b59a570c50ec816",
+      "canonical_seed_sha256": "609be0d49bf9832f8f6da98ca1a9ea4958379df886f4b2534ca0de62ed6f2b87",
+      "analysis_profile_digest": "7699edde0cc12768880468dcbac12aa6701092773ba5224c1aec6cf720bb371f",
+      "timeout_ms": 180000,
+      "exit_code": 0,
+      "elapsed_seconds": 38.14,
+      "successful_evidence_ids": [
+        "ev_6062bf4522b8b95a026fe3359d8b9d87ea83a1bacab95e31cc4b7f221770f61b"
+      ],
+      "raw_output": "work/runtime/rea-diagnostics-20261014/seeded-receive-v3/evidence.json",
+      "run_record": "work/runtime/rea-diagnostics-20261014/seeded-receive-v3/run.json",
+      "memory_peak_committed_bytes": 772653056,
+      "cleanup": {
+        "recorded_analysis_processes_gone": true
+      },
+      "limitations": [
+        "Only receive was queried; declaring wrapper.clone does not establish its successful dossier.",
+        "No global auto-analysis; global xrefs, caller graph, types and undeclared function bodies are incomplete.",
+        "PE unwind range is caller-selected shipped metadata, not complete semantic C++ function/ABI proof.",
+        "Static function evidence does not add a game runtime/business acceptance."
+      ]
+    },
+    {
+      "id": "ghidra-full-default-analysis-20261014",
+      "mode": "Ghidra headless persistent project",
+      "status": "succeeded",
+      "operation": "default_auto_analysis",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "ghidra_version": "12.1.4",
+      "java_heap": "512M",
+      "max_cpu": 2,
+      "process_memory_limit_bytes": 1073741824,
+      "analysis_budget_seconds": 7200,
+      "analysis_profile": "ghidra-default-auto-analysis",
+      "project_name": "EU4Full",
+      "program": "eu4.exe",
+      "cache": "work/runtime/ghidra-full/b23fa0e1f698d31b-20261014T054913Z-6dda97",
+      "latest_pointer": "work/runtime/ghidra-full/latest.json",
+      "build_manifest_sha256": "de1c738fa2bc9027ceacadabb7828d9890f5f9ff57ec4cde60494968f927333a",
+      "analysis_status_sha256": "acac9ec68f4b1e66fdb7f47126566c3f55aaca6791645eb40d2e9f5cd1cc0827",
+      "database_sha256": "8eec1cad93cce37d2f958c100570550bc7212c5aa86b92b7cf03950f85a83161",
+      "import_exit_code": 0,
+      "analysis_exit_code": 0,
+      "exit_code": 0,
+      "reason": "completed",
+      "import_elapsed_seconds": 86.02,
+      "analysis_elapsed_seconds": 3426.28,
+      "elapsed_seconds": 3426.28,
+      "memory_peak_committed_bytes": 854487040,
+      "function_count": 65423,
+      "instruction_count": 6662700,
+      "defined_data_count": 438584,
+      "symbol_count": 484673,
+      "analysis_timed_out": false,
+      "default_auto_analysis_completed": true,
+      "source_ids": [
+        "s_ghidra_full_build",
+        "s_ghidra_full_analysis_status"
+      ],
+      "successful_evidence_ids": [],
+      "raw_output": "work/runtime/ghidra-full/b23fa0e1f698d31b-20261014T054913Z-6dda97/analysis-console.log",
+      "run_record": "work/runtime/ghidra-full/b23fa0e1f698d31b-20261014T054913Z-6dda97/build.json",
+      "status_report": "work/runtime/ghidra-full/b23fa0e1f698d31b-20261014T054913Z-6dda97/analysis-status.json",
+      "save_confirmation": "Save succeeded for processed file: /eu4.exe",
+      "cleanup": {
+        "recorded_analysis_processes_gone": true,
+        "pids": [
+          45524,
+          59700
+        ],
+        "project_saved": true,
+        "latest_pointer_published": true
+      },
+      "limitations": [
+        "The persistent project is a completed default static-analysis database; it does not mean every function was batch-decompiled or that all game semantics were understood.",
+        "Indirect calls, semantic types, ABI details and runtime behavior remain unknown.",
+        "The subsequent function queries use the completed project read-only and do not rerun analysis."
+      ]
+    },
+    {
+      "mode": "official CLI with persistent project process-local adapter",
+      "status": "succeeded",
+      "operation": "analyze_function",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "rea_version": "6.4.0",
+      "ghidra_version": "12.1.4",
+      "java_heap": "512M",
+      "process_memory_limit_bytes": 1073741824,
+      "timeout_ms": 180000,
+      "analyzer_preset": "eu4-persistent-default-analysis-v1",
+      "analysis_profile_digest": "b0cb1a440ffe654cdb6c8d5c62e7f6ce6a5b45b422ea7bce2096e5af759482bb",
+      "adapter_sha256": "93620e986ea9ea17f5b6a8e56a5077772af0090a8d0eb467019aea40d38a689d",
+      "completed_manifest_sha256": "de1c738fa2bc9027ceacadabb7828d9890f5f9ff57ec4cde60494968f927333a",
+      "completed_database_sha256": "8eec1cad93cce37d2f958c100570550bc7212c5aa86b92b7cf03950f85a83161",
+      "query_reanalysis": false,
+      "database_mutation": "read-only-no-save",
+      "exit_code": 0,
+      "reason": "completed",
+      "cache": "work/runtime/ghidra-full/b23fa0e1f698d31b-20261014T054913Z-6dda97",
+      "latest_pointer": "work/runtime/ghidra-full/latest.json",
+      "database_unchanged": true,
+      "cleanup": {
+        "recorded_analysis_processes_gone": true,
+        "database_unchanged": true,
+        "cached_java_pid": 58244
+      },
+      "limitations": [
+        "The query reads the completed default-analysis database without rerunning analysis.",
+        "Indirect calls, semantic types, ABI details and runtime behavior remain unknown.",
+        "This is read-only function Evidence and does not establish game runtime authority or business acceptance.",
+        "Evidence is attached only to fn.receive.reconstruct."
+      ],
+      "id": "rea-cache-receive-20261014",
+      "procedure_va": "0x1415800c0",
+      "procedure_rva": "0x15800c0",
+      "elapsed_seconds": 30.8,
+      "memory_peak_committed_bytes": 419065856,
+      "successful_evidence_ids": [
+        "ev_91f5176ff75ebd94ee4d4923c4243832da5041ab5ba46d8870ec4203aa8a38a0"
+      ],
+      "source_ids": [
+        "s_rea_cache_receive_evidence",
+        "s_rea_cache_receive_run"
+      ],
+      "raw_output": "work/runtime/rea-diagnostics-20261014/cache-receive/evidence.json",
+      "run_record": "work/runtime/rea-diagnostics-20261014/cache-receive/run.json"
+    },
+    {
+      "mode": "official CLI with persistent project process-local adapter",
+      "status": "succeeded",
+      "operation": "analyze_function",
+      "target_sha256": "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77",
+      "rea_version": "6.4.0",
+      "ghidra_version": "12.1.4",
+      "java_heap": "512M",
+      "process_memory_limit_bytes": 1073741824,
+      "timeout_ms": 180000,
+      "analyzer_preset": "eu4-persistent-default-analysis-v1",
+      "analysis_profile_digest": "b0cb1a440ffe654cdb6c8d5c62e7f6ce6a5b45b422ea7bce2096e5af759482bb",
+      "adapter_sha256": "93620e986ea9ea17f5b6a8e56a5077772af0090a8d0eb467019aea40d38a689d",
+      "completed_manifest_sha256": "de1c738fa2bc9027ceacadabb7828d9890f5f9ff57ec4cde60494968f927333a",
+      "completed_database_sha256": "8eec1cad93cce37d2f958c100570550bc7212c5aa86b92b7cf03950f85a83161",
+      "query_reanalysis": false,
+      "database_mutation": "read-only-no-save",
+      "exit_code": 0,
+      "reason": "completed",
+      "cache": "work/runtime/ghidra-full/b23fa0e1f698d31b-20261014T054913Z-6dda97",
+      "latest_pointer": "work/runtime/ghidra-full/latest.json",
+      "database_unchanged": true,
+      "cleanup": {
+        "recorded_analysis_processes_gone": true,
+        "database_unchanged": true,
+        "cached_java_pid": 68484
+      },
+      "limitations": [
+        "The query reads the completed default-analysis database without rerunning analysis.",
+        "Indirect calls, semantic types, ABI details and runtime behavior remain unknown.",
+        "This is read-only function Evidence and does not establish game runtime authority or business acceptance.",
+        "Evidence is attached only to fn.wrapper.clone."
+      ],
+      "id": "rea-cache-wrapper-clone-20261014",
+      "procedure_va": "0x1404e8550",
+      "procedure_rva": "0x4e8550",
+      "elapsed_seconds": 26.41,
+      "memory_peak_committed_bytes": 460464128,
+      "successful_evidence_ids": [
+        "ev_3d3eb2d2b8d144c60ee12abdd05e880422124d2e765bd74d3a25c5f81cc948d2"
+      ],
+      "source_ids": [
+        "s_rea_cache_clone_evidence",
+        "s_rea_cache_clone_run"
+      ],
+      "raw_output": "work/runtime/rea-diagnostics-20261014/cache-clone/evidence.json",
+      "run_record": "work/runtime/rea-diagnostics-20261014/cache-clone/run.json"
+    }
+  ],
+  "limitations": [
+    "No new game runtime experiment in this pass.",
+    "Two local clone-to-entry samples do not establish a complete protocol or business chain.",
+    "RVA/profile observations do not authorize external native calls.",
+    "Stock REA full auto-analysis first queries timed out at 330 s and 900 s. A project-local seeded query later produced successful receive-function Evidence; those historical failures and the seeded route remain recorded in analysis_runs.",
+    "The persistent Ghidra cache completed default static auto-analysis and two cached function dossiers succeeded. This is a complete static database, not proof that every function was batch-decompiled or all game semantics were understood; indirect calls, semantic types, ABI details and runtime behavior remain unknown."
+  ]
+}

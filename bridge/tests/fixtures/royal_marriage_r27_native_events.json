@@ -1,0 +1,91 @@
+{
+  "fixture_version": 1,
+  "description": "Three observed native events used by Royal-marriage bridge contract tests; runtime logs are not required at test time.",
+  "events": [
+    {
+      "fixture_id": "r27e_rejection_submission",
+      "source_path": "work/runtime/diplomacy-query-20261015-r27-royal-inbound-e/inbound-response-193457d7f93247dda4cd363eae94feb4/native-events.jsonl",
+      "source_file_sha256": "648cc5f323954e59e079da5a3270cb04985ea95203681135e52a77c9b5f028c7",
+      "event_sha256": "977630dc098ff85b84a2eff9b7d69cfeb1ffc8914a50412f32116c57cef06d8f",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_alliance_submission_result",
+        "request_id": "r27e_reject_sav_002",
+        "session_id": "41308-1dd5c6283ad1d47",
+        "action_id": "offer_royal_marriage",
+        "actor": "SAV",
+        "recipient": "FRA",
+        "phase": "reject",
+        "date_raw": 56459880,
+        "submitted": true,
+        "native_queue_verified": true,
+        "transport_ring": true,
+        "native_origin": 65535,
+        "native_flags": 0,
+        "native_sequence": 17
+      }
+    },
+    {
+      "fixture_id": "r27e_rejection_response",
+      "source_path": "work/runtime/diplomacy-query-20261015-r27-royal-inbound-e/inbound-response-193457d7f93247dda4cd363eae94feb4/native-events.jsonl",
+      "source_file_sha256": "648cc5f323954e59e079da5a3270cb04985ea95203681135e52a77c9b5f028c7",
+      "event_sha256": "ce9debbe6c0d22d0326895126cbfe9f579e56391b8ca31a14eed6cd014510579",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_alliance_response_result",
+        "request_id": "r27e_reject_sav_002",
+        "session_id": "41308-1dd5c6283ad1d47",
+        "action_id": "offer_royal_marriage",
+        "actor": "SAV",
+        "recipient": "FRA",
+        "phase": "reject",
+        "date_raw": 56459880,
+        "outcome": "rejected",
+        "native_state": 1,
+        "family": "royal_marriage",
+        "royal_marriage_before": false,
+        "royal_marriage_after": false,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "pending_removed": true
+      }
+    },
+    {
+      "fixture_id": "r27l_pending_inactive_inspection",
+      "source_path": "work/runtime/diplomacy-query-20261015-r27-royal-daily-l/inbound-response-64257d2ccc964c0bb5aa795383638751/native-events.jsonl",
+      "source_file_sha256": "e23a103b848dc7dc51762e80c625fc584149eab2726e1adad43abff5e6e80756",
+      "event_sha256": "d310f500a993e5976143892d2ea9556fa50e7c90b525908d5d3a9dd4024ba5f1",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_alliance_inbound_inspection",
+        "query_id": "inbound_inspect_d60ec923c3ca4ebd994c8fe9f71bd61e",
+        "session_id": "40124-1dd5c6c46de7945",
+        "action_id": "offer_royal_marriage",
+        "family": "royal_marriage",
+        "extra60": 0,
+        "actor": "PRO",
+        "mirror": "PRO",
+        "recipient": "FRA",
+        "phase": "reject",
+        "native_proposal_id": 1,
+        "date_raw": 56460120,
+        "pending_active": false,
+        "decision_country": "FRA",
+        "decision_country_verified": false,
+        "native_validity": false,
+        "response_rules_complete": false,
+        "royal_marriage_before": false,
+        "native_current_royal_marriage": false,
+        "native_current_royal_marriage_readable": false,
+        "date28": 0,
+        "date2c": 0,
+        "envoy30": 0,
+        "state34": 0,
+        "variant38": 0,
+        "token3c": 0,
+        "requested_decision": "reject",
+        "reason": "PENDING_NOT_ACTIVE"
+      }
+    }
+  ]
+}

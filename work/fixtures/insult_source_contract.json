@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "family": "insult",
+  "actions": {
+    "send_insult": {
+      "phase": "initiate",
+      "variant38": 1,
+      "state34": 0,
+      "parameter40": -1,
+      "response": false
+    },
+    "scornful_insult": {
+      "phase": "initiate",
+      "variant38": 1,
+      "state34": 0,
+      "parameter40_min": 0,
+      "parameter40_max": 2147483647,
+      "response": false
+    }
+  },
+  "payload": {
+    "extra60": 0,
+    "discriminator": 357,
+    "vtable_rva": 29882032,
+    "factory_selector": 10567
+  },
+  "generic_entry": {
+    "event": "diplomatic_command_observed",
+    "source_files": [
+      "alliance-execution.inc",
+      "diplomacy-observer-v10.cpp"
+    ],
+    "direct_payload_fields_are_optional_in_event": true,
+    "payload_binding": "generic command/action pointer equals clone target; family and parameter40 come from the same target payload",
+    "direct_payload_fields": [
+      "family", "extra60", "parameter40", "actor10", "mirror18",
+      "recipient20", "date28", "date2c", "envoy30", "state34",
+      "variant38", "proposal3c", "raw10", "raw38", "raw3c", "raw40",
+      "raw44", "callback_sequence", "action_id"
+    ]
+  },
+  "events": {
+    "submission": "native_alliance_submission_result",
+    "result": "native_diplomacy_insult_execution_result",
+    "authority_dispatch": "native_alliance_authority_test_dispatched",
+    "rejection": "native_alliance_execution_rejected"
+  },
+  "result": {
+    "native_state": 0,
+    "native_variant": 1,
+    "before_field": "insult_before",
+    "after_field": "insult_after",
+    "verified_fields": [
+      "execution_verified",
+      "request_binding_verified"
+    ],
+    "raw_fields": [
+      "opinion_modifier_before_raw",
+      "opinion_modifier_after_raw",
+      "prestige_before_raw",
+      "prestige_after_raw"
+    ]
+  },
+  "unauthorized": {
+    "reason": "UNAUTHORIZED_FRA_INSULT",
+    "submitted": false,
+    "authority_seed_created": false
+  }
+}

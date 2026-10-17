@@ -1,0 +1,2018 @@
+{
+  "description": "Native Improve task evidence; stop retains a returning diplomat while native task_after is false.",
+  "cases": {
+    "start": {
+      "source": "work/runtime/diplomacy-query-20261015-r28-improve-b/improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580/report.json",
+      "source_sha256": "5916261d7acd71f35de2967139090725b553efe56aee6df76800211626035f44",
+      "action_id": "improve_relations",
+      "native_result": {
+        "action_id": "improve_relations",
+        "actor": "FRA",
+        "date_raw": 56459880,
+        "event": "native_diplomacy_task_execution_result",
+        "execution_verified": true,
+        "family": "improve_relations",
+        "native_outcome": "executed",
+        "native_state": 0,
+        "native_variant": 1,
+        "outcome": "executed",
+        "phase": "initiate",
+        "recipient": "SAV",
+        "request_binding_verified": true,
+        "request_id": "r28b_improve_sav_001",
+        "task_after": true,
+        "task_before": false
+      },
+      "before": {
+        "control": {
+          "date_raw": 56459880,
+          "paused_flag": 1,
+          "player_slot": 189
+        },
+        "health": {
+          "complete": true,
+          "date_raw": 56459880,
+          "reasons": [],
+          "state_id": "33d4d13b442518992aa0f8bb094bf071398f3cc809b63db207a7364a1a0a5ea8",
+          "status": "ready"
+        },
+        "queries": {
+          "improve_relations": {
+            "acceptance": {
+              "applicability": "not_applicable",
+              "complete": true,
+              "details_available": false,
+              "items": [],
+              "native_total": null,
+              "predicted_response": "not_applicable",
+              "prediction_available": false,
+              "scale_verified": false,
+              "unit": null
+            },
+            "action_id": "improve_relations",
+            "actor": "FRA",
+            "authorization": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                  "complete": true,
+                  "source": "installation_capability",
+                  "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+                }
+              ],
+              "status": "available"
+            },
+            "contract_version": 1,
+            "costs": {
+              "complete": false,
+              "items": [],
+              "status": "unknown"
+            },
+            "decision_country": null,
+            "decision_country_verified": false,
+            "interface_support": {
+              "complete": false,
+              "execute": "native_improve_relations_submission",
+              "query": "partial_native_rules"
+            },
+            "legality": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_INITIATION_RULES_TRUE",
+                  "complete": true,
+                  "source": "native_rule",
+                  "text": "原生外交列表选择、按钮发起条件及执行有效性检查均通过。"
+                }
+              ],
+              "status": "available"
+            },
+            "native_diagnostic": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "改善你与这个国家的关系。",
+              "text_decoded": true,
+              "text_encoding_verified": false,
+              "truncated": false
+            },
+            "native_identifier": "improve_relations",
+            "native_rule_components": {
+              "common_action_gate": true,
+              "complete": true,
+              "executor_validity": true,
+              "full_rules_complete": true,
+              "initiation_gate": true,
+              "native_visibility": true,
+              "specific_validity_query_called": true,
+              "tooltip_gate": true,
+              "ui_action_selection": true,
+              "ui_enabled_gate_checked": true,
+              "ui_enabled_gate_verified": true,
+              "ui_selection_checked": true
+            },
+            "parameters": {
+              "actual": null,
+              "candidates": null,
+              "complete": false,
+              "requested": {}
+            },
+            "phase": "initiate",
+            "recipient": "SAV",
+            "requested_decision_country": "FRA",
+            "resources": {
+              "diplomats": {
+                "allocation_verified": false,
+                "availability_verified": true,
+                "available_count": 1,
+                "complete": false,
+                "native_requirement": true,
+                "source": "native_rule"
+              }
+            },
+            "session": {
+              "complete": true,
+              "date_raw": 56459880,
+              "reasons": [],
+              "state_id": "33d4d13b442518992aa0f8bb094bf071398f3cc809b63db207a7364a1a0a5ea8",
+              "status": "ready"
+            },
+            "visibility": {
+              "complete": true,
+              "status": "visible"
+            }
+          },
+          "stop_improving_relations": {
+            "acceptance": {
+              "applicability": "not_applicable",
+              "complete": true,
+              "details_available": false,
+              "items": [],
+              "native_total": null,
+              "predicted_response": "not_applicable",
+              "prediction_available": false,
+              "scale_verified": false,
+              "unit": null
+            },
+            "action_id": "stop_improving_relations",
+            "actor": "FRA",
+            "authorization": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                  "complete": true,
+                  "source": "installation_capability",
+                  "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+                }
+              ],
+              "status": "available"
+            },
+            "contract_version": 1,
+            "costs": {
+              "complete": false,
+              "items": [],
+              "status": "unknown"
+            },
+            "decision_country": null,
+            "decision_country_verified": false,
+            "interface_support": {
+              "complete": false,
+              "execute": "native_improve_relations_submission",
+              "query": "partial_native_rules"
+            },
+            "legality": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+                },
+                {
+                  "code": "NATIVE_VALIDITY_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "停止改善关系的原生合法性检查返回false。"
+                },
+                {
+                  "code": "NATIVE_INITIATION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生发起时序或待处理请求检查返回false。"
+                },
+                {
+                  "code": "NATIVE_ACTION_NOT_VISIBLE",
+                  "complete": true,
+                  "source": "native_rule",
+                  "text": "原生外交列表在当前双方关系中不选择此动作变体。"
+                }
+              ],
+              "status": "unavailable"
+            },
+            "native_diagnostic": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§R- 未与萨伏依改善关系。§!\n",
+              "text_decoded": true,
+              "text_encoding_verified": false,
+              "truncated": false
+            },
+            "native_identifier": "improve_relations",
+            "native_rule_components": {
+              "common_action_gate": false,
+              "complete": true,
+              "executor_validity": false,
+              "full_rules_complete": true,
+              "initiation_gate": false,
+              "native_visibility": false,
+              "specific_validity_query_called": true,
+              "tooltip_gate": false,
+              "ui_action_selection": false,
+              "ui_enabled_gate_checked": true,
+              "ui_enabled_gate_verified": true,
+              "ui_selection_checked": true
+            },
+            "parameters": {
+              "actual": null,
+              "candidates": null,
+              "complete": false,
+              "requested": {}
+            },
+            "phase": "initiate",
+            "recipient": "SAV",
+            "requested_decision_country": "FRA",
+            "resources": {
+              "diplomats": {
+                "allocation_verified": false,
+                "availability_verified": true,
+                "available_count": 1,
+                "complete": false,
+                "native_requirement": false,
+                "source": "native_rule"
+              }
+            },
+            "session": {
+              "complete": true,
+              "date_raw": 56459880,
+              "reasons": [],
+              "state_id": "0da6be338fbc8eb409f11ef445fe67aa5b8a61244119b405bdd135726280144f",
+              "status": "ready"
+            },
+            "visibility": {
+              "complete": true,
+              "status": "hidden"
+            }
+          }
+        },
+        "diplomats_snapshot": {
+          "countries": [
+            {
+              "ai_queue": [],
+              "ai_queue_count_raw": 0,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 1,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201e1e36cf0",
+                  "raw_20": 56457072,
+                  "raw_24": 56457192,
+                  "raw_2c": 5,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 0,
+                  "raw_recipient_88": "0x100007000474d41",
+                  "record": "0x201d49e2cb0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201e1e36b10",
+                  "raw_20": 56457312,
+                  "raw_24": 56457360,
+                  "raw_2c": 2,
+                  "raw_action_type_a8": 13176,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 1,
+                  "raw_recipient_88": "0x100007500525542",
+                  "record": "0x201d49dbab0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201e1e16f40",
+                  "raw_20": 56458080,
+                  "raw_24": 56458320,
+                  "raw_2c": 10,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 2,
+                  "raw_recipient_88": "0x10000ce00504150",
+                  "record": "0x201c39eb680",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201e1e16630",
+                  "raw_id_44": 3,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x100007a00415246",
+              "last_sent_raw": 43808760,
+              "slot": 122,
+              "tag": "FRA"
+            },
+            {
+              "ai_queue": [],
+              "ai_queue_count_raw": 0,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 1,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201d4b050d0",
+                  "raw_20": 56457096,
+                  "raw_24": 56457240,
+                  "raw_2c": 6,
+                  "raw_action_type_a8": 13176,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 0,
+                  "raw_recipient_88": "0x100007500525542",
+                  "record": "0x201d49de9b0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201d4b045e0",
+                  "raw_20": 56459400,
+                  "raw_24": 56459520,
+                  "raw_2c": 5,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 1,
+                  "raw_recipient_88": "0x100002f0049454c",
+                  "record": "0x201d42dd850",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201d4b04220",
+                  "raw_20": 56457912,
+                  "raw_24": 56458224,
+                  "raw_2c": 13,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 2,
+                  "raw_recipient_88": "0x10000ce00504150",
+                  "record": "0x201d426fd10",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201d4b04d10",
+                  "raw_id_44": 3,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x100002e00474e45",
+              "last_sent_raw": 43808760,
+              "slot": 46,
+              "tag": "ENG"
+            },
+            {
+              "ai_queue": [
+                {
+                  "is_peace_action": false,
+                  "pointer": "0x201d55ff790",
+                  "vtable_rva": "0x1c80720"
+                }
+              ],
+              "ai_queue_count_raw": 1,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 3,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201d55ff6a0",
+                  "raw_id_44": 0,
+                  "record": "0x0"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201d55fed90",
+                  "raw_id_44": 1,
+                  "record": "0x0"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201d55ff6f0",
+                  "raw_id_44": 2,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x10000bd00524f50",
+              "last_sent_raw": 43808760,
+              "slot": 189,
+              "tag": "POR"
+            }
+          ],
+          "current_raw_date": 56459880,
+          "native_methods_invoked": false,
+          "pid": 27048,
+          "player_slot": 189,
+          "read_only": true
+        },
+        "diplomat_snapshot_completeness": {
+          "checks": {
+            "countries_list": true,
+            "no_diplomacy_vector_overflow": true,
+            "no_read_error": true,
+            "queue_truncated_false": true
+          },
+          "complete": true
+        },
+        "probes": {
+          "alliance_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_read_error": true,
+                "queue_truncated_false": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\before\\probes\\alliance_state.json",
+            "snapshot_sha256": {
+              "bytes": 1074,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\before\\probes\\alliance_state.json",
+              "sha256": "a5d27175d735d7cacde589618994c199be0b6674c9e04faea857e40c53913440"
+            },
+            "status": "ok"
+          },
+          "control_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "date_present": true,
+                "player_slot_present": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\before\\probes\\control_state.json",
+            "snapshot_sha256": {
+              "bytes": 450,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\before\\probes\\control_state.json",
+              "sha256": "e445e3a8f45ee5e58d09fce80e799e5b53eb18fd57c637e77c238630e19884ca"
+            },
+            "status": "ok"
+          },
+          "diplomats": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_diplomacy_vector_overflow": true,
+                "no_read_error": true,
+                "queue_truncated_false": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\before\\probes\\diplomats.json",
+            "snapshot_sha256": {
+              "bytes": 4603,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\before\\probes\\diplomats.json",
+              "sha256": "d1caf3906e6ae242d726e1bb0506f914e1164382692e9ed02c0ac87cf86f7a7c"
+            },
+            "status": "ok"
+          },
+          "war_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_read_error": true,
+                "pairs_are_lists": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\before\\probes\\war_state.json",
+            "snapshot_sha256": {
+              "bytes": 393,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\before\\probes\\war_state.json",
+              "sha256": "6eb6d39ff249e47010fe639c6cb1ffd4b645c2aa76102cff67bab6c0accf5b16"
+            },
+            "status": "ok"
+          }
+        }
+      },
+      "after": {
+        "control": {
+          "date_raw": 56459880,
+          "paused_flag": 1,
+          "player_slot": 189
+        },
+        "health": {
+          "complete": true,
+          "date_raw": 56459880,
+          "reasons": [],
+          "state_id": "e5a1152cba7478162b28705d57df1f8f93ce2354de619af284ebf3e5f556b9f1",
+          "status": "ready"
+        },
+        "queries": {
+          "improve_relations": {
+            "acceptance": {
+              "applicability": "not_applicable",
+              "complete": true,
+              "details_available": false,
+              "items": [],
+              "native_total": null,
+              "predicted_response": "not_applicable",
+              "prediction_available": false,
+              "scale_verified": false,
+              "unit": null
+            },
+            "action_id": "improve_relations",
+            "actor": "FRA",
+            "authorization": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                  "complete": true,
+                  "source": "installation_capability",
+                  "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+                }
+              ],
+              "status": "available"
+            },
+            "contract_version": 1,
+            "costs": {
+              "complete": false,
+              "items": [],
+              "status": "unknown"
+            },
+            "decision_country": null,
+            "decision_country_verified": false,
+            "interface_support": {
+              "complete": false,
+              "execute": "native_improve_relations_submission",
+              "query": "partial_native_rules"
+            },
+            "legality": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+                },
+                {
+                  "code": "NATIVE_VALIDITY_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "改善关系的原生合法性检查返回false。"
+                },
+                {
+                  "code": "NATIVE_INITIATION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生发起时序或待处理请求检查返回false。"
+                },
+                {
+                  "code": "NATIVE_ACTION_NOT_VISIBLE",
+                  "complete": true,
+                  "source": "native_rule",
+                  "text": "原生外交列表在当前双方关系中不选择此动作变体。"
+                }
+              ],
+              "status": "unavailable"
+            },
+            "native_diagnostic": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§R- 正与萨伏依改善关系。§!\n",
+              "text_decoded": true,
+              "text_encoding_verified": false,
+              "truncated": false
+            },
+            "native_identifier": "improve_relations",
+            "native_rule_components": {
+              "common_action_gate": false,
+              "complete": true,
+              "executor_validity": false,
+              "full_rules_complete": true,
+              "initiation_gate": false,
+              "native_visibility": false,
+              "specific_validity_query_called": true,
+              "tooltip_gate": false,
+              "ui_action_selection": false,
+              "ui_enabled_gate_checked": true,
+              "ui_enabled_gate_verified": true,
+              "ui_selection_checked": true
+            },
+            "parameters": {
+              "actual": null,
+              "candidates": null,
+              "complete": false,
+              "requested": {}
+            },
+            "phase": "initiate",
+            "recipient": "SAV",
+            "requested_decision_country": "FRA",
+            "resources": {
+              "diplomats": {
+                "allocation_verified": false,
+                "availability_verified": true,
+                "available_count": 0,
+                "complete": false,
+                "native_requirement": true,
+                "source": "native_rule"
+              }
+            },
+            "session": {
+              "complete": true,
+              "date_raw": 56459880,
+              "reasons": [],
+              "state_id": "0f482067573a526fdf56d8f987dae56c2e93866de6df79c3728f39f073c30327",
+              "status": "ready"
+            },
+            "visibility": {
+              "complete": true,
+              "status": "hidden"
+            }
+          },
+          "stop_improving_relations": {
+            "acceptance": {
+              "applicability": "not_applicable",
+              "complete": true,
+              "details_available": false,
+              "items": [],
+              "native_total": null,
+              "predicted_response": "not_applicable",
+              "prediction_available": false,
+              "scale_verified": false,
+              "unit": null
+            },
+            "action_id": "stop_improving_relations",
+            "actor": "FRA",
+            "authorization": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                  "complete": true,
+                  "source": "installation_capability",
+                  "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+                }
+              ],
+              "status": "available"
+            },
+            "contract_version": 1,
+            "costs": {
+              "complete": false,
+              "items": [],
+              "status": "unknown"
+            },
+            "decision_country": null,
+            "decision_country_verified": false,
+            "interface_support": {
+              "complete": false,
+              "execute": "native_improve_relations_submission",
+              "query": "partial_native_rules"
+            },
+            "legality": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_INITIATION_RULES_TRUE",
+                  "complete": true,
+                  "source": "native_rule",
+                  "text": "原生外交列表选择、按钮发起条件及执行有效性检查均通过。"
+                }
+              ],
+              "status": "available"
+            },
+            "native_diagnostic": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§Y法兰西§W正在提高§Y萨伏依§W对他们的好感度（每月§Y6.33§W）。\n好感度越接近§Y0§!，效率越高。\n让 朱韦纳尔 德于尔桑: §G+20.0%§!\n运气: §G+25.0%§!\n王室联姻数量: §G+6.0%§!\n威望: §G+4.2%§!\nAI（极难）: §G+50.0%§!\n\n这段关系能够再提升§G93§!，预计于§Y1446\u000f5月§!完成。\n\n停止改善关系并召回外交官",
+              "text_decoded": true,
+              "text_encoding_verified": false,
+              "truncated": false
+            },
+            "native_identifier": "improve_relations",
+            "native_rule_components": {
+              "common_action_gate": true,
+              "complete": true,
+              "executor_validity": true,
+              "full_rules_complete": true,
+              "initiation_gate": true,
+              "native_visibility": true,
+              "specific_validity_query_called": true,
+              "tooltip_gate": true,
+              "ui_action_selection": true,
+              "ui_enabled_gate_checked": true,
+              "ui_enabled_gate_verified": true,
+              "ui_selection_checked": true
+            },
+            "parameters": {
+              "actual": null,
+              "candidates": null,
+              "complete": false,
+              "requested": {}
+            },
+            "phase": "initiate",
+            "recipient": "SAV",
+            "requested_decision_country": "FRA",
+            "resources": {
+              "diplomats": {
+                "allocation_verified": false,
+                "availability_verified": true,
+                "available_count": 0,
+                "complete": false,
+                "native_requirement": false,
+                "source": "native_rule"
+              }
+            },
+            "session": {
+              "complete": true,
+              "date_raw": 56459880,
+              "reasons": [],
+              "state_id": "0f482067573a526fdf56d8f987dae56c2e93866de6df79c3728f39f073c30327",
+              "status": "ready"
+            },
+            "visibility": {
+              "complete": true,
+              "status": "visible"
+            }
+          }
+        },
+        "diplomats_snapshot": {
+          "countries": [
+            {
+              "ai_queue": [],
+              "ai_queue_count_raw": 0,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 0,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201e1e36cf0",
+                  "raw_20": 56457072,
+                  "raw_24": 56457192,
+                  "raw_2c": 5,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 0,
+                  "raw_recipient_88": "0x100007000474d41",
+                  "record": "0x201d49e2cb0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201e1e36b10",
+                  "raw_20": 56457312,
+                  "raw_24": 56457360,
+                  "raw_2c": 2,
+                  "raw_action_type_a8": 13176,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 1,
+                  "raw_recipient_88": "0x100007500525542",
+                  "record": "0x201d49dbab0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201e1e16f40",
+                  "raw_20": 56458080,
+                  "raw_24": 56458320,
+                  "raw_2c": 10,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 2,
+                  "raw_recipient_88": "0x10000ce00504150",
+                  "record": "0x201c39eb680",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201e1e16630",
+                  "raw_20": 56459880,
+                  "raw_24": 56459976,
+                  "raw_2c": 4,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 3,
+                  "raw_recipient_88": "0x10000d200564153",
+                  "record": "0x20230cb7ec0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                }
+              ],
+              "handle": "0x100007a00415246",
+              "last_sent_raw": 43808760,
+              "slot": 122,
+              "tag": "FRA"
+            },
+            {
+              "ai_queue": [],
+              "ai_queue_count_raw": 0,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 1,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201d4b050d0",
+                  "raw_20": 56457096,
+                  "raw_24": 56457240,
+                  "raw_2c": 6,
+                  "raw_action_type_a8": 13176,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 0,
+                  "raw_recipient_88": "0x100007500525542",
+                  "record": "0x201d49de9b0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201d4b045e0",
+                  "raw_20": 56459400,
+                  "raw_24": 56459520,
+                  "raw_2c": 5,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 1,
+                  "raw_recipient_88": "0x100002f0049454c",
+                  "record": "0x201d42dd850",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x201d4b04220",
+                  "raw_20": 56457912,
+                  "raw_24": 56458224,
+                  "raw_2c": 13,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 2,
+                  "raw_recipient_88": "0x10000ce00504150",
+                  "record": "0x201d426fd10",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201d4b04d10",
+                  "raw_id_44": 3,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x100002e00474e45",
+              "last_sent_raw": 43808760,
+              "slot": 46,
+              "tag": "ENG"
+            },
+            {
+              "ai_queue": [
+                {
+                  "is_peace_action": false,
+                  "pointer": "0x201d55ff790",
+                  "vtable_rva": "0x1c80720"
+                }
+              ],
+              "ai_queue_count_raw": 1,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 3,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201d55ff6a0",
+                  "raw_id_44": 0,
+                  "record": "0x0"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201d55fed90",
+                  "raw_id_44": 1,
+                  "record": "0x0"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x201d55ff6f0",
+                  "raw_id_44": 2,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x10000bd00524f50",
+              "last_sent_raw": 43808760,
+              "slot": 189,
+              "tag": "POR"
+            }
+          ],
+          "current_raw_date": 56459880,
+          "native_methods_invoked": false,
+          "pid": 27048,
+          "player_slot": 189,
+          "read_only": true
+        },
+        "diplomat_snapshot_completeness": {
+          "checks": {
+            "countries_list": true,
+            "no_diplomacy_vector_overflow": true,
+            "no_read_error": true,
+            "queue_truncated_false": true
+          },
+          "complete": true
+        },
+        "probes": {
+          "alliance_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_read_error": true,
+                "queue_truncated_false": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\after\\probes\\alliance_state.json",
+            "snapshot_sha256": {
+              "bytes": 1074,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\after\\probes\\alliance_state.json",
+              "sha256": "a5d27175d735d7cacde589618994c199be0b6674c9e04faea857e40c53913440"
+            },
+            "status": "ok"
+          },
+          "control_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "date_present": true,
+                "player_slot_present": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\after\\probes\\control_state.json",
+            "snapshot_sha256": {
+              "bytes": 450,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\after\\probes\\control_state.json",
+              "sha256": "e445e3a8f45ee5e58d09fce80e799e5b53eb18fd57c637e77c238630e19884ca"
+            },
+            "status": "ok"
+          },
+          "diplomats": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_diplomacy_vector_overflow": true,
+                "no_read_error": true,
+                "queue_truncated_false": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\after\\probes\\diplomats.json",
+            "snapshot_sha256": {
+              "bytes": 4884,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\after\\probes\\diplomats.json",
+              "sha256": "0a3d4ffba24001b7f3852f37298a591521e4230b7099683177853a978d83eb12"
+            },
+            "status": "ok"
+          },
+          "war_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_read_error": true,
+                "pairs_are_lists": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\after\\probes\\war_state.json",
+            "snapshot_sha256": {
+              "bytes": 393,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-b\\improve-relations-execution-a960cdb03c8b4405a4ba275dadad4580\\after\\probes\\war_state.json",
+              "sha256": "6eb6d39ff249e47010fe639c6cb1ffd4b645c2aa76102cff67bab6c0accf5b16"
+            },
+            "status": "ok"
+          }
+        }
+      }
+    },
+    "stop": {
+      "source": "work/runtime/diplomacy-query-20261015-r28-improve-c-active-reload/improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51/report.json",
+      "source_sha256": "5d447f267812b4a81b809a56d77d947cb002f7eeef35223b8374e8595921abce",
+      "action_id": "stop_improving_relations",
+      "native_result": {
+        "action_id": "stop_improving_relations",
+        "actor": "FRA",
+        "date_raw": 56460720,
+        "event": "native_diplomacy_task_execution_result",
+        "execution_verified": true,
+        "family": "improve_relations",
+        "native_outcome": "executed",
+        "native_state": 0,
+        "native_variant": 0,
+        "outcome": "executed",
+        "phase": "initiate",
+        "recipient": "SAV",
+        "request_binding_verified": true,
+        "request_id": "r28c_stop_improve_sav_001",
+        "task_after": false,
+        "task_before": true
+      },
+      "before": {
+        "control": {
+          "date_raw": 56460720,
+          "paused_flag": 1,
+          "player_slot": 189
+        },
+        "health": {
+          "complete": true,
+          "date_raw": 56460720,
+          "reasons": [],
+          "state_id": "0727282eef891fbd5844fc79caba856ad0b2187b0984c55618645b80c5a0eb39",
+          "status": "ready"
+        },
+        "queries": {
+          "improve_relations": {
+            "acceptance": {
+              "applicability": "not_applicable",
+              "complete": true,
+              "details_available": false,
+              "items": [],
+              "native_total": null,
+              "predicted_response": "not_applicable",
+              "prediction_available": false,
+              "scale_verified": false,
+              "unit": null
+            },
+            "action_id": "improve_relations",
+            "actor": "FRA",
+            "authorization": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                  "complete": true,
+                  "source": "installation_capability",
+                  "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+                }
+              ],
+              "status": "available"
+            },
+            "contract_version": 1,
+            "costs": {
+              "complete": false,
+              "items": [],
+              "status": "unknown"
+            },
+            "decision_country": null,
+            "decision_country_verified": false,
+            "interface_support": {
+              "complete": false,
+              "execute": "native_improve_relations_submission",
+              "query": "partial_native_rules"
+            },
+            "legality": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+                },
+                {
+                  "code": "NATIVE_VALIDITY_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "改善关系的原生合法性检查返回false。"
+                },
+                {
+                  "code": "NATIVE_INITIATION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生发起时序或待处理请求检查返回false。"
+                },
+                {
+                  "code": "NATIVE_ACTION_NOT_VISIBLE",
+                  "complete": true,
+                  "source": "native_rule",
+                  "text": "原生外交列表在当前双方关系中不选择此动作变体。"
+                }
+              ],
+              "status": "unavailable"
+            },
+            "native_diagnostic": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§R- 正与萨伏依改善关系。§!\n",
+              "text_decoded": true,
+              "text_encoding_verified": false,
+              "truncated": false
+            },
+            "native_identifier": "improve_relations",
+            "native_rule_components": {
+              "common_action_gate": false,
+              "complete": true,
+              "executor_validity": false,
+              "full_rules_complete": true,
+              "initiation_gate": false,
+              "native_visibility": false,
+              "specific_validity_query_called": true,
+              "tooltip_gate": false,
+              "ui_action_selection": false,
+              "ui_enabled_gate_checked": true,
+              "ui_enabled_gate_verified": true,
+              "ui_selection_checked": true
+            },
+            "parameters": {
+              "actual": null,
+              "candidates": null,
+              "complete": false,
+              "requested": {}
+            },
+            "phase": "initiate",
+            "recipient": "SAV",
+            "requested_decision_country": "FRA",
+            "resources": {
+              "diplomats": {
+                "allocation_verified": false,
+                "availability_verified": true,
+                "available_count": 0,
+                "complete": false,
+                "native_requirement": true,
+                "source": "native_rule"
+              }
+            },
+            "session": {
+              "complete": true,
+              "date_raw": 56460720,
+              "reasons": [],
+              "state_id": "463f5d4d1b7bf94acd6aba4f189ec54238cc54e25b985e981df93250a0f472c1",
+              "status": "ready"
+            },
+            "visibility": {
+              "complete": true,
+              "status": "hidden"
+            }
+          },
+          "stop_improving_relations": {
+            "acceptance": {
+              "applicability": "not_applicable",
+              "complete": true,
+              "details_available": false,
+              "items": [],
+              "native_total": null,
+              "predicted_response": "not_applicable",
+              "prediction_available": false,
+              "scale_verified": false,
+              "unit": null
+            },
+            "action_id": "stop_improving_relations",
+            "actor": "FRA",
+            "authorization": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                  "complete": true,
+                  "source": "installation_capability",
+                  "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+                }
+              ],
+              "status": "available"
+            },
+            "contract_version": 1,
+            "costs": {
+              "complete": false,
+              "items": [],
+              "status": "unknown"
+            },
+            "decision_country": null,
+            "decision_country_verified": false,
+            "interface_support": {
+              "complete": false,
+              "execute": "native_improve_relations_submission",
+              "query": "partial_native_rules"
+            },
+            "legality": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_INITIATION_RULES_TRUE",
+                  "complete": true,
+                  "source": "native_rule",
+                  "text": "原生外交列表选择、按钮发起条件及执行有效性检查均通过。"
+                }
+              ],
+              "status": "available"
+            },
+            "native_diagnostic": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§Y法兰西§W正在提高§Y萨伏依§W对他们的好感度（每月§Y6.33§W）。\n好感度越接近§Y0§!，效率越高。\n让 朱韦纳尔 德于尔桑: §G+20.0%§!\n运气: §G+25.0%§!\n王室联姻数量: §G+6.0%§!\n威望: §G+4.2%§!\nAI（极难）: §G+50.0%§!\n\n这段关系能够再提升§G86§!，预计于§Y1446\u000f5月§!完成。\n\n停止改善关系并召回外交官",
+              "text_decoded": true,
+              "text_encoding_verified": false,
+              "truncated": false
+            },
+            "native_identifier": "improve_relations",
+            "native_rule_components": {
+              "common_action_gate": true,
+              "complete": true,
+              "executor_validity": true,
+              "full_rules_complete": true,
+              "initiation_gate": true,
+              "native_visibility": true,
+              "specific_validity_query_called": true,
+              "tooltip_gate": true,
+              "ui_action_selection": true,
+              "ui_enabled_gate_checked": true,
+              "ui_enabled_gate_verified": true,
+              "ui_selection_checked": true
+            },
+            "parameters": {
+              "actual": null,
+              "candidates": null,
+              "complete": false,
+              "requested": {}
+            },
+            "phase": "initiate",
+            "recipient": "SAV",
+            "requested_decision_country": "FRA",
+            "resources": {
+              "diplomats": {
+                "allocation_verified": false,
+                "availability_verified": true,
+                "available_count": 0,
+                "complete": false,
+                "native_requirement": false,
+                "source": "native_rule"
+              }
+            },
+            "session": {
+              "complete": true,
+              "date_raw": 56460720,
+              "reasons": [],
+              "state_id": "463f5d4d1b7bf94acd6aba4f189ec54238cc54e25b985e981df93250a0f472c1",
+              "status": "ready"
+            },
+            "visibility": {
+              "complete": true,
+              "status": "visible"
+            }
+          }
+        },
+        "diplomats_snapshot": {
+          "countries": [
+            {
+              "ai_queue": [],
+              "ai_queue_count_raw": 0,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 0,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0659400",
+                  "raw_20": 56457072,
+                  "raw_24": 56457192,
+                  "raw_2c": 5,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 0,
+                  "raw_recipient_88": "0x100007000474d41",
+                  "record": "0x22bbd644980",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0659b80",
+                  "raw_20": 56457312,
+                  "raw_24": 56457360,
+                  "raw_2c": 2,
+                  "raw_action_type_a8": 13176,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 1,
+                  "raw_recipient_88": "0x100007500525542",
+                  "record": "0x22bbd645e80",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0659e50",
+                  "raw_20": 56458080,
+                  "raw_24": 56458320,
+                  "raw_2c": 10,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 2,
+                  "raw_recipient_88": "0x10000ce00504150",
+                  "record": "0x22bbd640480",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0659680",
+                  "raw_20": 56459880,
+                  "raw_24": 56459976,
+                  "raw_2c": 4,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 3,
+                  "raw_recipient_88": "0x10000d200564153",
+                  "record": "0x22bbd646e80",
+                  "record_vtable_rva": "0x1c4b2b8"
+                }
+              ],
+              "handle": "0x100007a00415246",
+              "last_sent_raw": 43808760,
+              "slot": 122,
+              "tag": "FRA"
+            },
+            {
+              "ai_queue": [],
+              "ai_queue_count_raw": 0,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 1,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0669a80",
+                  "raw_20": 56457096,
+                  "raw_24": 56457240,
+                  "raw_2c": 6,
+                  "raw_action_type_a8": 13176,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 0,
+                  "raw_recipient_88": "0x100007500525542",
+                  "record": "0x22bbd644280",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0669c60",
+                  "raw_20": 56459400,
+                  "raw_24": 56459520,
+                  "raw_2c": 5,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 1,
+                  "raw_recipient_88": "0x100002f0049454c",
+                  "record": "0x22be5aa03c0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd066a520",
+                  "raw_20": 56457912,
+                  "raw_24": 56458224,
+                  "raw_2c": 13,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 2,
+                  "raw_recipient_88": "0x10000ce00504150",
+                  "record": "0x22bbd641380",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x22bd0669bc0",
+                  "raw_id_44": 3,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x100002e00474e45",
+              "last_sent_raw": 43808760,
+              "slot": 46,
+              "tag": "ENG"
+            },
+            {
+              "ai_queue": [
+                {
+                  "is_peace_action": false,
+                  "pointer": "0x22bd73dd610",
+                  "vtable_rva": "0x1c80720"
+                }
+              ],
+              "ai_queue_count_raw": 1,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 3,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x22bcfb9ba30",
+                  "raw_id_44": 0,
+                  "record": "0x0"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x22bcfb9c700",
+                  "raw_id_44": 1,
+                  "record": "0x0"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x22bcfb9bad0",
+                  "raw_id_44": 2,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x10000bd00524f50",
+              "last_sent_raw": 43808760,
+              "slot": 189,
+              "tag": "POR"
+            }
+          ],
+          "current_raw_date": 56460720,
+          "native_methods_invoked": false,
+          "pid": 29820,
+          "player_slot": 189,
+          "read_only": true
+        },
+        "diplomat_snapshot_completeness": {
+          "checks": {
+            "countries_list": true,
+            "no_diplomacy_vector_overflow": true,
+            "no_read_error": true,
+            "queue_truncated_false": true
+          },
+          "complete": true
+        },
+        "probes": {
+          "alliance_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_read_error": true,
+                "queue_truncated_false": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\before\\probes\\alliance_state.json",
+            "snapshot_sha256": {
+              "bytes": 1074,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\before\\probes\\alliance_state.json",
+              "sha256": "c04d985062b500aea9cc3a015cd89c5ec6e4f0d1ea04f8f0b70f4252dd90dfbb"
+            },
+            "status": "ok"
+          },
+          "control_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "date_present": true,
+                "player_slot_present": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\before\\probes\\control_state.json",
+            "snapshot_sha256": {
+              "bytes": 450,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\before\\probes\\control_state.json",
+              "sha256": "af42d73ebef725ea070f9d5d82e7c1445f3b9e635fd3bac453fbc6dc3abbc84b"
+            },
+            "status": "ok"
+          },
+          "diplomats": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_diplomacy_vector_overflow": true,
+                "no_read_error": true,
+                "queue_truncated_false": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\before\\probes\\diplomats.json",
+            "snapshot_sha256": {
+              "bytes": 4884,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\before\\probes\\diplomats.json",
+              "sha256": "cccc3edfe76a0840add86c7f2e48ece16df580778843cf9b72d2eaa3cf5cfae7"
+            },
+            "status": "ok"
+          },
+          "war_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_read_error": true,
+                "pairs_are_lists": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\before\\probes\\war_state.json",
+            "snapshot_sha256": {
+              "bytes": 393,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\before\\probes\\war_state.json",
+              "sha256": "777d64b6e9fcfa663eaa7dbbc7ce47a4f74e546ac7b4fb17657b70e842014930"
+            },
+            "status": "ok"
+          }
+        }
+      },
+      "after": {
+        "control": {
+          "date_raw": 56460720,
+          "paused_flag": 1,
+          "player_slot": 189
+        },
+        "health": {
+          "complete": true,
+          "date_raw": 56460720,
+          "reasons": [],
+          "state_id": "e675b3e5df28e557b28f0d018a0cd8cce155d224c4120b74094379b742672831",
+          "status": "ready"
+        },
+        "queries": {
+          "improve_relations": {
+            "acceptance": {
+              "applicability": "not_applicable",
+              "complete": true,
+              "details_available": false,
+              "items": [],
+              "native_total": null,
+              "predicted_response": "not_applicable",
+              "prediction_available": false,
+              "scale_verified": false,
+              "unit": null
+            },
+            "action_id": "improve_relations",
+            "actor": "FRA",
+            "authorization": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                  "complete": true,
+                  "source": "installation_capability",
+                  "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+                }
+              ],
+              "status": "available"
+            },
+            "contract_version": 1,
+            "costs": {
+              "complete": false,
+              "items": [],
+              "status": "unknown"
+            },
+            "decision_country": null,
+            "decision_country_verified": false,
+            "interface_support": {
+              "complete": false,
+              "execute": "native_improve_relations_submission",
+              "query": "partial_native_rules"
+            },
+            "legality": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+                },
+                {
+                  "code": "NATIVE_INITIATION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生发起时序或待处理请求检查返回false。"
+                }
+              ],
+              "status": "unavailable"
+            },
+            "native_diagnostic": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§R- 你没有外交官可供派遣。§!\n\n改善你与这个国家的关系。",
+              "text_decoded": true,
+              "text_encoding_verified": false,
+              "truncated": false
+            },
+            "native_identifier": "improve_relations",
+            "native_rule_components": {
+              "common_action_gate": false,
+              "complete": true,
+              "executor_validity": true,
+              "full_rules_complete": true,
+              "initiation_gate": false,
+              "native_visibility": true,
+              "specific_validity_query_called": true,
+              "tooltip_gate": false,
+              "ui_action_selection": true,
+              "ui_enabled_gate_checked": true,
+              "ui_enabled_gate_verified": true,
+              "ui_selection_checked": true
+            },
+            "parameters": {
+              "actual": null,
+              "candidates": null,
+              "complete": false,
+              "requested": {}
+            },
+            "phase": "initiate",
+            "recipient": "SAV",
+            "requested_decision_country": "FRA",
+            "resources": {
+              "diplomats": {
+                "allocation_verified": false,
+                "availability_verified": true,
+                "available_count": 0,
+                "complete": false,
+                "native_requirement": true,
+                "source": "native_rule"
+              }
+            },
+            "session": {
+              "complete": true,
+              "date_raw": 56460720,
+              "reasons": [],
+              "state_id": "301153198eccc866d11cb0dfdd16b11096f1d89adbbc28d2876aa87ffaa74e31",
+              "status": "ready"
+            },
+            "visibility": {
+              "complete": true,
+              "status": "visible"
+            }
+          },
+          "stop_improving_relations": {
+            "acceptance": {
+              "applicability": "not_applicable",
+              "complete": true,
+              "details_available": false,
+              "items": [],
+              "native_total": null,
+              "predicted_response": "not_applicable",
+              "prediction_available": false,
+              "scale_verified": false,
+              "unit": null
+            },
+            "action_id": "stop_improving_relations",
+            "actor": "FRA",
+            "authorization": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                  "complete": true,
+                  "source": "installation_capability",
+                  "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+                }
+              ],
+              "status": "available"
+            },
+            "contract_version": 1,
+            "costs": {
+              "complete": false,
+              "items": [],
+              "status": "unknown"
+            },
+            "decision_country": null,
+            "decision_country_verified": false,
+            "interface_support": {
+              "complete": false,
+              "execute": "native_improve_relations_submission",
+              "query": "partial_native_rules"
+            },
+            "legality": {
+              "complete": true,
+              "reasons": [
+                {
+                  "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+                },
+                {
+                  "code": "NATIVE_VALIDITY_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "停止改善关系的原生合法性检查返回false。"
+                },
+                {
+                  "code": "NATIVE_INITIATION_GATE_FALSE",
+                  "complete": false,
+                  "source": "native_rule",
+                  "text": "原生发起时序或待处理请求检查返回false。"
+                },
+                {
+                  "code": "NATIVE_ACTION_NOT_VISIBLE",
+                  "complete": true,
+                  "source": "native_rule",
+                  "text": "原生外交列表在当前双方关系中不选择此动作变体。"
+                }
+              ],
+              "status": "unavailable"
+            },
+            "native_diagnostic": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§R- 未与萨伏依改善关系。§!\n",
+              "text_decoded": true,
+              "text_encoding_verified": false,
+              "truncated": false
+            },
+            "native_identifier": "improve_relations",
+            "native_rule_components": {
+              "common_action_gate": false,
+              "complete": true,
+              "executor_validity": false,
+              "full_rules_complete": true,
+              "initiation_gate": false,
+              "native_visibility": false,
+              "specific_validity_query_called": true,
+              "tooltip_gate": false,
+              "ui_action_selection": false,
+              "ui_enabled_gate_checked": true,
+              "ui_enabled_gate_verified": true,
+              "ui_selection_checked": true
+            },
+            "parameters": {
+              "actual": null,
+              "candidates": null,
+              "complete": false,
+              "requested": {}
+            },
+            "phase": "initiate",
+            "recipient": "SAV",
+            "requested_decision_country": "FRA",
+            "resources": {
+              "diplomats": {
+                "allocation_verified": false,
+                "availability_verified": true,
+                "available_count": 0,
+                "complete": false,
+                "native_requirement": false,
+                "source": "native_rule"
+              }
+            },
+            "session": {
+              "complete": true,
+              "date_raw": 56460720,
+              "reasons": [],
+              "state_id": "301153198eccc866d11cb0dfdd16b11096f1d89adbbc28d2876aa87ffaa74e31",
+              "status": "ready"
+            },
+            "visibility": {
+              "complete": true,
+              "status": "hidden"
+            }
+          }
+        },
+        "diplomats_snapshot": {
+          "countries": [
+            {
+              "ai_queue": [],
+              "ai_queue_count_raw": 0,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 0,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0659400",
+                  "raw_20": 56457072,
+                  "raw_24": 56457192,
+                  "raw_2c": 5,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 0,
+                  "raw_recipient_88": "0x100007000474d41",
+                  "record": "0x22bbd644980",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0659b80",
+                  "raw_20": 56457312,
+                  "raw_24": 56457360,
+                  "raw_2c": 2,
+                  "raw_action_type_a8": 13176,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 1,
+                  "raw_recipient_88": "0x100007500525542",
+                  "record": "0x22bbd645e80",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0659e50",
+                  "raw_20": 56458080,
+                  "raw_24": 56458320,
+                  "raw_2c": 10,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 2,
+                  "raw_recipient_88": "0x10000ce00504150",
+                  "record": "0x22bbd640480",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 1,
+                  "pointer": "0x22bd0659680",
+                  "raw_20": 56460720,
+                  "raw_24": 56460816,
+                  "raw_2c": 4,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100007a00415246",
+                  "raw_id_44": 3,
+                  "raw_recipient_88": "0x10000d200564153",
+                  "record": "0x22bbd646e80",
+                  "record_vtable_rva": "0x1c4b2b8"
+                }
+              ],
+              "handle": "0x100007a00415246",
+              "last_sent_raw": 43808760,
+              "slot": 122,
+              "tag": "FRA"
+            },
+            {
+              "ai_queue": [],
+              "ai_queue_count_raw": 0,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 1,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0669a80",
+                  "raw_20": 56457096,
+                  "raw_24": 56457240,
+                  "raw_2c": 6,
+                  "raw_action_type_a8": 13176,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 0,
+                  "raw_recipient_88": "0x100007500525542",
+                  "record": "0x22bbd644280",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd0669c60",
+                  "raw_20": 56459400,
+                  "raw_24": 56459520,
+                  "raw_2c": 5,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 1,
+                  "raw_recipient_88": "0x100002f0049454c",
+                  "record": "0x22be5aa03c0",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 2,
+                  "pointer": "0x22bd066a520",
+                  "raw_20": 56457912,
+                  "raw_24": 56458224,
+                  "raw_2c": 13,
+                  "raw_action_type_a8": 11739,
+                  "raw_actor_80": "0x100002e00474e45",
+                  "raw_id_44": 2,
+                  "raw_recipient_88": "0x10000ce00504150",
+                  "record": "0x22bbd641380",
+                  "record_vtable_rva": "0x1c4b2b8"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x22bd0669bc0",
+                  "raw_id_44": 3,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x100002e00474e45",
+              "last_sent_raw": 43808760,
+              "slot": 46,
+              "tag": "ENG"
+            },
+            {
+              "ai_queue": [
+                {
+                  "is_peace_action": false,
+                  "pointer": "0x22bd73dd610",
+                  "vtable_rva": "0x1c80720"
+                }
+              ],
+              "ai_queue_count_raw": 1,
+              "ai_queue_truncated": false,
+              "available_diplomat_count": 3,
+              "diplomacy_control_raw_14": 3,
+              "diplomacy_entries": [
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x22bcfb9ba30",
+                  "raw_id_44": 0,
+                  "record": "0x0"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x22bcfb9c700",
+                  "raw_id_44": 1,
+                  "record": "0x0"
+                },
+                {
+                  "active_raw_18": 0,
+                  "pointer": "0x22bcfb9bad0",
+                  "raw_id_44": 2,
+                  "record": "0x0"
+                }
+              ],
+              "handle": "0x10000bd00524f50",
+              "last_sent_raw": 43808760,
+              "slot": 189,
+              "tag": "POR"
+            }
+          ],
+          "current_raw_date": 56460720,
+          "native_methods_invoked": false,
+          "pid": 29820,
+          "player_slot": 189,
+          "read_only": true
+        },
+        "diplomat_snapshot_completeness": {
+          "checks": {
+            "countries_list": true,
+            "no_diplomacy_vector_overflow": true,
+            "no_read_error": true,
+            "queue_truncated_false": true
+          },
+          "complete": true
+        },
+        "probes": {
+          "alliance_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_read_error": true,
+                "queue_truncated_false": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\after\\probes\\alliance_state.json",
+            "snapshot_sha256": {
+              "bytes": 1074,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\after\\probes\\alliance_state.json",
+              "sha256": "c04d985062b500aea9cc3a015cd89c5ec6e4f0d1ea04f8f0b70f4252dd90dfbb"
+            },
+            "status": "ok"
+          },
+          "control_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "date_present": true,
+                "player_slot_present": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\after\\probes\\control_state.json",
+            "snapshot_sha256": {
+              "bytes": 450,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\after\\probes\\control_state.json",
+              "sha256": "af42d73ebef725ea070f9d5d82e7c1445f3b9e635fd3bac453fbc6dc3abbc84b"
+            },
+            "status": "ok"
+          },
+          "diplomats": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_diplomacy_vector_overflow": true,
+                "no_read_error": true,
+                "queue_truncated_false": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\after\\probes\\diplomats.json",
+            "snapshot_sha256": {
+              "bytes": 4884,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\after\\probes\\diplomats.json",
+              "sha256": "b6dc504e4958956d5cde8e799bdcbca04d9b760c1c9bf2d29959e05d4be57063"
+            },
+            "status": "ok"
+          },
+          "war_state": {
+            "snapshot_completeness": {
+              "checks": {
+                "countries_list": true,
+                "no_read_error": true,
+                "pairs_are_lists": true
+              },
+              "complete": true
+            },
+            "snapshot_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\after\\probes\\war_state.json",
+            "snapshot_sha256": {
+              "bytes": 393,
+              "path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\diplomacy-query-20261015-r28-improve-c-active-reload\\improve-relations-execution-fc65045f9e0c4f2896080eb2e778ff51\\after\\probes\\war_state.json",
+              "sha256": "777d64b6e9fcfa663eaa7dbbc7ce47a4f74e546ac7b4fb17657b70e842014930"
+            },
+            "status": "ok"
+          }
+        }
+      }
+    }
+  }
+}

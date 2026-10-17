@@ -78,10 +78,16 @@ static void automated_control_tick() {
     if (strcmp(request,"TEST_ONLY pause\n")==0) {
         control_call(false,"0"); control_target=0; return;
     }
-    if (strcmp(request,"TEST_ONLY advance_35_days\n")==0) {
+    if (strcmp(request,"TEST_ONLY advance_35_days\n")==0
+        || strcmp(request,"TEST_ONLY advance_5_days\n")==0
+        || strcmp(request,"TEST_ONLY advance_1_days\n")==0) {
         if (control_target) return;
-        control_target=date+35*24; control_deadline=GetTickCount64()+120000;
+        const int days=strcmp(request,"TEST_ONLY advance_1_days\n")==0?1:
+            strcmp(request,"TEST_ONLY advance_5_days\n")==0?5:35;
+        control_target=date+days*24; control_deadline=GetTickCount64()+120000;
         if (!control_call(false,"4")) control_target=0;
-        line("{\"event\":\"control_advance_begin\",\"days\":35}\n");
+        char message[80];
+        snprintf(message,sizeof(message),"{\"event\":\"control_advance_begin\",\"days\":%d}\n",days);
+        line(message);
     }
 }

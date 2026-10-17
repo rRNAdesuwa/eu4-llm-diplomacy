@@ -1,0 +1,70 @@
+{
+  "fixture_version": 1,
+  "description": "R44B actual Peace inbound inspection: native_current_war is a boolean; war identity is in peace_context.war_id.",
+  "source": {
+    "runtime_artifact": "work/runtime/diplomacy-query-20261016-r44-peace-b-consumed-response/public-inbound-reject-001",
+    "native_events_path": "work\\runtime\\diplomacy-query-20261016-r44-peace-b-consumed-response\\public-inbound-reject-001\\report-evidence\\native-events-slice.jsonl",
+    "native_events_sha256": "3c71ac063a0a7db83201095ac0553a221e3e90245c1b435eb0364d7236b6430b",
+    "native_events_size": 6491,
+    "session_id": "44940-1dd5d61a6b20a8a",
+    "query_id": "inbound_inspect_5dae38c08557436f8df3d1896dc0c827",
+    "dll_sha256": "31e6f65296f8df687428a744103bb55724fac15279edc04baab2541d10d9a583"
+  },
+  "event_count": 1,
+  "events": [
+    {
+      "fixture_id": "r44b_peace_inbound_reject_inspection",
+      "source_line": 3,
+      "source_line_sha256": "a6532fe91c9dd10bf86511fef912b03cd0d0c4b357568cd4c8da0e165fc4fd4c",
+      "event_sha256": "6d81b6f39b8997b4890e995017727d1ad5ade6a5728a2e7365f42dd7e958aa99",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_alliance_inbound_inspection",
+        "query_id": "inbound_inspect_5dae38c08557436f8df3d1896dc0c827",
+        "session_id": "44940-1dd5d61a6b20a8a",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "extra60": 0,
+        "actor": "ENG",
+        "mirror": "ENG",
+        "recipient": "FRA",
+        "phase": "reject",
+        "native_proposal_id": 1,
+        "date_raw": 56545080,
+        "pending_active": true,
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "native_validity": true,
+        "response_rules_complete": true,
+        "war_active": true,
+        "war_readable": true,
+        "war_before": true,
+        "native_current_war": true,
+        "native_current_war_readable": true,
+        "peace_payload_complete": true,
+        "selected_terms_complete": true,
+        "term_count": 83,
+        "selected_term_count": 1,
+        "peace_context": {
+          "war_id": "war_f4b1c2ad47802221_00000001",
+          "direction": "demand",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [],
+          "white_peace": true,
+          "complete": true,
+          "selected_terms_complete": true,
+          "reason": "none"
+        },
+        "date28": 56545056,
+        "date2c": 56545056,
+        "envoy30": 2,
+        "state34": 0,
+        "variant38": 1,
+        "token3c": 199,
+        "requested_decision": "reject",
+        "reason": "none"
+      }
+    }
+  ]
+}

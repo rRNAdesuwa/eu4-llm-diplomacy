@@ -1,0 +1,45 @@
+{
+  "fixture_version": 1,
+  "family": "insult",
+  "source": {
+    "artifact": "work/runtime/diplomacy-query-20261015-r33-insult-b-execution/insult-execution-7d79751e8fc34178983b3d576b028d29",
+    "event_slice": "native-events-slice.jsonl",
+    "source_line": 26,
+    "event_sha256": "6a9376e267dc583df282e5614fa8044e46c0cd862d148506d9f5817a58b65e4e",
+    "event_slice_sha256": "478abd8f1e5af41ce3e2ee4364ecd7bffe8c898ceaa2254400989174c47fdfdb"
+  },
+  "event": {
+    "event": "diplomatic_command_observed",
+    "version": 10,
+    "pid": 34852,
+    "session_id": "34852-1dd5cb8a577c4a0",
+    "event_sequence": 2,
+    "thread": 31052,
+    "readable": true,
+    "command": "0x2231e9b8e50",
+    "action": "0x222e7ef3300",
+    "action_vtable_rva": "0x1c7f6b0",
+    "origin": 65535,
+    "protocol_sequence": 16,
+    "protocol_flags": 0,
+    "forward_to_original": true,
+    "business_result": "unknown"
+  },
+  "binding": {
+    "clone_target_addr": "0x2231e9b8e50",
+    "clone_target_action": "0x222e7ef3300",
+    "transport_protocol_sequence": 16,
+    "submission_native_sequence": 16,
+    "direct_payload_fields_missing": [
+      "family", "extra60", "parameter40", "actor10", "mirror18",
+      "recipient20", "date28", "date2c", "envoy30", "state34",
+      "variant38", "proposal3c", "raw10", "raw38", "raw3c", "raw40",
+      "raw44", "callback_sequence", "action_id"
+    ]
+  },
+  "source_trigger": {
+    "entry_call": "alliance-execution.inc: bridge_execution_execute -> bridge_response_observe(value)",
+    "call_order": "generic observation precedes protocol_capture, execution target lookup and authority gate",
+    "flush": "diplomacy-observer-v10.cpp: observation_flush writes diplomatic_command_observed"
+  }
+}
