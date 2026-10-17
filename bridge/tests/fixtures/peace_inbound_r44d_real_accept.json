@@ -1,0 +1,102 @@
+{
+  "fixture_version": 1,
+  "description": "R44D actual Peace inbound accept submission, handler consumption, and response. terms_verified=true is retained on a verified accepted result.",
+  "source": {
+    "runtime_artifact": "work/runtime/diplomacy-query-20261016-r44-peace-d-accept-restored/public-inbound-accept-001",
+    "native_events_path": "work\\runtime\\diplomacy-query-20261016-r44-peace-d-accept-restored\\public-inbound-accept-001\\report-evidence\\native-events-slice.jsonl",
+    "native_events_sha256": "d798a7c2b904759757e334f383e2ac18bfe8b8a045191ad9ee37a1cfdd14fc74",
+    "native_events_size": 46006,
+    "report_path": "work\\runtime\\diplomacy-query-20261016-r44-peace-d-accept-restored\\public-inbound-accept-001\\report.json",
+    "session_id": "31784-1dd5d6459fb46d2",
+    "pid": 31784,
+    "dll_sha256": "31e6f65296f8df687428a744103bb55724fac15279edc04baab2541d10d9a583",
+    "request_id": "r44d_accept_eng_peace_001"
+  },
+  "event_count": 3,
+  "events": [
+    {
+      "fixture_id": "r44d_real_native_peace_handler_return",
+      "source_line": 34,
+      "source_line_sha256": "4e81614968181cc48f86c70af94c0aab32c3c9590eaf9792d84baf6ba7bce59a",
+      "event_sha256": "b6a6275f8535f564e7047b54ebccee2d20bdac4499f8df9300dd251c676e1d85",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_peace_handler_return",
+        "family": "peace",
+        "action_id": "peace_offer",
+        "session_id": "31784-1dd5d6459fb46d2",
+        "request_id": "r44d_accept_eng_peace_001",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "phase": "accept",
+        "native_state": 2,
+        "native_forward_count": 1,
+        "handler_consumed": true,
+        "peace_payload_complete": true,
+        "transport_verified": true
+      }
+    },
+    {
+      "fixture_id": "r44d_real_native_peace_inbound_submission_result",
+      "source_line": 35,
+      "source_line_sha256": "5eae8398216bdd17a7ff57964fc140c5e844d2f0d01a2216d54ce9ff7629bebf",
+      "event_sha256": "f43339137d5a9aad3ed8fdcf6787a5ca9d99f4b9c1f43db0287529c42147ab09",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_peace_inbound_submission_result",
+        "family": "peace",
+        "session_id": "31784-1dd5d6459fb46d2",
+        "request_id": "r44d_accept_eng_peace_001",
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "accept",
+        "date_raw": 56545080,
+        "submitted": true,
+        "transport_verified": true,
+        "request_binding_verified": true
+      }
+    },
+    {
+      "fixture_id": "r44d_real_native_peace_inbound_response_result",
+      "source_line": 36,
+      "source_line_sha256": "20d5cf8165726d2bf326579913c146699f4f7512f125b026c05be5f36d64293a",
+      "event_sha256": "30a81da742d91dc5e4f000f57a00c456bff9036b0ae0e0f574d101007179a669",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_peace_inbound_response_result",
+        "family": "peace",
+        "session_id": "31784-1dd5d6459fb46d2",
+        "request_id": "r44d_accept_eng_peace_001",
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "accept",
+        "date_raw": 56545080,
+        "native_state": 2,
+        "outcome": "accepted",
+        "war_before": true,
+        "war_after": false,
+        "war_state_verified": true,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "execution_verified": true,
+        "pending_removed": true,
+        "terms_verified": true,
+        "peace_context": {
+          "war_id": "war_2a33e3a3fbd9abf1_00000001",
+          "direction": "demand",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [],
+          "white_peace": true,
+          "complete": true,
+          "selected_terms_complete": true,
+          "reason": "none"
+        }
+      }
+    }
+  ]
+}

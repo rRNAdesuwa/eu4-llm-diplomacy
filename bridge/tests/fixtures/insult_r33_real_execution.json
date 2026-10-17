@@ -1,0 +1,56 @@
+{
+  "fixture_version": 1,
+  "source": {
+    "artifact": "work/runtime/diplomacy-query-20261015-r33-insult-b-execution/insult-execution-7d79751e8fc34178983b3d576b028d29",
+    "event_slice": "native-events-slice.jsonl",
+    "event_slice_sha256": "478abd8f1e5af41ce3e2ee4364ecd7bffe8c898ceaa2254400989174c47fdfdb",
+    "selection": "真实 ordinary Insult 提交回执和执行结果；原始事件切片未修改。"
+  },
+  "submission": {
+    "source_line": 44,
+    "event_sha256": "096fe59128f91a8d42ffebc3a645eda8ab3a3b74a4832823e31b633afce05b0c",
+    "event": {
+      "event": "native_alliance_submission_result",
+      "request_id": "r33b_insult_bur_001",
+      "session_id": "34852-1dd5cb8a577c4a0",
+      "action_id": "send_insult",
+      "actor": "FRA",
+      "recipient": "BUR",
+      "phase": "initiate",
+      "date_raw": 56464872,
+      "submitted": true,
+      "native_queue_verified": true,
+      "transport_ring": true,
+      "native_origin": 65535,
+      "native_flags": 0,
+      "native_sequence": 16
+    }
+  },
+  "execution": {
+    "source_line": 45,
+    "event_sha256": "916240c1d3ff4929683fd1dbb19016057055c3e62bbc4ebfd94dc18b3b6fabff",
+    "event": {
+      "event": "native_diplomacy_insult_execution_result",
+      "request_id": "r33b_insult_bur_001",
+      "session_id": "34852-1dd5cb8a577c4a0",
+      "action_id": "send_insult",
+      "actor": "FRA",
+      "recipient": "BUR",
+      "phase": "initiate",
+      "date_raw": 56464872,
+      "outcome": "executed",
+      "native_state": 0,
+      "native_variant": 1,
+      "family": "insult",
+      "insult_id": -1,
+      "insult_before": false,
+      "insult_after": true,
+      "opinion_modifier_before_raw": 0,
+      "opinion_modifier_after_raw": -50000,
+      "prestige_before_raw": 8086,
+      "prestige_after_raw": 8086,
+      "execution_verified": true,
+      "request_binding_verified": true
+    }
+  }
+}

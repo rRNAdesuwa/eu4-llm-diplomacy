@@ -1,0 +1,32 @@
+{
+  "fixture_version": 1,
+  "description": "Observed R31 Support Independence outbound rejection response used by the bridge result-recovery contract test.",
+  "events": [
+    {
+      "fixture_id": "r31a_support_hol_rejection_response",
+      "source_path": "work/runtime/diplomacy-query-20261015-r31-support-a/support-independence-execution-6809b5cc29e2419b8b0e4f840004ce51/native-events-slice.jsonl",
+      "source_file_sha256": "c7d00c3149ce70f35304779372184ba8b5ed147a81eaa3035b14e8514b0d9df5",
+      "event_sha256": "0a45b2a88898a2849e346951914362a00281aa4517435b8869a2385e05d12e48",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_diplomacy_relation_response_result",
+        "request_id": "r31a_support_hol_001",
+        "session_id": "27796-1dd5c8f649f2d14",
+        "action_id": "support_independence",
+        "actor": "FRA",
+        "recipient": "HOL",
+        "phase": "initiate",
+        "date_raw": 56461920,
+        "outcome": "rejected",
+        "native_state": 1,
+        "native_variant": 1,
+        "family": "support_independence",
+        "support_independence_before": false,
+        "support_independence_after": false,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "pending_removed": false
+      }
+    }
+  ]
+}

@@ -16,7 +16,9 @@ This project is currently in **early experimental development**.
 
 2026-10-16: [EU4 1.37.5 research checkpoint](docs/research-20261016-en.md) is now available with 120 TAG action bindings, direct runtime observers and a 60-record war/peace evidence index. The original batch contains 41 dispatches, 77 refusals and 2 unknowns; historical selected effects cover 48 actions, with 44 persistence records. Full effect validation, a callable 1.37.5 war/peace executor and LLM integration remain incomplete. Research is paused; this is a source snapshot. See the [tool catalog](docs/runtime-capability-map-1375-v8.json) and [Chinese evidence report](docs/research-20261016.md).
 
-The following are historical capabilities validated on EU4 1.37.4:
+2026-10-17: Upstream 1.37.4 development is integrated alongside the frozen 1.37.5 research snapshot. Both the JSON-lines tools and the existing research CLI commands are retained. See the [merge notes and offline validation limits](docs/research-20261016/merge-20261017.md) and [upstream diplomacy guide](docs/外交系统说明.md).
+
+The following are capabilities validated on EU4 1.37.4:
 
 - Exporting part of the game state through a custom Mod;
 - Intercepting the native AI's authority to declare war and negotiate peace, while establishing an authorization path for externally initiated peace actions;

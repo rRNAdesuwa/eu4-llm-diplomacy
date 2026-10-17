@@ -1,0 +1,34 @@
+{
+  "event": "native_peace_context_inspection",
+  "family": "peace",
+  "query_id": "peace-query-001",
+  "session_id": "peace-session",
+  "action_id": "white_peace",
+  "actor": "FRA",
+  "recipient": "ENG",
+  "phase": "initiate",
+  "date_raw": 56550000,
+  "discovery": true,
+  "query_complete": true,
+  "enumeration_complete": true,
+  "native_offer_inspected": false,
+  "full_rules_complete": false,
+  "submitted": false,
+  "wars": [
+    {
+      "war_id": "war_0123456789abcdef_01234567",
+      "identity_scope": "observer_session",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "pair_at_war": true,
+      "actor_war_role": null,
+      "recipient_war_role": null,
+      "roles_verified": false,
+      "actor_is_war_leader": null,
+      "recipient_is_war_leader": null,
+      "leaders_verified": false,
+      "context_complete": false,
+      "native_ref": "private-native-ref-must-not-leak"
+    }
+  ]
+}

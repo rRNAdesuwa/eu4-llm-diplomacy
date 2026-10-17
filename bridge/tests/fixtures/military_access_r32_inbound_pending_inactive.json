@@ -1,0 +1,42 @@
+{
+  "fixture_version": 1,
+  "description": "Observed R32 Military Access inactive inbound inspection after GEN proposal left the pending queue.",
+  "events": [
+    {
+      "fixture_id": "r32_military_access_inbound_pending_inactive_gen",
+      "source_path": "work/runtime/diplomacy-query-20261015-r32-military-access-c-direction-reload/inbound-response-6db77d4280fb4234bcf1b7b53d784f8d/native-events.jsonl",
+      "source_file_sha256": "028279688e891f9a929eb500f04026d56085f97e3cb626a752b02ed90b045a20",
+      "event_sha256": "9a32cbc9777dd3c5c949233ebeb70afa1edcfe18e24c4e1b00f2b2fcb6598b15",
+      "event_sha256_basis": "UTF-8 canonical JSON with sort_keys=true and separators=(,)",
+      "event": {
+        "event": "native_alliance_inbound_inspection",
+        "query_id": "inbound_inspect_1b07a0a38d8d4961aebf0797368978ce",
+        "session_id": "12860-1dd5ca7b28c9d9f",
+        "action_id": "ask_military_access",
+        "family": "military_access",
+        "extra60": 0,
+        "actor": "GEN",
+        "mirror": "GEN",
+        "recipient": "FRA",
+        "phase": "accept",
+        "native_proposal_id": 2,
+        "date_raw": 56464872,
+        "pending_active": false,
+        "decision_country": "FRA",
+        "decision_country_verified": false,
+        "native_validity": false,
+        "response_rules_complete": false,
+        "military_access_active": false,
+        "military_access_state_verified": false,
+        "date28": 0,
+        "date2c": 0,
+        "envoy30": 0,
+        "state34": 0,
+        "variant38": 0,
+        "token3c": 0,
+        "requested_decision": "accept",
+        "reason": "PENDING_NOT_ACTIVE"
+      }
+    }
+  ]
+}
