@@ -19,6 +19,13 @@ GAME = game_exe()
 DATABASE_POINTER_RVA = 0x233D8B0
 GAME_POINTER_RVA = 0x233FE58
 
+def binary_sha256(path):
+    digest = hashlib.sha256()
+    with path.open('rb') as source:
+        for chunk in iter(lambda: source.read(65536), b''):
+            digest.update(chunk)
+    return digest.hexdigest()
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--pid', required=True, type=int)
@@ -29,7 +36,7 @@ def main():
     args = parser.parse_args()
     if sys.platform != 'win32' or C.sizeof(C.c_void_p) != 8:
         raise RuntimeError('Requires 64-bit Windows Python')
-    if hashlib.sha256(GAME.read_bytes()).hexdigest() != EXPECTED_HASH:
+    if binary_sha256(GAME) != EXPECTED_HASH:
         raise RuntimeError('Unsupported executable build')
 
     kernel = C.WinDLL('kernel32', use_last_error=True)

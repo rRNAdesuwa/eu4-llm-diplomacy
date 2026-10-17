@@ -1,0 +1,56 @@
+{
+  "execution": {
+    "action_id": "remove_rival",
+    "actor": "FRA",
+    "after_active": false,
+    "before_active": true,
+    "cost_raw": 101,
+    "date_raw": 56500920,
+    "dip_after": 480,
+    "dip_before": 581,
+    "event": "native_rival_execution_result",
+    "executed": true,
+    "family": "rival",
+    "native_rule_verified": true,
+    "phase": "initiate",
+    "reason_code": "NATIVE_RIVAL_EXECUTED",
+    "recipient": "CAS",
+    "relationship_verified": true,
+    "request_binding_verified": true,
+    "request_id": "r34f_remove_cas_001",
+    "rival_count_after": 2,
+    "rival_count_before": 3,
+    "session_id": "17656-1dd5cd38cb4eb15",
+    "status": "executed"
+  },
+  "source": {
+    "artifact": "work\\runtime\\diplomacy-query-20261016-r34-rival-f-mature\\rival-execution-aef36c01513746ebb7b025d64c64f657",
+    "contract": "R34F actual native Rival receipt and Remove execution",
+    "event_sha256": {
+      "native_rival_execution_result": "9d8a34c6fabf81743874859fea18068da1a00f142469abf853b9810f78bc7cd3",
+      "native_rival_submission_result": "441c8ae6b338392270d79144405a0879d9ce840554a247a02013fd01ad94affe"
+    },
+    "native_slice_path": "work\\runtime\\diplomacy-query-20261016-r34-rival-f-mature\\rival-execution-aef36c01513746ebb7b025d64c64f657\\native-events-slice.jsonl",
+    "native_slice_sha256": "d9ddbcc73920279af417e444dfc4a810c8396ac7f8369135b37ac63319ce8d55",
+    "report_original_status": "invalidated",
+    "report_request_id": "r34f_remove_cas_001"
+  },
+  "submission": {
+    "action_id": "remove_rival",
+    "actor": "FRA",
+    "date_raw": 56500920,
+    "event": "native_rival_submission_result",
+    "family": "rival",
+    "native_flags": 0,
+    "native_origin": 5106,
+    "native_sequence": 15,
+    "phase": "initiate",
+    "protocol_verified": true,
+    "reason_code": "NATIVE_RIVAL_EXECUTED",
+    "recipient": "CAS",
+    "request_binding_verified": true,
+    "request_id": "r34f_remove_cas_001",
+    "session_id": "17656-1dd5cd38cb4eb15",
+    "submitted": true
+  }
+}

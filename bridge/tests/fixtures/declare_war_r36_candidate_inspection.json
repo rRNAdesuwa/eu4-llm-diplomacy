@@ -1,0 +1,57 @@
+{
+  "event": {
+    "event": "native_declare_war_inspection",
+    "session_id": "declare-session",
+    "query_id": "declare-candidate-query",
+    "action_id": "declare_war",
+    "family": "declare_war",
+    "actor": "FRA",
+    "recipient": "BUR",
+    "phase": "initiate",
+    "date_raw": 56465136,
+    "ui_selection_checked": true,
+    "native_visibility": true,
+    "ui_enabled_gate_checked": true,
+    "common_action_gate": true,
+    "validity_called": true,
+    "native_validity": true,
+    "initiation_gate_checked": true,
+    "initiation_gate": true,
+    "native_diagnostic_hex": "",
+    "diagnostic_readable": false,
+    "diagnostic_truncated": false,
+    "submitted": false,
+    "score_applicable": false,
+    "parameter_context_complete": false,
+    "native_default_payload": true,
+    "candidate_context_complete": false,
+    "full_rules_complete": false,
+    "candidate_enumeration_called": true,
+    "candidate_enumeration_complete": true,
+    "candidate_native_count": 2,
+    "candidate_capture_truncated": false,
+    "candidate_cleanup_verified": true,
+    "candidates": [
+      {
+        "candidate_index": 0,
+        "native_discriminator": 357,
+        "metadata_group_raw": 1,
+        "native_metadata_hex": "108259109c67110e4e102a4e10fd5612b65210a56310d75310864e10116210ec4e10847612d37510df7610d06310ae8b100cff11b19010484e10116210ec4e10285710186210894e10f665101f67123153101a4f12975610305210e58b10fd5610847610f46310a952100230",
+        "metadata_readable": true,
+        "metadata_text_readable": true,
+        "metadata_text_truncated": false,
+        "identifier_verified": false
+      },
+      {
+        "candidate_index": 1,
+        "native_discriminator": 357,
+        "metadata_group_raw": 2,
+        "native_metadata_hex": "",
+        "metadata_readable": true,
+        "metadata_text_readable": false,
+        "metadata_text_truncated": false,
+        "identifier_verified": false
+      }
+    ]
+  }
+}

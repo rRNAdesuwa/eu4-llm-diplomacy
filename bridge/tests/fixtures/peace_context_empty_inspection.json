@@ -1,0 +1,18 @@
+{
+  "event": "native_peace_context_inspection",
+  "family": "peace",
+  "query_id": "peace-query-empty",
+  "session_id": "peace-session",
+  "action_id": "white_peace",
+  "actor": "FRA",
+  "recipient": "ENG",
+  "phase": "initiate",
+  "date_raw": 56550000,
+  "discovery": true,
+  "query_complete": true,
+  "enumeration_complete": true,
+  "native_offer_inspected": false,
+  "full_rules_complete": false,
+  "submitted": false,
+  "wars": []
+}

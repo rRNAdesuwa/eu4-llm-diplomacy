@@ -1,0 +1,33 @@
+{
+  "events": {
+    "default": {
+      "event": "native_declare_war_inspection",
+      "session_id": "declare-session",
+      "query_id": "declare-query",
+      "action_id": "declare_war",
+      "family": "declare_war",
+      "actor": "FRA",
+      "recipient": "BUR",
+      "phase": "initiate",
+      "date_raw": 56465136,
+      "ui_selection_checked": true,
+      "native_visibility": true,
+      "ui_enabled_gate_checked": true,
+      "common_action_gate": true,
+      "validity_called": true,
+      "native_validity": true,
+      "initiation_gate_checked": true,
+      "initiation_gate": true,
+      "native_diagnostic_hex": "",
+      "diagnostic_readable": false,
+      "diagnostic_truncated": false,
+      "submitted": false,
+      "score_applicable": false,
+      "parameter_context_complete": false,
+      "native_default_payload": true,
+      "candidate_context_complete": false,
+      "candidates": [],
+      "full_rules_complete": false
+    }
+  }
+}

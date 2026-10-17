@@ -29,7 +29,12 @@ if ($gameInstances.Count -eq 1) {
     $closeRequested = $gameProcess.CloseMainWindow()
     if (-not $closeRequested -or -not $gameProcess.WaitForExit(8000)) {
         # Explicitly scoped restart: never stop a process selected only by name.
-        Stop-Process -Id $gameInstance.ProcessId -ErrorAction Stop
+        try {
+            $gameProcess.Kill()
+        } catch {
+            # The graceful close can finish between WaitForExit and Kill.
+            if (-not $gameProcess.HasExited) { throw }
+        }
         $gameProcess.WaitForExit()
     }
 } else {

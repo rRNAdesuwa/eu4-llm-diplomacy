@@ -1,0 +1,7 @@
+# Added only by the explicit R35 Vassalization context fixture.
+# No normal action or monthly pulse references this modifier.
+r35_test_vassal_opinion = {
+    opinion = 200
+    yearly_decay = 0
+    max = 200
+}

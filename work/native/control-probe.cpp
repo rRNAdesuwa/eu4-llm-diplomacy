@@ -37,6 +37,39 @@ template<typename T> static bool read(uintptr_t address, T& value) {
         reinterpret_cast<void*>(address), &value, sizeof(value), &size) && size == sizeof(value);
 }
 
+#include "entry-patch-transaction.inc"
+static bridge_entry_patch::PatchPlan control_frame_patch_plan{};
+static unsigned char control_frame_patch_bytes[20]{};
+static bool control_frame_installed=false;
+static bool control_trace_installed=false;
+
+static bool control_rollback_hooks() {
+    bool complete=true;
+#ifdef BRIDGE_TRACE_PEACE_RESPONSES
+    uintptr_t slot_rva=0x1c7b840+0x48;
+#ifdef BRIDGE_TRACE_COMMAND_EXECUTION
+    slot_rva=0x1c814b0+0x48;
+#endif
+    if (control_trace_installed) {
+        auto slot=reinterpret_cast<void**>(base+slot_rva);
+        DWORD protection=0,ignored=0;
+        if (VirtualProtect(slot,8,PAGE_READWRITE,&protection)) {
+            void* previous=InterlockedCompareExchangePointer(reinterpret_cast<void* volatile*>(slot),bridge_response_original,reinterpret_cast<void*>(&bridge_response_stub));
+            complete=(previous==reinterpret_cast<void*>(&bridge_response_stub) || previous==bridge_response_original) && complete;
+            complete=VirtualProtect(slot,8,protection,&ignored)!=FALSE && complete;
+        } else complete=false;
+    }
+#endif
+    if (control_frame_installed) {
+        auto result=bridge_entry_patch::guarded_patch_rollback(control_frame_patch_plan);
+        complete=result.success && result.threads_resumed && result.protection_restored && complete;
+    }
+    auto cleanup=bridge_entry_patch::guarded_patch_retry_pending();
+    complete=cleanup.success && complete;
+    if (complete) { control_frame_installed=false; control_trace_installed=false; }
+    return complete;
+}
+
 static void absolute_jump(unsigned char* bytes, uintptr_t destination) {
     bytes[0]=0xff; bytes[1]=0x25;
     memset(bytes+2, 0, 4);
@@ -115,88 +148,42 @@ extern "C" __declspec(dllexport) DWORD WINAPI BridgeStart(void*) {
     if (!VirtualProtect(trampoline,34,PAGE_EXECUTE_READ,&old)) return 16;
     FlushInstructionCache(GetCurrentProcess(),trampoline,34);
     bridge_trampoline=trampoline;
-    unsigned char patch[20]; memset(patch,0x90,20);
-    absolute_jump(patch,reinterpret_cast<uintptr_t>(&bridge_frame_stub));
-
-    // Prepare all allocations/handles before suspending other threads.
-    HANDLE threads[2048]; size_t thread_count=0;
-    HANDLE snapshot=CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD,0);
-    if (snapshot==INVALID_HANDLE_VALUE) return 17;
-    THREADENTRY32 entry{}; entry.dwSize=sizeof(entry);
-    bool enumeration_ok=Thread32First(snapshot,&entry);
-    bool handles_ok=enumeration_ok;
-    if (enumeration_ok) do {
-        if (entry.th32OwnerProcessID==GetCurrentProcessId() && entry.th32ThreadID!=GetCurrentThreadId()) {
-            HANDLE h=OpenThread(THREAD_SUSPEND_RESUME|THREAD_GET_CONTEXT,FALSE,entry.th32ThreadID);
-            if (!h) { handles_ok=false; break; }
-            if (thread_count==2048) { CloseHandle(h); handles_ok=false; break; }
-            threads[thread_count++]=h;
-        }
-    } while (Thread32Next(snapshot,&entry));
-    CloseHandle(snapshot);
-    size_t suspended=0;
-    bool safe=handles_ok && thread_count>0;
-    if (safe) for (size_t i=0;i<thread_count;++i) {
-        HANDLE h=threads[i];
-        if (SuspendThread(h)==static_cast<DWORD>(-1)) { safe=false; break; }
-        ++suspended;
-        CONTEXT context{}; context.ContextFlags=CONTEXT_CONTROL;
-        if (!GetThreadContext(h,&context) || (context.Rip>=reinterpret_cast<uintptr_t>(target) &&
-            context.Rip<reinterpret_cast<uintptr_t>(target+20))) { safe=false; break; }
+    memset(control_frame_patch_bytes,0x90,20);
+    absolute_jump(control_frame_patch_bytes,reinterpret_cast<uintptr_t>(&bridge_frame_stub));
+    control_frame_patch_plan.count=1;
+    control_frame_patch_plan.targets[0]={target,20,expected,control_frame_patch_bytes,trampoline,34};
+    auto frame_result=bridge_entry_patch::guarded_patch_apply(control_frame_patch_plan);
+    control_frame_installed=frame_result.success;
+    if (!frame_result.success) {
+        unsigned char current[20]{};
+        control_frame_installed=read(reinterpret_cast<uintptr_t>(target),current) && !memcmp(current,control_frame_patch_bytes,20);
+        auto cleanup=bridge_entry_patch::guarded_patch_retry_pending();
+        bool rolled_back=control_rollback_hooks();
+        char failure[420];
+        snprintf(failure,sizeof(failure),"{\"event\":\"hook_guarded_install_failed\",\"published\":%s,\"rollback_complete\":%s,\"threads_resumed\":%s,\"protection_restored\":%s,\"failure_stage\":%u,\"win32_error\":%lu,\"pending_cleanup_complete\":%s,\"restart_required\":true}\n",
+            frame_result.published?"true":"false",frame_result.rollback_complete?"true":"false",
+            frame_result.threads_resumed?"true":"false",frame_result.protection_restored?"true":"false",
+            static_cast<unsigned>(frame_result.failure_stage),static_cast<unsigned long>(frame_result.error),(cleanup.success && rolled_back)?"true":"false");
+        line(failure);
+        if (!frame_result.published) { VirtualFree(trampoline,0,MEM_RELEASE); bridge_trampoline=nullptr; }
+        return 18;
     }
-    bool patched=false, protection_restored=true, rollback_complete=true;
+    bool protection_restored=frame_result.protection_restored;
 #ifdef BRIDGE_TRACE_PEACE_RESPONSES
-    bool response_patched=false;
-    DWORD response_old=0;
-#endif
-    if (safe && VirtualProtect(target,20,PAGE_EXECUTE_READWRITE,&old)) {
-        // Verify again after every existing thread has stopped.
-        if (!memcmp(target,expected,20)) {
-            memcpy(target,patch,20); FlushInstructionCache(GetCurrentProcess(),target,20); patched=true;
-#ifdef BRIDGE_TRACE_PEACE_RESPONSES
-            if (*response_slot==bridge_response_original && VirtualProtect(response_slot,8,PAGE_READWRITE,&response_old)) {
-                InterlockedExchangePointer(reinterpret_cast<void* volatile*>(response_slot),reinterpret_cast<void*>(&bridge_response_stub));
-                response_patched=true;
-                DWORD response_ignored;
-                if (!VirtualProtect(response_slot,8,response_old,&response_ignored)) {
-                    // A failed protection change leaves this slot writable.
-                    InterlockedExchangePointer(reinterpret_cast<void* volatile*>(response_slot),bridge_response_original);
-                    response_patched=false;
-                    VirtualProtect(response_slot,8,response_old,&response_ignored);
-                    memcpy(target,expected,20); FlushInstructionCache(GetCurrentProcess(),target,20);
-                    patched=false; protection_restored=false;
-                }
-            } else {
-                memcpy(target,expected,20); FlushInstructionCache(GetCurrentProcess(),target,20); patched=false;
-            }
-#endif
-        }
-        DWORD ignored;
-        if (!VirtualProtect(target,20,old,&ignored)) {
-            // Do not leave an installed hook behind an installation error.
-            // This failed call leaves the frame page writable.
-            memcpy(target,expected,20); FlushInstructionCache(GetCurrentProcess(),target,20);
-            patched=false; protection_restored=false;
-            VirtualProtect(target,20,old,&ignored);
-#ifdef BRIDGE_TRACE_PEACE_RESPONSES
-            if (response_patched) {
-                DWORD temporary=0;
-                if (VirtualProtect(response_slot,8,PAGE_READWRITE,&temporary)) {
-                    InterlockedExchangePointer(reinterpret_cast<void* volatile*>(response_slot),bridge_response_original);
-                    response_patched=false;
-                    VirtualProtect(response_slot,8,response_old,&temporary);
-                } else rollback_complete=false;
-            }
-#endif
-        }
+    DWORD response_old=0,response_ignored=0;
+    bool response_ok=VirtualProtect(response_slot,8,PAGE_READWRITE,&response_old)!=FALSE;
+    if (response_ok) {
+        control_trace_installed=InterlockedCompareExchangePointer(reinterpret_cast<void* volatile*>(response_slot),
+            reinterpret_cast<void*>(&bridge_response_stub),bridge_response_original)==bridge_response_original;
+        response_ok=VirtualProtect(response_slot,8,response_old,&response_ignored)!=FALSE && control_trace_installed;
     }
-    for (size_t i=0;i<suspended;++i) ResumeThread(threads[i]);
-    for (size_t i=0;i<thread_count;++i) CloseHandle(threads[i]);
-    if (!patched) {
-        line(rollback_complete?"{\"event\":\"hook_not_installed\",\"hooks_rolled_back\":true}\n":
+    if (!response_ok) {
+        bool complete=control_rollback_hooks();
+        line(complete?"{\"event\":\"hook_not_installed\",\"hooks_rolled_back\":true}\n":
             "{\"event\":\"hook_rollback_incomplete\",\"restart_required\":true}\n");
-        return rollback_complete?18:21;
+        return complete?20:21;
     }
+#endif
 #ifdef BRIDGE_TRACE_PEACE_RESPONSES
     char trace_installed[240];
     snprintf(trace_installed,sizeof(trace_installed),"{\"event\":\"%s\",\"slot_rva\":\"0x%llx\",\"original_rva\":\"0x%llx\",\"mutates_actions\":false,\"capacity\":64}\n",
