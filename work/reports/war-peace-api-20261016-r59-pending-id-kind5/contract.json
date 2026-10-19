@@ -1,0 +1,238 @@
+{
+  "schema": "EU4-R59-KIND5-FRAGMENT-CONTRACT/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "entry_rva": "0x771c06",
+  "original_entry_rva": "0x771be0",
+  "source_grade": "ordinary lockedCapstone5.0.7 static; no REA Evidence ID",
+  "scope": {
+    "owned_runtime_function_record": [
+      "0x771c06",
+      "0x771cbd"
+    ],
+    "owned_bytes": 183,
+    "decoded_bytes": 183,
+    "rows": 46,
+    "fragment_is_independent_callable_entry": false,
+    "full_function_or_return_semantics_closed": false,
+    "local_normal_CFG_closed": false,
+    "normal_RET_count": 0,
+    "INT3_count": 0,
+    "CALL_sites": 1,
+    "branches": 8,
+    "outside_window_code_or_data_reads": 0,
+    "old_prefix_PE_code_reads_or_decode_bytes": 0
+  },
+  "inherited_state": {
+    "fragment_is_independent_callable_entry": false,
+    "original_entry_rva": "0x771be0",
+    "root_entry_RSP_symbol": "Q",
+    "RSP": "Q-0x48",
+    "RSI": "originalRCX at771be0",
+    "R14": "0x0000000000000005",
+    "RBP": "0x00000000ffffffff",
+    "RCX": "originalRCX at771be0, unchanged by retained prefix",
+    "RDX": "0x0000000000000005 from retained caller MOV EDX5",
+    "R8": "0x00000000ffffffff from retained caller MOV R8Dffffffff",
+    "R9": "unchanged original unknown full64",
+    "RAX": "unchanged original unknown full64",
+    "flags": "CMP uint32EDX5,imm12 => CF1/ZF0/SF1/OF0/PF1/AF1; JB taken",
+    "entry_shadow_write": "byte[Q+0x20]=originalR9B; other7 bytes unchanged by that instruction",
+    "saved_stack_qwords": {
+      "Q-8": "originalRBP",
+      "Q-0x10": "originalRSI",
+      "Q-0x18": "originalR14"
+    },
+    "stack_arguments": "unknown; none authenticated from caller",
+    "other_registers_XMM": "unknown except explicit retained state above",
+    "validity": "conditional static projection only: original caller CALL/prefix normally executes with valid stack; not runtime provenance or ABI signature"
+  },
+  "receiver_header": {
+    "receiver": "S=originalRCX at771be0, heldRSI; no vtable/type/current-root certification",
+    "begin": "QWORD[S+0x2508]",
+    "end": "QWORD[S+0x2510]",
+    "capacity_end_candidate": "QWORD[S+0x2518]",
+    "observed_geometry": "DWORD stride4 and SAR64(pointer_difference,2); no legal C++ vector or ownership inferred",
+    "C": "signed64(SAR64(sub_mod64(E,B),2)), first compared via low32 as unsigned againstR14D5",
+    "capacity_C": "signed64(SAR64(sub_mod64(capacity_end,B),2)), compared as uint64 to desired6",
+    "missing_native_guards": [
+      "No B<=E<=capacity bound",
+      "No 4-byte alignment or allocation bounds",
+      "No full receiver type/extent/lifetime guard",
+      "No cap overrun or malformed-count proof"
+    ]
+  },
+  "local_paths": [
+    {
+      "id": "existing-slot",
+      "machine_condition": "uint32(5)<uint32(C) at771c2d/30",
+      "action": "go771c98, reload freshbegin and readslot5; no local header store or call on this branch",
+      "ordinary_vector_condition": "For valid nonnegative count fittinguint32 and aligned/boundedspan, count>=6 supplies an existing index5. This condition is additional, not checked fully by native."
+    },
+    {
+      "id": "resize-setup",
+      "machine_condition": "uint32(5)>=uint32(C)",
+      "action": "EAX=6,RDX=6,R8=1, DWORD[steadyRSP+68]=1; compare uint64(6),uint64(C)",
+      "shadow_effect": "steadyRSP=Q-48 =>DWORD[Q+20]=1, conditionally overwrites originalR9B home byte and next3 bytes; other4 bytes not written by this instruction"
+    },
+    {
+      "id": "shorten-end-shaped",
+      "machine_condition": "uint64(6)<uint64(C) after low32 count check",
+      "action": "RAX=initialB+6*4; QWORD[S+2510]=RAX at771c4c, go771c98",
+      "limit": "Not selected for a well-formed count<=5; full64/low32 comparisons diverge for large/malformed headers. Do not discard retained branch or assume allheaderinputsvalid."
+    },
+    {
+      "id": "equal-size",
+      "machine_condition": "uint64(6)==uint64(C)",
+      "action": "771c55 JBE to771c98, no localendstore. With validuint32count, prior low32 check rules this equality out for kind5; generic CFG alone still includes it."
+    },
+    {
+      "id": "grow-external-helper",
+      "machine_condition": "uint64(6)>uint64(C) and uint64(6)>uint64(capacity_C)",
+      "call": "771c76 E8d5bbcbff ->42d850; RCX=&S2508,RDX=6,R8=&DWORD[Q20],R9originalunknown",
+      "action": "return assumednormal thenjump771c98; helperbody/alloc/free/header/aliases unknown. Common path reloadsbegin, notcachedRDI/RBX orcalleeRAX."
+    },
+    {
+      "id": "grow-within-capacity",
+      "machine_condition": "uint64(6)>uint64(C) and uint64(6)<=uint64(capacity_C)",
+      "action": "RCX=6-C,RDI=initialE,EAX=1,RBX=initialE+(6-C)*4; REP STOSD thenQWORD[S+2510]=RBX",
+      "conditions": "Valid normal vector arithmetic, memorybounds and DF=0 (normalWin64 ABI, not locally CLD-proved) are needed for forwardfill. No ownership/lifetime or malformed-input safety inferred."
+    }
+  ],
+  "EAX_source": {
+    "rows": [
+      "0x771c98",
+      "0x771c9f",
+      "0x771ca3",
+      "0x771cac"
+    ],
+    "expression": "P=freshQWORD[S+2508]; ECX=load_uint32(P+R14*4); RDX=P+R14*4; EAX=ECX zeroextendsRAX",
+    "kind5": "Under inheritedR14=5 and normalcalleeABI, slot_offset=0x14; currentfragmentexitRAX=zeroextendedDWORD[P+0x14].",
+    "alias_limit": "S+2508 is reloaded after potential42d850; no alias content stability or pre/postsameallocation assumption.",
+    "not_proved": [
+      "final function return EAX",
+      "ID increment/set semantics",
+      "globaluniqueness orkind5businessmeaning",
+      "wrap/reset/cross-epoch reuse",
+      "external bridge requestID mapping"
+    ]
+  },
+  "selected_exit": {
+    "site": "0x771cb8 CMP EBP,-1 /771cbb JE771cc7",
+    "inherited_EBP": "0xffffffff",
+    "condition": "Normalcall/stack/nonvolatileABI preserves inheritedRBP; comparison equality selects JE.",
+    "exit_state": {
+      "RSP": "Q-48",
+      "RSI": "originalS",
+      "R14": "5",
+      "RBP": "00000000ffffffff",
+      "RAX": "freshslot5 uint32 zeroextended",
+      "RCX": "same uint32 zeroextended",
+      "RDX": "freshslot5 address",
+      "RBX_RDI_R15": "restored from savedQ+8/Q+10/Q+18 localhome slots",
+      "R8": "pathdependent: originalffffffff /1 /unknownafter42d850",
+      "R9": "unknown, may be callee-clobbered"
+    },
+    "target": "0x771cc7",
+    "target_body_read": false,
+    "final_native_ID_proved": false
+  },
+  "all_outside_exits": [
+    {
+      "kind": "conditional_branch",
+      "site": "0x771cbb",
+      "raw_hex": "740a",
+      "target": "0x771cc7",
+      "selected_for_inherited_EBP": true
+    },
+    {
+      "kind": "window_fallthrough",
+      "target": "0x771cbd",
+      "selected_for_inherited_EBP": false,
+      "generic_other_EBP_path_unknown": true
+    },
+    {
+      "kind": "unfollowed_CALL",
+      "site": "0x771c76",
+      "raw_hex": "e8d5bbcbff",
+      "target": "0x42d850",
+      "call_returns_assumed_for_fallthrough": true
+    }
+  ],
+  "next_retained_metadata": {
+    "record": {
+      "index": 14174,
+      "rva": "0x248e868",
+      "file_offset": 37079144,
+      "raw_hex": "bd1c7700f61c77008c4ee501",
+      "begin_rva": "0x771cbd",
+      "end_exclusive": "0x771cf6",
+      "unwind_rva": "0x1e54e8c"
+    },
+    "extent_bytes": 57,
+    "target771cc7_is_inside_record": true,
+    "new_code_read_bytes": 0,
+    "new_scope_authorized_by_this_contract": false
+  },
+  "write_scope": {
+    "explicit_ModRM_memory_destination_sites": 6,
+    "stack_sites": 4,
+    "receiver_end_pointer_sites": 2,
+    "implicit_REP_STOSD_sites": 1,
+    "payload": "pathconditional repeatedDWORD1 to initialend candidate",
+    "stack_locations": "Q+8 RBX,Q+10 RDI,Q+18 R15; conditionalDWORDQ+20=1. No extra push/pop/ret in this fragment.",
+    "pure_or_readonly": false,
+    "transitive_helper_writes_unknown": true
+  },
+  "resources": {
+    "pdata_requests": 19,
+    "pdata_unique_records": 17,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 204,
+    "two_EXE_SHA_bytes": 76925008,
+    "new_code_bytes": 183,
+    "total_PE_physical_bytes": 76925419,
+    "decoder_input_total_bytes": 662,
+    "decoder_input_unique_bytes": 183,
+    "decoder_overlap_bytes": 479,
+    "source_journal_events": 133,
+    "source_journal_bytes": 16623346,
+    "source_budget_bytes": 33554432,
+    "source_journal_operations": {
+      "read": 11,
+      "streaming_pin": 46,
+      "streaming_engine_pin": 76
+    },
+    "source_journal_scope": "producer-recorded file IO through capturepublication; not allPython/OSloaderIO",
+    "source_engine_before_after_equal": true,
+    "peak_committed_bytes_producer_witness": 23097344,
+    "software_guard_bytes": 805306368,
+    "hard_Job_installed": false,
+    "producer_subprocess_elapsed_ns": 588738400,
+    "elapsed_scope": "producer subprocess launch through collected exit including source/engine guards and both EXE hashes; authorization creation before timing",
+    "owned_child_collected": true
+  },
+  "operations": {
+    "producer_actual_runs": 1,
+    "automatic_retries": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "tests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "native_ID_semantics_verified": false,
+    "native_ID_uniqueness_verified": false,
+    "counter_update_or_wrap_verified": false,
+    "bridge_request_ID_binding_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema": "EU4-R81-ACTUAL-INDEPENDENT-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "scope": "Full non-author retained-file/raw review of fixed cached2B+new48B continuation only, not independent API/wholefunction/runtime permission",
+  "subject_actual_manifest": {
+    "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-manifest.json",
+    "bytes": 16550,
+    "sha256": "eb8f4a1171c388c1805093a0c41143e1f5f2bc54c08602b235d6ad15850c78c3"
+  },
+  "subject_capture_pin": {
+    "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/capture.json",
+    "bytes": 79710,
+    "sha256": "9ed8dcd8f053ed9749d9786443ea90b806538f8c062eb5ccdec072671635b5f8"
+  },
+  "subject_contract_pin": {
+    "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-contract.json",
+    "bytes": 6046,
+    "sha256": "e2196dd433efbe68d57a1c37ed4b74242a4bfb5f0d00a910e732390ca29fc558"
+  },
+  "subject_owned_pin": {
+    "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/owned-code.json",
+    "bytes": 1260,
+    "sha256": "38a6c1dd3c614d1cddbb9fec77faf0ca7e07e4fa3bfd1e34d110883872119687"
+  },
+  "subject_selected_pin": {
+    "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-selected-evidence.json",
+    "bytes": 17878,
+    "sha256": "480b65763ec022ea2bbde70dcca9435ac713e67e4816852c3fc51be8a134dc3c"
+  },
+  "subject_source_manifest": {
+    "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/source-manifest.json",
+    "bytes": 23674,
+    "sha256": "3af48b1a8a938f6ede36d112012ab5f13271a6a231f1fcf87c048f79b2351c64"
+  },
+  "subject_producer": {
+    "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/produce.py",
+    "bytes": 27880,
+    "sha256": "db69091ea37ee07c7d6aed02fe8aa4e909baecbd6e291849d11595c120546045"
+  },
+  "subject_authorization": {
+    "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/run-authorization.json",
+    "bytes": 3286,
+    "sha256": "d9823f7a63f0ce9f5f8b4c180ccd0a29b32e291ada1429b647b3f752cb7a76c4"
+  },
+  "role_disclosure": {
+    "R81_actual_author": "diplomacy_static; not this reviewer",
+    "reviewer": "war_api",
+    "prior_roles": [
+      "R80 full reviewer (upstream accepted witness produced by this reviewer)",
+      "R79 source/actual author",
+      "R78 full reviewer",
+      "lookupv5 author and v6 planning author"
+    ],
+    "R80_prior_review_scope": "Only five exact accepted subject pins and cache-carry fields are bound; no recursive re-review of the old74-pin review graph. R81 actual author is independent of this reviewer.",
+    "not_claimed": "Independent origin of every upstream historical source or v6 non-author acceptance."
+  },
+  "result": {
+    "new_physical_bytes": 48,
+    "cached_bytes": 2,
+    "combined_bytes": 50,
+    "complete_rows": 17,
+    "decoded_combined_bytes": 46,
+    "decoded_new_positions": 44,
+    "unreached_owned_bytes": 4,
+    "local_branches": 3,
+    "RET_sites": [
+      "0x97bd96",
+      "0x97bd9b"
+    ],
+    "CALLs": 0,
+    "memory_stores": 0,
+    "wholefunction_extent_known": false
+  },
+  "checks": [
+    "All17 raw rows reproduce consecutive46B from cached2+new48; two RETs terminate paths and four following CC bytes remain owned but not decoded.",
+    "Raw SHR64/CWDE32 produce zero-upper32 K; MOVSXD consumes signedDWORD count; SHL4/ADD64 form modular end.",
+    "Three signedrel8 branches resolve exactly, including backedge; compares use DWORD key only. First matching record+8 value can be0, so return0 is ambiguous.",
+    "The suffix writes no memory and has no CALL. Each normalRET reads8B controlstack and incrementsRSP8; no capacity/nonnegative/type/fullhandle/lifecycle check is filled in.",
+    "Three subject-bound review gates and rootonce authorization precede sourceengine/PE access; rawmanifest bytes/SHA precede parsing and engine loop; close precedes postguards and capture publish.",
+    "47 manifest files plus explicit delivery/completion pins are flat before/after verified;38 engine pins remain metadata only; all158 completed source events match known names and sizes."
+  ],
+  "machine_projection": {
+    "premises": [
+      "Inherited R80 current GP/state, normal valid control transfer and memory; not fresh function formals.",
+      "For finite N-record interpretation: stable valid range, nonnegative N and no invalid address wrap. Native does not check these."
+    ],
+    "key": "K = zext32_to64(sext16_to32((entry_current_RAX >>32)&0xffff)); comparison is low32 DWORD only",
+    "list": "W=entry_current_R8; B=M64[W+0x50]; N=sext32(M32[W+0x5c]); E=B+16*N modulo2^64",
+    "zero_exit": {
+      "rva": "0x97bd96",
+      "RAX": 0,
+      "RCX": "E",
+      "RDX": "E",
+      "R8": "W unchanged",
+      "R9": "inherited R80 R9 unchanged by suffix",
+      "RSP": "entryQ+8=S69-0x58",
+      "flags": "XOR EAX,EAX: ZF1/SF0/CF0/OF0/PF1; AF undefined; DF inherited unknown"
+    },
+    "match_exit": {
+      "rva": "0x97bd9b",
+      "RAX": "M64[first DWORD-matching record+8], may be0",
+      "RCX": "matching record address",
+      "RDX": "E",
+      "R8": "W unchanged",
+      "R9": "inherited R80 R9 unchanged by suffix",
+      "RSP": "entryQ+8=S69-0x58",
+      "flags": "Equality CMP DWORD[RCX],EAX sets ZF1/SF0/CF0/OF0/PF1/AF0; following JE/MOV/RET do not alter them; DF inherited unknown"
+    },
+    "normal_return_target": "Read8B[entryQ=S69-0x60]; expected prior CALL address modulebase+99358f only if valid unchanged control stack.",
+    "memory_stores": 0,
+    "stack_reads": "Exactly one RET8B per terminating path; two RET sites are alternatives, not16B per execution.",
+    "negative_count": "Signed32 N is not rejected; bounds/capacity/valid access and useful termination remain unknown.",
+    "zero_ambiguity": [
+      "N=0/end reached returns0",
+      "no matching DWORD returns0",
+      "first matching record can contain QWORDvalue0"
+    ],
+    "not_proved": [
+      "originalD/header identity or unchanged content across caller CALL-stack aliases",
+      "fullhandle/generation/type/lifecycle",
+      "unique key/match or returned pointer ownership",
+      "complete function extent/leaf identity",
+      "runtime execution/effect/units/recipient/lifetime"
+    ]
+  },
+  "resources_author_witness": {
+    "producer_source_events": 158,
+    "producer_source_bytes": 17331379,
+    "two_SHA_bytes": 76925008,
+    "new_code_physical_bytes": 48,
+    "total_PE_bytes": 76925056,
+    "new_metadata_bytes": 0,
+    "decoder_cumulative_input_bytes": 230,
+    "decoder_unique_owned_bytes": 50,
+    "decoder_overlap_bytes": 180,
+    "seal_completed_read_bytes": 1213660,
+    "first_filecheck_read_bytes": 662298,
+    "publication_completed_read_bytes": 150382,
+    "retained_successful_upper_bytes": 3186678,
+    "retained_prior_frozen_upper_bytes": 6718684,
+    "completion_reads_within_remaining_publication_allowance": 11227,
+    "producer_peak_committed_bytes_not_independent": 24145920,
+    "hard_Job_installed": false,
+    "actual_attempts": 1,
+    "retries": 0,
+    "all_actual_shells_collected_witness": true,
+    "whole_OS_IO_or_failure_path_universal_cap_claimed": false
+  },
+  "review_resources": {
+    "flat_subject_files": 63,
+    "completed_read_events": 128,
+    "completed_read_bytes": 1433680,
+    "manual_schema_source_inspection_allowance_bytes": 1048576,
+    "sealing_report_first_check_reserve_bytes": 2097152,
+    "successful_upper_bytes": 4579408,
+    "limit_bytes": 25165824,
+    "ordinary_file_limit_bytes": 4194304,
+    "source_pin_before_after_equal": true,
+    "self_memory_before": {
+      "private_bytes": 12230656,
+      "peak_pagefile_bytes": 12230656
+    },
+    "self_memory_after": {
+      "private_bytes": 16633856,
+      "peak_pagefile_bytes": 17600512
+    },
+    "engine_metadata_only_pins": 38,
+    "engine_bodies_stat_or_opened": 0,
+    "software_guard_bytes": 805306368,
+    "one_GiB_stop": true
+  },
+  "precision_notes": [
+    "Targeted new48B and cached2B are separate; two full SHA passes still read the entire PE. No statement that the prior64B never occurred in those hash reads.",
+    "The230 decoder input bytes are overlapping owned views, not new target reads.",
+    "Normal local CFG closure includes a backedge and is conditional, not unconditional valid traversal/termination or proof of wholefunction identity.",
+    "Before/after source/engine equality is historical witness, not atomic input authentication or ABA exclusion.",
+    "Collected shell/peak/duration evidence comes from authored receipts, not independent observation of past processes.",
+    "R80 historical partial/noRET and R79 bounded unknown remain frozen; later continuation adds conditional context."
+  ],
+  "limits": [
+    "actual object/class/index roles and runtime roots",
+    "valid bounds/capacity/count/typed handle/lifecycle",
+    "return object identity/ownership/lease",
+    "aliases and actual D/header contents",
+    "actual function extent/unwind registration",
+    "units/currency/recipient/peace effect",
+    "runtime execution/acceptance/completion/persistence",
+    "No v6 candidate build/query/publication or R82/native scope is authorized. v6 R2 remains a proposal until root separately grants its build and non-author review follows."
+  ],
+  "operations": {
+    "author_programs_or_tests_executed": 0,
+    "PE_stat_open_read": 0,
+    "engine_body_stat_open": 0,
+    "Capstone_import_decode": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0,
+    "all_review_shells_collected": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "reader_adoption_allowed": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false,
+    "whole_function_extent_known": false,
+    "complete_class_verified": false,
+    "returned_pointer_type_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "unconditional_termination_verified": false
+  }
+}

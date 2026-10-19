@@ -1,0 +1,61 @@
+{
+  "schema": "WAR-GRAPH-CHANGE-ORACLE-SOURCE-MANIFEST/1",
+  "sealed": true,
+  "source_pins": {
+    "work/reports/war-peace-result-reader-gaps-20261015-r1/gap-ledger.json": {
+      "bytes": 31816,
+      "sha256": "80287f53924df0ca3d4e92e7314e98eb2b8e356bee677ba52e0fc84e4e3704fa"
+    },
+    "work/reports/war-peace-result-reader-gaps-20261015-r1/manifest.json": {
+      "bytes": 7968,
+      "sha256": "993d2652d6463ffc88ea5e6aee53022a1da813f9fe1b70b097d549c695582677"
+    },
+    "bridge/war_peace_memory_observer_r2.py": {
+      "bytes": 14388,
+      "sha256": "4a1bfd91664a99e02a71837ac2b1ccf23dad719cbeecc77cb0847dd80562bfa9"
+    },
+    "work/reports/war-peace-api-20261015-r7-r2/observer/contract.json": {
+      "bytes": 3162,
+      "sha256": "fee222fb6042fa14cf02ddb0c38920cf1701bce26f121531d65429fa0de49970"
+    },
+    "work/candidates/war-graph-change-oracle-1375-v1/war_graph_change_oracle.py": {
+      "bytes": 12932,
+      "sha256": "c9d10067f897c2d284a9542df896906b0f71c9cb888f80d050c3715a586c4c5c"
+    },
+    "work/candidates/war-graph-change-oracle-1375-v1/test_war_graph_change_oracle.py": {
+      "bytes": 13876,
+      "sha256": "a5242a9d42ac4b0e580f8259b55225cd2f10b81ff6ebbf73fee9f652cb404732"
+    },
+    "work/candidates/war-graph-change-oracle-1375-v1/PROTOCOL.md": {
+      "bytes": 4985,
+      "sha256": "af2f130f3cf4ade48c7a619274e7f21a3a68f70b5e3fc779e399bcafc4619744"
+    },
+    "work/candidates/war-graph-change-oracle-1375-v1/README.md": {
+      "bytes": 1546,
+      "sha256": "11f3fbc9c5a57e7c36fdc56925d5c17d075da2e826b6ec022365d3cacc2dd9f8"
+    },
+    "work/candidates/war-graph-change-oracle-1375-v1/source-plan.json": {
+      "bytes": 1205,
+      "sha256": "fb7cea54e8aa190aa894140f2d2e7ebaa596dd52f4e079c6a464fbb5ad831277"
+    },
+    "work/candidates/war-graph-change-oracle-1375-v1/run_offline.py": {
+      "bytes": 6332,
+      "sha256": "3de915f0db6f32710878ba16786bc7d67f24090912ba7b17d52836e91df1b9d6"
+    },
+    "work/candidates/war-graph-change-oracle-1375-v1/check_prepared.py": {
+      "bytes": 971,
+      "sha256": "7aa7ba84922eefbd5ad1d0e1d6a2d234fea584b89a1e904f7fd797114e8b202a"
+    }
+  },
+  "independent_source_review_pending": false,
+  "pure_copied_data_only": true,
+  "runtime_capture_authorized": false,
+  "native_ready": false,
+  "request_effect_authenticated": false,
+  "stage": "independently_reviewed_pure_copied_data_only",
+  "independent_source_review": {
+    "path": "work/reports/war-graph-change-oracle-root-review-20261015-r1/independent-source-ready.json",
+    "bytes": 2700,
+    "sha256": "4838f98ca9d287bcc0f72b6444be7f91508a7ea61ab7fa1bd98e288eb0d7e06a"
+  }
+}

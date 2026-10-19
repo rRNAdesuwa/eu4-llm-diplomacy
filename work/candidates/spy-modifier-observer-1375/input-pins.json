@@ -1,0 +1,14 @@
+{
+  "work/candidates/spy-action-contracts-1375/report.json": "274221df57719404edfcacd7451ebc28c678369dab9d4377e6201be5db734774",
+  "work/candidates/spy-action-contracts-1375/review.json": "d01a7a88961d3a9fad47479ebbef2304cca1fc1214521a3f98eca31738e6ef8c",
+  "work/candidates/spy-action-contracts-1375/trace.py": "49bf02cf386604925ce4002f8eab03ea50c15f6d7de0f29306e1d79fb390bc96",
+  "work/candidates/ordinary-insult-observer-1375/observer.py": "708adae32bf5f16db3678b70ffedb6e855ff8755fd0456044f666db1b4595638",
+  "work/candidates/ordinary-insult-observer-1375/report.json": "56cc771bad124ef19290a184a56ce1e4c642cf7cd8d802df308ceec180ff7073",
+  "work/candidates/peace-constructor-preconditions-raw-ro-1375/raw_observer.py": "0e73707f2473a6563c92259a64badd0803561e7329e9c895916227ac0097645b",
+  "work/probe_diplomacy_current.py": "a5a0b775a701466cf5f4c85db671e37f81c165daf5fddd2080b71ed6f147bb38",
+  "work/local_config.py": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001",
+  "bridge/native_build.py": "2f8f7f1781f10084ed85cae59f876080a9cd0efcf9810e1fc394561682048925",
+  "work/discover_diplomacy.py": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318",
+  "work/map_diplomacy_fields.py": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85",
+  "work/trace_change_subject_type.py": "8bc16d94e8f6104a79ce541c6de0843894293e158f44efb6c47f27b9b8dec6da"
+}

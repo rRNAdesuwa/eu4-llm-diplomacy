@@ -1,0 +1,150 @@
+{
+  "work/AGENTS.md": {
+    "bytes": 959,
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  },
+  "work/candidates/core-five-full88-and-spy-entry-1375/report.json": {
+    "bytes": 414265,
+    "sha256": "d5a209db5c96f65710cdd1aa71390a55342630e872a83ecc9737000042559dc2"
+  },
+  "work/candidates/core-five-full88-and-spy-entry-1375/review.json": {
+    "bytes": 924,
+    "sha256": "4a89957edf48bdaa7db355d08341c65ec9d59c074fa31a393997e42a3d33787e"
+  },
+  "work/candidates/curry-favors-contract-1375/report.json": {
+    "bytes": 1144488,
+    "sha256": "10c33ee19481cf0c9b0f300e539fe7baee5065526463e3380b5bc08ebfabcf89"
+  },
+  "work/candidates/curry-favors-contract-1375/review.json": {
+    "bytes": 4432,
+    "sha256": "883292a180d0987587ab2a0d29c5a6f0578f95748b041190919d30af94eca5d7"
+  },
+  "work/candidates/v19-spy-restricted-host-r2-1375/preflight/native_env.cpp": {
+    "bytes": 11204,
+    "sha256": "de31fd72e5870020c5dbbef9d1ba176efb98d45d970c9d2f722576c065819fff"
+  },
+  "work/candidates/v19-spy-send-core-1375/spy_send_core.cpp": {
+    "bytes": 25003,
+    "sha256": "300cb5f9f4923d4ced45906e2ccdcf5f26b275b7f18f51e9e2059357000e429a"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/build_test.cmd": {
+    "bytes": 1778,
+    "sha256": "c4f47316eb2341bdd262c9ac732cdfd6612efb8b5c107331d582706544b8e187"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.cpp": {
+    "bytes": 21944,
+    "sha256": "22dc8da31e3ec9baef1af453cc49b730c830bd21804d252ea189f680582cf53a"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/profile-registry.json": {
+    "bytes": 6894,
+    "sha256": "04da164a2ef23f088243d933dd773b03fed06e253eda49617f3d5a384fe77e91"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/review.json": {
+    "bytes": 1124,
+    "sha256": "4675e39339d3f2c4f807da3d63b7ab6194dae74ee472d2a03c91b9cb0f3bbda7"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/test_pair_component.cpp": {
+    "bytes": 17198,
+    "sha256": "f155e01429498324db8114ac09c1845b07145109c2c89e1dfdd98b5a19606a5d"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/validate.py": {
+    "bytes": 14052,
+    "sha256": "8a053dc5245dbd7daea44b63dcc910d856cd7634b0bf87ea89bedb19c3efb895"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/pair_component.cpp": {
+    "bytes": 23662,
+    "sha256": "28d1f1c535f9623eca10aacb640e2b716e9f67ddae848d0c95ea70b0abc70587"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/review.json": {
+    "bytes": 1083,
+    "sha256": "00d51a15b915a0d4a8daff85241baeaf299157ab1b4816906315334c843190f2"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/test_r3_integration.cpp": {
+    "bytes": 7191,
+    "sha256": "64bce640703b796a504803042a481ef32982287ae697cd043e471fed26474342"
+  },
+  "work/candidates/v21-core-pair-nosend-r3-1375/typed_fixture.h": {
+    "bytes": 3078,
+    "sha256": "2ab818ad7ea93385d29b7c0193dab8f2a4975dd915fe3b30e0f0294827bb28e7"
+  },
+  "work/candidates/v21-native-pair-port-1375/build_test.cmd": {
+    "bytes": 2256,
+    "sha256": "13c61e799f54837926b58bd2d7ed0ffbabe7da3597ddc54fac34aec8c68657cf"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_pair_engine.cpp": {
+    "bytes": 13222,
+    "sha256": "1102d170d13d92f95347f01381f7b8cce1874abf08fca1bc65ccb7ecf73ded16"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_pair_engine.h": {
+    "bytes": 4773,
+    "sha256": "f17589286bbf90fe888db9bf3c5f320259347c90808150c6360096dc134f480f"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_pins.h": {
+    "bytes": 1693,
+    "sha256": "32a566ffb13045e03370b811b79758925fc0c09dff9a45d7c109ec72369a07b4"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_platform.cpp": {
+    "bytes": 5906,
+    "sha256": "055d614a8456c66069693408029b27c0a160a44ea0a19b3e3490aae913696fb8"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_platform.h": {
+    "bytes": 1518,
+    "sha256": "08b9fa77159a3f448b7b26a5beddf13d048b66a122be695e2168d082ef69da65"
+  },
+  "work/candidates/v21-native-pair-port-1375/pin-provenance.json": {
+    "bytes": 6614,
+    "sha256": "67ffad25f37ea85c5bc9c2a06b327686ae4040d5f5224ff326c03d49fe57026c"
+  },
+  "work/candidates/v21-native-pair-port-1375/review.json": {
+    "bytes": 1282,
+    "sha256": "0bbcf1e9f93e45e8822b733561b1a98323cc7f8b3c3d4ee1305586de8d8b6435"
+  },
+  "work/candidates/v21-native-pair-port-1375/test_native_pair_engine.cpp": {
+    "bytes": 17902,
+    "sha256": "356dcbb6447dad9cbbad1962a6ff6810ea51f6e3541ca7306ad04a23651546c5"
+  },
+  "work/candidates/v21-native-pair-port-1375/validate.py": {
+    "bytes": 7521,
+    "sha256": "47ad664d8bdf18524c064ba4246f7bff32fd8c10eeb8d9b38385c41648475199"
+  },
+  "work/create_native_pair_port_r2_1375.py": {
+    "bytes": 4919,
+    "sha256": "558fc5236254159ba90f367cc4c1f8c8b1fdf0e31742af062df9ecb1f7cef069"
+  },
+  "work/native/v17/pair-engine-1375.cpp": {
+    "bytes": 84162,
+    "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e"
+  },
+  "work/reports/native-pair-cancel-1375.json": {
+    "bytes": 1342305,
+    "sha256": "54dc047d85fe8c06528d5fb3824a1928f56fac2c4bbf24c26e205bcfb08e0df3"
+  },
+  "work/review-results/v21-native-pair-port-favor-20261008a/finding-locations.json": {
+    "bytes": 923,
+    "sha256": "4a60fafcafad55c646093e24ff249e2fd404e8f4ad63e0d2c70295773a5880e6"
+  },
+  "work/review-results/v21-native-pair-port-favor-20261008a/report.json": {
+    "bytes": 6034,
+    "sha256": "ac0319fc232c651e135eab4c44f6d9e4efad9a4eede89a7b7824f9c915ec44e3"
+  },
+  "work/review-results/v21-native-pair-port-favor-20261008a/review.json": {
+    "bytes": 1324,
+    "sha256": "3e92318b9834ba206817795e079b30ccae5fa9abe37df1f6b9a3d5747b78304c"
+  },
+  "work/review-results/v21-native-pair-port-favor-20261008a/test_independent.cpp": {
+    "bytes": 10275,
+    "sha256": "632bcba7387ca47a66b8431e60837cd4a491f1cfcefa6be68837c1249bf9ee2b"
+  },
+  "work/review-results/v21-pair-r2-action-catalog-20261008a/review.json": {
+    "bytes": 10919,
+    "sha256": "d60e69164605b6505d891448029622b3e7a2baa18a7dce397c79460cecb46e4f"
+  }
+}

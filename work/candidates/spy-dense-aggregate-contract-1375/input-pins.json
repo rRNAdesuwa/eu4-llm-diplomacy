@@ -1,0 +1,37 @@
+[
+  {
+    "bytes": 472872,
+    "path": "work/candidates/spy-modifier-observer-1375/report.json",
+    "sha256": "e385e400841d9e012a4be2ed0261ae2dab311c5bf396f42c588d74f5508575d4"
+  },
+  {
+    "bytes": 1446454,
+    "path": "work/candidates/spy-action-contracts-1375/report.json",
+    "sha256": "274221df57719404edfcacd7451ebc28c678369dab9d4377e6201be5db734774"
+  },
+  {
+    "bytes": 20533,
+    "path": "work/candidates/spy-modifier-observer-1375/observer.py",
+    "sha256": "d386524d543d96509fe4230e5fd02b01bc7f404f5419054ae2a84f66fdb13e48"
+  },
+  {
+    "bytes": 1280,
+    "path": "work/candidates/spy-modifier-observer-1375/review.json",
+    "sha256": "9b9830cf4eafbc5620fa53810ce1b790dfec9c96a44afb9f45b93660ec73ee85"
+  },
+  {
+    "bytes": 29147,
+    "path": "work/discover_diplomacy.py",
+    "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+  },
+  {
+    "bytes": 32914,
+    "path": "work/map_diplomacy_fields.py",
+    "sha256": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85"
+  },
+  {
+    "bytes": 959,
+    "path": "work/AGENTS.md",
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  }
+]

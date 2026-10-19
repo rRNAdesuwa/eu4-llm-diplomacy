@@ -1,0 +1,28 @@
+{
+  "schema": "EU4-RUNTIME-OBSERVER-MANIFEST/3",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "read_only": true,
+  "native_calls": 0,
+  "source_pins": {
+    "tools/eu4_runtime_observer_r3.py": {
+      "bytes": 7606,
+      "sha256": "5f8d4edfcc07cdf4fd2ffcbc799e986ecb26aa21aacb0a19b5ddff43f2aecc76"
+    },
+    "bridge/tests/test_runtime_observer_r3.py": {
+      "bytes": 8238,
+      "sha256": "631307f689579d8ef2bd57a69fc4a8dc00dea8de69f1500a51d1ee81a4148230"
+    },
+    "tools/build_runtime_observer_r3_manifest.py": {
+      "bytes": 1117,
+      "sha256": "6be5bfe795fb56f1a9ec5aff6fbcf4ba2e07dc5f4f64083f479e10b7d7a99101"
+    },
+    "bridge/runtime_observer_manifest_1375.json": {
+      "bytes": 1038,
+      "sha256": "5fc4ce72fe0fabd23d4a62fc3359594faa4f7962935d27b1cb89844fee85a03d"
+    },
+    "bridge/relation_state_service_manifest_1375.json": {
+      "bytes": 1757,
+      "sha256": "48326793008996616bf3685c7cac207a5d2528bfe89b6b2feedb724ee088bf39"
+    }
+  }
+}

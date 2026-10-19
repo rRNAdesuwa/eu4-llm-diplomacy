@@ -1,0 +1,91 @@
+{
+  "all120_effect_profiles_complete": false,
+  "atomic_snapshot_claimed": false,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "native_calls": 0,
+  "native_manifest_sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a",
+  "read_only": true,
+  "schema": "EU4DIPLOMACY-OBSERVER-MANIFEST/1",
+  "source_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/diplomacy_effect_profiles.py": {
+      "bytes": 22643,
+      "sha256": "d4e23953c204f5c0f72e2227530e5f823e8bff8dbc1b15eeda4b6531654a0433"
+    },
+    "bridge/diplomacy_observer_service.py": {
+      "bytes": 4598,
+      "sha256": "139727da50f8357418fb9885b7b0415b146081de8fd05b9497835d6b5a5066ec"
+    },
+    "tools/build_effect_observer_manifest.py": {
+      "bytes": 2265,
+      "sha256": "a47177ebd46afafa7183a2e51d69a7ad1a73ca000613065c8fbe0de1609bfe17"
+    },
+    "tools/observe_diplomacy.py": {
+      "bytes": 5237,
+      "sha256": "615266674b7b7a35fad67e2dd38c0fb212cf3029b7a357d7b42e9e864b849a2e"
+    },
+    "work/inspect_tag31_corrective_pairs.py": {
+      "bytes": 19485,
+      "sha256": "3253c36d90e1be90111d0d4f1cf84642afcdca80c8c273f9e0e3c2d352942d5d"
+    },
+    "work/probe_annex_context_r3_1375.py": {
+      "bytes": 12156,
+      "sha256": "f4dd1eaa2a6190916914701ecb3c727b5893d5959a022e4933f5a2790cbaf2a5"
+    },
+    "work/probe_corrective_favors_r3_1375.py": {
+      "bytes": 7439,
+      "sha256": "6d1a12727d0844d451b88a6b30cff3366388c6cd8c9a45a7d1e0fb5484295b28"
+    },
+    "work/probe_knowledge_context_r3_1375.py": {
+      "bytes": 22918,
+      "sha256": "337f916b1a1f1608de66488381e6b0d4c653a5633aad9faccca1cf62b0630ea1"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/annex-checks-static.json": {
+      "bytes": 121942,
+      "sha256": "dab770be9fab8171a6b95bb16b54dec0a1a9edb56d4f69768a3e67e37c46f28b"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/annex-helpers-static.json": {
+      "bytes": 179259,
+      "sha256": "246f12d6bd910bb38836069bc6601be0cd6b0088c8fd1e7dcdd4e2147d73377a"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/coalition-false-static.json": {
+      "bytes": 66381,
+      "sha256": "76929550fd9d462bfc4304cb498dcbb1bf0847dcff3113e0dbc564e840cf4a0c"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/first-two-runtime-file-audit.json": {
+      "bytes": 55798,
+      "sha256": "1c3f75db827a3fd1317011012fb68f5b47f6eb97ca91d0ffbdd1bb073849a97a"
+    },
+    "work/reports/diplomacy-corrective-20261014/runtime-file-audit.json": {
+      "bytes": 20468,
+      "sha256": "592b588e2cdcad6f430c27fe61f622d6d8f9a3956597bec47a3abb03e25546d8"
+    },
+    "work/reports/diplomacy-effect-profiles-20261015/annex-task-layout/static.json": {
+      "bytes": 137320,
+      "sha256": "24fb364ff91a01c9de01c509322a13b411770d4e2769a9443ff1eb0c560c2d82"
+    },
+    "work/reports/native-pair29-favor-effects-1375.json": {
+      "bytes": 603966,
+      "sha256": "62abf72b2c30e71a7157e5f1fe08c3e5d49f091cf9ac31f1b436e8c6f79604a9"
+    },
+    "work/reports/rea-api-discovery-20261013/conditions/findings.json": {
+      "bytes": 12730,
+      "sha256": "8f1dfa84d3b9b1000a62873ed8afdcd866393d90a573b3bcd88b0bfd4ec9f7f9"
+    },
+    "work/reports/unified-validation-20261013/corrective-effect-evidence.json": {
+      "bytes": 15637,
+      "sha256": "3e58954c3bb88291b4bb17566aeefecb8834678e35624fc0fd0a57c0d85f061e"
+    },
+    "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json": {
+      "bytes": 6493,
+      "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+    },
+    "work/reports/war-peace-api-20261015-r4/war/host-contract.json": {
+      "bytes": 4446,
+      "sha256": "4872abbe60659d8f4aea6eb0d5d2b678d0994e3ded2d344cc85b3829249035de"
+    }
+  }
+}

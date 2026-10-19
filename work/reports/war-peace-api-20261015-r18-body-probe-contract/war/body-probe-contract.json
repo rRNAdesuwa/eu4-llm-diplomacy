@@ -1,0 +1,237 @@
+{
+  "schema": "EU4-BODY-ONLY-RAW-ABI-PROBE-CONTRACT/1",
+  "sealed": true,
+  "status": "source_only_protocol_not_implemented_or_executed",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "purpose": "One direct machine-code body call on wholly owned raw ABI test doubles; no native class construction or diplomacy effect",
+  "top_level": {
+    "entry_rva": "0x500560",
+    "return_type": "void",
+    "argument_types": [
+      "pointer"
+    ],
+    "RCX": "A",
+    "maximum_attempts": 1,
+    "arbitrary_entry_or_goal_pointer_config_allowed": false,
+    "forbidden": [
+      "500480 ctor",
+      "50b8f0 clone",
+      "500520 deleting wrapper",
+      "d9a050 goal deleting entry",
+      "full/check/execute/send",
+      "world/definition/sentinel instance copying"
+    ]
+  },
+  "owned_storage": {
+    "A": {
+      "bytes": 152,
+      "alignment_at_least": 16,
+      "writable": true,
+      "initial": "all152 bytes zero except LE64(G) at+48",
+      "retain_owner_reference_until": "all postimages captured and probe completed"
+    },
+    "G": {
+      "bytes": 96,
+      "alignment_at_least": 16,
+      "writable": true,
+      "initial": "all96 bytes zero except LE64(B+1d207f8) at+0",
+      "retain_owner_reference_until": "all postimages captured and probe completed"
+    },
+    "provenance": "fresh exclusive host/agent-owned allocations with actual owner refs; not caller-claimed addresses or game heap objects",
+    "disjoint": true,
+    "checked_address_arithmetic": true,
+    "external_pointer_inputs_allowed": false,
+    "full_preimage_reads_required": true,
+    "vector_triplets": [
+      [
+        80,
+        88,
+        96
+      ],
+      [
+        104,
+        112,
+        120
+      ],
+      [
+        128,
+        136,
+        144
+      ]
+    ],
+    "all_nine_vector_qwords_zero": true,
+    "alignment_is_profile_constraint_not_proof_of_Cpp_object_lifetime": true
+  },
+  "loaded_guard_file": "required-loaded-bytes.json",
+  "loaded_guard_file_pin": {
+    "bytes": 6122,
+    "sha256": "a0ad16d0c2fffd2ecb4a41014c7984e36b3a228089201d32e4edbf25b932b048"
+  },
+  "normative_guard_profile": "complete_functions_211",
+  "instruction_write_allowlist": [
+    {
+      "at": "0x500570",
+      "destination": "A[0:8]",
+      "value": "LE64(B+1c80d90)"
+    },
+    {
+      "at": "0x5005c4",
+      "destination": "A[0:8]",
+      "value": "LE64(B+1c3e578)"
+    }
+  ],
+  "write_boundary": "Two stores are static instruction evidence. Input/output snapshots alone do not trace transient writes or prove total-memory-write counts.",
+  "postconditions": {
+    "A_first8": "LE64(B+1c3e578)",
+    "A_bytes8_through97": "exact original preimage",
+    "A48": "same owned G pointer",
+    "vectors": "same zero triplets",
+    "G_full60": "exact original preimage",
+    "complete_owned_buffers_compared": true,
+    "return_scalar_used_as_success": false,
+    "success_label": "owned_buffer_ABI_postimage_observed_only",
+    "gameplay_effect_claimed": false
+  },
+  "expected_static_calls": [
+    {
+      "kind": "virtual",
+      "site": "50057a",
+      "target": "8f450",
+      "times": 1
+    },
+    {
+      "kind": "direct",
+      "site": "5005a6/5005af/5005b8",
+      "target": "8eac0",
+      "times": 3
+    }
+  ],
+  "stack": {
+    "entry_rsp": "Q",
+    "Win64_entry_alignment": "Q mod16 ==8",
+    "caller_home_bytes": 32,
+    "body_rsp": "Q-28h",
+    "false_leaf_entry_rsp": "Q-30h",
+    "vector_entry_rsp": "Q-30h",
+    "vector_lowest_normal_rsp": "Q-58h",
+    "saved_nonvolatile": "RBX saved/restored by body and each vector helper",
+    "notes": "Normal instruction formulas only; real caller/return slots, stack ownership and unwind are not authenticated by this document"
+  },
+  "pdata_unwind": {
+    "status": "not_retained_in_R17_selected_proof_artifacts",
+    "raw_pdata": null,
+    "unwind_info": null,
+    "retained_metadata_inventory": [
+      {
+        "source": "work/reports/war-peace-api-20261015-r6/war/reused-functions.json",
+        "entry": "0x500560",
+        "retained_keys": [
+          "entry_rva",
+          "decoded_bytes",
+          "edges"
+        ],
+        "pdata_or_unwind_record_retained": false
+      },
+      {
+        "source": "work/reports/war-peace-api-20261015-r6/war/disassembly.json",
+        "entry": "0x8eac0",
+        "retained_keys": [
+          "entry_rva",
+          "decoded_bytes",
+          "instruction_bytes_sha256",
+          "edges"
+        ],
+        "pdata_or_unwind_record_retained": false
+      },
+      {
+        "source": "work/reports/war-peace-api-20261015-r6/war/disassembly.json",
+        "entry": "0x8f450",
+        "retained_keys": [
+          "entry_rva",
+          "decoded_bytes",
+          "instruction_bytes_sha256",
+          "edges"
+        ],
+        "pdata_or_unwind_record_retained": false
+      }
+    ],
+    "no_inference_from_prologue_bytes": true,
+    "normal_stack_formula_not_exception_unwind_proof": true,
+    "future_requirement": "If unwind/exception behavior is part of acceptance, first obtain separately pinned static pdata/unwind evidence; no guessed bytes or recovery claim"
+  },
+  "planned_Frida_NativeFunction": {
+    "status": "plan_only_requires_prior_real_owned_FFI_acceptance",
+    "return_type": "void",
+    "arg_types": [
+      "pointer"
+    ],
+    "options": {
+      "abi": "win64",
+      "scheduling": "exclusive",
+      "exceptions": "propagate",
+      "traps": "none"
+    },
+    "fixed_target": "authenticated_module_base+0x500560",
+    "bindings_version": "17.23.2 pinned Windows binding",
+    "exact_constructor_options_and_normal_FFI_behavior_verified_by_R18": false,
+    "exclusive_is_not_game_world_lock": true,
+    "propagate_is_not_SEH_safe_recovery": true,
+    "traps_none_is_not_total_process_no_hook_proof": true
+  },
+  "owned_FFI_prerequisite": {
+    "accepted_receipt_supplied_by_R18": false,
+    "required": "Root independently accepts a real newly owned fixture NativeFunction call using the same binding/ABI/options and pointer argument/owned-byte pre/post protocol",
+    "metadata_attach_smoke_alone_sufficient": false,
+    "pure_VM_or_fake_test_sufficient": false,
+    "must_pin": [
+      "actual raw REA Evidence",
+      "complete rendered script SHA",
+      "owned PID/creation",
+      "binding/package/provider source graph",
+      "options and owned FFI result",
+      "cleanup and zero-active Job receipt"
+    ],
+    "normal_FFI_acceptance_does_not_prove": "EU4 execution, code lifetime, exceptional unwind, AVX/xstate or game API readiness"
+  },
+  "ordering": [
+    "Authenticate held PID/creation/module base/image/source identity using separately reviewed host guards",
+    "Require independently accepted owned FFI prerequisite; then independently reviewed body probe source/host permission",
+    "Own and retain disjoint A/G; initialize all bytes, then read complete inputs and reject any mismatch",
+    "Read all mandatory loaded-code ranges and relocated slot; reject before native call on any change/failure",
+    "Attempt exactly one void(pointer)500560 call under the separately accepted ABI/options",
+    "Capture complete owned A/G postimages synchronously while owner refs remain live",
+    "Recheck same module/code/slot/host identities; compare whole postimages and raw records",
+    "Return owned bytes/results only; release only experimental storage by its own framework owner mechanism"
+  ],
+  "failures": [
+    "unknown on unsupported identity/options/code/data/exception/postimage/cleanup conditions",
+    "No retry, no ctor/deleting wrapper/native destructor cleanup, no free through EU4",
+    "If native exception propagates or the target terminates, do not fabricate a returned postimage or safe cleanup",
+    "Source/input/code/postimage snapshots must retain actual address, byte length, raw bytes and ordinal; do not reuse historical Q/pointers"
+  ],
+  "scope_accounting": {
+    "body_selected_normal_path_game_heap_alloc_free_calls": 0,
+    "Frida_and_host_framework_allocation_not_excluded": true,
+    "whole_experiment_memory_written_false": false,
+    "planned_top_level_game_NativeFunction_attempts_max": 1,
+    "expected_callee_counts_are_static_not_dynamically_traced": true,
+    "native_calls_executed_by_R18": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "sender_authorized": false,
+    "implementation_authorized": false,
+    "world_lease": false,
+    "sentinel_header_lease": false,
+    "native_entry_authenticated": false,
+    "atomic_snapshot": false,
+    "Cpp_construction": false,
+    "complete_lifecycle": false,
+    "war_effect": false
+  },
+  "exclusions": [
+    "No new hook/installer/patch/detour protocol supplied by R18",
+    "No world sentinel/header or country/CB/war/peace graph borrow",
+    "No alteration or weakening of existing native/API gates; this is a separate experimental profile"
+  ]
+}

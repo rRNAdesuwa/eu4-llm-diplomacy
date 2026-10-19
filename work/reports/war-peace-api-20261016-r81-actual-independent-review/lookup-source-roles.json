@@ -1,0 +1,35 @@
+{
+  "schema": "EU4-R81-FIVE-LOOKUP-SOURCE-ROLES/1",
+  "sealed": true,
+  "roles": {
+    "author_actual_manifest": {
+      "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-manifest.json",
+      "bytes": 16550,
+      "sha256": "eb8f4a1171c388c1805093a0c41143e1f5f2bc54c08602b235d6ad15850c78c3"
+    },
+    "author_contract": {
+      "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-contract.json",
+      "bytes": 6046,
+      "sha256": "e2196dd433efbe68d57a1c37ed4b74242a4bfb5f0d00a910e732390ca29fc558"
+    },
+    "author_selected_evidence": {
+      "path": "work/reports/war-peace-api-20261016-r81-selector-prefix-tail/actual-selected-evidence.json",
+      "bytes": 17878,
+      "sha256": "480b65763ec022ea2bbde70dcca9435ac713e67e4816852c3fc51be8a134dc3c"
+    },
+    "independent_full_findings": {
+      "path": "work/reports/war-peace-api-20261016-r81-actual-independent-review/findings.json",
+      "bytes": 10070,
+      "sha256": "88b77deb6932d216717adcff1edebd5eecfce6ddf1bc0137c0c1fcbec5302847"
+    },
+    "independent_full_manifest": {
+      "path": "work/reports/war-peace-api-20261016-r81-actual-independent-review/manifest.json",
+      "bytes": 14590,
+      "sha256": "10d2348d4c5d1292576f5e05f04e55e5816d32bfb6b7d281ad4d2a847a68a703"
+    }
+  },
+  "source_count": 5,
+  "v6_build_authorized": false,
+  "native_ready": false,
+  "notes": "Exactly five fixed JSON roles for future v6 direct sources; not the full transitive historical graph or build permission."
+}

@@ -1,0 +1,206 @@
+{
+  "files": {
+    "bridge/diplomacy_api.py": {
+      "sha256": "2887e6af632b50be136d88cbfeaa6b861e7760ab34d534e5935e1596f2b33f6a",
+      "size_bytes": 34284
+    },
+    "bridge/diplomacy_lab_http.py": {
+      "sha256": "92ee036dac122b278f8a9e1c9aefbd624554a6808cc67eb7d62931c1fb2d66b0",
+      "size_bytes": 30081
+    },
+    "bridge/diplomacy_lab_http_v14.py": {
+      "sha256": "2fd0ca87b89d300d763bb191919e3c9b1c2cd4b98f28815b6c34b10f7daf41e3",
+      "size_bytes": 2375
+    },
+    "bridge/native_build.py": {
+      "sha256": "2f8f7f1781f10084ed85cae59f876080a9cd0efcf9810e1fc394561682048925",
+      "size_bytes": 3582
+    },
+    "bridge/native_pair_backend.py": {
+      "sha256": "0d8e36b56db7e37b3d36134de7a0c27130468bfdb8de6c2710a3ffddf7a96915",
+      "size_bytes": 50002
+    },
+    "tools/request_diplomacy_lab_v14.py": {
+      "sha256": "91e0b37281036e8d7ea173a3c9f69c388149d19604641b81defb5eeb0132f07b",
+      "size_bytes": 7924
+    },
+    "tools/serve_diplomacy_lab_v14.py": {
+      "sha256": "49337ac45dce80b5cf5811a1d3b9fc0f2c5e60483eb05bb8e1cc13f04d6bb958",
+      "size_bytes": 1550
+    },
+    "tools/verify_diplomacy_command_v14.py": {
+      "sha256": "027149ba8f9f8fc67d67ba62e3df2cd58301812707d6761bafb5e972d0ebdb50",
+      "size_bytes": 8806
+    },
+    "tools/verify_diplomacy_lifecycle.py": {
+      "sha256": "149509cbb6753b094dc108cb13bbd9d57db8e98b7e50eefaeadfb3f83cc3d12f",
+      "size_bytes": 25366
+    },
+    "tools/verify_diplomacy_lifecycle_v14.py": {
+      "sha256": "1648c6851e22f22d33a7d7e7aae40d1d2bcf9a145dcd5d7874ad7c70c65af631",
+      "size_bytes": 27645
+    },
+    "tools/verify_diplomacy_owned_peace_v14.py": {
+      "sha256": "2ebc0476ebd31d5cdc7bd3ad153305e0506a5516bc215d1985553c25043013b7",
+      "size_bytes": 11481
+    },
+    "tools/verify_diplomacy_preview_v14.py": {
+      "sha256": "6df82bca4051587d1c42943b542fa98453b6455c9e1d550b8ea863656e9da65c",
+      "size_bytes": 12807
+    },
+    "work/candidates/directional-pair-observer-1375/evidence-contract.json": {
+      "sha256": "fb1e47ca36655a1ef371e8ef5e85ae7bd77de0e747c50a19cf06d787de8307a7",
+      "size_bytes": 29556
+    },
+    "work/candidates/directional-pair-observer-1375/observer.py": {
+      "sha256": "acb38546adea4d1fef88803a1057e465d7e5ff297fe4959760757d3b7fce1496",
+      "size_bytes": 16803
+    },
+    "work/candidates/v14-directional-experiment-review/README.md": {
+      "sha256": "3962839a604a021022bbf22aaf2881f8470fca04b77529820a3c9f54adc21e17",
+      "size_bytes": 8015
+    },
+    "work/candidates/v14-directional-experiment-review/case-template.json": {
+      "sha256": "48748f73d5c12883db329fd15f0b7cbc291850d68edff1a44d07e64b83792818",
+      "size_bytes": 342
+    },
+    "work/candidates/v14-directional-experiment-review/pins.json": {
+      "sha256": "288ebfdcd697488cb7da99b5ab81f9d3b0c56bdd60cc4dbbad69cfa9cf97f658",
+      "size_bytes": 6343
+    },
+    "work/candidates/v14-directional-experiment-review/prepare.py": {
+      "sha256": "039e3d2ca41177e58c056ecf685723f26d3b70561cfc3e3a464973f3d5719989",
+      "size_bytes": 1387
+    },
+    "work/candidates/v14-directional-experiment-review/review.json": {
+      "sha256": "5a83f3e267f6179f980cc9e45b16d0c12e0c0ee6b7c454261630a155d986ede8",
+      "size_bytes": 4530
+    },
+    "work/candidates/v14-directional-experiment-review/reviewer.py": {
+      "sha256": "930b4ccc7e4495d7364e623f72083815d688e501c0a879291d97fa9239335bab",
+      "size_bytes": 42595
+    },
+    "work/candidates/v14-directional-experiment-review/test_reviewer.py": {
+      "sha256": "96e0d2b613042d577f7fee916e6e5108adb33594e763f5c9b72decb90f4e1d44",
+      "size_bytes": 24940
+    },
+    "work/candidates/v14-directional-experiment-review/verify_tests.py": {
+      "sha256": "b26cfe74bbdfd8db485fd7725d1cd42c9dfa3fc97b25b75f4ac89a651dbde081",
+      "size_bytes": 1678
+    },
+    "work/candidates/v14-directional-preflight-review/review.json": {
+      "sha256": "b19f216247ef89340442df99749d53bfff2de7c42583db818a600b3756ebbb00",
+      "size_bytes": 9536
+    },
+    "work/candidates/v14-directional-preflight-review/reviewer.py": {
+      "sha256": "25deb003bb940f87d82c92ec88956544231f0b7fe339474ed2138c5f3d478a90",
+      "size_bytes": 30192
+    },
+    "work/local_config.py": {
+      "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001",
+      "size_bytes": 2818
+    },
+    "work/native/inject_lab_v14_1375.py": {
+      "sha256": "d89f78f78f8f655e3b4190a1d7cc2ef4fc67a74ef83cc0f7358d0f582f24192d",
+      "size_bytes": 3064
+    },
+    "work/native/inject_probe.py": {
+      "sha256": "18a6e5d7cfab4607a4b964d23002b71b8c9352d41c8324f1c9e5740534ea0b4f",
+      "size_bytes": 23802
+    },
+    "work/native/lab_protocol_v14_1375.py": {
+      "sha256": "349e02b5c8428e404b59eb76537d4eff4e666a03c9857e1e9e15007654bf287e",
+      "size_bytes": 66614
+    },
+    "work/native/lab_protocol_v9_1375.py": {
+      "sha256": "0b94213f9fd052a262ca3a700ad19466f388ac34a28d0ce8ff5370fe91383f9e",
+      "size_bytes": 44722
+    },
+    "work/native/record_lab_v14_build.py": {
+      "sha256": "fadf51ae17ee570b272199c20beebc216735ded55f1cdecf03ba894752449ce4",
+      "size_bytes": 485
+    },
+    "work/native/run_lab_speed_v14_1375.py": {
+      "sha256": "3ab2f69968e532be78796bd41119d643a43e242955dd967309eb52922c70fba5",
+      "size_bytes": 11526
+    },
+    "work/native/v14/research-lab-1375.cpp": {
+      "sha256": "d30dc912916b35cce79202d766226b02286600e7fc6c3c0ccea1e5a6ff8131fd",
+      "size_bytes": 44699
+    },
+    "work/native/v14/test-controls-1375.cpp": {
+      "sha256": "c955ca8a4527a1fe6f5a8418b601eece2363a47c3c82cd3be2b261798f869615",
+      "size_bytes": 13259
+    },
+    "work/native/v14/test-controls-1375.h": {
+      "sha256": "7efc2ca22d723941086a2e68ed63fc4d6a80392bd78d7902884f437863b338e7",
+      "size_bytes": 2929
+    },
+    "work/probe_diplomacy_current.py": {
+      "sha256": "a5a0b775a701466cf5f4c85db671e37f81c165daf5fddd2080b71ed6f147bb38",
+      "size_bytes": 24900
+    },
+    "work/probe_diplomacy_relations_v7_1375.py": {
+      "sha256": "ff28f8bbcac46411d3405cc76e501e0984fd592c72c9196d5abbe005f3529805",
+      "size_bytes": 30743
+    },
+    "work/probe_pair_effects_1375.py": {
+      "sha256": "e5ae9d341c57e7cc79169b708c1d37ccf79ac3d09e88c953e1d4bcbb3ab1cf67",
+      "size_bytes": 26397
+    },
+    "work/probe_pair_extension_v10_1375.py": {
+      "sha256": "b29a9352df4ad26dd87b5087bdd98d95476dda70b735b3492d3c068b3f85deef",
+      "size_bytes": 18665
+    },
+    "work/reports/native-pair-extension-effects-v10-1375.json": {
+      "sha256": "b6f4b69db38f5e3eae0c3cebf1fa5298701b86a98e8299d6f0e9759b84861f62",
+      "size_bytes": 313488
+    },
+    "work/reports/native-pair-extension-v10-1375.json": {
+      "sha256": "0c1731b0b29b296da73dc406fb31544ada59c17c275d17d623677b16998698bd",
+      "size_bytes": 2862211
+    },
+    "work/review-results/directional-pair-observer-fixed-action-catalog-20261008a.json": {
+      "sha256": "fec24eb4e1edf7a53349350d651774b66c91f3c1d76cf0c280865217d20b0f02",
+      "size_bytes": 14855
+    },
+    "work/review-results/v14-directional-experiment-native-inventory-20261008a/counterexamples.json": {
+      "sha256": "74ae326b2b6cedf8f1af3760d433a32e1db5dbe60089a317caf9350450f25458",
+      "size_bytes": 12826
+    },
+    "work/review-results/v14-directional-experiment-native-inventory-20261008a/reproduce_counterexamples.py": {
+      "sha256": "e88117e31ae9954ddf51fc2701fb5423981b7e6d838aaac33593d5965f19fe1c",
+      "size_bytes": 3409
+    },
+    "work/review-results/v14-directional-experiment-native-inventory-20261008a/review.json": {
+      "sha256": "b58b7cc60a7dfbfa402447144fdc8b4303f0301f5c90e804b9545311066aff01",
+      "size_bytes": 19613
+    },
+    "work/review-results/v14-directional-preflight-native-inventory-20261008a.json": {
+      "sha256": "6c5f7b9f3949713c7ca0fb7ad45b81f165f557912f33b62b6ee57da5fc06997d",
+      "size_bytes": 16041
+    },
+    "work/runtime/native1375-v14/build.json": {
+      "sha256": "aa09084d3d1d7c9adff164b67356d72e2c511b519e79b382e7bc54a80c96ec75",
+      "size_bytes": 5633
+    },
+    "work/runtime/native1375-v14/directional-preflight-case-18356.json": {
+      "sha256": "d817ae7edacd02a739d00d6de306ef0ae2e6b3711f599894652f322bc5b1a4d8",
+      "size_bytes": 3210
+    },
+    "work/runtime/native1375-v14/directional-preflight-summary-18356.json": {
+      "sha256": "a1b97a4d356f0bf06942aee0f2b1c6e1bb77395ec6ddddd5534c98b97613905e",
+      "size_bytes": 305123
+    },
+    "work/runtime/native1375-v14/eu4_pair_lab_v14_1375.dll": {
+      "sha256": "abfb2e343f7e7332efa96c45b1dd2b89c00ac2b4085cbd9fc32e8f90db299296",
+      "size_bytes": 313856
+    },
+    "work/verify_v12_experiment_1375.py": {
+      "sha256": "de41c1e189a4e5290fc3550695558a0b9991c1dde72b309dd34828417f4981ef",
+      "size_bytes": 47022
+    }
+  },
+  "purpose": "v14_directional_experiment_reviewer_r2_dependencies",
+  "schema_version": 1
+}

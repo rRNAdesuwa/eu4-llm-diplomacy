@@ -1,0 +1,51 @@
+{
+  "schema": "REA-OWNED-SMOKE-PREPARED-R1-PREIMAGE/1",
+  "exact_files": {
+    "smoke.js": {
+      "bytes": 961,
+      "sha256": "85c60f075b91a46501e8d73205c0322fc861509166d231f1a01c4f6eb8ce15e6"
+    },
+    "fixture.py": {
+      "bytes": 697,
+      "sha256": "f5f205bc19cbfa69e903dfc7752f2a9840c8b24ec3dd281ba41bae39d9ecc052"
+    },
+    "evidence.py": {
+      "bytes": 7139,
+      "sha256": "ef4b1df316b85336c094c41d0296b34e06a59296274a27eae6bf55024585d1a6"
+    },
+    "protocol.py": {
+      "bytes": 4282,
+      "sha256": "d255aa58089e72795d0a13e0300cebe57bbe05e9cecf6832156e60d1adfbf28a"
+    },
+    "controller.py": {
+      "bytes": 12269,
+      "sha256": "4993fc03f44c182964280e359e3bdc6e6247cb601569cc4760e586daf417f6f0"
+    },
+    "launch_smoke.py": {
+      "bytes": 5980,
+      "sha256": "04ee48d9129c0bc21f845cc5b24a0b15e70f0740cb4b11f1849bbd4a01107c02"
+    },
+    "test_contract.py": {
+      "bytes": 7497,
+      "sha256": "3479d1711ec2dbd77679e30235e3cc38ca0b13634389a2a4201d836c161eb69d"
+    },
+    "test_smoke.js": {
+      "bytes": 2550,
+      "sha256": "cd984e1598029d1f2d89333204bc2b79c29b163fea640f2cbe082356575d6e44"
+    },
+    "PROTOCOL.md": {
+      "bytes": 7768,
+      "sha256": "418a14a657c0b863593095fea27e4efc9276d9f66b9a08400bc05efbd4d57ac3"
+    },
+    "source-manifest.json": {
+      "bytes": 7654,
+      "sha256": "57f7d24806ac8ae7d4a2cc6f34a39878fe89eb822927306b8c561e36182c1780"
+    },
+    "source-preparation.json": {
+      "bytes": 2079,
+      "sha256": "80fe3f9f801425e1cccdb2a5ba2dddd12dce1b18934eb64bffebd81934f9d406"
+    }
+  },
+  "source_original_manifest_sha256": "57f7d24806ac8ae7d4a2cc6f34a39878fe89eb822927306b8c561e36182c1780",
+  "runtime_executed": false
+}

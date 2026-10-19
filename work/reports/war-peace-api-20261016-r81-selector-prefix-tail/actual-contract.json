@@ -1,0 +1,116 @@
+{
+  "schema": "EU4-R81-CONTINUATION-CONTRACT/1",
+  "sealed": true,
+  "stage": "author_sealed_pending_non_author_full_review",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "source_manifest_pin": {
+    "bytes": 23674,
+    "sha256": "3af48b1a8a938f6ede36d112012ab5f13271a6a231f1fcf87c048f79b2351c64"
+  },
+  "capture_pin": {
+    "bytes": 79710,
+    "sha256": "9ed8dcd8f053ed9749d9786443ea90b806538f8c062eb5ccdec072671635b5f8"
+  },
+  "owned_pin": {
+    "bytes": 1260,
+    "sha256": "38a6c1dd3c614d1cddbb9fec77faf0ca7e07e4fa3bfd1e34d110883872119687"
+  },
+  "selected_pin": {
+    "bytes": 17878,
+    "sha256": "480b65763ec022ea2bbde70dcca9435ac713e67e4816852c3fc51be8a134dc3c"
+  },
+  "evidence_kind": "ordinary_locked_Capstone_and_retained_raw_arithmetic_not_REA_Evidence_ID",
+  "observations": [
+    "Only48 new targeted EXE bytes[97bd70,97bda0),plus2 exact cached bytes48c1 form50B[97bd6e,97bda0). Original64B not targeted reread.",
+    "17 instructions cover46 combined bytes;4 owned bytesCC at[97bd9c,97bda0) are not decoded after the two RETs.",
+    "Three local conditional branches include one backedge. No CALL, external branch, explicit memory store or implicit memory store in these17 rows.",
+    "SHR RAX32 followed by CWDE produces key K from the prior current RAX.bits32..47, signextended to32bits and zero-upper32.",
+    "Current R8+50 supplies QWORD B; current R8+5c supplies signedDWORD N. End E=B+16N uses64bit modular arithmetic.",
+    "Records are visited at current RCX; compare DWORD[RCX] against K, step RCX by16, and stop at E or first equality.",
+    "Empty/end path XOR EAX,EAX returns full RAX0 at97bd96. Match path returns QWORD[matching_record+8] at97bd9b; that value can also be0.",
+    "This scope does not check nonnegative count, capacity, positive/unique key, type/vtable, complete handle, generation, endpoints or lifecycle flag.",
+    "RET has implicit8B stack read and RSP+8 even though no memory store. No preceding RSP change in the17 rows.",
+    "R80 historical prefix partial/noRET and R79 bounded pdata miss are unchanged; this new scope has conditional normal CFG closure only."
+  ],
+  "conditional_projection": {
+    "premises": [
+      "Valid normal execution reaches97bd6e with exactly inherited R80 current machine state.",
+      "All required data and control-stack accesses are valid; stable ordinary memory is an additional premise for interpreting a single list.",
+      "For finite N-record traversal interpretation, N is nonnegative and the entire indicated range is valid without invalid address wrap. Native code does not establish these guards."
+    ],
+    "symbols": {
+      "W": "currentR8 from prefix",
+      "L": "currentRAX from prefix",
+      "K": "signextend16_to32((L>>32)&0xffff)",
+      "B": "M64[W+0x50]",
+      "N": "signed32(M32[W+0x5c])",
+      "E": "B+16N modulo2^64"
+    },
+    "N_zero": "First pointer equality skips all record loads and returns0.",
+    "N_positive_stable_valid_range": "Visits records0..N-1 in order until first32bit key equality. Returns its QWORD+8; otherwise0. No uniqueness or nonNULL value condition.",
+    "N_negative_or_invalid_memory": "No native rejection/bounds/termination guarantee is established. Modular end arithmetic and pointer loads are still the machine instructions.",
+    "return_stack": "Both RETs read inherited[S69-0x60] and advance RSP to S69-0x58 under prior validCALL/frame assumptions; ordinary return target is modulebase+99358f only if control stack has not changed.",
+    "original_D_header": "No direct store by decoded continuation, but original D/header identity, caller CALL-stack aliases, memory concurrency and lifetime remain unproved. Do not inherit final D=0 or header semantics.",
+    "memory_read_accounting": "Static instruction sites: QWORDW50,DWORDW5c,DWORDrecord key(repeated),optionalQWORDrecord8 plus one implicitQWORDRET. These are hypothetical runtime instruction widths, not new PE/data acquisitions."
+  },
+  "normal_CFG": {
+    "local_model_closed": true,
+    "returns": [
+      "0x97bd96",
+      "0x97bd9b"
+    ],
+    "backedge": "0x97bd92->0x97bd87",
+    "unconditional_execution_or_termination": false,
+    "whole_function_extent_or_leaf_identity": false
+  },
+  "unknowns": [
+    "actual object/class/index roles and runtime roots",
+    "valid bounds/capacity/count/typed handle/lifecycle",
+    "return object identity/ownership/lease",
+    "aliases and actual D/header contents",
+    "actual function extent/unwind registration",
+    "units/currency/recipient/peace effect",
+    "runtime execution/acceptance/completion/persistence"
+  ],
+  "resources": {
+    "new_physical_code_bytes": 48,
+    "cached_bytes": 2,
+    "combined_bytes": 50,
+    "decoded_unique_combined_bytes": 46,
+    "decoded_unique_new_byte_positions": 44,
+    "unreached_owned_new_bytes": 4,
+    "new_metadata_bytes": 0,
+    "new_other_targeted_bytes": 0,
+    "full_PE_SHA_bytes": 76925008,
+    "total_PE_physical_bytes": 76925056,
+    "decoder_lookahead_inputs": 17,
+    "decoder_input_total_bytes": 230,
+    "decoder_input_unique_bytes": 50,
+    "decoder_overlap_bytes": 180,
+    "producer_completed_source_events": 158,
+    "producer_completed_source_bytes": 17331379,
+    "producer_peak_committed_witness": 24145920,
+    "producer_peak_not_independently_measured": true,
+    "hard_Job_installed": false,
+    "actual_attempts": 1,
+    "all_actual_shells_collected": true,
+    "retained_sealer_PE_engine_decoder_tests_game_native": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "reader_adoption_allowed": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false,
+    "whole_function_extent_known": false,
+    "complete_class_verified": false,
+    "returned_pointer_type_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "unconditional_termination_verified": false
+  }
+}

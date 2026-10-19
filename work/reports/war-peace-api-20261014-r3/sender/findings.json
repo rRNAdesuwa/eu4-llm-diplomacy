@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "evidence_type": "ordinary_offline_capstone_not_REA",
+  "process_accessed": false,
+  "runtime_verified": false,
+  "findings": [
+    {
+      "id": "sender_r3_specific_transport",
+      "kind": "observation",
+      "claim": "The existing v24 guard specifies transport vtable1d96178; disk slot+30 is1580370. This is a conditional static branch, not current GUI context identity.",
+      "new_rvas": [
+        "0x1580370"
+      ],
+      "unknowns": [
+        "Ordinary GUI context and current host transport dynamic identity still require evidence."
+      ],
+      "runtime_verified": false,
+      "process_accessed": false,
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sender/disassembly.json"
+      ]
+    },
+    {
+      "id": "sender_r3_original_command_normal_destruction",
+      "kind": "observation",
+      "claim": "Nonnull command saved at entryRSP+10 is recovered at post-prologRSP+bf8 and deleting-destructed at1580c5a on normal transport completion, including zero recipients.",
+      "new_rvas": [
+        "0x1580379",
+        "0x158038e",
+        "0x1580c4a",
+        "0x1580c5a"
+      ],
+      "unknowns": [
+        "Fatal paths and exception unwind are not proved."
+      ],
+      "runtime_verified": false,
+      "process_accessed": false,
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sender/disassembly.json"
+      ]
+    },
+    {
+      "id": "sender_r3_declaration_clone_normal_destruction",
+      "kind": "observation",
+      "claim": "Command vt1c814b0 dtor4e7470 tests nested action+a8; declarewar slot resolves8f450 false, so it deletes independent action clone and frees58B command on normal return.",
+      "new_rvas": [
+        "0x4e7495",
+        "0x4e74b0",
+        "0x4e74d4",
+        "0x8f450"
+      ],
+      "unknowns": [
+        "Does not free the independent initial caller action; abnormal destructor completion remains unknown."
+      ],
+      "runtime_verified": false,
+      "process_accessed": false,
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sender/disassembly.json"
+      ]
+    },
+    {
+      "id": "sender_r3_reparsed_queue_command",
+      "kind": "observation",
+      "claim": "Transport serializes original command, creates another command via14c6500 and parser virtual18, then1580ff0/1580e60 copies the new raw pointer into recipient queue without clearing the local raw source slot.",
+      "new_rvas": [
+        "0x1580563",
+        "0x15809d0",
+        "0x15809ef",
+        "0x15809f3",
+        "0x1580a33",
+        "0x1581102",
+        "0x1580e60",
+        "0x1580e63"
+      ],
+      "unknowns": [
+        "Missing command factory/reparse failure handling and queue abnormal cleanup remain unknown."
+      ],
+      "runtime_verified": false,
+      "process_accessed": false,
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sender/disassembly.json"
+      ]
+    },
+    {
+      "id": "sender_r3_first_queue_consumer",
+      "kind": "observation",
+      "claim": "Transport+38=15801c0 dequeues via1581220, clones wrapper via its+60=4e8520 (nested action+b0), links new wrapper into transport+c8/d0 pending list, then deletes dequeued old wrapper on both normal insertion branches.",
+      "new_rvas": [
+        "0x1580273",
+        "0x15802e0",
+        "0x15802fc",
+        "0x1580334",
+        "0x158034d",
+        "0x4e8557",
+        "0x158131a"
+      ],
+      "unknowns": [
+        "Pending-list execution/deletion and actual declaration application remain unknown."
+      ],
+      "runtime_verified": false,
+      "process_accessed": false,
+      "evidence_files": [
+        "work/reports/war-peace-api-20261014-r3/sender/disassembly.json"
+      ]
+    }
+  ]
+}

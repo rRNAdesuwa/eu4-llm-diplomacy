@@ -1,0 +1,135 @@
+{
+  "schema": "EU4-WAR-PEACE-LOOKUP-SOURCE-MANIFEST/1",
+  "sealed": false,
+  "scope": "offline_candidate_for_review",
+  "revision": "ownership_delta_r1",
+  "native_ready": false,
+  "validation": {
+    "original_13_cases": "retained exact; apply to preimage-r1; not rerun",
+    "current_delta": "one new normal-path destructor flag case; no runtime proof"
+  },
+  "files": {
+    "build_index.py": {
+      "bytes": 25320,
+      "sha256": "735ef3157fb08f58e16cdf5880e7ebec4f60829cf5759d972f8bb9fde8e7c0e9"
+    },
+    "war_peace_lookup.py": {
+      "bytes": 16583,
+      "sha256": "d4237d98c58e89be9419ff736f01d97f5fde0129c07c5c7f778baf010071746e"
+    },
+    "test_lookup.py": {
+      "bytes": 11123,
+      "sha256": "ea66de6936066da4b1a1f916e33cebd5ba71b265cc12cd0d6f9e03311416c46e"
+    },
+    "verify_offline.py": {
+      "bytes": 5444,
+      "sha256": "4cf6f2099caf0848e1321f93fde5ae4fe4a61e7e640fe611b9c077b725f0f881"
+    },
+    "README.md": {
+      "bytes": 5071,
+      "sha256": "10713b1dc90b051621e478b0a625a57fcd4793b0e518247dccc8a7eab73089ce"
+    },
+    "index.json": {
+      "bytes": 85151,
+      "sha256": "4c0da61a175fc72bedb878d13d13f8da2a51711ca78acece297cc5c5fd8bb75b"
+    },
+    "data-manifest.json": {
+      "bytes": 3851,
+      "sha256": "9f68d95f963fedd64372d30eba94b25643289bd03aa14a3a926d4cbe0a0c0c6f"
+    },
+    "test_ownership_delta.py": {
+      "bytes": 2104,
+      "sha256": "0a5e445ad7b16a26f3f3e4c2a46fd30ea16bf86e22a9e33947ce2049ccd8d08f"
+    },
+    "run_ownership_delta.py": {
+      "bytes": 7608,
+      "sha256": "e21cdb2480e85d0cc3bc243b7f8cd77a0a06442a6071cf39e1ecfbb6da2ca9b5"
+    },
+    "generated-r2/index.json": {
+      "bytes": 85151,
+      "sha256": "4c0da61a175fc72bedb878d13d13f8da2a51711ca78acece297cc5c5fd8bb75b"
+    },
+    "generated-r2/data-manifest.json": {
+      "bytes": 3851,
+      "sha256": "9f68d95f963fedd64372d30eba94b25643289bd03aa14a3a926d4cbe0a0c0c6f"
+    },
+    "offline-r1/receipt.json": {
+      "bytes": 2375,
+      "sha256": "94ce55bf6fcf262bcf670ddbfdaa2248ce01081ab180a2886848390e715ee495"
+    },
+    "offline-ownership-delta-r1/receipt.json": {
+      "bytes": 3957,
+      "sha256": "4cc6f50ef59331a59400a56df762bcd85d2af38e5b430e7a479a4cc4e445a25b"
+    },
+    "offline-r1/stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "offline-ownership-delta-r1/stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "offline-r1/stderr.txt": {
+      "bytes": 1605,
+      "sha256": "41678150f31e638d11d69955bb28f9813ff6053a7b825805de1cd5fbc95e52d0"
+    },
+    "offline-ownership-delta-r1/stderr.txt": {
+      "bytes": 266,
+      "sha256": "125282a436d91abae6c308083dbfd1e4b536a056e508e68ce286c9c80e453e7b"
+    },
+    "preimage-r1/build_index.py": {
+      "bytes": 24991,
+      "sha256": "387a40fb62fbed7e0e2e2604be1e39c5c8bb49a2f38636d5988026a27b122dcf"
+    },
+    "preimage-r1/war_peace_lookup.py": {
+      "bytes": 16583,
+      "sha256": "eb7fe10e13a58749cbdb947433ee8dc5b5af22130e63fa7edcdf3495badd2188"
+    },
+    "preimage-r1/test_lookup.py": {
+      "bytes": 11123,
+      "sha256": "ea66de6936066da4b1a1f916e33cebd5ba71b265cc12cd0d6f9e03311416c46e"
+    },
+    "preimage-r1/verify_offline.py": {
+      "bytes": 5444,
+      "sha256": "4cf6f2099caf0848e1321f93fde5ae4fe4a61e7e640fe611b9c077b725f0f881"
+    },
+    "preimage-r1/README.md": {
+      "bytes": 5071,
+      "sha256": "10713b1dc90b051621e478b0a625a57fcd4793b0e518247dccc8a7eab73089ce"
+    },
+    "preimage-r1/index.json": {
+      "bytes": 84968,
+      "sha256": "95ca712116eea54bff0b53f3446832ccddbc366ccb0380d7fbb284b44e08330f"
+    },
+    "preimage-r1/data-manifest.json": {
+      "bytes": 3851,
+      "sha256": "57f257e03d96af16c8fd5fb7eb83b367d120809477104b9343fc10f0788b9adc"
+    },
+    "preimage-r1/offline-r1/receipt.json": {
+      "bytes": 2375,
+      "sha256": "94ce55bf6fcf262bcf670ddbfdaa2248ce01081ab180a2886848390e715ee495"
+    },
+    "preimage-r1/offline-r1/stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "preimage-r1/offline-r1/stderr.txt": {
+      "bytes": 1605,
+      "sha256": "41678150f31e638d11d69955bb28f9813ff6053a7b825805de1cd5fbc95e52d0"
+    },
+    "preimage-r1/source-manifest.json": {
+      "bytes": 1735,
+      "sha256": "593ead5964586bf03f4a922cdd4f72465cd75553ec8884dc7be5e3d8d26f69b5"
+    },
+    "preimage-r1/manifest.json": {
+      "bytes": 1703,
+      "sha256": "bc5438e8c5d703bf7f7e059e5a10bf6e10d61e1760f220c7a53be41a77dd32b7"
+    }
+  },
+  "external": {
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    }
+  }
+}

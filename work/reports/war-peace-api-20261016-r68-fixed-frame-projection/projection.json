@@ -1,0 +1,307 @@
+{
+  "schema": "EU4-R68-FIXED-FRAME-PROJECTION/1",
+  "sealed": true,
+  "stage": "source_ready_pending_independent_root_review",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "evidence_grade": "retained ordinary-disassembly bytes plus conditional static arithmetic; no REA Evidence ID",
+  "upstream_full_reviews_passed": {
+    "R62": {
+      "path": "work/reports/war-peace-api-20261016-r62-independent-review/findings.json",
+      "bytes": 6819,
+      "sha256": "8efc64a9385ca1472f6d4cf3c913f755ed8cdfffcd5082b1c55e87821aac15ad"
+    },
+    "R66": {
+      "path": "work/reports/war-peace-api-20261016-r66-independent-review/findings.json",
+      "bytes": 5711,
+      "sha256": "9f4f95352be92800da6c7e1d93a237f7875f45ca7a6ed4d3d0ec2ecc163c0005"
+    },
+    "R67": {
+      "path": "work/reports/war-peace-api-20261016-r67-actual-independent-review/findings.json",
+      "bytes": 5833,
+      "sha256": "fcbacb45bbe9647c9a01d77f57f3ced70f4d77ac5497ec82c3a82acddf223a39"
+    }
+  },
+  "symbols": {
+    "Q": "R66 entry RSP",
+    "S": "R67 entry RSP=Q-0x10",
+    "F": "R66 steady RSP=Q-0x1048",
+    "Q62": "R62 entry RSP",
+    "F62": "R62 steady RSP=Q62-0x88",
+    "H": "R66 entry RCX register value, conditionally R62 original entry RDX",
+    "T": "R66 entry RDX borrowed address, not a preserved value",
+    "N": "R66 signed64 transformed span value, not authenticated record count"
+  },
+  "hypotheses": [
+    "Selected retained code is the code executed, no asynchronous/self-modifying interference; all stated accesses and return slots valid.",
+    "R67 follows a finite, non-faulting path and RET transfers to the expected R66 continuation 994f1a; GS-derived stores do not invalidate that premise.",
+    "The other calls that are actually reached return normally with balanced stack and the required ordinary nonvolatile-register preservation. This is a conditional ABI premise, not their recovered body contract.",
+    "Integer symbolic frame equalities use modulo64; ordinary address ordering/spans additionally require no relevant overflow/underflow and valid canonical mappings.",
+    "Recovery of original saved register CONTENTS requires saved bytes not to have been overwritten through GS/data/callee aliases; arithmetic slot identities alone do not establish this."
+  ],
+  "findings": [
+    {
+      "id": "R68-FRAME",
+      "kind": "conditional_static_projection",
+      "summary": "R67 preserves concrete RCX/RDX/RAX on a normal path; with R66 EAX=0x1040 and balanced CALL return, steady F=Q-0x1048.",
+      "rvas": [
+        "0x994f0f",
+        "0x994f10",
+        "0x994f15",
+        "0x994f1a",
+        "0x1a337f0",
+        "0x1a3383d"
+      ],
+      "closed_unknown": "Only first-helper register values and fixed stack displacement; no normal-return or memory-content proof."
+    },
+    {
+      "id": "R68-FRESH-READS",
+      "kind": "observation_from_retained_rows",
+      "summary": "After the helper, 994f1d freshly reads BYTE[T] into EBX, 994f20 freshly reads QWORD[H+8] into RBP, and 994f24 freshly reads QWORD[H] into RSI, in that order.",
+      "rvas": [
+        "0x994f1d",
+        "0x994f20",
+        "0x994f24"
+      ],
+      "unknown": "These values may differ from pre-helper H/T, can alias stack stores, and are not an atomic snapshot."
+    },
+    {
+      "id": "R68-GS-ALIAS",
+      "kind": "conditional_static_projection",
+      "summary": "For N=0x1040, the nonborrow subtraction candidate (S+8)-N equals F. Unsigned borrow instead selects zero. GS:[0x10] comparison and possible page-step BYTE zero stores remain.",
+      "rvas": [
+        "0x1a33800",
+        "0x1a33805",
+        "0x1a33808",
+        "0x1a3380c",
+        "0x1a33818",
+        "0x1a3381a",
+        "0x1a33820",
+        "0x1a33827",
+        "0x1a3382e"
+      ],
+      "unknown": "No GS field meaning, stack ownership, unconditional loop termination, fault freedom, disjointness from H/T/saved slots/return slots or safe-call permission."
+    },
+    {
+      "id": "R68-SIX-LOCATIONS",
+      "kind": "conditional_static_projection",
+      "summary": "At 994f8a the first four machine argument locations are RCX=saved begin, RDX=saved end, R8=N, R9=fresh local30; caller [F+20] holds fresh local38 and BYTE[F+28] holds saved BL. Only the sixth low byte is established.",
+      "rvas": [
+        "0x994f6e",
+        "0x994f72",
+        "0x994f77",
+        "0x994f7c",
+        "0x994f81",
+        "0x994f84",
+        "0x994f87",
+        "0x994f8a"
+      ],
+      "unknown": "Not a recovered semantic signature or six full QWORD arguments; sixth upper seven bytes uninitialized locally, XMM and callee effects unknown."
+    },
+    {
+      "id": "R68-EPILOGUE",
+      "kind": "conditional_static_projection",
+      "summary": "R11=F+1040=Q-8; restore reads at Q+8/Q+10/Q+18; POP RDI reads Q-8; RET consumes Q and gives Q+8 on the expected normal path.",
+      "rvas": [
+        "0x994fa5",
+        "0x994fad",
+        "0x994fb1",
+        "0x994fb5",
+        "0x994fb9",
+        "0x994fbc",
+        "0x994fbd"
+      ],
+      "unknown": "Restored contents and return target remain alias/callee/valid-memory dependent. Final RAX is last normal callee return, not an authenticated result."
+    },
+    {
+      "id": "R68-R62-CROSSWALK",
+      "kind": "conditional_static_projection",
+      "summary": "R62 saves original entry RDX as R14; at 9846d5 it passes current R14 in RCX and address F62+a0 in RDX. Under stated normal ABI/stack premises, F62=Q62-88, Q=Q62-90 and T address=Q62+18=Q+a8.",
+      "rvas": [
+        "0x9844da",
+        "0x9844e5",
+        "0x9844e9",
+        "0x9846ca",
+        "0x9846d2",
+        "0x9846d5"
+      ],
+      "unknown": "Selected reachable complex path only. Historical Tpositive/ALtrue/Dpositive gates do not imply fresh current contents, unchanged headers, final recipients or an effect."
+    }
+  ],
+  "address_table": [
+    {
+      "name": "R66_entry_return_QWORD",
+      "offset_from_Q": 0,
+      "address": "Q+0x0"
+    },
+    {
+      "name": "saved_RBX",
+      "offset_from_Q": 8,
+      "address": "Q+0x8"
+    },
+    {
+      "name": "saved_RBP",
+      "offset_from_Q": 16,
+      "address": "Q+0x10"
+    },
+    {
+      "name": "saved_RSI",
+      "offset_from_Q": 24,
+      "address": "Q+0x18"
+    },
+    {
+      "name": "saved_RDI",
+      "offset_from_Q": -8,
+      "address": "Q-0x8"
+    },
+    {
+      "name": "helper_entry_S_and_return_QWORD",
+      "offset_from_Q": -16,
+      "address": "Q-0x10"
+    },
+    {
+      "name": "helper_saved_R10",
+      "offset_from_Q": -32,
+      "address": "Q-0x20"
+    },
+    {
+      "name": "helper_saved_R11",
+      "offset_from_Q": -24,
+      "address": "Q-0x18"
+    },
+    {
+      "name": "post_helper_RSP",
+      "offset_from_Q": -8,
+      "address": "Q-0x8"
+    },
+    {
+      "name": "steady_F",
+      "offset_from_Q": -4168,
+      "address": "Q-0x1048"
+    },
+    {
+      "name": "local30",
+      "offset_from_Q": -4120,
+      "address": "Q-0x1018"
+    },
+    {
+      "name": "local38",
+      "offset_from_Q": -4112,
+      "address": "Q-0x1010"
+    },
+    {
+      "name": "worker_arg5_QWORD",
+      "offset_from_Q": -4136,
+      "address": "Q-0x1028"
+    },
+    {
+      "name": "worker_arg6_low_BYTE",
+      "offset_from_Q": -4128,
+      "address": "Q-0x1020"
+    },
+    {
+      "name": "worker_entry_RSP",
+      "offset_from_Q": -4176,
+      "address": "Q-0x1050"
+    },
+    {
+      "name": "epilogue_R11",
+      "offset_from_Q": -8,
+      "address": "Q-0x8"
+    },
+    {
+      "name": "after_R66_normal_RET_RSP",
+      "offset_from_Q": 8,
+      "address": "Q+0x8"
+    },
+    {
+      "name": "R62_current_T_borrowed_address",
+      "offset_from_Q": 168,
+      "address": "Q+0xa8"
+    }
+  ],
+  "machine_argument_locations": [
+    {
+      "ordinal": 1,
+      "at_R66_call": "RCX",
+      "value": "RSI: fresh QWORD[H] saved after helper"
+    },
+    {
+      "ordinal": 2,
+      "at_R66_call": "RDX",
+      "value": "RBP: fresh QWORD[H+8] saved after helper"
+    },
+    {
+      "ordinal": 3,
+      "at_R66_call": "R8",
+      "value": "RDI=N, low64(sar64(submod64(end,begin),2)*0xaaaaaaaaaaaaaaab)"
+    },
+    {
+      "ordinal": 4,
+      "at_R66_call": "R9",
+      "value": "fresh QWORD[F+0x30] after 46a3b0; writer/content/ownership unknown"
+    },
+    {
+      "ordinal": 5,
+      "at_R66_call": "QWORD[F+0x20]",
+      "at_worker_entry": "QWORD[RSP+0x28]",
+      "value": "fresh QWORD[F+0x38] copied through RAX"
+    },
+    {
+      "ordinal": 6,
+      "at_R66_call": "BYTE[F+0x28]",
+      "at_worker_entry": "BYTE[RSP+0x30]",
+      "value": "BL from fresh BYTE[T] after first helper; upper seven bytes not initialized by this local store"
+    }
+  ],
+  "large_path": "signed N>32. 46a3b0 receives RCX=&local30, RDX=N-floor(N/2)=ceil(N/2). Other formal values/content/ownership unknown. local30 and local38 have no established pre-initialization here.",
+  "small_path": "signed N<=32 includes negative malformed values; RCX=begin, RDX=end to 998d50. No explicit BL argument setup; no small-path semantics recovered.",
+  "cleanup_path": "After 998e10, a fresh unsigned QWORD[F+38]>0x155 selects 175da20 with fresh QWORD[F+30] in RCX. This does not prove allocation/free ownership.",
+  "return_value": "Under required normal callee/stack premises, RAX is the last return from 998d50, 998e10 or 175da20 according to branch. No normalized Boolean/count/amount/completion result.",
+  "GS_alias": "GS-derived BYTE writes and ordinary saved-stack writes may alias H/T, saved homes/helper temporary slots or return slots. Register identity does not imply pointee immutability. No alias exclusions assumed silently.",
+  "GS_conditional_loop": "B=QWORD GS:[10], candidate=max_unsigned_underflow_clamped((S+8)-0x1040,0). If candidate>=B unsigned skip; otherwise L=candidate&fffffffffffff000 and write BYTE[B-1000*k]=0 for successive k until equality, modulo64. Finite no-wrap count (B-L)/1000 requires aligned B and valid normal stores; not guaranteed for arbitrary B.",
+  "R62_reachability": "Simple AL==0 branch at984513->98472d bypasses 994f00; complex post993570 signed D<=0 branch98455b->9846e4 also bypasses. Original positive T/ALtrue/Dpositive are earlier gates only; subsequent unknown calls and aliases can change cells/headers.",
+  "remaining_unknowns": [
+    "Bodies/semantics of 998d50,998e10,46a3b0,175da20 are not followed.",
+    "Contents, units, currency, recipient direction, sorting, conservation, complete output and final T/H remain unknown.",
+    "Runtime reachability, faults/exceptions, actual returned pointer/result, complete object layout, ownership, world lifetime and thread atomicity remain unproved.",
+    "R62 preceding and R66 later nonvolatile/stack assumptions are not replaced with recovered contracts for those unexamined calls."
+  ],
+  "historical_sources_modified": false,
+  "new_scope_auto_authorized": false,
+  "operations": {
+    "PE_stat_open": 0,
+    "engine_stat_open": 0,
+    "instruction_decoder": 0,
+    "author_programs": 0,
+    "CLI": 0,
+    "tests": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "saves": 0,
+    "reloads": 0,
+    "new_callee_follow": 0,
+    "new_native_code_bytes": 0,
+    "new_native_data_bytes": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "original_request_effect_verified": false,
+    "peace_acceptance_verified": false,
+    "peace_completion_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "gold_conservation_verified": false,
+    "object_ownership_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "persistence_verified": false,
+    "authorizes_retry": false,
+    "runtime_capture_authorized": false,
+    "further_static_actual_authorized": false
+  }
+}

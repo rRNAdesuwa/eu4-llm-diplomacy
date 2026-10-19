@@ -1,0 +1,237 @@
+{
+  "schema": "EU4-PEACE-PENDING-CANDIDATE-DELIVERY/1",
+  "sealed": true,
+  "stage": "draft_source_offline_passed_waiting_non_author_source_review",
+  "files": {
+    "peace_current_pending.py": {
+      "bytes": 23345,
+      "sha256": "ac8c292d1320f776a6a8817f0158c275e624bcfe05f9a2dc51220e03532ba643"
+    },
+    "test_peace_current_pending.py": {
+      "bytes": 13657,
+      "sha256": "96f41c4e8752f639c67db42144437734d9dee1ff38a09ae770f6cfc271b65ca5"
+    },
+    "README.md": {
+      "bytes": 4784,
+      "sha256": "5bc4990a7b8106c4f873219ec8b7cfa2f83c89cd8e82a7a58bac91ea4a247135"
+    },
+    "build_manifest.py": {
+      "bytes": 2451,
+      "sha256": "fa9b700228c9560b3d6e23ceabb0e3736ce6fe30fd58de2de17b46139f198f81"
+    },
+    "run_offline.py": {
+      "bytes": 3273,
+      "sha256": "85749b2a6fffec64857feccd3b9c3cf2dc5cbe05759ce5cec75cc0642f2283d2"
+    },
+    "draft-source-manifest.json": {
+      "bytes": 6644,
+      "sha256": "126baac3a7ff0c0cb28244fcebae9a7f13c446b127ce2e2d494fbf5c63766b41"
+    },
+    "preparation.json": {
+      "bytes": 6810,
+      "sha256": "b8340c1b76f048a639e8b9cc6fad8e0e279df597de34999307483882fe3ee95d"
+    },
+    "report.md": {
+      "bytes": 2735,
+      "sha256": "34a4c5f376b97a83e0420466599d4cdaa1336cd537244d09b408337c329e9cea"
+    },
+    "seal_delivery.py": {
+      "bytes": 2829,
+      "sha256": "ee5a8b57d7bc1d86ba2a1878be64a07ac2094a1220ddde4948a2811d40bd9c87"
+    },
+    "offline-r1/claim.json": {
+      "bytes": 1061,
+      "sha256": "8b0a018efaebd6633a8f9551ffa82e5ae6cfc5925578f36e34471b6648ea5f4a"
+    },
+    "offline-r1/receipt.json": {
+      "bytes": 5631,
+      "sha256": "62d2304667ef588c5b28d600ef02b08e85b8093fb166f9960e7cdacc8e49a0d5"
+    },
+    "offline-r1/new_fake_suite-receipt.json": {
+      "bytes": 1064,
+      "sha256": "db308748c2786af7337a1b46a301319d04dde39e4c5576beca73338881de45f2"
+    },
+    "offline-r1/new_fake_suite-stdout.txt": {
+      "bytes": 180,
+      "sha256": "fe1a0e984fa29ffd73bbb16bf87cb1633c055593697289b62aa630ad40cda9bd"
+    },
+    "offline-r1/new_fake_suite-stderr.txt": {
+      "bytes": 3220,
+      "sha256": "28f05cd745ea5b83640b9d51071aba6d6cdc8bf27176ec7ffafa36ea5aeb441b"
+    },
+    "offline-r1/check-receipt.json": {
+      "bytes": 1054,
+      "sha256": "bb184a7f782eca14f5c844e85fb925dc0341d2926bdf6af1817678a15c7d5b78"
+    },
+    "offline-r1/check-stdout.txt": {
+      "bytes": 13839,
+      "sha256": "2ba8f540be9a3c4a8e101bbae25d813b2737a3c915c58cc79df12ec0cf895fe5"
+    },
+    "offline-r1/check-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "offline-r1/catalog-receipt.json": {
+      "bytes": 1056,
+      "sha256": "c127e1a71263d45c64ae0becc6c088f499dab479355e510780bc80ffb12176f5"
+    },
+    "offline-r1/catalog-stdout.txt": {
+      "bytes": 14511,
+      "sha256": "47bfe24ba3f0c1c2c4f603a61b087b4acf31caf3a3999719391e37ebafc75724"
+    },
+    "offline-r1/catalog-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "source_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/diplomacy_reply_observer.py": {
+      "bytes": 27263,
+      "sha256": "7a7fdea49ee86b888336089b4982f1d2ff719d3eab9c530fb92f84c19a225761"
+    },
+    "bridge/diplomacy_reply_observer_manifest_1375.json": {
+      "bytes": 3739,
+      "sha256": "31f3c1d936b751433ecf1dcbf989fb50e2cb65f529651bd23976060fb1e07580"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py": {
+      "bytes": 16856,
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json": {
+      "bytes": 2494,
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/README.md": {
+      "bytes": 4784,
+      "sha256": "5bc4990a7b8106c4f873219ec8b7cfa2f83c89cd8e82a7a58bac91ea4a247135"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/build_manifest.py": {
+      "bytes": 2451,
+      "sha256": "fa9b700228c9560b3d6e23ceabb0e3736ce6fe30fd58de2de17b46139f198f81"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/peace_current_pending.py": {
+      "bytes": 23345,
+      "sha256": "ac8c292d1320f776a6a8817f0158c275e624bcfe05f9a2dc51220e03532ba643"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/run_offline.py": {
+      "bytes": 3273,
+      "sha256": "85749b2a6fffec64857feccd3b9c3cf2dc5cbe05759ce5cec75cc0642f2283d2"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/test_peace_current_pending.py": {
+      "bytes": 13657,
+      "sha256": "96f41c4e8752f639c67db42144437734d9dee1ff38a09ae770f6cfc271b65ca5"
+    },
+    "work/reports/native-owned-peace-1375.json": {
+      "bytes": 1302642,
+      "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+    },
+    "work/reports/native-pair-replies-1375.json": {
+      "bytes": 1894144,
+      "sha256": "da3faa061af3d9ee8a3003412151594c6305b765afd8d739b4cb4a4759f63510"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/budget.json": {
+      "bytes": 810,
+      "sha256": "226ec2695ef0c033a769cda6479d29ee37ab408f0a40a75a08a66248edca31fb"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/build_design.py": {
+      "bytes": 8793,
+      "sha256": "cdad52f198d7d1681e09c547e5ebc25e25dbbe18bee64a4082b9be12fafdb4c7"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/design.json": {
+      "bytes": 16325,
+      "sha256": "8656c12a1fa9bcbcf8be5a2d5f378fab8324500da1eca5b7b50a2ac975562140"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/extraction-result.json": {
+      "bytes": 508,
+      "sha256": "565043e3d284980c551490e1e36fafa36ec0908b4feed1acff233e6af897cf5b"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/loaded-code-candidates.json": {
+      "bytes": 4437,
+      "sha256": "49a201eb2649bac908c2e370bfb5819cc3961d52e28454a2669bfd2702ad36be"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/manifest.json": {
+      "bytes": 5290,
+      "sha256": "cdf18bdd8e36eaca11db2d80b7f94b7f6cd444e09731e924f03868d81c6f4b03"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/read-accounting.json": {
+      "bytes": 5676,
+      "sha256": "393f3139038d08845a56502efe01b7b8e135dac22bad4665d01e646dc1623e25"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/report.md": {
+      "bytes": 4016,
+      "sha256": "aafe44b150a10a6b8c1dab56803ec23d3de979ad3ebc0601e3fc0c3418c0199a"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/retained-layout.json": {
+      "bytes": 54045,
+      "sha256": "d357f06d5cf6573d0af9ac322228d83675ac17947643bd908704a44bf0215f33"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/seal_design.py": {
+      "bytes": 3266,
+      "sha256": "cc7de89240aefb73ca06fded79607bc9765fd51367efa01eaf89c4213a3bad06"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/source-pins.json": {
+      "bytes": 1733,
+      "sha256": "573ec2776e71ad9b5fabadb24199a2391a5457a5c03be51e704f0afe2991cd58"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/verify.py": {
+      "bytes": 1060,
+      "sha256": "77c0d460da4c3fb3815d7225f9de1336e7a3031bf95b57e8a3ef43928f2b48cf"
+    },
+    "work/reports/peace-current-pending-reader-design-independent-review-20261016-r1/findings.json": {
+      "bytes": 5126,
+      "sha256": "229908a7d5933b065ff18707df19f3e4a303f25b34050e53b7690d49772401e5"
+    },
+    "work/reports/peace-current-pending-reader-design-independent-review-20261016-r1/manifest.json": {
+      "bytes": 13248,
+      "sha256": "0b1ff8d258ef59b52b3a1c71feba2fd3b13e47b13ce23fa5f21f967bf901c01a"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/crosswalk.json": {
+      "bytes": 12455,
+      "sha256": "4829fef072fbfeb7d123a009b87dae281a3d0a493565bd979f2d2bae0f2edf66"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/manifest.json": {
+      "bytes": 4947,
+      "sha256": "b8a275647f591850fe04ee7f82b536603186596981ff25846225150631956b30"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/selected-evidence.json": {
+      "bytes": 19226,
+      "sha256": "3b8c932a3a903f36e6a274e26336063f8f4cb347ce8672f76d5c41e284db21f0"
+    },
+    "work/reports/peace-reply-locator-crosswalk-independent-review-20261016-r1/findings.json": {
+      "bytes": 5193,
+      "sha256": "22c05ce4bd8ee3aa95c6efe880e6dd0c20d8102dfb78e6316fd2168d694410d6"
+    },
+    "work/reports/peace-reply-locator-crosswalk-independent-review-20261016-r1/manifest.json": {
+      "bytes": 7599,
+      "sha256": "e6c83416d7b93bc2280ca22471064d91effc9120d4b217da462b00a8f62112c9"
+    }
+  },
+  "canonical_source_manifest_pin_at_delivery": {
+    "bytes": 6644,
+    "sha256": "126baac3a7ff0c0cb28244fcebae9a7f13c446b127ce2e2d494fbf5c63766b41"
+  },
+  "canonical_note": "Exact draft snapshot retained separately; future root metadata promotion must not overwrite this historical first-run receipt.",
+  "source_graph_sha256": "488dbb0d2766e54cdea216c5ffd348c58ef93508d10dffe3e9341261ccec2ece",
+  "tests_first_run": 31,
+  "old_tests_run": 0,
+  "file_commands_run_once": [
+    "check",
+    "catalog"
+  ],
+  "real_status_runs": 0,
+  "PE_game_native_requests": 0,
+  "new_reader_source_review": "pending",
+  "production_review": "pending",
+  "runtime_capture_authorized": false,
+  "native_ready": false,
+  "selected_effect_verified": false,
+  "all_shells_collected": true
+}

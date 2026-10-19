@@ -1,0 +1,128 @@
+{
+  "schema": "EU4-R68-INDEPENDENT-PROJECTION-FINDINGS/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_manifest": {
+    "bytes": 12209,
+    "sha256": "4076e33975e93c315b4b073d80c7aa26bdafc8b059b48da12132fa58821a7a75"
+  },
+  "subject_projection": {
+    "bytes": 11854,
+    "sha256": "dd77472acae9252cf604d52af2f4ee318517abe9a7bad175deb5814ee1d3fc60"
+  },
+  "subject_raw_crosscheck": {
+    "bytes": 27675,
+    "sha256": "d314abccc57066c22f599a696c64bcc2fbb90d32ff913dc4ec05cd25ce7d694e"
+  },
+  "subject_final_manifest": {
+    "bytes": 1952,
+    "sha256": "bfd0b9abf4790f42de52a7ebd35d7598f7884262e049e16c53db3597cb528685"
+  },
+  "author_frozen_source_needs_change": false,
+  "raw_projection_replay": {
+    "bytes": 29995,
+    "sha256": "ca69a27d3d5846b151b3a7ded9b4867b9bf385d7f757bba6099a85706bdfa22a"
+  },
+  "checks": {
+    "flat_upstream_sources": 20,
+    "author_local_pins": 12,
+    "explicit_final_delivery_additions": 5,
+    "retained_instruction_rows": 243,
+    "retained_code_bytes": 952,
+    "all_raw_slices_equal": true,
+    "symbolic_offset_fields": 18,
+    "relative_operands": 14,
+    "three_upstream_fullreview_subjects_exact": true,
+    "source_postguard_equal": true
+  },
+  "conditional_result": {
+    "F": "Q-0x1048",
+    "S": "Q-0x10",
+    "local30": "Q-0x1018",
+    "local38": "Q-0x1010",
+    "arg5": "Q-0x1028",
+    "arg6_lowBYTE": "Q-0x1020",
+    "home_reads": [
+      "Q+0x8",
+      "Q+0x10",
+      "Q+0x18"
+    ],
+    "R62_Q_to_R66_Q": "Q=Q62-0x90",
+    "T_borrowed_address": "Q+0xa8",
+    "actual_GS_bound_or_memory_contents_or_lifetime_proved": false
+  },
+  "precision_notes": [
+    "Address identities are conditional modulo64 arithmetic; validnormalstack/returnslots and relevantnonwrap/canonicalmappings remain separate hypotheses.",
+    "R67 concrete normalregisterpreservation permits the fixed1040subtraction. Its GSderivedwrites do not prove H/T, savedhomes/helperqwords orreturnslots unchanged.",
+    "R62T is currentborrowedaddressQ62+18hex=Q+a8hex, not unchangedpositivevalue. It differs from the Dout-shapedA8cell used by R69sourceprep; that later scope was not read or audited here.",
+    "Machine fifthQWORD and sixthlowBYTE locations are demonstrated; six fullQWORDformalarguments, sixthupper7bytes, ownership and worker semantics are not recovered.",
+    "SimpleAL0 and D<=0 paths bypass994f00 only in the selected localnormalCFG. Unfollowed externalcalls may have unknown effects/reentry; no transitivebypass guarantee.",
+    "Othercallees still require normalreturn/balancedstack/nonvolatilepremises; preservedregisteridentities never imply pointeecontents oratomicity.",
+    "Sourceupper5125968 includes4MiBpriorallowance; seal/check/delivery1155756 is separate. These retainedwitnesses are not allOS/loaderIO or newlyexecutedproducer evidence."
+  ],
+  "resource_witness": {
+    "source_upper_bytes": 5125968,
+    "separate_seal_check_delivery_bytes": 1155756,
+    "combined_explicit_upper_bytes": 6281724,
+    "author_peak_committed_bytes": 12521472,
+    "hard_Job_installed": false,
+    "scope": "Retained author arithmetic/budget witnesses only"
+  },
+  "independent_resources": {
+    "known_prior_bytes": 580286,
+    "prior_cache_inspection_upper_bytes": 3452251,
+    "final_cache_and_postguard_bytes": 1685128,
+    "own_sealing_reserve_bytes": 2097152,
+    "listed_analysis_upper_bytes": 7814817,
+    "source_limit_bytes": 25165824,
+    "own_peak_bytes": 22315008,
+    "memory_limit_bytes": 805306368,
+    "no_all_OS_loader_IO_claim": true
+  },
+  "operations": {
+    "PE_stat_open": 0,
+    "engine_stat_open": 0,
+    "instruction_decoder": 0,
+    "author_programs": 0,
+    "CLI": 0,
+    "tests": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "saves": 0,
+    "reloads": 0,
+    "new_callee_follow": 0,
+    "new_native_code_bytes": 0,
+    "new_native_data_bytes": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "original_request_effect_verified": false,
+    "peace_acceptance_verified": false,
+    "peace_completion_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "gold_conservation_verified": false,
+    "object_ownership_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "persistence_verified": false,
+    "authorizes_retry": false,
+    "runtime_capture_authorized": false,
+    "further_static_actual_authorized": false
+  },
+  "self_diagnostics": {
+    "review_failures": 2,
+    "first_reviewer_error": "R1 assumedsource-pins.json baremapping; actualschema haspinswrapper. ExactR1source/failurepreserved; R2onlyschemapointer/accountingadaptation.",
+    "second_reviewer_error": "R2 selectedpaths by/r62- instead of exactfrozennamespace. ExactR2source/failurepreserved; R3usesexplicitthreefixedsourcekeys and accountingupdate only.",
+    "authored_sources_unchanged": true,
+    "PE_decoder_producer_rerun": false
+  },
+  "all_shells_collected": true,
+  "next_scope_auto_authorized": false
+}

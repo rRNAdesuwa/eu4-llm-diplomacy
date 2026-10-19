@@ -1,0 +1,57 @@
+{
+  "PE_engine_decoder_game_native_requests_tests": 0,
+  "call_seed": {
+    "next": "0xcc30a",
+    "owned_window_slice": [
+      159,
+      164
+    ],
+    "raw": "e856daffff",
+    "signed_disp32": -9642,
+    "site": "0xcc305",
+    "target": "0xc9d60"
+  },
+  "callable": false,
+  "explicit_source_returned": 6677274,
+  "further_actual_authorized": false,
+  "limits": [
+    "No alternate key spelling or third cache searched; absent exact keys do not prove repository/global native absence.",
+    "JSON parsed only for selected container/key/field names and row-count metadata; no selected or other function business body analyzed.",
+    "Current R87 actual full raw/contract review remains a separate gate. No new code acquisition or callee/native execution is authorized here."
+  ],
+  "manual_small_metadata_read_allowance": 524288,
+  "native_ready": false,
+  "ownership_transfer_verified": false,
+  "probes": [
+    {
+      "entry_keys": null,
+      "entry_kind": "NoneType",
+      "exact_key": "0xc9d60",
+      "path": "work/reports/native-owned-peace-1375.json",
+      "present": false,
+      "row_count": null,
+      "source_pin": {
+        "bytes": 1302642,
+        "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+      }
+    },
+    {
+      "entry_keys": null,
+      "entry_kind": "NoneType",
+      "exact_key": "0xc9d60",
+      "path": "work/reports/native-pair-replies-1375.json",
+      "present": false,
+      "row_count": null,
+      "source_pin": {
+        "bytes": 1894144,
+        "sha256": "da3faa061af3d9ee8a3003412151594c6305b765afd8d739b4cb4a4759f63510"
+      }
+    }
+  ],
+  "schema": "EU4-R88-FIXED-CACHE-METADATA/1",
+  "scope": "Two exact function keys and independent raw direct-call arithmetic only, not an accepted full R87 semantic review.",
+  "sealed": true,
+  "source_before_after_equal": true,
+  "source_cap": 8388608,
+  "source_upper": 7201562
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "EU4-PR4-MERGE-VALIDATION/1",
+  "original_pr_head": "0f6330a6d490f2085e314d278601ff36f62218d5",
+  "merged_upstream": "d86acc9eba3801d3051fc90c7ff30119f48230b9",
+  "offline_only": true,
+  "game_access": false,
+  "positive_suite": {
+    "tests_run": 96,
+    "failures": [],
+    "errors": [],
+    "skipped": [],
+    "successful": true
+  },
+  "merged_draft_suite": {
+    "tests_run": 15,
+    "failures": [
+      "bridge.tests.test_diplomacy_contract_v2.CliContractTests.test_local_v2_never_reads_configuration_or_constructs_v1",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_http_wire_budget_duplicate_nonfinite_and_identity_types",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_mixed_server_v2_never_delegates_to_v1",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_no_v2_status_audit_submit_or_protocol_fallback",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_v2_retains_origin_host_and_bearer_boundaries",
+      "bridge.tests.test_diplomacy_contract_v3.HttpV3Tests.test_real_http_retains_budget_duplicate_origin_host_bearer_boundaries"
+    ],
+    "errors": [
+      "bridge.tests.test_diplomacy_contract_v2.CliContractTests.test_http_cli_preserves_501_draft_and_exitcode",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_http_describe_validate_501_usable_draft_no_database",
+      "bridge.tests.test_diplomacy_contract_v3.CliV3Tests.test_actual_cli_subprocess_local_and_http_501_exit2",
+      "bridge.tests.test_diplomacy_contract_v3.CliV3Tests.test_actual_v3_serve_subprocess_and_forbidden_remote_startup",
+      "bridge.tests.test_diplomacy_contract_v3.CliV3Tests.test_local_cli_avoids_v1_config_database_and_rejects_executable_options",
+      "bridge.tests.test_diplomacy_contract_v3.HttpV3Tests.test_real_http_v3_drafts_no_sqlite_and_v2_remains_distinct",
+      "setUpClass (bridge.tests.test_diplomacy_contract_v2.PublicContractTests)",
+      "setUpClass (bridge.tests.test_diplomacy_contract_v3.ContractV3Tests)"
+    ],
+    "skipped": [],
+    "successful": false
+  },
+  "original_cli_draft_suite": {
+    "tests_run": 15,
+    "failures": [
+      "bridge.tests.test_diplomacy_contract_v2.CliContractTests.test_local_v2_never_reads_configuration_or_constructs_v1",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_http_wire_budget_duplicate_nonfinite_and_identity_types",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_mixed_server_v2_never_delegates_to_v1",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_no_v2_status_audit_submit_or_protocol_fallback",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_v2_retains_origin_host_and_bearer_boundaries",
+      "bridge.tests.test_diplomacy_contract_v3.HttpV3Tests.test_real_http_retains_budget_duplicate_origin_host_bearer_boundaries"
+    ],
+    "errors": [
+      "bridge.tests.test_diplomacy_contract_v2.CliContractTests.test_http_cli_preserves_501_draft_and_exitcode",
+      "bridge.tests.test_diplomacy_contract_v2.HttpContractTests.test_http_describe_validate_501_usable_draft_no_database",
+      "bridge.tests.test_diplomacy_contract_v3.CliV3Tests.test_actual_cli_subprocess_local_and_http_501_exit2",
+      "bridge.tests.test_diplomacy_contract_v3.CliV3Tests.test_actual_v3_serve_subprocess_and_forbidden_remote_startup",
+      "bridge.tests.test_diplomacy_contract_v3.CliV3Tests.test_local_cli_avoids_v1_config_database_and_rejects_executable_options",
+      "bridge.tests.test_diplomacy_contract_v3.HttpV3Tests.test_real_http_v3_drafts_no_sqlite_and_v2_remains_distinct",
+      "setUpClass (bridge.tests.test_diplomacy_contract_v2.PublicContractTests)",
+      "setUpClass (bridge.tests.test_diplomacy_contract_v3.ContractV3Tests)"
+    ],
+    "skipped": [],
+    "successful": false
+  },
+  "draft_results_identical_to_original_cli": true,
+  "baseline_scope": "Original CLI loaded in process; unchanged merged draft modules/fixtures. Subprocesses use the merged CLI, but fail before requests because frozen evidence files are absent.",
+  "draft_limitation": "Public snapshot omits pinned dependencies including curry-favors-contract-1375/contract.json and ten-families-typed-contract-r2-1375/request-examples.json. Their guards remain unchanged; no replacement evidence or hashes were generated.",
+  "native_files": "frame_stub.S, restart-game.ps1 and probe_native_state.py use fetched upstream content. Restart script parsed only; no game operation or DLL build/install.",
+  "full_log_sha256": "00cc7679f2f3b053351850e722591db7159fb8e972ac9fe5bf2c4baf2acc66e5"
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "EU4-PEACE-V2-R2-NONAUTHOR-LIVE-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_actual_manifest": {
+    "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/actual-manifest.json",
+    "bytes": 27958,
+    "sha256": "ac63b83d63b2e8b469e0db0d568d88fecae96dde7a5ebe466bb80fa64b51f283"
+  },
+  "subject_capture_pin": {
+    "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/capture.json",
+    "bytes": 929944,
+    "sha256": "482f13ffcf7f54177bd736795153f9e8996921c361af429dd15f98d5122f4c9e"
+  },
+  "subject_child_io_pin": {
+    "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-io.json",
+    "bytes": 382278,
+    "sha256": "2c15a378f92bb6efc838b426893c0c5fcfef918361b06e9a1207c953e5a3041d"
+  },
+  "subject_receipt_pin": {
+    "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/receipt.json",
+    "bytes": 421298,
+    "sha256": "44c1eeab3ca7fe25dc54a3087a208dbebd9bce23f5118e372d16ebc1ee435583"
+  },
+  "subject_source_manifest": {
+    "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-manifest.json",
+    "bytes": 8861,
+    "sha256": "803d619df53c33b8698e78283c3ad223a61319c87b4a40ccaae732997d225127"
+  },
+  "subject_authorization_pin": {
+    "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/run-authorization.json",
+    "bytes": 5615,
+    "sha256": "e0c3af80e785c385ea0c65e2f719e0cfa9570a6c83b2de8c84afd3749180c1d7"
+  },
+  "subject_completion_pin": {
+    "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/live-completion.json",
+    "bytes": 11530,
+    "sha256": "5ebf44c93ee61f31fec00503cdf153c96260b540bd6cd19416322b36880962bb"
+  },
+  "status": "selected_peace_queue_absent",
+  "current_selected_queue_state_observed": true,
+  "selected_queue_presence": false,
+  "roles": "D authored/executed source/R2; Val non-author actual reviewer and prior source/production/R1 reviewer. Existing source-peer and R1 failure are fixed flat witnesses, not recursive self-authentication.",
+  "verified": [
+    "2967 ordered RPM rows independently consumed with exact stage/address/size/raw/status and bounds/alignment; no historical pointer dereferenced.",
+    "Entry loaded8192B PE structure, twice typed host roots/pause/outer/current transitions, four735B loaded-code blocks before/after, complete two1380 tables and selected full country handles/header/type/marker bindings.",
+    "Two complete ENG recipient queue observations with all21B header fields zero/iteration0 and header rereads; no node/action read in the empty path. This is not both countries queues or a nonempty peace body test.",
+    "Raw samples/roots/tables/code equal; normal context-exit/held-cleared plus final source guards precede commit according to frozen source and retained flags.",
+    "Source34 before/after, current41 candidate metadata graph, fresh sole /2 authorization/four subjects/claims/statusstart/config metadata exact.",
+    "IO per-path/control arithmetic recomputed: host9base passes plus2 observer-manifest reads7976B; three reported EXE fullhash/EOF closes; one226B config snapshot with227B reservation and accepted normal close flags.",
+    "Owned Job2/exit0/active0/direct collection; controller preseal2047203 and includingseal4728545. No native/requests/Frida/saves/reloads.",
+    "R1 zero-RPM failure and author retained-preview failure are preserved. Reviewer list-vs-dict inspection failure is separately sealed and included in allowance."
+  ],
+  "limits": [
+    "Current ENG queue absence is not original request correlation, native rejection/AI acceptance, effects or peace completion.",
+    "No node/action body was reached; native ID/state/actor-original endpoint/marker/type of an existing peace action are not a positive runtime validation here.",
+    "Disk hashes, identity/creation/module enumeration, source chronology and OS close behavior remain pinned producer witnesses; reviewer did not read PE/engines/real configuration or query a PID.",
+    "No configuration text/value was read or decoded by reviewer, only length/SHA/accepted/closed metadata.",
+    "Source/config equality does not prove atomicity, ABA exclusion, lease, interval stability or persistence. OS CloseHandle return still unverified.",
+    "Meter read1/raw/fileno-os.read/mmap/native/loader/import/cache/unread initialization limitations and lack of full OS IO proof remain; per-path file ledgers do not retain every underlying read order.",
+    "Source34 physical checks plus exact fixed metadata and chosen layout sources only; no recursive137/66/215binary or native engine review."
+  ],
+  "counts": {
+    "RPM_calls": 2967,
+    "RPM_bytes": 77718,
+    "RPM_largest": 11040,
+    "samples": 2,
+    "recipient_queues": 2,
+    "queue_nodes": 0,
+    "code_bytes_each": 735,
+    "host_returned": 2302461254,
+    "host_attempts": 6167,
+    "game_returned": 115387512,
+    "game_attempts": 115,
+    "ordinary_returned": 92044380,
+    "ordinary_attempts": 1296,
+    "config_returned": 226,
+    "controller_including_seal": 4728545
+  },
+  "timings": {
+    "capture_ms_including_guards": 7911.057,
+    "controller_seconds": 11.094,
+    "Job_seconds": 10.985
+  },
+  "resources": {
+    "flat_pins": 58,
+    "flat_bytes": 3158430,
+    "formal_returned": 6316860,
+    "inspection_failure_manual_allowance": 4194304,
+    "prior_formal_returned": 6316860,
+    "source_upper": 16828024,
+    "source_cap": 33554432,
+    "retained_cap": 8388608,
+    "ordinary_cap": 4194304,
+    "self_peak_committed": 20295680,
+    "soft_memory": 805306368,
+    "stop_memory": 1073741824
+  },
+  "authority": {
+    "original_request_correlated": false,
+    "AI_acceptance_verified": false,
+    "AI_rejection_verified": false,
+    "selected_effect_verified": false,
+    "peace_completed": false,
+    "native_ready": false,
+    "callable": false,
+    "native_action_mapping_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "persistence_verified": false,
+    "authorizes_retry": false,
+    "automatic_retry": false,
+    "native_game_calls": 0,
+    "requests_published": 0,
+    "saves": 0,
+    "reloads": 0
+  },
+  "operations": {
+    "own_inspection_failures": 1,
+    "formal_review_failures": 2,
+    "real_configuration_reads": 0,
+    "author_import_execute_tests_CLI": 0,
+    "target_PE_engine_decoder_process_UI_game_native": 0,
+    "new_auth_claim_runtime": 0,
+    "all_shells_collected": true
+  }
+}

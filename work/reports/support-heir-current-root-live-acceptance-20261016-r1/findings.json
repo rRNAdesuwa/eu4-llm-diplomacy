@@ -1,0 +1,36 @@
+{
+  "accepted": true,
+  "accepted_scope": "One paused FRA-POL current bilateral index observation: both140 headers cap/count0, key_presentfalse/missing_key, selected pointer0; two complete samples, shared2990/55844 raw journal independently replayed.",
+  "atomic_snapshot": false,
+  "automatic_retry": false,
+  "entry_PE8192_is_source_declaration_not_raw_journal": true,
+  "final_heir_result_verified": false,
+  "limits": [
+    "Root accepts completed89pin non-author Val replay and binds selected source/receipt/once/corrigendum subjects; it does not repeat all raw/host/PE/source audits.",
+    "Absence is current only, not request outcome/AI response/final heir/effects/persistence.",
+    "OS CloseHandle return, delegated/OS/import/cache complete IO, ABA/atomic/lifetime/class are still unproved.",
+    "No new query, game/native/action execution or retry is granted."
+  ],
+  "native_ready": false,
+  "original_request_correlated": false,
+  "positive_task_body_verified": false,
+  "request_effect_verified": false,
+  "schema": "EU4-SUPPORT-CURRENT-ROOT-LIVE-ACCEPTANCE/1",
+  "sealed": true,
+  "subject_actual_manifest": {
+    "bytes": 34688,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+    "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+  },
+  "subject_capture_pin": {
+    "bytes": 708665,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/capture.json",
+    "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+  },
+  "subject_full_review": {
+    "bytes": 5248,
+    "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/findings.json",
+    "sha256": "bd3dc09480322dfbf2461e63015c57ec172d7361b9c305949034419cf479d595"
+  },
+  "world_lease": false
+}

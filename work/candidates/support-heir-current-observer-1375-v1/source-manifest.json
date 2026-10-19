@@ -1,0 +1,117 @@
+{
+  "schema": "EU4-SUPPORT-HEIR-OBSERVER-MANIFEST/1",
+  "sealed": true,
+  "runtime_capture_authorized": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "source_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py": {
+      "bytes": 16856,
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json": {
+      "bytes": 2494,
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/candidates/integration-task-observer-1375-v1/integration_task_observer.py": {
+      "bytes": 20891,
+      "sha256": "ec576a21a4018fa1b91d0864990b281a7a075ed3761404d9bdd7559de8b25cb9"
+    },
+    "work/candidates/integration-task-observer-1375-v1/test_integration_task_observer.py": {
+      "bytes": 14318,
+      "sha256": "1f81280856c9728cfeb0b0c2834516604dc11e881c7a2b7c22d16ca9353a8e96"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/README.md": {
+      "bytes": 4692,
+      "sha256": "b28666aed593f40246275d9f181afd399f6fb060514c88201d64ffcdecb2bf4e"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/build_manifest.py": {
+      "bytes": 1521,
+      "sha256": "85bf64c66d476c86f3cc53c044bf12afe9ce0ad7e964b44452eb8c590a6e62c6"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/prepare_source.py": {
+      "bytes": 10914,
+      "sha256": "14e44edee5dae9a54dbcbab8f58a61106c1fc1fbbbabf0872aa094fd4e81c22f"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/run_offline.py": {
+      "bytes": 3152,
+      "sha256": "c58ede5e59a08f18d9cb9f89ac5112a9812158f1a9a2040e13868a4f798205d4"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/support_heir_current_observer.py": {
+      "bytes": 21780,
+      "sha256": "8b2eba840c3f6b4927f6fbf1aa04878c931fc548372dc10dd8432863ed68ec01"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/test_support_heir_current_observer.py": {
+      "bytes": 14358,
+      "sha256": "c7b94fbcaea8aff34b66a7d84d349658324faa4c8401656b7b2c375070b2540d"
+    },
+    "work/reports/dynastic-support-reader-entry-20261015-r50/contract.json": {
+      "bytes": 10971,
+      "sha256": "ddc97d4bfd011ade3778ded05c643b9aba7c450eeba50b9162757a25353583f2"
+    },
+    "work/reports/dynastic-support-reader-entry-20261015-r50/manifest.json": {
+      "bytes": 15924,
+      "sha256": "b09a9795d4f9ca2b9a4f330f39b695720705aad76c4bb5ec452341999260e304"
+    },
+    "work/reports/dynastic-support-reader-entry-20261015-r50/owned-code.json": {
+      "bytes": 783,
+      "sha256": "14cbfd7e2ce8bb4de4992e9f71bef4e5430fb75b11d95424ff5054ddbd4687fd"
+    },
+    "work/reports/dynastic-support-reader-r48-independent-20261015-r1/findings.json": {
+      "bytes": 1968,
+      "sha256": "02df6084e3dac269d4f970c091fe6dee85d9dba9c19b2caec4689b062aa764ed"
+    },
+    "work/reports/dynastic-support-reader-r50-independent-20261015-r1/findings.json": {
+      "bytes": 1699,
+      "sha256": "fe6a9188e2d6be6b55d545505ca19c70c244bcf15ea38e32ce4edc80c0dfc7d9"
+    },
+    "work/reports/dynastic-support-reader-static-20261015-r48/contract.json": {
+      "bytes": 10957,
+      "sha256": "973a776a00ed95ac61e71b68cf33ac8fad799f18fb2f928de72c1bf07204ef4c"
+    },
+    "work/reports/dynastic-support-reader-static-20261015-r48/manifest.json": {
+      "bytes": 13227,
+      "sha256": "00b98e57bc9ca3c69feae82695717db9851bafb05e7148be5e33426a6fa9ee3b"
+    },
+    "work/reports/dynastic-support-reader-static-20261015-r48/owned-code.json": {
+      "bytes": 9002,
+      "sha256": "d392ac87b59dee56bd77f75f2e41243efbea7def5c1a1819d1df3c1ced42b197"
+    },
+    "work/reports/integration-task-observer-source-review-20261015-r1/independent-source-ready.json": {
+      "bytes": 6736,
+      "sha256": "14662f7d78556103252f3f52f30a398d570ce246e56bb17948127249ebc10cc4"
+    },
+    "work/reports/support-heir-handle-crosswalk-20261015-r1/findings.json": {
+      "bytes": 9023,
+      "sha256": "f25d2760d0a2d6afac77d590aff36f165f95b45750542ccb243e25d7ad805abe"
+    }
+  },
+  "static_independent_reviews": {
+    "R48": {
+      "path": "work/reports/dynastic-support-reader-r48-independent-20261015-r1/findings.json",
+      "bytes": 1968,
+      "sha256": "02df6084e3dac269d4f970c091fe6dee85d9dba9c19b2caec4689b062aa764ed"
+    },
+    "R50": {
+      "path": "work/reports/dynastic-support-reader-r50-independent-20261015-r1/findings.json",
+      "bytes": 1699,
+      "sha256": "fe6a9188e2d6be6b55d545505ca19c70c244bcf15ea38e32ce4edc80c0dfc7d9"
+    }
+  },
+  "candidate_review_status": "pending_independent_source_review",
+  "native_ready": false,
+  "selected_effect_verified": false,
+  "stage": "independently_reviewed_readonly_runtime_candidate",
+  "independent_source_review": {
+    "path": "work/reports/support-heir-current-observer-source-review-20261015-r1/independent-source-ready.json",
+    "bytes": 5732,
+    "sha256": "6ca2a47412189b621ecc765791557f0e4ea861d26317b2831fb5d2b7f6842a21"
+  }
+}

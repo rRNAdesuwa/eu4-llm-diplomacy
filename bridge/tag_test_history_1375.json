@@ -1,0 +1,1091 @@
+{
+  "schema": "EU4TAG-TEST-HISTORY/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "final_integration_closed": true,
+  "source": "work/runtime/tag31-integration-final-20261013.json",
+  "source_sha256": "704e9106db4eaf8ffd2a5eb9e23055862a7529130ebed3c54bd49cf82c2936ee",
+  "effect_success_claimed": false,
+  "scope": "Development testing only; ordinary caller commands remain available.",
+  "requests": [
+    {
+      "command": {
+        "action": "improve_relations",
+        "actor": "FRA",
+        "request_id": "tag31-final-001-improve_relations",
+        "target": "POR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "build_spy_network",
+        "actor": "FRA",
+        "request_id": "tag31-final-002-build_spy_network",
+        "target": "UTR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "curry_favors",
+        "actor": "FRA",
+        "request_id": "tag31-final-003-curry_favors",
+        "target": "NAV"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "counterespionage",
+        "actor": "FRA",
+        "request_id": "tag31-final-004-counterespionage",
+        "target": "ENG"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "support_heir",
+        "actor": "FRA",
+        "request_id": "tag31-final-005-support_heir",
+        "target": "POL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "annex_vassal",
+        "actor": "POL",
+        "request_id": "tag31-final-006-annex_vassal",
+        "target": "MAZ"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "integrate_union",
+        "actor": "DAN",
+        "request_id": "tag31-final-007-integrate_union",
+        "target": "NOR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "royal_marriage",
+        "actor": "FRA",
+        "request_id": "tag31-final-008-royal_marriage",
+        "target": "POR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "guarantee",
+        "actor": "FRA",
+        "request_id": "tag31-final-009-guarantee",
+        "target": "SAV"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "offer_military_access",
+        "actor": "FRA",
+        "request_id": "tag31-final-010-offer_military_access",
+        "target": "BRI"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "ask_military_access",
+        "actor": "POR",
+        "request_id": "tag31-final-011-ask_military_access",
+        "target": "BRI"
+      },
+      "state": "unknown_no_retry"
+    },
+    {
+      "command": {
+        "action": "offer_fleet_basing_rights",
+        "actor": "POR",
+        "request_id": "tag31-final-012-offer_fleet_basing_rights",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "ask_fleet_basing_rights",
+        "actor": "FRA",
+        "request_id": "tag31-final-013-ask_fleet_basing_rights",
+        "target": "POR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "infiltrate_administration",
+        "actor": "FRA",
+        "request_id": "tag31-final-014-infiltrate_administration",
+        "target": "ENG"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "embargo",
+        "actor": "FRA",
+        "request_id": "tag31-final-015-embargo",
+        "target": "ENG"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "steer_trade",
+        "actor": "FRA",
+        "request_id": "tag31-final-016-steer_trade",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "offer_alliance",
+        "actor": "FRA",
+        "request_id": "tag31-final-017-offer_alliance",
+        "target": "SAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "offer_vassalization",
+        "actor": "FRA",
+        "request_id": "tag31-final-018-offer_vassalization",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "form_coalition",
+        "actor": "FRA",
+        "request_id": "tag31-final-019-form_coalition",
+        "target": "SAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "support_independence",
+        "actor": "POR",
+        "request_id": "tag31-final-020-support_independence",
+        "target": "HOL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "ask_support_independence",
+        "actor": "SWE",
+        "request_id": "tag31-final-021-ask_support_independence",
+        "target": "FRA"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "trade_favors_for_gold",
+        "actor": "FRA",
+        "request_id": "tag31-final-022-trade_favors_for_gold",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "trade_favors_for_men",
+        "actor": "FRA",
+        "request_id": "tag31-final-023-trade_favors_for_men",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "trade_favors_for_sailors",
+        "actor": "FRA",
+        "request_id": "tag31-final-024-trade_favors_for_sailors",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "trade_favors_for_trust",
+        "actor": "FRA",
+        "request_id": "tag31-final-025-trade_favors_for_trust",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "trade_favors_for_war_prep",
+        "actor": "FRA",
+        "request_id": "tag31-final-026-trade_favors_for_war_prep",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "trade_favors_for_heir",
+        "actor": "FRA",
+        "request_id": "tag31-final-027-trade_favors_for_heir",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "insult",
+        "actor": "FRA",
+        "request_id": "tag31-final-028-insult",
+        "target": "ENG"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "warn",
+        "actor": "FRA",
+        "request_id": "tag31-final-029-warn",
+        "target": "BUR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "corrupt_officials",
+        "actor": "FRA",
+        "request_id": "tag31-final-030-corrupt_officials",
+        "target": "POR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "sabotage_recruitment",
+        "actor": "FRA",
+        "request_id": "tag31-final-031-sabotage_recruitment",
+        "target": "NAV"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "sabotage_reputation",
+        "actor": "FRA",
+        "request_id": "tag31-final-032-sabotage_reputation",
+        "target": "SCO"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "slander_merchants",
+        "actor": "FRA",
+        "request_id": "tag31-final-033-slander_merchants",
+        "target": "BRI"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "sow_discontent",
+        "actor": "FRA",
+        "request_id": "tag31-final-034-sow_discontent",
+        "target": "SAV"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "agitate_for_liberty",
+        "actor": "FRA",
+        "request_id": "tag31-final-035-agitate_for_liberty",
+        "target": "HOL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "justify_trade_conflict",
+        "actor": "FRA",
+        "request_id": "tag31-final-036-justify_trade_conflict",
+        "target": "ENG"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "knowledge_sharing",
+        "actor": "POR",
+        "request_id": "tag31-final-037-knowledge_sharing",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "ask_knowledge_sharing",
+        "actor": "BRI",
+        "request_id": "tag31-final-038-ask_knowledge_sharing",
+        "target": "FRA"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "claim_throne",
+        "actor": "SAV",
+        "request_id": "tag31-final-039-claim_throne",
+        "target": "TRE"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "designate_march",
+        "actor": "FRA",
+        "request_id": "tag31-final-040-designate_march",
+        "target": "ORL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "ask_for_march",
+        "actor": "MAZ",
+        "request_id": "tag31-final-041-ask_for_march",
+        "target": "POL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "establish_tributary",
+        "actor": "FRA",
+        "request_id": "tag31-final-042-establish_tributary",
+        "target": "UTR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "ask_to_be_tributary",
+        "actor": "SAV",
+        "request_id": "tag31-final-043-ask_to_be_tributary",
+        "target": "FRA"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "convert_tributary_to_vassal",
+        "actor": "DAN",
+        "request_id": "tag31-final-044-convert_tributary_to_vassal",
+        "target": "DTT"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "invite_to_trade_league",
+        "actor": "VEN",
+        "request_id": "tag31-final-045-invite_to_trade_league",
+        "target": "UTR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "request_to_join_trade_league",
+        "actor": "BRI",
+        "request_id": "tag31-final-046-request_to_join_trade_league",
+        "target": "GEN"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "invite_to_federation",
+        "actor": "HUR",
+        "request_id": "tag31-final-047-invite_to_federation",
+        "target": "IRO"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "request_to_join_federation",
+        "actor": "CHR",
+        "request_id": "tag31-final-048-request_to_join_federation",
+        "target": "HUR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "join_coalition",
+        "actor": "POR",
+        "request_id": "tag31-final-049-join_coalition",
+        "target": "SAV"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "stop_improving_relations",
+        "actor": "FRA",
+        "request_id": "tag31-final-050-stop_improving_relations",
+        "target": "POR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "stop_building_spy_network",
+        "actor": "FRA",
+        "request_id": "tag31-final-051-stop_building_spy_network",
+        "target": "UTR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "stop_currying_favors",
+        "actor": "FRA",
+        "request_id": "tag31-final-052-stop_currying_favors",
+        "target": "NAV"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "stop_counterespionage",
+        "actor": "FRA",
+        "request_id": "tag31-final-053-stop_counterespionage",
+        "target": "ENG"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "stop_supporting_heir",
+        "actor": "FRA",
+        "request_id": "tag31-final-054-stop_supporting_heir",
+        "target": "POL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_annexation",
+        "actor": "POL",
+        "request_id": "tag31-final-055-cancel_annexation",
+        "target": "MAZ"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_integration",
+        "actor": "DAN",
+        "request_id": "tag31-final-056-cancel_integration",
+        "target": "NOR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "break_marriage",
+        "actor": "LIT",
+        "request_id": "tag31-final-057-break_marriage",
+        "target": "BLO"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "revoke_guarantee",
+        "actor": "FRA",
+        "request_id": "tag31-final-058-revoke_guarantee",
+        "target": "SCO"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "revoke_military_access",
+        "actor": "FRA",
+        "request_id": "tag31-final-059-revoke_military_access",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_military_access",
+        "actor": "POR",
+        "request_id": "tag31-final-060-cancel_military_access",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "revoke_fleet_basing_rights",
+        "actor": "POR",
+        "request_id": "tag31-final-061-revoke_fleet_basing_rights",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_fleet_basing_rights",
+        "actor": "FRA",
+        "request_id": "tag31-final-062-cancel_fleet_basing_rights",
+        "target": "POR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_infiltration",
+        "actor": "FRA",
+        "request_id": "tag31-final-063-cancel_infiltration",
+        "target": "ENG"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "revoke_embargo",
+        "actor": "FRA",
+        "request_id": "tag31-final-064-revoke_embargo",
+        "target": "ENG"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_steer_trade",
+        "actor": "FRA",
+        "request_id": "tag31-final-065-cancel_steer_trade",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_subsidies",
+        "actor": "FRA",
+        "request_id": "tag31-final-066-cancel_subsidies",
+        "target": "POR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_trade_power_transfer",
+        "actor": "SWE",
+        "request_id": "tag31-final-067-cancel_trade_power_transfer",
+        "target": "DAN"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_offered_independence_support",
+        "actor": "FRA",
+        "request_id": "tag31-final-068-cancel_offered_independence_support",
+        "target": "HOL"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "cancel_requested_independence_support",
+        "actor": "SWE",
+        "request_id": "tag31-final-069-cancel_requested_independence_support",
+        "target": "ENG"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "dissolve_alliance",
+        "actor": "FRA",
+        "request_id": "tag31-final-070-dissolve_alliance",
+        "target": "SCO"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "cancel_vassalization",
+        "actor": "POL",
+        "request_id": "tag31-final-071-cancel_vassalization",
+        "target": "MAZ"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "cancel_tributary",
+        "actor": "DAN",
+        "request_id": "tag31-final-072-cancel_tributary",
+        "target": "LAU"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "revoke_march",
+        "actor": "FRA",
+        "request_id": "tag31-final-073-revoke_march",
+        "target": "ORL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "leave_coalition",
+        "actor": "FRA",
+        "request_id": "tag31-final-074-leave_coalition",
+        "target": "SAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "kick_from_trade_league",
+        "actor": "VEN",
+        "request_id": "tag31-final-075-kick_from_trade_league",
+        "target": "UTR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "leave_trade_league",
+        "actor": "BRI",
+        "request_id": "tag31-final-076-leave_trade_league",
+        "target": "GEN"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "kick_from_federation",
+        "actor": "HUR",
+        "request_id": "tag31-final-077-kick_from_federation",
+        "target": "IRO"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "leave_federation",
+        "actor": "CHR",
+        "request_id": "tag31-final-078-leave_federation",
+        "target": "HUR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "abandon_union",
+        "actor": "BUR",
+        "request_id": "tag31-final-079-abandon_union",
+        "target": "BRB"
+      },
+      "state": "unknown_no_retry"
+    },
+    {
+      "command": {
+        "action": "fabricate_ottoman_invasion_cb",
+        "actor": "FRA",
+        "request_id": "tag31-final-080-fabricate_ottoman_invasion_cb",
+        "target": "ENG"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "fabricate_spread_the_true_faith_cb",
+        "actor": "FRA",
+        "request_id": "tag31-final-081-fabricate_spread_the_true_faith_cb",
+        "target": "BUR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "fabricate_tributary_cb",
+        "actor": "FRA",
+        "request_id": "tag31-final-082-fabricate_tributary_cb",
+        "target": "SAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "send_royal_ambassador",
+        "actor": "FRA",
+        "request_id": "tag31-final-083-send_royal_ambassador",
+        "target": "POR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "heathen_royal_marriage",
+        "actor": "POR",
+        "request_id": "tag31-final-084-heathen_royal_marriage",
+        "target": "NAV"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "sell_indulgence",
+        "actor": "FRA",
+        "request_id": "tag31-final-085-sell_indulgence",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "mam_export_grain",
+        "actor": "FRA",
+        "request_id": "tag31-final-086-mam_export_grain",
+        "target": "POR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "mam_sponsor_hajj",
+        "actor": "FRA",
+        "request_id": "tag31-final-087-mam_sponsor_hajj",
+        "target": "NAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "share_modern_ideas",
+        "actor": "FRA",
+        "request_id": "tag31-final-088-share_modern_ideas",
+        "target": "SAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "request_access_to_modern_ideas",
+        "actor": "BRI",
+        "request_id": "tag31-final-089-request_access_to_modern_ideas",
+        "target": "FRA"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "steal_modern_ideas",
+        "actor": "FRA",
+        "request_id": "tag31-final-090-steal_modern_ideas",
+        "target": "BUR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "invite_to_zoroastrian_community",
+        "actor": "FRA",
+        "request_id": "tag31-final-091-invite_to_zoroastrian_community",
+        "target": "SAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "invite_into_cultural_sphere_of_influence",
+        "actor": "FRA",
+        "request_id": "tag31-final-092-invite_into_cultural_sphere_of_influence",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "join_cultural_sphere_of_influence",
+        "actor": "NAV",
+        "request_id": "tag31-final-093-join_cultural_sphere_of_influence",
+        "target": "POR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "remove_them_from_cultural_sphere_of_influece",
+        "actor": "FRA",
+        "request_id": "tag31-final-094-remove_them_from_cultural_sphere_of_influece",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "leave_the_cultural_sphere_of_influece",
+        "actor": "NAV",
+        "request_id": "tag31-final-095-leave_the_cultural_sphere_of_influece",
+        "target": "POR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "create_pronoia",
+        "actor": "FRA",
+        "request_id": "tag31-final-096-create_pronoia",
+        "target": "AMG"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "make_pronoia_inheritable",
+        "actor": "FRA",
+        "request_id": "tag31-final-097-make_pronoia_inheritable",
+        "target": "AMG"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "release_pronia",
+        "actor": "FRA",
+        "request_id": "tag31-final-098-release_pronia",
+        "target": "AMG"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "create_soyurghal",
+        "actor": "FRA",
+        "request_id": "tag31-final-099-create_soyurghal",
+        "target": "AUV"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "release_soyurghal",
+        "actor": "FRA",
+        "request_id": "tag31-final-100-release_soyurghal",
+        "target": "AUV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "promote_appanage_heir",
+        "actor": "FRA",
+        "request_id": "tag31-final-101-promote_appanage_heir",
+        "target": "BOU"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "create_european_colony",
+        "actor": "FRA",
+        "request_id": "tag31-final-102-create_european_colony",
+        "target": "FOI"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "promote_vassal_to_eyalet",
+        "actor": "FRA",
+        "request_id": "tag31-final-103-promote_vassal_to_eyalet",
+        "target": "ORL"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "call_eyalet_into_wars",
+        "actor": "FRA",
+        "request_id": "tag31-final-104-call_eyalet_into_wars",
+        "target": "ORL"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "reign_in_eyalet",
+        "actor": "FRA",
+        "request_id": "tag31-final-105-reign_in_eyalet",
+        "target": "ORL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "grant_autonomy_to_core_eyalet",
+        "actor": "FRA",
+        "request_id": "tag31-final-106-grant_autonomy_to_core_eyalet",
+        "target": "ORL"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "convert_to_core_personal_union",
+        "actor": "DAN",
+        "request_id": "tag31-final-107-convert_to_core_personal_union",
+        "target": "SWE"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "grant_war_rights",
+        "actor": "DAN",
+        "request_id": "tag31-final-108-grant_war_rights",
+        "target": "SWE"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "revoke_war_rights",
+        "actor": "DAN",
+        "request_id": "tag31-final-109-revoke_war_rights",
+        "target": "SWE"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "offer_protectorate",
+        "actor": "FRA",
+        "request_id": "tag31-final-110-offer_protectorate",
+        "target": "UTR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "call_trade_protectorate_into_wars",
+        "actor": "FRA",
+        "request_id": "tag31-final-111-call_trade_protectorate_into_wars",
+        "target": "UTR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "dissolve_protectorate",
+        "actor": "FRA",
+        "request_id": "tag31-final-112-dissolve_protectorate",
+        "target": "UTR"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "request_protectorate",
+        "actor": "BRI",
+        "request_id": "tag31-final-113-request_protectorate",
+        "target": "POR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "release_nahuatl_tributary",
+        "actor": "DAN",
+        "request_id": "tag31-final-114-release_nahuatl_tributary",
+        "target": "DTT"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "demand_sacrifices",
+        "actor": "FRA",
+        "request_id": "tag31-final-115-demand_sacrifices",
+        "target": "SAV"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "promote_primary_culture",
+        "actor": "FRA",
+        "request_id": "tag31-final-116-promote_primary_culture",
+        "target": "BOU"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "elevate_influenced_country_to_vassal",
+        "actor": "FRA",
+        "request_id": "tag31-final-117-elevate_influenced_country_to_vassal",
+        "target": "BRI"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "incorporate_vassal",
+        "actor": "FRA",
+        "request_id": "tag31-final-118-incorporate_vassal",
+        "target": "BOU"
+      },
+      "state": "native_rejected"
+    },
+    {
+      "command": {
+        "action": "select_rival",
+        "actor": "FRA",
+        "request_id": "tag31-final-119-select_rival",
+        "target": "BUR"
+      },
+      "state": "dispatched"
+    },
+    {
+      "command": {
+        "action": "remove_rival",
+        "actor": "FRA",
+        "request_id": "tag31-final-120-remove_rival",
+        "target": "ENG"
+      },
+      "state": "dispatched"
+    }
+  ]
+}

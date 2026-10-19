@@ -1,0 +1,124 @@
+{
+  "Cxx_type_verified": false,
+  "amount_units_verified": false,
+  "atomic_snapshot": false,
+  "author_report": true,
+  "authorizes_retry": false,
+  "callable": false,
+  "closure": {
+    "allocation_or_free_outside_slice": "unknown",
+    "cleanup": "unknown",
+    "declared_pdata_extent_fully_owned": true,
+    "decoded_bytes": 70,
+    "decoded_rows": 20,
+    "external_JE": "0xcc32c",
+    "external_exit_sites": 2,
+    "external_fallthrough": "0xcc266",
+    "local_normal_CFG_closed": false,
+    "no_partial_instruction": true,
+    "owned_bytes": 70,
+    "ownership_transfer": "unknown",
+    "return_value": "unknown",
+    "whole_function_closed": false
+  },
+  "entry_rva": "0xcc220",
+  "exit_state_common": {
+    "R13": "E",
+    "R15": "D",
+    "R8": "0x1fffffffffffffff",
+    "R9_R10_R11_XMM": "No access in these 20 rows only; no full-callee preservation contract.",
+    "RAX": "SAR64((A-B) mod2^64,3); intermediate, not a return value",
+    "RBP": "SAR64((D-B) mod2^64,3)",
+    "RBX": "C",
+    "RDX": "B",
+    "RSP": "Q-0x48",
+    "flags": "JE exit uses CMP; fallthrough exits after SUB RCX,RDX. Incoming flags not preserved."
+  },
+  "first_append_conditional_projection": {
+    "assumptions": "Hypothetical instruction-time C qwords 0/+8/+0x10 all0 and incoming D=0, with required memory validity.",
+    "deduction": "RBP=0/RAX=0; comparison with 0x1fffffffffffffff is unequal; final RCX=0 and control reaches cc266.",
+    "limit": "No append/store/allocator/return/ownership conclusion follows; this is local arithmetic, not a runtime or R6 lifetime closure."
+  },
+  "formal_inputs": "Opaque incoming RCX=C, RDX=D, R8=E, entry RSP=Q; presence is not a recovered C++ signature.",
+  "further_actual_authorized": false,
+  "independent_full_actual_review_pending": true,
+  "local_dataflow": [
+    "Four PUSHes save old RBX/RBP/R13/R15 then SUB RSP,0x28 gives Q-0x48.",
+    "A=M64[C+8]; R15=D; B=M64[C]; RBP=(D-B) mod2^64; RAX=(A-B) mod2^64.",
+    "R13=E; RBP=SAR64(RBP,3); RAX=SAR64(RAX,3); R8=0x1fffffffffffffff; RBX=C.",
+    "CMP RAX,R8 then JE cc32c, outside owned bytes. At this exit RCX=C.",
+    "When unequal: RCX=M64[C+0x10], then RCX=(RCX-B) mod2^64; fallthrough cc266, outside owned bytes."
+  ],
+  "memory_conditions": [
+    "Stack PUSH destinations [Q-32,Q) writable and instruction fetch valid.",
+    "M64[C+8] at cc22b and M64[C] at cc232 readable; not-equal path additionally M64[C+0x10] at cc25f readable.",
+    "Loaded values refer to actual instruction-time memory after PUSH writes; no disjointness from stack or concurrent immutability is assumed."
+  ],
+  "memory_operations": {
+    "CALL_sites": 0,
+    "RET_sites": 0,
+    "explicit_QWORD_load_sites": 3,
+    "explicit_memory_store_sites": 0,
+    "implicit_stack_store_bytes": 32,
+    "implicit_stack_store_sites": 4,
+    "load_sites_executed_before_JE": 2,
+    "not_equal_extra_load": 1,
+    "payload_E_dereferenced_in_owned_slice": false
+  },
+  "native_ready": false,
+  "next_scope_proposal_only": {
+    "new_actual_authorized": false,
+    "new_source_prep_authorized": false,
+    "other_unresolved": "JE targetcc32c body/extent not read; no proposed automatic search or fallback.",
+    "preferred": "Fallthrough suffix [0xcc266,0xcc28c), 38B, inherits current frame/register conditions; cached descriptor1253 retained."
+  },
+  "owned_ranges": [
+    [
+      "0xcc220",
+      "0xcc266"
+    ]
+  ],
+  "ownership_transfer_verified": false,
+  "provenance_limits": [
+    "Ordinary locked Capstone 5.0.7 capture; no REA deep-engine EvidenceID.",
+    "The source peer and raw-entry reviews are upstream evidence, not a completed independent review of this actual semantic report.",
+    "Producer capture/claim and source-defined close/postguard/publish ordering support its self-report; OS exit/all-collected rely on root tool-record witness, with no retained raw stdout/stderr."
+  ],
+  "raw_replay_pin": {
+    "bytes": 4456,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/raw-replay.json",
+    "sha256": "805159cd07d160c73f43baede15816cf822e542bc972f5ba323e89e190e494fc"
+  },
+  "reader_adoption_allowed": false,
+  "recipient_direction_verified": false,
+  "schema": "EU4-R86-CALLEE-MACHINE-CONTRACT/1",
+  "scope_kind": "exact_entry_selected_pdata_fragment",
+  "sealed": true,
+  "selected_cfg_pin": {
+    "bytes": 15248,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/selected-cfg.json",
+    "sha256": "d8126c5c08e73e84c3f12df83fe84abe55eccf43f45e976cf2c9cbe54c8f47ab"
+  },
+  "selected_effect_verified": false,
+  "subject_capture_pin": {
+    "bytes": 85315,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/capture.json",
+    "sha256": "e3a06664b11a14f483705cd3ae4852b0cd562a85ab46ac7395bfc428673bb28f"
+  },
+  "subject_owned_pin": {
+    "bytes": 635,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/owned-code.json",
+    "sha256": "65d0c63efdc37f369bb8aa4f0f55a0a5c3d59c79db8bc37e98723a30048fde82"
+  },
+  "subject_producer": {
+    "bytes": 27099,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/produce.py",
+    "sha256": "0a3c13e779e4da424316b0e3a3ff3f86f49a460243f18b14c91644ca717522b4"
+  },
+  "subject_source_manifest": {
+    "bytes": 22473,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/source-manifest.json",
+    "sha256": "74f6c8f8eeeadea9e4216c7b37e2a8034e9fb7967d8dfe7167c7ee1ffd143472"
+  },
+  "world_lease": false
+}

@@ -1,0 +1,225 @@
+{
+  "schema": "EU4-R37-LINKED-EXACT-ENTRY-MACHINE-CONTRACT/1",
+  "evidence_kind": "static exactCALL-entry selected closed normal CFG",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "selected_CFG": {
+    "bytes": 53888,
+    "sha256": "fdd76416a42c5cc2b000707909eb6a0afcdd4a1aaca990c2c957d1207f83bb00"
+  },
+  "entry": {
+    "rva": "0x3d79f0",
+    "basis": "R25 retained CALL2f159f e84c640e00; exact rel32 target3d79f0",
+    "pdata_exact_entry_proven": false,
+    "R36_preserved_gap": [
+      "0x3d79ed",
+      "0x3d7b10"
+    ],
+    "new_pdata_header_callee_unwind_data_targeted_reads": 0
+  },
+  "control_flow": {
+    "instruction_count": 29,
+    "unique_instruction_bytes": 102,
+    "edge_count": 32,
+    "conditional_branch_sites": [
+      "0x3d79f7",
+      "0x3d7a36",
+      "0x3d7a3a",
+      "0x3d7a43",
+      "0x3d7a4f"
+    ],
+    "normal_RET_sites": [
+      "0x3d7a47",
+      "0x3d7a55"
+    ],
+    "calls": [],
+    "outside_or_indirect_transfers": [],
+    "selected_CFG_closed": true,
+    "normal_leaf_subset_proven": true,
+    "postRET_linear_sweep": false,
+    "second_RET_block_basis": "JE3d7a3a reaches3d7a48; no edge3d7a47->3d7a48",
+    "tail_not_submitted_to_decoder": {
+      "range": [
+        "0x3d7a56",
+        "0x3d7a70"
+      ],
+      "bytes": 26,
+      "meaning": "uninterpreted retained raw, not classified as padding or another function"
+    },
+    "termination_for_arbitrary_memory_or_count": false
+  },
+  "register_contract": {
+    "incoming_C": "entryRCX; no native type validation",
+    "incoming_RDX_used_before_overwrite": false,
+    "incoming_R8_used_before_overwrite": false,
+    "RDX_first_overwrite": "0x3d7a10",
+    "R8_first_overwrite": "0x3d7a05",
+    "R9_read_or_write_sites": [],
+    "R10_read_or_write_sites": [],
+    "R9_R10_preserved_on_selected_normal_RET_paths": true,
+    "preservation_basis": "all29 reached instructions enumerated, no alias-family writes and no calls/outside transfers; not ordinary Win64 ABI preservation",
+    "explicit_register_write_names": [
+      "rax",
+      "eax",
+      "rcx",
+      "rdx",
+      "r8",
+      "rflags",
+      "rsp"
+    ],
+    "implicit_RET_stack_effect": "RET reads return address from stack and advances RSP by8; no explicit stack stores/prologue"
+  },
+  "dataflow": {
+    "slot_expression": "slot(H)=zero_extend64(sign_extend16_to32((H>>32)&0xffff)); CWDE writes EAX and thereby zeros upperRAX",
+    "S": "slot(QWORD[C+0x18f0])",
+    "row": "QWORD[C+0x1510]+S*0x48 modulo64",
+    "D": "QWORD[row+0]",
+    "K": "slot(QWORD[row+0x10]) low32 compared to DWORD entry key",
+    "V": "QWORD[D+0x128]",
+    "N": "sign_extend32(DWORD[D+0x134])",
+    "E": "V+(N<<4) modulo64",
+    "entry_scan": "start atV; ifentry==E return0; compare DWORD[entry] withK; first match selectsP; otherwise entry+=16 and repeat untilE",
+    "P": "QWORD[first_matching_entry+8]",
+    "U": "QWORD[P+0x40] whenP nonzero; U itself is not checked for nonzero",
+    "zero_return_cases": [
+      "BYTE[C+0x18f7]==0",
+      "V==E",
+      "no matching key before endE",
+      "matching entry P==0"
+    ],
+    "additional_zero_value_possible": "P nonzero but QWORD[P+0x40] may itself be0; return site remains3d7a55",
+    "BYTE_alias_note": "C+0x18f7 is high byte of QWORD[C+0x18f0]; this is a memory-address fact, not a business flag name",
+    "negative_slot_precision": "CWDE into EAX does not sign-extend to64; do not use signed64 slot address formula for invalid negative16 slots",
+    "signed_count_precision": "MOVSXD reads N signed32; no observed N>=0/capacity/span guard; malformed count or pointers can fault or fail to terminate"
+  },
+  "explicit_architectural_memory_reads": [
+    {
+      "site": "0x3d79f0",
+      "bytes": 1,
+      "address": "C+0x18f7",
+      "use": "zero skips to zero return"
+    },
+    {
+      "site": "0x3d79f9",
+      "bytes": 8,
+      "address": "C+0x18f0",
+      "use": "H; shift32/CWDE derives slot S"
+    },
+    {
+      "site": "0x3d7a09",
+      "bytes": 8,
+      "address": "C+0x1510",
+      "use": "A; row=A+S*0x48"
+    },
+    {
+      "site": "0x3d7a10",
+      "bytes": 8,
+      "address": "row+0",
+      "use": "D"
+    },
+    {
+      "site": "0x3d7a14",
+      "bytes": 8,
+      "address": "row+0x10",
+      "use": "H2; shift32/CWDE derives key K"
+    },
+    {
+      "site": "0x3d7a1e",
+      "bytes": 8,
+      "address": "D+0x128",
+      "use": "V (first entry address)"
+    },
+    {
+      "site": "0x3d7a25",
+      "bytes": 4,
+      "address": "D+0x134",
+      "use": "N signed32, sign-extended to R8"
+    },
+    {
+      "site": "0x3d7a38",
+      "bytes": 4,
+      "address": "entry+0",
+      "use": "compare key with K low32, repeated while scanning"
+    },
+    {
+      "site": "0x3d7a48",
+      "bytes": 8,
+      "address": "entry+8",
+      "use": "P from first matching entry"
+    },
+    {
+      "site": "0x3d7a51",
+      "bytes": 8,
+      "address": "P+0x40",
+      "use": "U returned in RAX, without further nonzero test"
+    }
+  ],
+  "explicit_memory_writes": [],
+  "LEA_precision": "Capstone memoryoperand access metadata labels LEA3d7a05 read=true; LEA only computes address and is excluded from architectural read list",
+  "normal_read_only_subset": {
+    "proven": true,
+    "scope": "these29 instructions reached from exactCALLentry and normalRET paths only",
+    "conditions": [
+      "instruction bytes remain the authenticated bytes",
+      "all dereferenced memory and return stack are valid/readable",
+      "selected scan has valid coherent inputs and terminates"
+    ],
+    "does_not_prove": [
+      "arbitrary input safety",
+      "exception behavior",
+      "object or world lease",
+      "atomic coherent snapshot",
+      "transitive purity of506d70 or caller",
+      "business class/type or truce status"
+    ]
+  },
+  "unknowns": [
+    "D/P/U business type and lifecycle",
+    "vtable/fullhandle identity of every dataflow object",
+    "index capacity/layout beyond bytes actually consumed",
+    "caller use U+0x11a or U+0x1c8 business meaning",
+    "truce object/index/expiry/date units",
+    "overlord/subject or any named business key",
+    "exception/asynchronous mutation behavior"
+  ],
+  "source_guard_before_after_equal": true,
+  "decoder_dependencies_before_after_equal": true,
+  "full_PE_SHA_before_after_equal": true,
+  "accounting": {
+    "new_code_read_calls": 1,
+    "new_code_read_bytes": 128,
+    "CFG_decoder_attempts": 102,
+    "CFG_decoder_input_bytes_cumulative": 284,
+    "unique_decoder_input_byte_coverage": 102,
+    "unique_complete_instruction_bytes": 102,
+    "bytes_read_not_covered_by_complete_instructions": 26,
+    "bytes_read_never_submitted_to_decoder": 26,
+    "full_PE_SHA_bytes": 76925008,
+    "total_PE_file_bytes_read": 76925136
+  },
+  "resource_witness": {
+    "memory_guard_bytes": 805306368,
+    "hard_stop_bytes": 1073741824,
+    "own_peak_committed_bytes": 23453696,
+    "guard_checks": 742,
+    "hard_job_object_installed": false,
+    "memory_query_target": "own current analysis process only",
+    "elapsed_ms": 421.787
+  },
+  "observations_vs_witness": {
+    "retained_raw_arithmetic": "replayed from retained128B/rows/edges with no PE or decoder rerun during seal",
+    "full_PE_SHA_and_peak_and_actual_read_counts": "pinned producer witnesses, not independently replayed by seal",
+    "file_pin_verification": "all67 source files rehashed during file-only seal"
+  },
+  "runtime_reader_implemented": false,
+  "game_process_accesses": 0,
+  "Frida_operations": 0,
+  "game_native_calls": 0,
+  "requests_published": 0,
+  "tests_run": 0,
+  "API_effects": 0,
+  "native_ready": false,
+  "world_lease": false,
+  "atomic": false,
+  "pure_transitive_506d70_verified": false,
+  "business_truce_predicate_complete": false
+}

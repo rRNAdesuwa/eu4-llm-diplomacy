@@ -1,0 +1,124 @@
+{
+  "schema": "EU4-R66-INDEPENDENT-FINDINGS/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_manifest": {
+    "bytes": 15233,
+    "sha256": "ccf2263abe0d7b538f6b28dcd8df86afb7f50e7a05931c6b48d1a7e7dda7e6a2"
+  },
+  "subject_contract": {
+    "bytes": 8319,
+    "sha256": "1440ddf1b3da152a643899a64d1c02226da8becd9080a4204fa1beaf6d10dc2e"
+  },
+  "subject_capture": {
+    "bytes": 106529,
+    "sha256": "afe78019ab8dc507a69611f00ed3807013f2c5f3a4d355fbd718ff33e05fb292"
+  },
+  "author_frozen_source_needs_change": false,
+  "raw_replay": {
+    "bytes": 22478,
+    "sha256": "86315d5dd33052b79cfe44ccb80106eeaec2166267364ec80f178f1db6df25ce"
+  },
+  "checks": {
+    "actual_source_pins": 41,
+    "additional_delivery_accounting_pins": 10,
+    "engine_metadata_witness_pins_unopened": 38,
+    "full_rows": 50,
+    "full_owned_bytes": 190,
+    "CALL_sites": 5,
+    "branch_sites": 3,
+    "recorded_edges": 8,
+    "RET_sites": 1,
+    "INT3_sites": 0,
+    "explicit_stores": 5,
+    "syntactic_stack_stores": 5,
+    "explicit_reads": 10,
+    "all_raw_bytes_CFG_access_widths_replayed": true,
+    "three_review_gate_auth_claim_bound": true,
+    "source_current_postguard_equal": true,
+    "source_and_decoder_only_producer_witness": true
+  },
+  "machine_contract": {
+    "byte_load": "u8[post-callRDX] zeroextendsEBX; not fullDWORD or BOOL",
+    "begin_end": "post-callRCX QWORD0/8",
+    "N": "low64(SAR64(submod64(end,begin),2)*0xaaaaaaaaaaaaaaab); /12 only under suitable nonnegative exact12B-span premise",
+    "small": "signedN<=32 includes negative malformed; RCXbegin/RDXend ->998d50; no explicit BL flag setup",
+    "large": "signedN>32; CQO/SUB/SAR gives floorN/2 then N-floorN/2; 46a3b0(&local30,ceilN/2)",
+    "worker": "998e10(begin,end,N,freshlocal30; arg5freshlocal38; arg6lowBYTE savedBL; upper7 uninitialized locally)",
+    "cleanup": "freshlocal38 unsigned>0x155; freshlocal30 ->175da20; actual free/ownership unknown",
+    "return_paths": {
+      "small": "RAX from998d50 ifnormalreturn",
+      "large_skipcleanup": "RAX from998e10 ifnormalreturn",
+      "large_cleanup": "RAX from175da20 ifnormalreturn"
+    },
+    "stack": "steadyQ-8-postRAX undernormalfirstCALLstack; epiloguebalancesentryonlywhenpostRAX==0x1040; actualhomecontents stillcallee/aliasdependent"
+  },
+  "precision_notes": [
+    "The firstcallee is not followed. RAX/RCX/RDX are volatile under ordinary Win64ABI; MOV EAX1040 does not establish returnedRAX1040, current H/Treceiver or balanced frame.",
+    "Five explicit memory stores are syntactically stack based. This is neither a purity proof nor unconditional assurance that malformed postcallee stack addresses cannot alias other memory; implicitPUSH/CALL/POP/RET accesses are separate.",
+    "Only BYTE[postRDX] is consumed. EntryRDX DWORD address binding depends on firstcallee preservation; no amount, BOOL, units or originalTunchanged assumption.",
+    "Nonvolatile ABI preserves saved register values under conforming normalcalls, not H/record/localtemp contents. Temporary30/38 is not initialized in thisbody before46a3b0; calleeoutwrite/ownership remainsunknown.",
+    "Return provenance can be tightened conditionally: finalRAX is exactly the last normalreturn of998d50,998e10 or175da20 on its respective localpath; no uniform application value or completion follows.",
+    "Complete local normal CFG is conditional on normal externalcall returns and valid stack/memory. No sort/conservation/currency/recipient/settlement/persistence/lease/readiness is established.",
+    "Producer17,079,777 and retainedupper2,271,102 contain selected-source accounting/manual allowance, not allOS/interpreter/loader IO. PE76,925,426 is separately reported authorwitness.",
+    "The acquisition duration580,747,200ns covers producerlaunch-to-collectedexit including source/engine/dualEXEhash; not a native runtime latency. Softwarepeak23,101,440B is authorwitness with no hardJob."
+  ],
+  "resource_witness": {
+    "producer_source_IO_including_capture_pin": 17079777,
+    "retained_explicit_upper": 2271102,
+    "combined_explicit_upper": 19350879,
+    "PE_physical_bytes": 76925426,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 192,
+    "code_unique_bytes": 190,
+    "producer_elapsed_ns": 580747200,
+    "producer_peak_committed_bytes": 23101440,
+    "hard_Job_installed": false,
+    "scope": "Retained producer/accounting witnesses only; no independent PE/engine/runtime access"
+  },
+  "independent_resources": {
+    "known_prior_listed_bytes": 685846,
+    "prior_inspection_upper_bytes": 5165219,
+    "final_cache_and_postguard_bytes": 1962762,
+    "own_sealing_reserve_bytes": 2097152,
+    "listed_analysis_upper_bytes": 9910979,
+    "source_limit_bytes": 25165824,
+    "own_peak_bytes": 23183360,
+    "memory_limit_bytes": 805306368,
+    "source_budget_not_all_OS_or_loader_IO": true,
+    "recursive_closure": false
+  },
+  "operations": {
+    "PE": 0,
+    "engine": 0,
+    "decoder": 0,
+    "author_programs": 0,
+    "tests": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "saves": 0,
+    "extra_callee_follow": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "gold_conservation_verified": false,
+    "peace_completion_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  },
+  "self_diagnostics": {
+    "review_failures": 0,
+    "additional_file_names_resolved_before_read": true
+  },
+  "all_shells_collected": true,
+  "next_scope_auto_authorized": false
+}

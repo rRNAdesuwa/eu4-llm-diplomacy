@@ -1,0 +1,1 @@
+R3 changes only the country resolver binding and adds a six-family passive-selector regression. The actual native environment, pair core, port and authority checks are unchanged. Ordinary current player and requested pair restrictions remain. No game access in validation.

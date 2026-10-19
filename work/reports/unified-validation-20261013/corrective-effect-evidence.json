@@ -1,0 +1,381 @@
+{
+  "actions": [
+    {
+      "AI_acceptance_decision_separately_observed": false,
+      "cold_reload_verified": false,
+      "command": {
+        "action": "trade_favors_for_trust",
+        "actor": "FRA",
+        "request_id": "tag31-unified-20261013-1-trade_favors_for_trust",
+        "target": "SCO"
+      },
+      "development_reservation_verified": true,
+      "native_dispatch_verified": true,
+      "normal_native_call_pairs": 7,
+      "observed": {
+        "favors_milli_after": 98160,
+        "favors_milli_before": 99160,
+        "relation_direction": "SCO_to_FRA",
+        "trust_after": 60,
+        "trust_before": 55
+      },
+      "ownership_closed": true,
+      "selected_live_effect_observed": true,
+      "selected_serialized_effect": {
+        "after": {
+          "favors": "98.160",
+          "trust_value": "60"
+        },
+        "before": {
+          "favors": "99.160",
+          "trust_value": "55"
+        }
+      },
+      "selected_serialized_effect_observed": true,
+      "sequence": 1
+    },
+    {
+      "AI_acceptance_decision_separately_observed": false,
+      "cold_reload_verified": false,
+      "command": {
+        "action": "designate_march",
+        "actor": "FRA",
+        "request_id": "tag31-unified-20261013-2-designate_march",
+        "target": "ORL"
+      },
+      "development_reservation_verified": true,
+      "native_dispatch_verified": true,
+      "normal_native_call_pairs": 7,
+      "observed": {
+        "dependency_type_after": "march",
+        "dependency_type_before": "vassal",
+        "target_overlord_after": "0x100007a00415246",
+        "target_overlord_before": "0x100007a00415246"
+      },
+      "ownership_closed": true,
+      "selected_live_effect_observed": true,
+      "selected_serialized_effect": {
+        "after_dependency_records": [
+          {
+            "entries": [
+              {
+                "key": "first",
+                "value": "FRA"
+              },
+              {
+                "key": "second",
+                "value": "ORL"
+              },
+              {
+                "key": "start_date",
+                "value": "1445.2.22"
+              },
+              {
+                "key": "subject_type",
+                "value": "march"
+              }
+            ],
+            "key": "dependency"
+          }
+        ],
+        "before_dependency_records": [
+          {
+            "entries": [
+              {
+                "key": "first",
+                "value": "FRA"
+              },
+              {
+                "key": "second",
+                "value": "ORL"
+              },
+              {
+                "key": "start_date",
+                "value": "1445.2.16"
+              },
+              {
+                "key": "subject_type",
+                "value": "vassal"
+              }
+            ],
+            "key": "dependency"
+          }
+        ]
+      },
+      "selected_serialized_effect_observed": true,
+      "sequence": 2
+    },
+    {
+      "AI_acceptance_decision_separately_observed": false,
+      "cold_reload_verified": false,
+      "command": {
+        "action": "release_soyurghal",
+        "actor": "FRA",
+        "request_id": "tag31-unified-20261013-3-release_soyurghal",
+        "target": "AUV"
+      },
+      "development_reservation_verified": true,
+      "native_dispatch_verified": true,
+      "normal_native_call_pairs": 7,
+      "observed": {
+        "dependency_type_after": null,
+        "dependency_type_before": "soyurghal_subject_type",
+        "target_overlord_after": "0x2d2d2d",
+        "target_overlord_before": "0x100007a00415246"
+      },
+      "ownership_closed": true,
+      "selected_live_effect_observed": true,
+      "selected_serialized_effect": {
+        "after_dependency_records": [],
+        "before_dependency_records": [
+          {
+            "entries": [
+              {
+                "key": "first",
+                "value": "FRA"
+              },
+              {
+                "key": "second",
+                "value": "AUV"
+              },
+              {
+                "key": "start_date",
+                "value": "1445.2.16"
+              },
+              {
+                "key": "subject_type",
+                "value": "soyurghal_subject_type"
+              }
+            ],
+            "key": "dependency"
+          }
+        ]
+      },
+      "selected_serialized_effect_observed": true,
+      "sequence": 3
+    },
+    {
+      "AI_acceptance_decision_separately_observed": false,
+      "cold_reload_verified": false,
+      "command": {
+        "action": "dissolve_protectorate",
+        "actor": "POR",
+        "request_id": "tag31-unified-20261013-4-dissolve_protectorate",
+        "target": "BRI"
+      },
+      "development_reservation_verified": true,
+      "native_dispatch_verified": true,
+      "normal_native_call_pairs": 7,
+      "observed": {
+        "dependency_type_after": null,
+        "dependency_type_before": "trade_protectorate",
+        "target_overlord_after": "0x2d2d2d",
+        "target_overlord_before": "0x10000bd00524f50"
+      },
+      "ownership_closed": true,
+      "selected_live_effect_observed": true,
+      "selected_serialized_effect": {
+        "after_dependency_records": [],
+        "before_dependency_records": [
+          {
+            "entries": [
+              {
+                "key": "first",
+                "value": "POR"
+              },
+              {
+                "key": "second",
+                "value": "BRI"
+              },
+              {
+                "key": "start_date",
+                "value": "1445.2.16"
+              },
+              {
+                "key": "subject_type",
+                "value": "trade_protectorate"
+              }
+            ],
+            "key": "dependency"
+          }
+        ]
+      },
+      "selected_serialized_effect_observed": true,
+      "sequence": 4
+    }
+  ],
+  "all_ownership_closed": true,
+  "audit_rows": 75,
+  "audit_sha256": "7c6bc6f970abea3473e259febd2d91973acb481f18fe01631d1ba21cdd78e1dd",
+  "cold_reload_verified": false,
+  "file_only": true,
+  "game_calls_by_this_tool": 0,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_state_reads_by_this_tool": 0,
+  "identity": {
+    "creation": "01dd5afbef02f6d1",
+    "dll_sha256": "6a0683dacc069b743979b7442ad02205f13e8be972ce5c4f26a46fd9b530ed2a",
+    "manifest_sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a",
+    "pid": 67632,
+    "session": "7259a56410f284c5b4224f18d40d3a75"
+  },
+  "limitations": [
+    "Two equal RPM passes are non-atomic observations; no new process reads occurred in this tool.",
+    "Four selected effects were observed after their individually audited dispatches; this is not a complete world-state or effect inventory.",
+    "The native sender receipt does not itself observe a separate AI acceptance decision.",
+    "Cold reload persistence awaits a separate report; these outputs intentionally preserve cold_reload_verified=false.",
+    "All four requests have dispatched and must not be resent under the no-repeat development policy."
+  ],
+  "normal_native_call_pairs": 28,
+  "peak_committed_bytes": 38989824,
+  "requests_published_by_this_tool": 0,
+  "same_date_before_after": 56459448,
+  "same_human_player_handle": "0x100007a00415246",
+  "schema": "EU4TAG31-CORRECTIVE-EFFECT-EVIDENCE/1",
+  "selected_live_effects_observed": 4,
+  "selected_serialized_effects_observed": 4,
+  "serialized_diff": "work/reports/unified-validation-20261013/corrective-serialized-diff.json",
+  "source_pins": {
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/build.json": {
+      "bytes": 13802,
+      "sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/eu4_tag_command_1375_v31.dll": {
+      "bytes": 343552,
+      "sha256": "6a0683dacc069b743979b7442ad02205f13e8be972ce5c4f26a46fd9b530ed2a"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/1.claim": {
+      "bytes": 443,
+      "sha256": "b5d61cf5c8d484b9117269db3a0cf041e1c5ae1202be461055bdc95a9cb7ac09"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/1.request": {
+      "bytes": 443,
+      "sha256": "b5d61cf5c8d484b9117269db3a0cf041e1c5ae1202be461055bdc95a9cb7ac09"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/2.claim": {
+      "bytes": 436,
+      "sha256": "22ce4e9366538bdb15e22935fbbea323f827d16f5d44133e580796a0287a8f27"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/2.request": {
+      "bytes": 436,
+      "sha256": "22ce4e9366538bdb15e22935fbbea323f827d16f5d44133e580796a0287a8f27"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/3.claim": {
+      "bytes": 438,
+      "sha256": "3b3434e045c677d7b3fc60602c9072a9c250124d2f71b49ed5b1611f80f28559"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/3.request": {
+      "bytes": 438,
+      "sha256": "3b3434e045c677d7b3fc60602c9072a9c250124d2f71b49ed5b1611f80f28559"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/4.claim": {
+      "bytes": 442,
+      "sha256": "fe24f31eae3721d6336a86a673fe754423eb2260de142d31342851ef2478e504"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/4.request": {
+      "bytes": 442,
+      "sha256": "fe24f31eae3721d6336a86a673fe754423eb2260de142d31342851ef2478e504"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/events.jsonl": {
+      "bytes": 38983,
+      "sha256": "7c6bc6f970abea3473e259febd2d91973acb481f18fe01631d1ba21cdd78e1dd"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/key-06eebd197c64d15a1c9cc1cf86139b28b1509f46e0f83e0ab2bf42b489f5ed2d.json": {
+      "bytes": 598,
+      "sha256": "1ef7a65bb15073a22b5e301e0d5b7fd08950647d40130cefddfa07c1be8088e1"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/key-4dd89bd6cf720f7ffc361535fd1e0c03fb8fe874e4099bc96ed706e31ba726e0.json": {
+      "bytes": 600,
+      "sha256": "8dd7aa781a7aea3449100609d5b4ee0ad55a9b2d79eae04e86146b27390a26c4"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/key-94494afcf633367eea81356ea264fe952cdf10cd86a5397d244f98c3bc2ae96e.json": {
+      "bytes": 590,
+      "sha256": "b86fdebd4098f877d64ced700620e965881e286c669bfec647bbd2b92f028eba"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-67632-01dd5afbef02f6d1-7259a56410f284c5b4224f18d40d3a75/key-ec6db9a5884686a614675df0ac4d1b6595057a6318d144fecd815006bc09304d.json": {
+      "bytes": 586,
+      "sha256": "fec0cc4aaf1d8df21e485f90c85dfc66eb4e934e4a931f31c4c657c6a4b0667e"
+    },
+    "bridge/tag_command_audit.py": {
+      "bytes": 8109,
+      "sha256": "9e90cd180818166fac9754a65d68203b84eb24b57569c3605f5b28e69c1b289d"
+    },
+    "bridge/tag_test_policy.py": {
+      "bytes": 9044,
+      "sha256": "ad5609dcdf593bf656d4aa68d0933fe35dfb51f2c9ccd4e66a5091ec43e29e82"
+    },
+    "work/inspect_diplomacy_save.py": {
+      "bytes": 19220,
+      "sha256": "7c91d2e57110dc5073d831be4294318011d02a93329799b8f4884058ec31241c"
+    },
+    "work/inspect_tag31_corrective_pairs.py": {
+      "bytes": 19485,
+      "sha256": "3253c36d90e1be90111d0d4f1cf84642afcdca80c8c273f9e0e3c2d352942d5d"
+    },
+    "work/probe_current_diplomacy_1375.py": {
+      "bytes": 7023,
+      "sha256": "b69b2960ee595dac28cd96b734e0b5b61de8f41edeeb628a5847c098b7772d3e"
+    },
+    "work/probe_pair_effects_1375.py": {
+      "bytes": 26397,
+      "sha256": "e5ae9d341c57e7cc79169b708c1d37ccf79ac3d09e88c953e1d4bcbb3ab1cf67"
+    },
+    "work/reports/rea-api-discovery-20261013/prior-four-findings.json": {
+      "bytes": 5461,
+      "sha256": "a21a83456118d7624621c6362bc54ea615b3e50424e83c637b8ab85897c9fd66"
+    },
+    "work/reports/rea-diplomacy-20261013/envoy-reservation-readonly-spec.md": {
+      "bytes": 3846,
+      "sha256": "577eb56d84695f0fa4504e935af0a09ff5d66eba75aff91352d45f4bf01ba62a"
+    },
+    "work/reports/unified-validation-20261013/corrective-commands.json": {
+      "bytes": 633,
+      "sha256": "91d09d92976054ab43efe30d28c5d86234928c79c851beee2fab9b8444893921"
+    },
+    "work/reports/unified-validation-20261013/corrective-results.json": {
+      "bytes": 11765,
+      "sha256": "680be37764874bff6d9f8989bbbe97ffc256c7256530874dcf1603f944fa6e2c"
+    },
+    "work/reports/unified-validation-20261013/corrective-save-after-selected.json": {
+      "bytes": 1289744,
+      "sha256": "0dbe56194aea994082f659bde02230b09f36012412a6ef5575870d5734fbccf8"
+    },
+    "work/reports/unified-validation-20261013/corrective-save-before-selected.json": {
+      "bytes": 1290001,
+      "sha256": "31487cfe4505b1fb2441ced1c2e2c89d8b66c315c33161a3c5b898f52d3fe315"
+    },
+    "work/reports/unified-validation-20261013/corrective-serialized-diff.json": {
+      "bytes": 26767,
+      "sha256": "6b2e93ff95a7aa372e1f968a055a55a65631b1f472df1abf151e4e1a9cca6c15"
+    },
+    "work/reports/unified-validation-20261013/prerequisites-after-submit.json": {
+      "bytes": 1137640,
+      "sha256": "5c94493e4fa328f39dee3aa89f189a9143840103bafdb9e56c0a3893db5f3c7e"
+    },
+    "work/reports/unified-validation-20261013/prerequisites-before-submit.json": {
+      "bytes": 1140058,
+      "sha256": "533ec5b7fc21f3bf28cedd68b551279f81adb8fa00b8c09ab4311626ffbb29a5"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-06eebd197c64d15a1c9cc1cf86139b28b1509f46e0f83e0ab2bf42b489f5ed2d.json": {
+      "bytes": 904,
+      "sha256": "8b9e7ceb4c760108e38d2330f3d824e8f1082599796d0bb9419d748efab4298b"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-4dd89bd6cf720f7ffc361535fd1e0c03fb8fe874e4099bc96ed706e31ba726e0.json": {
+      "bytes": 906,
+      "sha256": "bfeca8554e3c9c829303fdda6fb107028088fdb4e3c81613a4e41fc7258847b4"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-94494afcf633367eea81356ea264fe952cdf10cd86a5397d244f98c3bc2ae96e.json": {
+      "bytes": 896,
+      "sha256": "27ac1d1705b86cceb3f812a9a071b5048dbc3ae306d0b6d4cf6e937ad937158e"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-ec6db9a5884686a614675df0ac4d1b6595057a6318d144fecd815006bc09304d.json": {
+      "bytes": 892,
+      "sha256": "031ab4bee3c376a10c8954c27809ba57e6df737a9929f36fd490c85fb05bf064"
+    },
+    "work/validate_tag31_corrective_effects.py": {
+      "bytes": 17045,
+      "sha256": "b172e7e85e5a0e8b90936c4549525fb639392933391aa8d76ed5316609e71bb6"
+    }
+  },
+  "verified_development_reservations": 4
+}

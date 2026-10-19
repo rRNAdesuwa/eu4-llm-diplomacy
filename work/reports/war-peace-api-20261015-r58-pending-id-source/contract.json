@@ -1,0 +1,179 @@
+{
+  "schema": "EU4-R58-PENDING-ID-SOURCE-CONTRACT/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "target_exe": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4.exe",
+  "entry_rva": "0x771be0",
+  "source_grade": "ordinary Capstone5.0.7 plus manually checked retained raw opcodes",
+  "scope": {
+    "owned_pdata_range": [
+      "0x771be0",
+      "0x771c06"
+    ],
+    "owned_bytes": 38,
+    "full_selected_pdata_range_owned": true,
+    "full_selected_pdata_range_decoded": true,
+    "full_callable_function_or_semantics_proven": false,
+    "normal_CFG_closed": false,
+    "complete_instruction_rows": 16,
+    "new_callee_reads": 0,
+    "new_targeted_data_or_vtable_reads": 0,
+    "new_header_or_unwind_reads": 0
+  },
+  "observations": [
+    {
+      "id": "r58.formal-local-consumption",
+      "kind": "observation",
+      "rvas": [
+        "0x771be0",
+        "0x771bed",
+        "0x771bf0",
+        "0x771bf3"
+      ],
+      "summary": "本窗口将 entry R9B 写到 entry RSP+20 的一个 byte，EDX→R14D、R8D→EBP、RCX→RSI。只证明这些真实机器消费，不命名业务参数。",
+      "widths": {
+        "R9": "low8 only in retained window",
+        "RDX": "low32",
+        "R8": "low32",
+        "RCX": "full64"
+      },
+      "limits": [
+        "Entry R9 and stack arguments remain unknown from retained caller.",
+        "No incoming fifth or later stack argument is read in this window; later tail unknown.",
+        "R8D=ffffffff zeroextends R8; not full64 signed minus one."
+      ]
+    },
+    {
+      "id": "r58.unsigned-range-split",
+      "kind": "observation",
+      "rvas": [
+        "0x771bf6",
+        "0x771bf9",
+        "0x771bfb",
+        "0x771c05"
+      ],
+      "summary": "CMP EDX,0xc / unsigned JB 分支。输入 unsigned EDX>=12 的已读路径 XOR EAX,EAX→恢复栈/寄存器→RET，正常返回 RAX=0；unsigned EDX<12 跳到未读771c06。",
+      "limits": [
+        "Only the non-taken-JB path has a retained normal return.",
+        "No semantic meaning for selector values or a global valid-kind set is proved."
+      ]
+    },
+    {
+      "id": "r58.caller5-selected-exit",
+      "kind": "observation",
+      "rvas": [
+        "0x4e8292",
+        "0x4e8297",
+        "0x4e82a4",
+        "0x771bf9"
+      ],
+      "summary": "若已审 caller 到达该CALL且本体有效执行，EDX=5使JB被选中。该调用路径不会执行窗口内XOR EAX,EAX/RET；ID返回来源仍未读取。",
+      "selected_successor": "0x771c06",
+      "state_at_selected_successor": {
+        "RSP": "entry_RSP-0x48",
+        "RSI": "original RCX",
+        "R14": "0x0000000000000005",
+        "RBP": "0x00000000ffffffff",
+        "R9": "unchanged original unknown full64",
+        "RAX": "unchanged original unknown",
+        "entry_shadow_write": "byte[entry_RSP+0x20]=entry_R9B; other seven bytes not written by this instruction"
+      },
+      "limits": [
+        "Conditional machine projection, not actual runtime reachability or native execution."
+      ]
+    },
+    {
+      "id": "r58.write-and-stack-scope",
+      "kind": "observation",
+      "rvas": [
+        "0x771be0",
+        "0x771be5",
+        "0x771be6",
+        "0x771be7",
+        "0x771c01",
+        "0x771c03",
+        "0x771c04",
+        "0x771c05"
+      ],
+      "summary": "完整已留38B内仅一条显式memory destination：入口shadow slot的byte写；另3个PUSH隐式stack写，3个POP及RET隐式stack读。不见本窗口receiver/global读写或CALL，不能外推整个函数纯读。",
+      "explicit_memory_write_count": 1,
+      "explicit_receiver_or_module_store_count": 0,
+      "push_count": 3,
+      "pop_count": 3,
+      "ret_count": 1,
+      "call_count": 0,
+      "limits": [
+        "Absence is restricted to all 16 retained rows; successor not read.",
+        "No unwind bytes read; implicit stack accounting does not authenticate exceptional unwind."
+      ]
+    }
+  ],
+  "unknowns": [
+    "EDX5 path return EAX source",
+    "native ID field/counter storage and writes",
+    "counter boundaries/wrap/reset/reuse",
+    "semantic meaning of input5",
+    "global uniqueness and cross-epoch nonreuse",
+    "bridge request_id/native ID binding",
+    "full native function extent across pdata fragments",
+    "unread successor and exceptions",
+    "current world/process identity, lifetime and actual effect"
+  ],
+  "next_concrete_seed": {
+    "kind": "already retained direct conditional branch, not followed",
+    "site_rva": "0x771bf9",
+    "raw_hex": "720b",
+    "target_rva": "0x771c06",
+    "retained_neighbor_pdata": [
+      "0x771c06",
+      "0x771cbd"
+    ],
+    "neighbor_extent_bytes": 183,
+    "source_record_index": 14173,
+    "source_record_raw": "061c7700bd1c7700704ee501",
+    "question": "At the selected EDX5 successor, what consumes saved R14D/EBP/RSI and where is EAX produced?",
+    "authorization_for_new_scope": false,
+    "unwind_not_read": true
+  },
+  "resources": {
+    "target_PE_physical_bytes": 76925274,
+    "full_PE_SHA_bytes": 76925008,
+    "pdata_requests": 19,
+    "pdata_unique_records": 17,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 204,
+    "new_code_physical_bytes": 38,
+    "new_code_unique_bytes": 38,
+    "decoded_unique_bytes": 38,
+    "lookahead_physical_to_decoder_bytes": 179,
+    "lookahead_unique_bytes": 38,
+    "lookahead_repeated_bytes": 141,
+    "source_file_IO_journal_bytes": 22363609,
+    "source_file_IO_journal_events": 144,
+    "peak_committed_bytes_producer_witness": 37457920,
+    "software_guard_bytes": 805306368,
+    "hard_job_installed": false,
+    "source_and_engine_before_after_equal": true,
+    "source_engine_event_log_scope": "Producer journal through capture publication; not complete OS/Python loader I/O"
+  },
+  "operations": {
+    "producer_actual_runs": 1,
+    "failures": 0,
+    "retries": 0,
+    "game_process_accesses": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0,
+    "tests": 0,
+    "callee_expansions": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "lease_verified": false,
+    "authorizes_retry": false
+  }
+}

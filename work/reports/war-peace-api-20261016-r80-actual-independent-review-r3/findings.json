@@ -1,0 +1,171 @@
+{
+  "schema": "EU4-R80-ACTUAL-INDEPENDENT-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "scope": "complete non-author retained-file/raw semantic review of the separately authorized fixed64B known-CALL prefix only",
+  "subject_actual_manifest": {
+    "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-manifest.json",
+    "bytes": 17047,
+    "sha256": "4537f650656dab1ce8c9511f65ebe5211adc81c4f10c8a1daf8b0b47db62dc18"
+  },
+  "subject_capture_pin": {
+    "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/capture.json",
+    "bytes": 78062,
+    "sha256": "b02239c0a90e463e1ed14330634df1114e2c5f80370740143ea27d30cc7bfa01"
+  },
+  "subject_contract_pin": {
+    "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+    "bytes": 5247,
+    "sha256": "b73969a9eabc1c874998f38e29ea0911b050755b290c0188e9725a6563abe73c"
+  },
+  "subject_owned_pin": {
+    "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/owned-code.json",
+    "bytes": 698,
+    "sha256": "17ad37416b8798e5f5ffc40a482aa471637ace5e62da5030cc1b11144e7d7598"
+  },
+  "subject_selected_pin": {
+    "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+    "bytes": 15924,
+    "sha256": "6bd48ab81e3a493f7115d81585a6f3f4c02f926662b33b6b0cf5b2c485cb794a"
+  },
+  "subject_source_manifest": {
+    "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/source-manifest.json",
+    "bytes": 24123,
+    "sha256": "42b2d958a64df12ea3083402db08519226218876c51d526dae3285cc95bf5ce2"
+  },
+  "subject_producer": {
+    "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/produce.py",
+    "bytes": 24738,
+    "sha256": "60009c332eedc75f766200e611930a299d1ec0dcb04f161dd8917c9a7c359c90"
+  },
+  "subject_authorization": {
+    "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/run-authorization.json",
+    "bytes": 3189,
+    "sha256": "15d03c4bef7b831153fc3e0eb754967942e25aeca43651bec2c05ff8f7562b07"
+  },
+  "role_disclosure": {
+    "R80_actual_author": "diplomacy_static; not this reviewer",
+    "reviewer": "war_api",
+    "previous_roles": [
+      "R79 source/producer design and actual author",
+      "R78 full independent reviewer",
+      "R69 original source designer and later actual full reviewer"
+    ],
+    "R79_fullreview": "validation_audit fixed accepted findings/manifest witness; no recursive re-review",
+    "independence_limit": "Independent of R80 actual author, but not all upstream historical source design. All named prior-role overlaps disclosed."
+  },
+  "result": {
+    "owned_bytes": 64,
+    "complete_instructions": 13,
+    "complete_instruction_bytes": 62,
+    "partial_owned_bytes": 2,
+    "QWORD_loads": 8,
+    "LEA_memory_reads": 0,
+    "decoded_calls_branches_returns_explicit_stores": 0,
+    "whole_function_closed": false,
+    "RAX_return_verified": false
+  },
+  "machine_checks": [
+    "All13 retained rows match the owned64B, manual opcode direction, operand width and contiguous offsets; partial48c1 is unclassified.",
+    "RawMOVSX480fbfd0 extends AX to64-bit RDX; raw410fbfc1 extends R9W to32-bit EAX then clears RAX upper32. Negative16 examples distinguish their64-bit index values.",
+    "Eight ordered loads only: O18/O10/module233d8d0/G118/T+8I/P1510/U+72J/U+72J+10. No target data was read by this review.",
+    "The fixed old E8 signedrel32 and RIP displacement reproduce the entry and module slot; cached pdata neighbors and unique cached.text mapping reproduce the64B window without new PE/pdata access.",
+    "No decoded RSP change or memory write; incoming CALL pushes8B, and runtime aliases/partial/tail remain unknown. No no-side-effect/full-function proof."
+  ],
+  "source_control": [
+    "Three exact accepted subject-bound reviews and new root once grant precede engine/PE work in source; the retained claim and command pins agree.",
+    "The authorized manifest rawbuffer is bytes/SHA checked before JSON parsing or engine selection; both source_guard calls use base_pin and initial outer checks bracket the first guard.",
+    "Normal target context exit precedes post-source/engine/auth/review checks and capture publish. Exclusive output and no-retry guards remain.",
+    "158 completed source events total17127251B, including38 engine pin events each phase; engine bodies were not stat/opened by this audit. Pre/post equality is witness evidence, not atomic/ABA exclusion."
+  ],
+  "author_resources": {
+    "targeted_code_bytes": 64,
+    "new_pdata_bytes": 0,
+    "two_SHA_bytes": 76925008,
+    "total_PE_bytes": 76925072,
+    "producer_source_completed_events": 158,
+    "producer_source_completed_bytes": 17127251,
+    "retained_successful_upper_bytes": 3040742,
+    "retained_frozen_prior_upper_bytes": 6621998,
+    "completion_read_bytes_within_remaining_allowance": 11249,
+    "producer_peak_committed_bytes_witness": 22691840,
+    "hard_Job_installed": false,
+    "all_author_shells_collected_witness": true,
+    "actual_attempts": 1,
+    "retries": 0,
+    "not_claimed": "No whole-OS/loader I/O, independent producer peak, universal failure-path budget or hard process-tree memory guarantee."
+  },
+  "review_resources": {
+    "flat_subject_file_count": 69,
+    "own_script_pin": {
+      "path": "work/review_r80_actual_20261016_r3.py",
+      "bytes": 37216,
+      "sha256": "c6a70d0c8b081c556caf4042a9e2c29d0434f91f84d26f06ef75f859a457be9a"
+    },
+    "source_pin_before_after_equal": true,
+    "completed_read_events": 144,
+    "completed_read_bytes": 1669704,
+    "prior_failed_review_stage_bytes": 1449237,
+    "manual_inspection_allowance_bytes": 1048576,
+    "sealing_check_and_report_reserve_bytes": 2097152,
+    "review_upper_bytes": 6264669,
+    "review_budget_bytes": 25165824,
+    "ordinary_file_limit_bytes": 4194304,
+    "software_guard_bytes": 805306368,
+    "hard_stop_bytes": 1073741824,
+    "self_memory_before": {
+      "private_bytes": 12251136,
+      "peak_pagefile_bytes": 12251136
+    },
+    "self_memory_after": {
+      "private_bytes": 16207872,
+      "peak_pagefile_bytes": 17485824
+    },
+    "engine_witness_pin_count": 38,
+    "engine_bodies_stat_or_opened": 0,
+    "manual_allowance_includes": "Initial schema/directory inspections and focused author source text reads before this admitted-flat reviewer."
+  },
+  "limits": [
+    "The64B prefix owns only13 complete instructions and an undecoded2B tail. Remaining48B to the cached next boundary and normal return are not acquired or inferred.",
+    "Original incoming RDX/R8 are overwritten before the visible address use, but loaded pointers may alias D/header/stack/globals. No finalD0 or unchanged-header conclusion.",
+    "Current module pointee and all pointed data, bounds/generation/roles/classes, units/currency/recipient/peace effects, lifetime and host compatibility remain unknown.",
+    "R79 bounded unknown0code and historical files remain unchanged; this R80 scope is neither R79 retry nor global unwind absence proof.",
+    "No R81 read/run permission or source-ready inference is granted by this review. Future scopes require their own source/raw/full gates and root grant."
+  ],
+  "precision_notes": [
+    "Own R1 reviewer failed after671038B on an over-specific xb check: author uses correct exclusive UTF-8 text x mode. Original reviewer source and full failure/read journal preserved; R2 only accepts the actual exclusive text form and carries prior read charges. No author source/actual was changed or repeated.",
+    "Own R2 reviewer then stopped on a guessed completion retries key after778199B. Completion actually declares actual_retries=0; R3 checks that real field and separately the command receipts retries=0. R2 source/failure/read journal are also preserved; aggregate failed-stage charge1449237B is carried. No author or acquisition retry occurred.",
+    "Eight64-bit semantic loads sum64B of instruction read width; they are not64B of runtime or additional PE acquisition.",
+    "The decoder185 cumulative input bytes are overlapping views of64 owned bytes, not185 physical target reads.",
+    "SHR R9,32 is the last decoded flags writer. DF is inherited unknown; no successor condition or partial instruction effect is filled in.",
+    "Collected-command receipts describe direct children and authored logs; the reviewer did not independently observe the prior actual processes."
+  ],
+  "operations": {
+    "author_programs_tests_executed": 0,
+    "PE_stat_open_read": 0,
+    "engine_body_stat_open": 0,
+    "decoder_import_or_decode": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0,
+    "all_review_shells_collected": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "reader_adoption_allowed": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false,
+    "whole_function_closed": false,
+    "function_extent_known": false,
+    "callee_formals_verified": false,
+    "returned_pointer_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false
+  }
+}

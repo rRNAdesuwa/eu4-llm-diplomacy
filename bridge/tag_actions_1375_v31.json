@@ -1,0 +1,1120 @@
+{
+  "schema": "EU4TAGACTIONS/1",
+  "purpose": "tag_command_1375_v31",
+  "session_prefix": "tagcommand31",
+  "actions": [
+    "offer_vassalization",
+    "cancel_vassalization",
+    "royal_marriage",
+    "break_marriage",
+    "improve_relations",
+    "stop_improving_relations",
+    "guarantee",
+    "revoke_guarantee",
+    "build_spy_network",
+    "stop_building_spy_network",
+    "curry_favors",
+    "stop_currying_favors",
+    "offer_fleet_basing_rights",
+    "insult",
+    "form_coalition",
+    "support_independence",
+    "trade_favors_for_gold",
+    "trade_favors_for_men",
+    "trade_favors_for_sailors",
+    "trade_favors_for_trust",
+    "trade_favors_for_war_prep",
+    "abandon_union",
+    "agitate_for_liberty",
+    "annex_vassal",
+    "ask_fleet_basing_rights",
+    "ask_for_march",
+    "ask_knowledge_sharing",
+    "ask_military_access",
+    "ask_support_independence",
+    "ask_to_be_tributary",
+    "call_eyalet_into_wars",
+    "call_trade_protectorate_into_wars",
+    "cancel_annexation",
+    "cancel_fleet_basing_rights",
+    "cancel_infiltration",
+    "cancel_integration",
+    "cancel_military_access",
+    "cancel_offered_independence_support",
+    "cancel_requested_independence_support",
+    "cancel_steer_trade",
+    "cancel_subsidies",
+    "cancel_trade_power_transfer",
+    "cancel_tributary",
+    "claim_throne",
+    "convert_to_core_personal_union",
+    "convert_tributary_to_vassal",
+    "corrupt_officials",
+    "counterespionage",
+    "create_european_colony",
+    "create_pronoia",
+    "create_soyurghal",
+    "demand_sacrifices",
+    "designate_march",
+    "dissolve_alliance",
+    "dissolve_protectorate",
+    "elevate_influenced_country_to_vassal",
+    "embargo",
+    "establish_tributary",
+    "fabricate_ottoman_invasion_cb",
+    "fabricate_spread_the_true_faith_cb",
+    "fabricate_tributary_cb",
+    "grant_autonomy_to_core_eyalet",
+    "grant_war_rights",
+    "heathen_royal_marriage",
+    "incorporate_vassal",
+    "infiltrate_administration",
+    "integrate_union",
+    "invite_into_cultural_sphere_of_influence",
+    "invite_to_federation",
+    "invite_to_trade_league",
+    "invite_to_zoroastrian_community",
+    "join_coalition",
+    "join_cultural_sphere_of_influence",
+    "justify_trade_conflict",
+    "kick_from_federation",
+    "kick_from_trade_league",
+    "knowledge_sharing",
+    "leave_coalition",
+    "leave_federation",
+    "leave_the_cultural_sphere_of_influece",
+    "leave_trade_league",
+    "make_pronoia_inheritable",
+    "mam_export_grain",
+    "mam_sponsor_hajj",
+    "offer_alliance",
+    "offer_military_access",
+    "offer_protectorate",
+    "promote_appanage_heir",
+    "promote_primary_culture",
+    "promote_vassal_to_eyalet",
+    "reign_in_eyalet",
+    "release_nahuatl_tributary",
+    "release_pronia",
+    "release_soyurghal",
+    "remove_them_from_cultural_sphere_of_influece",
+    "request_access_to_modern_ideas",
+    "request_protectorate",
+    "request_to_join_federation",
+    "request_to_join_trade_league",
+    "revoke_embargo",
+    "revoke_fleet_basing_rights",
+    "revoke_march",
+    "revoke_military_access",
+    "revoke_war_rights",
+    "sabotage_recruitment",
+    "sabotage_reputation",
+    "sell_indulgence",
+    "send_royal_ambassador",
+    "share_modern_ideas",
+    "slander_merchants",
+    "sow_discontent",
+    "steal_modern_ideas",
+    "steer_trade",
+    "stop_counterespionage",
+    "stop_supporting_heir",
+    "support_heir",
+    "trade_favors_for_heir",
+    "warn",
+    "select_rival",
+    "remove_rival"
+  ],
+  "bindings": [
+    {
+      "action": "offer_vassalization",
+      "category": "influence",
+      "native_family": "vassalaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_vassalization",
+      "category": "influence",
+      "native_family": "vassalaction",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "royal_marriage",
+      "category": "dynasty",
+      "native_family": "royal_marriage",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "break_marriage",
+      "category": "dynasty",
+      "native_family": "royal_marriage",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "improve_relations",
+      "category": "relations",
+      "native_family": "improve_relation",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "stop_improving_relations",
+      "category": "relations",
+      "native_family": "improve_relation",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "guarantee",
+      "category": "influence",
+      "native_family": "guaranteeaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "revoke_guarantee",
+      "category": "influence",
+      "native_family": "guaranteeaction",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "build_spy_network",
+      "category": "covert",
+      "native_family": "spy_network",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "stop_building_spy_network",
+      "category": "covert",
+      "native_family": "spy_network",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "curry_favors",
+      "category": "favors",
+      "native_family": "curry_favors",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "stop_currying_favors",
+      "category": "favors",
+      "native_family": "curry_favors",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "offer_fleet_basing_rights",
+      "category": "access",
+      "native_family": "offer_fleet_access",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "insult",
+      "category": "relations",
+      "native_family": "insultaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "form_coalition",
+      "category": "alliance",
+      "native_family": "form_coalition",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "support_independence",
+      "category": "alliance",
+      "native_family": "support_independence_action",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "trade_favors_for_gold",
+      "category": "favors",
+      "native_family": "trade_favors_for_gold",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "trade_favors_for_men",
+      "category": "favors",
+      "native_family": "trade_favors_for_men",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "trade_favors_for_sailors",
+      "category": "favors",
+      "native_family": "trade_favors_for_sailors",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "trade_favors_for_trust",
+      "category": "favors",
+      "native_family": "trade_favors_for_trust",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "trade_favors_for_war_prep",
+      "category": "favors",
+      "native_family": "trade_favors_for_war_prep",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "abandon_union",
+      "category": "dynasty",
+      "native_family": "abandon_union",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "agitate_for_liberty",
+      "category": "covert",
+      "native_family": "agitate_for_liberty",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "annex_vassal",
+      "category": "influence",
+      "native_family": "annexationaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "ask_fleet_basing_rights",
+      "category": "access",
+      "native_family": "fleet_access",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "ask_for_march",
+      "category": "influence",
+      "native_family": "ask_for_march",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "ask_knowledge_sharing",
+      "category": "economy",
+      "native_family": "ask_knowledge_sharing",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "ask_military_access",
+      "category": "access",
+      "native_family": "milaccess",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "ask_support_independence",
+      "category": "alliance",
+      "native_family": "support_independence_action",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "ask_to_be_tributary",
+      "category": "influence",
+      "native_family": "ask_for_tributary_state_action",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "call_eyalet_into_wars",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "call_eyalet_into_wars"
+    },
+    {
+      "action": "call_trade_protectorate_into_wars",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "call_trade_protectorate_into_wars"
+    },
+    {
+      "action": "cancel_annexation",
+      "category": "influence",
+      "native_family": "annexationaction",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_fleet_basing_rights",
+      "category": "access",
+      "native_family": "fleet_access",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_infiltration",
+      "category": "covert",
+      "native_family": "infiltrate_administration",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_integration",
+      "category": "dynasty",
+      "native_family": "integrationaction",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_military_access",
+      "category": "access",
+      "native_family": "milaccess",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_offered_independence_support",
+      "category": "alliance",
+      "native_family": "support_independence_action",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_requested_independence_support",
+      "category": "alliance",
+      "native_family": "support_independence_action",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_steer_trade",
+      "category": "economy",
+      "native_family": "steer_trade",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_subsidies",
+      "category": "economy",
+      "native_family": "warsubsidy",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_trade_power_transfer",
+      "category": "economy",
+      "native_family": "transfer_trade_power",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "cancel_tributary",
+      "category": "influence",
+      "native_family": "tributary_state_action",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "claim_throne",
+      "category": "dynasty",
+      "native_family": "claimaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "convert_to_core_personal_union",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "convert_to_core_personal_union"
+    },
+    {
+      "action": "convert_tributary_to_vassal",
+      "category": "influence",
+      "native_family": "convert_tributary_to_vassal",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "corrupt_officials",
+      "category": "covert",
+      "native_family": "corrupt_officials",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "counterespionage",
+      "category": "covert",
+      "native_family": "counterespionage",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "create_european_colony",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "create_european_colony"
+    },
+    {
+      "action": "create_pronoia",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "create_pronoia"
+    },
+    {
+      "action": "create_soyurghal",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "create_soyurghal"
+    },
+    {
+      "action": "demand_sacrifices",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "demand_sacrifices"
+    },
+    {
+      "action": "designate_march",
+      "category": "influence",
+      "native_family": "designate_march",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "dissolve_alliance",
+      "category": "alliance",
+      "native_family": "allianceaction",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "dissolve_protectorate",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "dissolve_protectorate"
+    },
+    {
+      "action": "elevate_influenced_country_to_vassal",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "elevate_influenced_country_to_vassal"
+    },
+    {
+      "action": "embargo",
+      "category": "economy",
+      "native_family": "embargoaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "establish_tributary",
+      "category": "influence",
+      "native_family": "tributary_state_action",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "fabricate_ottoman_invasion_cb",
+      "category": "covert",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "fabricate_ottoman_invasion_cb"
+    },
+    {
+      "action": "fabricate_spread_the_true_faith_cb",
+      "category": "covert",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "fabricate_spread_the_true_faith_cb"
+    },
+    {
+      "action": "fabricate_tributary_cb",
+      "category": "covert",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "fabricate_tributary_cb"
+    },
+    {
+      "action": "grant_autonomy_to_core_eyalet",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "grant_autonomy_to_core_eyalet"
+    },
+    {
+      "action": "grant_war_rights",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "grant_war_rights"
+    },
+    {
+      "action": "heathen_royal_marriage",
+      "category": "dynasty",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "heathen_royal_marriage"
+    },
+    {
+      "action": "incorporate_vassal",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "incorporate_vassal"
+    },
+    {
+      "action": "infiltrate_administration",
+      "category": "covert",
+      "native_family": "infiltrate_administration",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "integrate_union",
+      "category": "dynasty",
+      "native_family": "integrationaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "invite_into_cultural_sphere_of_influence",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "invite_into_cultural_sphere_of_influence"
+    },
+    {
+      "action": "invite_to_federation",
+      "category": "alliance",
+      "native_family": "invite_to_federation",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "invite_to_trade_league",
+      "category": "alliance",
+      "native_family": "invite_to_trade_league",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "invite_to_zoroastrian_community",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "invite_to_zoroastrian_community"
+    },
+    {
+      "action": "join_coalition",
+      "category": "alliance",
+      "native_family": "form_coalition",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "join_cultural_sphere_of_influence",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "join_cultural_sphere_of_influence"
+    },
+    {
+      "action": "justify_trade_conflict",
+      "category": "covert",
+      "native_family": "justify_trade_conflict",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "kick_from_federation",
+      "category": "alliance",
+      "native_family": "invite_to_federation",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "kick_from_trade_league",
+      "category": "alliance",
+      "native_family": "invite_to_trade_league",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "knowledge_sharing",
+      "category": "economy",
+      "native_family": "knowledge_sharing",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "leave_coalition",
+      "category": "alliance",
+      "native_family": "form_coalition",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "leave_federation",
+      "category": "alliance",
+      "native_family": "request_to_join_federation",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "leave_the_cultural_sphere_of_influece",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "leave_the_cultural_sphere_of_influece"
+    },
+    {
+      "action": "leave_trade_league",
+      "category": "alliance",
+      "native_family": "invite_to_trade_league",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "make_pronoia_inheritable",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "make_pronoia_inheritable"
+    },
+    {
+      "action": "mam_export_grain",
+      "category": "economy",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "mam_export_grain"
+    },
+    {
+      "action": "mam_sponsor_hajj",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "mam_sponsor_hajj"
+    },
+    {
+      "action": "offer_alliance",
+      "category": "alliance",
+      "native_family": "allianceaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "offer_military_access",
+      "category": "access",
+      "native_family": "offermilaccess",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "offer_protectorate",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "offer_protectorate"
+    },
+    {
+      "action": "promote_appanage_heir",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "promote_appanage_heir"
+    },
+    {
+      "action": "promote_primary_culture",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "promote_primary_culture"
+    },
+    {
+      "action": "promote_vassal_to_eyalet",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "promote_vassal_to_eyalet"
+    },
+    {
+      "action": "reign_in_eyalet",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "reign_in_eyalet"
+    },
+    {
+      "action": "release_nahuatl_tributary",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "release_nahuatl_tributary"
+    },
+    {
+      "action": "release_pronia",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "release_pronia"
+    },
+    {
+      "action": "release_soyurghal",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "release_soyurghal"
+    },
+    {
+      "action": "remove_them_from_cultural_sphere_of_influece",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "remove_them_from_cultural_sphere_of_influece"
+    },
+    {
+      "action": "request_access_to_modern_ideas",
+      "category": "economy",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "request_access_to_modern_ideas"
+    },
+    {
+      "action": "request_protectorate",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "request_protectorate"
+    },
+    {
+      "action": "request_to_join_federation",
+      "category": "alliance",
+      "native_family": "request_to_join_federation",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "request_to_join_trade_league",
+      "category": "alliance",
+      "native_family": "request_to_join_trade_league",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "revoke_embargo",
+      "category": "economy",
+      "native_family": "embargoaction",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "revoke_fleet_basing_rights",
+      "category": "access",
+      "native_family": "offer_fleet_access",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "revoke_march",
+      "category": "influence",
+      "native_family": "designate_march",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "revoke_military_access",
+      "category": "access",
+      "native_family": "offermilaccess",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "revoke_war_rights",
+      "category": "influence",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "revoke_war_rights"
+    },
+    {
+      "action": "sabotage_recruitment",
+      "category": "covert",
+      "native_family": "sabotage_recruitment",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "sabotage_reputation",
+      "category": "covert",
+      "native_family": "sabotage_reputation",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "sell_indulgence",
+      "category": "economy",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "sell_indulgence"
+    },
+    {
+      "action": "send_royal_ambassador",
+      "category": "covert",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "send_royal_ambassador"
+    },
+    {
+      "action": "share_modern_ideas",
+      "category": "economy",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "share_modern_ideas"
+    },
+    {
+      "action": "slander_merchants",
+      "category": "covert",
+      "native_family": "slander_merchants",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "sow_discontent",
+      "category": "covert",
+      "native_family": "sow_discontent",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "steal_modern_ideas",
+      "category": "covert",
+      "native_family": "scriptable_diplomatic_action",
+      "mode": true,
+      "script_key": "steal_modern_ideas"
+    },
+    {
+      "action": "steer_trade",
+      "category": "economy",
+      "native_family": "steer_trade",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "stop_counterespionage",
+      "category": "covert",
+      "native_family": "counterespionage",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "stop_supporting_heir",
+      "category": "dynasty",
+      "native_family": "support_heir",
+      "mode": false,
+      "script_key": ""
+    },
+    {
+      "action": "support_heir",
+      "category": "dynasty",
+      "native_family": "support_heir",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "trade_favors_for_heir",
+      "category": "favors",
+      "native_family": "trade_favors_for_heir",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "warn",
+      "category": "influence",
+      "native_family": "warningaction",
+      "mode": true,
+      "script_key": ""
+    },
+    {
+      "action": "select_rival",
+      "category": "relations",
+      "native_family": "add_rival",
+      "mode": true,
+      "script_key": "",
+      "route": "independent_command"
+    },
+    {
+      "action": "remove_rival",
+      "category": "relations",
+      "native_family": "remove_rival",
+      "mode": true,
+      "script_key": "",
+      "route": "independent_command"
+    }
+  ],
+  "excluded": [
+    {
+      "action": "break_alliance_favor",
+      "category": "favors",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "break_vassalization",
+      "category": "influence",
+      "reason": "no_valid_native_direction"
+    },
+    {
+      "action": "cancel_agitate_for_liberty",
+      "category": "covert",
+      "reason": "legacy_cancel_label_without_verified_cancel_semantics"
+    },
+    {
+      "action": "cancel_condottieri",
+      "category": "economy",
+      "reason": "deferred_existing_unit_faction_or_province_binding"
+    },
+    {
+      "action": "cancel_fabricate_claim",
+      "category": "covert",
+      "reason": "legacy_cancel_label_without_verified_cancel_semantics"
+    },
+    {
+      "action": "cancel_justify_trade_conflict",
+      "category": "covert",
+      "reason": "legacy_cancel_label_without_verified_cancel_semantics"
+    },
+    {
+      "action": "cancel_sow_discontent",
+      "category": "covert",
+      "reason": "legacy_cancel_label_without_verified_cancel_semantics"
+    },
+    {
+      "action": "charter_company",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "confirm_tribute_action",
+      "category": "influence",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "create_vassal",
+      "category": "influence",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "fabricate_claim",
+      "category": "covert",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "fabricate_state_claim",
+      "category": "covert",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "give_subsidies",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "offer_condottieri",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "offer_loan",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "reduce_relations_favor",
+      "category": "favors",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "request_maps",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "return_core_favor",
+      "category": "favors",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "revoke_condottieri",
+      "category": "economy",
+      "reason": "deferred_existing_unit_faction_or_province_binding"
+    },
+    {
+      "action": "scornful_insult",
+      "category": "relations",
+      "reason": "deferred_insult_definition_selector"
+    },
+    {
+      "action": "sell_province",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "sell_ships",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "send_gift",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "steal_maps",
+      "category": "covert",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "stop_supporting_rebels",
+      "category": "covert",
+      "reason": "deferred_existing_unit_faction_or_province_binding"
+    },
+    {
+      "action": "support_rebels",
+      "category": "covert",
+      "reason": "deferred_parameterized_action"
+    },
+    {
+      "action": "transfer_trade_power",
+      "category": "economy",
+      "reason": "deferred_parameterized_action"
+    }
+  ],
+  "categories": [
+    "access",
+    "alliance",
+    "covert",
+    "dynasty",
+    "economy",
+    "favors",
+    "influence",
+    "relations"
+  ],
+  "runtime_verified": false,
+  "request_limit": 128
+}

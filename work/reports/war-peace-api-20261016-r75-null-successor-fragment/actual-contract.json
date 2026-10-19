@@ -1,0 +1,172 @@
+{
+  "schema": "EU4-R75-NULL-SUCCESSOR-CONTRACT/1",
+  "sealed": true,
+  "evidence_kind": "bounded ordinary static decoding, not runtime/native execution",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "entry_rva": "0x993658",
+  "source_branch": {
+    "rva": "0x993595",
+    "bytes": "0f84bd000000",
+    "mnemonic": "je",
+    "operands": "0x993658",
+    "registers_read": [
+      "rflags"
+    ],
+    "registers_written": [],
+    "memory_operands": [],
+    "immediates": [
+      10040920
+    ],
+    "raw_memory_write_review": {
+      "raw_hex": "0f84bd000000",
+      "status": "unclassified_requires_manual_review",
+      "explicit_memory_write": null,
+      "not_a_no_write_proof": true,
+      "opcode_hex": "0f84"
+    }
+  },
+  "selected_metadata": {
+    "reason": "only_fixed_record",
+    "index": 19163,
+    "rva": "0x249d244",
+    "file_offset": 37139012,
+    "raw_hex": "583699006836990038dde701",
+    "begin_rva": "0x993658",
+    "end_exclusive": "0x993668",
+    "unwind_rva_unfollowed": "0x1e7dd38"
+  },
+  "full_owned_window": [
+    "0x993658",
+    "0x993668"
+  ],
+  "raw16_hex": "498bc64883c430415e415d415c5e5dc3",
+  "owned_code_pin": {
+    "bytes": 584,
+    "sha256": "150e721451fdf8d071cb038d2530163f7c72be094ebb1598cf2c42249c9e9d3c"
+  },
+  "capture_pin": {
+    "bytes": 69417,
+    "sha256": "c0667fdefc13e922d45321b2d63f87e567bb1db3e3d8ab37d447d8f35a3f59b0"
+  },
+  "local_selected_CFG": {
+    "rows": 8,
+    "unique_code_bytes": 16,
+    "CALL_sites": 0,
+    "branch_sites": 0,
+    "explicit_memory_operand_sites": 0,
+    "explicit_store_sites": 0,
+    "normal_RET_sites": [
+      "0x993667"
+    ],
+    "closed": true,
+    "whole_993570_CFG_closed": false
+  },
+  "inherited_state": {
+    "entry_is_not_new_Win64_formals": true,
+    "S69": "Original993570 entryRSP.",
+    "RSP": "F=S69-58 after fivePUSHes/sub30 and a normally balanced97bd30 return. No newCALL/prologue at branch target.",
+    "RAX_R12": "Both exact64-bitzero at the selected JE target; RAX is opaque helper-return bits, not provedDvalue.",
+    "R13_R14_RBP": "Current post97bd30 values; originalW/D/header aliases require explicit nonvolatile-preservation premise. Pointed contents are not preserved by that premise.",
+    "RSI": "Zero only under that prior preservation premise. R69 XOR ESI preceded unknown97bd30.",
+    "R15_RBX_RDI": "Current post97bd30 values, semantic contents unknown. No R71 R15save or positive-branch RBX/RDI saves executed on this direct edge.",
+    "RCX_RDX_R8_R9_XMM": "Unknown current values after97bd30. In particularR8 is not the nonnullpath subtraction/SAR result; those three rows are skipped.",
+    "flags": "TEST64 zero givesZF1,SF0,PF1,CF0,OF0;AFundefined,DFunknown.",
+    "saved_stack": "OriginalR14/R13/R12/RSI/RBP were pushed; F78 cannot be assumed to hold a R71 savedR15 on this path. Saved/controlstack must remain valid and uncorrupted for any future normal-return claim.",
+    "D": "R69 wrote4-bytezero before97bd30; current/finalD unknown due to unknowncallee and aliases. RAX0 does not establishDWORD[D]=0.",
+    "header": "Caller3QWORDzero provenance does not establish current header afterunknowncallee. No output, allocation orcount semantics assumed."
+  },
+  "return_register_contract": {
+    "first_instruction": "993658 MOV RAX,currentR14 before any stack restore",
+    "exact_selected_normal_RAX": "Full64 R14 value at inherited fragment entry. No subsequent instruction changes RAX.",
+    "RAX_is_not_null_edge_zero_result": "The MOV replaces the JE-entry RAX0. RAX0 is not a proved final return.",
+    "conditional_original_outpointer": "R69 set R14=its original RDX before external97bd30. Only under normalcallee explicit R14-preservation and alias/frame premises is currentR14 that original pointer.",
+    "D_value": "No D dereference occurs here. Pre97bd30 D0 is not established current/finalD; pointer return is not scalar out value.",
+    "R12": "EntryR12=0 is restored from saved callerR12 by POP; its final value is not assertedzero."
+  },
+  "stack_contract": {
+    "entry": "F=S69-0x58, not a new CALL frame",
+    "add": "99365b ADD RSP,0x30; arithmetic flags are replaced by this ADD, not retained JE TEST flags.",
+    "implicit_reads": [
+      {
+        "site": "0x99365f",
+        "operation": "POP R14",
+        "qword_address": "F+0x30=S69-0x28"
+      },
+      {
+        "site": "0x993661",
+        "operation": "POP R13",
+        "qword_address": "F+0x38=S69-0x20"
+      },
+      {
+        "site": "0x993663",
+        "operation": "POP R12",
+        "qword_address": "F+0x40=S69-0x18"
+      },
+      {
+        "site": "0x993665",
+        "operation": "POP RSI",
+        "qword_address": "F+0x48=S69-0x10"
+      },
+      {
+        "site": "0x993666",
+        "operation": "POP RBP",
+        "qword_address": "F+0x50=S69-0x8"
+      },
+      {
+        "site": "0x993667",
+        "operation": "RET",
+        "qword_address": "F+0x58=S69"
+      }
+    ],
+    "implicit_stack_reads_bytes": 48,
+    "final_RSP_if_normal_ret": "S69+8",
+    "conditions": [
+      "Balanced normal97bd30 return into original R69 frame",
+      "All five saved QWORD slots and return address valid and not corrupted",
+      "No exception/asynchronous transfer substitutes a different path"
+    ],
+    "DF": "Not modified by these rows; incomingDF remains unknown."
+  },
+  "field_access": "No new D/header/world/module/definition read or write in these16B. Implicit saved-stack/control reads are mandatory.",
+  "unknowns": [
+    "97bd30 actual behavior/aliases, current/finalD and header contents.",
+    "R69 other nonnull paths and overall semantic function contract; exact pdata begin does not prove independent Win64 function.",
+    "Units, recipient direction, generated record semantics, allocation and diplomatic effects.",
+    "Runtime execution, persistence, lifetime/lease and atomicity."
+  ],
+  "physical_accounting": {
+    "new_metadata_attempts": 1,
+    "new_metadata_bytes": 12,
+    "new_code_physical_bytes": 16,
+    "targeted_total_bytes": 28,
+    "two_full_PE_SHA_bytes": 76925008,
+    "PE_total_bytes": 76925036,
+    "decoder_input_total_bytes": 55,
+    "decoder_input_unique_bytes": 16,
+    "decoder_overlap_bytes": 39,
+    "code_after993668_or_neighbors_reread_bytes": 0
+  },
+  "producer_witness": {
+    "completed_source_engine_read_bytes": 17052059,
+    "peak_own_commit_observed_bytes": 22753280,
+    "normal_target_context_exit": true,
+    "capture_after_postguards": true,
+    "hard_Job_installed": false,
+    "independent_OS_close_return_verified": false,
+    "OS_loader_IO_complete": false
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "independent_function_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false
+  }
+}

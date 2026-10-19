@@ -1,0 +1,134 @@
+{
+  "schema": "EU4-TRIBUTARY-ORACLE-DELIVERY-MANIFEST/1",
+  "sealed": true,
+  "review_status": "pending_independent_source_review",
+  "source_manifest_sha256": "3e289046f6f5bc6ed30300db45c59a6dcd710e53afd6788424cbac52a87b842e",
+  "file_pins": {
+    "work/reports/tributary-effect-contract-20261015-r1/contract.json": {
+      "bytes": 25231,
+      "sha256": "d687a32748ae7674567d1bfd17b220148090b5c2eca3f9e875dd024e7bf5781f"
+    },
+    "work/reports/tributary-effect-contract-20261015-r1/source-pins.json": {
+      "bytes": 2142,
+      "sha256": "0daf4844346b8c777c1fb22a875918e3f5334005af48af5cfbcea31a8ca63e4a"
+    },
+    "work/reports/tributary-effect-contract-20261015-r1/report.md": {
+      "bytes": 3181,
+      "sha256": "558c57220fec7aeb81d368643c1c7a80b7288fec2d70167811f4f403abb2d313"
+    },
+    "work/reports/tributary-effect-contract-20261015-r1/manifest.json": {
+      "bytes": 2470,
+      "sha256": "d2974bad8f7611a3b7faf32474e5c262f8bad873154e585b5995d432a93d7439"
+    },
+    "work/reports/tributary-effect-contract-independent-20261015-r1/findings.json": {
+      "bytes": 3301,
+      "sha256": "e3fc6d32dac17eb3d9a1f3a8eac065c2d7b2eb4a75a10880a58514e8c23ad41b"
+    },
+    "work/reports/tributary-effect-contract-independent-20261015-r1/manifest.json": {
+      "bytes": 4498,
+      "sha256": "647e10deab674c2ed8e433ebafde3473e89d27cb2a31d9f808fd22e063ab6f2b"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/reports/diplomacy-observer-gap-map-20261015-r1/summary.json": {
+      "bytes": 87173,
+      "sha256": "29a91fb9a464e9317d4d049972445a2bdf958e3ea166cdfc2e939c53e394b7aa"
+    },
+    "work/reports/diplomacy-corrective-20261014/current-action-validation.json": {
+      "bytes": 280643,
+      "sha256": "809e29df52bf5db78512f389d2ad1d21873b1263caf1154b910940b80722fb80"
+    },
+    "work/reports/tag31-corrective-plan-20261013.json": {
+      "bytes": 459886,
+      "sha256": "3f53a88b01aaa22aa69f99876e6233a81a97f93ff60e184976f0f00da9952060"
+    },
+    "bridge/tag_action_conditions_1375.json": {
+      "bytes": 1607903,
+      "sha256": "116c84b4a50ea566cbbb4232fb9b0c9f19cfb1f416e60d4e791ced72d589de90"
+    },
+    "work/runtime/tag31-local-condition-index-20261013.json": {
+      "bytes": 962029,
+      "sha256": "f0253495ce7a440f05840ff6d6a7993ad0e4d1cca90f9cb68fc99dcdcd1d92f9"
+    },
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/diplomacy_effect_profiles.py": {
+      "bytes": 22643,
+      "sha256": "d4e23953c204f5c0f72e2227530e5f823e8bff8dbc1b15eeda4b6531654a0433"
+    },
+    "bridge/diplomacy_live_observer.py": {
+      "bytes": 23456,
+      "sha256": "7bb4dd1358128a3126119f4c8f1a777b3d70ce0eae1e9b7a8aaf9ac86fa1702b"
+    },
+    "work/runtime/unpacked-1.37.5/base/common/subject_types/00_subject_types.txt": {
+      "bytes": 48700,
+      "sha256": "81706ed7cd5f707c6b5ff94bd7fb9a5be8487335c0076879bfe02d4bc3eadfce"
+    },
+    "work/reports/war-peace-api-20261015-r38-dependency-crosswalk/war/crosswalk.json": {
+      "bytes": 4713,
+      "sha256": "aab78fe19dddd2197e6acd3eb98f06da41537eb6cf89da2cec9bf54fd8102d7e"
+    },
+    "bridge/tag_command_backend.py": {
+      "bytes": 25398,
+      "sha256": "74279bf8cb77d800ad53711e799260672b20b7d20cf6bee997527eaa29c55c53"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/tributary_effect_oracle.py": {
+      "bytes": 13002,
+      "sha256": "fd9283c5a2b7ffc9391a1813b09acae272bb3722f58872e6d3d176d9dda4c708"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/test_tributary_effect_oracle.py": {
+      "bytes": 13853,
+      "sha256": "2cd58f60b4396e9a7050466201556367d82c65252ec2c4fb70335fa91b4d587d"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/README.md": {
+      "bytes": 5374,
+      "sha256": "b6215a18899c05488c9adaa56b9c94cb033a58082fb731c9a2e643b67f1cab8b"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/run_first_tests.py": {
+      "bytes": 3594,
+      "sha256": "76703db545755eab458fa317c8336028950cd309c44e1771082755bce9b58ab8"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/preseal-static-check.json": {
+      "bytes": 1595,
+      "sha256": "d7a09079384fca48e85aad25c55d6aeab7160ea376e48e6bbe665d4b53d11663"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/source-manifest.json": {
+      "bytes": 4963,
+      "sha256": "3e289046f6f5bc6ed30300db45c59a6dcd710e53afd6788424cbac52a87b842e"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/report.md": {
+      "bytes": 4757,
+      "sha256": "fbec4c6a5038fc6f0d887bd90bf61646dbace38d96fc202c9a1e3cd5ea4d7943"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/verify.py": {
+      "bytes": 1175,
+      "sha256": "f86f14b89069676c3262fa9e6b1b25414bc2cb4e30a72a035f50437729d792aa"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/offline-first-run/receipt.json": {
+      "bytes": 5693,
+      "sha256": "9701b2da231b7862be72cf3d28b1f38d18507e44efb79fc45496720d3b49d48d"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/offline-first-run/stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/candidates/tributary-effect-oracle-1375-v1/offline-first-run/stderr.txt": {
+      "bytes": 3406,
+      "sha256": "5e25832a05238379d923d0bd47e87e69ddb0af66be501f3dc7c67fb13c799fb4"
+    }
+  },
+  "pin_count": 29,
+  "native_ready": false,
+  "selected_effect_verified": false,
+  "native_action_mapping_verified": false,
+  "inputs_authenticated": false,
+  "old_suites_run": 0,
+  "game_process_accesses": 0,
+  "target_PE_accesses": 0,
+  "native_game_calls": 0,
+  "scope": "fixed author source and first offline receipt; no runtime or semantic promotion"
+}

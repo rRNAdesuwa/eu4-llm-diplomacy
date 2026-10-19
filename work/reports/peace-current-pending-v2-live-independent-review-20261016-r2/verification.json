@@ -1,0 +1,418 @@
+{
+  "schema": "EU4-PEACE-V2-R2-LIVE-INDEPENDENT-FLAT-PINCHECK/1",
+  "passed": true,
+  "manifest_pin": {
+    "bytes": 16101,
+    "sha256": "76dc493bc241b6ab7cec22c7acf9ab56012a565d82ba06e109366bee1b41f2ae"
+  },
+  "flat_pins": 78,
+  "first_check": true,
+  "returned_bytes": 3344257,
+  "events": [
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/manifest.json",
+      "requested": 16102,
+      "returned": 16101
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/receipt.json",
+      "requested": 421299,
+      "returned": 421298
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/actual-manifest.json",
+      "requested": 27959,
+      "returned": 27958
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/run-authorization.json",
+      "requested": 5616,
+      "returned": 5615
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-manifest.json",
+      "requested": 8862,
+      "returned": 8861
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/live-completion.json",
+      "requested": 11531,
+      "returned": 11530
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/live-delivery.json",
+      "requested": 4622,
+      "returned": 4621
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/attempt-start.json",
+      "requested": 643,
+      "returned": 642
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/capture.json",
+      "requested": 929945,
+      "returned": 929944
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-claim.json",
+      "requested": 342,
+      "returned": 341
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-io.json",
+      "requested": 382279,
+      "returned": 382278
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child-status-start.json",
+      "requested": 590,
+      "returned": 589
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/claim.json",
+      "requested": 930,
+      "returned": 929
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/job.json",
+      "requested": 604,
+      "returned": 603
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-after.json",
+      "requested": 7388,
+      "returned": 7387
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-before.json",
+      "requested": 7388,
+      "returned": 7387
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/stderr.txt",
+      "requested": 1,
+      "returned": 0
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/stdout.txt",
+      "requested": 929945,
+      "returned": 929944
+    },
+    {
+      "path": "work/candidates/frida-entry-observer-1375-v1/host-manifest.json",
+      "requested": 43988,
+      "returned": 43987
+    },
+    {
+      "path": "work/candidates/frida-entry-observer-1375-v1/job_tree.py",
+      "requested": 8616,
+      "returned": 8615
+    },
+    {
+      "path": "work/candidates/peace-current-pending-observer-1375-v2/offline_child.py",
+      "requested": 7747,
+      "returned": 7746
+    },
+    {
+      "path": "work/candidates/peace-current-pending-observer-1375-v2/peace_current_pending.py",
+      "requested": 24250,
+      "returned": 24249
+    },
+    {
+      "path": "work/candidates/peace-current-pending-observer-1375-v2/source-manifest.json",
+      "requested": 8851,
+      "returned": 8850
+    },
+    {
+      "path": "work/local_config.py",
+      "requested": 2819,
+      "returned": 2818
+    },
+    {
+      "path": "work/reports/peace-current-pending-observer-live-after-restart-20261016-r2/capture_once.py",
+      "requested": 9640,
+      "returned": 9639
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-controller-build-authorization-20261016-r1/authorization.json",
+      "requested": 5495,
+      "returned": 5494
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-file-validation-delta-20261016-r2/execution-r1/delta_child.py",
+      "requested": 7302,
+      "returned": 7301
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-file-validation-delta-20261016-r2/execution-r1/run_delta.py",
+      "requested": 11745,
+      "returned": 11744
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-independent-review-20261016-r1/findings.json",
+      "requested": 6952,
+      "returned": 6951
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r1/PROTOCOL.md",
+      "requested": 5977,
+      "returned": 5976
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r1/budget.json",
+      "requested": 1430,
+      "returned": 1429
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r1/capture.json",
+      "requested": 17943,
+      "returned": 17942
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r1/child.py",
+      "requested": 13018,
+      "returned": 13017
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r1/controller.py",
+      "requested": 11983,
+      "returned": 11982
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r1/runtime_contract.py",
+      "requested": 8264,
+      "returned": 8263
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r1/source-manifest.json",
+      "requested": 6030,
+      "returned": 6029
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/PROTOCOL.md",
+      "requested": 2681,
+      "returned": 2680
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/budget.json",
+      "requested": 1645,
+      "returned": 1644
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/build_profile.py",
+      "requested": 14462,
+      "returned": 14461
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child.py",
+      "requested": 13496,
+      "returned": 13495
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/controller.py",
+      "requested": 13432,
+      "returned": 13431
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/run_adapter_once.py",
+      "requested": 3074,
+      "returned": 3073
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/runtime_contract.py",
+      "requested": 8754,
+      "returned": 8753
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-delta.json",
+      "requested": 898,
+      "returned": 897
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/test_text_config_adapter.py",
+      "requested": 10359,
+      "returned": 10358
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/text_config_adapter.py",
+      "requested": 7298,
+      "returned": 7297
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-preflight-20261016-r1/manifest.json",
+      "requested": 6603,
+      "returned": 6602
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-preflight-20261016-r1/proposal.json",
+      "requested": 8677,
+      "returned": 8676
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r1/findings.json",
+      "requested": 7677,
+      "returned": 7676
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-production-independent-review-20261016-r1/findings.json",
+      "requested": 4295,
+      "returned": 4294
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-production-review-20261016-r1/findings.json",
+      "requested": 3927,
+      "returned": 3926
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-text-config-source-authorization-20261016-r1/authorization.json",
+      "requested": 6173,
+      "returned": 6172
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-source-independent-review-20261016-r2/findings.json",
+      "requested": 5818,
+      "returned": 5817
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-controller-source-independent-review-20261016-r2/manifest.json",
+      "requested": 13945,
+      "returned": 13944
+    },
+    {
+      "path": "work/capture_direct_truce_flags_20261015.py",
+      "requested": 12012,
+      "returned": 12011
+    },
+    {
+      "path": "work/candidates/frida-entry-observer-1375-v1/capture_once.py",
+      "requested": 24561,
+      "returned": 24560
+    },
+    {
+      "path": "bridge/diplomacy_effect_observer.py",
+      "requested": 25412,
+      "returned": 25411
+    },
+    {
+      "path": "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py",
+      "requested": 16857,
+      "returned": 16856
+    },
+    {
+      "path": "work/reports/peace-current-pending-reader-design-20261016-r1/loaded-code-candidates.json",
+      "requested": 4438,
+      "returned": 4437
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review.py",
+      "requested": 24241,
+      "returned": 24240
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review_r2.py",
+      "requested": 25090,
+      "returned": 25089
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review_r3.py",
+      "requested": 25372,
+      "returned": 25371
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/initial-preflight.json",
+      "requested": 10873,
+      "returned": 10872
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/preflight.json",
+      "requested": 12028,
+      "returned": 12027
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/preflight-r2.json",
+      "requested": 12028,
+      "returned": 12027
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/preflight-r3.json",
+      "requested": 12028,
+      "returned": 12027
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-r1-preimage.json",
+      "requested": 1285,
+      "returned": 1284
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-r2-preimage.json",
+      "requested": 1385,
+      "returned": 1384
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-r2-failure.json",
+      "requested": 8761,
+      "returned": 8760
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review-r2.stdout.json",
+      "requested": 1,
+      "returned": 0
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review-r2.stderr.log",
+      "requested": 765,
+      "returned": 764
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/formal-failure.json",
+      "requested": 8623,
+      "returned": 8622
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review.stdout.json",
+      "requested": 1,
+      "returned": 0
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/review.stderr.log",
+      "requested": 627,
+      "returned": 626
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/inspection-r1-source.py",
+      "requested": 1074,
+      "returned": 1073
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/inspection-r1-failure.json",
+      "requested": 1120,
+      "returned": 1119
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/raw-replay.json",
+      "requested": 2031,
+      "returned": 2030
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/findings.json",
+      "requested": 6496,
+      "returned": 6495
+    },
+    {
+      "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/read-accounting.json",
+      "requested": 15917,
+      "returned": 15916
+    }
+  ],
+  "retained_reserve": 1048576,
+  "retained_upper": 4392833,
+  "retained_cap": 8388608,
+  "ordinary_cap": 4194304,
+  "self_process_peak_committed": 14069760,
+  "self_process_query_only": true,
+  "no_source_entry_or_author_execution": true,
+  "no_local_env_or_binary_reads": true,
+  "all_shells_collected": true,
+  "not_OS_IO_completeness": true
+}

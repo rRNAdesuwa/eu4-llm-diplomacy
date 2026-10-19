@@ -1,0 +1,77 @@
+{
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "findings": [
+    {
+      "id": "ordinary_declare_war_gui_window_dispatch",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Ordinary GUI dispatch 0xf0acd0 obtains action token through virtual +0x98; token 0x293b selects 0xf0adb8, allocates a 0x378 DeclareWarDialog and invokes 0xee41f0. Base constructor 0xedef60 clones the input action through +0xb0 and owns the clone at dialog+0x1c0. The dialog concrete vtable is 0x1d3bdb8.",
+      "rvas": ["0xf0ad08", "0xf0ad44", "0xf0ad51", "0xf0ad55", "0xf0adb8", "0xf0add9", "0xee4242", "0xee426b", "0xee4271", "0xedefc1", "0xedefc7"],
+      "unknowns": ["The initial action producer and exact live GUI object lifetime are not authenticated by this disk analysis.", "This is a normal GUI caller proof, not an implementation of an external actor-TAG API."],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/war/disassembly.json", "work/reports/war-peace-api-20261013-r2/war/probe.py"]
+    },
+    {
+      "id": "ordinary_declare_war_agree_and_confirmation_callbacks",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Base constructor installs callback 0x10a0f48 in dialog+0x18, and 0x10a06c0 binds that holder to AgreeButton. The thunk dispatches dialog virtual +0x50, resolving to 0xee7780. The callback evaluates stability cost: nonpositive cost reaches 0xedfa40 directly; positive cost creates the confirmation dialog whose +0x50 is 0xee6a10, then its acceptance tailcalls 0xedfa40.",
+      "rvas": ["0x10a042d", "0x10a0434", "0x10a078d", "0x10a07a3", "0x10a07b1", "0x10a0f48", "0x10a0f4b", "0xee77c5", "0xee77ca", "0xee77cc", "0xee7834", "0xee7879", "0xee6a3e"],
+      "unknowns": ["Input-device event delivery and actual click timing have not been observed at runtime.", "The cost helper and confirmation UI are engine-context operations, not arbitrary-thread read-only APIs."],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/war/disassembly.json", "work/reports/war-peace-api-20261013-r2/war/probe.py"]
+    },
+    {
+      "id": "ordinary_declare_war_wrapper_sender_consumes_container",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Send callback 0xedfa40 writes current game date into cached action+0x28, obtains sender context from dialog+0x1b8 virtual +0x80, calls cached action virtual +0x40 (declarewar vtable resolves it to 0x4e9930) with a stack command holder, and directly calls 0x14ca210 with that holder. Sender 0x14ca210 clears the holder before its gates, stamps command fields and passes the command to context+0x58 virtual +0x30; true only records this local handoff branch. This GUI path does not use 0xbfe50.",
+      "rvas": ["0xedfb64", "0xedfb6b", "0xedfb72", "0xedfb7f", "0xedfb92", "0xedfb96", "0xedfb9b", "0xedfba4", "0x14ca22a", "0x14ca22d", "0x14ca234", "0x14ca259", "0x14ca269", "0x14ca299", "0x14ca29c"],
+      "unknowns": ["The downstream queue's complete ownership and failure/unwind behavior are not closed.", "False does not restore the consumed caller holder; do not infer safe retry or caller ownership from the return bool.", "Handoff does not prove execution, war creation, AI responses or save persistence."],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/war/disassembly.json", "work/reports/war-peace-api-20261013-r2/war/probe.py", "work/reports/war-peace-api-20261013/war/findings.json"]
+    },
+    {
+      "id": "ordinary_declare_war_call_checkbox_two_vectors",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Row constructor 0xedfc80 binds call_checkbox to callback 0xee32d0 and stores dialog at row+0x50, full country handle at row+0x60, participant-record byte at +0x74 and side byte at +0x78. Enemy rows receive side=0, ally rows side=1. If +0x74 is clear, ally-side toggles add/remove the country in action attacker+0x50; enemy-side toggles add/remove it in action full_ally+0x80. Matching compares the country-slot component while inserts preserve the full handle. The ally insertion path additionally calls 0xee03f0 and sets dialog+0x300 for rebuilding.",
+      "rvas": ["0xedfcd8", "0xedfcea", "0xedfd01", "0xedfe86", "0xee001e", "0xee0035", "0xee6446", "0xee6469", "0xee6586", "0xee65a9", "0xee32d6", "0xee32e3", "0xee3305", "0xee3375", "0xee33f2", "0xee340b", "0xee3420", "0xee348f", "0xee34be", "0xee34e1"],
+      "unknowns": ["Autojoin and subject/coalition exceptions have additional refresh and eligibility helpers; their transitive rules remain incomplete.", "These vectors encode explicit selections, not a complete final war-participant list.", "Do not reuse the row callback as a public API without live handle, type, side and eligibility checks."],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/war/disassembly.json", "work/reports/native-action-fields-1375.json"]
+    },
+    {
+      "id": "ordinary_declare_war_promised_land_inversion_and_cascade",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "promise_land_checkbox is bound to callback 0xee32a0, which toggles row+0x79 and calls 0xee3530. This UI byte is inverse to action promised_land membership: constructor sets +0x79 when the country is absent from action+0x68. Setting it false appends the full handle to promised_land+0x68; setting it true removes the handle from promised_land and also removes it from attacker+0x50. Removing attacker through call_checkbox does not itself remove promised_land in the decoded callback.",
+      "rvas": ["0xedff82", "0xee003f", "0xee0056", "0xee015c", "0xee0189", "0xee018c", "0xee32a6", "0xee32ad", "0xee32b0", "0xee3539", "0xee3548", "0xee3564", "0xee35a7", "0xee35c6", "0xee3608", "0xee3655", "0xee3659"],
+      "unknowns": ["Final UI refresh may impose additional membership constraints; no universal subset rule is asserted.", "The promise setter has no complete eligibility check of its own; enabled UI state and engine-thread context must not be bypassed.", "No favors, trust, promised-land settlement or participant effect was observed at runtime."],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/war/disassembly.json"]
+    },
+    {
+      "id": "ordinary_declare_war_goal_selection_clones_and_resets",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "A goal row's banner callback 0xeda00c dispatches virtual +0x20, resolved by row vtable 0x1d3baf8 to 0xee3a50. That thunk passes row+0x58 selected goal to dialog 0xee7290. Selection deletes the old owned goal if +0x78 permits, clones the selected goal through 0xd9aaf0 and stores it in cached action+0x48. It reads selected goal's CB through +0x108 and conditionally clears attacker and promised_land end pointers when helper 0x1f7470 returns false, then rebuilds the participant lists.",
+      "rvas": ["0xee37ee", "0xee37f2", "0xee3858", "0xee3966", "0xeda00f", "0xee3a50", "0xee3a58", "0xee72b9", "0xee72c0", "0xee72d8", "0xee72dd", "0xee72e2", "0xee72ec", "0xee72f5", "0xee7302", "0xee730a", "0xee76fd"],
+      "unknowns": ["The semantic name and every switch case of CB helper 0x1f7470 are unresolved; only its conditional reset effect is established.", "Selection owns a goal clone; row, dialog and command goal copies are separate lifetimes.", "Current CB-instance validity and all goal-specific parameters still require preflight beyond selecting this row."],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/war/disassembly.json", "work/reports/war-peace-api-20261013-r2/war/probe.py"]
+    },
+    {
+      "id": "ordinary_declare_war_gui_goal_enumeration_is_mutable",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Dialog population 0xee6ac0 calls 0xd9eb40 with actor/target handles and an owning output collection. The enumerator visits bilateral CB entries through 0x28d560 and a second source from 0xd9ee50, resolves CB indices through a lazily initialized registry, and invokes 0xd9d220 to create specific goals. An observed builder path selects a goal definition from CB+0x170, dispatches its enum through 0xd9b080, then calls virtual setters +0x60/+0x100 with that definition and CB. The dialog moves generated goals into goal-row ownership and groups rows by CB-definition index.",
+      "rvas": ["0xee6d5a", "0xee6d6a", "0xee6d6e", "0xee6d72", "0xee6db1", "0xee6db4", "0xee6dbd", "0xee6def", "0xd9eba0", "0xd9ebd4", "0xd9ec15", "0xd9ec1f", "0xd9ec84", "0xd9ecc1", "0xd9edb4", "0xd9e1d6", "0xd9e1f1", "0xd9e1f4", "0xd9e237", "0xd9e252"],
+      "unknowns": ["Builder 0xd9d220 has an unexpanded indirect switch at 0xd9d41f; complete goal-specific generation is not proven.", "The second CB source, registry lifetime and all availability conditions remain unresolved.", "This generator allocates, deletes and may initialize global registry state; it is not a read-only worker-thread query."],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/war/disassembly.json"]
+    },
+    {
+      "id": "ordinary_declare_war_gui_enable_gate_is_distinct",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Dialog refresh 0xee4650 enables AgreeButton only when dialog+0x308 has no pending confirmation and cached action virtual +0x88 returns true with NULL tooltip and false mode. The final GUI send callback 0xedfa40 does not directly repeat local/full checks; it wraps and hands off the cached action. The downstream sender separately invokes command virtual gates, whose transitive action behavior remains outside this bounded closure.",
+      "rvas": ["0xee46a3", "0xee46ad", "0xee46b7", "0xee46be", "0xee46c1", "0xee46c3", "0xee46c8", "0xee46d3", "0xedfb9b", "0xedfba4", "0x14ca259", "0x14ca269"],
+      "unknowns": ["GUI enabled state is not a fresh authoritative API preflight for arbitrary actor/target pairs.", "Local, common, goal and command checks must retain their separate meanings; transitive mutation and TLS remain unclosed.", "No gameplay execution or effects are verified by the observed static path."],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/war/disassembly.json"]
+    }
+  ]
+}

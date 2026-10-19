@@ -1,0 +1,196 @@
+{
+  "schema": "EU4-R59-INDEPENDENT-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "subject_manifest": {
+    "bytes": 14507,
+    "sha256": "633a4ba43344f5b4041470189e93b2caafd01271b795b6516d1793f0d173beaa"
+  },
+  "subject_contract": {
+    "bytes": 9565,
+    "sha256": "c688a89a6cdb668cbbb7696558580271e2f6dc2d285e1b3dc9ac59e9394fda69"
+  },
+  "blocking_findings": [],
+  "source_review": {
+    "actual_declared_text_output_review_pins_verified": 38,
+    "subject_manifest_additional_pin_verified": 1,
+    "all39_final_original_guards_equal": true,
+    "engine_pins_declaration_only": 38,
+    "engine_inputs_reopened_rehashed_imported": 0,
+    "no_dependency_recursion": true,
+    "author_producer_runner_and_raw_seed_guards_reviewed_as_text_only": true,
+    "R58_original_caller_values_basis": "Fixed accepted entry-seed, R58 contract and independent review; this review replays the retained R58 prefix, not unlisted original caller/PE bytes."
+  },
+  "raw_and_CFG_replay": {
+    "RVA_range": [
+      "0x771c06",
+      "0x771cbd"
+    ],
+    "owned_bytes": 183,
+    "rows": 46,
+    "raw_all_rows_selected_disassembly_and_widths_equal": true,
+    "recorded_edges": 9,
+    "branches": 8,
+    "direct_CALL_sites": 1,
+    "RET_rows": 0,
+    "INT3_rows": 0,
+    "selected_branch": {
+      "site": "0x771cbb",
+      "raw": "740a",
+      "target": "0x771cc7"
+    },
+    "other_window_fallthrough": "0x771cbd",
+    "unfollowed_callee": {
+      "site": "0x771c76",
+      "raw": "e8d5bbcbff",
+      "target": "0x42d850"
+    },
+    "local_syntactic_rows_covered": 46,
+    "normal_CFG_closed": false,
+    "fallthrough_after_CALL_requires_normal_return": true,
+    "independent_callable_entry": false
+  },
+  "inherited_state_and_stack": {
+    "origin_entry": "0x771be0",
+    "RSP": "Q-0x48",
+    "RSI": "originalRCX S",
+    "R14": "0000000000000005",
+    "RBP": "00000000ffffffff",
+    "prefix_raw_stack_arithmetic": "3 PUSH*8 + SUB RSP30hex =48hex; originalRBP/RSI/R14 saved atQ-8/-10/-18.",
+    "fragment_stores": {
+      "Q+8": "RBX save",
+      "Q+10": "RDI save",
+      "Q+18": "R15 save",
+      "conditional_DWORD_Q+20": 1
+    },
+    "shadow_overlap": "DWORD[Q+20]=1 conditionally replaces the originalR9B home byte and next3 bytes; upper4 bytes untouched by that instruction.",
+    "fragment_has_no_RSP_adjust_or_RET": true,
+    "normal_stack_and_nonvolatile_ABI_premise_not_runtime_authenticated": true
+  },
+  "validated_machine_paths": [
+    {
+      "range": [
+        "0x771c0b",
+        "0x771c32"
+      ],
+      "fact": "B=QWORD[S2508], E=QWORD[S2510]; C=SAR64(submod64(E,B),2). CMP R14D,ECX then unsignedJB is low32 comparison;5<uint32(C) goes directly to common fresh read.",
+      "limit": "Not a receiver type/vector/valid-span/count bound proof."
+    },
+    {
+      "range": [
+        "0x771c32",
+        "0x771c57"
+      ],
+      "fact": "Desired6 through EAX/EDX zero-extension, R8=1 and conditionalDWORD[Q20]=1. Next CMP RDX,RCX and JAE/JBE use full64 unsigned count. Full64 C>6 can take shorten-end-shaped store despite low32<=5.",
+      "precision": "Under inheritedkind5 the C==6 resize equality case is unreachable even for malformed headers: same computedC low32 would be6, selecting initial existing-slot branch. Frozen contract gives a weaker valid-count statement; no contradiction or source rewrite required."
+    },
+    {
+      "range": [
+        "0x771c57",
+        "0x771c98"
+      ],
+      "fact": "Compare desired6 against full64 SAR(capacity_end-B,2). Insufficient capacity calls42d850(RCX=&S2508,RDX=6,R8=&DWORD[Q20],R9originalunknown), then rejoins. Within-capacity path uses difference6-C, EAX1, RDIinitialE, RCXrepeatcount and REP STOSD, then stores computedRBX as[S2510].",
+      "limit": "42d850 allocation/header/alias effects unknown. Forward fill requires DF0 (normalWin64 ABI expectation, no localCLD), valid arithmetic and bounded writable span. No malformed-input or exception safety proven."
+    },
+    {
+      "range": [
+        "0x771c98",
+        "0x771cbd"
+      ],
+      "fact": "Fresh QWORD[S2508] reload after every local branch/call. ECX=freshDWORD[base+R14*4], RDX=same slot address; MOV EAX,ECX zero-extends RAX. RestoresRBX/RDI/R15 from localhome saves; CMP EBP,-1 with inheritedffffffff choosesJE771cc7.",
+      "limit": "Actual fragmentexitRAX=zeroextended freshslot5 DWORD. Neither final native return nor counter/ID increment/uniqueness/wrap or bridge mapping follows. Nonvolatile preservation is not memory stability or lifetime."
+    }
+  ],
+  "write_review": {
+    "explicit_ModRM_memory_destinations": 6,
+    "stack": 4,
+    "receiver_end_pointer": 2,
+    "implicit_REP_STOSD_sites": 1,
+    "REP_site": "0x771c8f",
+    "payload_DWORD": 1,
+    "implicit_CALL_stack_write_not_counted_in6": true,
+    "transitive_helper_writes_unknown": true,
+    "pure_or_readonly": false
+  },
+  "retained_metadata_and_resources": {
+    "pdata_requests": 19,
+    "binary_search_steps": 16,
+    "unique_pdata_records": 17,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 204,
+    "owned_code_bytes": 183,
+    "decoder_inputs_from_retained_lookahead": 662,
+    "decoder_unique_inputs": 183,
+    "decoder_overlap": 479,
+    "source_journal_events": 133,
+    "source_journal_recorded_bytes": 16623346,
+    "source_journal_operations": {
+      "read": 11,
+      "streaming_pin": 46,
+      "streaming_engine_pin": 76
+    },
+    "source_journal_witness_scope": "Producer explicit journal through capture publication, not all loader/OS I/O; reviewer did not read journaled engine files.",
+    "PE_physical_bytes_arithmetic_only": 76925419,
+    "PE_SHA_bytes_witness": 76925008,
+    "producer_peak_committed_bytes_witness": 23097344,
+    "software_memory_guard_bytes": 805306368,
+    "hard_Job_installed": false,
+    "producer_elapsed_ns_witness": 588738400,
+    "elapsed_scope": "producer launch through collected exit including source/engine guards and two EXE hashes; authorization creation excluded",
+    "owned_child_collected_exit0_witness": true,
+    "PE_SHA_and_decoder_execution_are_not_reviewer_reacquisition": true
+  },
+  "next_metadata_boundary_only": {
+    "index": 14174,
+    "raw_hex": "bd1c7700f61c77008c4ee501",
+    "range": [
+      "0x771cbd",
+      "0x771cf6"
+    ],
+    "bytes": 57,
+    "branch771cc7_inside": true,
+    "target_code_bytes_read": 0,
+    "new_scope_authorized": false,
+    "continuation_requires_inherited_fragment_state_not_new_ABI_entry": true
+  },
+  "review_resources": {
+    "selected_original_physical_bytes": 946660,
+    "retained_inspection_replay_bytes": 505929,
+    "selected_original_and_retained_bytes": 1452589,
+    "limit_bytes": 25165824,
+    "largest_source_bytes": 104164,
+    "per_source_limit_bytes": 4194304,
+    "measured_python_tracemalloc_peak_bytes": 605504,
+    "committed_peak_independently_measured": false,
+    "first_acquisition_replay_passed": true,
+    "errors": 0,
+    "all_shells_collected": true
+  },
+  "actual_review_operations": {
+    "PE_open_hash": 0,
+    "engine_dependencies_opened": 0,
+    "decoder_load_or_new_decode": 0,
+    "author_programs": 0,
+    "old_or_new_test_suites": 0,
+    "CLI": 0,
+    "process_or_game": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0,
+    "retries": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "native_ID_semantics_verified": false,
+    "native_ID_uniqueness_verified": false,
+    "counter_update_or_wrap_verified": false,
+    "bridge_request_ID_binding_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "new_scope_authorized": false
+  }
+}

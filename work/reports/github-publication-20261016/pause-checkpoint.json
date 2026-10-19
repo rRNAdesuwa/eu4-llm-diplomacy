@@ -1,0 +1,45 @@
+{
+  "schema": "EU4-RESEARCH-PAUSE-PUBLICATION/1",
+  "paused_at_user_request": true,
+  "work_scope": "curate and upload existing results only",
+  "discovery_v8_accepted": true,
+  "discovery_pin": {
+    "bytes": 24391,
+    "sha256": "6ffc1cc14c588f44319b5646c3f5b9b4b727de7f2ba3cf59c3674d4f4d519b41"
+  },
+  "discovery_review": "14 selected source pins before and after; other six entries exactly v7; support entry accepts bilateral missing-key path only",
+  "completed_readonly": [
+    "peace v2 selected empty inbox",
+    "support-heir v1 bilateral missing-key path"
+  ],
+  "historical_counts": {
+    "effects": 48,
+    "persistence": 44,
+    "repair_candidates": 42
+  },
+  "war_peace_lookup_accepted_version": 6,
+  "r87_full_raw_review_and_root_acceptance": true,
+  "r89_source_review_passed_actual_not_authorized_or_run": true,
+  "lookup_v7_plan_only": true,
+  "source_bytes_read": 523728,
+  "source_budget": 8388608,
+  "new_target_reads_calls_dispatch_save_reload": 0,
+  "selected_extra_pins": {
+    "work/reports/war-peace-api-20261016-r89-source-independent-review/findings.json": {
+      "bytes": 8161,
+      "sha256": "4e6dde469b15894e5adf4c6ed2a7db020a6f60dfde78e38443d4228adc3cb7bf"
+    },
+    "work/reports/war-peace-api-lookup-v7-source-plan-20261016-r1/plan.json": {
+      "bytes": 10697,
+      "sha256": "de8a3d94b7875d2818ea97beb3fce62c7fd38eee08c8a6f081d261409989199b"
+    }
+  },
+  "discovery_builder_manifest": {
+    "path": "work/reports/support-heir-discovery-publication-20261016-r1/manifest.json",
+    "bytes": 5199,
+    "sha256": "e407ced8f4ef3feea788b9ae65c459c2b075fe3cae721331848bb51e78c58d05"
+  },
+  "native_ready": false,
+  "all120_effects_complete": false,
+  "publication_status": "preparing fork branch and pull request"
+}

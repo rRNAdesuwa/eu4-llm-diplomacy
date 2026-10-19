@@ -1,0 +1,174 @@
+{
+  "schema": "EU4-R67-ENTRY-REGISTER-CONTRACT/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "entry": {
+    "rva": "0x1a337f0",
+    "source_CALL_site": "0x994f15",
+    "raw_CALL": "e8d6e80901",
+    "full_owned_extent": [
+      "0x1a337f0",
+      "0x1a3383e"
+    ],
+    "bytes": 78,
+    "rows": 19,
+    "normal_RET": "0x1a3383d",
+    "caller_entry_RAX_raw": 4160,
+    "caller_RCX": "opaque H pointer",
+    "caller_RDX": "current borrowed T pointer",
+    "callee_business_name": "unknown",
+    "parameter_semantic_types": "unknown"
+  },
+  "control_flow": {
+    "local_CFG_closed": true,
+    "direct_CALL_sites": 0,
+    "local_conditional_branches": 2,
+    "external_branch_sites": 0,
+    "indirect_branch_sites": 0,
+    "normal_RET_sites": [
+      "0x1a3383d"
+    ],
+    "loop_termination_from_arbitrary_GS_value_proved": false,
+    "fault_or_exception_behavior": "not read"
+  },
+  "normal_instruction_dataflow": [
+    {
+      "site": "0x1a337f0",
+      "fact": "Let S=callee entry RSP and N=entry RAX. RSP becomes S-0x10."
+    },
+    {
+      "site": "0x1a337f4",
+      "fact": "QWORD[S-0x10]=entry R10; QWORD[S-8]=entry R11 at 1a337f8."
+    },
+    {
+      "site": "0x1a337fd",
+      "fact": "R11=0. LEA1a33800 sets R10=S+8; SUB1a33805 subtracts N modulo64."
+    },
+    {
+      "site": "0x1a33808",
+      "fact": "If unsigned subtraction borrowed, CMOVB sets R10=0; otherwise retains S+8-N modulo64."
+    },
+    {
+      "site": "0x1a3380c",
+      "fact": "R11=QWORD GS:[0x10], called B here. No TLS field business name recovered."
+    },
+    {
+      "site": "0x1a33818",
+      "fact": "If unsigned R10>=B, branch directly to restore block1a33830."
+    },
+    {
+      "site": "0x1a3381a",
+      "fact": "Otherwise AND R10W,0xf000 preserves upper48 bits and clears low12: target L=R10 & 0xfffffffffffff000."
+    },
+    {
+      "site": "0x1a33820",
+      "fact": "Loop: R11=(R11-0x1000)mod64; BYTE[R11]=0; CMP R10,R11; JNE repeats until equal."
+    },
+    {
+      "site": "0x1a33830",
+      "fact": "Restore R10/R11 from the two saved stack qwords, ADD RSP,0x10, RET."
+    }
+  ],
+  "register_contract": {
+    "basis": "Concrete complete selected instructions, no external CALL; not ordinary Win64 volatile-register assumptions.",
+    "normal_RCX_preserved": true,
+    "normal_RDX_preserved": true,
+    "normal_RAX_preserved": true,
+    "RAX_return": "Exactly callee-entry RAX, hence 0x1040 for the fixed R66 CALL on normal return.",
+    "R8_R9_XMM_accesses_in_body": false,
+    "normal_R8_R9_XMM_preserved_without_async_or_code_mutation": true,
+    "R10_R11_restore": "Loaded from [S-0x10] and [S-8]; equals entry values only if those saved bytes were not aliased/clobbered.",
+    "normal_pre_RET_RSP": "S",
+    "normal_post_RET_RSP": "S+8",
+    "final_arithmetic_flags": "Those produced by ADD64(S-0x10,0x10) at1a33839, not preserved incoming arithmeticflags.",
+    "DF_written_by_selected_instructions": false,
+    "normal_DF_is_inherited": true
+  },
+  "memory_accesses": {
+    "explicit_store_sites": 3,
+    "stack_save_store_sites": [
+      "0x1a337f4",
+      "0x1a337f8"
+    ],
+    "GS_derived_BYTE_zero_store_site": "0x1a33827",
+    "GS_derived_dynamic_store_count": "0 or loop-dependent, not static site count",
+    "explicit_GS_read": {
+      "site": "0x1a3380c",
+      "segment": "GS",
+      "offset": 16,
+      "bytes": 8
+    },
+    "RCX_RDX_object_fields_read_or_written": false,
+    "LEA_dereferences_memory": false,
+    "normal_RET_implicitly_reads_return_qword": true,
+    "GS_derived_targets_are_typed_world_or_owned_stack_proved": false,
+    "pointer_contents_preserved": false,
+    "aliasing_into_H_T_saved_qwords_or_return_slot_excluded": false,
+    "pure_or_write_free": false
+  },
+  "conditional_termination_example": {
+    "condition": "Assume normal valid saved frame/return/code, finite readable B, B aligned0x1000, original selected R10<B, and every traversed BYTE write completes normally.",
+    "derived_count": "(B-L)/0x1000 iterations under no unsigned wrap; arbitrary B alignment/permissions are not established.",
+    "safe_execution_or_exception_proof": false
+  },
+  "R66_conditional_crosswalk": {
+    "normal_post_CALL_RCX": "Same original H register value.",
+    "normal_post_CALL_RDX": "Same current T register value.",
+    "normal_post_CALL_RAX": "0x1040, so subsequent SUB RSP,RAX subtracts0x1040 for this fixed caller.",
+    "post_CALL_RSP_balance": "Normal RET pops only the CALL return address; no extra callee stack amount remains.",
+    "H_T_contents_unchanged_proved": false,
+    "R66_postCALL_fresh_BYTE_T_and_QWORD_H_reads_still_required": true,
+    "caller_frame_alignment_or_full_Cpp_lifecycle_proved": false
+  },
+  "limits": [
+    "Disk static selected normal instructions only; GS runtime value, mappings, faults, handlers, asynchronous changes and memory aliasing remain unknown.",
+    "No helper business name, amount units, recipient, generated-record meaning, conservation, native permission or selected API effect follows.",
+    "The 38 locked engine files were opened by the single producer; this retained sealer treats their identities only as pinned producer witness."
+  ],
+  "resource_accounting": {
+    "pdata_requests": 19,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 204,
+    "code_physical_unique_bytes": 78,
+    "decoder_input_total_bytes": 255,
+    "decoder_unique_bytes": 78,
+    "decoder_overlap_bytes": 177,
+    "two_PE_SHA_returned_bytes": 76925008,
+    "all_target_PE_returned_bytes": 76925314,
+    "producer_source_journal_bytes_at_capture": 16786447,
+    "producer_final_capture_pin_read_bytes_after_capture_commit": 81408,
+    "producer_explicit_source_bytes_including_final_stdout_capture_pin": 16867855,
+    "producer_source_limit_bytes": 33554432,
+    "retained_seal_limit_bytes": 16777216,
+    "manual_text_inspection_and_wrapper_prep_allowance_bytes": 1048576,
+    "own_producer_peak_observed_bytes": 22986752,
+    "single_producer_elapsed_ns": 503865800,
+    "elapsed_scope": "Producerlaunchthroughcollectedexit, includingengine/source/twoPEsha; wrapperadmissionexcluded.",
+    "all_owned_children_collected": true,
+    "hard_Job_installed": false,
+    "no_all_OS_IO_or_child_tree_peak_claim": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "runtime_capture_authorized": false,
+    "further_static_actual_authorized": false
+  },
+  "operations": {
+    "single_authorized_static_producer_execution": 1,
+    "callee_expansions": 0,
+    "new_data_header_unwind_reads": 0,
+    "game_process_accesses": 0,
+    "Frida_operations": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "tests": 0
+  }
+}

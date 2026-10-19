@@ -1,0 +1,209 @@
+{
+  "schema": "peace_white_nosend_adapter_contract_1375_v1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "addresses": "RVA; VA=verified current module+RVA",
+  "analysis_sha256": "9ff4e42b8ece239a05e2a6c1f02b0a5c61ea777ee178903b986d434a4b8ee898",
+  "runtime_verified": false,
+  "production_ready": false,
+  "scope": {
+    "direction": "demand",
+    "force": 0,
+    "submit": false,
+    "game_native_calls_performed": 0
+  },
+  "abi": "Microsoft x64; ordinary compiler passes stack arguments with home-space/alignment; no handwritten stub",
+  "operations": [
+    {
+      "name": "offer_ctor",
+      "rva": "0x975d40",
+      "return": "offer*==dst",
+      "size": "0x1c0",
+      "args": [
+        "RCX=dst",
+        "RDX=actor/taker full handle",
+        "R8=recipient/giver full handle",
+        "R9B=true"
+      ]
+    },
+    {
+      "name": "reset",
+      "rva": "0x97ae50",
+      "return": "ignored",
+      "args": [
+        "RCX=offer*"
+      ],
+      "effect": "native deselection/reset; keep exactly type0/definition0/amount0 selected"
+    },
+    {
+      "name": "request_ctor",
+      "rva": "0x598af0",
+      "return": "request*==dst",
+      "size": "0x210",
+      "vtable": "0x1c7b840",
+      "args": [
+        "RCX=dst",
+        "RDX=actor full handle",
+        "R8=recipient full handle",
+        "R9B=true",
+        "stack arg5 const offer*",
+        "stack arg6 int32 raw date"
+      ],
+      "fields": {
+        "actor": [
+          "0x10",
+          "0x18"
+        ],
+        "recipient": "0x20",
+        "dates": [
+          "0x28",
+          "0x2c"
+        ],
+        "state": "0x34=0",
+        "embedded_offer": "0x48",
+        "force": "0x208=0"
+      }
+    },
+    {
+      "name": "clone",
+      "rva": "0x59ba40",
+      "return": "independently engine allocated request*",
+      "args": [
+        "RCX=const request*"
+      ],
+      "owns": "outer0x210 and deep embedded offer graph"
+    },
+    {
+      "name": "local80",
+      "rva": "0x59b450",
+      "return": "bool",
+      "args": [
+        "RCX=request*",
+        "RDX=null reason string"
+      ]
+    },
+    {
+      "name": "full88",
+      "rva": "0x59b630",
+      "return": "bool",
+      "args": [
+        "RCX=request*",
+        "RDX=null reason string",
+        "R8B=false"
+      ]
+    },
+    {
+      "name": "date90",
+      "rva": "0x59b8d0",
+      "return": "bool",
+      "args": [
+        "RCX=request*",
+        "RDX=null reason string"
+      ],
+      "note": "independent date check; not included in full88 body"
+    },
+    {
+      "name": "original_dtor0",
+      "rva": "0x598b60",
+      "return": "ignored",
+      "args": [
+        "RCX=in-place original",
+        "EDX=0"
+      ],
+      "owns": "destroys embedded graph, preserves caller outer storage"
+    },
+    {
+      "name": "clone_dtor1",
+      "rva": "0x598b60",
+      "return": "ignored",
+      "args": [
+        "RCX=engine clone",
+        "EDX=1"
+      ],
+      "owns": "destroys graph and frees engine outer allocation"
+    },
+    {
+      "name": "offer_cleanup",
+      "rva": "0x9761c0",
+      "return": "ignored",
+      "args": [
+        "RCX=in-place standalone offer"
+      ],
+      "owns": "graph only; caller outer storage remains"
+    }
+  ],
+  "offer": {
+    "vtable": "0x1c578b8",
+    "size": "0x1c0",
+    "giver": "0x10",
+    "taker": "0x18",
+    "demand": "0x20=true",
+    "aux_owner": "0xe8=self",
+    "whitepeace": "exactly one effective selected type0/definition0/amount0; no other effective selection"
+  },
+  "host_required": [
+    "Exact disk SHA + loaded image identity/current instruction and virtual table pins before each invocation; Native module must equal guarded module.",
+    "A real monotonic world/save epoch and verified native game-thread callback provenance, covering a non-reentrant lifetime lease held throughout all reads/calls/cleanup.",
+    "Use collect_world through a safe bounded Reader and capture_current_tls only on that certified current thread. Populate WorldSeal.raw_world_digest; equality detects changes but never substitutes for epoch/lifetime protection.",
+    "Review concrete dynamic war-goal/government/condition classes and all reachable native side effects, including checks; constructor_side_effects_reviewed represents that broader review, never just a paused flag.",
+    "Use inspect_white_shape through the real bounded Reader under the same world lease, and reject unsupported shapes. Snapshot range0 is outer offer/request; exactly empty aux hashes/vectors and <=128 pinned fixed-size components are supported. Do not set canned readiness values.",
+    "Callbacks are noexcept; hosts catch their own C++/read/audit errors and return false. claim is durable; audit count is the final classified receipt.",
+    "Keep Session storage and native uncertain objects alive on failure until retiring that game session. Never retry a durable claim, reuse uncertain storage or perform unproved cleanup."
+  ],
+  "implemented_host_units": {
+    "world_reader.cpp": "actual bounded raw layout decoder, no fake values",
+    "white_inspector.cpp": "real bounded inspector for four participants, <=128 pinned components,40 buckets, empty aux vectors/three empty native hashes",
+    "native_bindings_win64.cpp": "compile-only native ABI/current-thread TLS/current-address reader leaves",
+    "peace_nosend.cpp": "durable-callback lifecycle controller; compare normalized semantic bytes, not hash alone"
+  },
+  "inspector_supported": {
+    "max_candidate_components": 128,
+    "max_owned_ranges": 256,
+    "max_reads": 4096,
+    "max_read_bytes": 131072,
+    "allocation_size_exclusive_limit": 4096,
+    "max_semantic_bytes": 16384,
+    "auxiliary_vectors": "must have null begin/end/capacity",
+    "auxiliary_hashes": "count0, sentinel self-loop,8 buckets all sentinel",
+    "borrowed_payloads": "excluded from owned allocations; not modified/freed",
+    "general_nonempty_auxiliary_payloads": "unsupported; reject"
+  },
+  "missing_real_providers": [
+    "world epoch and lifetime lease",
+    "certified native callback thread identity",
+    "dynamic class/transitive native side effect review"
+  ],
+  "sender": {
+    "wrapper": "0x4e9930",
+    "command_size": "0x58",
+    "command_vtable": "0x1c814b0",
+    "owned_action": "0x50",
+    "sender": "0x14ca210",
+    "command_destructor": "0x4e7470",
+    "execute": "0x4e7c50",
+    "false_methods": [
+      "0x58",
+      "0x80"
+    ],
+    "normal_gate": "context+58 transport nonnull and at least one of context bytes55/80d nonzero for this command; do not patch",
+    "true": "transport virtual30 returned only",
+    "false": "caller holder consumed; stolen command disposal not proved",
+    "exception": "ownership unknown; freeze",
+    "implemented": false
+  },
+  "AI": {
+    "response_predicate": "0x4ea1e0",
+    "score_slot": "0x120 ->0x59bee0",
+    "ordinary_core": "0x1bf150",
+    "accept_threshold": 1,
+    "force_override_allowed": false,
+    "effect": "0x598ed0 state2 ->0x976730",
+    "implemented": false
+  },
+  "application": {
+    "selected_gold": "0x1cd2440+0x98 ->0x9b4040, amount0 returns without transfer",
+    "remove_members": "0x98ffb0 ->0xd8ba80/0xd8e6b0 ->0x190990",
+    "mark": "attackers empty and native white predicate -> war+0x210=1",
+    "final_war_reclamation": "unknown",
+    "implemented": false
+  }
+}

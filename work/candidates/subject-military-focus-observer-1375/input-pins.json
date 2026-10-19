@@ -1,0 +1,14 @@
+{
+  "work/AGENTS.md": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187",
+  "work/candidates/subject-military-focus-contract-1375/report.json": "7be628d0e30f1c2e0d92b89d40b3757f310659865dd3d49427114e5a64cedffb",
+  "work/candidates/subject-military-focus-contract-1375/review.json": "1281e7ef653ad4d566bc5490de5feb0f7bb12271a8c2225f198d744f4f165df3",
+  "work/reports/native-pair-cancel-1375.json": "54dc047d85fe8c06528d5fb3824a1928f56fac2c4bbf24c26e205bcfb08e0df3",
+  "work/reports/native-pair-effects-1375.json": "b67e9e3ec3d333ad5603c9bcb7a70d614bab1107f283c6f01d99e7c744730ae0",
+  "work/candidates/spy-modifier-observer-1375/observer.py": "d386524d543d96509fe4230e5fd02b01bc7f404f5419054ae2a84f66fdb13e48",
+  "work/candidates/spy-modifier-observer-1375/review.json": "9b9830cf4eafbc5620fa53810ce1b790dfec9c96a44afb9f45b93660ec73ee85",
+  "work/probe_diplomacy_current.py": "a5a0b775a701466cf5f4c85db671e37f81c165daf5fddd2080b71ed6f147bb38",
+  "work/local_config.py": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001",
+  "bridge/native_build.py": "2f8f7f1781f10084ed85cae59f876080a9cd0efcf9810e1fc394561682048925",
+  "work/discover_diplomacy.py": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318",
+  "work/map_diplomacy_fields.py": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85"
+}

@@ -1,0 +1,158 @@
+{
+  "schema": "EU4-SUPPORT-HEIR-CURRENT-PREPARATION-DELIVERY/1",
+  "file_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py": {
+      "bytes": 16856,
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json": {
+      "bytes": 2494,
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/candidates/integration-task-observer-1375-v1/integration_task_observer.py": {
+      "bytes": 20891,
+      "sha256": "ec576a21a4018fa1b91d0864990b281a7a075ed3761404d9bdd7559de8b25cb9"
+    },
+    "work/candidates/integration-task-observer-1375-v1/test_integration_task_observer.py": {
+      "bytes": 14318,
+      "sha256": "1f81280856c9728cfeb0b0c2834516604dc11e881c7a2b7c22d16ca9353a8e96"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/README.md": {
+      "bytes": 4692,
+      "sha256": "b28666aed593f40246275d9f181afd399f6fb060514c88201d64ffcdecb2bf4e"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/build_manifest.py": {
+      "bytes": 1521,
+      "sha256": "85bf64c66d476c86f3cc53c044bf12afe9ce0ad7e964b44452eb8c590a6e62c6"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/prepare_source.py": {
+      "bytes": 10914,
+      "sha256": "14e44edee5dae9a54dbcbab8f58a61106c1fc1fbbbabf0872aa094fd4e81c22f"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/run_offline.py": {
+      "bytes": 3152,
+      "sha256": "c58ede5e59a08f18d9cb9f89ac5112a9812158f1a9a2040e13868a4f798205d4"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/support_heir_current_observer.py": {
+      "bytes": 21780,
+      "sha256": "8b2eba840c3f6b4927f6fbf1aa04878c931fc548372dc10dd8432863ed68ec01"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/test_support_heir_current_observer.py": {
+      "bytes": 14358,
+      "sha256": "c7b94fbcaea8aff34b66a7d84d349658324faa4c8401656b7b2c375070b2540d"
+    },
+    "work/reports/dynastic-support-reader-entry-20261015-r50/contract.json": {
+      "bytes": 10971,
+      "sha256": "ddc97d4bfd011ade3778ded05c643b9aba7c450eeba50b9162757a25353583f2"
+    },
+    "work/reports/dynastic-support-reader-entry-20261015-r50/manifest.json": {
+      "bytes": 15924,
+      "sha256": "b09a9795d4f9ca2b9a4f330f39b695720705aad76c4bb5ec452341999260e304"
+    },
+    "work/reports/dynastic-support-reader-entry-20261015-r50/owned-code.json": {
+      "bytes": 783,
+      "sha256": "14cbfd7e2ce8bb4de4992e9f71bef4e5430fb75b11d95424ff5054ddbd4687fd"
+    },
+    "work/reports/dynastic-support-reader-r48-independent-20261015-r1/findings.json": {
+      "bytes": 1968,
+      "sha256": "02df6084e3dac269d4f970c091fe6dee85d9dba9c19b2caec4689b062aa764ed"
+    },
+    "work/reports/dynastic-support-reader-r50-independent-20261015-r1/findings.json": {
+      "bytes": 1699,
+      "sha256": "fe6a9188e2d6be6b55d545505ca19c70c244bcf15ea38e32ce4edc80c0dfc7d9"
+    },
+    "work/reports/dynastic-support-reader-static-20261015-r48/contract.json": {
+      "bytes": 10957,
+      "sha256": "973a776a00ed95ac61e71b68cf33ac8fad799f18fb2f928de72c1bf07204ef4c"
+    },
+    "work/reports/dynastic-support-reader-static-20261015-r48/manifest.json": {
+      "bytes": 13227,
+      "sha256": "00b98e57bc9ca3c69feae82695717db9851bafb05e7148be5e33426a6fa9ee3b"
+    },
+    "work/reports/dynastic-support-reader-static-20261015-r48/owned-code.json": {
+      "bytes": 9002,
+      "sha256": "d392ac87b59dee56bd77f75f2e41243efbea7def5c1a1819d1df3c1ced42b197"
+    },
+    "work/reports/integration-task-observer-source-review-20261015-r1/independent-source-ready.json": {
+      "bytes": 6736,
+      "sha256": "14662f7d78556103252f3f52f30a398d570ce246e56bb17948127249ebc10cc4"
+    },
+    "work/reports/support-heir-handle-crosswalk-20261015-r1/findings.json": {
+      "bytes": 9023,
+      "sha256": "f25d2760d0a2d6afac77d590aff36f165f95b45750542ccb243e25d7ad805abe"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/draft-source-manifest.json": {
+      "bytes": 5075,
+      "sha256": "520b00a30d66b6f67c1649fae5af1ac815f4be334eda9048291ebdad3f2958d4"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/preparation.json": {
+      "bytes": 5955,
+      "sha256": "69ae0f329ea0b2d4673bd24b6a43637b12897050ebc5361d0c3ffea192d048de"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/report.md": {
+      "bytes": 2780,
+      "sha256": "461de0cbc3958b21429f4d3be344f5ef2e6b509581d17bc4c071c4f67994ba71"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/seal_preparation.py": {
+      "bytes": 7347,
+      "sha256": "3d31c4bbe5b07f3a11c710ce0347a63616a8cc16e3e23abe4c2954b9f9950220"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/claim.json": {
+      "bytes": 1217,
+      "sha256": "4c186f7f088b57ee6c4f11c776ea1bad5806266fc11af61cf97ed995d68e6e1a"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/receipt.json": {
+      "bytes": 5934,
+      "sha256": "6503b6bcbd56a1f994308bf7eeab916a6e2ea66d21fbdc73f75902d398b9903e"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/new_fake_suite-stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/new_fake_suite-stderr.txt": {
+      "bytes": 2314,
+      "sha256": "e4c30f0829de9b69c0f73cbb38051abb798aa149e8e80bb6170930237bb4065b"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/new_fake_suite-receipt.json": {
+      "bytes": 1072,
+      "sha256": "e484dcf1f04187aad6a9d7dfadf55288b48bc446c3d434a986db1d276a905c5b"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/check-stdout.txt": {
+      "bytes": 11643,
+      "sha256": "cad346241b339334b46d023cc92f56becc1fe322a87f4f8193ce6a2263eb5f8f"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/check-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/check-receipt.json": {
+      "bytes": 1065,
+      "sha256": "9d6c4763109d57de3ff29994988ded8a0258204003179fd0af701351cac8c63d"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/catalog-stdout.txt": {
+      "bytes": 12305,
+      "sha256": "fcbaa180cb128eade60b21cfda8c15a01cb31238333b8c713a75204e8ca516aa"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/catalog-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/offline-r1/catalog-receipt.json": {
+      "bytes": 1067,
+      "sha256": "53407be6fd99d45eb79c513ddd37d6366c3be41af22a337784616fdf12afe49c"
+    }
+  },
+  "integrity_sealed": true,
+  "candidate_runtime_authorized": false,
+  "independent_review_pending": true,
+  "native_ready": false,
+  "canonical_manifest_note": "Preparation pins use exact draft snapshot; a later separately reviewed root production metadata seal is not part of this receipt."
+}

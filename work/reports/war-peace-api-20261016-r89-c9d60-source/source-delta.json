@@ -1,0 +1,136 @@
+{
+  "actual_authorized": false,
+  "cfg_literal_substitutions": [
+    {
+      "new": "BEGIN = 0xc9d60",
+      "old": "BEGIN = 0xcc266"
+    },
+    {
+      "new": "END = 0xc9e60",
+      "old": "END = 0xcc366"
+    },
+    {
+      "new": "SEEDS = (0xc9d60,)",
+      "old": "SEEDS = (0xcc266, 0xcc32c)"
+    },
+    {
+      "new": "'seed_semantics': {'0xc9d60': 'direct_CALL_encoding_target_not_safe_callable_proof'}",
+      "old": "'seed_semantics': {'0xcc266': 'normal_sequential_frontier', '0xcc32c': 'hypothetical_syntactic_target_not_normal_from_cc220'}"
+    },
+    {
+      "new": "'actual_CALL_callee_reachability_proved_by_this_worklist'",
+      "old": "'normal_reachability_from_R86_proved_by_this_worklist'"
+    }
+  ],
+  "legacy_R86_exact_extent_8192_2048_gate_inherited": false,
+  "main": "New fixed single CALL seed, cached mapping, diagnostic metadata, fixed256 acquisition and R89 gate identities; all changes require new peer.",
+  "metadata_core": "New bounded diagnostic-only29+3 pure byte callback algorithm; no extent selection/fallback.",
+  "nine_helpers": {
+    "charge": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 156,
+        "sha256": "20cf816f3c64e72f936d7b8a7472ddf56ba2108e140b1b78fcab5145187440e6"
+      },
+      "text_equal": true
+    },
+    "digest": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 54,
+        "sha256": "9fb90e75a3fa51c6705ac79119ed84196af7ea53a216e638aad327d6af01244a"
+      },
+      "text_equal": true
+    },
+    "memory_guard": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 1139,
+        "sha256": "fac73ec7e2061c2e84579f5d42d0f303e00006d2096ea7ab1184097035f1833b"
+      },
+      "text_equal": true
+    },
+    "raw_write_review": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 1242,
+        "sha256": "10af390280280ff0081e32b95b30970e3a9fd27831deeb2fbc3d18fdee1016f6"
+      },
+      "text_equal": true
+    },
+    "read_source": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 627,
+        "sha256": "026c7747c88aaa6c14e2cf817978b2548e5838f2c620b7daa06c66dde43a77a6"
+      },
+      "text_equal": true
+    },
+    "require": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 64,
+        "sha256": "f01c3f7b9cb39e4a20502dfb921fa9c316a6d157b704fb7758a9bfcf0f0a463c"
+      },
+      "text_equal": true
+    },
+    "save": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 241,
+        "sha256": "23ef489e11f5864a8f0909e3a7d3ab1441b0ba07f53f43218dd960f00c4cd201"
+      },
+      "text_equal": true
+    },
+    "source_guard": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 705,
+        "sha256": "8c0d531db61371214723882ee6adf70cc3e0027958eaec009ca60684fce54867"
+      },
+      "text_equal": true
+    },
+    "stream_pin": {
+      "AST_equal": true,
+      "segment_pin": {
+        "bytes": 975,
+        "sha256": "d351e53fa1583f23d47b964d23b90134bafeb0a506acb5651846e3ea53b1e6bb"
+      },
+      "text_equal": true
+    }
+  },
+  "schema": "EU4-R89-SOURCE-DELTA/1",
+  "source_build_grant": {
+    "bytes": 9647,
+    "path": "work/reports/war-peace-api-20261016-r89-root-source-authorization/authorization.json",
+    "sha256": "c6e844b1d6f8e635d673caab18c5c2eade3c7faa2fa8109810f3bb95f003f012"
+  },
+  "upstream_actual_review_already_passed": true,
+  "upstream_full_subjects_from_actual_frozen_findings": {
+    "subject_actual_manifest": {
+      "bytes": 34662,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/actual-manifest.json",
+      "sha256": "71e766158fdaf6f80a2dc55bf5c4fb8177bfcfcdaee35f1f7860c1fec0828b0d"
+    },
+    "subject_capture_pin": {
+      "bytes": 140752,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/capture.json",
+      "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+    },
+    "subject_contract_pin": {
+      "bytes": 7679,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/contract.json",
+      "sha256": "5e114f5c0efd47cbf92279bdf0d638732a40ae3b8a9d0f554d56c51df2304845"
+    },
+    "subject_owned_pin": {
+      "bytes": 1099,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/owned-code.json",
+      "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+    },
+    "subject_selected_pin": {
+      "bytes": 47217,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/selected-cfg.json",
+      "sha256": "659b804677b9ffb2635afcc34ae46c26cd6e9b815a7515bf1faa8d0173db4f40"
+    }
+  }
+}

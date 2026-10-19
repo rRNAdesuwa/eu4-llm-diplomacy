@@ -1,0 +1,543 @@
+{
+  "schema": "EU4-R77-INDEPENDENT-COMPOSITION-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_manifest": {
+    "bytes": 6577,
+    "sha256": "ae8c40082da1c9a0fab20c36a3b54360fdd554891a972da2c5fe7587446029f4"
+  },
+  "subject_contract": {
+    "bytes": 16978,
+    "sha256": "93911bd7dcaa02fc6c4c9ab9cb0084a1e06ea070f7517d534176154eef78f53c"
+  },
+  "subject_raw_composition": {
+    "bytes": 88665,
+    "sha256": "3bc59904e69c2cdbb4002181b7ab143fa0bfcc0f5e296f437e943e198d9afe2f"
+  },
+  "raw_replay_pin": {
+    "bytes": 8597,
+    "sha256": "2259ec9e6fa4eafb806f394d8e724b4ebffca286d3064d7a55d4b029abe44736"
+  },
+  "reviewer_role": "Non-author of R77 composition; R69/R75 source+actual author and prior R76 fullpeer disclosed.",
+  "author_role": "D is R77 author and R71/R73 source+actual author; four fixed non-author fullreviews used as witnesses.",
+  "independent_full_reaudit_of_upstream_or_engine_claimed": false,
+  "author_frozen_files_need_change": false,
+  "checks": {
+    "25_sources_prepost": true,
+    "four_adjacent_raw_fragments248B": true,
+    "all77_saved_rows_match_owned_raw": true,
+    "five_signed_local_branches_three_unfollowed_CALLs": true,
+    "all_local_normal_successors_and_one_backedge": true,
+    "threeRET_currentR14_beforePOPR14": true,
+    "72_56_48B_stack_read_contracts": true,
+    "ten_store_RMW_and_two_NOPs": true,
+    "roles_upstream_witnesses_and_allauthorityfalse": true,
+    "first_author_receipts_resource_ledger": true
+  },
+  "conclusion": "PASSED for the conditional retained normal-CALL-return local composition only; no native or reader permission.",
+  "precision_notes": [
+    "Closed local successors do not prove termination, callee normal return, EH/unwind coverage, arbitrary-input safety or lifetime.",
+    "EachRAX return is currentR14 before its saved restore, not DWORD[D] or guaranteedNULL0. Original entryRDX correspondence is conditional.",
+    "D0 precedes97bd30 and is not invariant. F68 has no explicit local initialization befored959b0; unknowncallee output must not be assumed.",
+    "Positive bound is signed32 lowR8 after fresh64 difference/SAR; no count/capacity/type validation follows.",
+    "Cursor equality-only branch, fresh array and P8 RMW rereads, D/header/saved-stack aliases and unit/recipient/effect claims stay unknown.",
+    "ADD RSP30 sets final arithmetic flags on all three normal epilogues; DF remains inheritedunknown.",
+    "Original frozen fragment contracts remain unchanged; selected successor gaps are connected only in newR77 normal model.",
+    "Author filecheck reported443318B equals32 pinned payloads436741B plus separate manifest6577B; it need not equal pin-payload sum. Reviewer strict equality failed. R1 source/failure/log/intake retained, unrun R2 arithmetic draft retained and corrected by R3; no author or actual repeated.",
+    "No recursive old package/engine certification: accepted non-author reviews authenticate selected source artifacts as fixed witnesses."
+  ],
+  "resources": {
+    "read_events": [
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/review-plan.json",
+        "phase": "plan",
+        "bytes": 1590
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/manifest.json",
+        "phase": "literal_subject_before",
+        "bytes": 6577
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+        "phase": "literal_subject_before",
+        "bytes": 16978
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+        "phase": "literal_subject_before",
+        "bytes": 88665
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/verification.json",
+        "phase": "literal_subject_before",
+        "bytes": 7316
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/delivery.json",
+        "phase": "literal_subject_before",
+        "bytes": 1150
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/run.json",
+        "phase": "first_run_receipt",
+        "bytes": 121
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/run.stderr.txt",
+        "phase": "first_run_stderr",
+        "bytes": 0
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-actual-independent-review/findings.json",
+        "phase": "selected_source_before",
+        "bytes": 6300
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-actual-independent-review/manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 13503
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-generator-divisor-source/manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 27579
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-generator-divisor-source/contract.json",
+        "phase": "selected_source_before",
+        "bytes": 7825
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-generator-divisor-source/owned-code.json",
+        "phase": "selected_source_before",
+        "bytes": 609
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-generator-divisor-source/selected-evidence.json",
+        "phase": "selected_source_before",
+        "bytes": 19444
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-actual-independent-review/findings.json",
+        "phase": "selected_source_before",
+        "bytes": 8035
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-actual-independent-review/manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 12660
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 24771
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-contract.json",
+        "phase": "selected_source_before",
+        "bytes": 12229
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/owned-code.json",
+        "phase": "selected_source_before",
+        "bytes": 1168
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-selected-evidence.json",
+        "phase": "selected_source_before",
+        "bytes": 41810
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-actual-independent-review/findings.json",
+        "phase": "selected_source_before",
+        "bytes": 5251
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-actual-independent-review/manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 18044
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 24623
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-contract.json",
+        "phase": "selected_source_before",
+        "bytes": 13212
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/owned-code.json",
+        "phase": "selected_source_before",
+        "bytes": 906
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-selected-evidence.json",
+        "phase": "selected_source_before",
+        "bytes": 8070
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+        "phase": "selected_source_before",
+        "bytes": 6218
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 12383
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 16739
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+        "phase": "selected_source_before",
+        "bytes": 6999
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/owned-code.json",
+        "phase": "selected_source_before",
+        "bytes": 584
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json",
+        "phase": "selected_source_before",
+        "bytes": 10173
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/compose.py",
+        "phase": "selected_source_before",
+        "bytes": 21426
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+        "phase": "selected_source_before",
+        "bytes": 88665
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+        "phase": "selected_source_before",
+        "bytes": 16978
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/report.md",
+        "phase": "selected_source_before",
+        "bytes": 1607
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/read-accounting.json",
+        "phase": "selected_source_before",
+        "bytes": 8399
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/manifest.json",
+        "phase": "selected_source_before",
+        "bytes": 6577
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/verification.json",
+        "phase": "selected_source_before",
+        "bytes": 7316
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/delivery.json",
+        "phase": "selected_source_before",
+        "bytes": 1150
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/run.stdout.json",
+        "phase": "selected_source_before",
+        "bytes": 410
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/run.stderr.txt",
+        "phase": "selected_source_before",
+        "bytes": 0
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/run.json",
+        "phase": "selected_source_before",
+        "bytes": 121
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-actual-independent-review/findings.json",
+        "phase": "selected_source_after",
+        "bytes": 6300
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-actual-independent-review/manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 13503
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-generator-divisor-source/manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 27579
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-generator-divisor-source/contract.json",
+        "phase": "selected_source_after",
+        "bytes": 7825
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-generator-divisor-source/owned-code.json",
+        "phase": "selected_source_after",
+        "bytes": 609
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r69-generator-divisor-source/selected-evidence.json",
+        "phase": "selected_source_after",
+        "bytes": 19444
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-actual-independent-review/findings.json",
+        "phase": "selected_source_after",
+        "bytes": 8035
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-actual-independent-review/manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 12660
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 24771
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-contract.json",
+        "phase": "selected_source_after",
+        "bytes": 12229
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/owned-code.json",
+        "phase": "selected_source_after",
+        "bytes": 1168
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-selected-evidence.json",
+        "phase": "selected_source_after",
+        "bytes": 41810
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-actual-independent-review/findings.json",
+        "phase": "selected_source_after",
+        "bytes": 5251
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-actual-independent-review/manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 18044
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 24623
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-contract.json",
+        "phase": "selected_source_after",
+        "bytes": 13212
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/owned-code.json",
+        "phase": "selected_source_after",
+        "bytes": 906
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-selected-evidence.json",
+        "phase": "selected_source_after",
+        "bytes": 8070
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+        "phase": "selected_source_after",
+        "bytes": 6218
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 12383
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 16739
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+        "phase": "selected_source_after",
+        "bytes": 6999
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/owned-code.json",
+        "phase": "selected_source_after",
+        "bytes": 584
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json",
+        "phase": "selected_source_after",
+        "bytes": 10173
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/compose.py",
+        "phase": "selected_source_after",
+        "bytes": 21426
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+        "phase": "selected_source_after",
+        "bytes": 88665
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+        "phase": "selected_source_after",
+        "bytes": 16978
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/report.md",
+        "phase": "selected_source_after",
+        "bytes": 1607
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/read-accounting.json",
+        "phase": "selected_source_after",
+        "bytes": 8399
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/manifest.json",
+        "phase": "selected_source_after",
+        "bytes": 6577
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/verification.json",
+        "phase": "selected_source_after",
+        "bytes": 7316
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/delivery.json",
+        "phase": "selected_source_after",
+        "bytes": 1150
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/run.stdout.json",
+        "phase": "selected_source_after",
+        "bytes": 410
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/run.stderr.txt",
+        "phase": "selected_source_after",
+        "bytes": 0
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/run.json",
+        "phase": "selected_source_after",
+        "bytes": 121
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/manifest.json",
+        "phase": "literal_subject_after",
+        "bytes": 6577
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+        "phase": "literal_subject_after",
+        "bytes": 16978
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+        "phase": "literal_subject_after",
+        "bytes": 88665
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/verification.json",
+        "phase": "literal_subject_after",
+        "bytes": 7316
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/delivery.json",
+        "phase": "literal_subject_after",
+        "bytes": 1150
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/initial-inspection-ledger.json",
+        "phase": "prior_read_accounting",
+        "bytes": 892
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/detail-inspection-ledger.json",
+        "phase": "prior_read_accounting",
+        "bytes": 1982
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/controlled-inspection-ledger.json",
+        "phase": "prior_read_accounting",
+        "bytes": 414
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/receipt-inspection-ledger.json",
+        "phase": "prior_read_accounting",
+        "bytes": 744
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/bill-delta-inspection-ledger.json",
+        "phase": "prior_read_accounting",
+        "bytes": 530
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/bill-delta-inspection-r2-ledger.json",
+        "phase": "prior_read_accounting",
+        "bytes": 698
+      },
+      {
+        "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/review-failure.json",
+        "phase": "first_reviewer_failed_intake",
+        "bytes": 7637
+      }
+    ],
+    "current_program_read_bytes": 1159548,
+    "earlier_selected_inspection_bytes": 1065243,
+    "later_pincheck_delivery_allowance_bytes": 2097152,
+    "aggregate_upper_bytes": 4321943,
+    "limit_bytes": 25165824,
+    "ordinary_file_limit_bytes": 4194304,
+    "own_peak_committed_observed_bytes": 15040512,
+    "author_physical_source_seal_witness_bytes": 641122,
+    "author_source_seal_upper_witness_bytes": 4835426,
+    "author_first_filecheck_witness_bytes": 443318
+  },
+  "operations": {
+    "PE_stat_open_hash": 0,
+    "engine_stat_open_hash_import": 0,
+    "decoder": 0,
+    "author_program": 0,
+    "old_or_new_suite_tests": 0,
+    "runtime_game_process": 0,
+    "Frida": 0,
+    "native": 0,
+    "requests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "independent_fragment_callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "runtime_verified": false,
+    "persistence_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false,
+    "unconditional_whole_function_safety_verified": false
+  },
+  "all_shells_collected_before_review": true,
+  "further_scope_auto_authorized": false
+}

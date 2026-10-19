@@ -1,0 +1,66 @@
+"""Compile the isolated TAG-only expansion and its offline checks. Never injects."""
+from pathlib import Path
+import argparse
+import hashlib
+import importlib.util
+import json
+import struct
+
+ROOT = Path(__file__).resolve().parents[1]
+HERE = ROOT / 'bridge/native/tag_diplomacy_1375_v31'
+
+
+def pin(path):
+    data = path.read_bytes()
+    return {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--attempt', required=True)
+    args = parser.parse_args()
+    assert args.attempt.replace('-', '').isalnum() and args.attempt.isascii()
+    output = HERE / args.attempt
+    output.mkdir(exist_ok=False)
+    paths = [p for p in (HERE / 'src').rglob('*') if p.is_file()]
+    paths += [HERE / 'build_test.cmd', HERE / 'origin-pins.json', Path(__file__).resolve(),
+              ROOT / 'tools/prepare_tag_diplomacy_v31.py', ROOT / 'tools/extend_tag_diplomacy_v31.py',
+              ROOT / 'bridge/tag_actions_1375_v31.json']
+    sources = {p.relative_to(ROOT).as_posix(): pin(p) for p in paths}
+    spec = importlib.util.spec_from_file_location('_tag31_build', ROOT / 'work/candidates/v21-core-pair-nosend-1375/validate.py')
+    helper = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(helper)
+    helper.ROOT = ROOT
+    helper.HERE = HERE
+    build = helper.run_build(output)
+    sources_same = all(pin(ROOT / name) == expected for name, expected in sources.items())
+    test = output / 'build/test.stdout'
+    passed = build['exit_code'] == 0 and sources_same
+    validation = {'passed': passed, 'build': build, 'sources_same': sources_same,
+                  'tests': test.read_text() if test.exists() else '', 'game_accessed': False}
+    validation_path = output / 'validation.json'
+    validation_path.write_text(json.dumps(validation, indent=2)+'\n')
+    if not passed:
+        print(json.dumps(validation))
+        return 1
+    dll = output / 'build/eu4_tag_command_1375_v31.dll'
+    raw = dll.read_bytes()
+    nt = struct.unpack_from('<I', raw, 60)[0]
+    assert raw[nt:nt+4] == b'PE\0\0'
+    config = json.loads((ROOT / 'bridge/tag_actions_1375_v31.json').read_text())
+    manifest = {'schema': 'EU4TAGBUILD/1', 'purpose': config['purpose'], 'DLL': dll.name,
+                'dll': pin(dll), 'PE_timestamp': struct.unpack_from('<I', raw, nt+8)[0],
+                'SizeOfImage': struct.unpack_from('<I', raw, nt+80)[0],
+                'game_sha256': '9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a',
+                'source_pins': sources, 'validation': pin(validation_path), 'experimental': True,
+                'actions': config['actions'], 'arbitrary_actor_runtime_verified': False,
+                'production_ready': False, 'no_send': False}
+    manifest_path = dll.parent / 'build.json'
+    manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True)+'\n')
+    print(json.dumps({'passed': True, 'tests': validation['tests'], 'manifest': str(manifest_path),
+                      'manifest_sha256': pin(manifest_path)['sha256'], 'build': build}))
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

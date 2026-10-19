@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "purpose": "offline_directional_plan_inputs",
+  "files": {
+    "work/native/lab_protocol_v14_1375.py": {
+      "size_bytes": 66614,
+      "sha256": "349e02b5c8428e404b59eb76537d4eff4e666a03c9857e1e9e15007654bf287e"
+    },
+    "tools/request_diplomacy_lab_v14.py": {
+      "size_bytes": 7924,
+      "sha256": "91e0b37281036e8d7ea173a3c9f69c388149d19604641b81defb5eeb0132f07b"
+    },
+    "work/native/v14/lab-request-1375.h": {
+      "size_bytes": 3754,
+      "sha256": "48acecad758eb9e9649878bcbebd19935eda30a42cee19b6a4cfdd6a818e49df"
+    },
+    "work/native/v14/pair-engine-1375.cpp": {
+      "size_bytes": 84162,
+      "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e"
+    },
+    "work/native/v14/pair-engine-1375.h": {
+      "size_bytes": 5377,
+      "sha256": "f5257b31ca81e3c886f501433cce1da3eaba0da868bec3225412cb03fee2a526"
+    },
+    "work/native/v14/research-lab-1375.cpp": {
+      "size_bytes": 44699,
+      "sha256": "d30dc912916b35cce79202d766226b02286600e7fc6c3c0ccea1e5a6ff8131fd"
+    },
+    "work/runtime/native1375-v14/build.json": {
+      "size_bytes": 5633,
+      "sha256": "aa09084d3d1d7c9adff164b67356d72e2c511b519e79b382e7bc54a80c96ec75"
+    },
+    "work/candidates/fixture-v14-1375/mod/llm_diplomacy_test/events/llmt_fixture.txt": {
+      "size_bytes": 1900,
+      "sha256": "86b8b187e446e06277b1602022b34bbb509677be6f63ffb48e135243f1c70da5"
+    },
+    "work/candidates/fixture-v14-1375/mod/llm_diplomacy_test/common/event_modifiers/llm_diplomacy_test.txt": {
+      "size_bytes": 274,
+      "sha256": "93227038a3b55dda162927b4e842c508131d50c8784aa74c36bde39f7aeda54a"
+    },
+    "work/candidates/directional-pair-observer-1375/observer.py": {
+      "size_bytes": 16803,
+      "sha256": "acb38546adea4d1fef88803a1057e465d7e5ff297fe4959760757d3b7fce1496"
+    },
+    "work/candidates/directional-pair-observer-1375/evidence-contract.json": {
+      "size_bytes": 29556,
+      "sha256": "fb1e47ca36655a1ef371e8ef5e85ae7bd77de0e747c50a19cf06d787de8307a7"
+    },
+    "work/candidates/directional-pair-observer-1375/validation-strict-two-pass.json": {
+      "size_bytes": 2879,
+      "sha256": "a78c90c394a1fe3d5f7d24e651531c7c2494e2411239da577fef1bc5fc467c74"
+    },
+    "work/review-results/directional-pair-observer-fixed-action-catalog-20261008a.json": {
+      "size_bytes": 14855,
+      "sha256": "fec24eb4e1edf7a53349350d651774b66c91f3c1d76cf0c280865217d20b0f02"
+    },
+    "work/reports/native-pair-extension-effects-v10-1375.json": {
+      "size_bytes": 313488,
+      "sha256": "b6f4b69db38f5e3eae0c3cebf1fa5298701b86a98e8299d6f0e9759b84861f62"
+    },
+    "work/reports/native-pair-extension-v10-1375.json": {
+      "size_bytes": 2862211,
+      "sha256": "0c1731b0b29b296da73dc406fb31544ada59c17c275d17d623677b16998698bd"
+    },
+    "bridge/diplomacy_research_evidence.json": {
+      "size_bytes": 301158,
+      "sha256": "8eecb00f3815cbe45203fe48ea3d8f276cf4a73a57add0a3d6bce2568a27e054"
+    },
+    "bridge/diplomacy_catalog.json": {
+      "size_bytes": 1304602,
+      "sha256": "0fbbf97d7e43f72cba9e45a4536fcca0f3d7b52517d01e24554bee623b7795e1"
+    },
+    "work/runtime/native1375-v14/preflight-summary-29492.json": {
+      "size_bytes": 304994,
+      "sha256": "b613abc251efbcd293d4c6fa0b7b3e5178360a822772ab43ff4ef98b3ca50c8c"
+    },
+    "work/runtime/native1375-v14/preflight-prefix-29492/research-1375.jsonl": {
+      "size_bytes": 205820,
+      "sha256": "8627ca459a9af8c3076cc27b3a6ecf7a6ec40a74eb7051a6e15ec40f7fb7727f"
+    },
+    "work/runtime/native1375-v14/directional-embargo-legality-result-18356-seq2.json": {
+      "size_bytes": 5330,
+      "sha256": "663b422ebc92c5c81483b7fb4fa8cd4a25e37b09c02756c35f9f9e9ae64c1ecd"
+    },
+    "work/runtime/native1375-v14/directional-state-after-fixture-18356.json": {
+      "size_bytes": 63363,
+      "sha256": "4863e695a97cfa2c9e905d89efaf527d6a1608a7271fb686b85a131c7a4cc4f8"
+    },
+    "work/runtime/native1375-v12/experiment-summary-17676.json": {
+      "size_bytes": 69740,
+      "sha256": "637f7b7ebccf31c11e51b13562ac90b908e5c25c2252c36cc76cd9e106475372"
+    },
+    "docs/native-pair-production-readiness-1375.md": {
+      "size_bytes": 13323,
+      "sha256": "6b469dcd5ecf78c473134ce741551aa284687886ce8dc562ca5cf7a0123c8627"
+    },
+    "docs/native-single-player-origin-1375.md": {
+      "size_bytes": 7540,
+      "sha256": "e93233ecd9a284f48131ec91857726352f2eeaea9c4d57cf6c02f45dbdb1394d"
+    },
+    "docs/native-single-player-context-1375.md": {
+      "size_bytes": 7140,
+      "sha256": "dd2b1e2ffc1be1a95b598973be74d96436e037f85f04678fbea981a7d50e334e"
+    },
+    "docs/native-world-epoch-1375.md": {
+      "size_bytes": 6118,
+      "sha256": "163c1a6090a25ca7d4d2113c1aaef254d97f04a7cb438b65b9e97db81c71b9d2"
+    }
+  },
+  "input_count": 26,
+  "input_bytes": 5749257,
+  "bounds": {
+    "count": 32,
+    "per_input": 4194304,
+    "total": 16777216
+  },
+  "frozen_native_sources_checked": 20,
+  "frozen_host_sources_checked": 11,
+  "frozen_support_sources_checked": 8,
+  "manifest_sha256": "aa09084d3d1d7c9adff164b67356d72e2c511b519e79b382e7bc54a80c96ec75"
+}

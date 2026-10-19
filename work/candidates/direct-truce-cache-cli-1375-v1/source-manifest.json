@@ -1,0 +1,55 @@
+{
+  "schema": "EU4-DIRECT-TRUCE-CACHE-CLI-SOURCE-MANIFEST/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "source_pins": {
+    "work/candidates/direct-truce-cache-cli-1375-v1/README.md": {
+      "bytes": 4102,
+      "sha256": "a76025f4b452ce611bfbaf83bf48e8be202cdeda6b879e74cbb056565c5c876c"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py": {
+      "bytes": 16856,
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/run_offline.py": {
+      "bytes": 3066,
+      "sha256": "28bb6291fe3a473c502a2f724b1b3ee4089e1e6d03fad8c32f468f47d54efd36"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/test_direct_truce_cache.py": {
+      "bytes": 14730,
+      "sha256": "b5611eda85aa362aa9e28cbb5c4359e3e9183c76a0f84bc088d941bc4a0b2934"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/capture_once.py": {
+      "bytes": 24560,
+      "sha256": "b39823564ab26a9da7093e1812b2a1fec28a17141e3c4a1024460664b1943b6e"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/host-manifest.json": {
+      "bytes": 43987,
+      "sha256": "e7673b0e07c052788d6d2c6378939e176f57e79a45ea09888b957741b7370166"
+    },
+    "work/capture_direct_truce_flags_20261015.py": {
+      "bytes": 12011,
+      "sha256": "1677ccf7f03b93c44d3bb5313bae3350605f51c58855f381f5b516504f4bb904"
+    },
+    "work/reports/direct-truce-current-source-review-20261015-r1/independent-source-ready.json": {
+      "bytes": 4605,
+      "sha256": "98b673b5e7c823d01b85988839ad1c7479f20439e8254be789b510e740be474b"
+    },
+    "work/reports/war-peace-api-20261015-r23-independent-review/war/findings.json": {
+      "bytes": 9673,
+      "sha256": "8d78398749fd0845ff4abbf8c297819aee58ea0ae3ce6ed1cf3c6f233d0017be"
+    },
+    "work/reports/war-peace-api-20261015-r23-truce-observation-contract/war/manifest.json": {
+      "bytes": 2375,
+      "sha256": "27173b65e73e13f64c42c0891b7b299602a6a7944b2946f48907d17a3d9f7778"
+    }
+  },
+  "native_ready": false,
+  "stage": "reviewed_source_sealed_readonly_candidate",
+  "runtime_capture_authorized": true,
+  "independent_source_review": {
+    "bytes": 9071,
+    "sha256": "bed58b4715faff625c591a879a35b1469e7ec169b8f0807e2821547bc5b89f9f",
+    "path": "work/reports/direct-truce-cache-cli-source-review-20261015-r1/independent-source-ready.json"
+  }
+}

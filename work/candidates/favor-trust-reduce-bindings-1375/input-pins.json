@@ -1,0 +1,13 @@
+{
+  "work/AGENTS.md": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187",
+  "work/discover_diplomacy.py": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318",
+  "work/map_diplomacy_fields.py": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85",
+  "work/trace_change_subject_type.py": "8bc16d94e8f6104a79ce541c6de0843894293e158f44efb6c47f27b9b8dec6da",
+  "work/candidates/favor-exchanges-contract-1375/report.json": "c6350c76c956ae6d1bab4e3026944685d714aa74515052f5d5c490a65933c01f",
+  "work/candidates/favor-exchanges-contract-1375/review.json": "aa5f9b7fd647d5b3fa5845a3d60ad4064b64a06369138eb91f71533f4033a80d",
+  "work/candidates/favor-exchanges-contract-1375/source-index.json": "f22111466ccd6cc2acad013fbdf5dd978ae923b0a9a9a0bc0484badc79e109c6",
+  "work/review-results/favor-exchanges-action-catalog-20261008a/review.json": "116735f43315bdb0a074570ee5225a844d8f7b60f2cf99a8109aa76c48e040d9",
+  "work/runtime/unpacked-1.37.5/base/common/defines.lua": "e3cf26836c70f8825a2ffd93160b2a09cdad29f78355787d07803138eb156f18",
+  "work/runtime/unpacked-1.37.5/base/interface/countrydiplomacyview.gui": "4229da43cfb940f4b584828336ddc39439f8b8915eb4a3430813304e4b50dac1",
+  "work/probe_diplomacy_current.py": "a5a0b775a701466cf5f4c85db671e37f81c165daf5fddd2080b71ed6f147bb38"
+}

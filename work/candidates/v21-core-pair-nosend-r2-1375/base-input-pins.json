@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "work/AGENTS.md",
+      "bytes": 959,
+      "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+    },
+    {
+      "path": "work/candidates/v20-typed-family-dispatch-plan-1375/README.md",
+      "bytes": 13310,
+      "sha256": "0e9ae28bc5d6cf0901367309dafc02c1a316c558a59cfe7d213a94c16c4e707a"
+    },
+    {
+      "path": "work/candidates/v20-typed-family-dispatch-plan-1375/plan.json",
+      "bytes": 17520,
+      "sha256": "eb4fdcc6ea22f934ac30d9b2ef381f7486db124ff6f0266e2a098194c8f8ae67"
+    },
+    {
+      "path": "work/candidates/v20-typed-family-dispatch-plan-1375/abi-registry.json",
+      "bytes": 51298,
+      "sha256": "7606be5f796c6679754cab0b0b42d1a7ee9863836a33ab82d3c214f4a44d385f"
+    },
+    {
+      "path": "work/candidates/v20-typed-family-dispatch-plan-1375/input-pins.json",
+      "bytes": 7500,
+      "sha256": "7ad83e5a377a09f1c2c6b5f19b004b3da21bcfca70dcc1559a9124a8313e8942"
+    },
+    {
+      "path": "work/candidates/v20-typed-family-dispatch-plan-1375/source-index.json",
+      "bytes": 1943,
+      "sha256": "86ceb4969d19f2599a029a05a7d709f8000267eb38afcdf275c755a7ec4b8fd9"
+    },
+    {
+      "path": "work/candidates/v20-typed-family-dispatch-plan-1375/review.json",
+      "bytes": 3037,
+      "sha256": "bed744d59fc5b80ec9b5732b82402bd09abf97c3eb6de5e1bbcd98acdf2eb01c"
+    },
+    {
+      "path": "work/candidates/v19-spy-send-core-1375/spy_send_core.h",
+      "bytes": 4361,
+      "sha256": "444d42a30877f1dcb82ebfd689dc15a6cbcc02558abb7ba63e40a32860361514"
+    },
+    {
+      "path": "work/candidates/v19-spy-send-core-1375/spy_send_core.cpp",
+      "bytes": 25003,
+      "sha256": "300cb5f9f4923d4ced45906e2ccdcf5f26b275b7f18f51e9e2059357000e429a"
+    },
+    {
+      "path": "work/candidates/v19-spy-send-core-1375/source-index.json",
+      "bytes": 2378,
+      "sha256": "2b0e48f907c3966877deb715c278f03e55aef2f6571e4f1136662713a154c613"
+    },
+    {
+      "path": "work/candidates/v19-spy-send-core-1375/review.json",
+      "bytes": 3836,
+      "sha256": "3feb4d869421d0b2681f39d1d0196173e7190720c07c16b2f997dbc4dff4c31f"
+    },
+    {
+      "path": "work/candidates/v19-spy-restricted-host-r2-1375/host.h",
+      "bytes": 3300,
+      "sha256": "52ae8d01d2ca1a4e670eff2cf69426c88917f8e5a099b81c3035af403c17a59f"
+    },
+    {
+      "path": "work/candidates/v19-spy-restricted-host-r2-1375/host.cpp",
+      "bytes": 22231,
+      "sha256": "30608e0db83fc766c2d9f71b9292ba90c7f293c4231b7197166a24f7d7f13ed9"
+    },
+    {
+      "path": "work/candidates/v19-spy-restricted-host-r2-1375/preflight/host.h",
+      "bytes": 3946,
+      "sha256": "c4726204d2570e3b82930c1d7ba3e551aae34d63aa5c83847e59137d55534d95"
+    },
+    {
+      "path": "work/candidates/v19-spy-restricted-host-r2-1375/preflight/host.cpp",
+      "bytes": 21723,
+      "sha256": "5f92588de6fbbc249d31d20d41f7913e9a22b02451ff5570fb6e26df54510e8f"
+    },
+    {
+      "path": "work/candidates/v19-spy-restricted-host-r2-1375/source-index.json",
+      "bytes": 5695,
+      "sha256": "dd029391a73b7582afbba2a8bfaacf854343ff54410ba98a68b5cf9eb25a0833"
+    },
+    {
+      "path": "work/candidates/v19-spy-restricted-host-r2-1375/review.json",
+      "bytes": 9402,
+      "sha256": "b3553d5c291c83bf2d3159e7781f03dc521b90d1d4030f9ada78262e1243fcbd"
+    },
+    {
+      "path": "work/candidates/v19-spy-send-context-pins-1375/source-index.json",
+      "bytes": 3872,
+      "sha256": "fdd03532118cc05b5683e41bafaab40304ceeef1661959b9e80ce5a75e2b6436"
+    },
+    {
+      "path": "work/candidates/v19-spy-send-context-pins-1375/review.json",
+      "bytes": 3321,
+      "sha256": "03a316aa84e9b3db79159157ba31257d99f97903593defea0c009f3312d1c151"
+    },
+    {
+      "path": "work/candidates/curry-favors-contract-1375/contract.json",
+      "bytes": 5734,
+      "sha256": "c26365d6119b39ba560230278528de4c5198c8bef5901919adf35ec87c5ca19d"
+    },
+    {
+      "path": "work/candidates/curry-favors-contract-1375/report.json",
+      "bytes": 1144488,
+      "sha256": "10c33ee19481cf0c9b0f300e539fe7baee5065526463e3380b5bc08ebfabcf89"
+    },
+    {
+      "path": "work/candidates/curry-favors-contract-1375/source-index.json",
+      "bytes": 3873,
+      "sha256": "02c335b2130a8e93f2b95399bbbf9373c6bc0b1278ca54e57c76021ae4646bb4"
+    },
+    {
+      "path": "work/candidates/curry-favors-contract-1375/review.json",
+      "bytes": 4432,
+      "sha256": "883292a180d0987587ab2a0d29c5a6f0578f95748b041190919d30af94eca5d7"
+    },
+    {
+      "path": "work/review-results/v19-spy-send-core-native-inventory-20261008a/review.json",
+      "bytes": 9017,
+      "sha256": "1b1aa9c1bcef24dc44a5d1feb2307d39ef056066f14d30708d4ce8f6b836fb3d"
+    },
+    {
+      "path": "work/review-results/v19-host-r2-native-inventory-20261008a/review.json",
+      "bytes": 50417,
+      "sha256": "09c2a3ed5b07feaa45931d851539fb2c64fc3f259ada372aff2a7d07bf90f80f"
+    },
+    {
+      "path": "work/review-results/curry-favors-native-inventory-20261008a/review.json",
+      "bytes": 13534,
+      "sha256": "8ce53e40b9c1ee49a89841ee947ff6b9d2bce197046687639d5bd8fca52ca4d2"
+    },
+    {
+      "path": "work/native/v17/pair-engine-1375.h",
+      "bytes": 5377,
+      "sha256": "f5257b31ca81e3c886f501433cce1da3eaba0da868bec3225412cb03fee2a526"
+    },
+    {
+      "path": "work/native/v17/pair-engine-1375.cpp",
+      "bytes": 84162,
+      "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e"
+    },
+    {
+      "path": "work/reports/native-diplomacy-1.37.5.json",
+      "bytes": 1103013,
+      "sha256": "c64df6e043c9e7a498a25082e0e768902764e4a271ab3579f0eaddb2f1391633"
+    },
+    {
+      "path": "work/reports/native-pair-cancel-1375.json",
+      "bytes": 1342305,
+      "sha256": "54dc047d85fe8c06528d5fb3824a1928f56fac2c4bbf24c26e205bcfb08e0df3"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/input-pins.json",
+      "bytes": 5891,
+      "sha256": "9754bcb6e1ed0953260e716f80492bfd6198d4fe78d190956dc2e63a51c3f2e4"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/pair_component.h",
+      "bytes": 6428,
+      "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/pair_component.cpp",
+      "bytes": 19505,
+      "sha256": "6d39d03858412ac33c387a8f66f0fcfab2783be1c7da75cdb6f547f833332d37"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/test_pair_component.cpp",
+      "bytes": 17171,
+      "sha256": "26acd2b0e989b15534d3d60b487a9b6cda987b667a8b6759fa924efcae18b6ad"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/build_test.cmd",
+      "bytes": 1230,
+      "sha256": "3cb148b92d2ba95769310ee3913a046b53ac7d61309ba4a0d0de8eb7d5ad56e9"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/prepare.py",
+      "bytes": 3678,
+      "sha256": "7f1ce9fe490b97dd564d71d0c4a18f8feba218aaaa21c89b7fc6a0cd362aca5d"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/validate.py",
+      "bytes": 12608,
+      "sha256": "35a3a339f594051da06de4122adf785454b3cf3a3d00919fc1f324b7c5c285f4"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/README.md",
+      "bytes": 5371,
+      "sha256": "c8f86e8d497c30de4e32fecda4e748b99a3f583bf040b7c68d03dd84a78066c2"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/profile-registry.json",
+      "bytes": 6894,
+      "sha256": "04da164a2ef23f088243d933dd773b03fed06e253eda49617f3d5a384fe77e91"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/source-index.json",
+      "bytes": 1160,
+      "sha256": "6cba99d49775949076bcc9f0ac8389115ab0928d1174f3f07925f977562edf7f"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/report.json",
+      "bytes": 4206,
+      "sha256": "a169f275ed903af0b3aafd90094fb6bbd54ece4d47e55d1afd4327b7e613a35e"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/review.json",
+      "bytes": 1124,
+      "sha256": "ae0b3b3e6f9de19b53a96181762417a33cf538e58e856cc47c9489fc93e741ad"
+    },
+    {
+      "path": "work/candidates/v21-core-pair-nosend-1375/validation.json",
+      "bytes": 14903,
+      "sha256": "3d721a36502147ccf24fb23facc49a138c4cbcc8f39843fdd835f388fd350615"
+    }
+  ],
+  "total_bytes": 4071156
+}

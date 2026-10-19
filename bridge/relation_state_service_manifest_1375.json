@@ -1,0 +1,44 @@
+{
+  "schema": "EU4-RELATION-STATE-HOST-MANIFEST/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "read_only": true,
+  "native_calls": 0,
+  "source_pins": {
+    "bridge/relation_state_service.py": {
+      "bytes": 12071,
+      "sha256": "658425db11ccb4514767eb9cae6e95f046408615ddbfe56e546de560e906f992"
+    },
+    "tools/observe_relation_runtime.py": {
+      "bytes": 4399,
+      "sha256": "d0fe9ea80320d970d155f8171cdf312e17b67726e3765503bf2a93f50ba585ca"
+    },
+    "bridge/tests/test_relation_state_service.py": {
+      "bytes": 18162,
+      "sha256": "b0d08a357d379e9602e23aaa7b8d53a3c26d72000e00762114ad8b1678362721"
+    },
+    "tools/build_relation_state_service_manifest.py": {
+      "bytes": 1309,
+      "sha256": "6c23ed444856624e803f62d6fc296eaf869cd438602f9978fcf77922f9f4ef01"
+    },
+    "bridge/relation_effect_reader_manifest_1375.json": {
+      "bytes": 4986,
+      "sha256": "a7f49bca379b725e2987d425c849272b6ca05fe9ad6c3aa6579deead2c80e753"
+    },
+    "bridge/diplomacy_observer_service.py": {
+      "bytes": 4598,
+      "sha256": "139727da50f8357418fb9885b7b0415b146081de8fd05b9497835d6b5a5066ec"
+    },
+    "work/reports/relation-state-service-20261015/audit_live_file.py": {
+      "bytes": 8904,
+      "sha256": "1e82edeedb7cae3bd3e05009687309b7677b41200b91a9ca9ab1f4863e9404ea"
+    },
+    "work/reports/relation-state-service-20261015/live-file-audit.json": {
+      "bytes": 23869,
+      "sha256": "559826936018e415bf2ded2ef210483fd1f7f828ff22151c2962623b08565f42"
+    },
+    "work/reports/relation-state-service-20261015/report.md": {
+      "bytes": 6247,
+      "sha256": "58954aa804019f18f0c57dbcffedf8e07fc7c165547ec9d2003b4c20d044a804"
+    }
+  }
+}

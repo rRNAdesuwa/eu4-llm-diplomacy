@@ -1,0 +1,101 @@
+{
+  "external_source_unchanged_required": true,
+  "files": {
+    "work/AGENTS.md": {
+      "bytes": 959,
+      "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+    },
+    "work/candidates/current-country-tag-resolver-1375/layout.py": {
+      "bytes": 1660,
+      "sha256": "3aea89eb797282a55ca5810253a6b638cbf3d5e627713d764be2ffd245259a1f"
+    },
+    "work/candidates/current-country-tag-resolver-1375/report.json": {
+      "bytes": 22808,
+      "sha256": "5e1bb5dca20f036a82b59bc68101d9e1a01cc4ade28d9eb929f595ccb14a8c19"
+    },
+    "work/candidates/current-country-tag-resolver-1375/resolver.py": {
+      "bytes": 11963,
+      "sha256": "0378f980a9eed280dedc08a18eff92b31dc17566eb031cd29218e51bf4e42370"
+    },
+    "work/candidates/current-country-tag-resolver-1375/review.json": {
+      "bytes": 4597,
+      "sha256": "83dcb5580a325cc63e98882948573d4263bc7762e976d6f3c034ac13b70c4264"
+    },
+    "work/candidates/curry-favors-observer-1375/observer.py": {
+      "bytes": 18414,
+      "sha256": "1d960aee7de4daeb4afe1f53cef4f37ec6972b5b577252e026fd8c9e5e33c8f9"
+    },
+    "work/candidates/curry-favors-observer-1375/report.json": {
+      "bytes": 342002,
+      "sha256": "95a837d212f8f415c2d9d0714820ae90e2c98ae485710573b19c15d1c58df6b6"
+    },
+    "work/candidates/curry-favors-observer-1375/review.json": {
+      "bytes": 4206,
+      "sha256": "b384a68867c6ac29e9544ac484481c9ba5a806f6376d74ae638d62aaa292d49a"
+    },
+    "work/candidates/spy-modifier-observer-1375/observer.py": {
+      "bytes": 20533,
+      "sha256": "d386524d543d96509fe4230e5fd02b01bc7f404f5419054ae2a84f66fdb13e48"
+    },
+    "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.cpp": {
+      "bytes": 21944,
+      "sha256": "22dc8da31e3ec9baef1af453cc49b730c830bd21804d252ea189f680582cf53a"
+    },
+    "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.h": {
+      "bytes": 6428,
+      "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+    },
+    "work/candidates/v21-core-pair-nosend-r2-1375/report.json": {
+      "bytes": 5131,
+      "sha256": "99b178f035d7d0bf3fa2159df15a6d6b35e6792c98e8bc582de37c21cacf9def"
+    },
+    "work/candidates/v21-core-pair-nosend-r2-1375/review.json": {
+      "bytes": 1124,
+      "sha256": "4675e39339d3f2c4f807da3d63b7ab6194dae74ee472d2a03c91b9cb0f3bbda7"
+    },
+    "work/candidates/v21-core-pair-nosend-r2-1375/source-index.json": {
+      "bytes": 1426,
+      "sha256": "ffddffe2c0a82ed7e4e999fcc3eded44581d211ae142bdb3b8e8fd7eaa16716d"
+    },
+    "work/candidates/v21-core-pair-nosend-r2-1375/test_pair_component.cpp": {
+      "bytes": 17198,
+      "sha256": "f155e01429498324db8114ac09c1845b07145109c2c89e1dfdd98b5a19606a5d"
+    },
+    "work/candidates/v21-core-pair-nosend-r2-1375/validate.py": {
+      "bytes": 14052,
+      "sha256": "8a053dc5245dbd7daea44b63dcc910d856cd7634b0bf87ea89bedb19c3efb895"
+    },
+    "work/probe_diplomacy_relations_v7_1375.py": {
+      "bytes": 30743,
+      "sha256": "ff28f8bbcac46411d3405cc76e501e0984fd592c72c9196d5abbe005f3529805"
+    },
+    "work/probe_pair_effects_1375.py": {
+      "bytes": 26397,
+      "sha256": "e5ae9d341c57e7cc79169b708c1d37ccf79ac3d09e88c953e1d4bcbb3ab1cf67"
+    },
+    "work/reports/native-pair-cancel-1375.json": {
+      "bytes": 1342305,
+      "sha256": "54dc047d85fe8c06528d5fb3824a1928f56fac2c4bbf24c26e205bcfb08e0df3"
+    },
+    "work/reports/native-pair-effects-1375.json": {
+      "bytes": 2190321,
+      "sha256": "b67e9e3ec3d333ad5603c9bcb7a70d614bab1107f283c6f01d99e7c744730ae0"
+    },
+    "work/reports/native-test-fixture-1375.json": {
+      "bytes": 825802,
+      "sha256": "b87d992a55aef42efe9f41ba6822a11bd42f66ccac1fc2842d8def82b3b38f6e"
+    },
+    "work/review-results/core-five-full88-and-spy-entry-action-catalog-20261008a/exact-static-check.json": {
+      "bytes": 418022,
+      "sha256": "bad4256ce1be07eb5be275a044ad5105580434532bd89844cb3eaafe2c61e912"
+    },
+    "work/review-results/current-country-tag-resolver-independent-20261008a/review.json": {
+      "bytes": 1026,
+      "sha256": "0288b01333ebb1695f77d5af9f46329995fa0d27ae49e0c04ed556506ec3e67d"
+    }
+  },
+  "limitations": "source hash binding, not loaded module attestation",
+  "new_decode_bytes": 0,
+  "purpose": "five_negative_reader_existing_source_pins",
+  "schema_version": 1
+}

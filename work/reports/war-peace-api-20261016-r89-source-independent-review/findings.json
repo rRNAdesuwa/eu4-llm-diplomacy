@@ -1,0 +1,158 @@
+{
+  "schema": "EU4-R89-INDEPENDENT-SOURCE-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_source_manifest": {
+    "bytes": 29452,
+    "sha256": "208d34192f5aed513bcf0586c607eb6a4397a59693575d0014745ee48780d8fd"
+  },
+  "subject_producer": {
+    "bytes": 18739,
+    "sha256": "667e6cdd3d5e7390d0b5ce08d19ac127abee5824b7c68b102254ae3a94931ab0"
+  },
+  "subject_entry_seed": {
+    "bytes": 6275,
+    "sha256": "e4f1e085c7e1b7147432508c51e355c0e30473b8813a149d4e7043e28ebdaf9e"
+  },
+  "subject_cfg_core": {
+    "bytes": 5317,
+    "sha256": "5f0b566a36b7a765c895dd0068941ab828e82d34c088fc33250d6083b9d43252"
+  },
+  "subject_metadata_core": {
+    "bytes": 4120,
+    "sha256": "ea32c610a8b578911eb2c8696535b3becf3db20d86977d91bc2463f8b563b4d0"
+  },
+  "subject_launcher": {
+    "bytes": 4138,
+    "sha256": "b3b2083f94576b4bfd399b8a5dde0e910eba8268f498ce84e3a5cabfbbbd9c27"
+  },
+  "subject_path_references": {
+    "subject_source_manifest": {
+      "path": "work/reports/war-peace-api-20261016-r89-c9d60-source/source-manifest.json",
+      "bytes": 29452,
+      "sha256": "208d34192f5aed513bcf0586c607eb6a4397a59693575d0014745ee48780d8fd"
+    },
+    "subject_producer": {
+      "path": "work/reports/war-peace-api-20261016-r89-c9d60-source/produce.py",
+      "bytes": 18739,
+      "sha256": "667e6cdd3d5e7390d0b5ce08d19ac127abee5824b7c68b102254ae3a94931ab0"
+    },
+    "subject_entry_seed": {
+      "path": "work/reports/war-peace-api-20261016-r89-c9d60-source/entry-seed.json",
+      "bytes": 6275,
+      "sha256": "e4f1e085c7e1b7147432508c51e355c0e30473b8813a149d4e7043e28ebdaf9e"
+    },
+    "subject_cfg_core": {
+      "path": "work/reports/war-peace-api-20261016-r89-c9d60-source/cfg_core.py",
+      "bytes": 5317,
+      "sha256": "5f0b566a36b7a765c895dd0068941ab828e82d34c088fc33250d6083b9d43252"
+    },
+    "subject_metadata_core": {
+      "path": "work/reports/war-peace-api-20261016-r89-c9d60-source/metadata_core.py",
+      "bytes": 4120,
+      "sha256": "ea32c610a8b578911eb2c8696535b3becf3db20d86977d91bc2463f8b563b4d0"
+    },
+    "subject_launcher": {
+      "path": "work/reports/war-peace-api-20261016-r89-c9d60-source/launch_once.py",
+      "bytes": 4138,
+      "sha256": "b3b2083f94576b4bfd399b8a5dde0e910eba8268f498ce84e3a5cabfbbbd9c27"
+    }
+  },
+  "scope": "full_R89_executable_source_and_four_retained_new_synthetic_cases_file_only",
+  "stage": "SOURCE_READY_only; paused_after_bounded_file_review_completion",
+  "roles": {
+    "author": "war_api",
+    "reviewer": "diplomacy_static",
+    "reviewer_prior_roles": "R89 old proposal author and R87 source/actual reviewer. Those historical records are fixed witnesses, not recursive self-certification.",
+    "source_generator_or_cases_executed_by_reviewer": false
+  },
+  "reviewed_graph": {
+    "actual_text_sources": 38,
+    "engine_metadata_only": 38,
+    "direct_flat_files_prepost": 83,
+    "AST_parsed_Python_files": 21,
+    "recursive_closure_followed": false
+  },
+  "observations": [
+    {
+      "id": "reuse",
+      "summary": "Nine producer helpers are exact text and AST reuse from pinned R87; CFG equals precisely the five declared literal/seed-label replacements. No old cc32c/SAR normal-path claim is inherited.",
+      "evidence": "static-checks.json"
+    },
+    {
+      "id": "metadata",
+      "summary": "metadata_core.diagnose reserves request count before callback, limits binary search to29 and selected/previous/next to3, checks positive spans, duplicate-byte stability and observed ordered/disjoint records. Global table ordering remains a premise. Completed ordered gaps/contained nonexact set function metadata unknown; invalid/incomplete stops with0code."
+    },
+    {
+      "id": "fixed-window",
+      "summary": "Only [0xc9d60,0xc9e60)256B from one direct-CALL seed. Metadata does not select or expand extent. Unique cached .text mapping and file bounds are required. CFG follows only local branches, never CALL targets; partial, overlap, abnormal and outside edges remain explicit terminals."
+    },
+    {
+      "id": "authorization",
+      "summary": "Strict new schema and once-grant SHA; source-manifest authorized raw buffer is pinned before parse/engine selection; six PIN-ONLY peer/raw subjects, exact raw scope/window/metadata/gap policy, R87 full-review pair/five FULL subjects and separate root acceptance are required before PE. Exclusive launcher/producer claims prevent retry. The late root acceptance is an extra author-file pin; canonical source and recorded cases are unchanged."
+    },
+    {
+      "id": "commit",
+      "summary": "One target context, two full38462504B SHA streams, at most384B diagnostic metadata and fixed256B. Normal target close precedes final source/engine/auth/review guards and capture commit. Parent2MiB+child30MiB counters, ordinary4MiB, software768MiB/1GiB stop and reviewed Job45s/768MiB/8processes/2MiB output acceptance remain in place."
+    },
+    {
+      "id": "raw-seed",
+      "summary": "Retained cc305 E856DAFFFF signed-9642 from cc30a resolves c9d60; five row/raw references match old owned bytes. RCX/RDX/R8/R9 are MOVs from RBX/RSI/R12/RDI under old normal-return/nonvolatile/valid-stack/alias premises; no formal type, allocator, ownership, units or effect inferred."
+    },
+    {
+      "id": "retained-cases",
+      "summary": "Four once-only recorded cases pass: exact+nonexact keep256; valid ordered gap remains unknown function metadata; overlap+11-byte short record refuse; one-seed CALL fallthrough/RET fake never follows callee and rejects255B. Five metadata fixtures total203 virtual callback bytes. Reviewed source and replayed retained integer/JSON arithmetic only, no cases rerun."
+    },
+    {
+      "id": "job-witness",
+      "summary": "Author Job receipt exit0/error null/processes2/active0/direct collected/peak11882496. Childsource1150002+runner1194656=2344658; author source upper10354140 and retained upper960897. Historical Job/runtime statistics are retained producer witnesses, not new execution."
+    }
+  ],
+  "limitations": [
+    "This is source review, not permission or evidence of R89 actual collection. New root raw review and exact once grant remain required.",
+    "Future capture code/RET/type/header/ownership and helper effects remain unknown. Matching metadata or code would not certify callability, full function, lifetime, world lease or a game effect.",
+    "All source/file IO totals concern explicit accounted routes, not OS loader IO. The reused streaming helper may leave partial failure IO incomplete; failure output says so. No success or complete-failure ledger is inferred from a failed guard.",
+    "Job output is an acceptance cap and can transiently overshoot before refusal. Job cleanup concerns only the owned child tree, not game state or target lifetime.",
+    "The case fixtures are fabricated and their metadata bytes are virtual, not PE reads. Sampled metadata cannot prove global .pdata ordering."
+  ],
+  "reviewer_failures": {
+    "assertion_failures": 0,
+    "author_retries": 0,
+    "display_truncations": [
+      "manual2",
+      "manual3"
+    ],
+    "display_note": "Tool results preserved; full pinned snapshot remained available. No source loss or author rerun."
+  },
+  "resources": {
+    "source_returned_through_seal_preflight": 13989164,
+    "final_check_and_delivery_reserve": 4194304,
+    "source_upper": 18183468,
+    "source_limit": 33554432,
+    "retained_limit": 8388608,
+    "ordinary_limit": 4194304,
+    "peak_own_commit_witness": 27389952,
+    "no_full_OS_IO_claim": true
+  },
+  "authority": {
+    "actual_authorized": false,
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "ownership_transfer_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "game_process_accesses": 0,
+    "PE_reads": 0,
+    "engine_body_reads": 0,
+    "decoder_runs": 0,
+    "author_program_runs": 0,
+    "tests_or_cases_rerun": 0
+  },
+  "pending": [
+    "Root may independently review the raw seed and decide a new exact once grant after the user resumes. This review does not issue it."
+  ],
+  "all_prior_shells_collected": true
+}

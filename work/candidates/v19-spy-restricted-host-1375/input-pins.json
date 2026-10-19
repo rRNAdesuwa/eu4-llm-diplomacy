@@ -1,0 +1,90 @@
+{
+  "work/candidates/v18-spy-restricted-host-1375/codec.h": {
+    "bytes": 5043,
+    "sha256": "c4532a652baeb635cd84ec08e4ef68332d7336b9a87bc590f8cd24a18c4b47fa"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/host.cpp": {
+    "bytes": 20067,
+    "sha256": "d923b20fe48fa7f88360969bffe15bc33085379a074115ca4f385b55520995a0"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/host.h": {
+    "bytes": 3546,
+    "sha256": "86bae216d512e44fe013754342e8fe9ab97e9ced23745b5ae689a7a2bd29d7f9"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/journal.cpp": {
+    "bytes": 5195,
+    "sha256": "9b8862489fe1bd1a738becc74b27b09b3a635502b1d99f2ce04450c5051659e2"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/journal.h": {
+    "bytes": 882,
+    "sha256": "7af3579f4c30f6fef0a84f68e047b614b875f4d0ff255bbf07ac74c709b5bfc7"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/native_env.cpp": {
+    "bytes": 11212,
+    "sha256": "a3de24cb70c38b096ba9ab3a6878d261f4f754b2b1ef41c8ae826caeb8592cd0"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/native_env.h": {
+    "bytes": 1427,
+    "sha256": "8aec96f180b37783560ff9b11583fdbc3b44bd7363c3b3c585e5f84474b3b243"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/review.json": {
+    "bytes": 5050,
+    "sha256": "2548ad1797d37bebc85d1b2151d3a78818ccfee6740604a36d25b3d29c41cde2"
+  },
+  "work/candidates/v19-spy-send-core-1375/contract.json": {
+    "bytes": 3159,
+    "sha256": "6951869a43fa819ebe5d1eca0b3dad6289126190372bda18d33a30409292f476"
+  },
+  "work/candidates/v19-spy-send-core-1375/mock_support.inc": {
+    "bytes": 17566,
+    "sha256": "ecb9ed6fb916f55a79a43838aa11944f5c0e4970bcba21e7e21f3ff615830606"
+  },
+  "work/candidates/v19-spy-send-core-1375/review.json": {
+    "bytes": 3836,
+    "sha256": "3feb4d869421d0b2681f39d1d0196173e7190720c07c16b2f997dbc4dff4c31f"
+  },
+  "work/candidates/v19-spy-send-core-1375/sender-pins.h": {
+    "bytes": 4171,
+    "sha256": "1bcbc4f220e98720aa27f944a81814f068c8b3c7b93d93379ac2a80570dd9c6e"
+  },
+  "work/candidates/v19-spy-send-core-1375/source-index.json": {
+    "bytes": 2378,
+    "sha256": "2b0e48f907c3966877deb715c278f03e55aef2f6571e4f1136662713a154c613"
+  },
+  "work/candidates/v19-spy-send-core-1375/spy_send_core.cpp": {
+    "bytes": 25003,
+    "sha256": "300cb5f9f4923d4ced45906e2ccdcf5f26b275b7f18f51e9e2059357000e429a"
+  },
+  "work/candidates/v19-spy-send-core-1375/spy_send_core.h": {
+    "bytes": 4361,
+    "sha256": "444d42a30877f1dcb82ebfd689dc15a6cbcc02558abb7ba63e40a32860361514"
+  },
+  "work/candidates/v19-spy-send-core-1375/v18-preimage/pins.h": {
+    "bytes": 3439,
+    "sha256": "c9bb4ad8595bb09bba03d630bf03ca9babe5c22faa604d406f5a51aaf8f27fbd"
+  },
+  "work/candidates/v19-spy-send-core-1375/v18-preimage/spy_core.cpp": {
+    "bytes": 19571,
+    "sha256": "be276541836f50137d38a3c1250357a0dc614d76d20ba6a61bf37a53c58a0819"
+  },
+  "work/candidates/v19-spy-send-core-1375/v18-preimage/spy_core.h": {
+    "bytes": 3797,
+    "sha256": "290d2db8201bd51901e5d2e080f4bb76952e548f23ec6e82b1df17def1d68321"
+  },
+  "work/candidates/v19-spy-send-plan-r2-1375/contract.json": {
+    "bytes": 3201,
+    "sha256": "d47977387b7a3e5a7e7987fd2fbe7c108b74c9e222104e1d1cc42d24516ceaa3"
+  },
+  "work/candidates/v19-spy-send-plan-r2-1375/review.json": {
+    "bytes": 2515,
+    "sha256": "0f5b2cbccd17ab0e52494c7177317baadefc6f2b2086f001419950e16e87a0cc"
+  },
+  "work/review-results/v18-spy-host-action-catalog-20261008a/review.json": {
+    "bytes": 6321,
+    "sha256": "816850fa802a0de45bc9d5d7979531b649b803a968c3b6e2c688af0cb51b723c"
+  },
+  "work/review-results/v19-spy-send-core-native-inventory-20261008a/review.json": {
+    "bytes": 9017,
+    "sha256": "1b1aa9c1bcef24dc44a5d1feb2307d39ef056066f14d30708d4ce8f6b836fb3d"
+  }
+}

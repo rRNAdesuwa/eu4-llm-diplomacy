@@ -1,0 +1,34 @@
+{
+  "work/candidates/favor-exchanges-contract-1375/contract.py": {
+    "bytes": 6356,
+    "sha256": "b7e503a4980dde7026deeaed33d4a17f1ee17b87bca4f3ca8483bcd180f60dbb"
+  },
+  "work/candidates/favor-exchanges-contract-1375/report.json": {
+    "bytes": 2149548,
+    "sha256": "c6350c76c956ae6d1bab4e3026944685d714aa74515052f5d5c490a65933c01f"
+  },
+  "work/candidates/favor-exchanges-contract-1375/review.json": {
+    "bytes": 2302,
+    "sha256": "aa5f9b7fd647d5b3fa5845a3d60ad4064b64a06369138eb91f71533f4033a80d"
+  },
+  "work/candidates/war-dynasty-province-contracts-1375/report.json": {
+    "bytes": 2398304,
+    "sha256": "89e2c647a115164a9f18093b44d904117102b1a96bf2fc70f78c7ad900954fc0"
+  },
+  "work/candidates/war-dynasty-province-contracts-r2-1375/contract.py": {
+    "bytes": 6675,
+    "sha256": "46a00d0d9ff81af3164a08cf7b2bd4bee04777b3be88cb2cfa6b38cacbb9a757"
+  },
+  "work/candidates/war-dynasty-province-contracts-r2-1375/review.json": {
+    "bytes": 3389,
+    "sha256": "58c4034cd5e7f9c0f63e7a0ce092ef4709482a90470e7ad6855aee0fb8839f43"
+  },
+  "work/review-results/favor-exchanges-action-catalog-20261008a/review.json": {
+    "bytes": 4748,
+    "sha256": "116735f43315bdb0a074570ee5225a844d8f7b60f2cf99a8109aa76c48e040d9"
+  },
+  "work/review-results/war4-r2-external-20261008a/review.json": {
+    "bytes": 3102,
+    "sha256": "15c30da2ebb20b1ce2eb2ae5c10b49e40e4b732fe98d1e2a3237a37e7bb1092b"
+  }
+}

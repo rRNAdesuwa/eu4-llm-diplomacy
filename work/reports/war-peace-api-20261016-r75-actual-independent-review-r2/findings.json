@@ -1,0 +1,126 @@
+{
+  "schema": "EU4-R75-ACTUAL-INDEPENDENT-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "scope": "full_retained_actual_package_and_selected_null_successor_machine_contract",
+  "subject_actual_manifest": {
+    "bytes": 16739,
+    "sha256": "f05a565e8fdb8c2006cd9b2f94e77fef5a86c1c7fbf8d5bcd7e8c91f22c2eab9"
+  },
+  "subject_capture_pin": {
+    "bytes": 69417,
+    "sha256": "c0667fdefc13e922d45321b2d63f87e567bb1db3e3d8ab37d447d8f35a3f59b0"
+  },
+  "subject_contract_pin": {
+    "bytes": 6999,
+    "sha256": "b841344c4c286f1cd7d5bfe7c5edea930913a9e9191c5731bb03a6f1b62c19ea"
+  },
+  "subject_owned_pin": {
+    "bytes": 584,
+    "sha256": "150e721451fdf8d071cb038d2530163f7c72be094ebb1598cf2c42249c9e9d3c"
+  },
+  "subject_selected_pin": {
+    "bytes": 10173,
+    "sha256": "5ae4eb40dc81a08ff3c328d8d436bfdee72e26b0211d2cbab0fe7fbf317e9efb"
+  },
+  "subject_filecheck_pin": {
+    "bytes": 6841,
+    "sha256": "65aec90be7d9373dc8566d222cd94d4c1366a8bfdd03bb7cb127b2962f53f889"
+  },
+  "subject_delivery_pin": {
+    "bytes": 3161,
+    "sha256": "d88cab422b0fe1a50f70107d4fd3e73b54a3ba8b8e46d0bb6596810479270899"
+  },
+  "raw_replay": {
+    "bytes": 5020,
+    "sha256": "e2890618fa1302695ea38f1b857a0688390b33ef58dc30f3f62db21e5b86f05b"
+  },
+  "roles": {
+    "R75_actual_author": "validation_audit (Val)",
+    "current_reviewer": "War; independent of R75 actual and retained author",
+    "prior_overlap": "War authored R75 raw entry review and original R69 source design, later reviewed Val R69 actual. Those are disclosed upstream witnesses.",
+    "source_peer": "D independently reviewed R75 source; source review is retained separately, not claimed new by this review"
+  },
+  "checks": {
+    "47_author_flat_pins_before_after": true,
+    "38_decoder_expected_metadata_equal_not_opened": true,
+    "three_subject_bound_reviews_and_new_exact_once_root_auth": true,
+    "claim_and_capture_subjects": true,
+    "raw12B_metadata_and16B_code": true,
+    "all8_instruction_raw_GP_rows": true,
+    "local_only_CFG_and_stack_projection": true,
+    "completed_read_and_resource_bills": true,
+    "normal_context_exit_before_capture_source_order": true
+  },
+  "conclusions": [
+    "The only new descriptor is19163@0x249d244:583699006836990038dde701, giving[0x993658,0x993668). Its16B are fully retained and match8rows.",
+    "MOVRAX,currentR14 precedes fivePOP restores. Normal selected return copies current fragment-entry R14 bits, not JE-entryzero or scalarDWORD[D].",
+    "ADD RSP,0x30 then5POP+RET reads6QWORD/48B from the original frame and leavesRSP=S69+8 under valid uncorrupted saved/control-stack assumptions.",
+    "No selected CALL, branch or explicit memory operand/store occurs. ADD replaces arithmetic flags; DF remainsunknown.",
+    "The selected suffix is locally normalclosed; whole993570, independent function/formals, prior97bd30 behavior and final D/header state remainunknown.",
+    "Direct pins, three review subjects, rootgrant06188d1d..., exclusive claim and capture publication order agree; normal file context exit and final guards are retained witness."
+  ],
+  "precision_notes": [
+    "The preflight receipt lists62571B but reports65560B, a conservative unitemized2989B delta; not an inferred extra read. Covered by prior manual allowance.",
+    "The reviewer reads only47author flat sources plus explicit delivery/check extensions; no recursive old closure or enginebody is authenticated anew.",
+    "Current source/engine equality in capture and historical twoPE SHA passes are producer witnesses. This review rehashes ordinary flat files only, notPE or engine.",
+    "Before/after equality is not external atomicity/ABA exclusion. Earlier completed source/read journals are not full OS/loader IO or failed partial IO proofs.",
+    "normal_target_context_exit is Python source/retained evidence, not an independent OS close-return check. owned-code may be emitted before targetclose; committed capture is after close/postguards.",
+    "Software self-memory guards and collected direct command exit0 are retained; hard Job and universal process-tree cleanup proof are not claimed.",
+    "Local no D/header access does not prove their ranges disjoint from the stack; prior aliases can change D/header/saved words.",
+    "No business units, recipient direction, selected effect, current world, native invocation, retry or lease authorization follows."
+  ],
+  "author_resource_witness": {
+    "source_completed_bytes": 17052059,
+    "retained_upper_bytes": 3573448,
+    "combined_upper_bytes": 20625507,
+    "PE_total_bytes_separate": 76925036,
+    "producer_peak_private_bytes": 22753280,
+    "producer_invocation_seconds": 0.4993406,
+    "timing_scope": "complete cmd/Python producer invocation; not isolated targeted-read time",
+    "hard_Job_installed": false
+  },
+  "review_resources": {
+    "explicit_file_read_bytes_before_after": 1193450,
+    "manual_inspection_allowance_bytes": 1048576,
+    "prior_failed_review_allowance_bytes": 1048576,
+    "retained_and_check_allowance_bytes": 2097152,
+    "stage_limit_bytes": 25165824,
+    "ordinary_file_limit_bytes": 4194304,
+    "software_memory_guard_bytes": 805306368,
+    "self_peak_private_bytes": 17072128,
+    "full_OS_IO_claimed": false
+  },
+  "source_pins_before_after_equal": true,
+  "admitted_flat_file_count": 54,
+  "recursive_closure_claimed": false,
+  "operations": {
+    "PE_stat_open_hash": 0,
+    "engine_body": 0,
+    "decoder": 0,
+    "author_programs": 0,
+    "tests": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false
+  },
+  "author_frozen_files_need_change": false,
+  "self_diagnostics": [
+    "R1 own audit exact preflight sum assertion stopped on conservative billing mismatch; original source/failure retained. R2 only records listed versus billed delta; no author/actual retry."
+  ],
+  "all_shells_collected": true
+}

@@ -1,0 +1,182 @@
+{
+  "build_authorization": {
+    "bytes": 6172,
+    "path": "work/reports/peace-current-pending-v2-text-config-source-authorization-20261016-r1/authorization.json",
+    "sha256": "58e3ab5f51a73c47e0b1119f9554712c91e34f5289ca228e339cb0f2c9e33d50"
+  },
+  "candidate_source_graph_sha256": "5df0dcb56da6629ebbe9f3585ff6f10d120d66d903354be05887dcea9dc67a82",
+  "controller_or_child_executed": false,
+  "fixed_inputs": {
+    "work/local_config.py": {
+      "bytes": 2818,
+      "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001"
+    },
+    "work/reports/peace-current-pending-v2-controller-build-authorization-20261016-r1/authorization.json": {
+      "bytes": 5494,
+      "sha256": "92df2dd3bfba2b8d364889d57d4794ed1dea9fa86dde1ebfbdda6f79e5351a06"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/capture.json": {
+      "bytes": 17942,
+      "sha256": "8b6d9fe1f9abdc925fc7d8ef6b80f0f3a461c209a0f500b70150836155ece598"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/child.py": {
+      "bytes": 13017,
+      "sha256": "2edcc673efbdef5233e0593522339264d8595b158ec25e090eaa3c78ed0d4973"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/source-manifest.json": {
+      "bytes": 6029,
+      "sha256": "aa6a20e9c610274fdc4e99100b44c2db1308320013fdbb52992f94064f508030"
+    },
+    "work/reports/peace-current-pending-v2-live-independent-review-20261016-r1/findings.json": {
+      "bytes": 7676,
+      "sha256": "4afdd351cd04fe680600e4e8e6f75c939fc162fe54901c072dad6614bbb3bc60"
+    }
+  },
+  "native_ready": false,
+  "old_tests_executed": 0,
+  "real_env_operations": 0,
+  "runtime_grant_required": true,
+  "schema": "EU4-PEACE-V2-CONTROLLER-SOURCE/2",
+  "sealed": true,
+  "selected_effect_verified": false,
+  "source_graph_sha256": "ff79c7729d84b06b08934cba2cf399f8c730c54402c9912ca13f4b1863b3cfd6",
+  "source_pins": {
+    "work/candidates/frida-entry-observer-1375-v1/host-manifest.json": {
+      "bytes": 43987,
+      "sha256": "e7673b0e07c052788d6d2c6378939e176f57e79a45ea09888b957741b7370166"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/offline_child.py": {
+      "bytes": 7746,
+      "sha256": "78435436c14d8f5c2728c4b3bbe181a7658d3266c1faf08b04d5438e8a62f7c4"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/peace_current_pending.py": {
+      "bytes": 24249,
+      "sha256": "94faa085cc982230717f42b43b24bd777a26493a0cf18d2dc3c2cbfc23a7491d"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/source-manifest.json": {
+      "bytes": 8850,
+      "sha256": "ece6b12d71aca0743bbac575447e32c333aaf64135ae283a8e0b987e9fbf0f1c"
+    },
+    "work/local_config.py": {
+      "bytes": 2818,
+      "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001"
+    },
+    "work/reports/peace-current-pending-observer-live-after-restart-20261016-r2/capture_once.py": {
+      "bytes": 9639,
+      "sha256": "27a7696769ac9101c1a15d9f0d33706c27d7e9867e9c10e259d69dc6b9379cc3"
+    },
+    "work/reports/peace-current-pending-v2-controller-build-authorization-20261016-r1/authorization.json": {
+      "bytes": 5494,
+      "sha256": "92df2dd3bfba2b8d364889d57d4794ed1dea9fa86dde1ebfbdda6f79e5351a06"
+    },
+    "work/reports/peace-current-pending-v2-file-validation-delta-20261016-r2/execution-r1/delta_child.py": {
+      "bytes": 7301,
+      "sha256": "7a32809319002331d0a85473cb767e32e7e6be144ae6f5f78654ce4cf997166d"
+    },
+    "work/reports/peace-current-pending-v2-file-validation-delta-20261016-r2/execution-r1/run_delta.py": {
+      "bytes": 11744,
+      "sha256": "a93904c261786fa7b8c7067716f8b7fbe23445fd8722bc425b086d1bbfc12c9e"
+    },
+    "work/reports/peace-current-pending-v2-independent-review-20261016-r1/findings.json": {
+      "bytes": 6951,
+      "sha256": "62e95ab8af0fda65f43a89f23365e8893753b2c7e07b36b8ff4c818ddd936b82"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/PROTOCOL.md": {
+      "bytes": 5976,
+      "sha256": "5d0d870c41bfc2b73c56d698b64d96ff2ec13359a0d99c496ecd031941ccd8da"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/budget.json": {
+      "bytes": 1429,
+      "sha256": "5d0dbde4fbe21d12337a72ced96e246e596caedeaa92eaff9877c67731128a0c"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/capture.json": {
+      "bytes": 17942,
+      "sha256": "8b6d9fe1f9abdc925fc7d8ef6b80f0f3a461c209a0f500b70150836155ece598"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/child.py": {
+      "bytes": 13017,
+      "sha256": "2edcc673efbdef5233e0593522339264d8595b158ec25e090eaa3c78ed0d4973"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/controller.py": {
+      "bytes": 11982,
+      "sha256": "155154c817d59497ac6c02f97173ccf585a62701df82a347f28365f9e281ba3d"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/runtime_contract.py": {
+      "bytes": 8263,
+      "sha256": "d574626582e3782a20ada839ae6581fa7cfd6941064622cb57d6e911bb3d229d"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r1/source-manifest.json": {
+      "bytes": 6029,
+      "sha256": "aa6a20e9c610274fdc4e99100b44c2db1308320013fdbb52992f94064f508030"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/PROTOCOL.md": {
+      "bytes": 2680,
+      "sha256": "06e4a20b6b5d0b09e93d7da731b53493c44b84d1e586e37d3a1c03457d203e17"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/budget.json": {
+      "bytes": 1644,
+      "sha256": "540403f9c06710326bd6a5523d30cacbc3ae7a789d67688a5ae1874a0f20b090"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/build_profile.py": {
+      "bytes": 14461,
+      "sha256": "6e4db189eb94e8dcbfc82c8b96bbbd94a91e49f5b6f9a9b19976be66d7d1af22"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child.py": {
+      "bytes": 13495,
+      "sha256": "8f807abd0a4e6e4eaa116fb8739d481ec1386bc15c4ccd551209601af02d22ba"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/controller.py": {
+      "bytes": 13431,
+      "sha256": "e0807ad1f9f7c99e3193c962307c64b1e8a62242e527dde9842799ab2fc37df9"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/run_adapter_once.py": {
+      "bytes": 3073,
+      "sha256": "095479ac738e30dca320ebe1db5ed671eada495fd679724e745ec73e9792b00b"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/runtime_contract.py": {
+      "bytes": 8753,
+      "sha256": "6c03f8e9eb0e806c3118eb90521cde4c93b85dc89a0ec4b99dcc49007ed288b2"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-delta.json": {
+      "bytes": 897,
+      "sha256": "e3a8c38a345d659ab752358533288d24af50c566168ecec2471c98438e59d2e8"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/test_text_config_adapter.py": {
+      "bytes": 10358,
+      "sha256": "109e89780f4fcbf931c55226ee740f104a5e3ce6fab6de23124638d71523c00c"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-20261016-r2/text_config_adapter.py": {
+      "bytes": 7297,
+      "sha256": "b1d44aff5c7ddfacba055565a9599cdbb05161de6ca0fcfc9927167a6e9680c0"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-preflight-20261016-r1/manifest.json": {
+      "bytes": 6602,
+      "sha256": "84b40601f0eaaa916e908371cae1c717b79a1260b2ae81dc41cbbc54b9323dde"
+    },
+    "work/reports/peace-current-pending-v2-live-controller-preflight-20261016-r1/proposal.json": {
+      "bytes": 8676,
+      "sha256": "1bbb3df5cd8e7f0787582ee0b43b6d120b29a99634c7cc9d21e2fde433ce80d0"
+    },
+    "work/reports/peace-current-pending-v2-live-independent-review-20261016-r1/findings.json": {
+      "bytes": 7676,
+      "sha256": "4afdd351cd04fe680600e4e8e6f75c939fc162fe54901c072dad6614bbb3bc60"
+    },
+    "work/reports/peace-current-pending-v2-production-independent-review-20261016-r1/findings.json": {
+      "bytes": 4294,
+      "sha256": "e82b6d4ef3710ab99dbfebba178664195073b9f98b98ffd5adccb9778dc15a29"
+    },
+    "work/reports/peace-current-pending-v2-production-review-20261016-r1/findings.json": {
+      "bytes": 3926,
+      "sha256": "86be9106da51335aace48a21afa4fc1167ac77cedd515438d638563aa47c2205"
+    },
+    "work/reports/peace-current-pending-v2-text-config-source-authorization-20261016-r1/authorization.json": {
+      "bytes": 6172,
+      "sha256": "58e3ab5f51a73c47e0b1119f9554712c91e34f5289ca228e339cb0f2c9e33d50"
+    }
+  },
+  "stage": "source_frozen_new_adapter_tests_and_peer_pending"
+}

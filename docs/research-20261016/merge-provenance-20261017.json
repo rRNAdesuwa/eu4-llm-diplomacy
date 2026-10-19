@@ -1,0 +1,76 @@
+{
+  "schema": "EU4-PR4-MERGE-PROVENANCE/1",
+  "historical_commit": "0f6330a6d490f2085e314d278601ff36f62218d5",
+  "upstream_commit": "d86acc9eba3801d3051fc90c7ff30119f48230b9",
+  "historical_provenance_unchanged": true,
+  "unchanged_published_sources": 3113,
+  "updated_active_sources": [
+    {
+      "path": "AGENTS.md",
+      "original_published": {
+        "bytes": 1158,
+        "sha256": "d35da2115de34e534b6b98b344058bf3ea9163e58f39858ebb5266844f5e124c"
+      },
+      "merged_source": {
+        "bytes": 1964,
+        "sha256": "8cfbcfa610085d056fedc24545f8ecbaa43b4c546f1289b6f7d07e658d486959"
+      },
+      "historical_pin_matches_original_git_object": true
+    },
+    {
+      "path": "tools/diplomacy.py",
+      "original_published": {
+        "bytes": 6257,
+        "sha256": "2d13e139a0541346d3b98cb71c9b54dbeeadc369f050abba9d4bfa100aad7c9b"
+      },
+      "merged_source": {
+        "bytes": 9550,
+        "sha256": "4d15cd1d4c08e26da0c8afc810cc0750b4689a5703a5c15e5befd3009d608f34"
+      },
+      "historical_pin_matches_original_git_object": true
+    },
+    {
+      "path": "work/native/frame_stub.S",
+      "original_published": {
+        "bytes": 2207,
+        "sha256": "fbf7b7abf548595084fc8b78b5c52822a351e96c404930202f864f93a31a7f98"
+      },
+      "merged_source": {
+        "bytes": 15525,
+        "sha256": "441666d06f9c731033f477f4999759b98c4d8b00739c0fd0c33cdfe17d310f07"
+      },
+      "historical_pin_matches_original_git_object": true
+    },
+    {
+      "path": "work/native/restart-game.ps1",
+      "original_published": {
+        "bytes": 3457,
+        "sha256": "62f096190dac6e7b979c75db9e9bd9d6691c30f853583732a66122cda5d342a6"
+      },
+      "merged_source": {
+        "bytes": 3537,
+        "sha256": "4580cc56f6e7ed49f7516eb144b2fb9f8f73a85541901c5f03dd7a117a09e5c0"
+      },
+      "historical_pin_matches_original_git_object": true
+    },
+    {
+      "path": "work/probe_native_state.py",
+      "original_published": {
+        "bytes": 18118,
+        "sha256": "220549d1b8db3028015b1ddf260d7605c3f3525941500eeb43255c69d34e2187"
+      },
+      "merged_source": {
+        "bytes": 18008,
+        "sha256": "9aa9509f524f3d6adf39848580a459ec9558f1346d61e855d0cf213c5a94739e"
+      },
+      "historical_pin_matches_original_git_object": true
+    }
+  ],
+  "native_sources_identical_to_upstream": [
+    "work/native/frame_stub.S",
+    "work/native/restart-game.ps1",
+    "work/probe_native_state.py"
+  ],
+  "historical_records_repinning": false,
+  "game_operations": false
+}

@@ -243,15 +243,15 @@ def _local_path(path: Path) -> Path:
     return resolved
 
 
-def _verify_game_build() -> None:
+def _verify_game_build(expected_hash: str = EXPECTED_HASH) -> None:
     try:
         game = GAME.resolve(strict=True)
     except OSError as error:
         raise RuntimeError(f"Expected EU4 executable is unavailable: {GAME}: {error}") from error
     digest = hashlib.sha256(game.read_bytes()).hexdigest()
-    if digest.casefold() != EXPECTED_HASH.casefold():
+    if digest.casefold() != expected_hash.casefold():
         raise RuntimeError(
-            f"Unsupported EU4 executable build at {game}; expected SHA-256 {EXPECTED_HASH}, "
+            f"Unsupported EU4 executable build at {game}; expected SHA-256 {expected_hash}, "
             f"got {digest}"
         )
 
@@ -431,9 +431,9 @@ def _remote_thread(
     return thread
 
 
-def _run(args: argparse.Namespace) -> dict[str, object]:
+def _run(args: argparse.Namespace, *, expected_game_hash: str = EXPECTED_HASH) -> dict[str, object]:
     _require_windows_x64()
-    _verify_game_build()
+    _verify_game_build(expected_game_hash)
     dll = _local_path(Path(args.dll))
     _, image_size = _read_pe32_plus(dll)
     kernel = _configure_kernel32()
@@ -460,7 +460,7 @@ def _run(args: argparse.Namespace) -> dict[str, object]:
             )
         modules_before = _enum_modules(kernel, process)
         known_bridge = [module for module in modules_before
-                        if Path(module.path).name.casefold().startswith('eu4_bridge_')]
+                        if Path(module.path).name.casefold().startswith(('eu4_bridge_', 'eu4_pair_lifecycle_', 'eu4_pair_pipeline_'))]
         if known_bridge:
             raise RuntimeError(
                 f"An EU4 bridge DLL is already loaded ({known_bridge[0].path}); "

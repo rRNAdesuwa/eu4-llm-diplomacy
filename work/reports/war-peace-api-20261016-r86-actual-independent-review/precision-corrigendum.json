@@ -1,0 +1,48 @@
+{
+  "author_overapprox_not_an_error": true,
+  "blocking": false,
+  "comparison_constant": "0x1fffffffffffffff",
+  "condition": "Normal sequential execution of these exact ISA bytes, valid fetch/stack/loads, no external context alteration.",
+  "four_unsigned_encoded_intervals": {
+    "negative_SAR3_output": [
+      "0xf000000000000000",
+      "0xffffffffffffffff"
+    ],
+    "negative_input": [
+      "0x8000000000000000",
+      "0xffffffffffffffff"
+    ],
+    "nonnegative_SAR3_output": [
+      "0x0",
+      "0xfffffffffffffff"
+    ],
+    "nonnegative_input": [
+      "0x0",
+      "0x7fffffffffffffff"
+    ]
+  },
+  "native_ready": false,
+  "negative_signed_SAR3_output": [
+    "-0x1000000000000000",
+    "-1"
+  ],
+  "negative_signed_input": [
+    "-0x8000000000000000",
+    "-1"
+  ],
+  "proof": "For every 64-bit SUB result, arithmetic shift-right by3 has exactly these two output intervals. MOVABS R8,K and MOV RBX,RCX do not change RAX; CMP RAX,R8 therefore sets ZF=0.",
+  "return_value_verified": false,
+  "schema": "EU4-R86-INDEPENDENT-SAR-PRECISION/1",
+  "sealed": true,
+  "sealed_author_sources_modified": false,
+  "strict_gap_inequality": "0x0fffffffffffffff < 0x1fffffffffffffff < 0xf000000000000000",
+  "subject_contract_pin": {
+    "bytes": 5478,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/contract.json",
+    "sha256": "ddea250f47187a4b6b47075186a2ca54c09157168b3b2db9d016b3a5b81e5943"
+  },
+  "syntactic_JE_target": "cc32c remains a hypothetical/syntactic seed only, not a value-feasible normal edge here.",
+  "value_feasible_local_path": "cc220..cc259 not-taken ->cc25f ->cc263 ->unread cc266",
+  "whole_callee_closed": false,
+  "world_lease": false
+}

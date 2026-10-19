@@ -1,0 +1,184 @@
+{
+  "schema": "EU4-R64-ELEMENT-SELECTION-STATIC-CONTRACT/1",
+  "sealed": true,
+  "stage": "author_static_result_pending_independent_review",
+  "entry": {
+    "rva": "0x97b8a0",
+    "pdata_extent": [
+      "0x97b8a0",
+      "0x97bc8b"
+    ],
+    "owned_bytes": 1003,
+    "rows": 266,
+    "source_manifest": {
+      "bytes": 19275,
+      "sha256": "043e7f261df881931801a67308e012723f0f62c87313f54d3be8b62687bd52f0"
+    },
+    "producer": {
+      "bytes": 23022,
+      "sha256": "8dba7831bcbb0dce24139100a3d719c084e1fec7e4f1dcf5ebcd6d58188ba792"
+    },
+    "entry_seed": {
+      "bytes": 22912,
+      "sha256": "3af9dd9439bcfdc7d464de130686816f6fb4150712bedf82e592b805a83312da"
+    },
+    "capture": {
+      "bytes": 276303,
+      "sha256": "723c6a94b549d08f9f24b710b81426ba32d9eecee5cb9e17e4ddc43e8ef26d1c"
+    },
+    "owned": {
+      "bytes": 2508,
+      "sha256": "d922eb0f548e7722258eafe1f99db3f44171846e46af02df5b2a5ae481f31c52"
+    },
+    "actual_exit_code": 0,
+    "failure_files": [],
+    "three_reviews_prepost_equal": true
+  },
+  "formal_machine_inputs": {
+    "W": "incomingRCX, copiedR15; opaqueoriginalR63W. EntryQ+8 savesW and97ba1c reloadsfromsteady+70.",
+    "P": "incomingRDX, copiedRBX; rawdescriptor&callersteady30, notoldR63outputDWORDpointer.",
+    "F": "incomingR8, copiedR13; raw16Bparameterregion; callerDWORD0=0,QWORD8=0,padding4..7unknown.",
+    "flag": "OnlyR9B tested97b8c9. Callerlowbyte1/high56unknown; externalcalleeimplicitargumentconsumptionunknown.",
+    "XMM0": "IncomingXMM0notexplicitlyconsumedbeforehighbranchMOVUPS[M16F]at97b8fe; all16Fbytesincludingunknownpaddingcopiedtostack20, thenR9D=0. Baseexternalcalls mayreceiveinheritedXMMregisters; nofloatABIorconsumptionproved."
+  },
+  "stack": {
+    "steady_rsp": "entryQ-68hex=7PUSH\u00d78+SUB30; normalvalidWin64entrymakes16aligned.",
+    "F_copy": "steady+20..2f rawM16 copy forrecursivecall",
+    "temporary_element": "steady+78=entryQ+10 QWORD slot for77e640",
+    "saved_W": "entryQ+8=steady+70, reusedafterR15temporarilyoverwrittenwith-1",
+    "saved_RBX": "entryQ+18=steady+80 restored97bc73",
+    "limits": "Stack/arithmeticprofile only, no allocation/header/worldlease proof."
+  },
+  "common_write": {
+    "site": "0x97b8b9",
+    "expression": "DWORD[P+14]=0 beforeR9Bbranch oranyCALL.",
+    "shape": "OtherconsumedPfields:QWORD+8data,DWORD+10capacity-likevalue,DWORD+14count-likevalue; namesdescribearithmeticrole, notCppclass."
+  },
+  "outer_overlay_gate": {
+    "sites": [
+      "0x97b8c9",
+      "0x97b8cc",
+      "0x97b8d2",
+      "0x97b8e4",
+      "0x97b8e6",
+      "0x97b8f8"
+    ],
+    "condition": "R9B!=0 AND ((QW+a8-QW+a0) mod2^64 unsigned>=8 OR (QW+c0-QW+b8)mod2^64 unsigned>=8).",
+    "otherwise": "Go97bb30basebranch. Unsignedpointerdiffdoesnotvalidateordering/alignment/bounds; malformednegativewrapcanpass.",
+    "recursive_call": {
+      "site": "0x97b90f",
+      "target": "0x97b8a0",
+      "RCX": "sameW",
+      "RDX": "sameP",
+      "R8": "&M16[F]copyatsteady20",
+      "R9D": 0,
+      "scope": "Selftargetalreadyfullyowned; noextra acquisition orgenericcallee follow. Childflag0precludesanotherlocalselfCALL underconformingABI. Normalreturn,validspansandalias/calleeassumptions stillrequired."
+    }
+  },
+  "A_append_path": {
+    "range": "0x97b914..0x97ba1c",
+    "sources": "FreshW+a0begin/W+a8end, stride8 QWORD elementE. Endrefreshaftercapacitycalls; pointers/countscanchangeviaunfollowedcalls.",
+    "filter": "At97b997 callQWORD[QWORD[E]+78](RCX=E,RDX=&stack20). FreshreturnedK:DWORD[K]==freshDWORD[F] andQWORD[K+8]==0. Ktype/returnstorage/lifetimeunknown.",
+    "append": "Ifmatch, signed32count+1, capacitycomparison/growth; currentcountreloadedaftergrowth. Ifsignextendedoldcount<newcount, fillP.data[old..new) withE; thenDWORD[P+14]=newcount. No uniquenessguard.",
+    "preallocation": "Requiredlow32=((signed64(Wa8-Wa0)>>3)+Pcount)low32; signedcompareagainstPcap. Doublingcap/CMOVG/zeroextendedcap\u00d78 viaMUL/CMOVO(-1), CALL1a33310 then8f4f0(P,returnedbuffer,newcap). Bothunfollowed; notmallocsuccess/invariantsproof."
+  },
+  "B_remove_path": {
+    "range": "0x97ba1c..0x97bb30",
+    "sources": "ReloadsavedW, freshW+b8begin/W+c0end stride8 QWORD E; capacitygrowpatternretainedbeforetraversal.",
+    "filter": "At97ba9b virtualQWORD[QWORD[E]+78](E,&stack20); returnedK DWORD0==freshF0 ANDQWORD8==0.",
+    "removal": "OnlyifPcountsigned>0, scanPdataforfirstpointerequalE. Matchindexi:shiftfollowingQWORDsleft byone whencomputedremaining signed>0; ADD32Pcount by(i-(i+1))=-1mod2^32 onordinarymatchedpath. No foundpointermeansskip; Bdoesnotappend.",
+    "limits": "Retainindex!=-1 andsignedcomparisons exactly; malformedcounts/aliasinputs notnormalized. No prooflistisuniqueorbusinessrecipientset."
+  },
+  "base_branch_F8_nonzero": {
+    "range": "0x97bb30..0x97bc0c",
+    "condition": "FreshQWORD[F+8]!=0 savedR12.",
+    "sources": "Q=QWORD[W+d0]; beginQWORD[Q+3a8]/endQWORD[Q+3b0], SAR64diff3 passed1c20d0(P,count-likevalue); Q/begin/endfreshreloadedafterCALL.",
+    "filter": "Forstride8QWORD E, compareQWORD[E+30]==savedF8 (8B, notR63DWORDamountread). MatchingEusescapacitygrowthandexplicitQWORDappend/Pcountstore.",
+    "calls": "1c20d0/1a33310/8f4f0unfollowed; noelementclass/fullhandle/unitsproved."
+  },
+  "base_branch_F8_zero": {
+    "range": "0x97bc0c..0x97bc73",
+    "condition": "FreshQWORD[F+8]==0.",
+    "capacity_argument": "RDX=SAR64((QW+d8-QW+d0)mod2^64,3); IMULlow64 by0xaaaaaaaaaaaaaaab. Thisismodularformula, notunconditionaldivide24. Validnonnegative24Bmultipleinput yieldsrecordcount; no boundproved.",
+    "source": "CALL1c20d0(P,RDX) thenfreshuint32I=DWORD[F], index3*I, freshbase=QWORD[W+d0]; begin=QWORD[base+24I],end=QWORD[base+24I+8]. ThirdQWORDrecord+10 notread. Noindex/table/fulltypeguards.",
+    "collection": "Eachstride8 QWORD E copiedtostacktemporarysteady78. CALL77e640(RCX=P,EDX=freshPcount,R8=&temporaryE), thenadvancecursor. Helperbody/actualappend/count/alias/exceptioneffectsunknown.",
+    "selected_caller_boundary": "OriginalF0/F8initial0 identifiesindex0 only absentunfollowedcallee/aliasmutation. FreshF0after1c20d0isre-read; cannotassumeitscontentsimmutablyzero."
+  },
+  "return": {
+    "site": "0x97bc8a",
+    "meaning": "Normalepiloguerestoresnonvolatiles/RSP butdoesnotassignonefixedRAXreturnvalue. Variouslastcallees/loadsleaveRAX; no uniformscalar/boolean/pointerreturncontractproved.",
+    "R63_use": "CallerignoresRAX, freshreadsPcount/Pdata andifcount1readsDWORD[element+30]. R64doesnotproveuniquecount1oramountunit."
+  },
+  "control_flow": {
+    "edges": 49,
+    "CALL_sites": 14,
+    "direct_CALL_sites": 12,
+    "distinct_direct_targets": 5,
+    "self_CALL_sites": 1,
+    "external_direct_CALL_sites": 11,
+    "virtual_CALL_sites": 2,
+    "virtual_slot": "0x78",
+    "virtualtargets_unknown": true,
+    "branch_sites": 35,
+    "normal_RET_sites": [
+      "0x97bc8a"
+    ],
+    "INT3_sites": [],
+    "local_normal_CFG_closed": true,
+    "limits": "FiniteownedCFGcoverage only; CALLfallthroughassumesnormalreturn. Loops/aliases/allocfailure/exceptions/virtualdispatch/terminationunproved."
+  },
+  "writes": {
+    "explicit_sites": 11,
+    "stack_sites": 4,
+    "P_header_DWORD_sites": 4,
+    "P_data_QWORD_sites": 3,
+    "implicit_stack_sites": "SevenPUSHplus14CALLreturnaddresses, excludedfrom11.",
+    "alias_scope": "Pheader/datawritesareparameter-relative, mayaliasworld/inputs. Stackcopycontainsunknownpadding; indirectcalleescanwriteanythingtheircontractspermit. No readonly/purity/wholeworldnowriteclaim."
+  },
+  "unresolved": [
+    "97b8a0businessW/class/Ftype0meaning",
+    "virtualslot78typedtargetsandKreturnlayout",
+    "1c20d0/77e640/8f4f0/1a33310bodies/aliases/normalfailure",
+    "sourceelements/class/actualamountsource/currencyunits/recipientdirection",
+    "calleroutputcardinality/finalTpreservation",
+    "runtimevalues/persistence/lease"
+  ],
+  "resources": {
+    "pdata_requests": 20,
+    "pdata_physical_bytes": 240,
+    "pdata_unique_bytes": 216,
+    "code_physical_unique_bytes": 1003,
+    "decoder_input_total_bytes": 3916,
+    "decoder_unique_input_bytes": 1003,
+    "decoder_overlap_bytes": 2913,
+    "full_EXE_SHA_bytes": 76925008,
+    "full_EXE_SHA_passes": 2,
+    "PE_total_physical_bytes": 76926251,
+    "source_engine_journal_through_capture": 16850433,
+    "post_capture_stdout_pin_bytes": 276303,
+    "producer_source_IO_including_final_stdout_pin": 17126736,
+    "producer_source_IO_limit": 33554432,
+    "own_peak_committed_bytes_observed": 26136576,
+    "software_memory_guard": 805306368,
+    "hard_Job_installed": false,
+    "new_external_callee_data_header_literal_vtable_unwind_bytes": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "tests": 0,
+    "all_child_shells_collected": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "peace_completion_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

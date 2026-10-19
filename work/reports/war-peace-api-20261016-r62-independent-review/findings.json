@@ -1,0 +1,151 @@
+{
+  "schema": "EU4-R62-INDEPENDENT-FINDINGS/1",
+  "sealed": true,
+  "passed": true,
+  "scope": "full retained-file/raw arithmetic and semantic-boundary review, no author execution",
+  "subject_manifest": {
+    "bytes": 14300,
+    "sha256": "d3516fdbc60b2c66115b9a0aa907daace7e5a8adac0c5dbd4c53f0840eba6db4"
+  },
+  "subject_contract": {
+    "bytes": 9485,
+    "sha256": "b72b70f5f78c5e95f5e7984dc415dd4b4fab3ecbbaa72034e6081f0ae0e2295b"
+  },
+  "blocking_findings": [],
+  "author_frozen_sources_need_change": false,
+  "raw_review": {
+    "bytes": 123949,
+    "sha256": "df13862b73b4bcd9848778d4c3d706cf3176dbf7d25581ec695560c0a84acc13"
+  },
+  "verified": {
+    "actual_pins": 35,
+    "extra_accounting_files": 5,
+    "engine_witness_metadata_pins_unopened": 38,
+    "rows": 174,
+    "unique_code_bytes": 684,
+    "CALL_sites": 8,
+    "CALL_targets": 7,
+    "branches": 24,
+    "recorded_control_edges": 32,
+    "RET_sites": 1,
+    "INT3_sites": 1,
+    "explicit_stores": {
+      "stack": 13,
+      "output_header_end": 2,
+      "record_payload": 6
+    },
+    "full_raw_coverage": true,
+    "call_and_branch_rel32_rel8_arithmetic": true,
+    "finite_local_CFG_replay": true,
+    "GP_stack_integer_alias_loop_review": true,
+    "cached_section_and_pdata_arithmetic": true,
+    "producer_accounting_replayed": true,
+    "original_source_postguard_equal": true
+  },
+  "semantics": {
+    "inputRCX": "opaque W",
+    "inputRDX": "opaque output header H",
+    "first_T": "post97b2c0 signed DWORD at Q+18; signed-positive gate",
+    "second_D": "post993570 signed DWORD at Q+20; signed-positive gate",
+    "simple_record": "DWORD low32(T), fresh QWORD [W+18]",
+    "complex_record": "transformed signed DWORD component and same bitwise QWORD+4",
+    "integer": {
+      "temporary_count": "s32(low32(low64(sar64(submod64(E,B),2)*0xaaaaaaaaaaaaaaab)))",
+      "record_a": "s64(s32(load32(record+0)))",
+      "record_q": "unaligned load64(record+4), copied bitwise",
+      "P": "low64(record_a*T)",
+      "V": "sar64(signed_high64(0x20c49ba5e353f7cf*P),7)",
+      "L": "low64(V+logical_shr64(V,63))",
+      "k": "s32(low32(L))",
+      "fast_gate": "u32(k+0x189373)<=0x39580d",
+      "fast": "IMUL32(k,1000); CDQ; IDIV32(D); EBP=quotient; 32bit write zeroextends RBP",
+      "slow": "s64(k)*1000; CQO; IDIV64(s64(D)); RBP=quotient",
+      "append_gate": "s32(low32(RBP))>0, not full64 quotient range validation",
+      "sum": "R15D=addmod32(R15D,EBP)",
+      "slot_compare": "u16(q>>32)==u16(fresh load64(W+0x18)>>32), no fullhandle comparison",
+      "candidate_nonempty": "low32(transformed current output span)!=0, no positive count or typed proof",
+      "remainder_gate": "s32(EDI)>s32(R15D)",
+      "remainder_value": "submod32(EDI,R15D)",
+      "remainder_write": "ADD32 candidate record DWORD, or first record DWORD when nonempty",
+      "loop": "R13+=12; R8 full64 decrement; MOVs preserve SUB flags until JNE; 996e30 path reloads R8 from stack20",
+      "guarded_limit": "Only normal external returns, valid readable/writable memory and appropriate ABI/stack discipline. Callee aliases may change data/headers; no world lifetime."
+    },
+    "final_output_after994f00": "unknown",
+    "types_currency_units_direction_complete_recipients": "unknown",
+    "callee_cleanup_allocator_exception_ownership": "unknown"
+  },
+  "precision_notes": [
+    "13 stack stores count explicit instructions only; PUSH/CALL/RET implicit stack accesses remain.",
+    "32 recorded edges count control-transfer records with conditional fallthrough fields, not every graph successor.",
+    "T/D are post-call cell reads. No pre-call local initialization or actual helper out-write is inferred.",
+    "The tail 994f00 may replace/mutate H or records. Intermediate record writes do not prove final recipients or conservation.",
+    "16-bit comparison establishes no complete handle/generation/country identity; R9 magic is restored on the append-helper return path.",
+    "Source/PE/engine and resource execution facts are authenticated retained producer witnesses, not rerun by this review.",
+    "The source accounting delta corrects two omitted retained reads; its original delivery remains immutable.",
+    "RAX is not normalized as a new balance/BOOL/count; the caller immediately reloads its own header end."
+  ],
+  "author_resource_witness": {
+    "source_engine_journal_through_capture": 16403116,
+    "stdout_capture_pin_read": 198722,
+    "producer_plus_stdout_capture_pin": 16601838,
+    "retained_with_correction": 2624182,
+    "combined_explicit_source_stages": 19226020,
+    "combined_budget": 50331648,
+    "PE_separate": 76925920,
+    "PE_twoSHA": 76925008,
+    "target_pdata": 228,
+    "target_code": 684,
+    "decoder_input_total": 2557,
+    "decoder_input_unique": 684,
+    "decoder_overlap": 1873,
+    "observed_committed_peak": 24289280,
+    "elapsed_ns": 431429100,
+    "elapsed_scope": "Producer launch through collected exit including source/engine guards/twoEXESHA; rootreview/auth creation excluded",
+    "hard_Job_installed": false,
+    "direct_child_collected_exit0": true,
+    "not_all_OS_IO_or_tree_memory_proof": true
+  },
+  "independent_review_resources": {
+    "initial_subject_retention_ledger_bytes": 729005,
+    "prior_owned_snapshot_inspections_and_preliminary_review": 5,
+    "owned_snapshot_bytes": 1406927,
+    "current_explicit_reads": 2097847,
+    "known_explicit_data_reads_before_output_sealing": 9861487,
+    "software_memory_guard": 805306368,
+    "self_peak_bytes": 24514560,
+    "source_file_cap": 4194304,
+    "source_budget": 25165824,
+    "read_scope": "listed source/owned snapshot bytes; interpreter/tool-source loading and later own seal pin loop separately excluded"
+  },
+  "self_diagnostic": {
+    "retention_r1": "actual_file_pins dict mistaken for list; preserved TypeError before source pin iteration",
+    "retention_r2": "only dict path/pin iteration, no author change/PE/decoder",
+    "semantic_review_r1": "raw non-store whitelist omitted TEST AL (84); retained AssertionError before result",
+    "semantic_review_r2": "only add TEST84/CMP-immediate3d non-store families and diagnostic/accounting; no author change",
+    "all_shells_collected": true
+  },
+  "operations": {
+    "PE_reads": 0,
+    "engine_opens": 0,
+    "decoder_imports": 0,
+    "author_program_runs": 0,
+    "old_tests": 0,
+    "game_process_accesses": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "complete_gold_transfer_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  },
+  "next_scope_auto_authorized": false
+}

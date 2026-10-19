@@ -1,0 +1,144 @@
+{
+  "all_shells_collected": true,
+  "author_frozen_sources_changed": false,
+  "authority": {
+    "amount_units_verified": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "callable": false,
+    "independent_entry_callable": false,
+    "native_ready": false,
+    "persistence_verified": false,
+    "reader_adoption_allowed": false,
+    "recipient_direction_verified": false,
+    "runtime_verified": false,
+    "selected_effect_verified": false,
+    "whole_function_closed": false,
+    "world_lease": false
+  },
+  "blocking_findings": [],
+  "checks": {
+    "CALLsites": 2,
+    "D_ADD32": 1,
+    "RETsites": 1,
+    "all42rows156B_raw_equal": true,
+    "all6relative_edges_replayed": true,
+    "all_current_postguard_pins_equal": true,
+    "author_flat_pins": 43,
+    "author_local_outputs": 3,
+    "author_source_pins": 40,
+    "branchsites": 4,
+    "current_flat_files": 46,
+    "cursor_stores": 2,
+    "engine_metadata_only": 38,
+    "explicit_stores": 9,
+    "header_ADD64": 1,
+    "local_normal_CFG_closed": false,
+    "new_pdata": 0,
+    "normalclose_beforecapture": true,
+    "single_actual_and_direct_child_collected": true,
+    "source_engine_prepost_witness_equal": true,
+    "syntactic_stack_stores": 5,
+    "three_review_root_auth_exactsubjects": true
+  },
+  "independent_resources": {
+    "current_cache_and_postguard_bytes": 1314839,
+    "listed_analysis_upper_bytes": 6821709,
+    "manual_smallinspection_allowance": 1048576,
+    "memory_limit": 805306368,
+    "ordinary_file_limit": 4194304,
+    "own_peak_bytes": 22085632,
+    "own_sealing_reserve": 1048576,
+    "prior_failed_intake_bytes": 24771,
+    "prior_failed_review_cache_read": 690036,
+    "prior_three_cache_inspection_attempts_upper": 2070108,
+    "retained_intake_bytes": 624803,
+    "stage_limit": 25165824
+  },
+  "machine_contract": {
+    "D": "ADD32[currentR14],EBX read-modify-write modulo2^32. No64-bitamount/units/finalD assertion; externalcalls/aliases can change destination or priorvalue.",
+    "equal": "RCX=currentRBP,RDX=comparedcursor,R8=&F20 to996e30. R9/XMM/formals/effects unknown; no local equal-branch headerincrement beforejoin.",
+    "inherited": "R71 is nonnullR69fallthrough, not a new function/formal ABI. R13/R14/RBP/RSI and F=S69-58 require stated normalcalleeABI/stack premises. D0/headerzeros not current invariants.",
+    "input_reload": "Each reached iteration rereads QWORD[currentR13+70] and QWORD[base+RSI*8]. RCX=R12/RDX=&F68/R8=currentRDI to d959b0; externalreturn then freshDWORD[F68]->EBX. No local initialization or callee output proof.",
+    "loop": "INC64RSI/CMP64RSI,R15/JL. Under normal-preservation,validmemory,RSI0 and positive signed32N premises, localindices0..N-1; no arbitrary-memory/callee termination guarantee.",
+    "low32_count": "MOVSXD R15,R8D; TEST32 R8D; signed<=0 leavesownedbytes at993643. Positive N is signed low32, not authenticated length.",
+    "record": "DWORD[F20]=EBX,QWORD[F24]=RDI, exactly12B local payload. FreshP8 cursor compared only for equality with freshP10; non-equal writes DWORD[cursor]/QWORD[cursor+4] then ADD64[currentP8],12. No bounds/capacity proof; writes may aliasheader/D/stack and theADD rereads header.",
+    "result": "Ownedpositiveepilogue MOVRAX,R14; RAX is currentpointerbits, notDWORDvalue. ADDRSP30/fivePOPs restoreS69,RET givesS69+8 only under validunaliasedsaved/controlstack premises. Otherlowcount/nullpaths unread; localCFGfalse."
+  },
+  "next_scope_auto_authorized": false,
+  "operations": {
+    "Capstone_decoder": 0,
+    "Frida": 0,
+    "PE_stat_open": 0,
+    "engine_stat_open": 0,
+    "game_process": 0,
+    "native_game_calls": 0,
+    "new_actual_authorized": 0,
+    "outside_callee_or_tail_follow": 0,
+    "requests": 0,
+    "reviewed_producer_runner_sealer": 0,
+    "tests": 0
+  },
+  "passed": true,
+  "precision_notes": [
+    "Complete156B cached-fragment ownership is not whole-function closure. Signed-low32 nonpositive edge993643 and previousR69null edge993658 remain unread. Two externalcalls d959b0/996e30 and all effects remain unexamined.",
+    "Fresh F68 DWORD has no explicit initialization before d959b0 in this fragment. Passing its address does not prove callee writes it; priorstack/callee/alias values remain possible.",
+    "Two cursor stores may alias header,D orsaved/controlstack. ADD64[P8] rereads the destination afterthose stores; equality check alone does not prove allocation/capacity. The equal branch externalcallee may change finalheader/D.",
+    "ADD32[D],EBX is modular32 arithmetic, not a complete gold-total/units/recipient proof. Current D may differ from precall0, and no final application value or conservation follows.",
+    "One owned RET yields a conditional positive-path pointerbits resultRAX=currentR14. It does not supply arbitrary-input/whole-function result, valid memory, safe nativecall, lifetime orbusiness-effect authority.",
+    "This reviewer was R71 sourcepeer and originalR69source preparer; D authoredR71source/actual package, Val authoredR69actual, and rootraw/R69full are separately pinned witnesses. No independently redesigned producer or engine-body authentication is claimed.",
+    "PE twoSHA+156 and decoder identity/annotations are retained producerwitnesses. This review replays raw bytes/arithmetic/CFG from frozenfiles; it never opens PE/enginebody or invokes originalprograms/tests.",
+    "495,600,000ns/23,527,424B are producerlaunch/source/engine/twoSHA witnesses, not APIlatency or hardJob/treepeak. Source32MiB andretained16MiB explicit accounting remain separate; neither is allOS/loaderIO.",
+    "Reviewer intakeR1 assumed wrong manifest grouping43 instead of40+3, failed after24771B and preservedexactsource/diagnostic. R2 changed only metadata keys. A separate inlineinspection used defaultGBK and failed reading knownUTF8cache; bounded690036B attempt charged below, correctedUTF8inspection did not runauthorcode.",
+    "Reviewer full-auditR1 incorrectly required Capstone memory-read flags to be false for NOP/LEA address operands. Exactsource/failure preserved; fixed knownraw NOP/LEA do not dereference those addresses despite annotations. R2 preserves annotations and checks only the explicit-store flag there; authorbytes/semantics unchanged. Failedcache read690036B charged separately."
+  ],
+  "raw_review": {
+    "bytes": 10885,
+    "sha256": "a4097288cd4220c06d6569f55d7fdc20a00c9edeb2941396edff6aa69974afec"
+  },
+  "resource_witness": {
+    "PE_separate_bytes": 76925164,
+    "combined_source_retained_upper": 19980909,
+    "final_capture_pin": 95356,
+    "hard_Job_installed": false,
+    "manual_retained_allowance": 1048576,
+    "producer_elapsed_ns": 495600000,
+    "producer_peak_bytes": 23527424,
+    "producer_source_including_capture_pin": 17053128,
+    "retained_explicit_upper": 2927781,
+    "retained_measured_reads": 1640246,
+    "source_journal_through_capture": 16957772,
+    "wrapper_charged_to_retained": 238959
+  },
+  "reviewer_role": {
+    "R69_actual_retained_author": "validation_audit",
+    "R69_independent_source_review_remains_separate": true,
+    "R69_original_source_preparer": true,
+    "R71_prior_source_peer": true,
+    "R71_source_and_actual_author": "diplomacy_static",
+    "no_independent_engine_body_reauthentication": true,
+    "root_raw_and_R69_full_review_are_distinct_retained_witnesses": true
+  },
+  "schema": "EU4-R71-INDEPENDENT-ACTUAL-REVIEW/1",
+  "sealed": true,
+  "subject_capture": {
+    "bytes": 95356,
+    "sha256": "4c6e547b5e3fca46ee9727034642a4fce410fd66819d652a93f725453fbd76a8"
+  },
+  "subject_contract": {
+    "bytes": 12229,
+    "sha256": "3d370deb33fc006ecb8a0cee93e8744bc112da8fffe66154afee3dfe9f92ff98"
+  },
+  "subject_manifest": {
+    "bytes": 24771,
+    "sha256": "df5a1d0e3918347ff95d7199b184adefed4a816b2f08dc3dd2bba4576823777f"
+  },
+  "subject_owned": {
+    "bytes": 1168,
+    "sha256": "75273a3a5b75655703a01cfd5b1276f18d4089e5663c5d9bb3d4454dad716160"
+  },
+  "subject_selected": {
+    "bytes": 41810,
+    "sha256": "12f1041c5d62da5d28fa9234e06e7081b3a2a73ad028ad83219e17a22917e5ae"
+  }
+}

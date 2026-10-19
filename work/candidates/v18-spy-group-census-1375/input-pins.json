@@ -1,0 +1,118 @@
+{
+  "bridge/native_build.py": {
+    "bytes": 3582,
+    "sha256": "2f8f7f1781f10084ed85cae59f876080a9cd0efcf9810e1fc394561682048925"
+  },
+  "work/candidates/ordinary-insult-observer-1375/observer.py": {
+    "bytes": 25839,
+    "sha256": "708adae32bf5f16db3678b70ffedb6e855ff8755fd0456044f666db1b4595638"
+  },
+  "work/candidates/ordinary-insult-observer-1375/report.json": {
+    "bytes": 216503,
+    "sha256": "56cc771bad124ef19290a184a56ce1e4c642cf7cd8d802df308ceec180ff7073"
+  },
+  "work/candidates/peace-constructor-preconditions-raw-ro-1375/raw_observer.py": {
+    "bytes": 21129,
+    "sha256": "0e73707f2473a6563c92259a64badd0803561e7329e9c895916227ac0097645b"
+  },
+  "work/candidates/spy-action-contracts-1375/report.json": {
+    "bytes": 1446454,
+    "sha256": "274221df57719404edfcacd7451ebc28c678369dab9d4377e6201be5db734774"
+  },
+  "work/candidates/spy-action-contracts-1375/review.json": {
+    "bytes": 1031,
+    "sha256": "d01a7a88961d3a9fad47479ebbef2304cca1fc1214521a3f98eca31738e6ef8c"
+  },
+  "work/candidates/spy-action-contracts-1375/trace.py": {
+    "bytes": 12990,
+    "sha256": "49bf02cf386604925ce4002f8eab03ea50c15f6d7de0f29306e1d79fb390bc96"
+  },
+  "work/candidates/spy-dense-aggregate-contract-1375/dense_ro.py": {
+    "bytes": 5464,
+    "sha256": "5d10d4eb58d3317de70ceed5b900633cca7e26907a28c8e31ebc9958df87391e"
+  },
+  "work/candidates/spy-dense-aggregate-contract-1375/report.json": {
+    "bytes": 253116,
+    "sha256": "ebac3cf968e1ae05a1ce58b2399c53034bb03e3a3afad9107e2b5f7201270333"
+  },
+  "work/candidates/spy-dense-full-observer-1375/observer.py": {
+    "bytes": 6429,
+    "sha256": "c287133fcb6433e224f7fe0bc8a2fc62c4ba31c6a0b2324d2241e67af5dfeb9d"
+  },
+  "work/candidates/spy-dense-full-observer-r2-1375/README.md": {
+    "bytes": 1641,
+    "sha256": "4004f02677121c4eda86f022983de949d41686f0e6da7608a92fe7677a142938"
+  },
+  "work/candidates/spy-dense-full-observer-r2-1375/observer.py": {
+    "bytes": 8583,
+    "sha256": "f25dace36f14f3ea01928f90c3817e715140b373723a3aa9843a280e01b5bd66"
+  },
+  "work/candidates/spy-dense-full-observer-r2-1375/review.json": {
+    "bytes": 10136,
+    "sha256": "589edf5304828d2de0854e261f03eef5f3f0f7dc52c22a6b5dd6e3b279b2f031"
+  },
+  "work/candidates/spy-dense-full-observer-r2-1375/test_observer.py": {
+    "bytes": 9174,
+    "sha256": "83f76bdc493147e4a61b99b6cbde05531a145e4f934fa15499cacacefc013693"
+  },
+  "work/candidates/spy-modifier-observer-1375/input-pins.json": {
+    "bytes": 1396,
+    "sha256": "99cf1414b7aeaf8beaba7947c776f708281c76f4d009b0eeef50f445e2c6752e"
+  },
+  "work/candidates/spy-modifier-observer-1375/observer.py": {
+    "bytes": 20533,
+    "sha256": "d386524d543d96509fe4230e5fd02b01bc7f404f5419054ae2a84f66fdb13e48"
+  },
+  "work/candidates/spy-modifier-observer-1375/report.json": {
+    "bytes": 472872,
+    "sha256": "e385e400841d9e012a4be2ed0261ae2dab311c5bf396f42c588d74f5508575d4"
+  },
+  "work/candidates/spy-modifier-observer-1375/test_observer.py": {
+    "bytes": 14282,
+    "sha256": "b4d19ace97c6296c141c7df19a0b9d7eed91623edd748588545a4127a49286ba"
+  },
+  "work/discover_diplomacy.py": {
+    "bytes": 29147,
+    "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+  },
+  "work/local_config.py": {
+    "bytes": 2818,
+    "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001"
+  },
+  "work/map_diplomacy_fields.py": {
+    "bytes": 32914,
+    "sha256": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85"
+  },
+  "work/native/run_lab_speed_v17_1375.py": {
+    "bytes": 11526,
+    "sha256": "ed3967c54bdc4f9e31b6b534753688f6b37531538c9d5d23338d35591d3eefec"
+  },
+  "work/probe_diplomacy_current.py": {
+    "bytes": 24900,
+    "sha256": "a5a0b775a701466cf5f4c85db671e37f81c165daf5fddd2080b71ed6f147bb38"
+  },
+  "work/review-results/spy-dense-aggregate-root-20261008a/review.json": {
+    "bytes": 1823,
+    "sha256": "5ee10b2d27be552b4750170e1b5054d24ab9d01ff7b5116b59a32f9e3f5d5795"
+  },
+  "work/review-results/spy-dense-full-native-inventory-20261008a/review-r2.json": {
+    "bytes": 5937,
+    "sha256": "ead79661f389c22cbabc7458efed7d22c89a2802e4e1f5a6058be7e569c61c5d"
+  },
+  "work/review-results/spy-dense-full-r2-native-inventory-20261008a/review.json": {
+    "bytes": 4327,
+    "sha256": "cdd7901f47871b7cfd12ae1cf0d605d0fb0ef660873045e8449ac279d207b26c"
+  },
+  "work/review-results/spy-modifier-observer-native-inventory-20261008a/review.json": {
+    "bytes": 3828,
+    "sha256": "cba5fc6a916bdeaae7d9f4b8d903d992120357788b8fe011e0c0ae86c5131f00"
+  },
+  "work/seal_spy_dense_full_r2_1375.py": {
+    "bytes": 3430,
+    "sha256": "4c9164fad9f7a19c47ca1fd62c7beea8fab8620a1e04fb39121fd979a26c866c"
+  },
+  "work/trace_change_subject_type.py": {
+    "bytes": 10991,
+    "sha256": "8bc16d94e8f6104a79ce541c6de0843894293e158f44efb6c47f27b9b8dec6da"
+  }
+}

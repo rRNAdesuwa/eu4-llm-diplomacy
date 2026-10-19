@@ -1,0 +1,18 @@
+{
+  "work/AGENTS.md": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187",
+  "work/discover_diplomacy.py": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318",
+  "work/map_diplomacy_fields.py": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85",
+  "work/trace_change_subject_type.py": "8bc16d94e8f6104a79ce541c6de0843894293e158f44efb6c47f27b9b8dec6da",
+  "work/reports/native-diplomacy-1.37.5.json": "c64df6e043c9e7a498a25082e0e768902764e4a271ab3579f0eaddb2f1391633",
+  "work/reports/native-action-fields-1375.json": "cfabb4622b7c82f9e2476a82352f91fa5d0f8ba0f8150e75aac47fb4aeaddc96",
+  "work/reports/native-diplomacy-modes-1375.json": "1c0fa12b630a134036c32caf826750ce82608c44fab80108e6cfd2b738d06676",
+  "work/reports/action-factories.json": "0401a4b605c4541f601742b86b15a72d523d9d00d76ebb28b979160ce63ee9c5",
+  "work/reports/native-pair-cancel-1375.json": "54dc047d85fe8c06528d5fb3824a1928f56fac2c4bbf24c26e205bcfb08e0df3",
+  "work/reports/native-coalition-queue-1375.json": "b36c788c3eeb589abaa208df83cb3f97bf3697023188149588b41bb60dde5b65",
+  "work/reports/native-command-1.37.5.json": "7f32ea5f5ec5feca94103a66cab459d16b5c297025a2c44e5ed1e1eb9d8fa8d7",
+  "bridge/diplomacy_catalog.json": "0fbbf97d7e43f72cba9e45a4536fcca0f3d7b52517d01e24554bee623b7795e1",
+  "work/runtime/unpacked-1.37.5/base/common/defines.lua": "e3cf26836c70f8825a2ffd93160b2a09cdad29f78355787d07803138eb156f18",
+  "work/runtime/unpacked-1.37.5/base/common/static_modifiers/00_static_modifiers.txt": "5829d3341fc7a5503dd60d6635bfd1b354ab9466cc05836720c05e38437cffb8",
+  "work/runtime/unpacked-1.37.5/base/common/technologies/dip.txt": "1d934addb4e1140a09de14391fcbff554fa5feae0e28b5640d44a4ce3e3f867e",
+  "work/runtime/unpacked-1.37.5/base/common/new_diplomatic_actions/00_diplomatic_actions.txt": "69757c4ec1ae1604882d1ed1f90cde2370550e4d533f9f8173ff09cebf6e5bc9"
+}

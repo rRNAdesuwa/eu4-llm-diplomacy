@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "purpose": "static research contract for a future ordinary declare-war adapter",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "executable": false,
+  "send_authorized": false,
+  "runtime_verified": false,
+  "constructor": {
+    "rva": "0x500480",
+    "object_bytes": 152,
+    "vtable_rva": "0x1c80d90",
+    "RCX": "game allocator-owned action storage",
+    "RDX": "current actor full country handle",
+    "R8": "current target full country handle",
+    "R9B": false,
+    "entry_RSP_plus_0x28": "current date DWORD (call-site RSP+0x20)",
+    "entry_RSP_plus_0x30": "selected borrowed goal or NULL for initialized noCB singleton (call-site RSP+0x28)",
+    "postconditions": ["goal+0x48 is non-null", "flags+0x40/+0x41/+0x42 all false", "all three ally vectors empty", "actor+0x10/+0x18 and target+0x20 equal requested current full handles", "both dates+0x28/+0x2c equal native current date"]
+  },
+  "tiers": [
+    {
+      "kind": "none",
+      "public_input": {"actor_tag": "TAG", "target_tag": "TAG", "cb": {"kind": "none"}},
+      "goal_input": null,
+      "singleton": {"global_rva": "0x2340030", "vtable_rva": "0x1d207f8", "definition_global_rva": "0x2340038", "definition_enum": 12, "definition_name": "nowargoal", "CB_global_rva": "0x233d8b8", "CB_name": "nocasusbelli", "owned": false},
+      "mutate_singleton": false,
+      "delete_singleton": false
+    },
+    {
+      "kind": "current_candidate",
+      "public_input": {"actor_tag": "TAG", "target_tag": "TAG", "cb": {"kind": "current_candidate", "candidate_id": "host-issued opaque generation-bound capability"}},
+      "enumeration_rva": "0xd9eb40",
+      "builder_rva": "0xd9d220",
+      "accepted_sources": ["ordinary bilateral CB instance chain with builder fifth parameter=false"],
+      "accepted_goal_enums": [0, 1, 2, 3, 4, 5, 6, 7, 8, 10],
+      "excluded": ["take_region enum9 until legitimate region selector binding closes", "support_rebels", "actor_override", "non-sentinel subjects", "caller-created definition/CB pointers or enum-only goals"],
+      "candidate_binding": ["host process creation and world generation", "same current native date", "actor/target full handles and current objects", "bilateral root/record identity", "CB instance identity + definition index/name", "CB definition pointer and registry identity", "goal definition pointer/enum and membership in CB+0x170 vector", "complete goal fields and virtual70 readiness"],
+      "clone_goal_rva": "0xd9aaf0",
+      "output_array": {"bytes": 24, "vtable_rva": "0x1c3d1e0", "data_offset": "0x8", "capacity_DWORD_offset": "0x10", "count_DWORD_offset": "0x14", "normal_stack_destructor_rva": "0x116050", "never_insert_shared_sentinel": true}
+    }
+  ],
+  "ally_vectors": {"attacker_0x50": [], "promised_land_0x68": [], "full_ally_0x80": []},
+  "no_send_sequence": ["verify every required host proof; any unknown rejects before allocating", "resolve current pair/date/sentinel under host world lifetime lock", "construct exactly one action using game allocator", "verify object shape and normal flags", "native local80 and full88 with NULL tooltip, ordinary mode", "destroy caller-owned action exactly once on known successful construction", "write lifecycle receipt; no wrapper or sender calls"],
+  "checks": {"local_rva": "0x508db0", "full_rva": "0x50a0a0", "destructor_rva": "0x500520"},
+  "required_host_proofs": ["exact executable identity and code pins", "strict single-player", "authenticated window/engine thread and TLS", "world generation and lifetime lock excluding reload/teardown/ABA", "fresh country pair and handle identity", "current date", "initialized borrowed singleton and registry definitions", "normal native construction/check/destruction audit", "exception and ownership quarantine policy"],
+  "unknowns": ["native world epoch source/lifetime exclusion", "CB instance expiry and removal contract", "region selection binding", "support-rebels reference lifetime", "full native guards/checks may allocate", "sender dynamic callee and all failure/unwind ownership", "actual war effects and save/reload acceptance"],
+  "production_ready": false
+}

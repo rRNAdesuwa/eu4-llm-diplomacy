@@ -1,0 +1,127 @@
+{
+  "schema": "EU4-R69-ACTUAL-RESULT-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_manifest": {
+    "bytes": 27579,
+    "sha256": "3ca9f6aff9c0ceffd0d0096a4ace1a1f7ff294b36acb0f88ed0c3a0f9f9ec69b"
+  },
+  "subject_contract": {
+    "bytes": 7825,
+    "sha256": "cf685af0d0287802ed06d830e804ee12c75865c4b527b3a676f3950cc96ef6cc"
+  },
+  "subject_capture": {
+    "bytes": 82235,
+    "sha256": "16125c7d31832311ef0b67019b01011b2703699f05408feb33ca881692f14c65"
+  },
+  "raw_replay": {
+    "bytes": 7108,
+    "sha256": "c4a1dee3c222b2b39a12f4456e8162bc6bb65bdb40e52eab9eb11c138363021f"
+  },
+  "reviewer_role": {
+    "original_source_preparer": true,
+    "actual_and_retained_package_author": "validation_audit",
+    "independent_source_peer": "diplomacy_static",
+    "independent_source_peer_pin": {
+      "bytes": 7276,
+      "path": "work/reports/war-peace-api-20261016-r69-source-independent-review/findings.json",
+      "sha256": "0ea573567c7dcf80434605383a73e132c9cdb578b45f6117fe9c68dae652133e"
+    },
+    "scope": "Currentselectedactualraw/metadata/retainedpackage review; notindependentredesignorengineauthentication"
+  },
+  "author_frozen_source_needs_change": false,
+  "checks": {
+    "actual_file_pins": 45,
+    "additional_finalpins": 7,
+    "engine_witness_metadata_only": 38,
+    "rows": 18,
+    "bytes": 55,
+    "RET_count": 0,
+    "external_JE": "0x993658",
+    "window_fallthrough": "0x9935a7",
+    "local_CFG_closed": false,
+    "raw_widths_metadata_and_three_gate_bindings_equal": true,
+    "normalclose_afterguards_beforecapture": true,
+    "R1failure_preserved_R2noactualretry": true,
+    "source_current_postguard_equal": true
+  },
+  "machine_contract": {
+    "pre_CALL": "FivePUSH+SUB30hex =>S-58hex; XOR ESI clearsfullRSI; RBP=entryR8; DWORD[entryRDX]=0; R14=entryRDX; R13=entryRCX. RCX/RDX/R8forwardedunchangedto97bd30.",
+    "zero_write": "Exactly4bytesbeforeexternalCALL; neither finalDnorRAXreturn norpositive/nonzero result.",
+    "CALL": "99358a->97bd30 bodyunfollowed. Normalreturn/volatile/nonvolatile/alias/outwrite/borrowretention unknown; conditionalordinaryABIR13preservation isnot recoveredbodyfact.",
+    "null_branch": "postCALLRAX copiedtoR12; TEST64; RAX0 JE993658outsideowned andbeyondnextmetadataend993643.",
+    "nonnull": "freshQWORD[postCALLR13+78] minusfreshQWORD[postCALLR13+70]mod64; SAR64R8,3 thenfallthrough9935a7outsideowned. No element/count/type/unit semantics.",
+    "header": "entryR8pointer savedRBP/forwardedR8 only; noheaderdereference in55B. Its output andcomplete layout remainunknown.",
+    "frame": "ConditionalR62 Q62: S=Q62-90hex; out=Q62+20=S+b0; header=Q62-50=S+40; precallRSP=S-58, calleeentryS-60. No epilogue/normalreturn owned.",
+    "flags": "Pre97bd30XOR ESI definesarithmeticflags/DFunknown; externalcallunknown; TEST64selectsbranch; lastSAR3changesflags. No finalflags/RETcontract."
+  },
+  "precision_notes": [
+    "Fullselectedpdata ownership55B is not wholefunction or returnclosure. Both localexits leaveownedbytes; no continuation or97bd30body was read.",
+    "DWORDout0 occursbeforeCALL. Externalcall/aliases/continuations may change it; finalD, Dpositive/nonzero, headeroutput andRAXapplicationreturn remainunknown.",
+    "R13 capturesentryRCX at993587. postCALLR13 accesses are concrete, but originalWidentity after97bd30 requires a separatecalleecontract or explicitordinarynormalABIpremise; pointeecontents never follow from registeridentity.",
+    "The reviewer preparedoriginalsource; D fullsourcepeer0ea57356/c1420c3d remains the independent source gate. Thisphase audits Valsactual/retainedrawoutput, not an independentlyredesignedproducer or newlyauthenticatedengine.",
+    "R1sealer failed exclusively at preexistingreport.md. Originalsource/log/report andpartialcontract/selected pins are retained; R2comparesexactbytes before reuse and writesactual-report.md. Oneactual only.",
+    "Firstfailedseal1,808,772B is path-and-pinderived, not an instrumentedfirstpassledger. Conservative3MiBallowance remains inretainedupper; no allOS/loaderIO claim.",
+    "498,531,000ns and22,675,456B are producerwitnesses, not native latency or treewidepeak. PE/engine identifications remain retainedwitness; allpermissions/effects/leasefalse."
+  ],
+  "resource_witness": {
+    "source_journal_at_capture": 19579065,
+    "final_capture_pin_read_bytes": 82235,
+    "producer_source_total": 19661300,
+    "retained_explicit_upper": 8493434,
+    "combined_explicit_upper": 28154734,
+    "first_failed_seal_derived_not_instrumented": 1808772,
+    "failed_seal_allowance": 3145728,
+    "PE_separate_bytes": 76925303,
+    "producer_elapsed_ns": 498531000,
+    "producer_peak_bytes": 22675456,
+    "hard_Job_installed": false
+  },
+  "independent_resources": {
+    "retained_intake_bytes": 1904328,
+    "initial_schema_bytes": 35404,
+    "smallinspection_allowance": 262144,
+    "prior_failed_cache_read_bytes": 3832367,
+    "final_cache_and_sourcepostguard_bytes": 5736695,
+    "own_sealing_reserve": 4194304,
+    "listed_analysis_upper_bytes": 15965242,
+    "source_limit_bytes": 25165824,
+    "own_peak_bytes": 30715904,
+    "memory_limit_bytes": 805306368,
+    "no_all_OS_loader_IO_claim": true,
+    "recursive_closure": false
+  },
+  "operations": {
+    "PE_stat_open": 0,
+    "engine_stat_open": 0,
+    "decoder": 0,
+    "author_producer_driver_sealer": 0,
+    "tests": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "callee_or_continuation_follow": 0,
+    "R71_scope": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_static_actual_authorized": false,
+    "runtime_capture_authorized": false
+  },
+  "self_diagnostics": {
+    "review_failures": 1,
+    "reason": "R1 attempted to parse the exact pinned empty failed-sealer stdout log as JSON. R2 exempts only that known empty log; all actual JSON remains strict. R1 source and failure are preserved; author sources and actual capture unchanged."
+  },
+  "all_shells_collected": true,
+  "next_scope_auto_authorized": false
+}

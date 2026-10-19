@@ -1,0 +1,118 @@
+{
+  "schema": "EU4-R67-INDEPENDENT-ACTUAL-FINDINGS/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_manifest": {
+    "bytes": 23396,
+    "sha256": "127d80f4872757fb06dec003fb8746bbbcb649ed456d769db052c4f6d8b18e79"
+  },
+  "subject_contract": {
+    "bytes": 6922,
+    "sha256": "af029d3cd895116e69cbc45a8b78a2ad8fde7773b7ef18f621b719b140ddfb56"
+  },
+  "subject_capture": {
+    "bytes": 81408,
+    "sha256": "cd6b909b386e8db8ec3a0e88d52c1cbecc72274e0e03e32ad4055467833c60b5"
+  },
+  "author_frozen_source_needs_change": false,
+  "raw_replay": {
+    "bytes": 8258,
+    "sha256": "25cbd9208d5297eef73ebe24d6f84ca35b7eea6c1fefb87389b51d458321e570"
+  },
+  "checks": {
+    "actual_source_pins": 37,
+    "explicit_additional_finalpins": 7,
+    "engine_metadata_witness_pins_unopened": 38,
+    "owned_bytes": 78,
+    "rows": 19,
+    "CALL_sites": 0,
+    "conditional_branches": 2,
+    "RET_sites": 1,
+    "explicit_store_sites": 3,
+    "stack_store_sites": 2,
+    "GS_derived_store_sites": 1,
+    "explicit_read_sites": 3,
+    "raw_width_CFG_metadata_replayed": true,
+    "three_review_gates_auth_claim_bound": true,
+    "source_postguard_equal": true
+  },
+  "machine_contract": {
+    "entry": "LetS=entryRSP,N=entryRAX. LocalRSP=S-16; saveentryR10 atS-16,entryR11 atS-8.",
+    "candidate": "R11=0; R10=(S+8)mod64; SUBR10,N; ifunsignedborrow CMOVB selects0, else subtractionresult.",
+    "GS": "B=u64(GSbase+0x10). Neither GSfieldname nor validstack/worldmapping is proved.",
+    "branch": "If unsignedcandidate>=B skiploop; otherwise AND16 R10W,f000 => L=candidate&fffffffffffff000.",
+    "loop": "EachstepR11=submod64(R11,4096); storeBYTE[R11]=0; compare64L,R11; JNEstep. One staticsite, zeroorloopdependent dynamicstores.",
+    "conditional_termination": "IfB is4096aligned, candidate<B, validnormalstores and noasync/codechanges, L<=candidate<B and (B-L)/4096 finite no-wrap steps. ArbitraryB/permissions/faults remainunknown.",
+    "concrete_preservation": "NoRCX/RDX/RAX/R8/R9/XMMwrites in thisbody; under normal execution those registers retain entryvalues. This follows explicitinstructions, notordinaryvolatileABI.",
+    "R10_R11": "Reloadsavedqwords; equalentryvaluesonlyifthosebyteswere notaliased/clobbered. GSderivedstoretargetsavedstack/returnslot/H/Talias notexcluded.",
+    "RSP": "BeforeRET RSP=S modulo64 bySUB16/ADD16; normalRET consumesreturnqword and yields S+8. Actualnormalreturn/controltarget/validmemory isnotproved.",
+    "flags": "FinalADD64(S-16,16) produces final arithmeticflags; incomingarithmeticflags notpreserved. DFnotwritten byanyselectedinstruction, so inheritedDF onnormalnonasyncpath.",
+    "R66": "Fixedcaller EAX1040 ->helper N1040; normalreturn preservesRAX1040/RCXH/RDXT and balancesCALLstack. SubsequentcallerSUBallocates1040 concretely; freshH/Treads stillrequired and contentsnotprovedunchanged."
+  },
+  "precision_notes": [
+    "Registerpreservation and balancedRSP follow the complete concrete normal instructions. They do not prove normalreturn/faultfreedom or immutableH/Tdata.",
+    "The GSderivedBYTEwrite can alias borrowedobjects, savedR10/R11qwords orreturnslot; no processstackownership/type is established. R10/R11restore is conditionalonuncorrupted savedbytes.",
+    "AND R10W,f000 preservesupper48bits and clearslow12; it is not DWORDzeroextension. BranchJAEstaysunsigned64; loopLEAdisplacement is signed-4096 with modulo64addressarithmetic.",
+    "ConditionalnormalR66crosswalk may now fill postRAX1040/RCXH/RDXTregistervalues andCALLbalance; older frozenR66unknown remains historical. This doesnotremove freshH/Treads, nativeguards or lifetimeconditions.",
+    "No helper/CRT/businessname, safeexecution, selectedAPIeffect, amountunit, recipient, conservation, sort or lifetime authority follows.",
+    "Source/PE/decoder/resource identities are retained producerwitnesses; no enginebody orPE was independentlyopened. 503865800ns is producerlaunch-to-collectedexit, notnativecalllatency.",
+    "Retainedupper2456037 includes1048576 manual/wrapperprepallowance and65536 finaldeliveryallowance, not exactallOS/interpreter/loaderIO."
+  ],
+  "resource_witness": {
+    "source_journal_at_capture": 16786447,
+    "post_capture_pin_bytes": 81408,
+    "producer_source_bytes": 16867855,
+    "retained_explicit_upper": 2456037,
+    "combined_explicit_upper": 19323892,
+    "PE_separate_bytes": 76925314,
+    "producer_elapsed_ns": 503865800,
+    "producer_peak_bytes": 22986752,
+    "hard_Job_installed": false
+  },
+  "independent_resources": {
+    "known_prior_listed_bytes": 539515,
+    "prior_inspection_upper_bytes": 1089811,
+    "final_cache_and_source_postguard_bytes": 1547037,
+    "own_sealing_reserve_bytes": 2097152,
+    "listed_analysis_upper_bytes": 5273515,
+    "source_limit_bytes": 25165824,
+    "own_peak_bytes": 22237184,
+    "memory_limit_bytes": 805306368,
+    "no_all_OS_loader_IO_claim": true,
+    "recursive_closure": false
+  },
+  "operations": {
+    "PE_stat_open": 0,
+    "engine_stat_open": 0,
+    "decoder": 0,
+    "author_producer_or_driver": 0,
+    "tests": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "callee_expansion": 0,
+    "RTTI_scope": 0,
+    "new_actual": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "runtime_capture_authorized": false,
+    "further_static_actual_authorized": false
+  },
+  "self_diagnostics": {
+    "review_failures": 0,
+    "finaldelivery_filenames_fixed_from_directory_metadata_before_first_intake": true
+  },
+  "all_shells_collected": true,
+  "next_scope_auto_authorized": false
+}

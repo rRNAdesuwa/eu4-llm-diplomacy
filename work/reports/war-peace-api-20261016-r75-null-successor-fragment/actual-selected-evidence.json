@@ -1,0 +1,371 @@
+{
+  "schema": "EU4-R75-SELECTED-RETAINED-EVIDENCE/1",
+  "sealed": true,
+  "source_capture": {
+    "bytes": 69417,
+    "sha256": "c0667fdefc13e922d45321b2d63f87e567bb1db3e3d8ab37d447d8f35a3f59b0"
+  },
+  "source_owned": {
+    "bytes": 584,
+    "sha256": "150e721451fdf8d071cb038d2530163f7c72be094ebb1598cf2c42249c9e9d3c"
+  },
+  "metadata": {
+    "reason": "only_fixed_record",
+    "index": 19163,
+    "rva": "0x249d244",
+    "file_offset": 37139012,
+    "raw_hex": "583699006836990038dde701",
+    "begin_rva": "0x993658",
+    "end_exclusive": "0x993668",
+    "unwind_rva_unfollowed": "0x1e7dd38"
+  },
+  "previous_retained_only": {
+    "reason": "binary_search",
+    "index": 19162,
+    "rva": "0x249d238",
+    "file_offset": 37139000,
+    "raw_hex": "433699005836990024dde701",
+    "begin_rva": "0x993643",
+    "end_exclusive": "0x993658",
+    "unwind_rva": "0x1e7dd24"
+  },
+  "next_retained_only": {
+    "reason": "binary_search",
+    "index": 19164,
+    "rva": "0x249d250",
+    "file_offset": 37139024,
+    "raw_hex": "70369900a736990048dde701",
+    "begin_rva": "0x993670",
+    "end_exclusive": "0x9936a7",
+    "unwind_rva": "0x1e7dd48"
+  },
+  "raw_code": {
+    "schema": "EU4-R75-OWNED-NULL-SUCCESSOR/1",
+    "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+    "window": [
+      "0x993658",
+      "0x993668"
+    ],
+    "file_offset": 10037848,
+    "bytes": 16,
+    "raw_hex": "498bc64883c430415e415d415c5e5dc3",
+    "sha256": "a73d9e2ce93e88fbccdf109ab33824517b253b0db1660176471c6055a8924b5a",
+    "full_selected_extent_owned": true,
+    "inherited_branch_fragment_not_independent_function": true,
+    "source_manifest": {
+      "bytes": 22012,
+      "sha256": "5e44ed379c98638b701d89d2c6e4d24ae991f0fd16c3f9c94d0a9e77a45fe2e6"
+    }
+  },
+  "analysis": {
+    "instructions": [
+      {
+        "rva": "0x993658",
+        "bytes": "498bc6",
+        "mnemonic": "mov",
+        "operands": "rax, r14",
+        "registers_read": [
+          "r14"
+        ],
+        "registers_written": [
+          "rax"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "498bc6",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "8b"
+        }
+      },
+      {
+        "rva": "0x99365b",
+        "bytes": "4883c430",
+        "mnemonic": "add",
+        "operands": "rsp, 0x30",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rflags",
+          "rsp"
+        ],
+        "memory_operands": [],
+        "immediates": [
+          48
+        ],
+        "raw_memory_write_review": {
+          "raw_hex": "4883c430",
+          "status": "recognized_register_or_no_destination_form",
+          "explicit_memory_write": false,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "83",
+          "modrm_hex": "0xc4",
+          "mod": 3,
+          "group": 0
+        }
+      },
+      {
+        "rva": "0x99365f",
+        "bytes": "415e",
+        "mnemonic": "pop",
+        "operands": "r14",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp",
+          "r14"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "415e",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "5e"
+        }
+      },
+      {
+        "rva": "0x993661",
+        "bytes": "415d",
+        "mnemonic": "pop",
+        "operands": "r13",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp",
+          "r13"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "415d",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "5d"
+        }
+      },
+      {
+        "rva": "0x993663",
+        "bytes": "415c",
+        "mnemonic": "pop",
+        "operands": "r12",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp",
+          "r12"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "415c",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "5c"
+        }
+      },
+      {
+        "rva": "0x993665",
+        "bytes": "5e",
+        "mnemonic": "pop",
+        "operands": "rsi",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp",
+          "rsi"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "5e",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "5e"
+        }
+      },
+      {
+        "rva": "0x993666",
+        "bytes": "5d",
+        "mnemonic": "pop",
+        "operands": "rbp",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp",
+          "rbp"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "5d",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "5d"
+        }
+      },
+      {
+        "rva": "0x993667",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": "",
+        "registers_read": [
+          "rsp"
+        ],
+        "registers_written": [
+          "rsp"
+        ],
+        "memory_operands": [],
+        "immediates": [],
+        "raw_memory_write_review": {
+          "raw_hex": "c3",
+          "status": "unclassified_requires_manual_review",
+          "explicit_memory_write": null,
+          "not_a_no_write_proof": true,
+          "opcode_hex": "c3"
+        }
+      }
+    ],
+    "edges": [],
+    "terminals": [
+      {
+        "kind": "normal_ret",
+        "rva": "0x993667"
+      }
+    ],
+    "lookahead_inputs": [
+      {
+        "rva": "0x993658",
+        "bytes": 15
+      },
+      {
+        "rva": "0x99365b",
+        "bytes": 13
+      },
+      {
+        "rva": "0x99365f",
+        "bytes": 9
+      },
+      {
+        "rva": "0x993661",
+        "bytes": 7
+      },
+      {
+        "rva": "0x993663",
+        "bytes": 5
+      },
+      {
+        "rva": "0x993665",
+        "bytes": 3
+      },
+      {
+        "rva": "0x993666",
+        "bytes": 2
+      },
+      {
+        "rva": "0x993667",
+        "bytes": 1
+      }
+    ],
+    "instruction_count": 8,
+    "decoded_unique_bytes": 16,
+    "undecoded_owned_intervals": [],
+    "decoder_input_total_bytes": 55,
+    "decoder_input_unique_bytes": 16,
+    "decoder_overlap_bytes": 39,
+    "local_normal_CFG_closed": true,
+    "external_CALL_normal_return_assumed_for_fallthrough": true,
+    "dynamic_reachability_verified": false
+  },
+  "source_branch": {
+    "rva": "0x993595",
+    "bytes": "0f84bd000000",
+    "mnemonic": "je",
+    "operands": "0x993658",
+    "registers_read": [
+      "rflags"
+    ],
+    "registers_written": [],
+    "memory_operands": [],
+    "immediates": [
+      10040920
+    ],
+    "raw_memory_write_review": {
+      "raw_hex": "0f84bd000000",
+      "status": "unclassified_requires_manual_review",
+      "explicit_memory_write": null,
+      "not_a_no_write_proof": true,
+      "opcode_hex": "0f84"
+    }
+  },
+  "return_and_stack_projection": {
+    "return": {
+      "first_instruction": "993658 MOV RAX,currentR14 before any stack restore",
+      "exact_selected_normal_RAX": "Full64 R14 value at inherited fragment entry. No subsequent instruction changes RAX.",
+      "RAX_is_not_null_edge_zero_result": "The MOV replaces the JE-entry RAX0. RAX0 is not a proved final return.",
+      "conditional_original_outpointer": "R69 set R14=its original RDX before external97bd30. Only under normalcallee explicit R14-preservation and alias/frame premises is currentR14 that original pointer.",
+      "D_value": "No D dereference occurs here. Pre97bd30 D0 is not established current/finalD; pointer return is not scalar out value.",
+      "R12": "EntryR12=0 is restored from saved callerR12 by POP; its final value is not assertedzero."
+    },
+    "stack": {
+      "entry": "F=S69-0x58, not a new CALL frame",
+      "add": "99365b ADD RSP,0x30; arithmetic flags are replaced by this ADD, not retained JE TEST flags.",
+      "implicit_reads": [
+        {
+          "site": "0x99365f",
+          "operation": "POP R14",
+          "qword_address": "F+0x30=S69-0x28"
+        },
+        {
+          "site": "0x993661",
+          "operation": "POP R13",
+          "qword_address": "F+0x38=S69-0x20"
+        },
+        {
+          "site": "0x993663",
+          "operation": "POP R12",
+          "qword_address": "F+0x40=S69-0x18"
+        },
+        {
+          "site": "0x993665",
+          "operation": "POP RSI",
+          "qword_address": "F+0x48=S69-0x10"
+        },
+        {
+          "site": "0x993666",
+          "operation": "POP RBP",
+          "qword_address": "F+0x50=S69-0x8"
+        },
+        {
+          "site": "0x993667",
+          "operation": "RET",
+          "qword_address": "F+0x58=S69"
+        }
+      ],
+      "implicit_stack_reads_bytes": 48,
+      "final_RSP_if_normal_ret": "S69+8",
+      "conditions": [
+        "Balanced normal97bd30 return into original R69 frame",
+        "All five saved QWORD slots and return address valid and not corrupted",
+        "No exception/asynchronous transfer substitutes a different path"
+      ],
+      "DF": "Not modified by these rows; incomingDF remains unknown."
+    }
+  },
+  "new_decoding_performed_at_seal": false,
+  "native_ready": false,
+  "further_actual_authorized": false
+}

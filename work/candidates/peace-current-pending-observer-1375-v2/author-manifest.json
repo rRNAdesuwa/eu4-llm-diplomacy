@@ -1,0 +1,334 @@
+{
+  "canonical_manifest_at_freeze": {
+    "bytes": 8428,
+    "sha256": "6a4c081d3709d734eee90b9c19f9da535620cd56665e4fcb02cc6270871ab2a0"
+  },
+  "canonical_manifest_snapshot": "source-manifest.draft.json",
+  "closure_scope": "Local new artifacts plus direct candidate source graph; delegated215+11 witnessed by first file commands, not recursively rehashed here",
+  "independent_review": "pending",
+  "local_pins": {
+    "README.md": {
+      "bytes": 2318,
+      "sha256": "3cd0c599aa473ab415cd1c76fdb22d891c6c837269f5067d856bc88878e5eea2"
+    },
+    "authoring-diagnostics.json": {
+      "bytes": 760,
+      "sha256": "87c8e0ebb797ff37f9fab97a65c603f9626a7d6487a4050ca04c5f94240d994a"
+    },
+    "budget.json": {
+      "bytes": 1221,
+      "sha256": "d3a3e36d0facd75a245d1bd9f86c6864f0ba8c28bf391600b20914ff39760c65"
+    },
+    "build-claim.json": {
+      "bytes": 113,
+      "sha256": "8da4d01db14396278f53055419e70b17915e5d56b33422b73ba941e9f0b0e3ab"
+    },
+    "build-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build-stdout.txt": {
+      "bytes": 270,
+      "sha256": "395be2329d6bb8673da4db1ccfc39dace4df9cf4fb32877125cbc39cc3e791c8"
+    },
+    "build_manifest.py": {
+      "bytes": 4350,
+      "sha256": "37af3292147a1bc8607ea57663d12af84e6eaf8ed66d7974894fbe1832e34943"
+    },
+    "delivery-claim.json": {
+      "bytes": 123,
+      "sha256": "b36ef65cf3f4cf86aa2ffa09a01b49ac3e5360458b4ea6fc8d579eef6aa86387"
+    },
+    "offline-r1/check-io.json": {
+      "bytes": 181179,
+      "sha256": "40cebc44b410b4c1a8e324ac6fee15dd785c81d06339f5ed54141fb621a49e14"
+    },
+    "offline-r1/check-receipt.json": {
+      "bytes": 1464,
+      "sha256": "9ca41529779e04afd5d27ff9684bbe37bb26fa7c23484cca087ae3c4c4b2e2aa"
+    },
+    "offline-r1/check-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "offline-r1/check-stdout.txt": {
+      "bytes": 15915,
+      "sha256": "44d0f9001685c68ddff3981828565230942a294c0cd2ee0037c6d07a47a5afee"
+    },
+    "offline-r1/claim.json": {
+      "bytes": 1798,
+      "sha256": "bd761f31383ab30897185c0e4be07d32d03360671705f05c8e833537fdf3cc0b"
+    },
+    "offline-r1/fake-minus-one-absent.json": {
+      "bytes": 175412,
+      "sha256": "a611b32b48691470bdfe0d5dac0d2d67c863298b1f50cf07aa99b6e2f58cc14a"
+    },
+    "offline-r1/fake-one-absent.json": {
+      "bytes": 175393,
+      "sha256": "fb97e20b94a4be924a49d348836cc287a674ef9f0b8f4084706fd5daed45c7d2"
+    },
+    "offline-r1/fake-one-present.json": {
+      "bytes": 180801,
+      "sha256": "5e4da7dd97c3204fa7350fe72663571f73d18137b310013c0336ffba6341d081"
+    },
+    "offline-r1/fake-scalar-change.json": {
+      "bytes": 175488,
+      "sha256": "428dd4215ad0b90eb3f9cf7eaafae90d58c3f09acff3aef2dc76b0766809b7a4"
+    },
+    "offline-r1/fake-short-scalar.json": {
+      "bytes": 29834,
+      "sha256": "6a967bfc9e07ddfa8672c4c82521afd0811954d22f83bdc225d59122ecc7794b"
+    },
+    "offline-r1/fake-structural-refusal.json": {
+      "bytes": 54820,
+      "sha256": "133fc1e8eb21a01d4d69c9e31f2e253d68e2fbd56300c77c08e0d33c7275f963"
+    },
+    "offline-r1/new_fake_suite-io.json": {
+      "bytes": 4049,
+      "sha256": "2247adc3e31d64caff5e41ea9d1094d4347c9b0c834a6bec712046e6711798cb"
+    },
+    "offline-r1/new_fake_suite-receipt.json": {
+      "bytes": 2263,
+      "sha256": "2e6264ba9f9ad20f6153bcef4affd7f01f6ab806a96662735620e035d79481bc"
+    },
+    "offline-r1/new_fake_suite-stderr.txt": {
+      "bytes": 571,
+      "sha256": "26011dbdb025f899d6b98026b84ede7e006e501b78d7597ada475dbc5b313cbc"
+    },
+    "offline-r1/new_fake_suite-stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "offline-r1/receipt.json": {
+      "bytes": 6232,
+      "sha256": "418e8578f06a4dc72c2b1651aaebddfb8008f785aa8cd7864d29aa2f499acf47"
+    },
+    "offline-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "offline-stdout.txt": {
+      "bytes": 407,
+      "sha256": "ffda2786f7cfb6d8e5e4ee31e8a672a82337b509b4a41508b1f8245b9dbff3c0"
+    },
+    "offline_child.py": {
+      "bytes": 7746,
+      "sha256": "78435436c14d8f5c2728c4b3bbe181a7658d3266c1faf08b04d5438e8a62f7c4"
+    },
+    "peace_current_pending.py": {
+      "bytes": 24249,
+      "sha256": "94faa085cc982230717f42b43b24bd777a26493a0cf18d2dc3c2cbfc23a7491d"
+    },
+    "preparation.json": {
+      "bytes": 16113,
+      "sha256": "76c2536ef2f56951b5120a6d97f6386a3c53ed83cccdf47fe0dc36e2ebf4e1e9"
+    },
+    "prepare_sources.py": {
+      "bytes": 9264,
+      "sha256": "63691baa042cefc021a6f09a143e755465e95492b3883af82d751c7a6c121afe"
+    },
+    "report.json": {
+      "bytes": 9516,
+      "sha256": "26aab29c46cfd59b4528eaeef78342fbbe1874aaabd19f7370985a3c5dbdb245"
+    },
+    "report.md": {
+      "bytes": 1615,
+      "sha256": "b3dcd12df17fa76b8fe86a807049a3e3add4a138e6090e4a7a739a3517480e50"
+    },
+    "run_offline.py": {
+      "bytes": 6522,
+      "sha256": "8f8b385f1079da1119d4575a6b930f3c111b97f96dee073162cd541e7bdf384d"
+    },
+    "seal_delivery.py": {
+      "bytes": 10241,
+      "sha256": "5213bbc20d20eb00e4cb05f87effa17b8b76a3642dd9b6d388962bc42a3526d2"
+    },
+    "source-construction.json": {
+      "bytes": 853,
+      "sha256": "672832fcb1bdd28bbdccb351b724f59243124fd97f4949a05705210c3f229bf9"
+    },
+    "source-delta.json": {
+      "bytes": 1622,
+      "sha256": "e58df6967f532b9e066e01fb600847e09bf40b57cb2c803491e84973a6d2fa76"
+    },
+    "source-manifest.draft.json": {
+      "bytes": 8428,
+      "sha256": "6a4c081d3709d734eee90b9c19f9da535620cd56665e4fcb02cc6270871ab2a0"
+    },
+    "test_peace_current_pending.py": {
+      "bytes": 9395,
+      "sha256": "0b83d325955ccec0fcbd0a5c19ad32afb42dd5552208d7d2d13787e537836bac"
+    }
+  },
+  "production_authorized": false,
+  "schema": "EU4-PEACE-V2-AUTHOR-MANIFEST/1",
+  "sealed": true,
+  "six_new_fakes_passed": true,
+  "source_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/diplomacy_reply_observer.py": {
+      "bytes": 27263,
+      "sha256": "7a7fdea49ee86b888336089b4982f1d2ff719d3eab9c530fb92f84c19a225761"
+    },
+    "bridge/diplomacy_reply_observer_manifest_1375.json": {
+      "bytes": 3739,
+      "sha256": "31f3c1d936b751433ecf1dcbf989fb50e2cb65f529651bd23976060fb1e07580"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py": {
+      "bytes": 16856,
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json": {
+      "bytes": 2494,
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/peace_current_pending.py": {
+      "bytes": 23345,
+      "sha256": "ac8c292d1320f776a6a8817f0158c275e624bcfe05f9a2dc51220e03532ba643"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/test_peace_current_pending.py": {
+      "bytes": 13657,
+      "sha256": "96f41c4e8752f639c67db42144437734d9dee1ff38a09ae770f6cfc271b65ca5"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/README.md": {
+      "bytes": 2318,
+      "sha256": "3cd0c599aa473ab415cd1c76fdb22d891c6c837269f5067d856bc88878e5eea2"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/budget.json": {
+      "bytes": 1221,
+      "sha256": "d3a3e36d0facd75a245d1bd9f86c6864f0ba8c28bf391600b20914ff39760c65"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/build_manifest.py": {
+      "bytes": 4350,
+      "sha256": "37af3292147a1bc8607ea57663d12af84e6eaf8ed66d7974894fbe1832e34943"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/offline_child.py": {
+      "bytes": 7746,
+      "sha256": "78435436c14d8f5c2728c4b3bbe181a7658d3266c1faf08b04d5438e8a62f7c4"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/peace_current_pending.py": {
+      "bytes": 24249,
+      "sha256": "94faa085cc982230717f42b43b24bd777a26493a0cf18d2dc3c2cbfc23a7491d"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/prepare_sources.py": {
+      "bytes": 9264,
+      "sha256": "63691baa042cefc021a6f09a143e755465e95492b3883af82d751c7a6c121afe"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/run_offline.py": {
+      "bytes": 6522,
+      "sha256": "8f8b385f1079da1119d4575a6b930f3c111b97f96dee073162cd541e7bdf384d"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/source-delta.json": {
+      "bytes": 1622,
+      "sha256": "e58df6967f532b9e066e01fb600847e09bf40b57cb2c803491e84973a6d2fa76"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/test_peace_current_pending.py": {
+      "bytes": 9395,
+      "sha256": "0b83d325955ccec0fcbd0a5c19ad32afb42dd5552208d7d2d13787e537836bac"
+    },
+    "work/reports/native-owned-peace-1375.json": {
+      "bytes": 1302642,
+      "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+    },
+    "work/reports/native-pair-replies-1375.json": {
+      "bytes": 1894144,
+      "sha256": "da3faa061af3d9ee8a3003412151594c6305b765afd8d739b4cb4a4759f63510"
+    },
+    "work/reports/peace-current-pending-guard-proposal-20261016-r1/proposal.json": {
+      "bytes": 13232,
+      "sha256": "ba2b0931280bb38087c686b8bf6e47688c49d68178c8a8183815cd604e4030e7"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/budget.json": {
+      "bytes": 810,
+      "sha256": "226ec2695ef0c033a769cda6479d29ee37ab408f0a40a75a08a66248edca31fb"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/build_design.py": {
+      "bytes": 8793,
+      "sha256": "cdad52f198d7d1681e09c547e5ebc25e25dbbe18bee64a4082b9be12fafdb4c7"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/design.json": {
+      "bytes": 16325,
+      "sha256": "8656c12a1fa9bcbcf8be5a2d5f378fab8324500da1eca5b7b50a2ac975562140"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/extraction-result.json": {
+      "bytes": 508,
+      "sha256": "565043e3d284980c551490e1e36fafa36ec0908b4feed1acff233e6af897cf5b"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/loaded-code-candidates.json": {
+      "bytes": 4437,
+      "sha256": "49a201eb2649bac908c2e370bfb5819cc3961d52e28454a2669bfd2702ad36be"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/manifest.json": {
+      "bytes": 5290,
+      "sha256": "cdf18bdd8e36eaca11db2d80b7f94b7f6cd444e09731e924f03868d81c6f4b03"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/read-accounting.json": {
+      "bytes": 5676,
+      "sha256": "393f3139038d08845a56502efe01b7b8e135dac22bad4665d01e646dc1623e25"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/report.md": {
+      "bytes": 4016,
+      "sha256": "aafe44b150a10a6b8c1dab56803ec23d3de979ad3ebc0601e3fc0c3418c0199a"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/retained-layout.json": {
+      "bytes": 54045,
+      "sha256": "d357f06d5cf6573d0af9ac322228d83675ac17947643bd908704a44bf0215f33"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/seal_design.py": {
+      "bytes": 3266,
+      "sha256": "cc7de89240aefb73ca06fded79607bc9765fd51367efa01eaf89c4213a3bad06"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/source-pins.json": {
+      "bytes": 1733,
+      "sha256": "573ec2776e71ad9b5fabadb24199a2391a5457a5c03be51e704f0afe2991cd58"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/verify.py": {
+      "bytes": 1060,
+      "sha256": "77c0d460da4c3fb3815d7225f9de1336e7a3031bf95b57e8a3ef43928f2b48cf"
+    },
+    "work/reports/peace-current-pending-reader-design-independent-review-20261016-r1/findings.json": {
+      "bytes": 5126,
+      "sha256": "229908a7d5933b065ff18707df19f3e4a303f25b34050e53b7690d49772401e5"
+    },
+    "work/reports/peace-current-pending-reader-design-independent-review-20261016-r1/manifest.json": {
+      "bytes": 13248,
+      "sha256": "0b1ff8d258ef59b52b3a1c71feba2fd3b13e47b13ce23fa5f21f967bf901c01a"
+    },
+    "work/reports/peace-current-pending-v2-host-hash-budget-20261016-r1/authorization.json": {
+      "bytes": 3267,
+      "sha256": "f1e988ca94bcf8f7519218e8eced9fcac367269f596f40205af71c8828f944ac"
+    },
+    "work/reports/peace-current-pending-v2-source-authorization-20261016-r1/authorization.json": {
+      "bytes": 3296,
+      "sha256": "423d8b9e04d29e0fe3de58228e79903dac49e4a07881e38e3b92a81df38a1dec"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/crosswalk.json": {
+      "bytes": 12455,
+      "sha256": "4829fef072fbfeb7d123a009b87dae281a3d0a493565bd979f2d2bae0f2edf66"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/manifest.json": {
+      "bytes": 4947,
+      "sha256": "b8a275647f591850fe04ee7f82b536603186596981ff25846225150631956b30"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/selected-evidence.json": {
+      "bytes": 19226,
+      "sha256": "3b8c932a3a903f36e6a274e26336063f8f4cb347ce8672f76d5c41e284db21f0"
+    },
+    "work/reports/peace-reply-locator-crosswalk-independent-review-20261016-r1/findings.json": {
+      "bytes": 5193,
+      "sha256": "22c05ce4bd8ee3aa95c6efe880e6dd0c20d8102dfb78e6316fd2168d694410d6"
+    },
+    "work/reports/peace-reply-locator-crosswalk-independent-review-20261016-r1/manifest.json": {
+      "bytes": 7599,
+      "sha256": "e6c83416d7b93bc2280ca22471064d91effc9120d4b217da462b00a8f62112c9"
+    }
+  },
+  "source_ready": false
+}
