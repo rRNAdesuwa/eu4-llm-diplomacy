@@ -121,8 +121,7 @@ class PeaceExecutionParameterTests(unittest.TestCase):
             normalize("white_peace", "ENG", unknown_context)
         unknown_term = {"peace_context": {
             "war_id": WAR_ID, "direction": "demand", "terms": [{
-                "action_id": "return_core", "province_ids": [177],
-                "beneficiary": "FRA"}]}}
+                "action_id": "unsupported_peace_term"}]}}
         with self.assertRaisesRegex(
                 ValueError, "PEACE_EXECUTION_TERM_UNKNOWN"):
             normalize("cede_province", "ENG", unknown_term)

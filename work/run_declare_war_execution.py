@@ -66,6 +66,8 @@ def _selection_parameters(
     province_id: object,
     beneficiary: object,
     call_allies: object,
+    promise_land_to: object = None,
+    co_belligerents: object = None,
 ) -> dict[str, object]:
     """Validate the operator's flat arguments and return QUERY3 shape."""
 
@@ -89,11 +91,24 @@ def _selection_parameters(
             "NO_CASUS_BELLI_CONTEXT_INVALID",
             "no_casus_belli requires province=-1 and beneficiary=FRA",
         )
-    return {
+    result = {
         "casus_belli": casus_belli,
         "war_goal": {"province_id": province_id, "beneficiary": beneficiary},
         "call_allies": list(call_allies),
     }
+    if promise_land_to is not None:
+        result["promise_land_to"] = promise_land_to
+    if co_belligerents is not None:
+        result["co_belligerents"] = co_belligerents
+    from bridge.declarewar_selection import normalize_participant_selection
+    try:
+        normalized = normalize_participant_selection(result)
+    except ValueError as error:
+        raise ExperimentStop("PARTICIPANT_SELECTION_INVALID", str(error)) from error
+    for key in normalized:
+        if key in result:
+            result[key] = normalized[key]
+    return result
 
 
 def _query_declare_war(
@@ -676,6 +691,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--province-id", "--province", dest="province_id", type=int)
     parser.add_argument("--beneficiary")
     parser.add_argument("--call-allies", "--call-ally", dest="call_allies", action="append", default=[])
+    parser.add_argument("--promise-land-to", action="append", default=None)
+    parser.add_argument("--co-belligerent", dest="co_belligerents", action="append", default=None)
     parser.add_argument("--expected-outcome", choices=("executed", "unknown"), default="executed")
     parser.add_argument("--expected-date-raw", type=int, default=None)
     parser.add_argument("--resume-artifact", type=Path)
@@ -700,7 +717,8 @@ def main(argv: list[str] | None = None) -> int:
     if not isinstance(args.request_id, str) or _REQUEST_ID_RE.fullmatch(args.request_id) is None:
         parser.error("--request-id must match [A-Za-z0-9_-]{1,64}")
     try:
-        parameters = _selection_parameters(args.casus_belli, args.province_id, args.beneficiary, args.call_allies)
+        parameters = _selection_parameters(args.casus_belli, args.province_id, args.beneficiary,
+                                           args.call_allies, args.promise_land_to, args.co_belligerents)
     except ExperimentStop as error:
         parser.error(error.message)
     installation = args.installation.expanduser().resolve()

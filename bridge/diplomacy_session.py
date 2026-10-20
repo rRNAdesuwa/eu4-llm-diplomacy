@@ -7,19 +7,62 @@ from __future__ import annotations
 
 import ctypes as C
 from ctypes import wintypes as W
+from collections import OrderedDict
 import hashlib
 from pathlib import Path
 import sys
+import threading
 
 EXPECTED_GAME_HASH = "b23fa0e1f698d31b01cdd1c3817a675805d8c6286cb66f9c231e6e2a42544d77"
+FILE_HASH_CACHE_LIMIT = 128
+
+_FILE_HASH_CACHE: OrderedDict[tuple[str, int, int, int, int, int], str] = OrderedDict()
+_FILE_HASH_CACHE_LOCK = threading.RLock()
 
 
-def file_hash(path: Path) -> str:
+def _file_hash_metadata(path: Path) -> tuple[Path, tuple[str, int, int, int, int, int]]:
+    """Return the resolved path and the metadata that identifies its current contents."""
+    resolved = Path(path).resolve()
+    info = resolved.stat()
+    key = (str(resolved), int(info.st_dev), int(info.st_ino), int(info.st_size),
+           int(info.st_mtime_ns), int(info.st_ctime_ns))
+    return resolved, key
+
+
+def clear_file_hash_cache() -> None:
+    """Drop this process's bounded file-hash cache."""
+    with _FILE_HASH_CACHE_LOCK:
+        _FILE_HASH_CACHE.clear()
+
+
+def file_hash(path: Path, *, refresh: bool = False) -> str:
+    resolved, key = _file_hash_metadata(path)
+    if not refresh:
+        with _FILE_HASH_CACHE_LOCK:
+            cached = _FILE_HASH_CACHE.get(key)
+            if cached is not None:
+                _FILE_HASH_CACHE.move_to_end(key)
+                return cached
+
     digest = hashlib.sha256()
-    with path.open("rb") as stream:
+    with resolved.open("rb") as stream:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(chunk)
-    return digest.hexdigest()
+    value = digest.hexdigest()
+
+    try:
+        _after_path, after_key = _file_hash_metadata(resolved)
+    except OSError as exc:
+        raise RuntimeError("FILE_CHANGED_DURING_HASH") from exc
+    if after_key != key:
+        raise RuntimeError("FILE_CHANGED_DURING_HASH")
+
+    with _FILE_HASH_CACHE_LOCK:
+        _FILE_HASH_CACHE[key] = value
+        _FILE_HASH_CACHE.move_to_end(key)
+        while len(_FILE_HASH_CACHE) > FILE_HASH_CACHE_LIMIT:
+            _FILE_HASH_CACHE.popitem(last=False)
+    return value
 
 
 def probe_identity(pid: int, expected_exe: Path) -> dict:

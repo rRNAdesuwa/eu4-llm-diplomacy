@@ -19,7 +19,23 @@ struct Observation {
     bool support_independence=false;
     bool military_access=false;
     bool vassalization=false;
+    bool favor_gold=false;
+    bool favor_trust=false;
+    bool favor_men=false;
     bool peace_offer=false;
+    // Favor-for-gold inspection is a real QUERY1 context.  Keep its raw
+    // fields separate from the relation booleans above; an unavailable favor
+    // read must never be represented as an Alliance state.
+    bool favor_context_complete=false;
+    bool favor_amount_readable=false;
+    std::int32_t favor_amount_raw=0;
+    std::int32_t favor_cost_raw=0;
+    std::int32_t favor_favors_available_raw=0;
+    std::int32_t favor_actor_treasury_raw=0;
+    std::int32_t favor_recipient_treasury_raw=0;
+    std::int32_t favor_recipient_trust_raw=0;
+    std::int32_t favor_actor_manpower_raw=0;
+    std::int32_t favor_recipient_manpower_raw=0;
     bool war_active=false;
     bool war_readable=false;
     bool war_before=false;
@@ -38,19 +54,20 @@ struct Observation {
 inline bool format(char* buffer,std::size_t capacity,
     const alliance_inbound_response_wire::InspectionRequest& request,
     const Observation& observed) noexcept {
-    // Support, Vassalization, and Military Access are checked first so a malformed observation
-    // carrying two family flags
-    // flags still has one deterministic JSON family and key set.  Production
-    // observation construction sets exactly one family flag.
+    // A malformed observation carrying two family flags still has one
+    // deterministic JSON family and key set.  Production observation
+    // construction sets exactly one family flag.
     const char* family=observed.peace_offer
         ? "peace"
+        : ((observed.favor_gold || observed.favor_trust || observed.favor_men)
+        ? "favor_trade"
         : (observed.military_access
         ? "military_access"
         : (observed.support_independence
         ? "support_independence"
         : (observed.vassalization
         ? "vassalization"
-        : (observed.royal_marriage?"royal_marriage":"alliance"))));
+        : (observed.royal_marriage?"royal_marriage":"alliance")))));
     if (observed.peace_offer) {
         const char* peace_context=(observed.peace_context_json
             && observed.peace_context_json[0])?observed.peace_context_json:"null";
@@ -91,6 +108,72 @@ inline bool format(char* buffer,std::size_t capacity,
             observed.alliance_before?"true":"false",observed.alliance_readable?"true":"false",
             observed.date28,observed.date2c,observed.envoy30,observed.state34,observed.variant38,
             static_cast<unsigned>(observed.proposal3c),request.decision,observed.reason);
+        return written>=0 && static_cast<std::size_t>(written)<capacity;
+    }
+    if (observed.favor_gold) {
+        // Keep this object byte-for-byte aligned with the native_favor_trade
+        // QUERY1 object.  The private recipient treasury is retained here for
+        // result verification; the Python public projector removes it.
+        const bool complete=observed.favor_context_complete
+            && observed.favor_amount_readable;
+        const int written=std::snprintf(buffer,capacity,
+            "{\"event\":\"native_alliance_inbound_inspection\",\"query_id\":\"%.64s\",\"session_id\":\"%.27s\",\"action_id\":\"%.23s\",\"family\":\"favor_trade\",\"extra60\":%u,\"actor\":\"%.3s\",\"mirror\":\"%.3s\",\"recipient\":\"FRA\",\"phase\":\"%.6s\",\"native_proposal_id\":%llu,\"date_raw\":%d,\"pending_active\":%s,\"decision_country\":\"FRA\",\"decision_country_verified\":%s,\"native_validity\":%s,\"response_rules_complete\":%s,\"favor_trade\":{\"kind\":\"gold\",\"amount_raw\":%d,\"amount_readable\":%s,\"favor_cost_raw\":%d,\"favors_available_raw\":%d,\"actor_treasury_raw\":%d,\"recipient_treasury_raw\":%d,\"resource_scale\":1000,\"complete\":%s},\"date28\":%d,\"date2c\":%d,\"envoy30\":%d,\"state34\":%d,\"variant38\":%u,\"token3c\":%u,\"requested_decision\":\"%.6s\",\"reason\":\"%.96s\"}\n",
+            request.query_id,request.session_id,request.action_id,
+            static_cast<unsigned>(observed.extra60),request.original_actor,
+            request.original_actor,request.decision,
+            static_cast<unsigned long long>(request.native_proposal_id),request.date_raw,
+            observed.pending_active?"true":"false",
+            observed.decision_country_verified?"true":"false",
+            observed.native_validity?"true":"false",
+            observed.response_rules_complete?"true":"false",
+            observed.favor_amount_raw,observed.favor_amount_readable?"true":"false",
+            observed.favor_cost_raw,observed.favor_favors_available_raw,
+            observed.favor_actor_treasury_raw,observed.favor_recipient_treasury_raw,
+            complete?"true":"false",observed.date28,observed.date2c,
+            observed.envoy30,observed.state34,observed.variant38,
+            static_cast<unsigned>(observed.proposal3c),request.decision,observed.reason);
+        return written>=0 && static_cast<std::size_t>(written)<capacity;
+    }
+    if (observed.favor_trust || observed.favor_men) {
+        const bool trust=observed.favor_trust;
+        const bool complete=observed.favor_context_complete
+            && observed.favor_amount_readable;
+        int written=0;
+        if (trust) {
+            written=std::snprintf(buffer,capacity,
+                "{\"event\":\"native_alliance_inbound_inspection\",\"query_id\":\"%.64s\",\"session_id\":\"%.27s\",\"action_id\":\"%.23s\",\"family\":\"favor_trade\",\"extra60\":%u,\"actor\":\"%.3s\",\"mirror\":\"%.3s\",\"recipient\":\"FRA\",\"phase\":\"%.6s\",\"native_proposal_id\":%llu,\"date_raw\":%d,\"pending_active\":%s,\"decision_country\":\"FRA\",\"decision_country_verified\":%s,\"native_validity\":%s,\"response_rules_complete\":%s,\"favor_trade\":{\"kind\":\"trust\",\"amount_raw\":%d,\"amount_readable\":%s,\"favor_cost_raw\":%d,\"favors_available_raw\":%d,\"recipient_trust_raw\":%d,\"resource_scale\":1,\"complete\":%s},\"date28\":%d,\"date2c\":%d,\"envoy30\":%d,\"state34\":%d,\"variant38\":%u,\"token3c\":%u,\"requested_decision\":\"%.6s\",\"reason\":\"%.96s\"}\n",
+                request.query_id,request.session_id,request.action_id,
+                static_cast<unsigned>(observed.extra60),request.original_actor,
+                request.original_actor,request.decision,
+                static_cast<unsigned long long>(request.native_proposal_id),request.date_raw,
+                observed.pending_active?"true":"false",
+                observed.decision_country_verified?"true":"false",
+                observed.native_validity?"true":"false",
+                observed.response_rules_complete?"true":"false",
+                observed.favor_amount_raw,observed.favor_amount_readable?"true":"false",
+                observed.favor_cost_raw,observed.favor_favors_available_raw,
+                observed.favor_recipient_trust_raw,complete?"true":"false",
+                observed.date28,observed.date2c,observed.envoy30,observed.state34,
+                observed.variant38,static_cast<unsigned>(observed.proposal3c),
+                request.decision,observed.reason);
+        } else {
+            written=std::snprintf(buffer,capacity,
+                "{\"event\":\"native_alliance_inbound_inspection\",\"query_id\":\"%.64s\",\"session_id\":\"%.27s\",\"action_id\":\"%.23s\",\"family\":\"favor_trade\",\"extra60\":%u,\"actor\":\"%.3s\",\"mirror\":\"%.3s\",\"recipient\":\"FRA\",\"phase\":\"%.6s\",\"native_proposal_id\":%llu,\"date_raw\":%d,\"pending_active\":%s,\"decision_country\":\"FRA\",\"decision_country_verified\":%s,\"native_validity\":%s,\"response_rules_complete\":%s,\"favor_trade\":{\"kind\":\"men\",\"amount_raw\":%d,\"amount_readable\":%s,\"favor_cost_raw\":%d,\"favors_available_raw\":%d,\"actor_manpower_raw\":%d,\"recipient_manpower_raw\":%d,\"resource_scale\":1,\"complete\":%s},\"date28\":%d,\"date2c\":%d,\"envoy30\":%d,\"state34\":%d,\"variant38\":%u,\"token3c\":%u,\"requested_decision\":\"%.6s\",\"reason\":\"%.96s\"}\n",
+                request.query_id,request.session_id,request.action_id,
+                static_cast<unsigned>(observed.extra60),request.original_actor,
+                request.original_actor,request.decision,
+                static_cast<unsigned long long>(request.native_proposal_id),request.date_raw,
+                observed.pending_active?"true":"false",
+                observed.decision_country_verified?"true":"false",
+                observed.native_validity?"true":"false",
+                observed.response_rules_complete?"true":"false",
+                observed.favor_amount_raw,observed.favor_amount_readable?"true":"false",
+                observed.favor_cost_raw,observed.favor_favors_available_raw,
+                observed.favor_actor_manpower_raw,observed.favor_recipient_manpower_raw,
+                complete?"true":"false",observed.date28,observed.date2c,
+                observed.envoy30,observed.state34,observed.variant38,
+                static_cast<unsigned>(observed.proposal3c),request.decision,observed.reason);
+        }
         return written>=0 && static_cast<std::size_t>(written)<capacity;
     }
     const char* before_key=observed.support_independence

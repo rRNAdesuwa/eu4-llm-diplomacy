@@ -13,12 +13,25 @@ $arguments = @('-std=c++17', '-O2', '-Wall', '-Wextra', '-Werror', '-fno-excepti
 if ($ReasonMetadata) { $arguments = @('-DBRIDGE_ALLIANCE_REASON_METADATA=1') + $arguments }
 & (Get-ProjectLocalValue -Name 'EU4_CXX') @arguments
 if ($LASTEXITCODE -ne 0) { throw 'Observer build failed; directory retained as failed evidence.' }
-$sourceNames = @('diplomacy-observer-v10.cpp','alliance-query.inc','insult-query.inc','rival-query.inc','vassal-query.inc','declarewar-query.inc','peace-context-query.inc','peace-empty-offer-query.inc','peace-offer-evaluation-query.inc','peace-money-query.inc','peace-war-context-query.inc','peace-payload.h','peace-native-payload.inc','peace-province-candidates.inc','peace-province-selection.inc','declarewar-payload.h','declarewar-native-payload.inc','declarewar-execution-preflight.inc','declarewar-execution-state.inc','declarewar-cost-query.inc','declarewar-candidates.inc','vassal-test-context.inc','vassal-test-context-script.h','vassal-inbound-test-context.inc','vassal-inbound-test-context-script.h','rival-authority.inc','rival-command-observer.inc','rival-execution.inc','rival-command-authority.h','rival-command-wire.h','alliance-reason-metadata.inc','alliance-reason-metadata-bind.inc','alliance-reason-key-branch.h','alliance-reason-row.h','alliance-lifecycle.inc','alliance-entry-observer.inc','alliance-protocol-observer.inc','alliance-transport.inc','alliance-authority-ledger.h','alliance-execution-wire.h','alliance-inbound-response-wire.h','alliance-inbound-inspection-event.h','alliance-pending-membership.h','alliance-inbound.inc','inbound-pending-recovery.inc','alliance-execution.inc','entry-patch-transaction.inc','control-probe.cpp','automated-control.inc','popup-control.inc','frame_stub.S')
+$sourceNames = @('diplomacy-observer-v10.cpp','alliance-query.inc','favor-state.inc','gift-influence-state.inc','insult-query.inc','rival-query.inc','vassal-query.inc','declarewar-query.inc','peace-context-query.inc','peace-empty-offer-query.inc','peace-offer-evaluation-query.inc','peace-money-query.inc','peace-war-context-query.inc','live-war-score-query.inc','live-war-score-query.h','peace-payload.h','peace-native-payload.inc','peace-province-candidates.inc','peace-province-selection.inc','declarewar-payload.h','declarewar-native-payload.inc','declarewar-execution-preflight.inc','declarewar-execution-state.inc','declarewar-cost-query.inc','declarewar-candidates.inc','vassal-test-context.inc','vassal-test-context-script.h','vassal-inbound-test-context.inc','vassal-inbound-test-context-script.h','rival-authority.inc','rival-command-observer.inc','rival-execution.inc','rival-command-authority.h','rival-command-wire.h','alliance-reason-metadata.inc','alliance-reason-metadata-bind.inc','alliance-reason-key-branch.h','alliance-reason-row.h','alliance-lifecycle.inc','alliance-entry-observer.inc','alliance-protocol-observer.inc','alliance-transport.inc','alliance-authority-ledger.h','alliance-execution-wire.h','alliance-inbound-response-wire.h','alliance-inbound-inspection-event.h','alliance-pending-membership.h','alliance-inbound.inc','inbound-pending-recovery.inc','alliance-execution.inc','entry-patch-transaction.inc','control-probe.cpp','automated-control.inc','popup-control.inc','frame_stub.S')
 $sourceNames += @('peace-payload-ref.h','peace-action-native-payload.inc','peace-lifecycle-hooks.inc','peace-execution-preflight.inc','peace-handler-authority.inc')
 $sourceNames += @('peace-execution-wire.h','peace-execution.inc','peace-inbound-context.inc')
 $sourceNames += @('peace-receiver-observer.inc')
 $sourceNames += @('peace-wrapper-rule-query.inc')
 $sourceNames += @('peace-effects.h','peace-effect-state.inc')
+$sourceNames += @('peace-core-effects.inc')
+$sourceNames += @('peace-subject-effects.inc','peace-country-effects.inc')
+$sourceNames += @('peace-special-selection.inc','peace-special-state.inc')
+$sourceNames += @('religion-war-context.inc','religion-war-context-script.h')
+$sourceNames += @('peace-reparations-selection.inc','peace-reparations-state.inc','peace-annul-selection.inc')
+$sourceNames += @('peace-core-candidates.inc','peace-subject-candidates.inc','peace-country-candidates.inc','peace-annex-selection.inc','peace-selected-rules.inc')
+$sourceNames += @('declarewar-details-query.inc')
+$sourceNames += @('declarewar-peace-options-query.inc')
+$sourceNames += @('declarewar-selection.h','declarewar-participants-query.inc')
+$sourceNames += @('declarewar-force-sides.inc','declarewar-forces-query.inc')
+$sourceNames += @('peace-consequences-query.inc','peace-coalition-capture.inc')
+$sourceNames += @('peace-overextension-query.inc')
+$sourceNames += @('peace-justification-query.inc')
 $sources = foreach ($name in $sourceNames) {
     $source = Join-Path $PSScriptRoot $name
     Copy-Item -LiteralPath $source -Destination (Join-Path $outputDirectory $name)

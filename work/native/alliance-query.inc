@@ -13,13 +13,22 @@ static uint64_t alliance_query_clock() {
     return (static_cast<uint64_t>(now.dwHighDateTime)<<32)|now.dwLowDateTime;
 }
 static bool alliance_query_country(const char* tag,uint64_t& handle) {
-    uintptr_t database=0,array=0;
-    if (strlen(tag)!=3 || !read(base+0x233d8b0,database) || !read(database+0x118,array)) return false;
-    // This experiment has verified the first 256 slots. Do not extrapolate the
-    // native database's total size from an old or guessed array bound.
-    for (unsigned slot=0;slot<256;++slot) {
+    handle=0;
+    uintptr_t database=0,table=0,array=0;
+    uint32_t capacity=0,count=0;
+    // CountryDB+110 is CArray<Country*>. Its native 8f560 method reads
+    // count+14 and capacity+10 and allocates count*8 bytes. R63's live
+    // header records 1380 entries; 256 was only the first experiment's scope.
+    if (strlen(tag)!=3 || !read(base+0x233d8b0,database)
+        || !read(database+0x110,table) || table!=base+0x1c38348
+        || !read(database+0x118,array) || !array
+        || !read(database+0x120,capacity) || !read(database+0x124,count)
+        || !count || count>4096 || capacity<count || capacity>8192) return false;
+    for (unsigned slot=0;slot<count;++slot) {
         uintptr_t country=0; uint64_t candidate=0;
-        if (!read(array+slot*8,country) || !read(country+0x20,candidate)) return false;
+        if (!read(array+slot*8,country)) return false;
+        if (!country) continue;
+        if (!read(country+0x20,candidate)) return false;
         if (((candidate>>32)&0xffff)!=slot) continue;
         if (static_cast<char>(candidate)==tag[0] && static_cast<char>(candidate>>8)==tag[1]
             && static_cast<char>(candidate>>16)==tag[2]) { handle=candidate; return true; }
@@ -58,8 +67,10 @@ static bool alliance_query_visibility(uint64_t actor,uint64_t recipient,bool off
     unsigned recipient_slot=static_cast<unsigned>((recipient>>32)&0xffff);
     uintptr_t database=0,countries=0,country=0,table=0,owner=0,start=0;
     uint64_t actual_actor=0,actual_recipient=0; int32_t count=0;
-    if (actor_slot>=256 || recipient_slot>=256
-        || !read(base+0x233d8b0,database) || !read(database+0x118,countries)
+    uint32_t country_count=0;
+    if (!read(base+0x233d8b0,database) || !read(database+0x124,country_count)
+        || !country_count || country_count>4096 || actor_slot>=country_count || recipient_slot>=country_count
+        || !read(database+0x118,countries)
         || !read(countries+actor_slot*8,country) || !read(country+0x20,actual_actor) || actual_actor!=actor
         || !read(country+0x1510,table) || !table) return false;
     uintptr_t relation=table+recipient_slot*72;
@@ -81,8 +92,10 @@ static bool alliance_query_visibility(uint64_t actor,uint64_t recipient,bool off
 static bool alliance_query_diplomats(uint64_t actor,unsigned& available) {
     uintptr_t database=0,countries=0,country=0,context=0,manager=0,begin=0,end=0;
     uint64_t actual=0;
+    uint32_t country_count=0;
     unsigned slot=static_cast<unsigned>((actor>>32)&0xffff);
-    if (slot>=256 || !read(base+0x233d8b0,database) || !read(database+0x118,countries)
+    if (!read(base+0x233d8b0,database) || !read(database+0x124,country_count)
+        || !country_count || country_count>4096 || slot>=country_count || !read(database+0x118,countries)
         || !read(countries+slot*8,country) || !read(country+0x20,actual) || actual!=actor
         || !read(country+0x1480,context) || !read(context+0x18,manager)
         || !read(manager+0x20,begin) || !read(manager+0x28,end) || end<begin
@@ -170,9 +183,9 @@ static void alliance_query_reason_provenance(const char* id,unsigned index,
         strcpy(key_json,"null");
         strcpy(rdata_json,"null");
     }
-    char message[2400];
+    char message[2800];
     snprintf(message,sizeof(message),
-        "{\"event\":\"native_alliance_reason_provenance\",\"private\":true,\"session_id\":\"%lu-%llx\",\"query_id\":\"%s\",\"index\":%u,\"constructor_sequence\":%llu,\"constructor_caller_rva\":\"0x%x\",\"constructor_call_rva\":\"0x%x\",\"native_value\":%d,\"constructor_argument_value\":%d,\"native_flag\":%s,\"string_size\":%llu,\"string_capacity\":%llu,\"text_hex\":\"%s\",\"raw48\":\"%s\",\"constructor_source_confirmed\":%s,\"conditional_key_caller\":%s,\"conditional_flags_readable\":%s,\"native_text_flag\":%u,\"native_overlord_flag\":%u,\"native_text_flag_row_offset\":%u,\"native_overlord_flag_row_offset\":%u,\"localization_rdata_rva\":%s,\"localization_key\":%s,\"constructor_value_verified\":%s,\"final_row_binding\":%s,\"complete\":%s}\n",
+        "{\"event\":\"native_alliance_reason_provenance\",\"private\":true,\"session_id\":\"%lu-%llx\",\"query_id\":\"%s\",\"index\":%u,\"constructor_sequence\":%llu,\"constructor_caller_rva\":\"0x%x\",\"constructor_call_rva\":\"0x%x\",\"native_value\":%d,\"constructor_argument_value\":%d,\"native_flag\":%s,\"string_size\":%llu,\"string_capacity\":%llu,\"text_hex\":\"%s\",\"raw48\":\"%s\",\"constructor_source_confirmed\":%s,\"conditional_key_caller\":%s,\"conditional_flags_readable\":%s,\"native_text_flag\":%u,\"native_overlord_flag\":%u,\"native_text_flag_row_offset\":%u,\"native_overlord_flag_row_offset\":%u,\"branch_condition_readable\":%s,\"branch_condition_value\":%u,\"branch_condition_row_offset\":%u,\"localization_rdata_rva\":%s,\"localization_key\":%s,\"constructor_value_verified\":%s,\"final_row_binding\":%s,\"complete\":%s}\n",
         static_cast<unsigned long>(GetCurrentProcessId()),
         static_cast<unsigned long long>(observation_creation),id,index,
         static_cast<unsigned long long>(capture->sequence),
@@ -187,7 +200,10 @@ static void alliance_query_reason_provenance(const char* id,unsigned index,
         static_cast<unsigned>(capture->key_branch.text_flag),
         static_cast<unsigned>(capture->key_branch.overlord_flag),
         static_cast<unsigned>(capture->key_branch.text_offset),
-        static_cast<unsigned>(capture->key_branch.overlord_offset),rdata_json,key_json,
+        static_cast<unsigned>(capture->key_branch.overlord_offset),
+        capture->key_branch.condition_readable?"true":"false",
+        static_cast<unsigned>(capture->key_branch.condition_value),
+        static_cast<unsigned>(capture->key_branch.condition_offset),rdata_json,key_json,
         binding.constructor_value_verified?"true":"false",
         final_row_binding?"true":"false",
         (final_row_binding && binding.strict_match)?"true":"false");
@@ -280,8 +296,22 @@ static constexpr FactoryActionQueryMethods military_query_methods{
     0x2943,0x1c7fb70,0x525530,0x525bf0,0x100,0x8f440,"military_access",false};
 static constexpr FactoryActionQueryMethods vassal_query_methods{
     0x2940,0x1c7fd20,0x51f050,0x51f4d0,0x100,0x8f440,"vassalization",false};
+static constexpr FactoryActionQueryMethods favor_gold_query_methods{
+    0x3bce,0x1c80980,0x4f4f10,0x4f56b0,0x100,0x8f440,"favor_trade",false};
+static constexpr FactoryActionQueryMethods favor_trust_query_methods{
+    0x3bd3,0x1c80c60,0x4fdfd0,0x4fe2d0,0x100,0x8f440,"favor_trade",false,0x129500};
+static constexpr FactoryActionQueryMethods favor_men_query_methods{
+    0x3bcf,0x1c80ff0,0x4f7600,0x4f7ca0,0x100,0x8f440,"favor_trade",false};
+static constexpr FactoryActionQueryMethods curry_favors_query_methods{
+    0x3acc,0x1c7aef8,0x5ade90,0x5ae140,0xf8,0x4e4d80,"curry_favors",true};
 static constexpr FactoryActionQueryMethods insult_query_methods{
     0x2947,0x1c7f6b0,0x538730,0x538a00,0x100,0x8f440,"insult",false,0x129500};
+// R74 immediate one-sided actions.  Their +0x80/+0x88 rules and display
+// guards are family-specific; both use the common diplomat predicate slot.
+static constexpr FactoryActionQueryMethods gift_query_methods{
+    0x2948,0x1c7f450,0x53a630,0x53a8d0,0xf8,0x8f450,"gift",false,0x129500};
+static constexpr FactoryActionQueryMethods influence_query_methods{
+    0x346e,0x1cb3cf8,0x7c4430,0x7c48a0,0xf8,0x8f450,"influence",false};
 
 static const FactoryActionQueryMethods* unilateral_query_family(const char* action_id) {
     if (!strcmp(action_id,"improve_relations") || !strcmp(action_id,"stop_improving_relations"))
@@ -290,6 +320,8 @@ static const FactoryActionQueryMethods* unilateral_query_family(const char* acti
         return &unilateral_spy;
     if (!strcmp(action_id,"proclaim_guarantee") || !strcmp(action_id,"revoke_guarantee"))
         return &unilateral_guarantee;
+    if (!strcmp(action_id,"curry_favors") || !strcmp(action_id,"stop_curry_favors"))
+        return &curry_favors_query_methods;
     return nullptr;
 }
 
@@ -324,7 +356,9 @@ static bool factory_query_visibility(uint64_t actor,uint64_t recipient,
     uint64_t actual=0,other=0;
     const unsigned slot=static_cast<unsigned>((actor>>32)&0xffffu);
     const unsigned target_slot=static_cast<unsigned>((recipient>>32)&0xffffu);
-    if (slot>=256 || target_slot>=256 || !read(base+0x233d8b0,database)
+    uint32_t country_count=0;
+    if (!read(base+0x233d8b0,database) || !read(database+0x124,country_count)
+        || !country_count || country_count>4096 || slot>=country_count || target_slot>=country_count
         || !read(database+0x118,countries) || !read(countries+slot*8,country)
         || !read(country+0x20,actual) || actual!=actor
         || !read(country+0x1510,relations) || !relations) return false;
@@ -361,7 +395,9 @@ static bool military_query_active(uint64_t actor,uint64_t recipient,bool& active
     uint64_t actual=0,other=0; int32_t count=0;
     const unsigned slot=static_cast<unsigned>((actor>>32)&0xffffu);
     const unsigned target_slot=static_cast<unsigned>((recipient>>32)&0xffffu);
-    if (slot>=256 || target_slot>=256 || !read(base+0x233d8b0,database)
+    uint32_t country_count=0;
+    if (!read(base+0x233d8b0,database) || !read(database+0x124,country_count)
+        || !country_count || country_count>4096 || slot>=country_count || target_slot>=country_count
         || !read(database+0x118,countries) || !read(countries+slot*8,country)
         || !read(country+0x20,actual) || actual!=actor
         || !read(country+0x1510,relations) || !relations) return false;
@@ -383,7 +419,8 @@ static void unilateral_query_run(const char* id,const char* action_id,
     const char* actor_tag,const char* recipient_tag,uint64_t actor,
     uint64_t recipient,int32_t date,const FactoryActionQueryMethods& family) {
     const bool start=strcmp(action_id,"improve_relations")==0 || strcmp(action_id,"build_spy_network")==0
-        || strcmp(action_id,"proclaim_guarantee")==0;
+        || strcmp(action_id,"proclaim_guarantee")==0
+        || strcmp(action_id,"curry_favors")==0;
     const uintptr_t vtable=base+family.vtable_rva;
     uintptr_t display=0,validity=0,send_gate=0,requires_diplomat=0;
     if (!read(vtable+0x88,display) || display!=base+family.display_rva
@@ -437,6 +474,8 @@ static void unilateral_query_run(const char* id,const char* action_id,
 #include "insult-query.inc"
 #include "rival-query.inc"
 #include "vassal-query.inc"
+#include "favor-state.inc"
+#include "gift-influence-state.inc"
 #include "declarewar-query.inc"
 #include "peace-context-query.inc"
 #include "peace-offer-evaluation-query.inc"
@@ -444,12 +483,22 @@ static void unilateral_query_run(const char* id,const char* action_id,
 #include "peace-war-context-query.inc"
 #include "peace-province-candidates.inc"
 #include "peace-province-selection.inc"
+#include "peace-core-candidates.inc"
+#include "peace-subject-candidates.inc"
+#include "peace-country-candidates.inc"
+#include "peace-annex-selection.inc"
+#include "peace-reparations-selection.inc"
+#include "peace-selected-rules.inc"
+#include "peace-annul-selection.inc"
+#include "peace-special-selection.inc"
+#include "peace-reparations-state.inc"
 #include "peace-wrapper-rule-query.inc"
+#include "peace-consequences-query.inc"
 #include "peace-empty-offer-query.inc"
 
 static void alliance_query_tick() {
     if (GetFileAttributesW(alliance_query_path)==INVALID_FILE_ATTRIBUTES || !control_ready()) return;
-    char wire[512]{}; DWORD got=0;
+    char wire[1024]{}; DWORD got=0;
     HANDLE file=CreateFileW(alliance_query_path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
     if (file==INVALID_HANDLE_VALUE) return;
     DWORD size=GetFileSize(file,nullptr);
@@ -458,7 +507,8 @@ static void alliance_query_tick() {
     if (!DeleteFileW(alliance_query_path)) return;
     unsigned long long creation=0,expiry=0;
     char id[65]{},action_id[32]{},actor_tag[4]{},recipient_tag[4]{};
-    int expected_date=0,consumed=0,insult_id=-1;
+    int expected_date=0,consumed=0,insult_id=-1,gift_ducats=0;
+    int32_t gift_raw=0,canonical_gift_raw=0;
     char insult_token[16]{};
     char war_cb_key[129]{},war_province_token[16]{},war_beneficiary[4]{};
     int war_province=-1;
@@ -478,6 +528,81 @@ static void alliance_query_tick() {
     bool query5=false;
     bool query6=false;
     bool query7=false;
+    bool query8=false;
+    bool query9=false;
+    bool query10=false;
+    bool query11=false;
+    bool query12=false;
+    bool query13=false;
+    bool query14=false;
+    bool query15=false;
+    bool query16=false;
+    bool query17=false;
+    bool query18=false;
+    bool query19=false;
+    bool query20=false;
+    bool query21=false;
+    char war_call_csv[64]{},war_promise_csv[64]{},war_co_csv[64]{};
+    DeclareWarParticipantSelection war_participants{};
+    char peace_term_mask[19]{};
+    char peace_annul_country[4]{},peace_annul_csv[64]{};
+    PeaceAnnulRequest peace_annul{};
+    char peace_trade_source[4]{};
+    char peace_core_ids[177]{},peace_core_owner[4]{};
+    PeaceCoreRequest peace_core{};
+    char peace_return_ids[177]{},peace_return_owner[4]{};
+    char peace_revoke_ids[177]{},peace_revoke_owner[4]{};
+    PeaceCoreRequest peace_return_core{},peace_revoke_core{};
+    char peace_subject_target[4]{};
+    PeaceSubjectRequest peace_subject{};
+    char peace_release_csv[64]{},peace_transfer_csv[64]{};
+    PeaceSubjectRequest peace_release_subject{},peace_transfer_subject{};
+    bool peace_subject_overlap_invalid=false;
+    char peace_release_nation_country[4]{},peace_release_nation_source[4]{};
+    char peace_vassal_country[4]{},peace_union_country[4]{},peace_independence_country[4]{};
+    char peace_annex_country[4]{},peace_vassal_beneficiary[4]{},peace_union_beneficiary[4]{},peace_annex_beneficiary[4]{};
+    PeaceCountryRequest peace_release_nation{},peace_force_vassal{},peace_personal_union{},peace_grant_independence{};
+    PeaceCountryRequestSet peace_country_requests{};
+    PeaceAnnexRequest peace_annex{};
+    if (!parsed && bytes) {
+        consumed=0;
+        parsed=sscanf(wire,"EU4DIP_QUERY20 %llx %64s %31s %3s %3s %d %llu %d %d%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            &gift_ducats,&gift_raw,&consumed)==9
+            && strcmp(wire+consumed,"\n")==0
+            && !strcmp(action_id,"send_gift")
+            && gift_influence_amount_valid(gift_ducats,canonical_gift_raw)
+            && gift_raw==canonical_gift_raw;
+        query20=parsed;
+        consumed=0;
+    }
+    if (!parsed && bytes) {
+        consumed=0;
+        parsed=sscanf(wire,"EU4DIP_QUERY21 %llx %64s %31s %3s %3s %d %llu%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,&consumed)==7
+            && strcmp(wire+consumed,"\n")==0
+            && !strcmp(action_id,"influence_nation");
+        query21=parsed;
+        consumed=0;
+    }
+    if (!parsed && bytes) {
+        consumed=0;
+        parsed=sscanf(wire,"EU4DIP_QUERY19 %llx %64s %31s %3s %3s %d %llu %128s %15s %3s %63s %63s %63s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            war_cb_key,war_province_token,war_beneficiary,war_call_csv,war_promise_csv,war_co_csv,&consumed)==13
+            && strcmp(wire+consumed,"\n")==0
+            && insult_query_parse_id(war_province_token,war_province)
+            && (war_province==-1 || war_province>0)
+            && bridge::declarewar_selection::parse_country_tag_csv(war_call_csv,war_participants.call_allies).ok()
+            && bridge::declarewar_selection::parse_country_tag_csv(war_promise_csv,war_participants.promise_land_to).ok()
+            && bridge::declarewar_selection::parse_country_tag_csv(war_co_csv,war_participants.co_belligerents).ok()
+            && bridge::declarewar_selection::validate_participant_selection(war_participants.call_allies,
+                war_participants.promise_land_to,war_participants.co_belligerents,actor_tag,recipient_tag).ok();
+        for (const char* p=war_cb_key;parsed && *p;++p)
+            parsed=(*p>='A' && *p<='Z') || (*p>='a' && *p<='z')
+                || (*p>='0' && *p<='9') || *p=='_';
+        query19=parsed;
+    }
     if (!parsed && bytes) {
         consumed=0;
         parsed=sscanf(wire,"EU4DIP_QUERY2 %llx %64s %31s %3s %3s %d %llu %15s%n",
@@ -542,6 +667,418 @@ static void alliance_query_tick() {
         query7=parsed;
         peace_demand=!strcmp(peace_direction_token,"demand");
     }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY8 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %3s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,
+            peace_province_token,peace_province_beneficiary,peace_term_mask,&consumed)==13
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && (peace_amount==-1 || (peace_amount>0 && peace_amount%100==0))
+            && peace_province_parse_request(peace_province_token,peace_province_beneficiary,peace_provinces)
+            && (!strcmp(peace_term_mask,"r") || !strcmp(peace_term_mask,"mr")
+                || !strcmp(peace_term_mask,"pr") || !strcmp(peace_term_mask,"mpr"))
+            && ((strchr(peace_term_mask,'m')!=nullptr)==(peace_amount>0))
+            && ((strchr(peace_term_mask,'p')!=nullptr)==(peace_provinces.count>0));
+        query8=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY9 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %4s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,
+            peace_province_token,peace_province_beneficiary,peace_term_mask,&consumed)==13
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && (peace_amount==-1 || (peace_amount>0 && peace_amount%100==0))
+            && peace_province_parse_request(peace_province_token,peace_province_beneficiary,peace_provinces)
+            && (!strcmp(peace_term_mask,"t") || !strcmp(peace_term_mask,"mt")
+                || !strcmp(peace_term_mask,"pt") || !strcmp(peace_term_mask,"rt")
+                || !strcmp(peace_term_mask,"mpt") || !strcmp(peace_term_mask,"mrt")
+                || !strcmp(peace_term_mask,"prt") || !strcmp(peace_term_mask,"mprt"))
+            && ((strchr(peace_term_mask,'m')!=nullptr)==(peace_amount>0))
+            && ((strchr(peace_term_mask,'p')!=nullptr)==(peace_provinces.count>0));
+        query9=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY10 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %4s %3s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,
+            peace_province_token,peace_province_beneficiary,peace_term_mask,peace_trade_source,&consumed)==14
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && (peace_amount==-1 || (peace_amount>0 && peace_amount%100==0))
+            && peace_province_parse_request(peace_province_token,peace_province_beneficiary,peace_provinces)
+            && (!strcmp(peace_term_mask,"t") || !strcmp(peace_term_mask,"mt")
+                || !strcmp(peace_term_mask,"pt") || !strcmp(peace_term_mask,"rt")
+                || !strcmp(peace_term_mask,"mpt") || !strcmp(peace_term_mask,"mrt")
+                || !strcmp(peace_term_mask,"prt") || !strcmp(peace_term_mask,"mprt"))
+            && ((strchr(peace_term_mask,'m')!=nullptr)==(peace_amount>0))
+            && ((strchr(peace_term_mask,'p')!=nullptr)==(peace_provinces.count>0));
+        if (parsed && strcmp(peace_trade_source,"-")) {
+            parsed=strlen(peace_trade_source)==3;
+            for (const char* p=peace_trade_source;parsed && *p;++p)
+                parsed=(*p>='A' && *p<='Z') || (*p>='0' && *p<='9');
+            const char* beneficiary=!strcmp(peace_direction_token,"demand")?actor_tag:recipient_tag;
+            parsed=parsed && strcmp(peace_trade_source,beneficiary);
+        } else if (parsed) {
+            parsed=!strcmp(action_id,"transfer_trade_power") && !strcmp(peace_term_mask,"t")
+                && peace_amount==-1 && peace_provinces.count==0;
+        }
+        query10=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY11 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %5s %3s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,
+            peace_province_token,peace_province_beneficiary,peace_term_mask,peace_trade_source,&consumed)==14
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && (peace_amount==-1 || (peace_amount>0 && peace_amount%100==0))
+            && peace_province_parse_request(peace_province_token,peace_province_beneficiary,peace_provinces)
+            && strchr(peace_term_mask,'c');
+        const char* order="mprtc"; int previous=-1;
+        for (const char* p=peace_term_mask;parsed && *p;++p) {
+            const char* position=strchr(order,*p);
+            if (!position || position-order<=previous) parsed=false;
+            else previous=static_cast<int>(position-order);
+        }
+        parsed=parsed && (static_cast<bool>(strchr(peace_term_mask,'m'))==(peace_amount>0))
+            && (static_cast<bool>(strchr(peace_term_mask,'p'))==(peace_provinces.count>0));
+        if (parsed && strchr(peace_term_mask,'t')) {
+            parsed=strlen(peace_trade_source)==3;
+            for (const char* p=peace_trade_source;parsed && *p;++p)
+                parsed=(*p>='A' && *p<='Z') || (*p>='0' && *p<='9');
+            parsed=parsed && strcmp(peace_trade_source,
+                !strcmp(peace_direction_token,"demand")?actor_tag:recipient_tag);
+        } else if (parsed) parsed=!strcmp(peace_trade_source,"-");
+        query11=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY12 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %6s %3s %3s %63s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,peace_province_token,
+            peace_province_beneficiary,peace_term_mask,peace_trade_source,peace_annul_country,
+            peace_annul_csv,&consumed)==16 && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && (peace_amount==-1 || (peace_amount>0 && peace_amount%100==0))
+            && peace_province_parse_request(peace_province_token,peace_province_beneficiary,peace_provinces)
+            && strchr(peace_term_mask,'a')
+            && peace_annul_parse_request(peace_annul_country,peace_annul_csv,peace_annul);
+        const char* order="mprtca";int previous=-1;
+        for (const char* p=peace_term_mask;parsed && *p;++p) {
+            const char* pos=strchr(order,*p);
+            if (!pos || pos-order<=previous) parsed=false;
+            else previous=static_cast<int>(pos-order);
+        }
+        parsed=parsed && (static_cast<bool>(strchr(peace_term_mask,'m'))==(peace_amount>0))
+            && (static_cast<bool>(strchr(peace_term_mask,'p'))==(peace_provinces.count>0));
+        if (parsed && strchr(peace_term_mask,'t')) {
+            parsed=bridge::peace_execution_wire::detail::valid_canonical_tag(
+                {peace_trade_source,strlen(peace_trade_source)})
+                && strcmp(peace_trade_source,!strcmp(peace_direction_token,"demand")?actor_tag:recipient_tag);
+        } else if (parsed) parsed=!strcmp(peace_trade_source,"-");
+        if (parsed && !peace_annul.count)
+            parsed=!strcmp(action_id,"annul_treaties") && !strcmp(peace_term_mask,"a");
+        query12=parsed;peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY13 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %9s %3s %3s %63s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,peace_province_token,
+            peace_province_beneficiary,peace_term_mask,peace_trade_source,peace_annul_country,
+            peace_annul_csv,&consumed)==16 && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && (peace_amount==-1 || (peace_amount>0 && peace_amount%100==0))
+            && peace_province_parse_request(peace_province_token,peace_province_beneficiary,peace_provinces)
+            && (strchr(peace_term_mask,'h') || strchr(peace_term_mask,'s') || strchr(peace_term_mask,'f'))
+            && peace_annul_parse_request(peace_annul_country,peace_annul_csv,peace_annul);
+        if (parsed) {
+            const char* cursor="mprtcahsf";
+            for (const char* bit=peace_term_mask;parsed && *bit;++bit) {
+                const char* found=strchr(cursor,*bit);
+                if (!found) parsed=false;
+                else cursor=found+1;
+            }
+            parsed=parsed && ((strchr(peace_term_mask,'m')!=nullptr)==(peace_amount>0))
+                && ((strchr(peace_term_mask,'p')!=nullptr)==(peace_provinces.count>0))
+                && ((strchr(peace_term_mask,'a')!=nullptr)==(peace_annul.count>0));
+        }
+        if (parsed && strchr(peace_term_mask,'t')) {
+            parsed=bridge::peace_execution_wire::detail::valid_canonical_tag(
+                {peace_trade_source,strlen(peace_trade_source)})
+                && strcmp(peace_trade_source,!strcmp(peace_direction_token,"demand")?actor_tag:recipient_tag);
+        } else if (parsed) parsed=!strcmp(peace_trade_source,"-");
+        if (parsed && !strchr(peace_term_mask,'a'))
+            parsed=!strcmp(peace_annul_country,"-") && !strcmp(peace_annul_csv,"-");
+        query13=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0;
+        parsed=sscanf(wire,"EU4DIP_QUERY14 %llx %64s %31s %3s %3s %d %llu %29s %7s %176s %3s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_core_ids,peace_core_owner,&consumed)==11
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && peace_core_parse_request(peace_core_ids,peace_core_owner,peace_core);
+        if (parsed) {
+            peace_core.return_core=!strcmp(action_id,"return_core");
+            parsed=peace_core.return_core || !strcmp(action_id,"revoke_core");
+        }
+        query14=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY15 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %11s %3s %3s %63s %176s %3s %176s %3s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,peace_province_token,
+            peace_province_beneficiary,peace_term_mask,peace_trade_source,
+            peace_annul_country,peace_annul_csv,peace_return_ids,peace_return_owner,
+            peace_revoke_ids,peace_revoke_owner,&consumed)==20
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && (peace_amount==-1 || (peace_amount>0 && peace_amount%100==0))
+            && peace_province_parse_request(peace_province_token,
+                peace_province_beneficiary,peace_provinces)
+            && peace_core_parse_request(peace_return_ids,peace_return_owner,
+                peace_return_core)
+            && peace_core_parse_request(peace_revoke_ids,peace_revoke_owner,
+                peace_revoke_core)
+            && (strchr(peace_term_mask,'b') || strchr(peace_term_mask,'v'));
+        if (parsed) {
+            const char* order="mprtcahsfbv"; int previous=-1;
+            for (const char* bit=peace_term_mask;parsed && *bit;++bit) {
+                const char* found=strchr(order,*bit);
+                if (!found || found-order<=previous) parsed=false;
+                else previous=static_cast<int>(found-order);
+            }
+            parsed=parsed
+                && ((strchr(peace_term_mask,'m')!=nullptr)==(peace_amount>0))
+                && ((strchr(peace_term_mask,'p')!=nullptr)==(peace_provinces.count>0));
+            if (parsed && strchr(peace_term_mask,'t')) {
+                parsed=bridge::peace_execution_wire::detail::valid_canonical_tag(
+                    {peace_trade_source,strlen(peace_trade_source)})
+                    && strcmp(peace_trade_source,
+                        !strcmp(peace_direction_token,"demand")?actor_tag:recipient_tag);
+            } else if (parsed) parsed=!strcmp(peace_trade_source,"-");
+            if (parsed && strchr(peace_term_mask,'a'))
+                parsed=peace_annul_parse_request(peace_annul_country,peace_annul_csv,
+                    peace_annul);
+            else if (parsed)
+                parsed=!strcmp(peace_annul_country,"-") && !strcmp(peace_annul_csv,"-");
+            peace_return_core.return_core=true;
+            peace_revoke_core.return_core=false;
+        }
+        query15=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0;
+        parsed=sscanf(wire,"EU4DIP_QUERY16 %llx %64s %31s %3s %3s %d %llu %29s %7s %3s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_subject_target,&consumed)==10
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && peace_subject_parse_request(peace_subject_target,
+                !strcmp(action_id,"release_subject"),peace_subject);
+        query16=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY17 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %13s %3s %3s %63s %176s %3s %176s %3s %63s %63s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,peace_province_token,
+            peace_province_beneficiary,peace_term_mask,peace_trade_source,
+            peace_annul_country,peace_annul_csv,peace_return_ids,peace_return_owner,
+            peace_revoke_ids,peace_revoke_owner,peace_release_csv,peace_transfer_csv,
+            &consumed)==22
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && (peace_amount==-1 || (peace_amount>0 && peace_amount%100==0))
+            && peace_province_parse_request(peace_province_token,
+                peace_province_beneficiary,peace_provinces)
+            && peace_core_parse_request(peace_return_ids,peace_return_owner,
+                peace_return_core)
+            && peace_core_parse_request(peace_revoke_ids,peace_revoke_owner,
+                peace_revoke_core);
+        if (parsed) {
+            const char* order="mprtcahsfbvlx"; int previous=-1;
+            for (const char* bit=peace_term_mask;parsed && *bit;++bit) {
+                const char* found=strchr(order,*bit);
+                if (!found || found-order<=previous) parsed=false;
+                else previous=static_cast<int>(found-order);
+            }
+            parsed=parsed
+                && ((strchr(peace_term_mask,'m')!=nullptr)==(peace_amount>0))
+                && ((strchr(peace_term_mask,'p')!=nullptr)==(peace_provinces.count>0))
+                && (strchr(peace_term_mask,'l') || strchr(peace_term_mask,'x'));
+            if (parsed && strchr(peace_term_mask,'t')) {
+                parsed=bridge::peace_execution_wire::detail::valid_canonical_tag(
+                    {peace_trade_source,strlen(peace_trade_source)})
+                    && strcmp(peace_trade_source,
+                        !strcmp(peace_direction_token,"demand")?actor_tag:recipient_tag);
+            } else if (parsed) parsed=!strcmp(peace_trade_source,"-");
+            if (parsed && strchr(peace_term_mask,'a'))
+                parsed=peace_annul_parse_request(peace_annul_country,peace_annul_csv,
+                    peace_annul);
+            else if (parsed)
+                parsed=!strcmp(peace_annul_country,"-") && !strcmp(peace_annul_csv,"-");
+            peace_return_core.return_core=true;
+            peace_revoke_core.return_core=false;
+            if (parsed && strchr(peace_term_mask,'l'))
+                parsed=peace_subject_parse_countries(peace_release_csv,true,
+                    peace_release_subject);
+            else if (parsed) parsed=!strcmp(peace_release_csv,"-");
+            if (parsed && strchr(peace_term_mask,'x'))
+                parsed=peace_subject_parse_countries(peace_transfer_csv,false,
+                    peace_transfer_subject);
+            else if (parsed) parsed=!strcmp(peace_transfer_csv,"-");
+            if (parsed && peace_release_subject.selection_requested
+                && peace_transfer_subject.selection_requested)
+                for (unsigned i=0;i<peace_release_subject.country_count && parsed;++i)
+                    for (unsigned j=0;j<peace_transfer_subject.country_count;++j)
+                        if (!strcmp(peace_release_subject.countries[i],
+                            peace_transfer_subject.countries[j])) {
+                            peace_subject_overlap_invalid=true; break;
+                        }
+        }
+        query17=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
+    if (!parsed && bytes) {
+        consumed=0; peace_amount=-1;
+        parsed=sscanf(wire,"EU4DIP_QUERY18 %llx %64s %31s %3s %3s %d %llu %29s %7s %15s %176s %3s %18s %3s %3s %63s %176s %3s %176s %3s %63s %63s %3s %3s %3s %3s %3s %3s %3s %3s %3s%n",
+            &creation,id,action_id,actor_tag,recipient_tag,&expected_date,&expiry,
+            peace_war_id,peace_direction_token,peace_amount_token,peace_province_token,
+            peace_province_beneficiary,peace_term_mask,peace_trade_source,
+            peace_annul_country,peace_annul_csv,peace_return_ids,peace_return_owner,
+            peace_revoke_ids,peace_revoke_owner,peace_release_csv,peace_transfer_csv,
+            peace_release_nation_country,peace_release_nation_source,
+            peace_vassal_country,peace_union_country,peace_independence_country,
+            peace_annex_country,peace_vassal_beneficiary,peace_union_beneficiary,
+            peace_annex_beneficiary,&consumed)==31
+            && !strcmp(wire+consumed,"\n")
+            && (!strcmp(peace_direction_token,"demand") || !strcmp(peace_direction_token,"offer"))
+            && insult_query_parse_id(peace_amount_token,peace_amount)
+            && peace_province_parse_request(peace_province_token,
+                peace_province_beneficiary,peace_provinces)
+            && peace_core_parse_request(peace_return_ids,peace_return_owner,
+                peace_return_core)
+            && peace_core_parse_request(peace_revoke_ids,peace_revoke_owner,
+                peace_revoke_core);
+        if (parsed) {
+            const char* order="mprtcahsfbvlxnzuie"; int previous=-1;
+            bool old_bit=false,new_bit=false;
+            unsigned new_count=0;
+            for (const char* bit=peace_term_mask;parsed && *bit;++bit) {
+                const char* found=strchr(order,*bit);
+                if (!found || found-order<=previous) parsed=false;
+                else {
+                    previous=static_cast<int>(found-order);
+                    // Country offers can carry the established money setter.
+                    // Other legacy families remain on their own query paths.
+                    if (strchr("prtcahsfbvlx",*bit)) old_bit=true;
+                    if (strchr("nzuie",*bit)) { new_bit=true; ++new_count; }
+                }
+            }
+            parsed=parsed && new_bit && !old_bit;
+            const bool money_bit=strchr(peace_term_mask,'m')!=nullptr;
+            parsed=parsed && (money_bit?(peace_amount>0 && peace_amount%100==0):peace_amount==-1)
+                && peace_provinces.count==0
+                && !strcmp(peace_trade_source,"-")
+                && !strcmp(peace_annul_country,"-") && !strcmp(peace_annul_csv,"-")
+                && !strcmp(peace_return_ids,"-") && !strcmp(peace_return_owner,"-")
+                && !strcmp(peace_revoke_ids,"-") && !strcmp(peace_revoke_owner,"-")
+                && !strcmp(peace_release_csv,"-") && !strcmp(peace_transfer_csv,"-");
+
+            const bool release_bit=strchr(peace_term_mask,'n')!=nullptr;
+            const bool vassal_bit=strchr(peace_term_mask,'z')!=nullptr;
+            const bool union_bit=strchr(peace_term_mask,'u')!=nullptr;
+            const bool grant_bit=strchr(peace_term_mask,'i')!=nullptr;
+            const bool annex_bit=strchr(peace_term_mask,'e')!=nullptr;
+            if (parsed && release_bit)
+                parsed=peace_country_parse_request(PeaceCountryKind::release_nation,
+                    peace_release_nation_country,peace_release_nation_source,
+                    strcmp(peace_release_nation_country,"-")!=0,
+                    peace_release_nation);
+            else if (parsed)
+                parsed=!strcmp(peace_release_nation_country,"-")
+                    && !strcmp(peace_release_nation_source,"-");
+            if (parsed && vassal_bit) {
+                const bool selected=strcmp(peace_vassal_country,"-")!=0;
+                parsed=peace_country_parse_request(PeaceCountryKind::force_vassal,
+                    peace_vassal_country,"-",selected,peace_force_vassal)
+                    && ((selected && strcmp(peace_vassal_beneficiary,"-")!=0)
+                        || (!selected && !strcmp(peace_vassal_beneficiary,"-")));
+                if (parsed && selected)
+                    parsed=peace_country_valid_tag(peace_vassal_beneficiary);
+            } else if (parsed)
+                parsed=!strcmp(peace_vassal_country,"-")
+                    && !strcmp(peace_vassal_beneficiary,"-");
+            if (parsed && union_bit) {
+                const bool selected=strcmp(peace_union_country,"-")!=0;
+                parsed=peace_country_parse_request(PeaceCountryKind::pu,
+                    peace_union_country,"-",selected,peace_personal_union)
+                    && ((selected && strcmp(peace_union_beneficiary,"-")!=0)
+                        || (!selected && !strcmp(peace_union_beneficiary,"-")));
+                if (parsed && selected)
+                    parsed=peace_country_valid_tag(peace_union_beneficiary);
+            } else if (parsed)
+                parsed=!strcmp(peace_union_country,"-")
+                    && !strcmp(peace_union_beneficiary,"-");
+            if (parsed && grant_bit)
+                parsed=peace_country_parse_request(PeaceCountryKind::grant_independence,
+                    peace_independence_country,"-",
+                    strcmp(peace_independence_country,"-")!=0,
+                    peace_grant_independence);
+            else if (parsed) parsed=!strcmp(peace_independence_country,"-");
+            if (parsed && annex_bit) {
+                if (!strcmp(peace_annex_country,"-")) {
+                    parsed=!strcmp(peace_annex_beneficiary,"-");
+                } else {
+                    parsed=peace_annex_parse_request(peace_annex_country,
+                        peace_annex_beneficiary,true,peace_annex);
+                }
+            } else if (parsed) {
+                parsed=!strcmp(peace_annex_country,"-")
+                    && !strcmp(peace_annex_beneficiary,"-");
+            }
+            const bool discovery=(release_bit && !peace_release_nation.selection_requested)
+                || (vassal_bit && !peace_force_vassal.selection_requested)
+                || (union_bit && !peace_personal_union.selection_requested)
+                || (grant_bit && !peace_grant_independence.selection_requested)
+                || (annex_bit && !peace_annex.country[0]);
+            const bool selected=(release_bit && peace_release_nation.selection_requested)
+                || (vassal_bit && peace_force_vassal.selection_requested)
+                || (union_bit && peace_personal_union.selection_requested)
+                || (grant_bit && peace_grant_independence.selection_requested)
+                || (annex_bit && peace_annex.country[0]);
+            // One wire cannot combine a discovery family with a selected
+            // family.  Multiple selected families are retained for the
+            // aggregate wrapper, while discovery remains one-family-only so
+            // the primary action is unambiguous.
+            parsed=parsed && !(discovery && selected)
+                && (!discovery || (new_count==1u && !money_bit));
+            peace_country_requests.release_nation=release_bit?&peace_release_nation:nullptr;
+            peace_country_requests.force_vassal=vassal_bit?&peace_force_vassal:nullptr;
+            peace_country_requests.pu=union_bit?&peace_personal_union:nullptr;
+            peace_country_requests.grant_independence=grant_bit?&peace_grant_independence:nullptr;
+            peace_country_requests.force_vassal_beneficiary=vassal_bit?peace_vassal_beneficiary:nullptr;
+            peace_country_requests.pu_beneficiary=union_bit?peace_union_beneficiary:nullptr;
+        }
+        query18=parsed; peace_demand=!strcmp(peace_direction_token,"demand");
+    }
     bool identifier=parsed && id[0];
     for (const char* p=id;identifier && *p;++p)
         identifier=(*p>='A' && *p<='Z') || (*p>='a' && *p<='z') || (*p>='0' && *p<='9') || *p=='_' || *p=='-';
@@ -566,6 +1103,11 @@ static void alliance_query_tick() {
     const bool rival=strcmp(action_id,"set_rival")==0 || strcmp(action_id,"remove_rival")==0;
     const bool declarewar=strcmp(action_id,"declare_war")==0;
     const bool peace=peace_query_action(action_id);
+    const bool country_action=strcmp(action_id,"release_nation")==0
+        || strcmp(action_id,"force_vassalization")==0
+        || strcmp(action_id,"form_personal_union")==0
+        || strcmp(action_id,"grant_independence")==0
+        || strcmp(action_id,"full_annexation")==0;
     if (query4 && strcmp(action_id,"white_peace")) {
         alliance_query_failure(id,"QUERY_PEACE_EMPTY_OFFER_ACTION_REQUIRED"); return;
     }
@@ -580,6 +1122,108 @@ static void alliance_query_tick() {
             && strcmp(action_id,"cede_province")))) {
         alliance_query_failure(id,"QUERY_PEACE_QUERY_ACTION_REQUIRED"); return;
     }
+    if (query8 && (!peace || (strcmp(action_id,"war_reparations")
+            && strcmp(action_id,"demand_ducats") && strcmp(action_id,"cede_province")))) {
+        alliance_query_failure(id,"QUERY_PEACE_QUERY_ACTION_REQUIRED"); return;
+    }
+    if (query8 && ((!strcmp(action_id,"demand_ducats") && peace_amount<0)
+        || (!strcmp(action_id,"cede_province") && !peace_provinces.count))) {
+        alliance_query_failure(id,"QUERY_PEACE_QUERY_PARAMETERS_INVALID"); return;
+    }
+    if ((query9 || query10 || query11 || query12 || query13) && (!peace || (strcmp(action_id,"transfer_trade_power")
+            && strcmp(action_id,"war_reparations")
+            && strcmp(action_id,"demand_ducats") && strcmp(action_id,"cede_province")
+            && !((query11 || query12 || query13) && !strcmp(action_id,"concede_defeat"))
+            && !((query12 || query13) && !strcmp(action_id,"annul_treaties"))
+            && !(query13 && (!strcmp(action_id,"humiliate_rival") || !strcmp(action_id,"show_strength") || !strcmp(action_id,"force_religion")))))) {
+        alliance_query_failure(id,"QUERY_PEACE_QUERY_ACTION_REQUIRED"); return;
+    }
+    if (query14 && (!peace || (strcmp(action_id,"return_core")
+            && strcmp(action_id,"revoke_core")))) {
+        alliance_query_failure(id,"QUERY_PEACE_CORE_QUERY_ACTION_REQUIRED"); return;
+    }
+    if (query15 && (!peace || (strcmp(action_id,"transfer_trade_power")
+            && strcmp(action_id,"war_reparations")
+            && strcmp(action_id,"demand_ducats") && strcmp(action_id,"cede_province")
+            && strcmp(action_id,"concede_defeat") && strcmp(action_id,"annul_treaties")
+            && strcmp(action_id,"humiliate_rival") && strcmp(action_id,"show_strength")
+            && strcmp(action_id,"force_religion") && strcmp(action_id,"return_core")
+            && strcmp(action_id,"revoke_core")))) {
+        alliance_query_failure(id,"QUERY_PEACE_COMBINED_CORE_QUERY_ACTION_REQUIRED"); return;
+    }
+    if (query16 && (!peace || (strcmp(action_id,"release_subject")
+            && strcmp(action_id,"transfer_subject")))) {
+        alliance_query_failure(id,"QUERY_PEACE_SUBJECT_QUERY_ACTION_REQUIRED"); return;
+    }
+    if (query17 && (!peace || (strcmp(action_id,"transfer_trade_power")
+            && strcmp(action_id,"war_reparations")
+            && strcmp(action_id,"demand_ducats") && strcmp(action_id,"cede_province")
+            && strcmp(action_id,"concede_defeat") && strcmp(action_id,"annul_treaties")
+            && strcmp(action_id,"humiliate_rival") && strcmp(action_id,"show_strength")
+            && strcmp(action_id,"force_religion") && strcmp(action_id,"return_core")
+            && strcmp(action_id,"revoke_core") && strcmp(action_id,"release_subject")
+            && strcmp(action_id,"transfer_subject")))) {
+        alliance_query_failure(id,"QUERY_PEACE_COMBINED_SUBJECT_QUERY_ACTION_REQUIRED"); return;
+    }
+    if (query18 && !country_action) {
+        alliance_query_failure(id,"QUERY_PEACE_COMBINED_COUNTRY_QUERY_ACTION_REQUIRED"); return;
+    }
+    if (query18 && ((strcmp(action_id,"release_nation")==0
+            && !strchr(peace_term_mask,'n'))
+        || (strcmp(action_id,"force_vassalization")==0
+            && !strchr(peace_term_mask,'z'))
+        || (strcmp(action_id,"form_personal_union")==0
+            && !strchr(peace_term_mask,'u'))
+        || (strcmp(action_id,"grant_independence")==0
+            && !strchr(peace_term_mask,'i'))
+        || (strcmp(action_id,"full_annexation")==0
+            && !strchr(peace_term_mask,'e')))) {
+        alliance_query_failure(id,"QUERY_PEACE_COMBINED_COUNTRY_QUERY_PARAMETERS_INVALID"); return;
+    }
+    if (query17 && peace_subject_overlap_invalid) {
+        alliance_query_failure(id,"QUERY_PEACE_SUBJECT_COUNTRY_OVERLAP"); return;
+    }
+    if ((query9 || query10 || query11 || query12 || query13) && ((!strcmp(action_id,"war_reparations") && !strchr(peace_term_mask,'r'))
+        || (!strcmp(action_id,"demand_ducats") && peace_amount<0)
+        || (!strcmp(action_id,"cede_province") && !peace_provinces.count)
+        || (!strcmp(action_id,"transfer_trade_power") && !strchr(peace_term_mask,'t'))
+        || (!strcmp(action_id,"concede_defeat") && !strchr(peace_term_mask,'c'))
+        || (!strcmp(action_id,"annul_treaties") && !strchr(peace_term_mask,'a'))
+        || (!strcmp(action_id,"humiliate_rival") && !strchr(peace_term_mask,'h'))
+        || (!strcmp(action_id,"show_strength") && !strchr(peace_term_mask,'s'))
+        || (!strcmp(action_id,"force_religion") && !strchr(peace_term_mask,'f')))) {
+        alliance_query_failure(id,"QUERY_PEACE_QUERY_PARAMETERS_INVALID"); return;
+    }
+    if (query15 && ((!strcmp(action_id,"war_reparations") && !strchr(peace_term_mask,'r'))
+        || (!strcmp(action_id,"demand_ducats") && (peace_amount<0 || !strchr(peace_term_mask,'m')))
+        || (!strcmp(action_id,"cede_province") && (!peace_provinces.count || !strchr(peace_term_mask,'p')))
+        || (!strcmp(action_id,"transfer_trade_power") && !strchr(peace_term_mask,'t'))
+        || (!strcmp(action_id,"concede_defeat") && !strchr(peace_term_mask,'c'))
+        || (!strcmp(action_id,"annul_treaties") && !strchr(peace_term_mask,'a'))
+        || (!strcmp(action_id,"humiliate_rival") && !strchr(peace_term_mask,'h'))
+        || (!strcmp(action_id,"show_strength") && !strchr(peace_term_mask,'s'))
+        || (!strcmp(action_id,"force_religion") && !strchr(peace_term_mask,'f'))
+        || (!strcmp(action_id,"return_core") && !strchr(peace_term_mask,'b'))
+        || (!strcmp(action_id,"revoke_core") && !strchr(peace_term_mask,'v')))) {
+        alliance_query_failure(id,"QUERY_PEACE_COMBINED_CORE_QUERY_PARAMETERS_INVALID"); return;
+    }
+    if (query17 && ((!strcmp(action_id,"war_reparations") && !strchr(peace_term_mask,'r'))
+        || (!strcmp(action_id,"demand_ducats") && (peace_amount<0 || !strchr(peace_term_mask,'m')))
+        || (!strcmp(action_id,"cede_province") && (!peace_provinces.count || !strchr(peace_term_mask,'p')))
+        || (!strcmp(action_id,"transfer_trade_power") && !strchr(peace_term_mask,'t'))
+        || (!strcmp(action_id,"concede_defeat") && !strchr(peace_term_mask,'c'))
+        || (!strcmp(action_id,"annul_treaties") && !strchr(peace_term_mask,'a'))
+        || (!strcmp(action_id,"humiliate_rival") && !strchr(peace_term_mask,'h'))
+        || (!strcmp(action_id,"show_strength") && !strchr(peace_term_mask,'s'))
+        || (!strcmp(action_id,"force_religion") && !strchr(peace_term_mask,'f'))
+        || (!strcmp(action_id,"return_core") && !strchr(peace_term_mask,'b'))
+        || (!strcmp(action_id,"revoke_core") && !strchr(peace_term_mask,'v'))
+        || (!strcmp(action_id,"release_subject") && !strchr(peace_term_mask,'l'))
+        || (!strcmp(action_id,"transfer_subject") && !strchr(peace_term_mask,'x'))
+        || (strchr(peace_term_mask,'l') && !peace_release_subject.selection_requested)
+        || (strchr(peace_term_mask,'x') && !peace_transfer_subject.selection_requested))) {
+        alliance_query_failure(id,"QUERY_PEACE_COMBINED_SUBJECT_QUERY_PARAMETERS_INVALID"); return;
+    }
     // A cede-province QUERY7 with "- -" is the read-only
     // candidate-enumeration form; selected terms use the same wire
     // with a non-empty province list and beneficiary.
@@ -591,7 +1235,7 @@ static void alliance_query_tick() {
             && peace_amount>=0 && peace_provinces.count==0))) {
         alliance_query_failure(id,"QUERY_PEACE_QUERY_PARAMETERS_INVALID"); return;
     }
-    if (query3 && !declarewar) {
+    if ((query3 || query19) && !declarewar) {
         alliance_query_failure(id,"QUERY_DECLARE_WAR_ACTION_REQUIRED"); return;
     }
     if ((query2!=insult) || (insult && (insult_id<-2
@@ -599,11 +1243,28 @@ static void alliance_query_tick() {
             || (!strcmp(action_id,"scornful_insult") && insult_id==-1)))) {
         alliance_query_failure(id,"QUERY_INSULT_PARAMETERS_INVALID"); return;
     }
-    const bool small_negotiated=support || military || vassal;
-    const FactoryActionQueryMethods* negotiated=vassal?&vassal_query_methods:military?&military_query_methods:support?&support_query_methods:nullptr;
+    const bool gift=!strcmp(action_id,"send_gift");
+    const bool influence=!strcmp(action_id,"influence_nation");
+    if ((gift!=query20) || (influence!=query21) || (gift && gift_raw<=0)) {
+        alliance_query_failure(id,"QUERY_GIFT_INFLUENCE_PARAMETERS_INVALID"); return;
+    }
+    const bool favor_gold=!strcmp(action_id,"trade_favors_for_gold");
+    const bool favor_trust=!strcmp(action_id,"trade_favors_for_trust");
+    const bool favor_men=!strcmp(action_id,"trade_favors_for_men");
+    const bool favor_resource=favor_trust || favor_men;
+    const bool favor_trade=favor_gold || favor_resource;
+    const bool small_negotiated=support || military || vassal || favor_trade;
+    const FactoryActionQueryMethods* negotiated=favor_gold?&favor_gold_query_methods:
+        favor_trust?&favor_trust_query_methods:favor_men?&favor_men_query_methods:
+        vassal?&vassal_query_methods:military?&military_query_methods:
+        support?&support_query_methods:nullptr;
     const FactoryActionQueryMethods* unilateral=unilateral_query_family(action_id);
-    bool offer=strcmp(action_id,"offer_alliance")==0 || strcmp(action_id,"offer_royal_marriage")==0 || strcmp(action_id,"support_independence")==0 || strcmp(action_id,"ask_military_access")==0 || strcmp(action_id,"offer_vassalization")==0;
-    if (!peace && !declarewar && !rival && !insult && !marriage && !small_negotiated && !unilateral && !offer && strcmp(action_id,"dissolve_alliance")!=0) { alliance_query_failure(id,"QUERY_ACTION_UNSUPPORTED"); return; }
+    bool offer=favor_trade || strcmp(action_id,"offer_alliance")==0 || strcmp(action_id,"offer_royal_marriage")==0 || strcmp(action_id,"support_independence")==0 || strcmp(action_id,"ask_military_access")==0 || strcmp(action_id,"offer_vassalization")==0;
+    if (!peace && !query18 && !declarewar && !rival && !insult && !marriage
+        && !gift && !influence && !small_negotiated && !unilateral && !offer
+        && strcmp(action_id,"dissolve_alliance")!=0) {
+        alliance_query_failure(id,"QUERY_ACTION_UNSUPPORTED"); return;
+    }
     uintptr_t game=0; uint64_t player=0,actor=0,recipient=0; int32_t date=0;
     if (!read(base+0x233fe58,game) || !read(game+0x1dd0,date) || !read(game+0x1e60,player)
         || (player&0xffffff)!=0x524f50 || date!=expected_date) {
@@ -612,23 +1273,80 @@ static void alliance_query_tick() {
     if (!alliance_query_country(actor_tag,actor) || !alliance_query_country(recipient_tag,recipient) || actor==recipient) {
         alliance_query_failure(id,"QUERY_COUNTRY_RESOLUTION_UNAVAILABLE"); return;
     }
+    if (gift || influence) {
+        gift_influence_query_run(id,action_id,actor_tag,recipient_tag,actor,recipient,
+            date,gift,gift?gift_ducats:0);
+        return;
+    }
     if (insult) { insult_query_run(id,action_id,actor_tag,recipient_tag,actor,recipient,date,insult_id); return; }
-    if (peace) {
+    if (peace || query18) {
         if (query4 || query5 || query6) peace_empty_offer_query_run(id,actor_tag,recipient_tag,
             actor,recipient,date,peace_war_id,query5?peace_amount:-1,query6?&peace_provinces:nullptr);
-        else if (query7) peace_empty_offer_query_run(id,actor_tag,recipient_tag,
+        else if (query18) peace_empty_offer_query_run(id,actor_tag,recipient_tag,
+            actor,recipient,date,peace_war_id,peace_amount,nullptr,peace_demand,action_id,
+            false,false,nullptr,true,false,nullptr,false,false,false,nullptr,nullptr,
+            false,nullptr,nullptr,nullptr,false,
+            peace_country_requests.any()?&peace_country_requests:nullptr,
+            strchr(peace_term_mask,'e')?&peace_annex:nullptr);
+        else if (query17) peace_empty_offer_query_run(id,actor_tag,recipient_tag,
+            actor,recipient,date,peace_war_id,peace_amount>=0?peace_amount:-1,
+            (strcmp(action_id,"cede_province")==0 || peace_provinces.count)
+                ?&peace_provinces:nullptr,peace_demand,action_id,
+            strchr(peace_term_mask,'r')!=nullptr,
+            strchr(peace_term_mask,'t')!=nullptr,
+            strchr(peace_term_mask,'t')?peace_trade_source:nullptr,true,
+            strchr(peace_term_mask,'c')!=nullptr,
+            strchr(peace_term_mask,'a')?&peace_annul:nullptr,
+            strchr(peace_term_mask,'h')!=nullptr,
+            strchr(peace_term_mask,'s')!=nullptr,
+            strchr(peace_term_mask,'f')!=nullptr,
+            strchr(peace_term_mask,'b')?&peace_return_core:nullptr,
+            strchr(peace_term_mask,'v')?&peace_revoke_core:nullptr,true,nullptr,
+            strchr(peace_term_mask,'l')?&peace_release_subject:nullptr,
+            strchr(peace_term_mask,'x')?&peace_transfer_subject:nullptr,true);
+        else if (query15) peace_empty_offer_query_run(id,actor_tag,recipient_tag,
+            actor,recipient,date,peace_war_id,peace_amount>=0?peace_amount:-1,
+            (strcmp(action_id,"cede_province")==0 || peace_provinces.count)
+                ?&peace_provinces:nullptr,peace_demand,action_id,
+            strchr(peace_term_mask,'r')!=nullptr,
+            strchr(peace_term_mask,'t')!=nullptr,
+            strchr(peace_term_mask,'t')?peace_trade_source:nullptr,true,
+            strchr(peace_term_mask,'c')!=nullptr,
+            strchr(peace_term_mask,'a')?&peace_annul:nullptr,
+            strchr(peace_term_mask,'h')!=nullptr,
+            strchr(peace_term_mask,'s')!=nullptr,
+            strchr(peace_term_mask,'f')!=nullptr,
+            strchr(peace_term_mask,'b')?&peace_return_core:nullptr,
+            strchr(peace_term_mask,'v')?&peace_revoke_core:nullptr,true);
+        else if (query14) peace_empty_offer_query_run(id,actor_tag,recipient_tag,
+            actor,recipient,date,peace_war_id,-1,nullptr,peace_demand,action_id,
+            false,false,nullptr,true,false,nullptr,false,false,false,&peace_core);
+        else if (query16) peace_empty_offer_query_run(id,actor_tag,recipient_tag,
+            actor,recipient,date,peace_war_id,-1,nullptr,peace_demand,action_id,
+            false,false,nullptr,true,false,nullptr,false,false,false,nullptr,nullptr,
+            false,&peace_subject);
+        else if (query7 || query8 || query9 || query10 || query11 || query12 || query13) peace_empty_offer_query_run(id,actor_tag,recipient_tag,
             actor,recipient,date,peace_war_id,peace_amount>=0?peace_amount:-1,
             // Keep an empty cede request enabled so the native candidate
             // population runs; passing nullptr would downgrade it to the
             // unrelated white-peace inspection path.
             (strcmp(action_id,"cede_province")==0 || peace_provinces.count)
-                ?&peace_provinces:nullptr,peace_demand,action_id);
+                ?&peace_provinces:nullptr,peace_demand,action_id,
+            query8 || ((query9 || query10 || query11 || query12 || query13) && strchr(peace_term_mask,'r')),
+            query9 || query10 || ((query11 || query12 || query13) && strchr(peace_term_mask,'t')),
+            (query10 || query11 || query12 || query13) && strcmp(peace_trade_source,"-")?peace_trade_source:nullptr,
+            !query10 || strcmp(peace_trade_source,"-"),
+            query11 || ((query12 || query13) && strchr(peace_term_mask,'c')),
+            (query12 || (query13 && strchr(peace_term_mask,'a')))?&peace_annul:nullptr,
+            query13 && strchr(peace_term_mask,'h'),query13 && strchr(peace_term_mask,'s'),
+            query13 && strchr(peace_term_mask,'f'));
         else peace_context_query_run(id,action_id,actor_tag,recipient_tag,actor,recipient,date);
         return;
     }
     if (declarewar) {
         declarewar_query_run(id,actor_tag,recipient_tag,actor,recipient,date,
-            query3?war_cb_key:nullptr,war_province,query3?war_beneficiary:nullptr);
+            (query3 || query19)?war_cb_key:nullptr,war_province,
+            (query3 || query19)?war_beneficiary:nullptr,query19?&war_participants:nullptr);
         return;
     }
     if (rival) { rival_query_run(id,action_id,actor_tag,recipient_tag,actor,recipient,date); return; }
@@ -640,7 +1358,7 @@ static void alliance_query_tick() {
         || !read(vtable+0x80,validity)
         || (validity!=base+validity_rva
             && (small_negotiated || marriage || validity!=reinterpret_cast<uintptr_t>(&observation_alliance_validity)))
-        || !read(vtable+0x120,preview) || preview!=base+(vassal?0x51fae0:military?0x525e30:support?0x50f160:marriage?0x4f0c20:0x513120)
+        || (!read(vtable+0x120,preview) || preview!=base+(favor_trust?0x4fd130:favor_men?0x4f85d0:favor_gold?0x4f5e90:vassal?0x51fae0:military?0x525e30:support?0x50f160:marriage?0x4f0c20:0x513120))
         || !read(vtable+0x90,send_gate) || send_gate!=base+(small_negotiated||marriage?0x4e9b40:0x512a00)
         || !read(vtable+0xb8,accept_check) || accept_check!=base+0x4ea210
         || !read(vtable+0x100,requires_diplomat_method) || requires_diplomat_method!=base+0x8f440) {
@@ -731,7 +1449,7 @@ static void alliance_query_tick() {
     bool reason_metadata_capture_overflow=false;
     bool reason_metadata_binding_verified=false;
 #endif
-    if (prediction_applies && native_valid) {
+    if (prediction_applies && (native_valid || favor_resource)) {
         using Context=void* (*)(void*,bool*);
         bool existed=false;
         void* reasons=reinterpret_cast<Context>(base+0xdf320)(reinterpret_cast<void*>(base+0x1fd1c38),&existed);
@@ -813,17 +1531,32 @@ static void alliance_query_tick() {
         }
     }
     bool acceptance_predicate_available=false,native_would_accept=false;
-    if (prediction_applies && native_valid && score_available) {
+    if (prediction_applies && (native_valid || favor_resource) && score_available) {
         // This is the exact +0xb8 predicate used by the native AI response
         // branch. It is called only after copying reason text, since its
         // numeric mode may reuse the native thread-local reason container.
         native_would_accept=reinterpret_cast<bool (*)(void*,void*)>(accept_check)(action,nullptr);
         acceptance_predicate_available=true;
     }
-    if (marriage || small_negotiated) reinterpret_cast<Destructor>(base+(small_negotiated?0x129450:0x4ed5e0))(action,1);
+    char favor_fields[640]{};
+    if (favor_gold) {
+        FavorGoldState state{}; int32_t amount=0;
+        favor_gold_capture(actor,recipient,state);
+        const bool amount_readable=favor_gold_amount(action,amount);
+        favor_gold_query_json(state,amount,amount_readable,favor_fields,sizeof(favor_fields));
+    } else if (favor_resource) {
+        FavorTradeState state{}; int32_t amount=0;
+        const bool amount_readable=favor_trade_capture_action(favor_trust,actor,recipient,action,state)
+            && favor_trade_amount(favor_trust,action,amount);
+        favor_trade_query_json(favor_trust,state,amount,amount_readable,
+            favor_fields,sizeof(favor_fields));
+    }
+    if (marriage || small_negotiated) reinterpret_cast<Destructor>(base+(
+        favor_trust?0x129500:small_negotiated?0x129450:0x4ed5e0))(action,1);
     else reinterpret_cast<Destructor>(base+0x129450)(action,0);
     observation_active_query=nullptr;
     char support_fields[768]{};
+    if (favor_trade) strcpy(support_fields,"\"family\":\"favor_trade\",");
     if (support) snprintf(support_fields,sizeof(support_fields),
         "\"family\":\"support_independence\",\"support_independence_active\":%s,\"support_independence_state_verified\":true,",
         support_active?"true":"false");
@@ -837,7 +1570,7 @@ static void alliance_query_tick() {
         vassal_state.prestige_raw,vassal_state.cancel_prestige_delta_raw,
         vassal_state.cancel_prestige_effect_allowed?"true":"false");
     char message[4096];
-    snprintf(message,sizeof(message),"{\"event\":\"native_alliance_inspection\",\"session_id\":\"%lu-%llx\",\"query_id\":\"%s\",\"action_id\":\"%s\",%s\"actor\":\"%.3s\",\"recipient\":\"%.3s\",\"phase\":\"initiate\",\"date_raw\":%d,\"ui_selection_checked\":true,\"native_visibility\":%s,\"ui_enabled_gate_checked\":true,\"common_action_gate\":%s,\"display_predicate\":%s,\"initiation_gate\":%s,\"tooltip_gate\":%s,\"validity_called\":true,\"native_validity\":%s,\"native_diagnostic_hex\":\"%s\",\"diagnostic_readable\":%s,\"diagnostic_truncated\":%s,\"diplomat_context_readable\":true,\"diplomat_required\":%s,\"available_diplomat_count\":%u,\"diplomat_assignment_verified\":false,\"score_applicable\":%s,\"score_available\":%s,\"acceptance_predicate_available\":%s,\"native_would_accept\":%s,\"native_total_raw\":%d,\"acceptance_threshold_raw\":1,\"reason_container_readable\":%s,\"reason_count\":%u,\"reason_items_decoded\":false,\"full_rules_complete\":true,\"reasons_complete\":false,\"submitted\":false,\"frame_thread\":%lu}\n",
+    snprintf(message,sizeof(message),"{\"event\":\"native_alliance_inspection\",\"session_id\":\"%lu-%llx\",\"query_id\":\"%s\",\"action_id\":\"%s\",%s\"actor\":\"%.3s\",\"recipient\":\"%.3s\",\"phase\":\"initiate\",\"date_raw\":%d,\"ui_selection_checked\":true,\"native_visibility\":%s,\"ui_enabled_gate_checked\":true,\"common_action_gate\":%s,\"display_predicate\":%s,\"initiation_gate\":%s,\"tooltip_gate\":%s,\"validity_called\":true,\"native_validity\":%s,\"native_diagnostic_hex\":\"%s\",\"diagnostic_readable\":%s,\"diagnostic_truncated\":%s,\"diplomat_context_readable\":true,\"diplomat_required\":%s,\"available_diplomat_count\":%u,\"diplomat_assignment_verified\":false,\"score_applicable\":%s,\"score_available\":%s,\"acceptance_predicate_available\":%s,\"native_would_accept\":%s,\"native_total_raw\":%d,\"acceptance_threshold_raw\":1,\"reason_container_readable\":%s,\"reason_count\":%u,\"reason_items_decoded\":false,\"full_rules_complete\":true,\"reasons_complete\":false,\"submitted\":false%s,\"frame_thread\":%lu}\n",
         static_cast<unsigned long>(GetCurrentProcessId()),static_cast<unsigned long long>(observation_creation),
         id,action_id,support_fields,actor_tag,recipient_tag,date,native_visibility?"true":"false",common_gate?"true":"false",
         common_gate?"true":"false",initiation_gate?"true":"false",tooltip_gate?"true":"false",native_valid?"true":"false",
@@ -846,6 +1579,6 @@ static void alliance_query_tick() {
         prediction_applies?"true":"false",score_available?"true":"false",
         acceptance_predicate_available?"true":"false",native_would_accept?"true":"false",
         score,reasons_readable?"true":"false",reason_count,
-        static_cast<unsigned long>(GetCurrentThreadId()));
+        favor_fields,static_cast<unsigned long>(GetCurrentThreadId()));
     line(message);
 }

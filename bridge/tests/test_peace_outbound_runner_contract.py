@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 import tempfile
 import unittest
@@ -22,8 +23,10 @@ from work.validate_peace_outbound_reload import (
     _binding_contract,
     _compare_effect_states,
     _requested_peace_province_ids,
+    _requested_peace_reparations_pair,
     _requested_peace_terms,
     _read_native_effect_observations,
+    _saved_war_reparations_snapshot,
     _serialized_treasury_to_raw,
     _stream_save_effect_state,
     _source_map,
@@ -87,6 +90,86 @@ class PeaceOutboundRunnerContractTests(unittest.TestCase):
                 "demand_ducats", WAR_ID, "10.0", 177, None, "offer",
                 with_money="1.0")
 
+    def test_war_reparations_primary_supports_all_exec2_masks_and_roles(self) -> None:
+        province_ids = [4388, 4111, 4112, 4389]
+        expected_actions = {
+            "r": ["war_reparations"],
+            "mr": ["demand_ducats", "war_reparations"],
+            "pr": ["cede_province", "war_reparations"],
+            "mpr": ["demand_ducats", "cede_province", "war_reparations"],
+        }
+        for direction in ("demand", "offer"):
+            for mask, action_ids in expected_actions.items():
+                with self.subTest(direction=direction, mask=mask):
+                    parameters = _build_parameters(
+                        "war_reparations", WAR_ID, "10.0", None,
+                        "ENG" if "p" in mask else None, direction,
+                        province_ids=province_ids if "p" in mask else None,
+                        with_money="1.0" if "m" in mask else None)
+                    context = parameters["peace_context"]
+                    terms = context["terms"]
+                    self.assertEqual(action_ids,
+                                     [term["action_id"] for term in terms])
+                    self.assertEqual(province_ids if "p" in mask else [],
+                                     next((term["province_ids"] for term in terms
+                                           if term["action_id"] == "cede_province"),
+                                          []))
+                    self.assertEqual(mask, _expected_native_fields(
+                        "war_reparations", parameters)["term_mask"])
+                    reparations = next(term for term in terms
+                                       if term["action_id"] == "war_reparations")
+                    expected_roles = (("FRA", "ENG") if direction == "offer"
+                                      else ("ENG", "FRA"))
+                    self.assertEqual(expected_roles,
+                                     (reparations["payer"], reparations["claimant"]))
+
+    def test_war_reparations_wire_receipt_binds_mask_roles_and_selection(self) -> None:
+        province_ids = [4388, 4111, 4112, 4389]
+        parameters = _build_parameters(
+            "war_reparations", WAR_ID, "10.0", None, "ENG", "offer",
+            province_ids=province_ids, with_money="1.0")
+        expected = _expected_native_fields("war_reparations", parameters)
+        event = {
+            **expected,
+            "event": "native_peace_submission_result",
+            "session_id": "session-r48-wire",
+            "request_id": "r48-wire-request",
+            "date_raw": 56548944,
+            "submitted": False,
+            "transport_verified": False,
+            "request_binding_verified": False,
+            "reason": "NATIVE_PEACE_AUTHORITY_SEED_FAILED",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            event_path = Path(directory) / "events.jsonl"
+            event_path.write_text(json.dumps(event) + "\n", encoding="utf-8")
+            report = {
+                "session": {"session_id": "session-r48-wire"},
+                "request_id": "r48-wire-request",
+                "action_id": "war_reparations",
+                "actor": "FRA", "recipient": "ENG", "phase": "initiate",
+                "expected_date_raw": 56548944,
+                "war_id": WAR_ID, "direction": "offer",
+                "parameters": {"execute": parameters},
+                "native_events": {"path": str(event_path)},
+            }
+            result = _wire_submission_correlation(report)
+        self.assertEqual(result["status"], "observed")
+        self.assertTrue(result["checks"]["term_mask"])
+        self.assertTrue(result["checks"]["reparations_payer"])
+        self.assertTrue(result["checks"]["reparations_claimant"])
+        self.assertTrue(result["checks"]["beneficiary"])
+        self.assertTrue(result["checks"]["amount_raw"])
+
+        event["term_mask"] = "pr"
+        with tempfile.TemporaryDirectory() as directory:
+            event_path = Path(directory) / "events.jsonl"
+            event_path.write_text(json.dumps(event) + "\n", encoding="utf-8")
+            report["native_events"] = {"path": str(event_path)}
+            mismatch = _wire_submission_correlation(report)
+        self.assertEqual(mismatch["status"], "mismatch")
+        self.assertFalse(mismatch["checks"]["term_mask"])
+
     def test_reload_reads_both_mixed_terms_for_payment_and_allocation(self) -> None:
         parameters = _build_parameters(
             "cede_province", WAR_ID, "10.0", 177, None, "offer",
@@ -97,6 +180,206 @@ class PeaceOutboundRunnerContractTests(unittest.TestCase):
         self.assertEqual([term["action_id"] for term in terms],
                          ["demand_ducats", "cede_province"])
         self.assertEqual(_requested_peace_province_ids(execution), [177, 178])
+
+    def test_reload_reads_reparations_pair_and_streams_serialized_dates(self) -> None:
+        province_ids = [4388, 4111, 4112, 4389, 4118]
+        parameters = _build_parameters(
+            "war_reparations", WAR_ID, "10.0", None, "ENG", "demand",
+            province_ids=province_ids, with_money="1.0")
+        execution = {"parameters": {"execute": parameters}}
+        self.assertEqual(_requested_peace_reparations_pair(execution),
+                         ("ENG", "FRA"))
+        self.assertEqual(_requested_peace_province_ids(execution), province_ids)
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "effects.eu4"
+            gamestate = (
+                'date="1455.1.5"\n'
+                "countries={\n"
+                "FRA={\n treasury=5.000\n}\n"
+                "ENG={\n treasury=8.000\n}\n"
+                "}\n"
+                "war_reparations={\n"
+                " first=ENG\n second=FRA\n"
+                " start_date=1454.1.1\n end_date=1460.1.1\n}\n"
+            ).encode("utf-8")
+            with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+                archive.writestr("gamestate", gamestate)
+            save = _stream_save_effect_state(
+                {"save": {"path": str(path)}}, ["ENG", "FRA"], [],
+                reparations_pair=("ENG", "FRA"))
+            snapshot = _saved_war_reparations_snapshot(save)
+
+        self.assertEqual(save["status"], "ok")
+        self.assertIsInstance(snapshot, dict)
+        query = snapshot["query"]
+        self.assertTrue(query["exact_pair_present"])
+        record = query["matching_records"][0]
+        self.assertEqual((record["payer"], record["claimant"]), ("ENG", "FRA"))
+        self.assertEqual((record["start_date"], record["end_date"]),
+                         ("1454.1.1", "1460.1.1"))
+        self.assertEqual(record["date_status"]["status"], "active")
+
+    def test_reload_effect_comparison_binds_reparations_dates_and_rejects_fake_verified(self) -> None:
+        observations = {"all": True, "by_country": {}}
+        native = {
+            "status": "ok",
+            "snapshot": {"runtime": {
+                "countries": [], "provinces": [],
+                "war_reparations": {
+                    "payer": "ENG", "claimant": "FRA", "active": True,
+                    "present": True, "complete": True,
+                    "start_date_raw": 10, "end_date_raw": 100,
+                },
+            }},
+        }
+        saved = {
+            "status": "ok",
+            "parsed": {"countries": {}, "provinces": {}},
+            "war_reparations": {
+                "query": {
+                    "exact_pair_present": True,
+                    "matching_records": [{
+                        "complete": True,
+                        "payer": "ENG", "claimant": "FRA",
+                        "start_date": "1454.1.1", "end_date": "1460.1.1",
+                        "date_status": {
+                            "comparison_available": True, "status": "active",
+                        },
+                    }],
+                },
+            },
+        }
+        effects = {
+            "provinces": [],
+            "war_reparations": {
+                "payer": "ENG", "claimant": "FRA",
+                "active_before": False, "active_after": True,
+                "start_date_raw": 10, "end_date_raw": 100,
+                "verified": True,
+            },
+        }
+        result = _compare_effect_states(
+            observations, native, saved, effects, "war_reparations",
+            expected_reparations_pair=("ENG", "FRA"))
+        self.assertTrue(result["all"])
+        self.assertTrue(result["checks"]["native_war_reparations_dates"])
+        self.assertTrue(result["checks"]["native_war_reparations_present"])
+        self.assertTrue(result["checks"]["save_war_reparations_date_window"])
+
+        fake_effects = dict(effects)
+        fake_effects["war_reparations"] = dict(effects["war_reparations"])
+        fake_effects["war_reparations"]["claimant"] = "SAV"
+        rejected = _compare_effect_states(
+            observations, native, saved, fake_effects, "war_reparations",
+            expected_reparations_pair=("ENG", "FRA"))
+        self.assertFalse(rejected["all"])
+        self.assertFalse(rejected["checks"]["public_war_reparations_claimant"])
+
+    def test_mixed_reparations_primary_uses_requested_province_term_exactly(self) -> None:
+        province_ids = [4388, 4111, 4112, 4389, 4118]
+        parameters = _build_parameters(
+            "war_reparations", WAR_ID, "10.0", None, "ENG", "offer",
+            province_ids=province_ids, with_money="1.0")
+        execution = {"parameters": {"execute": parameters}}
+        self.assertEqual(_requested_peace_province_ids(execution), province_ids)
+        self.assertEqual(_requested_peace_reparations_pair(execution),
+                         ("FRA", "ENG"))
+
+        observations = {
+            "all": True,
+            "by_country": {
+                "FRA": {"treasury_after_raw": 3965},
+                "ENG": {"treasury_after_raw": 122094},
+            },
+        }
+        native = {
+            "status": "ok",
+            "snapshot": {"runtime": {
+                "countries": [
+                    {"tag": "FRA", "treasury_readable": True,
+                     "currency_scale": 1000, "treasury_raw": 3965},
+                    {"tag": "ENG", "treasury_readable": True,
+                     "currency_scale": 1000, "treasury_raw": 122094},
+                ],
+                "provinces": [{
+                    "province_id": province_id, "record_readable": True,
+                    "owner": {"tag": "ENG", "identity_verified": True},
+                    "controller": {"tag": "ENG", "identity_verified": True},
+                } for province_id in province_ids],
+                "war_reparations": {
+                    "payer": "FRA", "claimant": "ENG", "active": True,
+                    "present": True, "complete": True,
+                    "start_date_raw": 56548944, "end_date_raw": 56636544,
+                },
+            }},
+        }
+        saved = {
+            "status": "ok",
+            "parsed": {
+                "countries": {
+                    "FRA": {"complete": True,
+                            "treasury": {"found": True, "raw": "3.965"}},
+                    "ENG": {"complete": True,
+                            "treasury": {"found": True, "raw": "122.094"}},
+                },
+                "provinces": {
+                    str(province_id): {
+                        "complete": True,
+                        "fields": {
+                            "owner": {"value": "ENG"},
+                            "controller": {"value": "ENG"},
+                        },
+                    } for province_id in province_ids
+                },
+            },
+            "war_reparations": {"query": {
+                "exact_pair_present": True,
+                "matching_records": [{
+                    "complete": True, "payer": "FRA", "claimant": "ENG",
+                    "start_date": "1455.1.5", "end_date": "1465.5.12",
+                    "date_status": {
+                        "comparison_available": True, "status": "active",
+                    },
+                }],
+            }},
+        }
+        effects = {
+            "money": {"amount_raw": 1000, "payer": "FRA", "verified": True},
+            "provinces": [{
+                "province_id": province_id,
+                "owner_after": "ENG", "controller_after": "ENG",
+            } for province_id in province_ids],
+            "war_reparations": {
+                "payer": "FRA", "claimant": "ENG",
+                "active_before": False, "active_after": True,
+                "start_date_raw": 56548944, "end_date_raw": 56636544,
+                "verified": True,
+            },
+        }
+        result = _compare_effect_states(
+            observations, native, saved, effects, "war_reparations",
+            expected_province_ids=province_ids,
+            expected_reparations_pair=("FRA", "ENG"))
+        self.assertTrue(result["all"])
+        self.assertTrue(result["checks"]["public_province_ids_exact"])
+
+        for label, malformed_ids in (
+                ("missing", province_ids[:-1]),
+                ("duplicate", province_ids[:-1] + [province_ids[0]]),
+                ("extra", province_ids[:-1] + [9999])):
+            with self.subTest(shape=label):
+                malformed_effects = copy.deepcopy(effects)
+                malformed_effects["provinces"] = [{
+                    "province_id": province_id,
+                    "owner_after": "ENG", "controller_after": "ENG",
+                } for province_id in malformed_ids]
+                rejected = _compare_effect_states(
+                    observations, native, saved, malformed_effects,
+                    "war_reparations", expected_province_ids=province_ids,
+                    expected_reparations_pair=("FRA", "ENG"))
+                self.assertFalse(rejected["checks"]["public_province_ids_exact"])
+                self.assertFalse(rejected["all"])
 
     def test_serialized_treasury_uses_exact_native_scale(self) -> None:
         self.assertEqual(_serialized_treasury_to_raw("8.000"), 8000)
@@ -367,6 +650,86 @@ class PeaceOutboundRunnerContractTests(unittest.TestCase):
         )
         self.assertTrue(result["all"])
         self.assertTrue(result["effects_contract"]["checks"]["money_payer"])
+
+    def test_accepted_reparations_requires_verified_transition_roles_and_dates(self) -> None:
+        province_ids = [4388, 4111, 4112, 4389]
+        parameters = _build_parameters(
+            "war_reparations", WAR_ID, "10.0", None, "ENG", "offer",
+            province_ids=province_ids, with_money="1.0")
+        expected = _expected_native_fields("war_reparations", parameters)
+        effects = {
+            "complete": True,
+            "date_unchanged": True,
+            "currency_scale": 1000,
+            "money": {
+                "amount_raw": 1000,
+                "payer": "FRA",
+                "paid_raw": 1000,
+                "credits": [{"country": "FRA", "amount_raw": 1000}],
+                "verified": True,
+            },
+            "provinces": [{
+                "province_id": province_id,
+                "beneficiary": "ENG",
+                "owner_before": "FRA",
+                "owner_after": "ENG",
+                "controller_before": "FRA",
+                "controller_after": "FRA",
+                "verified": True,
+            } for province_id in province_ids],
+            "war_reparations": {
+                "payer": "FRA",
+                "claimant": "ENG",
+                "active_before": False,
+                "active_after": True,
+                "start_date_raw": 56548930,
+                "end_date_raw": 56548960,
+                "verified": True,
+            },
+        }
+        final = {
+            "status": "accepted",
+            "request_id": "peace_contract_reparations",
+            "result": {
+                **expected,
+                "date_raw": 56548944,
+                "request_id": "peace_contract_reparations",
+                "outcome": "accepted",
+                "response_verified": True,
+                "request_binding_verified": True,
+                "execution_verified": True,
+                "terms_verified": True,
+                "war_before": True,
+                "war_after": False,
+                "effects": effects,
+            },
+        }
+        result = _result_contract(
+            final, "war_reparations", parameters, 56548944,
+            {"complete": True, "pair_at_war": True},
+            {"complete": True, "pair_at_war": False},
+        )
+        self.assertTrue(result["all"])
+        self.assertTrue(result["effects_contract"]["checks"][
+            "war_reparations_active_before"])
+        self.assertTrue(result["effects_contract"]["checks"][
+            "war_reparations_dates_complete"])
+        self.assertTrue(result["effects_contract"]["checks"][
+            "war_reparations_date_window"])
+
+        bad_reparations = dict(effects["war_reparations"])
+        bad_reparations["active_before"] = True
+        bad_effects = dict(effects)
+        bad_effects["war_reparations"] = bad_reparations
+        bad_result = dict(final["result"])
+        bad_result["effects"] = bad_effects
+        rejected = _result_contract(
+            {**final, "result": bad_result}, "war_reparations", parameters,
+            56548944, {"complete": True, "pair_at_war": True},
+            {"complete": True, "pair_at_war": False})
+        self.assertFalse(rejected["all"])
+        self.assertFalse(rejected["effects_contract"]["checks"][
+            "war_reparations_active_before"])
 
     def test_accepted_province_requires_effect_owner_controller_fields(self) -> None:
         parameters = _build_parameters(

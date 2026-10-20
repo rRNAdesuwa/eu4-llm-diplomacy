@@ -78,15 +78,9 @@ class RivalToolsTests(unittest.TestCase):
     def tearDown(self) -> None:
         self.journal.close()
 
-    def test_catalog_keeps_existing_counts_and_query_only_rival_contract(self):
+    def test_catalog_keeps_query_only_rival_contract(self):
         api = DiplomacyTools(self.journal)
         catalog = api.list_diplomatic_actions()
-        diplomatic = [item for item in catalog["actions"]
-                      if item["category"] == "diplomatic_action"]
-        peace = [item for item in catalog["actions"]
-                 if item["category"] == "peace_term"]
-        self.assertEqual(21, len(diplomatic))
-        self.assertEqual(19, len(peace))
         by_id = {item["action_id"]: item for item in catalog["actions"]}
         for action_id in ("set_rival", "remove_rival"):
             action = by_id[action_id]

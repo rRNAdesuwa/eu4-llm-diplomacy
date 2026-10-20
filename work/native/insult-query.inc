@@ -23,9 +23,14 @@ struct InsultEffectState {
 };
 
 static bool insult_query_country(uint64_t handle,uintptr_t& country) {
-    uintptr_t database=0,array=0; uint64_t actual=0;
+    uintptr_t database=0,array=0; uint32_t country_count=0; uint64_t actual=0;
     const unsigned slot=static_cast<unsigned>((handle>>32)&0xffffu);
-    return slot<256 && read(base+0x233d8b0,database) && read(database+0x118,array)
+    // CountryDB+124 is the live country count; the first 256 slots are only
+    // the historical bridge scope. Keep the canonical handle check below so
+    // a readable slot cannot be mistaken for the requested country.
+    return read(base+0x233d8b0,database) && read(database+0x118,array)
+        && read(database+0x124,country_count) && country_count<=4096
+        && slot<country_count
         && read(array+slot*8,country) && read(country+0x20,actual) && actual==handle;
 }
 

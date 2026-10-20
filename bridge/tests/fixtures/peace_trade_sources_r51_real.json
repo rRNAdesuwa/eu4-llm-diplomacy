@@ -1,0 +1,2430 @@
+{
+  "fixture_version": 1,
+  "fixture_id": "peace-trade-sources-r51-real",
+  "description": "Portable bounded replay of A QUERY10 source-aware trade-power queries, A wrong-source execution, B corrected-source rejected execution, E inbound pending, and F accepted third-country trade-power response. A is deliberately incomplete at the consumer; B proves the rejected outcome becomes complete when the effect source is UTR; E/F prove the inbound context and response projection with the same UTR-to-FRA term.",
+  "contract": {
+    "query_protocol": "QUERY10",
+    "source_capability": "native_peace_trade_power_sources",
+    "query_batch_count": 5,
+    "query_business_submission": false,
+    "execution_comparison": "A_wrong_source_vs_B_correct_source",
+    "fixture_layers": {
+      "native_events_include_private_metadata": true,
+      "public_projection_excludes_private_metadata": true,
+      "production_validator_replay": true
+    },
+    "private_fields_absent_from_public_projection": true,
+    "inbound_context_response_production_replay": true,
+    "inbound_pending_acceptance_comparison": "E_pending_to_F_accept"
+  },
+  "identity": {
+    "actor": "FRA",
+    "recipient": "ENG",
+    "war_id": "war_ef3f7708c5f4e6bf_00000001",
+    "date_raw": 56548944,
+    "family": "peace",
+    "action_id": "transfer_trade_power",
+    "phase": "initiate"
+  },
+  "sources": {
+    "query_report": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-a-trade-sources/trade-source-query-001/report.json",
+      "size": 37450,
+      "sha256": "475bb3db99cd2dd20aa11975fffe017984612f1b2278946bcc796512b36c5a53"
+    },
+    "query_events": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-a-trade-sources/trade-source-query-001/report-evidence/native-events-slice.jsonl",
+      "size": 572627,
+      "sha256": "ddf5af8cb04bf9212bc90853b2ef0d869087cb39936b3a2059dd5c1991b36609",
+      "event_lines": [
+        202,
+        417,
+        621,
+        825,
+        1038
+      ]
+    },
+    "outbound_report": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-a-trade-sources/trade-source-outbound-001/report.json",
+      "size": 140222,
+      "sha256": "e4aa025d1fb6e59ba6b18a488b60337c4143d347d0b8e1cabcf80ee2f1a3855d"
+    },
+    "outbound_events": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-a-trade-sources/trade-source-outbound-001/report-evidence/native-events-slice.jsonl",
+      "size": 190444,
+      "sha256": "bc546c916a4e21971446f5cbe9baae2a5f3617c776a4298e737722bd7f669e74",
+      "event_lines": [
+        215,
+        259
+      ]
+    },
+    "factor_report": {
+      "path": "work/runtime/r50-peace-factor-identification-20261018-001/report.json",
+      "size": 5551,
+      "sha256": "62c132bbf246c6ad682191802c82a683d69e55875529edfa9ddfec6073646ffe"
+    },
+    "factor_event": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-a-trade-sources/trade-source-outbound-001/report-evidence/native-events-slice.jsonl",
+      "line": 4,
+      "line_sha256": "212ce20aa9479d6ccabbfe60559660d118f1b4415bcfb5741271593d96172dde"
+    },
+    "b_outbound_report": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-b-trade-source-effects/trade-source-outbound-001/report.json",
+      "size": 83854,
+      "sha256": "8ebe7155e821668b7bc11fae8ececc834f0dd92489094ae08118d41175a3e204"
+    },
+    "b_outbound_events": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-b-trade-source-effects/trade-source-outbound-001/report-evidence/native-events-slice.jsonl",
+      "size": 185656,
+      "sha256": "e8304ea43159a86e9ca3a80758931b253ac96576ab90c41a160af57d6dc33ceb",
+      "event_lines": [
+        215,
+        259
+      ]
+    },
+    "inbound_pending_report": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-e-inbound-utr-ready/inbound-utr-trade-pending-001/report.json",
+      "size": 3180,
+      "sha256": "dd43ae860b9ec53458008623d9a1301a4ff58e4816dbed647efe85d7fada9ff9"
+    },
+    "inbound_pending_events": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-e-inbound-utr-ready/inbound-utr-trade-pending-001/report-native-events.jsonl",
+      "size": 32870,
+      "sha256": "6b2d027c9c7ee891bcf17d223f0bb1a3a734427f0a5901375d545d1168339e57",
+      "event_lines": [
+        9,
+        33
+      ]
+    },
+    "inbound_pending_save_observer": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-e-inbound-utr-ready/save-observer-report-1792311160953474100.json",
+      "size": 78010,
+      "sha256": "74d9a34e4a21ec619f17c91f262b068584e3dbdaff780bebf673db8f3d7268e6"
+    },
+    "inbound_accept_report": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-f-inbound-utr-accept/inbound-utr-trade-accept-001/report.json",
+      "size": 47920,
+      "sha256": "e8dec3a0a6ae8f2e8831808f7a91480b3d1a1afd5e65a029e57c580d6c5a70bd"
+    },
+    "inbound_accept_events": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-f-inbound-utr-accept/inbound-utr-trade-accept-001/report-evidence/native-events-slice.jsonl",
+      "size": 51049,
+      "sha256": "847d1076c6f2258a4b3ec8c71ae82b7ccb0af226d8bfa4d3b1b17d32ed28ac82",
+      "event_lines": [
+        7,
+        11,
+        32,
+        33,
+        44
+      ]
+    },
+    "inbound_accept_save_observer": {
+      "path": "work/runtime/diplomacy-query-20261018-r51-peace-f-inbound-utr-accept/save-observer-report-1792311278837653600.json",
+      "size": 78624,
+      "sha256": "494aebe75aff49020f534ad64d936c0aede9db15e46b31f261a727783af477d9"
+    }
+  },
+  "query_cases": [
+    {
+      "name": "primary-trade-power-candidates",
+      "input": {
+        "action_id": "transfer_trade_power",
+        "direction": "demand",
+        "expected_beneficiary": "FRA",
+        "requested_source": "-",
+        "peace_context": {
+          "war_id": "war_ef3f7708c5f4e6bf_00000001",
+          "direction": "demand",
+          "terms": []
+        }
+      },
+      "public_summary": {
+        "action_id": "transfer_trade_power",
+        "family": "peace",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "requested_source": "-",
+        "expected_source": null,
+        "actual_source": null,
+        "actual_source_matches": null,
+        "expected_beneficiary": "FRA",
+        "actual_beneficiary": "FRA",
+        "actual_beneficiary_matches": true,
+        "candidate_mode": true,
+        "candidate_count": 1,
+        "candidate_found": false,
+        "matching_candidate_count": 0,
+        "candidate_list_complete": true,
+        "candidate_sources": [
+          {
+            "source": "UTR",
+            "beneficiary": "FRA",
+            "selected": false,
+            "complete": true
+          }
+        ],
+        "legality_status": "unknown",
+        "raw_legality_status": "unknown",
+        "legality_complete": false,
+        "query_complete": true,
+        "parameters_complete": false,
+        "rule_available": false,
+        "submitted": false,
+        "private_fields_present": false,
+        "reparations_payer": null,
+        "reparations_claimant": null,
+        "reparations_pair_matches": null,
+        "native_source_query_ack": false
+      },
+      "evidence": {
+        "source": "A QUERY10 native event slice",
+        "line": 202,
+        "line_sha256": "898b9a134b12fc73e4c06a01f52d5c1b22b9887b3954b250a598e76a698c37c6"
+      },
+      "native_event": {
+        "event": "native_peace_trade_power_offer_inspection",
+        "family": "peace",
+        "session_id": "32544-1dd5ed3ee867114",
+        "query_id": "inspect_1d00d5afaf5e4467bda55c7228f30c39",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_ef3f7708c5f4e6bf_00000001",
+        "direction": "demand",
+        "direction_raw": 1,
+        "direction_semantics_verified": false,
+        "identity_scope": "observer_session",
+        "query_complete": true,
+        "native_offer_inspected": true,
+        "pair_at_war": true,
+        "unique_shared_war": true,
+        "offer_constructed": true,
+        "action_constructed": true,
+        "offer_identity_verified": true,
+        "participant_copy_verified": true,
+        "object_unchanged": true,
+        "cleanup_verified": true,
+        "validity_called": true,
+        "native_validity": true,
+        "common_gate_checked": true,
+        "common_action_gate": true,
+        "initiation_gate_checked": true,
+        "initiation_gate": true,
+        "native_diagnostic_hex": "",
+        "diagnostic_readable": true,
+        "diagnostic_truncated": false,
+        "common_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "common_diagnostic_readable": true,
+        "common_diagnostic_truncated": false,
+        "send_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "send_diagnostic_readable": true,
+        "send_diagnostic_truncated": false,
+        "native_wrapper_gate_checked": true,
+        "native_wrapper_gate": true,
+        "wrapper_identity_verified": true,
+        "wrapper_payload_unchanged": true,
+        "full_rules_complete": false,
+        "reasons_complete": false,
+        "submitted": false,
+        "native_evaluation": {
+          "called": false,
+          "score_available": false,
+          "score_raw": 0,
+          "score_representation": "signed_int32",
+          "factor_native_count": 0,
+          "factor_capture_truncated": false,
+          "factors_available": false,
+          "factors_complete": false,
+          "items": [],
+          "aggregate_score_available": false,
+          "aggregate_score_raw": 0,
+          "complete": false
+        },
+        "native_money": null,
+        "native_war_context": {
+          "war_context_resolved": true,
+          "side_a_count": 6,
+          "side_b_count": 4,
+          "side_a_members": [
+            "FRA",
+            "AMG",
+            "AUV",
+            "BOU",
+            "FOI",
+            "ORL"
+          ],
+          "side_b_members": [
+            "ENG",
+            "TYR",
+            "SWE",
+            "UTR"
+          ],
+          "participant_lists_complete": true,
+          "members_capture_complete": true,
+          "selected_side": "side_a",
+          "actor_side": "side_a",
+          "recipient_side": "side_b",
+          "claimant_side": "side_a",
+          "payer_side": "side_b",
+          "actor_side_verified": true,
+          "recipient_side_verified": true,
+          "actor_recipient_opposite": true,
+          "offer_identity_verified": true,
+          "offer_vectors_readable": true,
+          "primary_offer_mapping_verified": true,
+          "derived_offer_mapping_verified": true,
+          "offer_vector_mapping_verified": true,
+          "roles_verified": false,
+          "leaders_verified": false,
+          "context_complete": false
+        },
+        "native_payload": {
+          "schema": "native_peace_serialized_fields_v1",
+          "capture_available": true,
+          "serialized_fields_complete": true,
+          "source_copy_equal": true,
+          "serialized_fields_unchanged": true,
+          "source_owner_verified": true,
+          "action_owner_verified": true,
+          "term_count": 89,
+          "selected_term_count": 1,
+          "unsupported_term_count": 0,
+          "selected_index_complete": true,
+          "authority_bound": false
+        },
+        "native_provinces": null,
+        "term_mask": "t",
+        "native_reparations": null,
+        "native_trade_power": {
+          "requested": true,
+          "candidate_count": 1,
+          "matching_candidate_count": 0,
+          "candidate_found": false,
+          "selection_requested": false,
+          "selection_available": false,
+          "selected": false,
+          "selected_term_count": 0,
+          "source": null,
+          "beneficiary": "FRA",
+          "selection_copy_verified": true,
+          "parameters_matched": false,
+          "reason_code": null,
+          "rule_checked": false,
+          "rule_available": false,
+          "rule_term_count": 0,
+          "rule_scope": "selected_nonzero_terms",
+          "rule_diagnostic_hex": "",
+          "rule_diagnostic_readable": false,
+          "rule_diagnostic_truncated": false,
+          "candidates_available": true,
+          "candidates_complete": true,
+          "candidates_truncated": false,
+          "candidates": [
+            {
+              "source": "UTR",
+              "beneficiary": "FRA",
+              "selected": false,
+              "complete": true
+            }
+          ]
+        },
+        "frame_thread": 7328
+      }
+    },
+    {
+      "name": "demand-trade-power-utr",
+      "input": {
+        "action_id": "transfer_trade_power",
+        "direction": "demand",
+        "expected_beneficiary": "FRA",
+        "requested_source": "UTR",
+        "peace_context": {
+          "war_id": "war_ef3f7708c5f4e6bf_00000001",
+          "direction": "demand",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "UTR",
+              "beneficiary": "FRA"
+            }
+          ]
+        }
+      },
+      "public_summary": {
+        "action_id": "transfer_trade_power",
+        "family": "peace",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "requested_source": "UTR",
+        "expected_source": "UTR",
+        "actual_source": "UTR",
+        "actual_source_matches": true,
+        "expected_beneficiary": "FRA",
+        "actual_beneficiary": "FRA",
+        "actual_beneficiary_matches": true,
+        "candidate_mode": false,
+        "candidate_count": 1,
+        "candidate_found": true,
+        "matching_candidate_count": 1,
+        "candidate_list_complete": true,
+        "candidate_sources": [
+          {
+            "source": "UTR",
+            "beneficiary": "FRA",
+            "selected": true,
+            "complete": true
+          }
+        ],
+        "legality_status": "available",
+        "raw_legality_status": "available",
+        "legality_complete": true,
+        "query_complete": true,
+        "parameters_complete": true,
+        "rule_available": true,
+        "submitted": false,
+        "private_fields_present": false,
+        "reparations_payer": null,
+        "reparations_claimant": null,
+        "reparations_pair_matches": null,
+        "native_source_query_ack": false
+      },
+      "evidence": {
+        "source": "A QUERY10 native event slice",
+        "line": 417,
+        "line_sha256": "9311f8887109fc5e5b5c885a7ba48034392b529349bd5844c63b3afeef472818"
+      },
+      "native_event": {
+        "event": "native_peace_trade_power_offer_inspection",
+        "family": "peace",
+        "session_id": "32544-1dd5ed3ee867114",
+        "query_id": "inspect_f9da5d876ceb46a8a7eba8dc8bc274f8",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_ef3f7708c5f4e6bf_00000001",
+        "direction": "demand",
+        "direction_raw": 1,
+        "direction_semantics_verified": false,
+        "identity_scope": "observer_session",
+        "query_complete": true,
+        "native_offer_inspected": true,
+        "pair_at_war": true,
+        "unique_shared_war": true,
+        "offer_constructed": true,
+        "action_constructed": true,
+        "offer_identity_verified": true,
+        "participant_copy_verified": true,
+        "object_unchanged": true,
+        "cleanup_verified": true,
+        "validity_called": true,
+        "native_validity": true,
+        "common_gate_checked": true,
+        "common_action_gate": true,
+        "initiation_gate_checked": true,
+        "initiation_gate": true,
+        "native_diagnostic_hex": "",
+        "diagnostic_readable": true,
+        "diagnostic_truncated": false,
+        "common_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "common_diagnostic_readable": true,
+        "common_diagnostic_truncated": false,
+        "send_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "send_diagnostic_readable": true,
+        "send_diagnostic_truncated": false,
+        "native_wrapper_gate_checked": true,
+        "native_wrapper_gate": true,
+        "wrapper_identity_verified": true,
+        "wrapper_payload_unchanged": true,
+        "full_rules_complete": true,
+        "reasons_complete": false,
+        "submitted": false,
+        "native_evaluation": {
+          "called": true,
+          "score_available": true,
+          "score_raw": -100,
+          "score_representation": "signed_int32",
+          "factor_native_count": 9,
+          "factor_capture_truncated": false,
+          "factors_available": true,
+          "factors_complete": true,
+          "items": [
+            {
+              "native_identifier": "DIPLO_WAR_INCONCLUSIVE",
+              "identifier_verified": true,
+              "native_value": -1000,
+              "native_flag": false,
+              "text_hex": "10f381121153110e97108189313010b97010186210894e10065210706510656710d06310fa5110818910426c101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_SCORE",
+              "identifier_verified": true,
+              "native_value": 1,
+              "native_flag": true,
+              "text_hex": "10186210894e100652107065101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_PEACEOFFER_VALUE",
+              "identifier_verified": true,
+              "native_value": -30,
+              "native_flag": false,
+              "text_hex": "125356104d52108476108c5410735e10d06310ae8b101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_DESPERATION",
+              "identifier_verified": true,
+              "native_value": 6,
+              "native_flag": true,
+              "text_hex": "10ab88106053108698108c5410ab8810f45611496510847610017710fd4e101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_HOLD_CAPITAL",
+              "identifier_verified": true,
+              "native_value": -5,
+              "native_flag": false,
+              "text_hex": "10f182103c6810705111b563103652114e7710969910fd9010264f106665101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_TIME_PASSED",
+              "identifier_verified": true,
+              "native_value": -41,
+              "native_flag": false,
+              "text_hex": "10186210894e10016312ed7510f66510f495101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_MILITARY_STRENGTH",
+              "identifier_verified": true,
+              "native_value": 7,
+              "native_flag": true,
+              "text_hex": "10f182103c68107051108476109b51108b4e129e52109b52101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+              "identifier_verified": true,
+              "native_value": -2,
+              "native_flag": false,
+              "text_hex": "10df7610cb5310847610f87612f952129e52109b52101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_HIGH_DEMANDS",
+              "identifier_verified": true,
+              "native_value": -100,
+              "native_flag": false,
+              "text_hex": "10818910426c10858d10fa5110186210894e100652107065101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            }
+          ],
+          "aggregate_score_available": true,
+          "aggregate_score_raw": 30,
+          "complete": false
+        },
+        "native_money": null,
+        "native_war_context": {
+          "war_context_resolved": true,
+          "side_a_count": 6,
+          "side_b_count": 4,
+          "side_a_members": [
+            "FRA",
+            "AMG",
+            "AUV",
+            "BOU",
+            "FOI",
+            "ORL"
+          ],
+          "side_b_members": [
+            "ENG",
+            "TYR",
+            "SWE",
+            "UTR"
+          ],
+          "participant_lists_complete": true,
+          "members_capture_complete": true,
+          "selected_side": "side_a",
+          "actor_side": "side_a",
+          "recipient_side": "side_b",
+          "claimant_side": "side_a",
+          "payer_side": "side_b",
+          "actor_side_verified": true,
+          "recipient_side_verified": true,
+          "actor_recipient_opposite": true,
+          "offer_identity_verified": true,
+          "offer_vectors_readable": true,
+          "primary_offer_mapping_verified": true,
+          "derived_offer_mapping_verified": true,
+          "offer_vector_mapping_verified": true,
+          "roles_verified": false,
+          "leaders_verified": false,
+          "context_complete": false
+        },
+        "native_payload": {
+          "schema": "native_peace_serialized_fields_v1",
+          "capture_available": true,
+          "serialized_fields_complete": true,
+          "source_copy_equal": true,
+          "serialized_fields_unchanged": true,
+          "source_owner_verified": true,
+          "action_owner_verified": true,
+          "term_count": 89,
+          "selected_term_count": 2,
+          "unsupported_term_count": 0,
+          "selected_index_complete": true,
+          "authority_bound": false
+        },
+        "native_provinces": null,
+        "term_mask": "t",
+        "native_reparations": null,
+        "native_trade_power": {
+          "requested": true,
+          "candidate_count": 1,
+          "matching_candidate_count": 1,
+          "candidate_found": true,
+          "selection_requested": true,
+          "selection_available": true,
+          "selected": true,
+          "selected_term_count": 1,
+          "source": "UTR",
+          "beneficiary": "FRA",
+          "selection_copy_verified": true,
+          "parameters_matched": true,
+          "reason_code": null,
+          "rule_checked": true,
+          "rule_available": true,
+          "rule_term_count": 1,
+          "rule_scope": "selected_nonzero_terms",
+          "rule_diagnostic_hex": "",
+          "rule_diagnostic_readable": true,
+          "rule_diagnostic_truncated": false,
+          "candidates_available": true,
+          "candidates_complete": true,
+          "candidates_truncated": false,
+          "candidates": [
+            {
+              "source": "UTR",
+              "beneficiary": "FRA",
+              "selected": true,
+              "complete": true
+            }
+          ]
+        },
+        "frame_thread": 7328
+      }
+    },
+    {
+      "name": "demand-trade-power-default-eng",
+      "input": {
+        "action_id": "transfer_trade_power",
+        "direction": "demand",
+        "expected_beneficiary": "FRA",
+        "requested_source": "ENG",
+        "peace_context": {
+          "war_id": "war_ef3f7708c5f4e6bf_00000001",
+          "direction": "demand",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "ENG",
+              "beneficiary": "FRA"
+            }
+          ]
+        }
+      },
+      "public_summary": {
+        "action_id": "transfer_trade_power",
+        "family": "peace",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "requested_source": "ENG",
+        "expected_source": "ENG",
+        "actual_source": "ENG",
+        "actual_source_matches": true,
+        "expected_beneficiary": "FRA",
+        "actual_beneficiary": "FRA",
+        "actual_beneficiary_matches": true,
+        "candidate_mode": false,
+        "candidate_count": 1,
+        "candidate_found": false,
+        "matching_candidate_count": 0,
+        "candidate_list_complete": true,
+        "candidate_sources": [
+          {
+            "source": "UTR",
+            "beneficiary": "FRA",
+            "selected": false,
+            "complete": true
+          }
+        ],
+        "legality_status": "unknown",
+        "raw_legality_status": "unknown",
+        "legality_complete": false,
+        "query_complete": true,
+        "parameters_complete": false,
+        "rule_available": false,
+        "submitted": false,
+        "private_fields_present": false,
+        "reparations_payer": null,
+        "reparations_claimant": null,
+        "reparations_pair_matches": null,
+        "native_source_query_ack": false
+      },
+      "evidence": {
+        "source": "A QUERY10 native event slice",
+        "line": 621,
+        "line_sha256": "c67fcf0649f986ee67489ca7828ebd10f95f40044a04d7e0f2d37edf44571e81"
+      },
+      "native_event": {
+        "event": "native_peace_trade_power_offer_inspection",
+        "family": "peace",
+        "session_id": "32544-1dd5ed3ee867114",
+        "query_id": "inspect_1b8f79be3660446eb94b541a48298628",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_ef3f7708c5f4e6bf_00000001",
+        "direction": "demand",
+        "direction_raw": 1,
+        "direction_semantics_verified": false,
+        "identity_scope": "observer_session",
+        "query_complete": true,
+        "native_offer_inspected": true,
+        "pair_at_war": true,
+        "unique_shared_war": true,
+        "offer_constructed": true,
+        "action_constructed": true,
+        "offer_identity_verified": true,
+        "participant_copy_verified": true,
+        "object_unchanged": true,
+        "cleanup_verified": true,
+        "validity_called": true,
+        "native_validity": true,
+        "common_gate_checked": true,
+        "common_action_gate": true,
+        "initiation_gate_checked": true,
+        "initiation_gate": true,
+        "native_diagnostic_hex": "",
+        "diagnostic_readable": true,
+        "diagnostic_truncated": false,
+        "common_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "common_diagnostic_readable": true,
+        "common_diagnostic_truncated": false,
+        "send_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "send_diagnostic_readable": true,
+        "send_diagnostic_truncated": false,
+        "native_wrapper_gate_checked": true,
+        "native_wrapper_gate": true,
+        "wrapper_identity_verified": true,
+        "wrapper_payload_unchanged": true,
+        "full_rules_complete": false,
+        "reasons_complete": false,
+        "submitted": false,
+        "native_evaluation": {
+          "called": false,
+          "score_available": false,
+          "score_raw": 0,
+          "score_representation": "signed_int32",
+          "factor_native_count": 0,
+          "factor_capture_truncated": false,
+          "factors_available": false,
+          "factors_complete": false,
+          "items": [],
+          "aggregate_score_available": false,
+          "aggregate_score_raw": 0,
+          "complete": false
+        },
+        "native_money": null,
+        "native_war_context": {
+          "war_context_resolved": true,
+          "side_a_count": 6,
+          "side_b_count": 4,
+          "side_a_members": [
+            "FRA",
+            "AMG",
+            "AUV",
+            "BOU",
+            "FOI",
+            "ORL"
+          ],
+          "side_b_members": [
+            "ENG",
+            "TYR",
+            "SWE",
+            "UTR"
+          ],
+          "participant_lists_complete": true,
+          "members_capture_complete": true,
+          "selected_side": "side_a",
+          "actor_side": "side_a",
+          "recipient_side": "side_b",
+          "claimant_side": "side_a",
+          "payer_side": "side_b",
+          "actor_side_verified": true,
+          "recipient_side_verified": true,
+          "actor_recipient_opposite": true,
+          "offer_identity_verified": true,
+          "offer_vectors_readable": true,
+          "primary_offer_mapping_verified": true,
+          "derived_offer_mapping_verified": true,
+          "offer_vector_mapping_verified": true,
+          "roles_verified": false,
+          "leaders_verified": false,
+          "context_complete": false
+        },
+        "native_payload": {
+          "schema": "native_peace_serialized_fields_v1",
+          "capture_available": true,
+          "serialized_fields_complete": true,
+          "source_copy_equal": true,
+          "serialized_fields_unchanged": true,
+          "source_owner_verified": true,
+          "action_owner_verified": true,
+          "term_count": 89,
+          "selected_term_count": 1,
+          "unsupported_term_count": 0,
+          "selected_index_complete": true,
+          "authority_bound": false
+        },
+        "native_provinces": null,
+        "term_mask": "t",
+        "native_reparations": null,
+        "native_trade_power": {
+          "requested": true,
+          "candidate_count": 1,
+          "matching_candidate_count": 0,
+          "candidate_found": false,
+          "selection_requested": true,
+          "selection_available": false,
+          "selected": false,
+          "selected_term_count": 0,
+          "source": "ENG",
+          "beneficiary": "FRA",
+          "selection_copy_verified": true,
+          "parameters_matched": false,
+          "reason_code": "NATIVE_PEACE_TRADE_POWER_CANDIDATE_NOT_FOUND",
+          "rule_checked": false,
+          "rule_available": false,
+          "rule_term_count": 0,
+          "rule_scope": "selected_nonzero_terms",
+          "rule_diagnostic_hex": "",
+          "rule_diagnostic_readable": false,
+          "rule_diagnostic_truncated": false,
+          "candidates_available": true,
+          "candidates_complete": true,
+          "candidates_truncated": false,
+          "candidates": [
+            {
+              "source": "UTR",
+              "beneficiary": "FRA",
+              "selected": false,
+              "complete": true
+            }
+          ]
+        },
+        "frame_thread": 7328
+      }
+    },
+    {
+      "name": "offer-trade-power-fra",
+      "input": {
+        "action_id": "transfer_trade_power",
+        "direction": "offer",
+        "expected_beneficiary": "ENG",
+        "requested_source": "FRA",
+        "peace_context": {
+          "war_id": "war_ef3f7708c5f4e6bf_00000001",
+          "direction": "offer",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "FRA",
+              "beneficiary": "ENG"
+            }
+          ]
+        }
+      },
+      "public_summary": {
+        "action_id": "transfer_trade_power",
+        "family": "peace",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "requested_source": "FRA",
+        "expected_source": "FRA",
+        "actual_source": "FRA",
+        "actual_source_matches": true,
+        "expected_beneficiary": "ENG",
+        "actual_beneficiary": "ENG",
+        "actual_beneficiary_matches": true,
+        "candidate_mode": false,
+        "candidate_count": 1,
+        "candidate_found": true,
+        "matching_candidate_count": 1,
+        "candidate_list_complete": true,
+        "candidate_sources": [
+          {
+            "source": "FRA",
+            "beneficiary": "ENG",
+            "selected": true,
+            "complete": true
+          }
+        ],
+        "legality_status": "available",
+        "raw_legality_status": "available",
+        "legality_complete": true,
+        "query_complete": true,
+        "parameters_complete": true,
+        "rule_available": true,
+        "submitted": false,
+        "private_fields_present": false,
+        "reparations_payer": null,
+        "reparations_claimant": null,
+        "reparations_pair_matches": null,
+        "native_source_query_ack": false
+      },
+      "evidence": {
+        "source": "A QUERY10 native event slice",
+        "line": 825,
+        "line_sha256": "111bca6f67cdb27f449e22c4dc088ea75eff7849c808ff395405f66f71dcbba3"
+      },
+      "native_event": {
+        "event": "native_peace_trade_power_offer_inspection",
+        "family": "peace",
+        "session_id": "32544-1dd5ed3ee867114",
+        "query_id": "inspect_655b8b0473b744cdad75d639e8667c21",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_ef3f7708c5f4e6bf_00000001",
+        "direction": "offer",
+        "direction_raw": 0,
+        "direction_semantics_verified": false,
+        "identity_scope": "observer_session",
+        "query_complete": true,
+        "native_offer_inspected": true,
+        "pair_at_war": true,
+        "unique_shared_war": true,
+        "offer_constructed": true,
+        "action_constructed": true,
+        "offer_identity_verified": true,
+        "participant_copy_verified": true,
+        "object_unchanged": true,
+        "cleanup_verified": true,
+        "validity_called": true,
+        "native_validity": true,
+        "common_gate_checked": true,
+        "common_action_gate": true,
+        "initiation_gate_checked": true,
+        "initiation_gate": true,
+        "native_diagnostic_hex": "",
+        "diagnostic_readable": true,
+        "diagnostic_truncated": false,
+        "common_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "common_diagnostic_readable": true,
+        "common_diagnostic_truncated": false,
+        "send_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "send_diagnostic_readable": true,
+        "send_diagnostic_truncated": false,
+        "native_wrapper_gate_checked": true,
+        "native_wrapper_gate": true,
+        "wrapper_identity_verified": true,
+        "wrapper_payload_unchanged": true,
+        "full_rules_complete": true,
+        "reasons_complete": false,
+        "submitted": false,
+        "native_evaluation": {
+          "called": true,
+          "score_available": true,
+          "score_raw": -100,
+          "score_representation": "signed_int32",
+          "factor_native_count": 8,
+          "factor_capture_truncated": false,
+          "factors_available": true,
+          "factors_complete": true,
+          "items": [
+            {
+              "native_identifier": "DIPLO_WAR_SCORE",
+              "identifier_verified": true,
+              "native_value": 1,
+              "native_flag": true,
+              "text_hex": "10186210894e100652107065101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_PEACEOFFER_VALUE",
+              "identifier_verified": true,
+              "native_value": 30,
+              "native_flag": true,
+              "text_hex": "125356104d52108476108c5410735e10d06310ae8b101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_DESPERATION",
+              "identifier_verified": true,
+              "native_value": 6,
+              "native_flag": true,
+              "text_hex": "10ab88106053108698108c5410ab8810f45611496510847610017710fd4e101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_HOLD_CAPITAL",
+              "identifier_verified": true,
+              "native_value": -5,
+              "native_flag": false,
+              "text_hex": "10f182103c6810705111b563103652114e7710969910fd9010264f106665101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_TIME_PASSED",
+              "identifier_verified": true,
+              "native_value": -41,
+              "native_flag": false,
+              "text_hex": "10186210894e10016312ed7510f66510f495101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_MILITARY_STRENGTH",
+              "identifier_verified": true,
+              "native_value": 7,
+              "native_flag": true,
+              "text_hex": "10f182103c68107051108476109b51108b4e129e52109b52101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+              "identifier_verified": true,
+              "native_value": -2,
+              "native_flag": false,
+              "text_hex": "10df7610cb5310847610f87612f952129e52109b52101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_UNACCEPTABLE_PEACE",
+              "identifier_verified": true,
+              "native_value": -1000,
+              "native_flag": false,
+              "text_hex": "10f182103c68107051111b4e100c5e101b67100c30106c8f10fb7910388d10136610de7a10894e109b52111b30101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            }
+          ],
+          "aggregate_score_available": true,
+          "aggregate_score_raw": 30,
+          "complete": false
+        },
+        "native_money": null,
+        "native_war_context": {
+          "war_context_resolved": true,
+          "side_a_count": 6,
+          "side_b_count": 4,
+          "side_a_members": [
+            "FRA",
+            "AMG",
+            "AUV",
+            "BOU",
+            "FOI",
+            "ORL"
+          ],
+          "side_b_members": [
+            "ENG",
+            "TYR",
+            "SWE",
+            "UTR"
+          ],
+          "participant_lists_complete": true,
+          "members_capture_complete": true,
+          "selected_side": "side_b",
+          "actor_side": "side_a",
+          "recipient_side": "side_b",
+          "claimant_side": "side_b",
+          "payer_side": "side_a",
+          "actor_side_verified": true,
+          "recipient_side_verified": true,
+          "actor_recipient_opposite": true,
+          "offer_identity_verified": true,
+          "offer_vectors_readable": true,
+          "primary_offer_mapping_verified": true,
+          "derived_offer_mapping_verified": true,
+          "offer_vector_mapping_verified": true,
+          "roles_verified": false,
+          "leaders_verified": false,
+          "context_complete": false
+        },
+        "native_payload": {
+          "schema": "native_peace_serialized_fields_v1",
+          "capture_available": true,
+          "serialized_fields_complete": true,
+          "source_copy_equal": true,
+          "serialized_fields_unchanged": true,
+          "source_owner_verified": true,
+          "action_owner_verified": true,
+          "term_count": 84,
+          "selected_term_count": 2,
+          "unsupported_term_count": 0,
+          "selected_index_complete": true,
+          "authority_bound": false
+        },
+        "native_provinces": null,
+        "term_mask": "t",
+        "native_reparations": null,
+        "native_trade_power": {
+          "requested": true,
+          "candidate_count": 1,
+          "matching_candidate_count": 1,
+          "candidate_found": true,
+          "selection_requested": true,
+          "selection_available": true,
+          "selected": true,
+          "selected_term_count": 1,
+          "source": "FRA",
+          "beneficiary": "ENG",
+          "selection_copy_verified": true,
+          "parameters_matched": true,
+          "reason_code": null,
+          "rule_checked": true,
+          "rule_available": true,
+          "rule_term_count": 1,
+          "rule_scope": "selected_nonzero_terms",
+          "rule_diagnostic_hex": "",
+          "rule_diagnostic_readable": true,
+          "rule_diagnostic_truncated": false,
+          "candidates_available": true,
+          "candidates_complete": true,
+          "candidates_truncated": false,
+          "candidates": [
+            {
+              "source": "FRA",
+              "beneficiary": "ENG",
+              "selected": true,
+              "complete": true
+            }
+          ]
+        },
+        "frame_thread": 7328
+      }
+    },
+    {
+      "name": "demand-reparations-trade-power-utr",
+      "input": {
+        "action_id": "transfer_trade_power",
+        "direction": "demand",
+        "expected_beneficiary": "FRA",
+        "requested_source": "UTR",
+        "peace_context": {
+          "war_id": "war_ef3f7708c5f4e6bf_00000001",
+          "direction": "demand",
+          "terms": [
+            {
+              "action_id": "war_reparations",
+              "payer": "ENG",
+              "claimant": "FRA"
+            },
+            {
+              "action_id": "transfer_trade_power",
+              "source": "UTR",
+              "beneficiary": "FRA"
+            }
+          ]
+        }
+      },
+      "public_summary": {
+        "action_id": "transfer_trade_power",
+        "family": "peace",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "requested_source": "UTR",
+        "expected_source": "UTR",
+        "actual_source": "UTR",
+        "actual_source_matches": true,
+        "expected_beneficiary": "FRA",
+        "actual_beneficiary": "FRA",
+        "actual_beneficiary_matches": true,
+        "candidate_mode": false,
+        "candidate_count": 1,
+        "candidate_found": true,
+        "matching_candidate_count": 1,
+        "candidate_list_complete": true,
+        "candidate_sources": [
+          {
+            "source": "UTR",
+            "beneficiary": "FRA",
+            "selected": true,
+            "complete": true
+          }
+        ],
+        "legality_status": "available",
+        "raw_legality_status": "available",
+        "legality_complete": true,
+        "query_complete": true,
+        "parameters_complete": true,
+        "rule_available": true,
+        "submitted": false,
+        "private_fields_present": false,
+        "reparations_payer": "ENG",
+        "reparations_claimant": "FRA",
+        "reparations_pair_matches": true,
+        "native_source_query_ack": false
+      },
+      "evidence": {
+        "source": "A QUERY10 native event slice",
+        "line": 1038,
+        "line_sha256": "7e85f52aaa7fcc7a3a3275c6b752abbeb03e92c5a5258bc496f2738126441945"
+      },
+      "native_event": {
+        "event": "native_peace_trade_power_offer_inspection",
+        "family": "peace",
+        "session_id": "32544-1dd5ed3ee867114",
+        "query_id": "inspect_80328e25e010406092f7dadc82b5301b",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_ef3f7708c5f4e6bf_00000001",
+        "direction": "demand",
+        "direction_raw": 1,
+        "direction_semantics_verified": false,
+        "identity_scope": "observer_session",
+        "query_complete": true,
+        "native_offer_inspected": true,
+        "pair_at_war": true,
+        "unique_shared_war": true,
+        "offer_constructed": true,
+        "action_constructed": true,
+        "offer_identity_verified": true,
+        "participant_copy_verified": true,
+        "object_unchanged": true,
+        "cleanup_verified": true,
+        "validity_called": true,
+        "native_validity": true,
+        "common_gate_checked": true,
+        "common_action_gate": true,
+        "initiation_gate_checked": true,
+        "initiation_gate": true,
+        "native_diagnostic_hex": "",
+        "diagnostic_readable": true,
+        "diagnostic_truncated": false,
+        "common_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "common_diagnostic_readable": true,
+        "common_diagnostic_truncated": false,
+        "send_diagnostic_hex": "10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+        "send_diagnostic_readable": true,
+        "send_diagnostic_truncated": false,
+        "native_wrapper_gate_checked": true,
+        "native_wrapper_gate": true,
+        "wrapper_identity_verified": true,
+        "wrapper_payload_unchanged": true,
+        "full_rules_complete": true,
+        "reasons_complete": false,
+        "submitted": false,
+        "native_evaluation": {
+          "called": true,
+          "score_available": true,
+          "score_raw": -100,
+          "score_representation": "signed_int32",
+          "factor_native_count": 9,
+          "factor_capture_truncated": false,
+          "factors_available": true,
+          "factors_complete": true,
+          "items": [
+            {
+              "native_identifier": "DIPLO_WAR_INCONCLUSIVE",
+              "identifier_verified": true,
+              "native_value": -1000,
+              "native_flag": false,
+              "text_hex": "10f381121153110e97108189313010b97010186210894e10065210706510656710d06310fa5110818910426c101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_SCORE",
+              "identifier_verified": true,
+              "native_value": 1,
+              "native_flag": true,
+              "text_hex": "10186210894e100652107065101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_PEACEOFFER_VALUE",
+              "identifier_verified": true,
+              "native_value": -40,
+              "native_flag": false,
+              "text_hex": "125356104d52108476108c5410735e10d06310ae8b101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_DESPERATION",
+              "identifier_verified": true,
+              "native_value": 6,
+              "native_flag": true,
+              "text_hex": "10ab88106053108698108c5410ab8810f45611496510847610017710fd4e101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_HOLD_CAPITAL",
+              "identifier_verified": true,
+              "native_value": -5,
+              "native_flag": false,
+              "text_hex": "10f182103c6810705111b563103652114e7710969910fd9010264f106665101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_TIME_PASSED",
+              "identifier_verified": true,
+              "native_value": -41,
+              "native_flag": false,
+              "text_hex": "10186210894e10016312ed7510f66510f495101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_MILITARY_STRENGTH",
+              "identifier_verified": true,
+              "native_value": 7,
+              "native_flag": true,
+              "text_hex": "10f182103c68107051108476109b51108b4e129e52109b52101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+              "identifier_verified": true,
+              "native_value": -2,
+              "native_flag": false,
+              "text_hex": "10df7610cb5310847610f87612f952129e52109b52101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            },
+            {
+              "native_identifier": "DIPLO_HIGH_DEMANDS",
+              "identifier_verified": true,
+              "native_value": -100,
+              "native_flag": false,
+              "text_hex": "10818910426c10858d10fa5110186210894e100652107065101aff",
+              "text_readable": true,
+              "text_truncated": false,
+              "row_binding_verified": true
+            }
+          ],
+          "aggregate_score_available": true,
+          "aggregate_score_raw": 40,
+          "complete": false
+        },
+        "native_money": null,
+        "native_war_context": {
+          "war_context_resolved": true,
+          "side_a_count": 6,
+          "side_b_count": 4,
+          "side_a_members": [
+            "FRA",
+            "AMG",
+            "AUV",
+            "BOU",
+            "FOI",
+            "ORL"
+          ],
+          "side_b_members": [
+            "ENG",
+            "TYR",
+            "SWE",
+            "UTR"
+          ],
+          "participant_lists_complete": true,
+          "members_capture_complete": true,
+          "selected_side": "side_a",
+          "actor_side": "side_a",
+          "recipient_side": "side_b",
+          "claimant_side": "side_a",
+          "payer_side": "side_b",
+          "actor_side_verified": true,
+          "recipient_side_verified": true,
+          "actor_recipient_opposite": true,
+          "offer_identity_verified": true,
+          "offer_vectors_readable": true,
+          "primary_offer_mapping_verified": true,
+          "derived_offer_mapping_verified": true,
+          "offer_vector_mapping_verified": true,
+          "roles_verified": false,
+          "leaders_verified": false,
+          "context_complete": false
+        },
+        "native_payload": {
+          "schema": "native_peace_serialized_fields_v1",
+          "capture_available": true,
+          "serialized_fields_complete": true,
+          "source_copy_equal": true,
+          "serialized_fields_unchanged": true,
+          "source_owner_verified": true,
+          "action_owner_verified": true,
+          "term_count": 89,
+          "selected_term_count": 3,
+          "unsupported_term_count": 0,
+          "selected_index_complete": true,
+          "authority_bound": false
+        },
+        "native_provinces": null,
+        "term_mask": "rt",
+        "native_reparations": {
+          "requested": true,
+          "candidate_count": 1,
+          "matching_candidate_count": 1,
+          "candidate_found": true,
+          "selection_requested": true,
+          "selection_available": true,
+          "selected": true,
+          "selected_term_count": 1,
+          "payer": "ENG",
+          "claimant": "FRA",
+          "selection_copy_verified": true,
+          "parameters_matched": true,
+          "reason_code": null,
+          "rule_checked": true,
+          "rule_available": true,
+          "rule_term_count": 2,
+          "rule_scope": "selected_nonzero_terms",
+          "rule_diagnostic_hex": "",
+          "rule_diagnostic_readable": true,
+          "rule_diagnostic_truncated": false
+        },
+        "native_trade_power": {
+          "requested": true,
+          "candidate_count": 1,
+          "matching_candidate_count": 1,
+          "candidate_found": true,
+          "selection_requested": true,
+          "selection_available": true,
+          "selected": true,
+          "selected_term_count": 1,
+          "source": "UTR",
+          "beneficiary": "FRA",
+          "selection_copy_verified": true,
+          "parameters_matched": true,
+          "reason_code": null,
+          "rule_checked": true,
+          "rule_available": true,
+          "rule_term_count": 2,
+          "rule_scope": "selected_nonzero_terms",
+          "rule_diagnostic_hex": "",
+          "rule_diagnostic_readable": true,
+          "rule_diagnostic_truncated": false,
+          "candidates_available": true,
+          "candidates_complete": true,
+          "candidates_truncated": false,
+          "candidates": [
+            {
+              "source": "UTR",
+              "beneficiary": "FRA",
+              "selected": true,
+              "complete": true
+            }
+          ]
+        },
+        "frame_thread": 7328
+      }
+    }
+  ],
+  "factor_proof": {
+    "source": "A T-only QUERY10 factor event plus bounded R50 branch report",
+    "single_t_factor_count": 9,
+    "single_t_factors_complete": true,
+    "single_t_factor_capture_truncated": false,
+    "single_t_factor_identifiers": [
+      {
+        "native_identifier": "DIPLO_WAR_INCONCLUSIVE",
+        "native_value": -1000,
+        "native_flag": false,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      },
+      {
+        "native_identifier": "DIPLO_WAR_SCORE",
+        "native_value": 1,
+        "native_flag": true,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      },
+      {
+        "native_identifier": "DIPLO_PEACEOFFER_VALUE",
+        "native_value": -30,
+        "native_flag": false,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      },
+      {
+        "native_identifier": "DIPLO_WAR_DESPERATION",
+        "native_value": 6,
+        "native_flag": true,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      },
+      {
+        "native_identifier": "DIPLO_HOLD_CAPITAL",
+        "native_value": -5,
+        "native_flag": false,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      },
+      {
+        "native_identifier": "DIPLO_WAR_TIME_PASSED",
+        "native_value": -41,
+        "native_flag": false,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      },
+      {
+        "native_identifier": "DIPLO_MILITARY_STRENGTH",
+        "native_value": 7,
+        "native_flag": true,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      },
+      {
+        "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+        "native_value": -2,
+        "native_flag": false,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      },
+      {
+        "native_identifier": "DIPLO_HIGH_DEMANDS",
+        "native_value": -100,
+        "native_flag": false,
+        "identifier_verified": true,
+        "row_binding_verified": true,
+        "text_readable": true,
+        "text_truncated": false
+      }
+    ],
+    "branch": {
+      "caller_return_rva": "0x3728dd",
+      "constructor_call_rva": "0x3728d8",
+      "branch_condition_readable": true,
+      "branch_condition_value": 1,
+      "branch_condition_row_offset": 248,
+      "native_value": 6,
+      "identifier": "DIPLO_WAR_DESPERATION",
+      "identifier_verified": true,
+      "row_binding_verified": true,
+      "static_key_rva": "0x1c5d950",
+      "static_key_source_role": "fixed key-bearing input to the branch's text-building helper"
+    },
+    "runtime_localization_key_note": "The bounded runtime factor event records the fixed key-bearing branch; the public query factor itself is represented by its verified identifier.",
+    "raw_event": {
+      "event": "native_alliance_reason_provenance",
+      "private": true,
+      "session_id": "32544-1dd5ed3ee867114",
+      "query_id": "inspect_4e18ce33a73b423baa68d69fb46f909b",
+      "index": 3,
+      "constructor_sequence": 4,
+      "constructor_caller_rva": "0x3728dd",
+      "constructor_call_rva": "0x3728d8",
+      "native_value": 6,
+      "constructor_argument_value": 6,
+      "native_flag": true,
+      "string_size": 33,
+      "string_capacity": 47,
+      "text_hex": "10ab88106053108698108c5410ab8810f45611496510847610017710fd4e101aff",
+      "raw48": "060000000000000070d22651f401000090ee9ab0f67f000021000000000000002f0000000000000001ffffff00000000",
+      "constructor_source_confirmed": true,
+      "conditional_key_caller": true,
+      "conditional_flags_readable": false,
+      "native_text_flag": 0,
+      "native_overlord_flag": 0,
+      "native_text_flag_row_offset": 0,
+      "native_overlord_flag_row_offset": 0,
+      "branch_condition_readable": true,
+      "branch_condition_value": 1,
+      "branch_condition_row_offset": 248,
+      "localization_rdata_rva": "0x1c5d950",
+      "localization_key": "DIPLO_WAR_DESPERATION",
+      "constructor_value_verified": true,
+      "final_row_binding": true,
+      "complete": true
+    }
+  },
+  "wrong_source_execution": {
+    "request": {
+      "request_id": "r51a_demand_eng_utr_trade_power_001",
+      "action_id": "transfer_trade_power",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56548944,
+      "war_id": "war_ef3f7708c5f4e6bf_00000001",
+      "direction": "demand",
+      "term_mask": "t",
+      "trade_power_source": "UTR",
+      "trade_power_beneficiary": "FRA",
+      "parameters": {
+        "peace_context": {
+          "war_id": "war_ef3f7708c5f4e6bf_00000001",
+          "direction": "demand",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "UTR",
+              "beneficiary": "FRA"
+            }
+          ]
+        }
+      }
+    },
+    "submission_event": {
+      "event": {
+        "event": "native_peace_submission_result",
+        "family": "peace",
+        "session_id": "32544-1dd5ed3ee867114",
+        "request_id": "r51a_demand_eng_utr_trade_power_001",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_ef3f7708c5f4e6bf_00000001",
+        "direction": "demand",
+        "amount_raw": -1,
+        "province_ids": [],
+        "beneficiary": "-",
+        "term_mask": "t",
+        "trade_power_source": "UTR",
+        "trade_power_beneficiary": "FRA",
+        "submitted": true,
+        "transport_verified": true,
+        "request_binding_verified": true,
+        "reason": "NATIVE_ENTRY_VERIFIED",
+        "native_origin": 65535,
+        "native_flags": 0,
+        "native_sequence": 16
+      },
+      "evidence": {
+        "source": "A outbound native event slice",
+        "line": 215,
+        "line_sha256": "6b6c50cc90ec5919ccc208ebc4d1a291eacc081b3e66977e59b6123cc52a063a"
+      }
+    },
+    "execution_event": {
+      "event": {
+        "event": "native_peace_execution_result",
+        "family": "peace",
+        "session_id": "32544-1dd5ed3ee867114",
+        "request_id": "r51a_demand_eng_utr_trade_power_001",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_ef3f7708c5f4e6bf_00000001",
+        "direction": "demand",
+        "amount_raw": -1,
+        "province_ids": [],
+        "beneficiary": "-",
+        "term_mask": "t",
+        "trade_power_source": "UTR",
+        "trade_power_beneficiary": "FRA",
+        "native_state": 1,
+        "outcome": "rejected",
+        "war_before": true,
+        "war_after": true,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "execution_verified": false,
+        "terms_verified": false,
+        "effects": {
+          "complete": true,
+          "date_unchanged": true,
+          "currency_scale": 1000,
+          "money": null,
+          "provinces": [],
+          "war_reparations": null,
+          "transfer_trade_power": {
+            "source": "ENG",
+            "beneficiary": "FRA",
+            "present_before": false,
+            "present_after": false,
+            "start_date_raw": 0,
+            "end_date_raw": 0,
+            "amount_raw": 0,
+            "amount_scale": 1000,
+            "peace_treaty": false,
+            "verified": false
+          }
+        }
+      },
+      "evidence": {
+        "source": "A outbound native event slice",
+        "line": 259,
+        "line_sha256": "2b09ec1226673649fb1fcb0de4113e23f826c7e4996c89453a94f49c33039885"
+      }
+    },
+    "wrapper_report": {
+      "status": "unknown",
+      "business_submission": true,
+      "business_submission_count": 1,
+      "business_transport_submitted": true,
+      "execute_call_count": 1,
+      "request_attempt_count": 1,
+      "result_status": "submitted",
+      "result_game_outcome": "unknown",
+      "result_contract_all": false,
+      "result_contract_checks": {
+        "native_result": false,
+        "effects_contract": false,
+        "proof": false,
+        "public_result": true,
+        "terminal_status": false,
+        "terms_verified": false,
+        "war_transition": false,
+        "unknown_preserved": false
+      },
+      "checks": {
+        "execute_called_once": true,
+        "native_result_contract": false,
+        "after_war_matches_native_result": false,
+        "no_replay_or_world_control": true,
+        "selected_inspection_contract": true
+      }
+    },
+    "consumer_replay": {
+      "expected_source": "UTR",
+      "expected_beneficiary": "FRA",
+      "observed_effect_source": "ENG",
+      "observed_effect_beneficiary": "FRA",
+      "source_field": "effects.transfer_trade_power.source",
+      "source_matches": false,
+      "beneficiary_matches": true,
+      "complete": false,
+      "reason": "EFFECT_SOURCE_MISMATCH",
+      "success_claimed": false
+    }
+  },
+  "correct_source_execution": {
+    "request": {
+      "request_id": "r51b_demand_eng_utr_trade_power_001",
+      "action_id": "transfer_trade_power",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56548944,
+      "war_id": "war_b75c5072b7b9d879_00000001",
+      "direction": "demand",
+      "term_mask": "t",
+      "trade_power_source": "UTR",
+      "trade_power_beneficiary": "FRA",
+      "parameters": {
+        "peace_context": {
+          "war_id": "war_b75c5072b7b9d879_00000001",
+          "direction": "demand",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "UTR",
+              "beneficiary": "FRA"
+            }
+          ]
+        }
+      }
+    },
+    "submission_event": {
+      "event": {
+        "event": "native_peace_submission_result",
+        "family": "peace",
+        "session_id": "26168-1dd5ed62190a834",
+        "request_id": "r51b_demand_eng_utr_trade_power_001",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_b75c5072b7b9d879_00000001",
+        "direction": "demand",
+        "amount_raw": -1,
+        "province_ids": [],
+        "beneficiary": "-",
+        "term_mask": "t",
+        "trade_power_source": "UTR",
+        "trade_power_beneficiary": "FRA",
+        "submitted": true,
+        "transport_verified": true,
+        "request_binding_verified": true,
+        "reason": "NATIVE_ENTRY_VERIFIED",
+        "native_origin": 65535,
+        "native_flags": 0,
+        "native_sequence": 16
+      },
+      "evidence": {
+        "source": "B corrected-source native event slice",
+        "line": 215,
+        "line_sha256": "a416ac94b19e566e45e71712eb5de529d341a69baee1388cf81f070008b4140b"
+      }
+    },
+    "execution_event": {
+      "event": {
+        "event": "native_peace_execution_result",
+        "family": "peace",
+        "session_id": "26168-1dd5ed62190a834",
+        "request_id": "r51b_demand_eng_utr_trade_power_001",
+        "action_id": "transfer_trade_power",
+        "actor": "FRA",
+        "recipient": "ENG",
+        "phase": "initiate",
+        "date_raw": 56548944,
+        "war_id": "war_b75c5072b7b9d879_00000001",
+        "direction": "demand",
+        "amount_raw": -1,
+        "province_ids": [],
+        "beneficiary": "-",
+        "term_mask": "t",
+        "trade_power_source": "UTR",
+        "trade_power_beneficiary": "FRA",
+        "native_state": 1,
+        "outcome": "rejected",
+        "war_before": true,
+        "war_after": true,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "execution_verified": false,
+        "terms_verified": false,
+        "effects": {
+          "complete": true,
+          "date_unchanged": true,
+          "currency_scale": 1000,
+          "money": null,
+          "provinces": [],
+          "war_reparations": null,
+          "transfer_trade_power": {
+            "source": "UTR",
+            "beneficiary": "FRA",
+            "present_before": false,
+            "present_after": false,
+            "start_date_raw": 0,
+            "end_date_raw": 0,
+            "amount_raw": 0,
+            "amount_scale": 1000,
+            "peace_treaty": false,
+            "verified": false
+          }
+        }
+      },
+      "evidence": {
+        "source": "B corrected-source native event slice",
+        "line": 259,
+        "line_sha256": "0ab3aeb4ff9d3b43ded6b56a49989aea24a34cd079a93855a32d66cfddf77887"
+      }
+    },
+    "wrapper_report": {
+      "status": "passed",
+      "business_submission": true,
+      "business_submission_count": 1,
+      "business_transport_submitted": true,
+      "execute_call_count": 1,
+      "request_publish_count": 1,
+      "result_status": "rejected",
+      "result_game_outcome": "rejected",
+      "result_contract_all": true,
+      "result_contract_checks": {
+        "all": true,
+        "binding": true,
+        "effects_contract": true,
+        "native_result": true,
+        "proof": true,
+        "public_result": true,
+        "response_verified": true,
+        "terminal_status": true,
+        "terms_verified": true,
+        "war_transition": true
+      },
+      "checks": {
+        "execute_called_once": true,
+        "native_result_contract": true,
+        "after_war_matches_native_result": true,
+        "no_replay_or_world_control": true,
+        "selected_inspection_contract": true
+      },
+      "check_count": 17,
+      "checks_all": true
+    },
+    "consumer_replay": {
+      "expected_source": "UTR",
+      "expected_beneficiary": "FRA",
+      "observed_effect_source": "UTR",
+      "observed_effect_beneficiary": "FRA",
+      "source_field": "effects.transfer_trade_power.source",
+      "source_matches": true,
+      "beneficiary_matches": true,
+      "complete": true,
+      "reason": "NATIVE_REJECTED_RESULT_COMPLETE",
+      "native_state": 1,
+      "outcome": "rejected",
+      "success_claimed": false
+    }
+  },
+  "inbound_pending": {
+    "request_id": "r51e_eng_offer_utr_trade_fixture_001",
+    "actor": "ENG",
+    "recipient": "FRA",
+    "direction": "offer",
+    "trade_power_source": "UTR",
+    "trade_power_beneficiary": "FRA",
+    "source": "inbound_pending_events",
+    "dispatch_event": {
+      "event": {
+        "event": "native_peace_inbound_fixture_dispatched",
+        "private": true,
+        "session_id": "31984-1dd5ed82ec3d878",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "date_raw": 56549064,
+        "war_id": "war_a8908a63b6f9e040_00000001",
+        "snapshot_complete": true,
+        "native_gates_available": true,
+        "dispatcher_accepted": true,
+        "authority_seed_created": false,
+        "reparations_requested": false,
+        "trade_power_requested": true,
+        "direction": "offer",
+        "trade_power_source": "UTR"
+      },
+      "evidence": {
+        "source": "E inbound fixture dispatch native event",
+        "line": 9,
+        "line_sha256": "c0911588a90a7c4af7b82d8c7207539a4813ea554fb30e637d80ed7368f7fca5"
+      }
+    },
+    "offer_event": {
+      "event": {
+        "event": "native_alliance_inbound_offer",
+        "session_id": "31984-1dd5ed82ec3d878",
+        "proposal_id": 1,
+        "action_id": "peace_offer",
+        "family": "peace",
+        "peace": {
+          "complete": true,
+          "term_count": 89,
+          "selected_term_count": 2,
+          "participant_counts": [
+            4,
+            6,
+            4,
+            6
+          ],
+          "flag40": 1,
+          "direction41": 0,
+          "preview208": 0
+        },
+        "extra60": 0,
+        "phase": "initiate",
+        "actor": "ENG",
+        "mirror": "ENG",
+        "recipient": "FRA",
+        "date28": 56549064,
+        "date2c": 56549064,
+        "envoy30": 3,
+        "state34": 0,
+        "variant38": 1,
+        "proposal3c": 206,
+        "token3c": 206,
+        "created2c": 56549064,
+        "queue_before_count": 0,
+        "queue_after_count": 1,
+        "queue_readable": true,
+        "list_integrity": true,
+        "new_entry": true,
+        "payload_readable": true,
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "pending_source": "native_executor_pending_block",
+        "source_verified": true,
+        "call_redirected": true,
+        "business_result": "pending_observed"
+      },
+      "evidence": {
+        "source": "E inbound pending native offer event",
+        "line": 33,
+        "line_sha256": "c3144c3eadc0381eea324c131c1fa1fc2f1de0cc0bbc8d07ab6159f6164bd349"
+      }
+    },
+    "public_projection": {
+      "proposal_id": "r51e_eng_offer_utr_trade_fixture_001",
+      "action_id": "peace_offer",
+      "family": "peace",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "decision_country": "FRA",
+      "phase": "initiate",
+      "observer_status": "observed_pending",
+      "currently_pending": null,
+      "legality": {
+        "status": "unknown",
+        "complete": false
+      },
+      "legality_status": "unknown",
+      "execute": {
+        "accept": "unimplemented",
+        "reject": "unimplemented"
+      }
+    },
+    "report_status": "passed",
+    "fixture_check_count": 9,
+    "dispatch_count": 1,
+    "pending_count": 1,
+    "fra_decision_submitted": false,
+    "pending_held": true,
+    "date_before_raw": 56549064,
+    "date_after_raw": 56549088
+  },
+  "inbound_accept": {
+    "request_id": "r51f_accept_eng_utr_trade_001",
+    "session_id": "36720-1dd5ed87ef38247",
+    "native_proposal_id": 1,
+    "actor": "ENG",
+    "recipient": "FRA",
+    "decision_country": "FRA",
+    "phase": "accept",
+    "direction": "offer",
+    "trade_power_source": "UTR",
+    "trade_power_beneficiary": "FRA",
+    "source": "inbound_accept_events",
+    "restored_event": {
+      "event": {
+        "event": "native_diplomacy_inbound_pending_restored",
+        "session_id": "36720-1dd5ed87ef38247",
+        "proposal_id": 1,
+        "action_id": "peace_offer",
+        "family": "peace",
+        "peace": {
+          "complete": true,
+          "term_count": 89,
+          "selected_term_count": 2,
+          "participant_counts": [
+            4,
+            6,
+            4,
+            6
+          ],
+          "flag40": 1,
+          "direction41": 0,
+          "preview208": 0
+        },
+        "extra60": 0,
+        "phase": "initiate",
+        "actor": "ENG",
+        "mirror": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "date_raw": 56549088,
+        "date28": 56549064,
+        "date2c": 56549064,
+        "envoy30": 3,
+        "state34": 0,
+        "variant38": 1,
+        "proposal3c": 206,
+        "token3c": 206,
+        "created2c": 56549064,
+        "queue_after_count": 1,
+        "queue_readable": true,
+        "list_integrity": true,
+        "new_entry": false,
+        "payload_readable": true,
+        "decision_country_verified": true,
+        "pending_source": "native_saved_pending_queue",
+        "source_verified": true,
+        "call_redirected": false,
+        "saved_queue_restored": true,
+        "native_queue_membership_verified": true,
+        "native_node": "0x1f94d9a0180",
+        "native_action": "0x1f963f25b70",
+        "business_result": "pending_observed"
+      },
+      "evidence": {
+        "source": "F restored pending queue native event",
+        "line": 7,
+        "line_sha256": "0a1dd2053b2e6e1f25a6925110cd880ee5eb4c2d170dab56dd45a7524e06dadd"
+      }
+    },
+    "inspection_event": {
+      "event": {
+        "event": "native_alliance_inbound_inspection",
+        "query_id": "inbound_inspect_900ff9431cef43838b55eef8fa079c66",
+        "session_id": "36720-1dd5ed87ef38247",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "extra60": 0,
+        "actor": "ENG",
+        "mirror": "ENG",
+        "recipient": "FRA",
+        "phase": "accept",
+        "native_proposal_id": 1,
+        "date_raw": 56549088,
+        "pending_active": true,
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "native_validity": true,
+        "response_rules_complete": true,
+        "war_active": true,
+        "war_readable": true,
+        "war_before": true,
+        "native_current_war": true,
+        "native_current_war_readable": true,
+        "peace_payload_complete": true,
+        "selected_terms_complete": true,
+        "term_count": 89,
+        "selected_term_count": 2,
+        "peace_context": {
+          "war_id": "war_46a1728853d5883f_00000001",
+          "direction": "offer",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "UTR",
+              "beneficiary": "FRA"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "reason": "none"
+        },
+        "date28": 56549064,
+        "date2c": 56549064,
+        "envoy30": 3,
+        "state34": 0,
+        "variant38": 1,
+        "token3c": 206,
+        "requested_decision": "accept",
+        "reason": "none"
+      },
+      "evidence": {
+        "source": "F inbound context inspection native event",
+        "line": 11,
+        "line_sha256": "6f283f648d7f2dd37529ab1fef5976ea0db4637a7d613e657d45b97d6842df34"
+      }
+    },
+    "handler_event": {
+      "event": {
+        "event": "native_peace_handler_return",
+        "family": "peace",
+        "action_id": "peace_offer",
+        "session_id": "36720-1dd5ed87ef38247",
+        "request_id": "r51f_accept_eng_utr_trade_001",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "phase": "accept",
+        "native_state": 2,
+        "native_forward_count": 1,
+        "handler_consumed": true,
+        "peace_payload_complete": true,
+        "transport_verified": true
+      },
+      "evidence": {
+        "source": "F inbound response handler native event",
+        "line": 32,
+        "line_sha256": "801999bf74f24cc0454659e38d48b66b7882b1c949cc8ab409ab3fc675f52115"
+      }
+    },
+    "submission_event": {
+      "event": {
+        "event": "native_peace_inbound_submission_result",
+        "family": "peace",
+        "session_id": "36720-1dd5ed87ef38247",
+        "request_id": "r51f_accept_eng_utr_trade_001",
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "accept",
+        "date_raw": 56549088,
+        "submitted": true,
+        "transport_verified": true,
+        "request_binding_verified": true
+      },
+      "evidence": {
+        "source": "F inbound response submission native event",
+        "line": 33,
+        "line_sha256": "b5d2994370705909dd020d17e53f14f60ca022d6d6f41cbe86afde343ba1e191"
+      }
+    },
+    "response_event": {
+      "event": {
+        "event": "native_peace_inbound_response_result",
+        "family": "peace",
+        "session_id": "36720-1dd5ed87ef38247",
+        "request_id": "r51f_accept_eng_utr_trade_001",
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "accept",
+        "date_raw": 56549088,
+        "native_state": 2,
+        "outcome": "accepted",
+        "war_before": true,
+        "war_after": false,
+        "war_state_verified": true,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "execution_verified": true,
+        "pending_removed": true,
+        "terms_verified": true,
+        "peace_context": {
+          "war_id": "war_46a1728853d5883f_00000001",
+          "direction": "offer",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "UTR",
+              "beneficiary": "FRA"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "reason": "none"
+        },
+        "effects": {
+          "complete": true,
+          "date_unchanged": true,
+          "currency_scale": 1000,
+          "money": null,
+          "provinces": [],
+          "war_reparations": null,
+          "transfer_trade_power": {
+            "source": "UTR",
+            "beneficiary": "FRA",
+            "present_before": false,
+            "present_after": true,
+            "start_date_raw": 56549088,
+            "end_date_raw": 43808760,
+            "amount_raw": 500,
+            "amount_scale": 1000,
+            "peace_treaty": true,
+            "verified": true
+          }
+        }
+      },
+      "evidence": {
+        "source": "F accepted inbound response native event",
+        "line": 44,
+        "line_sha256": "f6f3e73d9974ad6de2893dd631a47d0432c4caf7b934ecd697f964eb820fe08a"
+      }
+    },
+    "public_inspection": {
+      "event": "native_alliance_inbound_inspection",
+      "action_id": "peace_offer",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "phase": "accept",
+      "date_raw": 56549088,
+      "pending_active": true,
+      "decision_country": "FRA",
+      "decision_country_verified": true,
+      "native_validity": true,
+      "response_rules_complete": true,
+      "reason": "none",
+      "war_before": true,
+      "family": "peace",
+      "native_current_war": true,
+      "native_current_war_readable": true,
+      "war_active": true,
+      "war_readable": true,
+      "peace_payload_complete": true,
+      "selected_terms_complete": true,
+      "term_count": 89,
+      "selected_term_count": 2,
+      "peace_context": {
+        "war_id": "war_46a1728853d5883f_00000001",
+        "direction": "offer",
+        "original_actor": "ENG",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "transfer_trade_power",
+            "source": "UTR",
+            "beneficiary": "FRA"
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      }
+    },
+    "public_submission": {
+      "event": "native_peace_inbound_submission_result",
+      "request_id": "r51f_accept_eng_utr_trade_001",
+      "action_id": "peace_offer",
+      "family": "peace",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "decision_country": "FRA",
+      "phase": "accept",
+      "date_raw": 56549088,
+      "submitted": true,
+      "transport_verified": true,
+      "request_binding_verified": true
+    },
+    "public_result": {
+      "event": "native_peace_inbound_response_result",
+      "request_id": "r51f_accept_eng_utr_trade_001",
+      "action_id": "peace_offer",
+      "family": "peace",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "decision_country": "FRA",
+      "phase": "accept",
+      "date_raw": 56549088,
+      "native_state": 2,
+      "native_outcome": "accepted",
+      "response_verified": true,
+      "request_binding_verified": true,
+      "pending_removed": true,
+      "war_before": true,
+      "war_after": false,
+      "war_state_verified": true,
+      "terms_verified": true,
+      "peace_context": {
+        "war_id": "war_46a1728853d5883f_00000001",
+        "direction": "offer",
+        "original_actor": "ENG",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "transfer_trade_power",
+            "source": "UTR",
+            "beneficiary": "FRA"
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      },
+      "effects": {
+        "complete": true,
+        "date_unchanged": true,
+        "currency_scale": 1000,
+        "money": null,
+        "war_reparations": null,
+        "transfer_trade_power": {
+          "source": "UTR",
+          "beneficiary": "FRA",
+          "present_before": false,
+          "present_after": true,
+          "start_date_raw": 56549088,
+          "end_date_raw": 43808760,
+          "amount_raw": 500,
+          "amount_scale": 1000,
+          "peace_treaty": true,
+          "verified": true
+        },
+        "provinces": []
+      }
+    },
+    "effect_summary": {
+      "source": "UTR",
+      "beneficiary": "FRA",
+      "present_before": false,
+      "present_after": true,
+      "amount_raw": 500,
+      "amount_scale": 1000,
+      "peace_treaty": true,
+      "start_date_raw": 56549088,
+      "end_date_raw": 43808760,
+      "native_state": 2,
+      "outcome": "accepted",
+      "war_before": true,
+      "war_after": false,
+      "pending_removed": true,
+      "terms_verified": true
+    },
+    "report_status": "passed",
+    "check_count": 22,
+    "execute_call_count": 1,
+    "publish_count": 1,
+    "decision_submitted": true,
+    "save_name": "llm_diplomacy_peace_utr_trade_accepted_20261018_r51f.eu4",
+    "save_sha256": "be17d6a1d5545ba52d780bc952af06c03d91801a053fef8da9efae32fac48e0d",
+    "save_size": 42867810,
+    "save_date_raw": 56549088
+  }
+}

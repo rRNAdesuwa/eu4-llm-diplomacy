@@ -69,7 +69,7 @@ def _read_json(path: Path, *, maximum: int = _MAX_METADATA_BYTES) -> Any:
     if path.stat().st_size > maximum:
         raise ReloadValidationError(f"METADATA_TOO_LARGE:{path}")
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(path.read_text(encoding="utf-8-sig"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
         raise ReloadValidationError(f"JSON_READ_FAILED:{path}:{type(error).__name__}") from error
 

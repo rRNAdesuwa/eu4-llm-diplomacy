@@ -1,0 +1,452 @@
+{
+  "cases": {
+    "c_pending": {
+      "event": {
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "business_result": "pending_observed",
+        "call_redirected": true,
+        "created2c": 56549064,
+        "date28": 56549064,
+        "date2c": 56549064,
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "envoy30": 3,
+        "event": "native_alliance_inbound_offer",
+        "extra60": 0,
+        "family": "peace",
+        "list_integrity": true,
+        "mirror": "ENG",
+        "new_entry": true,
+        "payload_readable": true,
+        "peace": {
+          "complete": true,
+          "direction41": 1,
+          "flag40": 1,
+          "participant_counts": [
+            6,
+            4,
+            6,
+            4
+          ],
+          "preview208": 0,
+          "selected_term_count": 2,
+          "term_count": 84
+        },
+        "pending_source": "native_executor_pending_block",
+        "phase": "initiate",
+        "proposal3c": 206,
+        "proposal_id": 1,
+        "queue_after_count": 1,
+        "queue_before_count": 0,
+        "queue_readable": true,
+        "recipient": "FRA",
+        "session_id": "29940-1dd5ef35614513e",
+        "source_verified": true,
+        "state34": 0,
+        "token3c": 206,
+        "variant38": 1
+      },
+      "source_byte_end": 31992,
+      "source_byte_start": 31191,
+      "source_line": 32,
+      "source_line_sha256": "9ba33c82e839f914cdbbe8aa899173efd82f51405360c7db8eb72e50538bdd6e"
+    },
+    "d_reject": {
+      "inspection_event": {
+        "event": {
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "date28": 56549064,
+          "date2c": 56549064,
+          "date_raw": 56549088,
+          "decision_country": "FRA",
+          "decision_country_verified": true,
+          "envoy30": 3,
+          "event": "native_alliance_inbound_inspection",
+          "extra60": 0,
+          "family": "peace",
+          "mirror": "ENG",
+          "native_current_war": true,
+          "native_current_war_readable": true,
+          "native_proposal_id": 1,
+          "native_validity": true,
+          "peace_context": {
+            "complete": true,
+            "direction": "demand",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "reason": "none",
+            "selected_terms_complete": true,
+            "terms": [
+              {
+                "action_id": "humiliate_rival",
+                "beneficiary": "ENG",
+                "country": "FRA"
+              }
+            ],
+            "war_id": "war_08a5c895c9d61b12_00000001",
+            "white_peace": false
+          },
+          "peace_payload_complete": true,
+          "pending_active": true,
+          "phase": "reject",
+          "query_id": "inbound_inspect_41f7da54329042c0b684a45cd5ea3cbf",
+          "reason": "none",
+          "recipient": "FRA",
+          "requested_decision": "reject",
+          "response_rules_complete": true,
+          "selected_term_count": 2,
+          "selected_terms_complete": true,
+          "session_id": "4412-1dd5ef3b02c8d59",
+          "state34": 0,
+          "term_count": 84,
+          "token3c": 206,
+          "variant38": 1,
+          "war_active": true,
+          "war_before": true,
+          "war_readable": true
+        },
+        "source_byte_end": 7698,
+        "source_byte_start": 6614,
+        "source_line": 9,
+        "source_line_sha256": "4ff60d2e70d466711fdffa5e2f11277a637a56e67eee04e0f072c3ece88a1d54"
+      },
+      "response_event": {
+        "event": {
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "date_raw": 56549088,
+          "decision_country": "FRA",
+          "effects": {
+            "complete": true,
+            "currency_scale": 1000,
+            "date_unchanged": true,
+            "humiliate_rival": {
+              "beneficiary": "ENG",
+              "beneficiary_prestige_after_raw": 62778,
+              "beneficiary_prestige_before_raw": 62778,
+              "beneficiary_prestige_delta_raw": 0,
+              "country": "FRA",
+              "country_prestige_after_raw": -10990,
+              "country_prestige_before_raw": -10990,
+              "country_prestige_delta_raw": 0,
+              "humiliated_after": false,
+              "humiliated_before": false,
+              "prestige_scale": 1000,
+              "values_readable": true,
+              "verified": false
+            },
+            "money": null,
+            "provinces": [],
+            "war_reparations": null
+          },
+          "event": "native_peace_inbound_response_result",
+          "execution_verified": true,
+          "family": "peace",
+          "native_state": 1,
+          "outcome": "rejected",
+          "peace_context": {
+            "complete": true,
+            "direction": "demand",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "reason": "none",
+            "selected_terms_complete": true,
+            "terms": [
+              {
+                "action_id": "humiliate_rival",
+                "beneficiary": "ENG",
+                "country": "FRA"
+              }
+            ],
+            "war_id": "war_08a5c895c9d61b12_00000001",
+            "white_peace": false
+          },
+          "pending_removed": true,
+          "phase": "reject",
+          "recipient": "FRA",
+          "request_binding_verified": true,
+          "request_id": "r54d_reject_humiliate_001",
+          "response_verified": true,
+          "session_id": "4412-1dd5ef3b02c8d59",
+          "terms_verified": false,
+          "war_after": true,
+          "war_before": true,
+          "war_state_verified": true
+        },
+        "source_byte_end": 32952,
+        "source_byte_start": 31660,
+        "source_line": 36,
+        "source_line_sha256": "3e42e791a70225b5779c7372fad26d45cc03842aa3ec390f31589e6b88a1e0a5"
+      },
+      "submission_event": {
+        "event": {
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "date_raw": 56549088,
+          "decision_country": "FRA",
+          "event": "native_peace_inbound_submission_result",
+          "family": "peace",
+          "phase": "reject",
+          "recipient": "FRA",
+          "request_binding_verified": true,
+          "request_id": "r54d_reject_humiliate_001",
+          "session_id": "4412-1dd5ef3b02c8d59",
+          "submitted": true,
+          "transport_verified": true
+        },
+        "source_byte_end": 28258,
+        "source_byte_start": 27918,
+        "source_line": 25,
+        "source_line_sha256": "5699cd377ef3b7e9257981978dc8e4c028c09e5b9d88a6e64d34e883fe587ef4"
+      }
+    },
+    "e_accept": {
+      "inspection_event": {
+        "event": {
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "date28": 56549064,
+          "date2c": 56549064,
+          "date_raw": 56549088,
+          "decision_country": "FRA",
+          "decision_country_verified": true,
+          "envoy30": 3,
+          "event": "native_alliance_inbound_inspection",
+          "extra60": 0,
+          "family": "peace",
+          "mirror": "ENG",
+          "native_current_war": true,
+          "native_current_war_readable": true,
+          "native_proposal_id": 1,
+          "native_validity": true,
+          "peace_context": {
+            "complete": true,
+            "direction": "demand",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "reason": "none",
+            "selected_terms_complete": true,
+            "terms": [
+              {
+                "action_id": "humiliate_rival",
+                "beneficiary": "ENG",
+                "country": "FRA"
+              }
+            ],
+            "war_id": "war_92d643c0b62fdfd8_00000001",
+            "white_peace": false
+          },
+          "peace_payload_complete": true,
+          "pending_active": true,
+          "phase": "accept",
+          "query_id": "inbound_inspect_da1f6879ec874f3c92918a1e3121a670",
+          "reason": "none",
+          "recipient": "FRA",
+          "requested_decision": "accept",
+          "response_rules_complete": true,
+          "selected_term_count": 2,
+          "selected_terms_complete": true,
+          "session_id": "22580-1dd5ef407f0af37",
+          "state34": 0,
+          "term_count": 84,
+          "token3c": 206,
+          "variant38": 1,
+          "war_active": true,
+          "war_before": true,
+          "war_readable": true
+        },
+        "source_byte_end": 8986,
+        "source_byte_start": 7901,
+        "source_line": 13,
+        "source_line_sha256": "4ec07237c3feec9c85dc3cb11d2e8ce62fa447f485eb1d40a34432bb227139ab"
+      },
+      "response_event": {
+        "event": {
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "date_raw": 56549088,
+          "decision_country": "FRA",
+          "effects": {
+            "complete": true,
+            "currency_scale": 1000,
+            "date_unchanged": true,
+            "humiliate_rival": {
+              "beneficiary": "ENG",
+              "beneficiary_prestige_after_raw": 62778,
+              "beneficiary_prestige_before_raw": 62778,
+              "beneficiary_prestige_delta_raw": 0,
+              "country": "FRA",
+              "country_prestige_after_raw": -10990,
+              "country_prestige_before_raw": -10990,
+              "country_prestige_delta_raw": 0,
+              "humiliated_after": true,
+              "humiliated_before": false,
+              "prestige_scale": 1000,
+              "values_readable": true,
+              "verified": true
+            },
+            "money": null,
+            "provinces": [],
+            "war_reparations": null
+          },
+          "event": "native_peace_inbound_response_result",
+          "execution_verified": true,
+          "family": "peace",
+          "native_state": 2,
+          "outcome": "accepted",
+          "peace_context": {
+            "complete": true,
+            "direction": "demand",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "reason": "none",
+            "selected_terms_complete": true,
+            "terms": [
+              {
+                "action_id": "humiliate_rival",
+                "beneficiary": "ENG",
+                "country": "FRA"
+              }
+            ],
+            "war_id": "war_92d643c0b62fdfd8_00000001",
+            "white_peace": false
+          },
+          "pending_removed": true,
+          "phase": "accept",
+          "recipient": "FRA",
+          "request_binding_verified": true,
+          "request_id": "r54e_accept_humiliate_001",
+          "response_verified": true,
+          "session_id": "22580-1dd5ef407f0af37",
+          "terms_verified": true,
+          "war_after": false,
+          "war_before": true,
+          "war_state_verified": true
+        },
+        "source_byte_end": 34253,
+        "source_byte_start": 32962,
+        "source_line": 40,
+        "source_line_sha256": "febbcb9a8404bba9db5917cf6b33a5f40f75532cdf3a994b46ad1b5a8fd5f22f"
+      },
+      "restored_event": {
+        "event": {
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "business_result": "pending_observed",
+          "call_redirected": false,
+          "created2c": 56549064,
+          "date28": 56549064,
+          "date2c": 56549064,
+          "date_raw": 56549088,
+          "decision_country": "FRA",
+          "decision_country_verified": true,
+          "envoy30": 3,
+          "event": "native_diplomacy_inbound_pending_restored",
+          "extra60": 0,
+          "family": "peace",
+          "list_integrity": true,
+          "mirror": "ENG",
+          "native_action": "0x19a80999310",
+          "native_node": "0x19b61a20d70",
+          "native_queue_membership_verified": true,
+          "new_entry": false,
+          "payload_readable": true,
+          "peace": {
+            "complete": true,
+            "direction41": 1,
+            "flag40": 1,
+            "participant_counts": [
+              6,
+              4,
+              6,
+              4
+            ],
+            "preview208": 0,
+            "selected_term_count": 2,
+            "term_count": 84
+          },
+          "pending_source": "native_saved_pending_queue",
+          "phase": "initiate",
+          "proposal3c": 206,
+          "proposal_id": 1,
+          "queue_after_count": 1,
+          "queue_readable": true,
+          "recipient": "FRA",
+          "saved_queue_restored": true,
+          "session_id": "22580-1dd5ef407f0af37",
+          "source_verified": true,
+          "state34": 0,
+          "token3c": 206,
+          "variant38": 1
+        },
+        "source_byte_end": 1127,
+        "source_byte_start": 188,
+        "source_line": 4,
+        "source_line_sha256": "c3c8c21e9f4967870d9e30fa0f50586f35da0d58187c233d1c4d2fda148a7002"
+      },
+      "submission_event": {
+        "event": {
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "date_raw": 56549088,
+          "decision_country": "FRA",
+          "event": "native_peace_inbound_submission_result",
+          "family": "peace",
+          "phase": "accept",
+          "recipient": "FRA",
+          "request_binding_verified": true,
+          "request_id": "r54e_accept_humiliate_001",
+          "session_id": "22580-1dd5ef407f0af37",
+          "submitted": true,
+          "transport_verified": true
+        },
+        "source_byte_end": 29560,
+        "source_byte_start": 29219,
+        "source_line": 29,
+        "source_line_sha256": "f366c2d537f42b99a25cb4600b775bbd2993bd820f4d2eaa0500e46436320a57"
+      }
+    }
+  },
+  "description": "Compact real R54 H inbound replay: C pending offer, E restored pending, D reject and E accept inspections/submissions/responses. Only selected native event lines are embedded; source report and JSONL hashes remain recorded.",
+  "fixture_version": 1,
+  "sources": {
+    "c": {
+      "bytes": 3415,
+      "experiment_id": null,
+      "native_events": {
+        "bytes": 31992,
+        "path": "C:/Users/wangyufei/Documents/ChatGPT/欧陆风云4/work/runtime/diplomacy-query-20261018-r54-special-c-inbound/humiliate-inbound-fixture-001/report-native-events.jsonl",
+        "sha256": "4037059c8d8666df4386f127ab527aad55bd26d47814ec75ac3cad73ef256aba"
+      },
+      "path": "C:/Users/wangyufei/Documents/ChatGPT/欧陆风云4/work/runtime/diplomacy-query-20261018-r54-special-c-inbound/humiliate-inbound-fixture-001/report.json",
+      "session_id": "29940-1dd5ef35614513e",
+      "sha256": "3569b0dcb2f57acf8eaf5df93730c77e72846b42a5f3afc08c6b7cd561e0723f"
+    },
+    "d": {
+      "bytes": 50584,
+      "experiment_id": "diplomacy-query-20261018-r54-special-d-inbound-reject",
+      "native_events": {
+        "bytes": 48521,
+        "path": "C:/Users/wangyufei/Documents/ChatGPT/欧陆风云4/work/runtime/diplomacy-query-20261018-r54-special-d-inbound-reject/humiliate-inbound-reject-001/report-evidence/native-events-slice.jsonl",
+        "sha256": "0349ca54b0afffdb4ff65bca94472ef6e6f2313aaf760c2111fc12df6431faf0"
+      },
+      "path": "C:/Users/wangyufei/Documents/ChatGPT/欧陆风云4/work/runtime/diplomacy-query-20261018-r54-special-d-inbound-reject/humiliate-inbound-reject-001/report.json",
+      "session_id": "4412-1dd5ef3b02c8d59",
+      "sha256": "726dee4e36b93b5bc44407cf75a13eada721599498e5495c27bd9bd533b03f04"
+    },
+    "e": {
+      "bytes": 50630,
+      "experiment_id": "diplomacy-query-20261018-r54-special-e-inbound-accept",
+      "native_events": {
+        "bytes": 49840,
+        "path": "C:/Users/wangyufei/Documents/ChatGPT/欧陆风云4/work/runtime/diplomacy-query-20261018-r54-special-e-inbound-accept/humiliate-inbound-accept-001/report-evidence/native-events-slice.jsonl",
+        "sha256": "adf48013cb445060f8fd9c8c73b421f88b4676f35d7ca212140405572fcaaf6a"
+      },
+      "path": "C:/Users/wangyufei/Documents/ChatGPT/欧陆风云4/work/runtime/diplomacy-query-20261018-r54-special-e-inbound-accept/humiliate-inbound-accept-001/report.json",
+      "session_id": "22580-1dd5ef407f0af37",
+      "sha256": "032681d39b888e6aa44b2393231ea32e81f85bde2193d75d0030c78b5fd49147"
+    }
+  }
+}

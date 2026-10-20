@@ -1,0 +1,92 @@
+{
+  "source_report": "work/runtime/diplomacy-query-20261018-r53-peace-c-inbound-pending/inbound-fixture-001/report.json",
+  "source_status_before_checker_fix": "failed",
+  "source_request_id": "r53c_eng_demands_fra_annul_gen_pap_001",
+  "term": "annul_treaties",
+  "direction": "demand",
+  "annul_country": "FRA",
+  "annul_partners": [
+    "GEN",
+    "PAP"
+  ],
+  "source_checks_before_checker_fix": {
+    "published_once": true,
+    "single_dispatch": true,
+    "dispatcher_accepted": true,
+    "native_gates_available": true,
+    "no_fra_initiation_authority": true,
+    "single_native_pending": true,
+    "full_native_payload": true,
+    "native_pending_source": true,
+    "annul_treaties_selected": false
+  },
+  "dispatch": [
+    {
+      "event": "native_peace_inbound_fixture_dispatched",
+      "private": true,
+      "session_id": "33248-1dd5ee7c84723b3",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "date_raw": 56549064,
+      "war_id": "war_cfd4c09f8a50dfc8_00000001",
+      "snapshot_complete": true,
+      "native_gates_available": true,
+      "dispatcher_accepted": true,
+      "authority_seed_created": false,
+      "reparations_requested": false,
+      "trade_power_requested": false,
+      "concede_defeat_requested": false,
+      "annul_treaties_requested": true,
+      "direction": "demand",
+      "trade_power_source": "-"
+    }
+  ],
+  "pending": [
+    {
+      "event": "native_alliance_inbound_offer",
+      "session_id": "33248-1dd5ee7c84723b3",
+      "proposal_id": 1,
+      "action_id": "peace_offer",
+      "family": "peace",
+      "peace": {
+        "complete": true,
+        "term_count": 84,
+        "selected_term_count": 3,
+        "participant_counts": [
+          6,
+          4,
+          6,
+          4
+        ],
+        "flag40": 1,
+        "direction41": 1,
+        "preview208": 0
+      },
+      "extra60": 0,
+      "phase": "initiate",
+      "actor": "ENG",
+      "mirror": "ENG",
+      "recipient": "FRA",
+      "date28": 56549064,
+      "date2c": 56549064,
+      "envoy30": 3,
+      "state34": 0,
+      "variant38": 1,
+      "proposal3c": 206,
+      "token3c": 206,
+      "created2c": 56549064,
+      "queue_before_count": 0,
+      "queue_after_count": 1,
+      "queue_readable": true,
+      "list_integrity": true,
+      "new_entry": true,
+      "payload_readable": true,
+      "decision_country": "FRA",
+      "decision_country_verified": true,
+      "pending_source": "native_executor_pending_block",
+      "source_verified": true,
+      "call_redirected": true,
+      "business_result": "pending_observed"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "format": "r71_favor_execution_real_fixture_v1",
+  "source": {
+    "outbound_report": "work/runtime/r71-favor-outbound-20261020-002/report.json",
+    "outbound_report_sha256": "83ae93150be9c6f1cb90b275ac6c355dae5ff74fe03239e1bf7449be0fc9f700",
+    "outbound_native_jsonl": "work/runtime/r71-favor-outbound-20261020-002/native.jsonl",
+    "outbound_native_jsonl_sha256": "62b6d9baeb853a5e7f821e586be7baa3125b6bd37ee09cd3c4a5b03bb21cea98",
+    "query_native_jsonl": "work/runtime/r71-favor-queries-20261020-004/cases/trade_favors_for_gold_PAP/native.jsonl",
+    "query_native_jsonl_sha256": "668ef032b5194dca3932f7c1063a333059c3f7ee209d78713aaca9434e149d1d"
+  },
+  "action_id": "trade_favors_for_gold",
+  "actor": "FRA",
+  "recipient": "PAP",
+  "phase": "initiate",
+  "session_id": "41288-1dd5ff7aecf1f84",
+  "request_id": "r71_d_favor_outbound_pap_002",
+  "date_raw": 56553384,
+  "outbound": {
+    "submission_result": {"event":"native_alliance_submission_result","family":"favor_trade","request_id":"r71_d_favor_outbound_pap_002","session_id":"41288-1dd5ff7aecf1f84","action_id":"trade_favors_for_gold","actor":"FRA","recipient":"PAP","phase":"initiate","date_raw":56553384,"submitted":true,"native_queue_verified":true,"transport_ring":true,"native_origin":65535,"native_flags":0,"native_sequence":15,"favor_trade":{"before":{"complete":true,"actor_treasury_raw":1000000,"recipient_treasury_raw":100000,"favors_raw":33632,"cost_raw":10000},"after":null,"amount_raw":12927,"complete":true,"verified":false}},
+    "execution_result": {"event":"native_diplomacy_favor_trade_execution_result","request_id":"r71_d_favor_outbound_pap_002","session_id":"41288-1dd5ff7aecf1f84","action_id":"trade_favors_for_gold","actor":"FRA","recipient":"PAP","phase":"initiate","date_raw":56553384,"outcome":"accepted","native_state":2,"native_variant":1,"family":"favor_trade","favor_trade":{"before":{"complete":true,"actor_treasury_raw":1000000,"recipient_treasury_raw":100000,"favors_raw":33632,"cost_raw":10000},"after":{"complete":true,"actor_treasury_raw":1012927,"recipient_treasury_raw":87073,"favors_raw":23632,"cost_raw":10000},"amount_raw":12927,"complete":true,"verified":true},"execution_verified":true,"request_binding_verified":true,"pending_removed":false}
+  },
+  "outbound_expected": {
+    "native_outcome": "accepted",
+    "native_state": 2,
+    "amount_raw": 12927,
+    "amount_value": 12.927,
+    "actor_treasury_before_raw": 1000000,
+    "actor_treasury_after_raw": 1012927,
+    "recipient_treasury_before_raw": 100000,
+    "recipient_treasury_after_raw": 87073,
+    "favors_before_raw": 33632,
+    "favors_after_raw": 23632,
+    "favors_cost_raw": 10000
+  },
+  "query_positive": {
+    "inspection": {"event":"native_alliance_inspection","session_id":"41288-1dd5ff7aecf1f84","query_id":"inspect_b343bb1606a7443c95bd1128355948fb","action_id":"trade_favors_for_gold","family":"favor_trade","actor":"FRA","recipient":"PAP","phase":"initiate","date_raw":56553384,"ui_selection_checked":true,"native_visibility":true,"ui_enabled_gate_checked":true,"common_action_gate":true,"display_predicate":true,"initiation_gate":true,"tooltip_gate":true,"validity_called":true,"native_validity":true,"native_diagnostic_hex":"10b18210398da7593130a72110ba4e10c56010656711b24e10626312f95210b96531352e30302510847610745e1036651065511008ffa7593132a721a41009ff100230","diagnostic_readable":true,"diagnostic_truncated":false,"diplomat_context_readable":true,"diplomat_required":true,"available_diplomat_count":1,"diplomat_assignment_verified":false,"score_applicable":true,"score_available":true,"acceptance_predicate_available":true,"native_would_accept":true,"native_total_raw":141,"acceptance_threshold_raw":1,"reason_container_readable":true,"reason_count":2,"reason_items_decoded":false,"full_rules_complete":true,"reasons_complete":false,"submitted":false,"native_favor_trade":{"kind":"gold","amount_raw":12927,"amount_readable":true,"favor_cost_raw":10000,"favors_available_raw":33632,"actor_treasury_raw":1000000,"recipient_treasury_raw":100000,"resource_scale":1000,"complete":true},"frame_thread":42248},
+    "reason_items": [
+      {"event":"native_alliance_reason_item","session_id":"41288-1dd5ff7aecf1f84","query_id":"inspect_b343bb1606a7443c95bd1128355948fb","index":0,"native_value":50,"native_flag":true,"text_hex":"107f4f10287510ba4e10c560101aff","text_readable":true,"text_truncated":false,"text_size":15,"string_capacity":15,"native_identifier":null,"native_identifier_verified":false,"identifier_verified":false,"identity_source":null,"value_representation":"signed_int32","value_normalized":false,"native_unit":"unknown","constructor_value_verified":true,"row_binding_verified":true,"text_encoding_verified":false,"complete":true},
+      {"event":"native_alliance_reason_item","session_id":"41288-1dd5ff7aecf1f84","query_id":"inspect_b343bb1606a7443c95bd1128355948fb","index":1,"native_value":91,"native_flag":true,"text_hex":"10596512975210fd5612f95210d56c107051107f89108476118b59101f6110a65e101aff","text_readable":true,"text_truncated":false,"text_size":36,"string_capacity":47,"native_identifier":null,"native_identifier_verified":false,"identifier_verified":false,"identity_source":null,"value_representation":"signed_int32","value_normalized":false,"native_unit":"unknown","constructor_value_verified":true,"row_binding_verified":true,"text_encoding_verified":false,"complete":true}
+    ],
+    "expected": {
+      "native_total_raw": 141,
+      "acceptance_threshold_raw": 1,
+      "native_would_accept": true,
+      "reason_values": [50, 91],
+      "reason_names": ["使用人情：", "教宗国对法兰西的好感度："],
+      "diagnostic_text": "花费§Y10§!人情来交换对方15.00%的年收入（§Y12§!¤）。"
+    }
+  },
+  "inbound_accept": {
+    "source_report": "work/runtime/r71-favor-inbound-accept-20261020-001/report.json",
+    "source_report_sha256": "be6d07dbd16f80b9dbc5f50b1981d94c15419288a6fde9e404da20eaf325847b",
+    "source_native_jsonl": "work/runtime/r71-favor-inbound-accept-20261020-001/native.jsonl",
+    "source_native_jsonl_sha256": "23bf3c2bda4a659a8ba20a8fd43aa31a4034662fc2450edad6cc9996ecafb092",
+    "action_id": "trade_favors_for_gold",
+    "actor": "SAV",
+    "recipient": "FRA",
+    "phase": "accept",
+    "session_id": "41408-1dd5ffb4123d475",
+    "request_id": "r71_g_favor_accept_sav_001",
+    "native_proposal_id": 1,
+    "date_raw": 56554584,
+    "inspection": {"event":"native_alliance_inbound_inspection","query_id":"inbound_inspect_ac6bcfce25f14e4ba4cfa345007a820b","session_id":"41408-1dd5ffb4123d475","action_id":"trade_favors_for_gold","family":"favor_trade","extra60":0,"actor":"SAV","mirror":"SAV","recipient":"FRA","phase":"accept","native_proposal_id":1,"date_raw":56554584,"pending_active":true,"decision_country":"FRA","decision_country_verified":true,"native_validity":true,"response_rules_complete":true,"favor_trade":{"kind":"gold","amount_raw":41508,"amount_readable":true,"favor_cost_raw":10000,"favors_available_raw":20231,"actor_treasury_raw":27435,"recipient_treasury_raw":1000000,"resource_scale":1000,"complete":true},"date28":56554584,"date2c":56554584,"envoy30":2,"state34":0,"variant38":1,"token3c":223,"requested_decision":"accept","reason":"none"},
+    "submission_result": {"event":"native_alliance_submission_result","family":"favor_trade","request_id":"r71_g_favor_accept_sav_001","session_id":"41408-1dd5ffb4123d475","action_id":"trade_favors_for_gold","actor":"SAV","recipient":"FRA","phase":"accept","date_raw":56554584,"submitted":true,"native_queue_verified":true,"transport_ring":true,"native_origin":65535,"native_flags":0,"native_sequence":16,"favor_trade":{"before":{"complete":true,"actor_treasury_raw":27435,"recipient_treasury_raw":1000000,"favors_raw":20231,"cost_raw":10000},"after":null,"amount_raw":41508,"complete":true,"verified":false}},
+    "response_result": {"event":"native_diplomacy_favor_trade_response_result","request_id":"r71_g_favor_accept_sav_001","session_id":"41408-1dd5ffb4123d475","action_id":"trade_favors_for_gold","actor":"SAV","recipient":"FRA","phase":"accept","date_raw":56554584,"outcome":"accepted","native_state":2,"native_variant":1,"family":"favor_trade","favor_trade":{"before":{"complete":true,"actor_treasury_raw":27435,"recipient_treasury_raw":1000000,"favors_raw":20231,"cost_raw":10000},"after":{"complete":true,"actor_treasury_raw":68943,"recipient_treasury_raw":958492,"favors_raw":10231,"cost_raw":10000},"amount_raw":41508,"complete":true,"verified":true},"execution_verified":true,"request_binding_verified":true,"pending_removed":true},
+    "expected": {
+      "native_outcome": "accepted",
+      "native_state": 2,
+      "pending_removed": true,
+      "amount_raw": 41508,
+      "amount_value": 41.508,
+      "controlled_country": "FRA",
+      "controlled_treasury_before_raw": 1000000,
+      "controlled_treasury_after_raw": 958492,
+      "favors_before_raw": 20231,
+      "favors_after_raw": 10231,
+      "favors_cost_raw": 10000
+    }
+  },
+  "inbound_reject": {
+    "source_report": "work/runtime/r71-favor-inbound-reject-20261020-001/report.json",
+    "source_report_sha256": "3f30f9626c929f54896308b0053e8d23cfe2d940aca0347ad79eb165aa4dde12",
+    "source_native_jsonl": "work/runtime/r71-favor-inbound-reject-20261020-001/native.jsonl",
+    "source_native_jsonl_sha256": "fb5d420ef053efe00465112898bf4126b1219461c5c3cab3d104367ab6269e54",
+    "action_id": "trade_favors_for_gold",
+    "actor": "LIT",
+    "recipient": "FRA",
+    "phase": "reject",
+    "session_id": "16048-1dd5ffc3cfd97ac",
+    "request_id": "r71_h_favor_reject_lit_001",
+    "native_proposal_id": 1,
+    "date_raw": 56554584,
+    "inspection": {"event":"native_alliance_inbound_inspection","query_id":"inbound_inspect_65012921ac3b4f1fa4cf71bfe0dbdde4","session_id":"16048-1dd5ffc3cfd97ac","action_id":"trade_favors_for_gold","family":"favor_trade","extra60":0,"actor":"LIT","mirror":"LIT","recipient":"FRA","phase":"reject","native_proposal_id":1,"date_raw":56554584,"pending_active":true,"decision_country":"FRA","decision_country_verified":true,"native_validity":true,"response_rules_complete":true,"favor_trade":{"kind":"gold","amount_raw":41508,"amount_readable":true,"favor_cost_raw":10000,"favors_available_raw":20000,"actor_treasury_raw":60981,"recipient_treasury_raw":958492,"resource_scale":1000,"complete":true},"date28":56554584,"date2c":56554584,"envoy30":2,"state34":0,"variant38":1,"token3c":224,"requested_decision":"reject","reason":"none"},
+    "submission_result": {"event":"native_alliance_submission_result","family":"favor_trade","request_id":"r71_h_favor_reject_lit_001","session_id":"16048-1dd5ffc3cfd97ac","action_id":"trade_favors_for_gold","actor":"LIT","recipient":"FRA","phase":"reject","date_raw":56554584,"submitted":true,"native_queue_verified":true,"transport_ring":true,"native_origin":65535,"native_flags":0,"native_sequence":16,"favor_trade":{"before":{"complete":true,"actor_treasury_raw":60981,"recipient_treasury_raw":958492,"favors_raw":20000,"cost_raw":10000},"after":null,"amount_raw":41508,"complete":true,"verified":false}},
+    "response_result": {"event":"native_diplomacy_favor_trade_response_result","request_id":"r71_h_favor_reject_lit_001","session_id":"16048-1dd5ffc3cfd97ac","action_id":"trade_favors_for_gold","actor":"LIT","recipient":"FRA","phase":"reject","date_raw":56554584,"outcome":"rejected","native_state":1,"native_variant":1,"family":"favor_trade","favor_trade":{"before":{"complete":true,"actor_treasury_raw":60981,"recipient_treasury_raw":958492,"favors_raw":20000,"cost_raw":10000},"after":{"complete":true,"actor_treasury_raw":60981,"recipient_treasury_raw":958492,"favors_raw":20000,"cost_raw":10000},"amount_raw":41508,"complete":true,"verified":true},"execution_verified":true,"request_binding_verified":true,"pending_removed":true},
+    "expected": {
+      "native_outcome": "rejected",
+      "native_state": 1,
+      "pending_removed": true,
+      "amount_raw": 41508,
+      "amount_value": 41.508,
+      "controlled_country": "FRA",
+      "controlled_treasury_before_raw": 958492,
+      "controlled_treasury_after_raw": 958492,
+      "favors_before_raw": 20000,
+      "favors_after_raw": 20000,
+      "favors_cost_raw": 10000,
+      "transfer_raw": 0
+    }
+  }
+}

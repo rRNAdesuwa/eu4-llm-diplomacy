@@ -1,0 +1,744 @@
+{
+  "fixture_version": 2,
+  "description": "Portable replay of real R55 show_strength outbound rejection and inbound rejection/acceptance response contracts.",
+  "sources": {
+    "experiment_id": "diplomacy-query-20261018-r55-strength-a",
+    "native_text_codec": "eu4_escape",
+    "report": {
+      "path": "work/runtime/diplomacy-query-20261018-r55-strength-a/strength-outbound-001/report.json",
+      "size": 68237,
+      "sha256": "c7b1abba125b16164251f9c9117778b479d8fe728e7f489510070e0b0cd591ed"
+    },
+    "native_events": {
+      "path": "work/runtime/diplomacy-query-20261018-r55-strength-a/strength-outbound-001/report-evidence/native-events-slice.jsonl",
+      "size": 141459,
+      "sha256": "0666fc0c9e24cfe71f3fb821c379eaaa2ec9aab85998e2e244c8e233bad9e9c2"
+    },
+    "installation": {
+      "path": "work/runtime/diplomacy-query-20261018-r55-strength-a/installation.json",
+      "size": 18618,
+      "sha256": "3c319f96f19446a3f492ce47809961cf661704e8e946351334614336802d7870"
+    },
+    "build_manifest": {
+      "path": "work/runtime/diplomacy-query-20261018-r55-strength-a/build-manifest.json",
+      "size": 10889,
+      "sha256": "071431531c62c3c7e5d6e977e16fc49d08e7aab3f111bcba6952f47ca6b93645"
+    },
+    "dll_sha256": "e6d9e31a4e2096e355e19673dec3c2046f68e3967ef37a36bf6202ec57a964cb",
+    "build_manifest_dll_sha256": "e6d9e31a4e2096e355e19673dec3c2046f68e3967ef37a36bf6202ec57a964cb",
+    "session_id": "34844-1dd5ef9c1c7ab30",
+    "sqlite": {
+      "path": "work/runtime/diplomacy-query-20261018-r55-strength-a/strength-outbound-001/report-evidence/diplomacy.sqlite3",
+      "size": 49152,
+      "sha256": "26a971c6da6c9871b4ccc501709347519b055fca68561fd5c20829f87fbf71da"
+    }
+  },
+  "request": {
+    "request_id": "r55a_strength_demand_001",
+    "session_id": "34844-1dd5ef9c1c7ab30",
+    "action_id": "show_strength",
+    "actor": "FRA",
+    "recipient": "ENG",
+    "phase": "initiate",
+    "date_raw": 56549064,
+    "parameters": {
+      "peace_context": {
+        "direction": "demand",
+        "terms": [
+          {
+            "action_id": "show_strength",
+            "beneficiary": "FRA",
+            "country": "ENG"
+          }
+        ],
+        "war_id": "war_6f35a51eaad77d0d_00000001"
+      }
+    }
+  },
+  "submission_event": {
+    "event": {
+      "event": "native_peace_submission_result",
+      "family": "peace",
+      "session_id": "34844-1dd5ef9c1c7ab30",
+      "request_id": "r55a_strength_demand_001",
+      "action_id": "show_strength",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56549064,
+      "war_id": "war_6f35a51eaad77d0d_00000001",
+      "direction": "demand",
+      "amount_raw": -1,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "s",
+      "submitted": true,
+      "transport_verified": true,
+      "request_binding_verified": true,
+      "reason": "NATIVE_ENTRY_VERIFIED",
+      "native_origin": 65535,
+      "native_flags": 0,
+      "native_sequence": 15
+    },
+    "source_line": 130,
+    "source_line_bytes": 533,
+    "source_line_sha256": "0bc6d7911eab29507f60e0f4b16e684ecc3fc8e411b4afdb25db95502bd67bef"
+  },
+  "execution_event": {
+    "event": {
+      "event": "native_peace_execution_result",
+      "family": "peace",
+      "session_id": "34844-1dd5ef9c1c7ab30",
+      "request_id": "r55a_strength_demand_001",
+      "action_id": "show_strength",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56549064,
+      "war_id": "war_6f35a51eaad77d0d_00000001",
+      "direction": "demand",
+      "amount_raw": -1,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "s",
+      "native_state": 1,
+      "outcome": "rejected",
+      "war_before": true,
+      "war_after": true,
+      "response_verified": true,
+      "request_binding_verified": true,
+      "execution_verified": false,
+      "terms_verified": false,
+      "effects": {
+        "complete": true,
+        "date_unchanged": true,
+        "currency_scale": 1000,
+        "money": null,
+        "provinces": [],
+        "war_reparations": null,
+        "show_strength": {
+          "country": "ENG",
+          "beneficiary": "FRA",
+          "humiliated_before": false,
+          "humiliated_after": false,
+          "country_prestige_before_raw": 62778,
+          "country_prestige_after_raw": 62778,
+          "country_prestige_delta_raw": 0,
+          "beneficiary_prestige_before_raw": -10990,
+          "beneficiary_prestige_after_raw": -10990,
+          "beneficiary_prestige_delta_raw": 0,
+          "prestige_scale": 1000,
+          "powers_before": [
+            729,
+            440,
+            122
+          ],
+          "powers_after": [
+            729,
+            440,
+            122
+          ],
+          "powers_delta": [
+            0,
+            0,
+            0
+          ],
+          "powers_requested": 100,
+          "values_readable": true,
+          "verified": false
+        }
+      }
+    },
+    "source_line": 174,
+    "source_line_bytes": 1157,
+    "source_line_sha256": "c6501cec1889deec27821d86f4639701461fc2f0a8eae85bdbecf43e0264338e"
+  },
+  "expected": {
+    "status": "rejected",
+    "game_outcome": "rejected",
+    "term_mask": "s",
+    "native_state": 1,
+    "native_outcome": "rejected",
+    "response_verified": true,
+    "execution_verified": false,
+    "terms_verified": false,
+    "war_before": true,
+    "war_after": true,
+    "country": "ENG",
+    "beneficiary": "FRA",
+    "effects": {
+      "beneficiary": "FRA",
+      "beneficiary_prestige_after_raw": -10990,
+      "beneficiary_prestige_before_raw": -10990,
+      "beneficiary_prestige_delta_raw": 0,
+      "country": "ENG",
+      "country_prestige_after_raw": 62778,
+      "country_prestige_before_raw": 62778,
+      "country_prestige_delta_raw": 0,
+      "humiliated_after": false,
+      "humiliated_before": false,
+      "powers_after": [
+        729,
+        440,
+        122
+      ],
+      "powers_before": [
+        729,
+        440,
+        122
+      ],
+      "powers_delta": [
+        0,
+        0,
+        0
+      ],
+      "powers_requested": 100,
+      "prestige_scale": 1000,
+      "values_readable": true,
+      "verified": false
+    },
+    "checks": {
+      "all": true,
+      "binding": true,
+      "effects_contract": true,
+      "native_result": true,
+      "proof": true,
+      "public_result": true,
+      "response_verified": true,
+      "terminal_status": true,
+      "terms_verified": true,
+      "unknown_preserved": false,
+      "war_transition": true
+    }
+  },
+  "inbound_sources": {
+    "d": {
+      "experiment_id": "diplomacy-query-20261018-r55-strength-d-inbound-reject",
+      "native_text_codec": "eu4_escape",
+      "report": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-d-inbound-reject/strength-inbound-reject-001/report.json",
+        "size": 53208,
+        "sha256": "1c982039361d4b7082606d50678b6656380f0953085803dd7784f118a7663594"
+      },
+      "native_events": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-d-inbound-reject/strength-inbound-reject-001/report-evidence/native-events-slice.jsonl",
+        "size": 52805,
+        "sha256": "62e1fe94a215cb306c18cdb9681a2a356e805d010df2429d93b0e05d32aab61a"
+      },
+      "installation": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-d-inbound-reject/installation.json",
+        "size": 21980,
+        "sha256": "be713267a695458d91d7c52973680273e6e1710e9931c531405cb277c4a0001f"
+      },
+      "build_manifest": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-d-inbound-reject/build-manifest.json",
+        "size": 11282,
+        "sha256": "52e1d160d5f9be0665eda157bcc788820348d715099ff671edf5c1613d3efe3a"
+      },
+      "dll_sha256": "e6d9e31a4e2096e355e19673dec3c2046f68e3967ef37a36bf6202ec57a964cb",
+      "build_manifest_dll_sha256": "e6d9e31a4e2096e355e19673dec3c2046f68e3967ef37a36bf6202ec57a964cb",
+      "session_id": "29792-1dd5efa9500178f",
+      "sqlite": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-d-inbound-reject/strength-inbound-reject-001/report-evidence/diplomacy.sqlite3",
+        "size": 36864,
+        "sha256": "204a62e7f92f7d06ab64c1389ab51d474a24ca26055f1c60f5838fd7740151ae"
+      }
+    },
+    "e": {
+      "experiment_id": "diplomacy-query-20261018-r55-strength-e-inbound-accept",
+      "native_text_codec": "eu4_escape",
+      "report": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-e-inbound-accept/strength-inbound-accept-001/report.json",
+        "size": 53337,
+        "sha256": "c84d76c9cfd9d900508073ac051c965702ca78dc545b569f677d2b2d3b632d1b"
+      },
+      "native_events": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-e-inbound-accept/strength-inbound-accept-001/report-evidence/native-events-slice.jsonl",
+        "size": 52814,
+        "sha256": "f40c5472008167fc16942c6e7708dc753e2d1248303631f64ba1d809f24adc41"
+      },
+      "installation": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-e-inbound-accept/installation.json",
+        "size": 25823,
+        "sha256": "396aa8280e1dcd77a2ff209c130008ec413a0dcc72d2c6b8e0851745cecfe924"
+      },
+      "build_manifest": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-e-inbound-accept/build-manifest.json",
+        "size": 11282,
+        "sha256": "d77ba661b54d897bfea2def4c356c09f4c19d55292aa733eca65b302c3e7a3ae"
+      },
+      "dll_sha256": "e6d9e31a4e2096e355e19673dec3c2046f68e3967ef37a36bf6202ec57a964cb",
+      "build_manifest_dll_sha256": "e6d9e31a4e2096e355e19673dec3c2046f68e3967ef37a36bf6202ec57a964cb",
+      "session_id": "12948-1dd5efacc833826",
+      "sqlite": {
+        "path": "work/runtime/diplomacy-query-20261018-r55-strength-e-inbound-accept/strength-inbound-accept-001/report-evidence/diplomacy.sqlite3",
+        "size": 36864,
+        "sha256": "b5318d874ab5105d1f2a46a109c7bf4ef641774dbda06efecc140011be54b853"
+      }
+    }
+  },
+  "inbound_cases": {
+    "d_reject": {
+      "source": "d",
+      "request_id": "r55d_strength_reject_001",
+      "session_id": "29792-1dd5efa9500178f",
+      "native_proposal_id": 1,
+      "action_id": "peace_offer",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "decision_country": "FRA",
+      "phase": "reject",
+      "date_raw": 56549088,
+      "peace_context": {
+        "war_id": "war_ae17c04683091481_00000001",
+        "direction": "offer",
+        "original_actor": "ENG",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "show_strength",
+            "country": "ENG",
+            "beneficiary": "FRA"
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      },
+      "inspection_event": {
+        "event": {
+          "event": "native_alliance_inbound_inspection",
+          "query_id": "inbound_inspect_1116740358cf4ce19a80202bc39a816f",
+          "session_id": "29792-1dd5efa9500178f",
+          "action_id": "peace_offer",
+          "family": "peace",
+          "extra60": 0,
+          "actor": "ENG",
+          "mirror": "ENG",
+          "recipient": "FRA",
+          "phase": "reject",
+          "native_proposal_id": 1,
+          "date_raw": 56549088,
+          "pending_active": true,
+          "decision_country": "FRA",
+          "decision_country_verified": true,
+          "native_validity": true,
+          "response_rules_complete": true,
+          "war_active": true,
+          "war_readable": true,
+          "war_before": true,
+          "native_current_war": true,
+          "native_current_war_readable": true,
+          "peace_payload_complete": true,
+          "selected_terms_complete": true,
+          "term_count": 47,
+          "selected_term_count": 2,
+          "peace_context": {
+            "war_id": "war_ae17c04683091481_00000001",
+            "direction": "offer",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "show_strength",
+                "country": "ENG",
+                "beneficiary": "FRA"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "date28": 56549064,
+          "date2c": 56549064,
+          "envoy30": 3,
+          "state34": 0,
+          "variant38": 1,
+          "token3c": 206,
+          "requested_decision": "reject",
+          "reason": "none"
+        },
+        "source_line": 15,
+        "source_line_bytes": 1081,
+        "source_line_sha256": "69e30c4becb2df584521910dd248356642e636d3d6febe978747d24a7160889d"
+      },
+      "submission_event": {
+        "event": {
+          "event": "native_peace_inbound_submission_result",
+          "family": "peace",
+          "session_id": "29792-1dd5efa9500178f",
+          "request_id": "r55d_strength_reject_001",
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "reject",
+          "date_raw": 56549088,
+          "submitted": true,
+          "transport_verified": true,
+          "request_binding_verified": true
+        },
+        "source_line": 37,
+        "source_line_bytes": 339,
+        "source_line_sha256": "6fd5e40b9d4f9f025956d697c99b6f4a9854cd245e8c2511f68234a9d64c3b6b"
+      },
+      "response_event": {
+        "event": {
+          "event": "native_peace_inbound_response_result",
+          "family": "peace",
+          "session_id": "29792-1dd5efa9500178f",
+          "request_id": "r55d_strength_reject_001",
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "reject",
+          "date_raw": 56549088,
+          "native_state": 1,
+          "outcome": "rejected",
+          "war_before": true,
+          "war_after": true,
+          "war_state_verified": true,
+          "response_verified": true,
+          "request_binding_verified": true,
+          "execution_verified": true,
+          "pending_removed": true,
+          "terms_verified": false,
+          "peace_context": {
+            "war_id": "war_ae17c04683091481_00000001",
+            "direction": "offer",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "show_strength",
+                "country": "ENG",
+                "beneficiary": "FRA"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "effects": {
+            "complete": true,
+            "date_unchanged": true,
+            "currency_scale": 1000,
+            "money": null,
+            "provinces": [],
+            "war_reparations": null,
+            "show_strength": {
+              "country": "ENG",
+              "beneficiary": "FRA",
+              "humiliated_before": false,
+              "humiliated_after": false,
+              "country_prestige_before_raw": 62778,
+              "country_prestige_after_raw": 62778,
+              "country_prestige_delta_raw": 0,
+              "beneficiary_prestige_before_raw": -10990,
+              "beneficiary_prestige_after_raw": -10990,
+              "beneficiary_prestige_delta_raw": 0,
+              "prestige_scale": 1000,
+              "powers_before": [
+                729,
+                440,
+                122
+              ],
+              "powers_after": [
+                729,
+                440,
+                122
+              ],
+              "powers_delta": [
+                0,
+                0,
+                0
+              ],
+              "powers_requested": 100,
+              "values_readable": true,
+              "verified": false
+            }
+          }
+        },
+        "source_line": 48,
+        "source_line_bytes": 1391,
+        "source_line_sha256": "bf821a39b6289676a2171f1c94c7838b2a5d834013193a74964906f1fea8b656"
+      },
+      "expected": {
+        "native_state": 1,
+        "native_outcome": "rejected",
+        "pending_removed": true,
+        "terms_verified": false,
+        "war_before": true,
+        "war_after": true,
+        "country": "ENG",
+        "beneficiary": "FRA",
+        "effects": {
+          "country": "ENG",
+          "beneficiary": "FRA",
+          "humiliated_before": false,
+          "humiliated_after": false,
+          "country_prestige_before_raw": 62778,
+          "country_prestige_after_raw": 62778,
+          "country_prestige_delta_raw": 0,
+          "beneficiary_prestige_before_raw": -10990,
+          "beneficiary_prestige_after_raw": -10990,
+          "beneficiary_prestige_delta_raw": 0,
+          "prestige_scale": 1000,
+          "powers_before": [
+            729,
+            440,
+            122
+          ],
+          "powers_after": [
+            729,
+            440,
+            122
+          ],
+          "powers_delta": [
+            0,
+            0,
+            0
+          ],
+          "powers_requested": 100,
+          "values_readable": true,
+          "verified": false
+        }
+      }
+    },
+    "e_accept": {
+      "source": "e",
+      "request_id": "r55e_strength_accept_001",
+      "session_id": "12948-1dd5efacc833826",
+      "native_proposal_id": 1,
+      "action_id": "peace_offer",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "decision_country": "FRA",
+      "phase": "accept",
+      "date_raw": 56549088,
+      "peace_context": {
+        "war_id": "war_f3326e8aecdadfe9_00000001",
+        "direction": "offer",
+        "original_actor": "ENG",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "show_strength",
+            "country": "ENG",
+            "beneficiary": "FRA"
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      },
+      "inspection_event": {
+        "event": {
+          "event": "native_alliance_inbound_inspection",
+          "query_id": "inbound_inspect_6a661bf851c74c9aae61d34a31e0f2ae",
+          "session_id": "12948-1dd5efacc833826",
+          "action_id": "peace_offer",
+          "family": "peace",
+          "extra60": 0,
+          "actor": "ENG",
+          "mirror": "ENG",
+          "recipient": "FRA",
+          "phase": "accept",
+          "native_proposal_id": 1,
+          "date_raw": 56549088,
+          "pending_active": true,
+          "decision_country": "FRA",
+          "decision_country_verified": true,
+          "native_validity": true,
+          "response_rules_complete": true,
+          "war_active": true,
+          "war_readable": true,
+          "war_before": true,
+          "native_current_war": true,
+          "native_current_war_readable": true,
+          "peace_payload_complete": true,
+          "selected_terms_complete": true,
+          "term_count": 47,
+          "selected_term_count": 2,
+          "peace_context": {
+            "war_id": "war_f3326e8aecdadfe9_00000001",
+            "direction": "offer",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "show_strength",
+                "country": "ENG",
+                "beneficiary": "FRA"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "date28": 56549064,
+          "date2c": 56549064,
+          "envoy30": 3,
+          "state34": 0,
+          "variant38": 1,
+          "token3c": 206,
+          "requested_decision": "accept",
+          "reason": "none"
+        },
+        "source_line": 15,
+        "source_line_bytes": 1081,
+        "source_line_sha256": "1e5f0e235365a1d513ddbee56ed4face0e42e44ac0c547dc13e2b76d3b93ab2d"
+      },
+      "submission_event": {
+        "event": {
+          "event": "native_peace_inbound_submission_result",
+          "family": "peace",
+          "session_id": "12948-1dd5efacc833826",
+          "request_id": "r55e_strength_accept_001",
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "accept",
+          "date_raw": 56549088,
+          "submitted": true,
+          "transport_verified": true,
+          "request_binding_verified": true
+        },
+        "source_line": 37,
+        "source_line_bytes": 339,
+        "source_line_sha256": "6fa821299fb230a73dbd9fc97d5d16ab86480c3180921ed8f0c8eb23fd693ef4"
+      },
+      "response_event": {
+        "event": {
+          "event": "native_peace_inbound_response_result",
+          "family": "peace",
+          "session_id": "12948-1dd5efacc833826",
+          "request_id": "r55e_strength_accept_001",
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "accept",
+          "date_raw": 56549088,
+          "native_state": 2,
+          "outcome": "accepted",
+          "war_before": true,
+          "war_after": false,
+          "war_state_verified": true,
+          "response_verified": true,
+          "request_binding_verified": true,
+          "execution_verified": true,
+          "pending_removed": true,
+          "terms_verified": true,
+          "peace_context": {
+            "war_id": "war_f3326e8aecdadfe9_00000001",
+            "direction": "offer",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "show_strength",
+                "country": "ENG",
+                "beneficiary": "FRA"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "effects": {
+            "complete": true,
+            "date_unchanged": true,
+            "currency_scale": 1000,
+            "money": null,
+            "provinces": [],
+            "war_reparations": null,
+            "show_strength": {
+              "country": "ENG",
+              "beneficiary": "FRA",
+              "humiliated_before": false,
+              "humiliated_after": true,
+              "country_prestige_before_raw": 62778,
+              "country_prestige_after_raw": 42778,
+              "country_prestige_delta_raw": -20000,
+              "beneficiary_prestige_before_raw": -10990,
+              "beneficiary_prestige_after_raw": -10990,
+              "beneficiary_prestige_delta_raw": 0,
+              "prestige_scale": 1000,
+              "powers_before": [
+                729,
+                440,
+                122
+              ],
+              "powers_after": [
+                829,
+                540,
+                222
+              ],
+              "powers_delta": [
+                100,
+                100,
+                100
+              ],
+              "powers_requested": 100,
+              "values_readable": true,
+              "verified": true
+            }
+          }
+        },
+        "source_line": 48,
+        "source_line_bytes": 1400,
+        "source_line_sha256": "e9d527d8e14b5f96ddc1701774ada9ab76e30ee74d5ae3179335e82834bea0a3"
+      },
+      "expected": {
+        "native_state": 2,
+        "native_outcome": "accepted",
+        "pending_removed": true,
+        "terms_verified": true,
+        "war_before": true,
+        "war_after": false,
+        "country": "ENG",
+        "beneficiary": "FRA",
+        "effects": {
+          "country": "ENG",
+          "beneficiary": "FRA",
+          "humiliated_before": false,
+          "humiliated_after": true,
+          "country_prestige_before_raw": 62778,
+          "country_prestige_after_raw": 42778,
+          "country_prestige_delta_raw": -20000,
+          "beneficiary_prestige_before_raw": -10990,
+          "beneficiary_prestige_after_raw": -10990,
+          "beneficiary_prestige_delta_raw": 0,
+          "prestige_scale": 1000,
+          "powers_before": [
+            729,
+            440,
+            122
+          ],
+          "powers_after": [
+            829,
+            540,
+            222
+          ],
+          "powers_delta": [
+            100,
+            100,
+            100
+          ],
+          "powers_requested": 100,
+          "values_readable": true,
+          "verified": true
+        }
+      }
+    }
+  }
+}

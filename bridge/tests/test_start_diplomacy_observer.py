@@ -37,6 +37,137 @@ class ObserverStartTests(unittest.TestCase):
             "modules": ([{"name": "observer.dll", "sha256": "dll"}] if installed else []),
         }
 
+    @staticmethod
+    def _winerror(winerror):
+        error = OSError(f"synthetic WinError {winerror}")
+        error.winerror = winerror
+        return error
+
+    def test_initial_identity_probe_transient_errors_wait_inside_deadline(self):
+        temp, directory, _manifest, _dll = self._setup()
+        self.addCleanup(temp.cleanup)
+        clock = [0.0]
+        probe_calls = [0]
+
+        def fake_identity(_pid, _exe):
+            probe_calls[0] += 1
+            if probe_calls[0] == 1:
+                raise self._winerror(6)
+            if probe_calls[0] == 2:
+                raise self._winerror(299)
+            return self._identity()
+
+        def fake_preflight(_pid, _python, attempt_directory, _deadline):
+            return {"player_tag": "---"}, {
+                "reason": "PREFLIGHT_READY",
+                "preflight": str(attempt_directory / "preflight.json"),
+            }
+
+        output = io.StringIO()
+        with patch.object(subject, "probe_identity", fake_identity), \
+             patch.object(subject, "game_exe", lambda: directory / "eu4.exe"), \
+             patch.object(subject, "get_value", lambda _name: "python"), \
+             patch.object(subject, "_preflight_once", fake_preflight), \
+             patch.object(subject.time, "monotonic", lambda: clock[0]), \
+             patch.object(subject.time, "sleep",
+                          lambda seconds: clock.__setitem__(0, clock[0] + seconds)), \
+             contextlib.redirect_stdout(output):
+            identity, state, confirmation, reason, attempts = subject._wait_until_ready(
+                52544, {"game_sha256": "game"}, directory, False, 5)
+
+        self.assertEqual(identity, self._identity())
+        self.assertEqual(state["player_tag"], "---")
+        self.assertIsNone(confirmation)
+        self.assertEqual(reason, "unloaded_no_confirmation_requested")
+        identity_waits = [entry for entry in attempts if entry.get("phase") == "identity_probe"]
+        self.assertEqual([entry["winerror"] for entry in identity_waits], [6, 299])
+        self.assertTrue(all(entry["outcome"] == "waiting" for entry in identity_waits))
+        waiting_lines = [json.loads(line) for line in output.getvalue().splitlines() if line]
+        self.assertEqual([line["phase"] for line in waiting_lines], ["identity_probe", "identity_probe"])
+        self.assertEqual(probe_calls[0], 5)
+
+    def test_initial_identity_probe_transient_errors_obey_total_deadline(self):
+        temp, directory, _manifest, _dll = self._setup()
+        self.addCleanup(temp.cleanup)
+        clock = [0.0]
+        output = io.StringIO()
+
+        def fake_identity(_pid, _exe):
+            raise self._winerror(6)
+
+        with patch.object(subject, "probe_identity", fake_identity), \
+             patch.object(subject, "game_exe", lambda: directory / "eu4.exe"), \
+             patch.object(subject.time, "monotonic", lambda: clock[0]), \
+             patch.object(subject.time, "sleep",
+                          lambda seconds: clock.__setitem__(0, clock[0] + seconds)), \
+             contextlib.redirect_stdout(output):
+            with self.assertRaises(SystemExit) as raised:
+                subject._wait_until_ready(
+                    52544, {"game_sha256": "game"}, directory, False, 3)
+
+        self.assertEqual(str(raised.exception), "WORLD_NOT_READY_TIMEOUT_NO_INSTALLATION_ATTEMPTED")
+        waiting_lines = [json.loads(line) for line in output.getvalue().splitlines() if line]
+        self.assertEqual(len(waiting_lines), 3)
+        self.assertTrue(all(line["phase"] == "identity_probe" for line in waiting_lines))
+        self.assertTrue(all(line["reason"] == "IDENTITY_PROBE_TRANSIENT_WINERROR_6"
+                            for line in waiting_lines))
+
+    def test_initial_identity_probe_nontransient_error_propagates(self):
+        temp, directory, _manifest, _dll = self._setup()
+        self.addCleanup(temp.cleanup)
+        error = self._winerror(5)
+
+        def fake_identity(_pid, _exe):
+            raise error
+
+        with patch.object(subject, "probe_identity", fake_identity), \
+             patch.object(subject, "game_exe", lambda: directory / "eu4.exe"):
+            with self.assertRaises(OSError) as raised:
+                subject._wait_until_ready(
+                    52544, {"game_sha256": "game"}, directory, False, 5)
+
+        self.assertIs(raised.exception, error)
+
+    def test_transient_identity_then_install_enters_install_once(self):
+        temp, directory, manifest, _dll = self._setup()
+        self.addCleanup(temp.cleanup)
+        calls = {"probe": 0, "preflight": 0, "inject": 0}
+
+        def fake_identity(_pid, _exe):
+            calls["probe"] += 1
+            if calls["probe"] == 1:
+                raise self._winerror(6)
+            return self._identity()
+
+        def fake_run(command, **_kwargs):
+            if any("probe_native_state.py" in str(part) for part in command):
+                calls["preflight"] += 1
+                output = Path(command[command.index("--output") + 1])
+                output.write_text(json.dumps({"player_tag": "POR"}), encoding="utf-8")
+                return subprocess.CompletedProcess(command, 0, "", "")
+            if any("inject_probe.py" in str(part) for part in command):
+                calls["inject"] += 1
+                return subprocess.CompletedProcess(command, 0, "installed", "")
+            raise AssertionError(f"unexpected child command: {command}")
+
+        output = io.StringIO()
+        with patch.object(subject, "file_hash", lambda _path: "dll"), \
+             patch.object(subject, "game_exe", lambda: directory / "eu4.exe"), \
+             patch.object(subject, "get_value", lambda _name: "python"), \
+             patch.object(subject, "probe_identity", fake_identity), \
+             patch.object(subject.subprocess, "run", fake_run), \
+             patch.object(subject.time, "sleep", lambda _seconds: None), \
+             contextlib.redirect_stdout(output):
+            subject.main(["--pid", "52544", "--manifest", str(manifest), "--wait-ready", "5"])
+
+        self.assertEqual(calls["preflight"], 1)
+        self.assertEqual(calls["inject"], 1)
+        installation = json.loads((directory / "installation.json").read_text(encoding="utf-8"))
+        self.assertEqual(installation["installation_returncode"], 0)
+        self.assertEqual(len(installation["ready_attempts"]), 2)
+        waiting_lines = [json.loads(line) for line in output.getvalue().splitlines() if line]
+        self.assertEqual(waiting_lines[0]["phase"], "identity_probe")
+
     def test_delayed_preflight_then_injection_error_is_single_attempt(self):
         temp, directory, manifest, _dll = self._setup()
         self.addCleanup(temp.cleanup)
@@ -87,7 +218,7 @@ class ObserverStartTests(unittest.TestCase):
 
         def fake_preflight(_pid, _python, attempt_directory, _deadline):
             preflight_calls[0] += 1
-            if preflight_calls[0] <= 6:
+            if clock[0] < 7.0:
                 return None, {"reason": "PREFLIGHT_RETURN_17", "preflight": str(attempt_directory / "preflight.json")}
             return {"player_tag": "---"}, {"reason": "PREFLIGHT_READY", "preflight": "ready"}
 
@@ -107,8 +238,9 @@ class ObserverStartTests(unittest.TestCase):
         self.assertEqual(state["player_tag"], "---")
         self.assertIsNone(confirmation)
         self.assertEqual(reason, "unloaded_no_confirmation_requested")
-        self.assertEqual(len(attempts), 7)
-        self.assertEqual(scan_times, [0.0, 5.0])
+        self.assertEqual(len(attempts), 4)
+        self.assertEqual(scan_times, [0.0, 6.0])
+        self.assertGreaterEqual(scan_times[1] - scan_times[0], 5.0)
 
     def test_delayed_load_warning_uses_independent_attempts_then_queues_once(self):
         temp, directory, manifest, _dll = self._setup()

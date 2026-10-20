@@ -12,3 +12,7 @@
   its exact command before terminating it; do not stop unrelated user processes.
 - The 2026-10-05 incident involved two orphaned `pwsh` scans committing about
   9–10 GB each and inducing paging. They were stopped. Prefer bounded reads.
+
+## Workflow pointer
+
+外交批量运行和保存字段核对的检查边界见 [`docs/外交运行工作流.md`](../docs/外交运行工作流.md)。当前批次不另设专门存档重载验收；该指针不替代本文件的资源限制，也不缩减 19+19 与最终运行验收范围。

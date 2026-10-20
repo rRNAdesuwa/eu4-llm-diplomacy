@@ -1,6 +1,435 @@
 # EU4 LLM 外交桥接交接
 
-## 当前运行：R47A/B 金币与四省组合议和已接受并重载（2026-10-17）
+## R74运行验收完成（当前，2026-10-20）
+
+新增goal第5至7项已完成，本轮按第8项收尾。经济外交D实际赠礼与影响成功，最终经济保存字段全部匹配；信任／人力接受度因素已补齐；战争分F正反向query和独立保存核对均通过。统一目录47项（28外交、19议和），此前19+19常用清单与R61–R73实际验收证据继续保留。925tests/688subtests通过，真实query/execution/war fixtures已自包含。
+
+当前仅游戏PID43288/session43288-1dd60138fd31a12保留，暂停1455.11.13/raw56553384，F安装work/runtime/diplomacy-observer-20261020-r74-war-f/installation.json，DLL SHA d80ef39d66d263788c0af4df0892b4ff781e5e3b3f9aea7ebe33759327e457db。该场景来自已知R70战争保存，只有只读查询，无日期推进或外交提交。D金融进程46424已结束，D DLL9e9689e528380f22252427c6b002e7c591269653c734106f1798108e6896c84f；F相比D仅live-war-score-query.inc改变d91be0的双方参数顺序。
+
+权威结果：r74-gift-execution-20261020-002、r74-influence-execution-20261020-001均passed且不得重放；最终经济save llm_diplomacy_r74_economic_completed_20261020.eu4，SHA bdaf905b3c8e339b7a10d429e3938d0bb1425fab9b53c4f0f3efeaba839380e4；保存checker r74-economic-save-verify-20261020-002/report.json含cash/trust/influenced_by/好感25/120个月期限全部匹配，errors空。战争最终r74-live-war-queries-20261020-003/report.json各case所有check均true，FRA目标-0.40/BUR+0.40与tooltip一致；保存核对r74-live-war-save-verify-20261020-002.json passed。E初版及离线002保留方向错误，不可替代最终003。接受度汇总r74-favor-acceptance-final-20261020-001.json四公开case总值/预测/原生因素身份全通过。
+
+人类说明：docs/赠送礼物与影响国家接口.md、docs/战争分查询接口.md、docs/人情外交接口.md。复盘第62节记录实际发现的ACK缓冲区、transport漏项、semantic/raw消费、键名过滤、战争方向和operator汇总漏检；没有逐步内存监控、巨型扫描、专门保存重载或实际业务重放。所有worker与分析shell会话已结束。交付归档由work/finalize_r74_delivery.py生成work/runtime/r74-economic-war-delivery-20261020-001/manifest.json，包含最终源码、真实fixture、测试、文档和两实际DLL身份。下方为历史过程记录。
+
+## R74当前：赠礼与影响已执行保存，战争场景正在启动（2026-10-20）
+
+D DLL `9e9689e528380f22252427c6b002e7c591269653c734106f1798108e6896c84f`，92原生源文件，金融PID46424/session46424-1dd6012c9a2b066现已结束。实际请求 `r74_d_gift_pap_002`（FRA→PAP25金币）与 `r74_d_influence_sav_001`（FRA→SAV成本60、SAV信任50→55、影响true）均passed，报告分别r74-gift-execution-20261020-002、r74-influence-execution-20261020-001；禁止重放。FRA国库126468→101468→41468，终态1456.4.12/raw56556984；保存llm_diplomacy_r74_economic_completed_20261020.eu4，SHA bdaf905b3c8e339b7a10d429e3938d0bb1425fab9b53c4f0f3efeaba839380e4，三份autosave已恢复。curry代理正在独立保存checker和influencer持久字段，不需重新保存或重放业务。
+
+12项经济查询r74-economic-queries-20261020-005全部通过；gift1000资金不足、influenceLIT资金不足原生中文执行负例各一，r74-gift-invalid-20261020-001/r74-influence-invalid-20261020-001。信任/人力8项D查询r74-favor-acceptance-20261020-002完成，FRA→PAP总220/SAV250，USING_FAVORS和DIPLO_OPINION标识均verified。人力虽5年冷却不合法，preview仍独立返回。923tests/684subtests全通过，r74-python-unit-20261020-003。
+
+当前新PID24568正从R70战争保存llm_diplomacy_r70_country_money_rejected_20261020.eu4启动；同一D DLL用work/reuse_observer_build.py复制至diplomacy-observer-20261020-r74-war-e，正在start_diplomacy_observer安装一次，codec eu4_escape/confirm-load-warning。后续待ready需固定pause一次，再运行work/run_r74_live_war_queries.py --installation E/installation.json --output work/runtime/r74-live-war-queries-20261020-001，默认FRA→BUR public与BUR→FRA private。gold代理负责只读保存核对；favor代理只写docs/赠送礼物与影响国家接口.md。全部production/native冻结，root处理真实缺陷。
+
+A真实ACK4036字节，4096buffer无空间追加R74字段；B扩大8192已验证。B gift首次请求r74_b_gift_pap_001（r74-gift-execution-20261020-001）因transport名单漏gift/influence导致NATIVE_TRANSPORT_PROOF_MISSING；后续generic entry实际UNAUTHORIZED_FRA_GIFT拦截，无结算。D补两vtable后才完成正例。C未安装，仅补favor_resource无效时也可preview，D沿用；不要重新安装或将失败请求冒充已执行。B停止SAVcurry请求r74_b_stop_curry_sav_001已执行；一次35天推进advance-context-2de23c7218d547e8b14de3c202d969b1已完成；B准备保存llm_diplomacy_r74_ready_20261020.eu4用于D新DLL继续，禁止重放stop/推进。原生13gift/15war合同与构建已过。
+
+## R74进程已预先启动，尚未注入（当前）
+
+root已脚本关闭R73B PID3228，从已核对R73终态保存启动R74新进程PID32184；`r74-game-preparation-20261020-001/report.json`。尚未安装任何DLL，等待剩余war接线完成后统一构建，再使用start_diplomacy_observer的eu4_escape/confirm-load-warning/ready流程安装一次。没有新业务或日期推进。这样资产载入与源码整合可重叠；不要向32184注入旧R73 DLL，也不要重复启动另一个游戏。
+
+Gift/Influence原生与Python独立模块已完成，原生13checks+syntax通过，Python73targettests通过。root发现并交native修正的influencer向量应直接读country+dc8/dd0/dd8；单方raw0的序列化映射与Pythonexecuted已对齐。剩余gold代理完成war辅助event的身份和goalpresence、helper接线，再由curry整合driver/caller/cap。Python代理正在接辅助event并公开为war_context.war_score，不新增action/wire。root三次REA已补R73接受度完整合同，curry已将两preview及四固定键并入R74。root另一次REA1414bd100数学确认：total/max cap scale1，goal/overviewcap scale1000，证据r74-live-war-score-contract-20261020-001/scale-contract.md；全部REA会话已完成，cache空闲。
+
+root新增运行器work/run_r74_economic_queries.py（12项批查，含原生资源和完整公共投影匹配）、run_r74_economic_execution.py（两动作及准备时stop_curry，支持resume只读journal）。只py_compile，尚未运行。金融场景baseline源R73保存：FRA现金208.015/PAP6.359/SAV72.779，适合FRA→PAP赠礼25的资金方向正例。金融/接受度在此场景运行；war使用既有R70战争场景，同一不可变R74DLL另建新场景，不为消费修复或保存验收重载。全回归和DLL构建等全部源文件稳定后一次完成；原生build务必--reason-metadata，构建脚本会从work/native编译后复制源码，故期间代理必须停写源码。
+
+## 当前R74开发分工（R73已冻结归档）
+
+R73交付已实际生成 `work/runtime/r73-favor-delivery-20261020-001/manifest.json`，255文件、910tests/682subtests、10项保存字段全通过。不要用正在进入R74的当前production源码重新覆盖R73归档。
+
+R74进行中：Luna-Max `/root/r71_curry_contract` 独占gift/influence相关全部work/native修改（driver、wire、ledger、query、transport、execution、result和C++tests）；`/root/r71_favor_family_contract` 独占bridge相关生产代码与tests。两者直接约定query/submit wire、ACK和native JSON合同后实现，不等root再批准。公共金额键为ASCII `ducats`，整数>=25且25倍、最大2147475，raw=ducats*1000；动作 `send_gift`、`influence_nation`，initiate-only单方、接受度不适用。native搭档先提出schema再与Python达成一致；root等精确字段后写operator并统一构建/游戏验收。
+
+`/root/r71_gold_native_lifecycle` 目前仍做战争总分／累计目标分尺度、完整tooltip复用及Trust/Men +120 preview的有界静态研究，不改现有native。累计目标分field*1000/1000只证明保留原字段单位，不能据此认定scale1；需核实UI formatter1414bd100。战争分优先作为已选peace query的war_context内信息复用同一战争，避免新造外交动作与新wire；固定whole_war满足本轮要求。若gold代理开始原生实现，只能拥有新live-war-score-query.inc/.h及对应新test；driver和现有peace-context改动须与curry协调。原生preview合同一到交curry同批整合。R74尚未构建/安装，当前游戏仍为R73B、1456.3.8暂停；root没有发新业务。gift/influence相关代码完成后再统一全回归、构建和准备场景，不在中途重跑R73归档。
+
+## 当前R73：六条信任／人力响应已运行，集中收尾（2026-10-20）
+
+当前PID3228/session `3228-1dd6006ee2dc2bc`，安装 `work/runtime/diplomacy-observer-20261020-r73-trust-men-b/installation.json`，DLL SHA `f2c4e4aa4da75b84259b90bd5a5814829285a798f4ac7ef8a050031cea392748`，89份不可变构建源码。POR玩家、FRA受控，暂停1456.3.8/raw56556144。下方R72/R71进程均已结束。安装记录的codec已从utf8修为eu4_escape，原记录保留在 `r73-codec-configuration-20261020-001`；Python修复沿用同一进程。以后启动明确带 `--native-text-codec eu4_escape --confirm-load-warning --wait-ready 60`。
+
+以下业务均各执行一次，禁止重放。权威目录均在work/runtime：
+
+| 请求号 | 实际响应 | 报告目录 |
+| --- | --- | --- |
+| `r73_b_trust_outbound_pap_001` | PAP原生AI接受，PAP对FRA信任50→55，FRA持有PAP人情23.383→13.383 | r73-trust-outbound-20261020-001 |
+| `r73_b_trust_reject_pap_001` | FRA的LLM拒绝，信任50、人情14.406不变 | r73-trust-inbound-reject-20261020-001 |
+| `r73_b_men_reject_sav_001` | FRA的LLM拒绝，人力和人情10.346不变 | r73-men-inbound-reject-20261020-001 |
+| `r73_b_men_outbound_sav_002` | SAV原生AI接受，SAV→FRA转移1764人，人情23.086→13.086 | r73-men-outbound-20261020-002 |
+| `r73_b_trust_accept_sav_001` | FRA的LLM接受，FRA对SAV信任50→55，人情10.461→0.461 | r73-trust-inbound-accept-20261020-001 |
+| `r73_b_men_accept_pap_001` | FRA的LLM接受，FRA→PAP转移1698人，人情14.323→4.323 | r73-men-inbound-accept-20261020-001 |
+
+六条均有request_binding_verified/response_verified/execution_verified、资源公式和journal重开。入站四份提议均已移出队列。人力outbound001因上一笔信任请求耗尽FRA外交官而未提交，明确NATIVE_DIPLOMAT_UNAVAILABLE；保留为真实负例。另 `r73_b_invalid_trust_gen_001`、`r73_b_invalid_men_lit_001` 因真实人情／意见条件拒绝，均未提交。
+
+三次日期推进全部完成，不可重放：B/advance-context-227c11f62ad5487b9c0cfdd770a9fbcd（1月2→13），5b6f1a35522f45539748537560a19c2b（1月13→2月4），9972999f61e9454482dcfba20698f68f（2月4→3月8）。业务保存 `llm_diplomacy_r73_trust_men_completed_20261020.eu4`，43,301,137bytes，SHA `85447c15338b144d40e466d6d3677286feeef349e77c1ea8daa8e48798e3c4f9`。B/save-observer-report-1792441801909711800.json，三份autosave已恢复。五条终态资源查询 `r73-final-resources-20261020-001` 全有效且同日；PAP对FRA信任等待期间55→54，所以最终字段以同日查询核对。第一版savechecker001仅三项信任失败：应读trust_value，默认50不显式写出；另7项favors/manpower全部匹配。原生writer a66770在a668b0比较0x32后跳过保存，缺省50已由准确指令证明。最终 `r73-final-save-fields-20261020-002.json` 的10字段全部匹配，errors空；使用同一保存和已有SHA，没有重做业务。
+
+R73最终生产回归 `r73-final-python-unit-20261020-001/report.json` 通过910tests/682subtests；初轮903/666保留。查询最终消费报告 `r73-favor-queries-20261020-004/report.json` 为16cases、0game/native query/submit，003保留上一修复。新增5条query与6条最终verified execution记录已自包含保存到bridge/tests/fixtures/r73_favor_queries_real.json与r73_favor_execution_real.json。最终Python明确区分已安装执行支持、授权和游戏合法性，并为VALIDITY/COMMON/INITIATION首项失败显示原生中文诊断。curry代理已完成默认50证据与gift/influence设计；gold_native继续战争分尺度和Trust/Men preview。R73归档 `r73-favor-delivery-20261020-001/manifest.json` 引用B的89份不可变原生源码，保存本批Python快照。
+
+R73六响应与持久化证据收尾后，仍须补信任／人力的原生接受度预览和因素（当前query预测unknown），与R74赠礼、影响国家和war score同一相关构建接入，避免单项重启。赠礼+40金额默认0，UI增减25/100、raw*1000，正值25倍；gift selector2948/vt1c7f450、influence346e/vt1cb3cf8。live d91be0总分+完整说明、d932d0累计目标分；不可把乘1000再除1000误认定原字段scale1，正在核实UI formatter。不要为不在要求内的daily增量扩大研究。完整goal active。
+
+## R72：获取人情已运行，R73信任／人力正在开发（2026-10-20）
+
+当前B PID44716/session `44716-1dd60023e5c1458`，安装 `work/runtime/diplomacy-observer-20261020-r72-curry-b/installation.json`。DLL SHA `701ae856bccf405dc7e9eb54068dd2cd6717efde897263549ef220e2a4796538`，89源码。POR玩家、FRA受控，暂停1456.1.2/raw56554584；下方R71进程16048和R72A45744已结束。R72三次实际操作已完成，禁止重放：`r72_b_curry_start_pap_001`、`r72_b_curry_start_sav_001`、`r72_b_curry_stop_pap_001`。权威报告 `r72-curry-execution-20261020-002/report.json`，三次task false→true、false→true、true→false，绑定和journal重开通过。
+
+8项初始查询见 `r72-curry-queries-20261020-001/report.json`，A与B仅sender baseline读取不同；查询源保持相同。A首次实际请求 `r72_a_curry_start_pap_001` 被 NATIVE_RELATION_BASELINE_UNVERIFIED 拒绝且未提交，原因是sender baseline分派漏了execution_read_after，B已补。A DLL SHA `3de30aa5ef60d381b0d562f8990e6c2971ac884421bbf3b9a6835cec3da3a180`。两条无授权stopSAV（normal/direct）见 `r72-curry-authority-20261020-001`，两项非法执行见 `r72-curry-invalid-20261020-001`：重复开始SAV为 NATIVE_CURRY_TASK_ALREADY_ACTIVE，停止PAP为 NATIVE_CURRY_TASK_NOT_ACTIVE，均未提交且journal重开一致。非法原因由已验证的原生任务状态投影，Python修复沿用B进程。
+
+终态保存 `llm_diplomacy_r72_curry_completed_20261020.eu4`，43,063,044bytes，SHA `0184ae0b25c97ce0511303dcd141cb0bc0ef711d738335d6240fae522e675b68`；B/`save-observer-report-1792439224967711000.json`，三份autosave已恢复。独立checker `work/verify_r72_curry_save.py` 最终 `r72-curry-final-save-20261020-002.json` passed/errors空：PAP外交官118→183返程，SAV183→205仍为发往目标的任务；同一存档的FRA/PAP/SAV首都用于独立核对方向。001将带curry action_token的返程构造误判为仍active，错误证据保留并由002引用。没有专门保存重载、日期推进或重复业务。
+
+生产回归 `r72-final-python-unit-20261020-003/report.json` 为894tests/666subtests；001错误扫描工作区历史归档导致1279个收集错误，002三项旧目录数量断言未更新。总数只在test_diplomacy_tools维护，其他入站／宿敌测试改验各自语义，后续统一执行 `python -m pytest -q bridge/tests`。C++ Curry合同9项、authority ledger422项已通过。R72 Python与operator的10文件已不可变快照到 `r72-curry-delivery-20261020-001/files`，其身份见同目录python-source-snapshot.json。当前工作区正在R73修改，R72归档只使用这些快照及B构建89份原生文件，不能用当前源码重新标记成已运行R72。
+
+正在工作：`/root/r71_gold_native_lifecycle` 独占native实现R73 trust/men；`/root/r71_favor_family_contract` 独占diplomacy.py/catalog及资源模块与测试接入R73；`/root/r71_curry_contract` 负责R72最终归档，均为Luna-Max。R73两动作采用空参数的原生默认选项；新能力为native_favor_trust_query/submission/native_inbound_favor_trust_response及men对应声明。query native_favor_trade与result favor_trade必须绑定kind=trust/men、实际action与before/after资源；bridge/favor_resources.py已实现严格公式校验。trust recipient country+1510 actor槽*.48+1e byte0..100，favors+20、成本action+40、增量+44；men country+db8按人数，amount4f6690、成本global233f3c8*1000。原始合同见 `r72-favor-family-init-20261020-001/report.md`、`r72-favor-resource-contract-20261020-001/report.md`。仍需合并、构建、完整双向预检和实际接受／拒绝，不把模块或目录当运行能力。
+
+后续入口已具体化：赠礼selector2948/vtable1c7f450/effect539570/rule53a630/display53a8d0，金额+40、48字节析构129500；影响国家selector346e/vtable1cb3cf8/effect7c35b0/rule7c4430/display7c48a0，40字节析构129450。当前战争分及完整说明来自d91be0，累计目标分helper d932d0，UI调用证据14933f0。见 `r72-gift-war-xrefs-20261020-001/contract.md` 与4份REA缓存查询。该批root查询均已结束；资源代理后续两次查询也已结束，缓存锁释放。完整goal active，接下来的工作沿新增第5至7项推进。
+
+## R71：人情换金币三条实际路径已通过，继续剩余新增条目（2026-10-20）
+
+当前 H 为 PID16048/session `16048-1dd5ffc3cfd97ac`，安装 `work/runtime/diplomacy-query-20261020-r71-favor-gold-h/installation.json`。POR 玩家、FRA 受控，暂停 1456.1.2/raw56554584。DLL SHA `a1730c5a961e7b43b13f6f14d4a43733e45ce2651c83efdda17a043b2c38d638`，89 份源码，来自 E 构建；F/G/H 复用同一不可变构建。下方所有旧进程已结束。完整 goal 仍 active；金钱兑换完成后直接推进 Curry／Trust／Men，再到赠送礼物、影响国家及战争分。当前调用与结果说明见 [docs/人情外交接口.md](docs/人情外交接口.md)。
+
+已完成请求各只执行一次，沿用报告，后续禁止重放：
+
+| 请求号 | 方向与实际结果 | 权威报告（均在 work/runtime） |
+| --- | --- | --- |
+| `r71_d_favor_outbound_pap_002` | FRA→PAP，PAP 原生 AI 接受，金币 12.927、人情 33.632→23.632 | `r71-favor-outbound-20261020-002/report.json` |
+| `r71_g_favor_accept_sav_001` | SAV→FRA，LLM 接受，金币 41.508、人情 20.231→10.231 | `r71-favor-inbound-accept-20261020-001/report.json` |
+| `r71_h_favor_reject_lit_001` | LIT→FRA，LLM 拒绝，金币及 20 人情均保持原值 | `r71-favor-inbound-reject-20261020-001/report.json` |
+
+三条结果均已核对完整请求绑定、原生响应、资源差额及结果 journal 重开。两个入站提议均已移出待决队列。非法执行 `r71_favor_invalid_gen_002` 取得具体原生中文原因，未提交，见 `r71-favor-invalid-execution-20261020-002/report.json`。原始查询8项见001；完整公开投影修复只复用事件，最终为 `r71-favor-queries-20261020-002/report.json`（0次API调用）。PAP 原生可用正例与其他真实禁止分别见003、D单项004；接受度141，因素50与91。稳定键 USING_FAVORS/DIPLO_OPINION 已由静态证据确认，公共 identifier_verified 仍 false，下一次相关 native 构建可补标识捕获，不单独重启当前金钱实验。
+
+最终保存 `llm_diplomacy_r71_favors_completed_20261020.eu4`，43,062,378bytes，SHA `f736539b7802943a943d878c2ae1ef2f0f2647487d749897766b867da005fc2f`。保存报告 H/`save-observer-report-1792436687475297900.json`；独立核对 `r71-favor-inbound-final-save-20261020-001.json` 的 errors 为空，三项国库、两项人情均 match。该 checker 合并 G/H 原始事件，正确保留 SAV 接受后的结果。D 出站保存 checker 为 `r71-favor-outbound-save-20261020-001.json`（三项），G 接受保存 checker 为 `r71-favor-inbound-accept-save-20261020-001.json`（三项）。只引用已取得结果，无需再读存档或新建回读进程。三个原始自动存档已从 D/save-backup 恢复，目标先与 H 备份身份比较，报告 `r71-autosaves-restored-20261020-001.json`；不要重复恢复。
+
+构建与失败归因：初次编译发现 favor-state.inc 重复 include，保留 alliance-query 中的一处后 B 成功；B/C 为 SHA315d6d868c617a637b93779beb62b83395d16826ecca067ceb28661318897753。C 查询可用但首次发起被 NATIVE_TRANSPORT_PROOF_MISSING 拦下，原因是 alliance-transport.inc 未列入 favor_gold vtable。D 补齐这一行后实际业务接受，D DLL SHA `33d4eaa0d61d2cd270812c8cb530da1c867d8a00ea38b002fe5dff9eef5af683`；后续 E 才增加按 PAP/SAV/LIT 分别一次的 operator fixture 使用额度。业务生产合同沿用 D，E/G/H 的不同构建身份单独登记。原生 hook 使用 +d0/8f440，勿混用 +b8 AI 接受谓词。
+
+场景准备的全部改动与真实结算分开记录：BUR 白和通过统一入站响应真正结束战争，报告 `r71-scene-peace-20261020-001/report.json`；`r71-favor-scene-20261020-001/report.json` 准备国库、人情和旧发送冷却。FRA 原生月度收支 helper 的净值为 −25.738，现金充足仍不合法；`r71-favor-budget-scene-20261020-001.json` 仅降低陆军维护，由游戏推进50日并重算预算。该推进已完成，F/`advance-context-1f5ca77325f94cc2a0ca4fbf64844264/report.json`，禁止重放。`r71-favor-inbound-ready-scene-20261020-001.json` 准备入站资金及 LIT 关系；意见缓存未同步的问题由 `r71-favor-cache-scene-20261020-001.json` 修正，后者从 G 已接受保存出发，仅改 LIT 缓存和意见日期，保持金币／人情原值。脚本中缓存槽97只对该场景已核验的国家顺序适用。两条入站业务结算由 native 独立完成。
+
+启动无需再次请求解锁。`tools.start_diplomacy_observer` 的 `--confirm-load-warning --wait-ready 60` 已在 C 至 H 成功通过已核验回调确认载入警告；启动资产加载期间的短暂读取失败等待 ready 即可。新 DLL 使用新进程并安装一次；F/G/H 为需要新初始场景而载入保存，未增加专门保存重载验收。历史 WM_CHAR c 是已观察警告的备用方法。固定实验入口 `TEST_ONLY FAVOR_GOLD_TO_FRA PAP|SAV|LIT` 写入 alliance-inbound-test.req，使用额度按提出国分别一次；先用 operator 私有反向查询确认原生规则和空闲外交官，再调用实验入口。
+
+测试：`r71-final-python-unit-20261020-002/report.json` 为 870tests/653subtests；001 的四项失败是动作目录硬编码数量40/21未更新，已修成41/22并明确检查 gold 动作。生产 Python 此后未改。新增可移植真实执行 fixture `bridge/tests/fixtures/r71_favor_execution_real.json` 和测试另通过7tests/5subtests，报告 `r71-favor-real-tests-20261020-001/report.json`。C++ favor 合同16项与入站格式器也已通过。三条真实记录覆盖公开余额范围、前后金币／人情不符的拒收。交付脚本 `work/finalize_r71_favor_delivery.py`，清单 `r71-favor-delivery-20261020-001/manifest.json`，进度 `r71-progress.json`，复盘第59节记录实际问题及可省流程。
+
+下一步资料：`r71-curry-contract-20261020-001/report.md` 确定 selector3acc、vtable1c7aef8、规则5ade90、效果5ace80及任务关系vector+158/count164；`r71-favor-family-contract-20261020-001/key-findings.md` 确定 trust3bd3/vtable1c80c60 与 men3bcf/vtable1c80ff0。信任对象的 +40 favor费用／+44 trust增量需明确原生初始化，再批量实现；人力 amount4f6690，费用配置233f3c8。金钱因素 metadata 证据在 `r71-favor-reason-contract-20261020-001/report.md`；预算 helper 证据在 `r71-favor-budget-contract-20261020-001/report.md`。继续仅查询必要小函数／持久 Ghidra 缓存，遵守有界分析，不重复大型反汇编与逐步内存检查。
+
+## R70：国家条款加金币已实际查询、发送并取得拒绝（2026-10-20）
+
+当前 PID37120/session `37120-1dd5fe79d982e12`，安装 `work/runtime/diplomacy-query-20261020-r70-country-money-a/installation.json`，DLL SHA `140d59b1e4025af28fd004c6d7f967580a5ddd8790151b4691bde624ab1be4a0`，88源码。POR玩家、FRA行动国，暂停1455.11.13/raw56553384。下方R69进程41296已结束，历史报告均保留。完整goal保持active。
+
+原生QUERY18允许m+nzuie，调用现有money setter，再复用国家条款构造、完整费用规则与载荷复制；EXEC10原有parser已经支持mn。新ACK `native_peace_country_money_query` 只在R70宣告，旧安装仍立即说明能力不足。Python两处入口按ACK选择，country validator复用金币合同；其他旧条款与国家混合仍未启用。
+
+查询报告最终 `r70-country-money-queries-20261020-007/report.json`：16项（战争发现+15份原生结果），两方向释放国+money1都实际应用；另有FRA受益91/193及releasePIC+annexBUR+money的三项未应用负例。007复用16项记录、0次API调用，逐份校验country原始事件并重做完整工具投影，不只替换consequences。003在最后一项遇到瞬时SESSION_UNREADY；004仅补该项，发现组合校验器误拒；005只重投影consequences、未修公开legality，不能作为最终公开验收；006严格重校验发现annex负例仍被拒。最终Python修复不改DLL、不重发查询。
+
+具体消费修复：当其他请求条款未应用时，金币单项虽匹配，引擎仍会跳过整份和约接受度评估；country validator现在允许这种有证据的跳过。FullAnnex requested_candidates_found=false可以同时存在9/11个部分匹配候选，selection_applied=false是合法的不可用观测；不能强制所有请求都已应用才接收事件。完整工具投影使请求未应用、费用不可用、CB汇总unknown，保留真实原生原因。
+
+实际提交 `r70-country-money-execution-20261020-001` 是JSON文件（无扩展名），证据在同名 `-evidence/`。调用 `work/run_r70_country_money_execution.py` 复用country batch，只到outbound，唯一请求 `r70_country_money_001_outbound`，FRA→BUR要求释放PIC+1金币，完整复检available后提交，BUR native_state1/rejected，request_binding_verified及response_verified均true；money paid0、PIC owned0、BUR owned11、省88/89 owner/controller均BUR、war_aftertrue。不要重发此请求。
+
+为消除原生发送冷却推进26日，artifact `diplomacy-query-20261020-r70-country-money-a/advance-context-bdb62b46c8ed4b638a10014bc1490d6b`，6segments已完成，勿重放。终态保存 `llm_diplomacy_r70_country_money_rejected_20261020.eu4`，SHA `ffa91dbd2a2d544b18d586a895bb9b0c2b90e94ece47b2c74507555b8f58c2e0`、43,165,756bytes、POR1455.11.13，保存报告A/save-observer-report-1792429708814279000.json。`r70-country-money-save-fields-20261020-001/report.json` 16项通过，独立流式核对省88/89与FRA–BUR原战争，未把推进期间的自然变化归因于议和。journal重新打开完整结果相同，`r70-journal-reopen-20261020-001/report.json`。三份autosave已恢复，无专门重载。
+
+启动方法已明确：截图中的成就警告需要向已绑定游戏窗口发送 `WM_CHAR` 小写c。keybd_event、SendInput及物理点击没有激活按钮；WM_CHAR一次完成载入。工具 `tools/confirm_observed_achievement_warning.py --pid <pid> --hwnd <hwnd> --observed-achievement-warning` 只发该消息，随后正常验证载入和暂停；不要再用未含WM_CHAR的键盘方法反复尝试。A只注入一次，R70查询001/002为载入前0case失败，后续均同进程运行。
+
+回归 `r70-final-python-unit-20261020-001/report.json`：853tests/647subtests通过，C++ wire16项通过。新增109KB真实fixture与4项回放，含三条款负例。交付 `r70-country-money-delivery-20261020-001/manifest.json`，进度 `r70-progress.json`；人类文档与复盘§58已更新。原生源码身份复用本次build的88份哈希，不为Python修复重算。
+
+新goal研究实际进展：人情换金币已确认factory35a8b0→35d240、selector3bce、vtable1c80980，rule4f4f10、amount4f4010、effect4f40d0、desc4f5980、requirements4f56b0；静态actions索引53不能当内部selector。证据 `r70-favors-contract-20261020-001/report.md` 与 `r71-favor-gold-vtable-20261020-001/report.md`，后者用PE指针/跳表和一次clone缓存查询闭合构造。尚未把该对象接入production。Curry/Trust/Men、gift/influence与live战争分未定位完整producer；分别有R70静态报告和战争分xref输入。继续从真实对象/producer推进，不给目录加空桩。全部代理、REA及root shell session已终态，当前只保留暂停游戏。
+
+## R69：具体条款正当性与释放国家完整净OE（2026-10-20）
+
+当前 A PID41296/session `41296-1dd5fe0221493ed`，安装 `work/runtime/diplomacy-query-20261019-r69-justification-netoe-a/installation.json`。DLL SHA `d79963c661270d0bcc273cf3b3df118dd10b897c81372e13dd49c7f594cfd355`，88份native源码；POR玩家、FRA行动国，暂停1455.10.18/raw56552760。R68 B已结束。源存档复用 `llm_diplomacy_r68_diplomats_returned_20261019.eu4`，SHA `ba85ef985d29dd1f4a8a4aa2263640af77d9c2784f979c6f84548d168bf2f091`。本批无业务提交、日期推进、新保存或专门重载；完整goal保持active。
+
+新增 `peace-justification-query.inc` 与 `bridge/peace_justification.py`，从实际条款原生谓词导出正当性；`peace_consequences.justification` 提供逐对象状态及已选汇总。普通谓词第二参数是offer+20的方向字节，准确调用者证明见 `r69-cb-contract-20261019-001/direction-correction.md`，初版报告对此保守结论已被修正。贸易、释放附属、转移附属三个特殊谓词分别完成串行缓存查询，均已结束。常用条款采用18类实际对象；其他内部类型计入unsupported，候选集全局完整性保持false，已知行各自complete。白和平零金币占位项的原生selected位不再污染公共汇总，原位保留在native_selected。
+
+释放国家按目标country+1378完整核心链和来源owner枚举，加入同一OE净变化计算：PIC转出[88,89]使BUR120→0；HAI[91,1743,1866]与LUX[94]使BUR保持120；让步释放CHP转出法国[185,186,4390]，法国保持0、BUR保持120，各释放国取得本国核心新增OE均为0。`r69-release-oe-save-fields-20261020-003/report.json` 独立按存档owner/cores扫描，4/4通过、0差异；没有用native列表作为扫描输入，也未重hash源存档。
+
+最终 `r69-peace-rule-queries-20261020-004/report.json` 有14项：战争发现、12份取得原生结果的查询（含FRA请求SAV受益省91/193的两项未应用负例）、1项国家条款混合金币的能力边界。12份原生载荷查询后保持不变；省88割给FRA为justified，释放PIC/HAI/LUX/CHP为unjustified。004复用003的13项，仅重新调用混合组合的公共接口，不重发成功查询。002保留早期运行器None错误；003保留混合组合QUERY_WIRE_INVALID/超时。
+
+混合组合真实缺口：QUERY18只接受nzuie、amount=-1及旧条款空字段，先前Python会生成mn/1000无效文本。现已在两处wire入口提前返回 `NATIVE_PEACE_EXECUTION_MIXED_INSPECTION_UNAVAILABLE`；国家条款彼此组合继续支持。下一次相关原生构建要同时扩展国家条款与金币等旧条款的查询和执行，不能把本批分类检查通过当作混合组合已实现。19类兼容 `r69-peace-family-20261020-001/report.json` 21calls通过。
+
+启动时载入探针32次没找到真实“无法获得成就”警告；PrintWindow截图确认游戏响应正常。鼠标消息和物理点击未关闭弹窗，随后按截图所示快捷键C完成载入。安装器中途在未载入状态装入一次DLL，后续同一进程就绪并取得真实查询，不重复注入。保留A目录startup截图、resume-output及首次失败查询001，不因安装记录ready_reason=unloaded便否定后续运行证据。没有内存轮询或游戏崩溃。
+
+R68暂缓的两项错误优先级改进已随A编译：宣战先检查外交官，generic只对需要外交官的动作读取数量。整合回归 `r69-final-python-unit-20261020-002/report.json`：848tests/639subtests通过；001是误用系统Python缺pytest，未执行产品测试。真实fixture约195KB，新增CB、完整工具回放及协议边界测试。交付 `r69-rules-delivery-20261020-001/manifest.json`、进度 `r69-progress.json`；人类文档见[议和条款正当性与释放国家净OE](docs/议和条款正当性与释放国家净OE.md)，复盘§57。
+
+goal新增第5至7项已完整读取并纳入PLAN：获取人情/兑换信任金币人力；赠款/影响国家；战争当前分、组成明细和战争目标累计分。`r70_favors_contract`负责原生人情入口，`r70_warscore_contract`负责已有战争分资料导航，结果归各自20261020报告目录；尚不列为运行支持。下一轮先收这些结论，结合赠款入口组成相关构建，继续完整goal。
+
+## R68外交官批次：实际耗尽、拒绝、召回和返回（2026-10-19）
+
+当前B PID16300/session `16300-1dd5fd738460ece`，安装 `work/runtime/diplomacy-query-20261019-r68-diplomat-b/installation.json`；DLL SHA `b642715d7c9c6e31bbbdb1ebb3f4dc743be079bb59926686d05f9409a0cf0609`，87源码。POR玩家、FRA行动国，暂停1455.10.18/raw56552760。下方R67 D及R68 A已结束。完整goal保持active。
+
+本轮完整读取goal新增第4项。新模块 `bridge/diplomat_availability.py` 将原生需求/数量接入公共合法性；declare/peace新增同样资源字段和执行前显式拒绝。generic/declare等待器消费结构化native拒绝，避免忽略拒绝后等待超时；API早期禁止和journal结果优先保留外交官具体code/text/source。`bridge/peace_rejection.py`提供明确中文外交官原因。
+
+A DLL `e4754941bfc8c1214aff306b5703e697eab3aad6e241b7fe940f50b88fb5b029`，PID30164，从R67终态存档建立场景。`r68-diplomat-batch-20261019-001/occupy`实际start improve MLO request `r68_start_improve_MLO_001`，free1→0。zero发现insult/rival MOR固定256槽位旧缺陷；B改insult_country resolver及vassal关系helper用CountryDB实际count，保留handle身份检查。A baseline因运行器noCB beneficiary误用---失败，没有业务执行；已修FRA，初始improve query保留，不重复整批baseline。
+
+B从新保存 `llm_diplomacy_r68_zero_diplomats_checkpoint_20261019.eu4` 建立0外交官场景，SHA `969e5c7f4e1931b20715d0d9c8252b3535d1ec4e837777ff633032ddd3f84365`。`r68-diplomat-batch-20261019-002/zero` 19动作+peace discovery/selected共21查询，所有检查passed；3个API请求invalidated，3个freshnative返回明确NATIVE_DIPLOMAT_UNAVAILABLE且binding完整，均submittedfalse。`r68-journal-reopen-20261019-001/report.json`重开journal后三结果完全一致。不要重放这些请求。
+
+`...002/recall`实际stop MLO，request `r68_stop_improve_MLO_002` executed。MLO返回raw56552736，从BUR返回raw56552640；按已读日期推进至56552760（3segments completed），artifact B/advance-context-8e1a74bf05e945229bfb247bba42f285，勿重放。`...002/recovered` free2、外交官不足原因清除。两个旧任务id0/1未改。
+
+终态保存 `llm_diplomacy_r68_diplomats_returned_20261019.eu4`，SHA `ba85ef985d29dd1f4a8a4aa2263640af77d9c2784f979c6f84548d168bf2f091`，43,101,337bytes，1455.10.18/POR。B/save-observer-report-1792420921666356800.json，三份autosave已恢复。流式保存检查 `r68-diplomat-save-fields-20261019-002/report.json` 11项通过，001为原始观测；每份只保留约72KB FRA块，不整读gamestate。无专门reload。
+
+19类peace兼容批查001仅FullAnnex validator失败：native object_unchanged实际true，8/11候选匹配FRA、另3省受益ORL/SAV，Python误拒部分候选。已修Python两处候选合同，并由 `work/reproject_r68_annex_partial.py` 离线投影到002，19/19parity passed，0次重查/业务；FullAnnex保持unavailable及completefalse。001保留。人类文档 [外交官可用性与失败原因](docs/外交官可用性与失败原因.md)。
+
+整合回归 `work/runtime/r68-final-python-unit-20261019-001/report.json`：836tests/633subtests通过，耗时18.922s。新自包含真实fixture约186KB和12KB，新真实测试6+3项；另14项外交官unit及6项integration均纳入本次全套。交付 `work/runtime/r68-diplomat-delivery-20261019-001/manifest.json`，进度 `r68-progress.json`，finalizer `work/finalize_r68_diplomat_delivery.py`；复盘§56已记录实际漏门、国家范围和部分候选校验问题。所有工具session及代理已终态，只保留暂停B游戏。下一批继续具体对象CB正当性、释放国家完整净OE和余下完整goal。静态审阅两项读取故障/错误优先级改善登记在复盘，随下一次相关原生构建处理，不为未触发读取故障另起一轮安装。
+
+## R67运行：盟主为其他参战国选择省份及盟友不想要原因（2026-10-19）
+
+当前 D：PID16032/session `16032-1dd5fd1f7c1d3eb`，安装 `work/runtime/diplomacy-query-20261019-r67-ally-occupations-d/installation.json`。复用R66 C的同一DLL `a4e198dfbcb0e578be8d06906df3a78a81de9516967a41b896623e3d0be71fae`、87源码，没有再编译。POR玩家、FRA盟主，暂停1455.10.11/raw56552592。完整goal仍active；下方C已经结束。
+
+新场景只改3行controller：88→ORL、91/193→SAV；三个owner仍BUR。原始FRA–BUR战争唯一，FRA original_attacker，ORL/SAV在attackers，SAV promised_land=yes。文件与变更证明 `work/runtime/r67-ally-occupations-scene-20261019-001/report.json`，SHA bda4fdeb5f7044515b3e8ea6025c0b6691f2f9e44f866cb021ab7c3e9f457e05。
+
+四项真实查询9检查通过 `work/runtime/r67-ally-peace-queries-20261019-001/report.json`：ORL88 available；SAV91/193 unavailable，原生中文明确不想要及无法核心化；FRA94也真实不可核心化。非法执行7检查通过 `r67-ally-blocked-execution-20261019-001`，API结果重读和fresh native均保留同一盟友原因，submitted=false。合法ORL88+money1(FRA claimant)只发送一次，唯一请求r67_d_ORL88_money1_001，BUR nativeAI rejected，出站报告17检查通过 `r67-ally-outbound-execution-20261019-001`。不要重发该业务。
+
+集中保存 `llm_diplomacy_r67_ally_request_rejected_20261019.eu4`，SHA7c758ee207a503dbbf2895e5be4b020384bd362b1a7e141a01cbe7d13bfc50ed，43,074,210bytes，1455.10.11/POR。保存报告D目录save-observer-report-1792418738767816800.json；三个旋转autosave已恢复，无专门reload。D为移除旧场景发送冷却推进31日，终态在advance-context-d9689eec12084db2b0e306f50caa7810，7segments completed，勿重放。
+
+原生链已闭合：975bb0→97eb70→97cc10创建Cede，98d110优先同侧controller，再检查同侧core/默认国，写term+30。9a3910已含PEACEOFFER_DOES_NOT_WANT与WOULD_BE_OVEREXTENDED，R66C完整费用门会调用它。参见 `work/runtime/r67-beneficiary-contract-20261019-001/beneficiary-conclusion.md`；旧navigation报告止于表面FRA claimant，不能据此说工厂固定FRA。新查询97cc10/98d110与9a76e0均串行exit0；9a76e0为OE拒绝文本辅助函数，不是beneficiary setter。没有遗留REA会话。
+
+人类调用见[盟主为参战国选择议和省份](docs/盟主为参战国选择议和省份.md)。真实fixture约144KB，新4项定向测试通过；production未改，复用R66最终803tests/625subtests回归。下一批继续具体对象的CB正当/不正当分类、释放国家完整净OE，以及余下阶段、公平信息和模型循环。
+
+R67保存字段 `work/runtime/r67-ally-save-fields-20261019-001/report.json`：26/26通过。交付 `work/runtime/r67-ally-delivery-20261019-001/manifest.json`，进度 `work/runtime/r67-progress.json`，finalizer `work/finalize_r67_ally_delivery.py` 只复制小源文件和报告，比较R66生产Python哈希证明803/625回归可复用，不重hash87 native或存档。所有REA、运行、保存和代理工具会话已终态，当前只保留暂停D游戏。
+
+## R66完成本批运行：CB条款、净OE、非法原因与完整费用门（2026-10-19）
+
+当前 C：PID8888/session `8888-1dd5fcdf8696752`，安装 `work/runtime/diplomacy-query-20261019-r66-rules-netoe-c/installation.json`，DLL SHA `a4e198dfbcb0e578be8d06906df3a78a81de9516967a41b896623e3d0be71fae`，87份native源码。POR玩家、FRA行动国，暂停1455.10.11/raw56552592。下方A/B与R65进程均为历史，不再当当前。完整goal仍active。
+
+R66已取得9项真实CB查询及同事件离线修正、A/B各12份净OE预览、A/B各26项独立保存字段核对、两项非法请求的统一执行/结果/原生复检，以及C的100分上限8项检查和19类查询兼容批查。B非核心场景只从省88移除BUR核心；真实载入后BUR当前OE12%，索取该省预计下降至0，FRA增加12个百分点。CB返回禁用声明与攻守正当条款声明，具体对象的正当性条件继续开发。字段与证据见[人类接口说明](docs/宣战条款与议和净OE预览.md)。
+
+实际100分验收发现并修复纯割省漏门：A/B16省原生费用值233仍报告available。C复用 `peace-selected-rules.inc` 的97a030完整费用判断与原有移除/恢复事务，并接到已选省份、core和subject路径；Python把native_selected_rules验证、投影、诊断和合法性接入公共路径。C单省可用，16省在query/APIexecute/freshnative三层都拒绝“超过100%战争分数价值”，无业务提交。原始缺口在 `work/runtime/r66-warscore-cap-20261019-003/report.json`；正确结果004。003 public inspection误被只读分析代理覆盖，静态报告已移native-cap-static-analysis.json，incident元数据保留，原raw query/input/summary仍在，不能引用其inspection为原公开快照。
+
+C family批查 `work/runtime/r66-cap-family-queries-20261019-001/report.json`：21calls，19类必需项及ORL负例均取得原生/公开合同，无业务执行。CB当前报告002复用001的9原生查询，只离线修正每对象需继续求值的标记；不要为Python修复重发查询。A/B共用旧DLL `30fb1734746f61f7c3315f5df9bb069bb698d436adf8f34a9e19dca5382d4347`，各87源码。
+
+OE实现 `peace-overextension-query.inc`；country+e48由93fca0写入，a25b90核心/特殊省门、a0cff0开发度和3cf290修正独立重算，见 `work/runtime/r66-peace-net-oe-contract-20261019-001/current-oe-conclusion.md`。ReturnCore会转移所有者，同样计算净OE；释放国家完整失地枚举仍incomplete。CB表由99cd90确认(kind,aux)精确匹配，aux不是通用条件指针。a0cff0第五参数仍必须void*，沿用R45准确ABI。
+
+B和C各自为消除场景冷却推进31日，终态均1455.10.11；C推进位于 `advance-context-58163b025c584f95b4933a2b94b30b3a`，B位于 `advance-context-9670c9497e68408495076043ec5fe8ca`。这些已完成，不要重放。只为新DLL建立C进程，没有专门存档重载验收。下一批优先战争盟主为其他参战国选择条款、盟友不想要省份原因、实际对象的CB正当/不正当分类，再补释放国家OE及其余完整goal。
+
+最终整合回归 `work/runtime/r66-final-python-unit-20261019-001/report.json`：803tests/625subtests通过。真实fixture四份覆盖CB、净OE、非法原因和100上限；完整tools字段与失败原因均回放。交付 `work/runtime/r66-python-docs-delivery-20261019-001/manifest.json`，进度 `work/runtime/r66-progress.json`，finalizer `work/finalize_r66_rule_delivery.py` 显式传入C build/install与finaltests，A/B只作为历史不可变清单，当前87源码按C一次核对。复盘§54记录检查收益、漏门、检查器错误和代理证据覆盖事故。
+
+## R65完成：非零议和费用与19类查询已验收（2026-10-19）
+
+当前 PID20748/session `20748-1dd5fbc5ebfad3d`，POR玩家，FRA行动国，暂停1455.9.10/raw56551848。安装 `work/runtime/diplomacy-query-20261019-r65-peace-consequences-d/installation.json`；D DLL SHA `14e5d271c7f3e9e0ecf3367af64741049537e5c09b49bb008363211435357e3b`，85份native源码。源码目前与D一致，后续Python修复复用当前进程。完整goal仍active。
+
+`peace_consequences` 已导出DIP承担国和点数、AE最大值/说明、原生包围网名单、按国按省的造核ADM和新增OE。`work/runtime/r65-peace-consequence-queries-20261019-004/report.json`：12份有效预览通过（13calls含war发现），两方向白和/金币/候选/1/2/16省。FRA16省 DIP288、ADM1100、OE176pp、潜在包围网78国；BUR取得16省 DIP385、ADM945、OE165.6pp、46国。rawOE/1000是fraction，百分点=raw/10；15dev省88 raw120即12%。14bc520非零分支确认raw*100/1000。
+
+独立保存核对 `work/runtime/r65-peace-preview-save-check-20261019-001/report.json` passed：32省、38条省份记录/6组OE、125条AE current_value均匹配。AE current_value是现有aggressive_expansion关系modifier，D marker true，public有明确的current_aggressive_expansion_modifier。真实fixture `peace_consequences_r65_d_real.json`约160KB/6case含fulltools；新增ORL负例和family真实fixture。最终整合测试004：769tests/596subtests通过。
+
+family003已通过19/19必需case及ORL负例的父事件、validator、公开投影和object_unchanged；目录19项ACK也已核对。002在同D实际发出21次查询，003经 `work/reproject_r65_family_queries.py` 离线修复原结果，无业务重放。subject单项serializer增加requested_countries，production validator现接受可选字段并严格核对expected []/[country]。比较器按public peace_context展示请求、parameters.actual表示实际选择的合同修正，不再拿内部semantic terms直接比较公开展示。001/002原失败保留。
+
+ORL88请求原生parameters_matched=false、selectedids为空、candidate absent。现在public actual=None、requested_terms_applied=false、complete=false，DIP/AE/coalition unavailable，原因NATIVE_PEACE_REQUESTED_TERMS_NOT_APPLIED；raw诊断保留。helper同时处理单项/组合core及subject记录、fullannex的selection_applied字段。ORL是负例，当前23个割省候选受益国均FRA，第三国正向费用及已有核心的零ADM分支尚未取得适用样本。
+
+本批故障：A编译unused-function；B共用peace JSON在非国家条款时拼入无字段值，C修。C首个选省崩溃a0d0c5，a0cff0第五参数误写uchar，应void*，D已修并通过非零运行。准确ABI早在 `work/runtime/peace-province-effects-contract-20261016-r45-002/rea-a0cff0/evidence.json`，勿重复启动stock REA。C崩溃记录 `work/runtime/r65-selected-province-timeout-20261019-001/crash-analysis.json`。dump分析已改mmap；没有整机内存轮询。全部REA会话已关闭。
+
+D首个PID35556在注入前遇到DLL autoupdate WAIT_TIMEOUT并已结束。20748随后卡D3D/DWM呈现，载入探测120秒超时；桌面Default、窗未最小化。脚本ShowWindowAsync(6)后(4)一次恢复，下一次即取得载入确认并安装。证据 `work/runtime/r65-startup-scene-timeout-20261019-001/window-recovery.json`。`tools/start_diplomacy_observer.py` 已改world探测3秒一次，短暂身份错误仍1秒；连续3次明确缺少load确认，只对唯一绑定游戏窗恢复一次。相应节律测试已通过。
+
+原生主文件 `work/native/peace-consequences-query.inc`，包围网hook `peace-coalition-capture.inc`。共用查询在已有完整payload比较前计算费用；hook388d20只读返回3898bb/38a07e的两个vector，复制15字节并用自有三项SAVE_NONVOL unwind，原sort调用一次。主文档 `docs/议和后果接口与运行验收.md` 和复盘§53已写入真实结果。
+
+R65交付 `work/runtime/r65-python-docs-delivery-20261019-001/manifest.json`，进度 `work/runtime/r65-progress.json`；finalizer `work/finalize_r65_peace_delivery.py`，默认family003/tests004，不能再选旧passed子集。人类文档、矩阵、PLAN、复盘§53同步。当前无业务执行、日期推进或保存；源场景仍R63实际战争保存，SHA e03b9cfedd8b1400e31b6299af434a77d9dba226b997c64452da46e94555b251。没有专门reload。
+
+下一批R66：失去省份OE减少量/净变化，以及结构化CB正当/不正当/禁用条款，集中一个native构建后同场景批查。CB导航 `work/runtime/r65-cb-peace-options-navigation-20261019-001/report.md`，goal+1d8/+1e4与metadata+130/+13c均16字节kind/condition记录；文本函数不是结构化规则。netOE导航 `work/runtime/r66-peace-net-oe-contract-20261019-001/report.md`；唯一追加查询1cece0证明只是uint64 vector append，不能作为OE getter，不再重复查询。current OE/lost getter仍需语义入口，勿沿通用vector继续猜测。全部REA已关闭，root及代理shell均终态。完整goal仍active，余阶段、公平信息和模型循环继续。
+
+## R64运行完成：参战方案对应的双方军力与后备人力（2026-10-19）
+
+当前：PID36144/session `36144-1dd5fb060362044`，POR玩家，暂停1455.9.10/raw56551848；installation `work/runtime/diplomacy-query-20261019-r64-forces-a/installation.json`。DLL SHA `ff39a280e75ebfc22f55c6ac0f7ff055a1c5b989b5ae8b9b2fff169e8efd848c`，83份原生源码随build-manifest归档。完整goal保持active，19+19实际执行路径与R63执行证据继续有效。
+
+`declare_war` 的公共查询新增 `forces`：双方国家列表、部署步兵/骑兵/炮兵/总人数和后备人力，单位men；ACK `native_declare_war_forces`。实现见 `work/native/declarewar-force-sides.inc`、`declarewar-forces-query.inc` 和 `bridge/declarewar_forces.py`。原生ee5430统计部队，country+db8已由四国91个团与manpower×1000存档对照确定为人数；第四UI累计槽还包含额外单位项，不能直接当后备人力。特定subject先按原生规则展开，再用相同国家范围统计部署与后备。
+
+18个有效查询全部通过：[12项ENG/BUR/MOR](work/runtime/r64-force-query-batch-20261019-001/report.json)、[6项MLO](work/runtime/r64-force-query-milan-20261019-002/report.json)，总110项检查。SAV对MLO意愿34，promise54，召集SAV及GNV后进攻兵力60502→76502、后备135460→172960。ENG选择co SWE后增加TEU，防守兵力84768→100768、后备52245→75135。集中保存字段对照覆盖37国/36侧，432/432逐侧及11/11全局检查通过，见[报告](work/runtime/r64-force-save-groups-20261019-001/report.json)。mamluk_archer步兵分类另由游戏单位定义确认。
+
+场景 `llm_diplomacy_declarewar_forces_20261019_r64.eu4` 是R63实际保存仅移除344行已定位FRA–BUR active_war的独立副本，日期和军队人力保持；它仍有R63生成的外交冷却/停战，因此正向召集选择MLO方向。原文件未覆盖。首个PID26684在注入前启动弹窗hung；关闭该实验进程后36144成功加载并只注入一次。首次MIL目标不存在，已查游戏country_tags纠正为MLO，失败记录保留，无业务执行。该批不推进日期、不另存、不专门重载。
+
+人类文档见[R64说明](docs/history/R64宣战双方兵力与后备人力.md)，复盘§52。[整批747项测试、575项子测试通过](work/runtime/r64-final-python-unit-20261019-001/report.json)。真实fixture仅约47KB，完整工具层也检验forces保留；新增 `declare_war_r64_forces_real.json` 与 `test_declare_war_forces_r64_real.py`。交付入口 `work/runtime/r64-python-docs-delivery-20261019-001/manifest.json`，进度 `work/runtime/r64-progress.json`。
+
+下一项为结构化正当/不正当/禁用条款和议和后果。R65已查130a490/130c410：`+38 vtable+98("*_value")`是UI文本控件查找，勿当数值getter；真正AE/coalition源9794d0，DIP978840，割省列表981dd0，逐省OE用a0cff0×3cf290，核心化ADM用952540。新报告在 `work/runtime/r65-peace-consequence-ui-20261019-001`，AE/DIP原生查询继续中。
+
+下方R63是历史状态，不再把其PID当当前进程，也不再把db8单位写为未知。继续批量查询与集中验证，不做逐步内存检查。
+
+## R63完成：非空参战方案、原生因素与组合宣战（2026-10-19）
+
+当前B：PID40828/session `40828-1dd5fa887f32179`，POR玩家暂停1455.9.10/raw56551848，FRA已向BUR宣战；installation `work/runtime/diplomacy-query-20261019-r63-participants-b/installation.json`。DLL SHA `94722f7bf86817e4d66fc4b8cf1392bc9cd3a2967663b0e243c738dd2d28d01e`，不可变源码与构建清单在同目录。完整goal仍active，19项常用外交+19项常用议和均已有实际执行路径，后续追加范围继续。
+
+统一declare_war现支持非空 `call_allies`、`promise_land_to`、`co_belligerents`，各最多16个TAG，QUERY19/EXEC4，ACK `native_declare_war_participants`。native实现为 `declarewar-participants-query.inc` 与 `declarewar-selection.h`；Python生产为 `declarewar_selection.py`、`declarewar_participants.py` 和diplomacy主接线。每个候选公开原生合法性、诊断、意愿总值/阈值与因素；非空名单完整绑定到查询、native payload、提交/执行回执与journal结果。选择co后重新503ea0枚举，SWE使ENG候选11→13、HSA使BUR候选14→19。国家解析与动作工厂都使用CountryDB实际count，MOR正常返回。
+
+最终批量查询[27项全部通过](work/runtime/r63-participants-query-batch-b-20261019-003/report.json)。一次真实组合宣战[执行通过](work/runtime/r63-participants-execution-20261019-001/report.json)：request `r63_declare_BUR_SAV_HSA_001`，FRA→BUR/cb_conquest/province88/beneficiaryORL，call[SAV]+promise[SAV]+co[HSA]；SAV意愿54→74。只execute一次，完整授权、三列表echo、双向交战false→true、journal重开均通过。集中保存 `llm_diplomacy_declarewar_SAV_HSA_20261019_r63.eu4` SHA `e03b9cfedd8b1400e31b6299af434a77d9dba226b997c64452da46e94555b251`；[保存字段14/14](work/runtime/r63-participants-save-fields-20261019-001/report.md)，战争18国，SAV攻击方且promised_land=yes，HSA防守方，目标cb/province/ORL一致。3份旋转autosave均已恢复，无专门重载。
+
+真实A事件7项/72rows已离线修复index排序；B001的MOR无CB零候选被过强验证拒绝，已用原事件修复并新增真实fixture。A002与B002是离线校正报告，保留原失败报告，未重放任何业务。R63最终[737项测试、563项子测试](work/runtime/r63-final-python-unit-20261019-001/report.json)通过；人类用法见[R63说明](docs/history/R63宣战参战方案与因素.md)，复盘§51。
+
+场景源 `llm_diplomacy_declarewar_allies_20261019_r63.eu4` 在R62贸易查询场景中只增加FRA–SCO/FRA–SAV两条同盟。35日推进实际到21日暂停，月度AI态度已更新；旧推进已通过原生pause明确取消，见[推进终态](work/runtime/r63-advance-reconciliation-20261019-001/report.json)，不要重发或继续等待旧请求。GUI激活两次失败，但native查询、pause、宣战与保存均正常；继续优先用已有原生控制脚本。
+
+下一批R64：部署军力与后备人力、结构化正当/不正当议和条款；随后AE/OE、核心化ADM、不正当DIP、可能加入包围网国家，再补其余阶段、公平信息、常驻模型与长期循环。军力入口见[导航](work/runtime/r63-declarewar-strength-navigation-20261019-001/report.md)：`ee5710 -> ee5430`，后者7参数：country_handle_ptr、int*步兵/骑兵/炮兵/第四槽、两份CArray句柄列表。读取国家10b8/10ba/10bc、d48/d50/d58+54、db8及d18军队链，并递归少数特殊subject；ee5710把前三槽与第四槽相加显示total。**db8与第四槽尚无命名证明，不要直接写成manpower。** 后备人力已有 `export_to_variable value=manpower` 的mod导出路径，native getter未定位；REA manpower字符串/函数搜索超时已结束，不要原样重试大搜索。候选+58=war-goal定义，+1d8/+1e4=进攻方peace option，metadata+130/+13c为禁用条件入口，可从已缓存函数继续。
+
+所有root与代理的REA、编译、安装、运行、保存、测试句柄已终态；当前只有暂停游戏。继续按批处理，不做逐步内存检查或专门保存重载。R63源码交付入口为 `work/runtime/r63-python-docs-delivery-20261019-001/manifest.json`。
+
+## R62：宣战理由与战争目标查询交付（2026-10-19）
+
+R62 新增了宣战界面的只读查询结果。葡萄牙（POR）仍是界面玩家，法国（FRA）是桥接行动国；查询目标覆盖英格兰（ENG）、勃艮第（BUR）和摩洛哥（MOR）。公开结果提供 CB 名称与说明、战争目标名称与说明、禁用议和条件说明以及完整宣战描述；本批没有把查询背景当成宣战执行。
+
+A 批次的原始事件通过离线校正保留为可审查证据：7 个 raw native 查询验证了请求头、行动国、目标国、阶段、日期和前后状态，2 个摩洛哥查询继续保持 unknown。这里的 MOR unknown 来自桥接层 `alliance_query_country` 只检查前 256 个槽位；它不是游戏判定“摩洛哥不存在”，R63 将改为覆盖原生国家数据库范围。B 批次的 8 个查询报告状态为 `passed`，使用同一批量查询接口验证非空贸易 CB 背景下的 details 分支。宣战查询不改变战争、存档或日期。
+
+R62 还准备并载入了独立查询场景：新存档 `llm_diplomacy_declarewar_trade_query_20261019_r62.eu4` 在顶层 `diplomacy` 中增加 FRA→ENG、`cb_trade_war_triggered`、1455.8.20 至 1457.8.20 的一条 `casus_belli`，作为R62B查询背景。详细字段、SHA 和流式完整性见[场景报告](work/runtime/r62-trade-cb-scene-20261019-001/report.json)。
+
+当前 B 构建的 DLL SHA-256 为 `85e71fbb278e3dcf24c5b95f5ddd30dc1e9a71f8077c994e1f661930ece2cba1`，不可变源码清单见[work/runtime/diplomacy-query-20261019-r62-declarewar-details-b/build-manifest.json](work/runtime/diplomacy-query-20261019-r62-declarewar-details-b/build-manifest.json)。R62 最终 Python 回归报告为[work/runtime/r62-final-python-unit-20261019-001/report.json](work/runtime/r62-final-python-unit-20261019-001/report.json)，通过 715 项测试和 563 项子测试。交付包包含本批 Python 生产代码、R62 测试与夹具、查询/离线校正/场景脚本、人类文档、PLAN、复盘、矩阵和进度；存档与 DLL 保留在各自证据路径，不复制进交付包。
+
+当前完整 goal 仍 active，常用议和实际执行保持 19/19。R62 还未完成非空盟友选择、许诺土地、完整正当性与接受因素、军力/人力和战后后果。后续工作沿当前 native 合同继续扩展这些查询，保持同一安装和场景批量执行；不因 Python 投影修复或查询背景准备新增专门重载。
+
+R63 的下一步入口是[盟友选择合同报告](work/runtime/r63-ally-selection-contract-20261019-001/report.md)：其中已定位盟友选择使用的三个容器及因素路径，后续需要在原生数据库范围内补齐非空盟友和完整因素读取。
+
+## R61：五项国家议和条款与独立宣战完成（2026-10-19）
+
+R61 已完成五项国家级议和条款的统一查询、执行和结果读取，常用议和实际执行覆盖 **19/19**；完整 goal 仍保持 active。组合条款、强迫附庸、共主邦联和承认独立均有真实拒绝/接受结果。Grant004 通过，且独立宣战保存字段核对确认了新的 FRA→ENG 战争结构。
+
+本批角色和后果如下：英国（ENG）是提议或被提议的一方，法国（FRA）是主要受控决策国；释放国家场景由英国释放 FLY，完全吞并场景由法国取得 TYR 的全部省份；强迫附庸和共主邦联场景由法国接收 LEI；承认独立场景由法国脱离英国宗主关系。组合和约、vassal、personal union、Grant Independence 的结果报告均为 `passed`，四组保存字段报告各通过 5/5 检查，独立宣战保存字段报告通过 8/8 检查。
+
+当前 G 进程为 PID `24932`、session `24932-1dd5f9a1d0d2063`，安装记录为[work/runtime/diplomacy-query-20261019-r61-country-independence-g/installation.json](work/runtime/diplomacy-query-20261019-r61-country-independence-g/installation.json)。POR 是界面玩家，游戏保持暂停；本批使用 F 构建的 DLL，SHA-256 为 `313a386af8b949eaea0243c910757bf9dbe1a4bfbb099e8c4138637225153f88`，包含 78 份 native 源码。原生源码不在本交付包内，F 构建清单作为不可变来源引用：[work/runtime/diplomacy-query-20261019-r61-country-f/build-manifest.json](work/runtime/diplomacy-query-20261019-r61-country-f/build-manifest.json)。
+
+实际证据入口：组合执行报告为[combined](work/runtime/r61-country-combined-execution-d-20261019-001/report.json)，强迫附庸为[vassal](work/runtime/r61-country-vassal-execution-20261019-001/report.json)，共主邦联为[union](work/runtime/r61-country-union-execution-20261019-001/report.json)，Grant004 为[grant](work/runtime/r61-country-independence-execution-20261019-004/report.json)。四份保存字段报告位于 `r61-country-combined-save-fields-20261019-001`、`r61-country-vassal-save-fields-20261019-001`、`r61-country-union-save-fields-20261019-001` 和 `r61-country-independence-save-fields-20261019-001`。独立宣战的 8/8 字段核对见[r61-native-independence-declaration-fields-20261019-001](work/runtime/r61-native-independence-declaration-fields-20261019-001/report.json)：after 只选中 FRA 攻击 ENG 的当前战争，外层目标为 `defend_capital`，内部类型为 `defend_capital_independence`，CB 为 `cb_independence_war`，active_war 直接层为 `subject_type=vassal`；旧已结束战争未混入当前结果，ENG→FRA dependency 从 1 条变为 0 条。
+
+Grant003 的法国接受结果保留为失败证据：该实验结束了战争并移除 pending，但 ENG→FRA vassal 仍保留，因此公开结果为 unknown，未重放。Grant004 使用真实独立宣战场景通过了最终语义检查。历史 001/002/003 场景、原始事件和离线纠正均保留，便于区分场景构造错误、消费者修复和真实原生结果。
+
+最终 Python 回归报告为[work/runtime/r61-final-python-unit-20261019-002/report.json](work/runtime/r61-final-python-unit-20261019-002/report.json)，通过 706 项测试和 563 项子测试。交付清单为[r61-python-docs-delivery-20261019-001](work/runtime/r61-python-docs-delivery-20261019-001/manifest.json)，其中包含本批 Python 生产代码、R61 fixtures/tests、场景/运行/比较脚本、R61 人类说明、复盘、PLAN 与 HANDOFF；save、DLL 和大型运行日志继续由各自 evidence 路径保存。
+
+继续范围属于 R62 及完整 goal：宣战候选与盟友选择、更多国家条款组合、议和费用与接受因素、战后信息、公平信息、常驻模型和长期循环仍按后续批次推进。用户确定的批量流程继续有效：同一安装和场景复用进程，兼容条款集中执行并集中核对保存字段；只在安装新 DLL 时使用新进程，不为 Python 投影修复或本批已完成的保存字段核对另开专门重载进程。
+
+## R60：两项附属条款完成组合执行与集中保存（2026-10-19）
+
+`release_subject`、`transfer_subject`已接入统一list/inspect/execute/result，与1金币和战争赔款合成一份和约。一个进程完成英国原生AI拒绝、法国明确拒绝和法国明确接受；接受解除ENG→TYR、ENG→LEI，新增FRA→LEI的vassal关系，支付金币、建立十年赔款并结束战争。实际议和执行覆盖 **14/19**；完整goal仍active。人类用法、具体国家角色、金币分配和问题修正见[R60说明](docs/history/R60释放与转移附属国的组合议和.md)。
+
+当前运行仍为B：PID36940，session `36940-1dd5f77ab3c60dc`，DLL SHA `dfb64aa630f7352c435abf6d69e1e368742c0fde3c58d917e91ee7cb13fdef7d`，POR玩家暂停于1455.6.18/raw56549832。正确场景002 `r60b.eu4`已实际载入；001的advisor同名TAG范围错误保留为失败证据，从未载入。一次安装、同进程批量执行；等待外交官冷却直接采用原生提示的1455.6.18，正常推进32日。最后集中保存一次，无专门重载验收，也无逐步整机RAM检查。
+
+[实际批次](work/runtime/r60-subject-execution-batch-20261019-001/report.json)passed，[独立关系终态](work/runtime/r60-subject-execution-batch-20261019-001/report-evidence/after-effects.json)与[保存字段16/16](work/runtime/r60-subject-save-fields-20261019-001/report.json)一致。最终保存 `llm_diplomacy_peace_subject_combined_accepted_20261019_r60.eu4` SHA `c110e8d9b824472a5aa777b3bd164ab479fefa9b4a27ed7b7b3ea435d99d3ea6`；赔款1455.6.18至1465.6.18。历史war块仍序列化存在，但双方当前参战关系已结束；不要以war块消失作为结束条件。三份轮转自动保存已恢复。
+
+本批修复：2048字节参数缓冲和动态结果缓冲；subject从旧rule_term_count中独立校验；journal恢复动作名单和第二层receipt投影补两族CSV。原outbound的两个遗漏字段由原生回执严格核对后补回，修正前sqlite与更正记录保留，没有重放业务。B原生subject总标志初始化错误使单项effects全true而terms_verified=false；公开层对全部关系前后值、金币和赔款严格重算为true，同时保留native_terms_verified=false、来源validated_native_effects。C已修原生初始化并完整-Werror编译，SHA `a41d17267ed26e2d7780f8fb53b11378487d2dec0a66a867946eceba948e1949`，74源；[C构建](work/runtime/diplomacy-query-20261019-r60-subject-summary-c/build-manifest.json)仅供下一批安装，当前B不热替换、不重复注入。
+
+真实query及三种结果已加入fixture；最终[Python回归](work/runtime/r60-final-python-unit-20261019-002/report.json)通过649项测试、433项子测试。首次全套的旧11条款目录断言失败保留；当前非白条款合同13类。源码和文档集中交付见[本批bundle](work/runtime/r60-python-docs-delivery-20261019-001/manifest.json)，阶段索引见[r60-progress.json](work/runtime/r60-progress.json)。流程复盘见§48。
+
+下一批继续完全吞并、释放国家、强迫附庸、共主邦联、承认独立，按已证实原生家族批量接线。全吞并已有R59 `982050/982170/9765a0`全部失地与结算证据；ReleaseNation候选可能由97d350创建；GrantIndependence语义仍需确认。常用外交其余阶段、公平信息、常驻模型和长期循环等原始目标继续保留。新DLL如需安装使用新进程；Python及checker修复复用原事件，集中保存字段核对，不新增专门重载。
+
+## R59：附属国两项条款已批量查询，下一步执行（2026-10-19）
+
+`release_subject`、`transfer_subject` 已接通统一list/inspect，QUERY16使用明确 `country` 参数；空terms发现候选。一次安装、同一进程完成10项真实查询，55项检查通过。要求英国释放TYR及法国提出释放AUV均原生可用，费用原值5/6，接受总值−100/−28、因素9/7项；两方向转移条款候选完整为空，错误目标不可用。当前实际执行覆盖仍12/19，subject execute/result保持未实现，完整goal active。
+
+当前 [R59安装](work/runtime/diplomacy-query-20261019-r59-subject-a/installation.json)：PID29908，session `29908-1dd5f1cf149fa60`，DLL SHA `577ebec16817b10860c0d57407a7459e763a62f62da4d7477cb9a55312d7b15f`，POR玩家暂停1455.5.17/raw56549064，法英交战，war ID `war_ecaece5d9a3a5004_00000001`。R58进程已为安装新构建而明确重启结束。场景载入R51d，仅建立本批背景；没有推进日期、业务提交或专门重载验收。[批次](work/runtime/diplomacy-query-20261019-r59-subject-a/subject-query-batch-001/report.json)保留原生事件和公开参数，[启动/安装阶段](work/runtime/r59-subject-query-stage-20261019-001/report.json)终态passed。
+
+原生查询实现见 `peace-subject-candidates.inc`，Release19/type2d27/bucket13/vtable1cd2940/target+30/+1189c1bc0，Transfer20/type35f0/bucket14/vtable1cd3b58/target+22/+1189ccb30。临时和约选择复用98bf50持久序列，不调用+120作选择。root安装前修正生成JSON未接入外层事件的null问题，并把subject完整性并入full_rules_complete。[73源构建](work/runtime/diplomacy-query-20261019-r59-subject-a/build-manifest.json)已经-Werror编译通过；本批无需额外全源码扫描或重复归档。
+
+Python真实fixture `bridge/tests/fixtures/peace_subject_r59_real.json`保存10条原生事件及来源行号/hash；focused11测试/23子测试通过。[最终回归](work/runtime/r59-final-python-unit-20261019-001/report.json)一次通过640测试/429子测试。[Python本批7源交付](work/runtime/r59-python-delivery-20261019-001/manifest.json)集中保存1,310,007字节和源码hash，原生manifest SHA为 `c91a7c22528c34c258b8b7613fea41405348aaa4e56d04550577330eb39ebea0`。保存新核对器 `work/inspect_peace_subject_save.py`流式比较直接diplomacy关系块；[R51d/R58关系比较](work/runtime/r59-scenario-facts-20261018-001/subject-save-compare-r51d-r58.json)确认ENG→TYR为vassal，FRA→AUV/BOU/FOI/ORL为appanage，6组关系不变。旧scenario-facts/report.json漏解析dependency块，应以relation-blocks-correction.json和新比较报告为准。
+
+下一批优先接subject执行、入站回应与关系后果。转移原生候选还要求附属类型+14d、受益国modifier索引db和首都控制条件；game/common/ages/00_default.txt:144时代能力 `ab_transfer_vassal_wargoal`提供 `can_transfer_vassal_wargoal=yes`，需准备适用场景后验证正例。Release Nation候选可能由97d350创建：type15/type2d28/bucketf/vtable1cd3100，+98=9b8c70，+118=9b9660；共用formatter不单独证明语义。完全吞并已有[四个精确函数和历史总议和结算联系](work/runtime/r59-annex-native-20261019-001/report.md)：982050比较982170的失地数与301b20全省数；9765a0在结算前收集失去全部省份国家，并交990d40/990f50处理。9b30a0的PEACE_CANNOT_ANNEX_COST引用属于合并发展度说明，不能拿它识别完全吞并。
+
+人类说明见[R59候选、参数和实际查询](docs/history/R59附属国条款的候选与原生规则查询.md)，流程仍按批次统一查询/执行/结果和保存字段，不做逐步整机RAM检查或大型反汇编全读。所有本批root与代理工具句柄均已终态，阶段索引见[r59-progress.json](work/runtime/r59-progress.json)。[时代能力场景准备](work/runtime/r59-transfer-ability-fixture-plan-20261019-001/report.json)仅找到modifier定义，未找到取得能力后的保存字段；未制作猜测性存档。下一步取得真实能力样本或准确原生写入/选择命令，再准备独立背景。
+
+## R58：四条款组合已完成三种回应和集中保存（2026-10-18）
+
+`return_core`、`revoke_core` 已接通统一 list/inspect/execute/result，并与金币、战争赔款组成一份和约实际运行。英国原生 AI 拒绝法国的要求；两份显式英国让步实验提议分别由法国拒绝、接受。接受使省173所有者/控制者从 ENG 变为 AMG，删除175的 ENG 核心，英国支付1金币并向法国赔款，战争结束。常用议和实际执行覆盖 **12/19**，完整 goal 保持 active。
+
+本批一次安装、共用同一进程，最后集中保存一次，没有专门重载验收。原生发送条件要求等到1455.6.18，已正常推进至该日期。当前 PID36848、session `36848-1dd5f12d420d071`，POR玩家暂停于raw56549832/1455.6.18，法英和平；已回应的目标提议原生移除，不据此推断其他提议为空。DLL SHA `4251af36cdf3e541ddea12b44f12ea5ceb3cece7280e55e6f98e1370138d7a79`，不可变 origin [72份源码构建](work/runtime/r58-core-query15-final-20261018-001/build-manifest.json)。R57B 已为安装新构建而重启结束。
+
+保存 `llm_diplomacy_peace_core_combined_accepted_20261018_r58.eu4` SHA `57a2dc94a2d72c955532e76325c9e1ba05f91c43d214e27e1732a3b1c21097cd`；[集中字段对照17/17通过](work/runtime/r58-core-save-fields-20261018-001/report.json)，赔款保存日期1455.6.18—1465.6.18。1金币由原生分配为 FRA635、AMG73、AUV17、BOU81、FOI67、ORL127 raw，总计1000。三份轮转自动存档已恢复。[最终Python回归](work/runtime/r58-final-python-unit-20261018-002/report.json)通过629项测试、406项子测试；首次整合失败和原始业务报告保留。
+
+实际查询发现核心记录规则合同不适用，提交又发现核心国家字段重复拼接，均用原事件离线修复；同一主动请求已恢复为 rejected，没有重放业务。最终回归修复 QUERY14-only 安装被误导到 QUERY15 的兼容问题，历史14条真实查询继续通过。详见[R58人类说明](docs/history/R58四条款组合议和的执行与保存.md)、[批次结果](work/runtime/diplomacy-query-20261018-r58-core-combined-a/core-execution-batch-001/report.json)、[推进复盘§46](docs/外交开发推进复盘.md)及[r58-progress.json](work/runtime/r58-progress.json)。
+
+下一批继续完全吞并、释放国家、强迫附庸、共主邦联、释放附属国、转移附属国和承认独立，按原生对象/规则共性分组实现和运行；其他外交阶段、公平信息、常驻模型和长期循环仍按完整goal推进。继续采用同场景复用进程、兼容条款合并、集中结果与保存字段、Python修复复用原事件的流程。Root和代理工具句柄均已终态，本批不增加重复归档或全源码扫描。
+
+## R57：两项核心条款已批量查询，后续按批次执行并取消重载验收（2026-10-18）
+
+用户最新指令已写入[goal 顶部](work/临时prompt/外交系统开发goal.md)和[运行工作流](docs/外交运行工作流.md)：取消专门的存档重载验收，把若干操作统一准备、查询、按依赖执行，再集中读取结果和保存字段；兼容议和条款尽量合并。新 DLL 安装使用新进程，同场景多操作复用进程；Python 投影修复使用原事件，不为此重启或重放业务。19 项常用外交、19 项常用议和及统一接口等完整范围保持不变。
+
+`return_core`、`revoke_core` 已接通 list/inspect。一次安装后连续完成14个查询，53项批次检查通过，覆盖双向发现、第三国归还目标、多省选择、错误核心国家、不存在省份和部分匹配。原生选择前后费用差为：放弃核心单省8/6、双省11；归还核心7/8，尺度保持未核验。选定要求条款分别取得9/10条中文接受因素。公共层漏投影因素的问题已用原14条事件修复，[离线重投影58项通过](work/runtime/r57-core-query-reprojection-20261018-001/report.json)，没有重跑游戏查询。运行详情及输入见[R57说明](docs/history/R57核心条款与省份核心名单.md)。两条款的 execute/result 与组合执行仍待接入，常用议和实际执行覆盖保持10/19，完整 goal active。
+
+当前为[B查询批次](work/runtime/diplomacy-query-20261018-r57-core-b-query-batch/installation.json)：PID21796，session `21796-1dd5f0ceed494ee`，DLL SHA `5d4f9e2d46ef21246bfc0c701d867e3685cf3b1513dd83c85fa3ff56e87df7e7`，暂停1455.5.17/raw56549064，界面玩家葡萄牙，法英交战，war ID `war_e77eec97da7bdd15_00000001`。R57A与R56H已由明确重启结束。构建复用自 `work/runtime/r57-core-b-queries-final2/build-manifest.json`，每进程安装一次；本批没有保存或重载验收。
+
+新增核心名单只读探针已经取得与保存一致的实际字段；native类型、候选和持久选择均已定位，相关证据由[r57-progress.json](work/runtime/r57-progress.json)索引。文件SHA增加进程内128项LRU，文件身份/大小/时间变化后重算，进程与游戏规则仍实时复检。下一批把两项核心条款的执行、入站回应和后果消费，与金币、赔款、取消条约等兼容条款一起接入并运行；复用已证实的原生通用执行路径，不等待无关的全面反编译。最终[整合回归](work/runtime/r57-final-python-unit-20261018-001/report.json)一次通过622项测试、406项子测试。所有root和代理工具句柄已终态；本批不另做重复归档和全源码扫描。
+
+## R56：强制信仰已完成查询、拒绝/接受和三种重载复核（2026-10-18）
+
+`force_religion` 已完成从原生候选查询到实际回应、保存和新进程重载的闭环。实验保持葡萄牙（POR）为暂停的界面玩家，法国（FRA）为桥接控制和回应国家，伦斯特（LEI）为目标国家；条款中的 `country=LEI` 是改宗对象，`beneficiary=FRA` 是宗教参照国。A 的战争上下文和两方向费用查询完成；B 的原始业务报告保留为 `unknown`，最终只读回读003确认同一请求被原生拒绝，没有重放业务。C 是操作员指定的 LEI→FRA `offer` 入站提议，跨日等待后保存；D 由法国明确拒绝，E 由法国明确接受。F 载入 D 的拒绝保存并经离线修正后的只读报告通过，G 载入 E 的接受保存通过，H 载入同一战争场景完成主动拒绝重载。
+
+接受后，LEI 国家宗教和其首都省份宗教由 Hussite 变为 Catholic，FRA 保持 Catholic，战争结束并移除目标 pending；拒绝后 LEI 国家与首都保持 Hussite、战争继续。流式 C/E 保存对照定位 LEI 首都省份为 374，并与原生效果一致。查询原始费用为 LEI 目标 `8`、FRA 目标反向候选 `270`，上限均为 `100`；单位仍保留为 `native_war_score_raw`，没有把原始整数猜成百分比。
+
+当前 H 安装为 [outbound rejected reload](work/runtime/diplomacy-query-20261018-r56-religion-h-outbound-rejected-reload/installation.json)，PID27960、session `27960-1dd5f0354ef1dde`，POR 玩家暂停于1455.5.18/raw56549088，FRA 与 LEI 仍交战，未重放业务。常用议和实际执行与重载覆盖10/19，完整 goal 保持 active；下一阶段先处理 [R57 已有 Core/Revoke Core 证据](work/runtime/r57-core-peace-existing-evidence-20261018-001/report.json)及 Return Core/Revoke Core 候选，再继续剩余9项议和条款和其他外交阶段。
+
+最终 Python 回归一次通过598项测试、370项子测试。A/B/C 是三种历史合法构建变体：A DLL `39074113b2a664613b30d267e0cb297add6bd1e76344926917c372d46733b27e`，B/H DLL `ad32f741f6e91830a5b6fcc99adac2bf3c647b52cf5faa1d8f7fd4f07a785cb7`，C/D/E/F/G DLL `8d51737d63787a5cde050a8a2262dea054b198c6ccd1611ae2c764c094a41b43`；当前源码与 C 构建逐项相符，A/B 的历史差异按各自 origin 保存，子构建分别归回 B 或 C，不要求历史 A/B 等于当前源码。阶段证据见 [R56 progress](work/runtime/r56-progress.json)、[源码一致性](work/runtime/r56-final-native-source-consistency-20261018-001.json) 和 [证据索引](work/runtime/r56-evidence-index-20261018-001.json)。检查点[已归档](work/runtime/r56-peace-force-religion-checkpoint-20261018-001/archive-manifest.json)，包含496个文件、12,407,009字节，manifest SHA `81a58779c4a304d907b1351d26efb4f51874dbb1d014df6dd16c4950dac9d2d8`；本句在归档完成后追加，归档内容保持不变。
+
+## R55：展示霸权已结算并重载，强制信仰低费CB实验仍被原生规则拒绝（2026-10-18）
+
+`show_strength`已完成统一接口的真实提议、回应和持久化。A法国向英国要求条款，英国原生AI拒绝，17项检查通过；B新进程重载10项通过。C一次操作员指定时点的ENG→FRA offer入站实验，跨日等待并保存；D/E分别重载同一pending，由法国明确拒绝/接受，各22项通过。F/G分别重载两种结果，各9项通过。接受实际使法国点数[729,440,122]→[829,540,222]，英国声望62.778→42.778，法国羞辱名单新增ENG，战争结束。流式保存另确认双方力量投射条目+30/−30。常用议和实际执行及重载覆盖 **9/19**，完整goal保持active。
+
+[B–G串行运行报告](work/runtime/r55-strength-execution-sequence-20261018-001/report.json)记录各进程安装、业务和保存路径；[保存对照](work/runtime/r55-strength-save-pair-20261018-001/report.json)及[R55人类说明](docs/history/R55展示霸权的君主点数与实际回应.md)给出具体角色和数值。最终Python回归一次通过585项测试、336项子测试；R55A构建与后续复用构建使用DLL SHA `e6d9e31a4e2096e355e19673dec3c2046f68e3967ef37a36bf6202ec57a964cb`，每进程只安装一次。
+
+强制信仰另准备了仅更换战争目标和CB的独立存档：`cb_war_against_heresy / superiority_world_crusade`，ENG Hussite、FRA Catholic，其余背景保留。两方向实际查询均有候选并选中，但原生完整规则仍拒绝超过100%战争分数，未发送业务。静态110×0.75=82.5的估计不能用作实际可用结论。见[查询报告](work/runtime/diplomacy-query-20261018-r55-religion-reduced-cost-query/religion-reduced-cost-queries-001/report.json)与[独立存档清单](work/runtime/r55-force-religion-cb-fixture-20261018-001/fixture-manifest.json)。下一步核对真实费用计算与存档战争目标结构，或准备原生费用允许的小目标，再做F实际执行；其余10项及完整goal继续推进。
+
+当前运行是[低费用CB查询场景](work/runtime/diplomacy-query-20261018-r55-religion-reduced-cost-query/installation.json)：PID19204，session `19204-1dd5efbb89c0e54`，POR玩家，暂停1455.5.17/raw56549064，英法交战，pending为空。S的G和平结果已由明确重启结束；A至G均不应重放业务。阶段状态及原goal剩余范围见[r55-progress.json](work/runtime/r55-progress.json)。
+
+R55已统一核对68份原生源码和8个构建，全部与当前源码及同一DLL一致；检查点[467份文件](work/runtime/r55-peace-strength-checkpoint-20261018-001/archive-manifest.json)共11,679,792字节，manifest SHA `214b55a9cf4b23143b876c715826791f23680464949dc84caaedde61ad1e193f`。全部root和代理工具句柄已终态。归档后的本条索引追加不改变检查点。F负例的[运行复核](work/runtime/r55-force-religion-affordable-design-20261018-001/runtime-review.md)把下一步明确为：取得游戏实际创建的目标CB战争片段，确认外层战争目标结构后再作单一修改；当前take_core外层键的影响尚无证据，不继续生成猜测变体。
+
+## R54：羞辱已完成执行与重载，S/F正向条件已实际查询（2026-10-18）
+
+`humiliate_rival`已接通统一list/inspect/execute/result：九项查询确认两方向与金币组合可用、C+H原生拒绝，接受因素9/8项。A2英国原生拒绝、D法国明确拒绝、E法国明确接受；E实际结束战争、ENG羞辱名单新增FRA，双方声望不变，保存另有双方+30/−30力量投射条目。四份命名保存保留，正确角色探针的B2/F2/G重载全部通过。常用议和实际执行及重载覆盖 **8/19**，完整goal保持active。
+
+原生68份源码集中核对12个构建，实际业务A2及其复用构建相同，DLL SHA `9a195af5b619bbdcc9966959abd620d6d61f897aac7b60197b89bed5af439de0`；A初版只有协议头不同，原失败保留。实际检查修复EXEC7未选A时占位符、结果消费新动作白名单、独立探针的胜负角色、S胜方点数和宗教长字符串读取。G首次失败与B/F旧观测保留并由正确探针补验，没有重放外交业务。最终[580项测试、321项子测试](work/runtime/r54-final-python-unit-20261018-003/report.json)通过。root/代理工具会话均已终态。
+
+另备两份人为准备的查询存档：S使用cb_humiliate_rotw/humiliate_rotw，实际FRA→ENG demand可用、聚合分值100/8因素；offer无候选，H+S原生费用拒绝。F将ENG及首都改Hussite、FRA仍Catholic，两方向候选存在但均因费用超100范围被拒绝。原生中文首因已用原事件离线投影，S/F没有业务请求。详见[R54人类说明](docs/history/R54原生条款身份纠正与查询接入.md)及[r54-progress.json](work/runtime/r54-progress.json)。
+
+当前运行是[F查询场景](work/runtime/diplomacy-query-20261018-r54-special-religion-query/installation.json)：PID26148，POR玩家，暂停1455.5.17/raw56549064，英法交战、宗教不同，原生pending为空。每进程只安装一次；其他R54进程已重启结束。下一步实际执行Show Strength，并按攻击方受益角色补ENG→FRA offer入站fixture；Force Religion另选原生费用允许的目标。其余11项、外交剩余阶段、公平信息和常驻模型/长期循环继续按原goal。
+
+R54检查点已归档[457份文件](work/runtime/r54-peace-special-terms-checkpoint-20261018-001/archive-manifest.json)，共11,255,159字节，12个原生构建引用；小型索引记录1196项证据、27,370,470字节。归档manifest SHA `19188e424002704ea878179a32ca196c1da6e2075a184d8fa0e46e22577ff236`。本条归档指针在归档完成后追加，归档内容保持不变。
+
+## R53历史结果：取消条约的真实查询、回应和保存重载（2026-10-18）
+
+`annul_treaties` 已接入统一list/inspect/execute/result。九项实际查询完成两方向候选、单/多伙伴及组合规则；公开多伙伴计数修复使用原事件离线投影验证。A2要求英国取消SWE/UTR条约，英国原生AI拒绝，17项运行、B的10项新进程重载通过。C一次显式英国→法国入站实验要求FRA取消GEN/PAP条约，跨日hold并保存；D/E分别从同一pending存档明确拒绝/接受，各22项通过，F/G分别重载两种结果各9项通过。接受实际结束战争，解除两组同盟并写入FRA→GEN/PAP取消记录，开始1455.5.18/raw56549088，原生终期43808760哨兵、保存省略end_date。
+
+当前G：PID27692、session `27692-1dd5ee94951576e`，POR玩家、暂停1455.5.18/raw56549088，英法和平，pending队列为空。七个阶段共用66份原生源码和DLL SHA `769cba6c85676cf4787bfb22173fd03a2b21f18a8f06ac90410bda3d8d690337`，源码与构建已集中核对一致。每进程只安装一次；A首次编译错误在安装前修复。C检查器固定计数、D001入站解析遗漏和首次全套运行器范围检查失败均保留原报告，业务未重放。
+
+最终[555项测试、309项子测试](work/runtime/r53-final-python-unit-20261018-003/report.json)通过。集成发现混合金币/省份的旧测试合同冲突，现复用完整效果校验，缺失或伪造后果均失败；三份集成报告全部保留。root与子代理工具句柄均已终态。
+
+完整goal继续active，常用议和已取得实际执行和重载的覆盖7/19，其余12项及原范围继续推进。下一阶段的羞辱宿敌、强制信仰已有有界类型证据，展示霸权类型待研究，见[下一条款静态记录](work/runtime/r54-next-peace-static-20261018-001/findings.md)。R53集成与归档状态以[r53-progress.json](work/runtime/r53-progress.json)为准，详细接口和实际后果见[R53人类说明](docs/history/R53取消条约的原生候选与实际后果.md)。
+
+## 当前运行：R52承认战败的查询、真实回应和声望持久化（2026-10-18）
+
+`concede_defeat` 已接入统一 list/inspect/execute/result。六项公开查询实际验证纯条款的要求与让步方向可用；与金币、割省、赔款或贸易转移组合时，原生规则返回“要求承认战败时，不能附带其他任何条件”。纯要求/让步分别取得9/7项接受因素，评价−100/−24与原生聚合字段10分别输出。
+
+A由法国向英国要求承认战败，英国原生AI真实拒绝，17项执行检查及B的10项保存重载检查通过。C用一次操作员指定时点的原生实验提议，把英国要求法国承认战败送进法国队列；推进一天仍等待法国决定，并保存。D/E从同一份C存档分别由法国明确拒绝/接受，各22项通过；F重载D拒绝、G重载E接受，各9项通过。接受实际结束战争：法国声望−10.990→−20.990，英国62.778→69.384；拒绝保持战争及双方声望。原生、公共结果和流式存档均核对实际数值，不预设受益方固定增加10点。
+
+当前G：PID11432、session `11432-1dd5ee0df57dcbe`，POR玩家、暂停1455.5.18/raw56549088，英法和平、法国待处理队列为空。A至G均使用DLL SHA `2b43555121d32b2274833feabfc811e23181d631e0704eaea1bf7720aa98cc95`，65份源码最终一致，各进程只安装一次；A至F已通过重启结束。接受存档 `llm_diplomacy_peace_concede_inbound_accepted_20261018_r52e.eu4` SHA `a4048745ca74c4f5883184e548d0d7d06d8a869863c28529e2b3eb2280b8bf8b`。原三份自动存档已恢复。
+
+D首次检查发现Python恢复提议上下文漏return，尚未提交回应；补回后用同一请求首次实际执行成功。原始失败和修正记录均保留。人类说明见[R52](docs/history/R52承认战败的原生规则与声望后果.md)，阶段证据见[r52-progress.json](work/runtime/r52-progress.json)。接下来接入取消条约；其余13项常用议和、常用外交剩余阶段、公平信息、常驻模型和长期循环继续按完整goal推进。
+
+最终[539项Python测试及295项子测试](work/runtime/r52-final-python-unit-20261018-002/report.json)通过。真实事件夹具回放覆盖六种原生查询、D保存提议恢复、A拒绝及E接受。初次全套测试的旧tuple长度和四类目录期望已更新，原失败报告保留；游戏业务没有重放。所有root工具句柄已终态。
+
+R52检查点已归档[409份文件](work/runtime/r52-peace-concede-defeat-checkpoint-20261018-001/archive-manifest.json)，共9,538,934字节、209项外部证据引用，manifest SHA `bdb2a682334d2b88160af36054f8d9cafb1e955bee38aba31ef5da65cbf8ae98`。归档包含65份原生源码及统一接口/操作器/真实事件测试；本索引在归档完成后追加。下一项取消条约的[已有定位](work/runtime/peace-annul-treaties-native-20261018-r53-001/existing-evidence.md)已记录工厂、类型和候选分支，尚需确认实际国家角色。
+
+## 历史运行：R51第三国贸易来源、实际接受和重载（2026-10-18）
+
+贸易竞争力条款现在可以先查询原生候选，再指定实际转出国。A的五项公开查询返回乌得勒支（UTR）向法国（FRA）转移的候选，并验证单项、与赔款组合及让步方向。A首次实际请求得到英国拒绝，但原生效果把实际来源UTR错写为ENG，公共消费者据此保持未知；B修正后以独立请求取得真实拒绝，17项运行检查通过，C保存重载10项通过。原失败记录保留，A请求未重放。
+
+E的一次显式实验提议由英国（ENG）发给法国、方向offer，条款实际为UTR向FRA转移。提议在原生队列保持一天并保存；F从保存恢复后由FRA明确接受，22项检查通过，英法战争结束，UTR→FRA的50%强制贸易转移生效。G新进程重载9项通过，原生条约、公共效果及流式存档一致。D原先没有投递，因为ENG没有外交官；正常推进五天后原生规则允许发送。E属于操作员指定时点的实验提议，F是统一接口的明确回应。
+
+当前G：PID35512、session `35512-1dd5ed8c52d2419`，POR玩家、暂停1455.5.18/raw56549088，英法和平。B至G使用DLL SHA `12e51409ce296ac1cbbc429da9f96d8ca9f4b91fae27bbbf41e39f791702cc36`，65份源码与构建相符。接受存档 `llm_diplomacy_peace_utr_trade_accepted_20261018_r51f.eu4` SHA `be17d6a1d5545ba52d780bc952af06c03d91801a053fef8da9efae32fac48e0d`；原三份自动存档均已恢复。A至F已明确重启结束，各进程只安装一次。
+
+条件因素标识也已实测：caller `0x3728dd` 的行内条件非零时，value6映射为 `DIPLO_WAR_DESPERATION`。单项UTR要求的9项因素均返回标识、中文文本和数值；总体评价−100没有换算为概率。人类说明见[R51](docs/history/R51第三国贸易条款与接受因素.md)，状态与证据见[r51-progress.json](work/runtime/r51-progress.json)。接下来优先接入承认战败，继续完成剩余14项议和条款，以及19项外交的剩余阶段、公平信息、常驻模型和长期循环。完整goal保持active。
+
+最终[522项Python测试及277项子测试](work/runtime/r51-final-python-unit-20261018-001/report.json)通过，真实事件回放调用生产验证器。来源能力的摘要误报已用[原报告离线更正](work/runtime/diplomacy-query-20261018-r51-peace-a-trade-sources/trade-source-query-001/source-ack-summary-correction-002.json)，没有重跑游戏。所有root工具句柄已终态，G游戏保持暂停。
+
+R51检查点为[376文件归档](work/runtime/r51-peace-third-country-trade-checkpoint-20261018-001/archive-manifest.json)，8,422,997字节，159项外部证据引用；各小型证据的流式哈希保存在[r51-progress.json](work/runtime/r51-progress.json)。manifest SHA `b95be9b0a5e6128f93bf86daeae053a3564f0f00d23f1ba5366dd1255f898bf2`。本段归档索引在归档后追加，R52新研究与R51已验收构建分开保存。
+
+R52已补充四次串行缓存查询，确认战争分数影响、割省及和约计算上下文的方法。承认战败的候选/描述/选择/重算合同已经可以用于实现，实际声望增减将在原生执行前后读取，再保存重载；不继续为首个运行追查所有通用子函数。[实现决定](work/runtime/peace-concede-defeat-native-20261018-r52-001/implementation-decision.md)和[r52-progress.json](work/runtime/r52-progress.json)记录下一步。这四次研究查询均已终态，后续R52实现和实际运行结果见本文顶部。
+
+## 历史运行：R50贸易竞争力转移的查询、回应与重载（2026-10-18）
+
+R50 已完成 `transfer_trade_power` 的查询、主动拒绝、入站拒绝、入站接受以及两种结果的新进程重载。实验玩家是葡萄牙（POR），桥接控制国是法国（FRA），英国（ENG）是另一方；正文同时保留“原提议双方”和“条款实际转出/受益双方”这两组角色。A 的主动 `offer` 由 FRA 向 ENG 提供贸易转移，ENG 原生 AI 返回拒绝；B 只读重载确认拒绝后 FRA→ENG 关系不存在。C 使用一次显式 fixture 保留 ENG→FRA 的 `demand` 入站提议，由 FRA 回应，不能把 C 写成 NPC 自主发起。
+
+D 从 C 的同一份 pending 保存得到 FRA 的明确拒绝，战争继续且没有贸易转移；E 得到 FRA 的明确接受，战争结束并建立 `source=FRA`、`beneficiary=ENG` 的 50% 贸易转移。原生和公开效果记录比例 `500/1000`、强制条约标志、开始日期 `56545080` 和结束哨兵 `43808760`（`0x29c77f8`，原生未指定固定终期）；存档对应 `amount=0.500`、`is_enforced=yes`、`start_date=1454.12.2`，省略 `end_date`。F 重载 D 的拒绝保存，G 重载 E 的接受保存；F/G 各9项检查通过，原生条约、存档精确/反向关系、战争状态和空 pending 队列相互匹配。
+
+当前 G 进程为 PID12680、session `12680-1dd5ed0a2d931da`，POR 玩家、暂停于1454.12.2，英法和平；A 至 F 已明确重启结束，G 游戏保留。A 至 G 使用同一 DLL SHA `dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54` 和65份原生源码。最终 [492项 Python 测试及264项子测试](work/runtime/r50-final-python-unit-20261018-001/report.json)通过，人类说明见[R50](docs/history/R50贸易竞争力转移的条款与后果.md)。
+
+当前仍需继续处理第三国贸易来源参数和缺失的接受因素标识，并逐项扩展其他议和条款；这组结果不表示所有贸易转移场景或完整 goal 已完成。所有 root 工具句柄已终态，游戏 G 保持暂停。
+
+R50检查点为[367文件归档](work/runtime/r50-peace-trade-power-checkpoint-20261018-001/archive-manifest.json)，8,086,734字节、267项外部证据引用；各证据哈希保存在[r50-progress.json](work/runtime/r50-progress.json)。manifest SHA `115eabb93a4c44e7213f3b0ed8dabc65aea354428c2765474b1d44bf1190690f`。65份native源码与G构建逐项相符。归档包含本轮源码、夹具、运行状态和人类文档；本段索引及状态中的归档摘要在归档后追加。
+
+## 历史运行：R49战争赔款的索取拒绝、外来接受/拒绝及重载（2026-10-17）
+
+法国（FRA）通过统一接口向英国（ENG）索取战争赔款，英国原生AI明确拒绝；A执行17项、B新进程重载10项通过。拒绝前后英国向法国支付赔款的条约都不存在，战争继续。随后一次显式实验提议让英国向法国索取赔款，原生队列保留一天后保存。D和E分别从同一份待处理存档启动，法国各提交一次拒绝和接受，两个运行报告各22项通过。拒绝使战争继续且没有赔款；接受使战争结束，法国向英国支付十年赔款，期限1454.12.2—1464.12.2。
+
+D、E的结果分别保存，并由F、G新进程读取原生条约和流式存档。F原报告的业务、队列、战争与赔款检查均通过，只有旧的61源码数量检查失败；[离线修正](work/runtime/diplomacy-query-20261017-r49-peace-f-inbound-rejected-reload/inbound-reparations-rejected-reload-001/inbound-reparations-rejected-reload-002-correction.json)确认完整65项源码清单和DLL相同，原观测无需重跑。[G接受重载](work/runtime/diplomacy-query-20261017-r49-peace-g-inbound-accepted-reload/inbound-reparations-accepted-reload-001/report.json)9项通过，赔款双方及期限、英法和平、空待处理队列均匹配。
+
+当前安装为[G](work/runtime/diplomacy-query-20261017-r49-peace-g-inbound-accepted-reload/installation.json)，PID8432、session `8432-1dd5e4ae96687cc`，DLL SHA `9ba15d3f3a6b4f0392198173e61a7586c2369ad41ed36684643f5971d462ae1a`、65份原生源码。POR玩家、暂停1454.12.2，英法和平；A至F均经明确重启结束。A/B沿用R48旧构建，C至G使用本轮新构建，各进程仅安装一次。E接受结果存档为 `llm_diplomacy_peace_reparations_inbound_accepted_20261017_r49e.eu4`，SHA `74cba7d1b330752b17a1f4796d79dbc438bcf3491159391ca0f63d7f7a083300`。所有保存均恢复原三份自动存档。
+
+本轮补齐外来赔款的公共条款解释、原提议双方与决策国区分、回应前后条约读取，以及拒绝后无条约的独立验证。[454项Python测试及215项子测试](work/runtime/r49-final-python-unit-20261017-002/report.json)通过；实际事件纳入可移植夹具。人类说明见[R49](docs/history/R49战争赔款的拒绝与外来提议.md)，推进复盘见[第37节](docs/外交开发推进复盘.md)。随后转入R50贸易竞争力转移；全部goal范围仍保持active。R49的G是和平结果，新议和不能重发R49的A/C/D/E请求。
+
+阶段状态保存在[r49-progress.json](work/runtime/r49-progress.json)。[R49检查点](work/runtime/r49-peace-reparations-inbound-checkpoint-20261017-001/archive-manifest.json)包含355个文件、7,534,177字节及93项外部证据哈希引用，manifest SHA `f6e9fb008965ebb095ac1ce49d46306bfdb1cc8434b878d8b592538cd62e95bf`。全部root与子代理工具会话已结束，G游戏保持暂停。本索引在归档后追加。
+
+## 历史运行：R48E/F 战争赔款、金币与五省议和已接受并重载（2026-10-17）
+
+法国（FRA）通过统一接口向英国（ENG）提供1.0金币、4388/4111/4112/4389/4118五省和十年战争赔款。唯一请求 `r48e_offer_eng_money_five_provinces_reparations_001` 得到英国原生AI的state2/accepted，英法战争结束。法国支付1000 raw，英国/瑞典/乌得勒支分别收到661/23/316 raw；五省所有者均转为英国，科克4118执行前已由英国控制。赔款从不存在变为有效，付款国FRA、收款国ENG，起止日期1455.5.12—1465.5.12。[E执行报告](work/runtime/diplomacy-query-20261017-r48-peace-e-native-rule-transaction/mixed-reparations-execution-001/report.json)17项通过，请求发布、消费和业务提交各1次。
+
+结果存档为 `llm_diplomacy_peace_reparations_money_provinces_accepted_20261017_r48e.eu4`，SHA `fe2d9a589882ca0c67e9a49bcfacb939b31a0eb25544f83c4a552fd65e093446`，42,879,183字节。三个原自动存档已恢复。当前安装为[F重载进程](work/runtime/diplomacy-query-20261017-r48-peace-f-reparations-reload/installation.json)，PID27220、session `27220-1dd5e45223073c1`，DLL SHA `fbbfbc0bea94206859f22257a58fa9605872d2fb289e9f39bd9bf54a048b8fa1`，65份native源码；POR玩家，暂停1455.5.12，英法和平。D、E均已明确重启结束。F读取的赔款双方和日期、10国国库、五省归属与执行后观测和存档相符。原报告只有主动作误判省份列表的一项比较器错误；[离线修正报告](work/runtime/diplomacy-query-20261017-r48-peace-f-reparations-reload/mixed-reparations-reload-001/mixed-reparations-reload-002-correction.json)10项通过，保留001并复用原始观测。
+
+新增QUERY8/EXEC2与赔款原生选择、完整提议规则、实际条约后果读取。真实负例导出超过100%战争分数和无法核心化的中文原因；原生接受因素提示加入科克后，组合评价由−100变为+29。修复了合法rule=false误报格式错、已选条款重复计费、回执缺双方和重载比较器以主动作代替条款集合的四处问题。人类说明见[R48](docs/history/R48战争赔款与完整条款检查.md)，复盘见[第36节](docs/外交开发推进复盘.md)。
+
+继续战争赔款的索取/拒绝/外来组合阶段，再扩展其余常用议和条款；19项常用外交剩余阶段、公平信息、常驻LLM与长期循环仍在完整goal中。不得重发E请求；新议和从战争基线 `llm_diplomacy_peace_concession_ready_20261016_r46b.eu4` 开始，F是已和平结果。状态索引为[r48-progress.json](work/runtime/r48-progress.json)，阶段源码和证据索引保存在[R48检查点](work/runtime/r48-peace-reparations-checkpoint-20261017-001/archive-manifest.json)。
+
+## 历史运行：R47A/B 金币与四省组合议和已接受并重载（2026-10-17）
 
 R47A 在独立战争场景中通过统一接口执行一次组合议和：法国（FRA）向英国（ENG）提供 1.0 金币和省份 4388、4111、4112、4389。请求 `r47a_offer_eng_money_four_provinces_001` 的主动作是 `cede_province`，方向为 `offer`，金额条款排在省份条款之前。英国原生 AI 返回 state2/accepted，英法战争结束；法国支付 `1000` raw，原生把这笔金额分配给 ENG `661`、SWE `23`、UTR `316`，四个省份的 owner/controller 均从 FRA 转为 ENG。
 

@@ -3,8 +3,10 @@
 static bool execution_declarewar_preflight(const ExecutionRequest& request,
     uint64_t& actor,uint64_t& recipient,int32_t& date,
     unsigned char*& action,void*& wrapper,ProtocolWrapperShape& source,
-    AlliancePayload& payload,uintptr_t& dispatcher,bool& constructed) noexcept {
+    AlliancePayload& payload,uintptr_t& dispatcher,bool& constructed,
+    const char** failure_reason=nullptr) noexcept {
     constructed=false;
+    if (failure_reason) *failure_reason=nullptr;
     uintptr_t game=0; uint64_t player=0;
     if (!read(base+0x233fe58,game) || !read(game+0x1dd0,date)
         || !read(game+0x1e60,player)
@@ -22,8 +24,11 @@ static bool execution_declarewar_preflight(const ExecutionRequest& request,
         || !read(table+0x90,send) || send!=base+0x509e60
         || !read(table+0x100,diplomat) || diplomat!=base+0x8f440) return false;
     bool visible=false; unsigned available=0;
-    if (!factory_query_visibility(actor,recipient,true,visible,methods) || !visible
-        || !alliance_query_diplomats(actor,available)) return false;
+    if (!factory_query_visibility(actor,recipient,true,visible,methods) || !visible) return false;
+    if (!alliance_query_diplomats(actor,available)) {
+        if (failure_reason) *failure_reason="NATIVE_DIPLOMAT_CONTEXT_UNAVAILABLE";
+        return false;
+    }
     action=static_cast<unsigned char*>(factory_query_create(actor,recipient,true,methods));
     if (!action) return false;
     constructed=true;
@@ -33,6 +38,11 @@ static bool execution_declarewar_preflight(const ExecutionRequest& request,
         || original.actor!=actor || original.mirror!=actor || original.recipient!=recipient
         || original.state34!=0 || original.mode38!=1) return false;
     for (uintptr_t value:original.containers) if (value) return false;
+    const bool diplomat_required=reinterpret_cast<bool (*)(void*)>(diplomat)(action);
+    if (diplomat_required && !available) {
+        if (failure_reason) *failure_reason="NATIVE_DIPLOMAT_UNAVAILABLE";
+        return false;
+    }
     DeclareWarCandidateSelection selection{};
     selection.casus_belli=request.casus_belli;
     selection.province_id=request.war_goal_province;
@@ -58,11 +68,19 @@ static bool execution_declarewar_preflight(const ExecutionRequest& request,
     }
     memcpy(action+0x28,&date,sizeof(date));
     memcpy(action+0x2c,&date,sizeof(date));
+    DeclareWarParticipantSelection participants_requested{};
+    participants_requested.call_allies=request.call_allies;
+    participants_requested.promise_land_to=request.promise_land_to;
+    participants_requested.co_belligerents=request.co_belligerents;
+    DeclareWarParticipantsResult participants{};
+    if (!declarewar_participants_apply(action,participants_requested,request.actor,request.recipient,participants)
+        || !declarewar_participants_query(action,participants_requested,participants,
+            request.request_id,request.actor,request.recipient,date,false)
+        || !participants.selection_allowed) return false;
     using Predicate=bool (*)(void*,void*,unsigned char);
     if (!reinterpret_cast<Predicate>(common)(action,nullptr,0)
         || !reinterpret_cast<Predicate>(validity)(action,nullptr,0)
-        || !reinterpret_cast<Predicate>(send)(action,nullptr,0)
-        || (reinterpret_cast<bool (*)(void*)>(diplomat)(action) && !available)) return false;
+        || !reinterpret_cast<Predicate>(send)(action,nullptr,0)) return false;
     uintptr_t wrap=0;
     if (!read(table+0x40,wrap)
         || (wrap!=base+kWrapperMethodRva
@@ -80,8 +98,16 @@ static bool execution_declarewar_preflight(const ExecutionRequest& request,
         || payload.state34!=0 || payload.variant38!=1 || payload.extra60
         || payload.parameter40 || !payload.war.valid()
         || payload.war.owned_present==no_cb
-        || payload.war.container50.count || payload.war.container68.count
-        || payload.war.container80.count) return false;
+        || payload.war.container50.count!=request.call_allies.count
+        || payload.war.container68.count!=request.promise_land_to.count
+        || payload.war.container80.count!=request.co_belligerents.count) return false;
+    const bridge::CountryTagList* lists[]={&request.call_allies,&request.promise_land_to,&request.co_belligerents};
+    const bridge::declarewar_payload::WarPayloadVector* vectors[]={&payload.war.container50,&payload.war.container68,&payload.war.container80};
+    for (unsigned group=0;group<3;++group) for (unsigned i=0;i<lists[group]->count;++i) {
+        uint64_t expected=0;
+        if (!alliance_query_country(lists[group]->tags[i],expected)
+            || vectors[group]->values[i]!=expected) return false;
+    }
     uint64_t beneficiary=0;
     if (!no_cb && (payload.war.owned.owned_field18!=static_cast<uint32_t>(request.war_goal_province)
         || !declarewar_candidates_normalize_beneficiary(payload.war.owned.owned_field38,beneficiary)

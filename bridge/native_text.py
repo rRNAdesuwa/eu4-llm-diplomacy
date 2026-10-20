@@ -100,21 +100,39 @@ def _decode_eu4_escape(data: bytes) -> str:
     return "".join(result)
 
 
-def decode_native_text(data: bytes | bytearray | memoryview, codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> str:
-    """Decode at most 512 native bytes using the explicitly selected codec.
+def _validate_max_bytes(max_bytes: object, upper_bound: int = 8192) -> int:
+    if (isinstance(upper_bound, bool) or not isinstance(upper_bound, int)
+            or not 1 <= upper_bound <= 16384):
+        raise InvalidNativeText("invalid native text upper bound")
+    if (isinstance(max_bytes, bool) or not isinstance(max_bytes, int)
+            or not 1 <= max_bytes <= upper_bound):
+        raise InvalidNativeText(
+            f"native text max_bytes must be an integer in the range 1..{upper_bound}")
+    return max_bytes
+
+
+def decode_native_text(
+        data: bytes | bytearray | memoryview,
+        codec: str = DEFAULT_NATIVE_TEXT_CODEC,
+        max_bytes: int = MAX_NATIVE_TEXT_BYTES,
+        *, max_bytes_limit: int = 8192) -> str:
+    """Decode bounded native bytes using the explicitly selected codec.
 
     A terminal NUL is treated as a C-style terminator only when the remainder
     is entirely NUL bytes.  Embedded NULs, malformed UTF-8, incomplete escape
     triples, surrogate code points, and UCS2 overflow all raise
-    :class:`InvalidNativeText`.
+    :class:`InvalidNativeText`.  The historical default is 512 bytes; callers
+    may raise the bound for a known native field up to ``max_bytes_limit``
+    (8192 bytes by default).
     """
 
     selected = validate_native_text_codec(codec)
+    limit = _validate_max_bytes(max_bytes, max_bytes_limit)
     if not isinstance(data, (bytes, bytearray, memoryview)):
         raise InvalidNativeText("native text must be bytes-like")
     raw = bytes(data)
-    if len(raw) > MAX_NATIVE_TEXT_BYTES:
-        raise InvalidNativeText(f"native text exceeds {MAX_NATIVE_TEXT_BYTES} bytes")
+    if len(raw) > limit:
+        raise InvalidNativeText(f"native text exceeds {limit} bytes")
     if selected == DEFAULT_NATIVE_TEXT_CODEC:
         try:
             raw = _strip_nul_terminator(raw)
@@ -127,11 +145,17 @@ def decode_native_text(data: bytes | bytearray | memoryview, codec: str = DEFAUL
     return _decode_eu4_escape(raw)
 
 
-def decode_native_text_hex(encoded: str, codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> str:
+def decode_native_text_hex(
+        encoded: str,
+        codec: str = DEFAULT_NATIVE_TEXT_CODEC,
+        max_bytes: int = MAX_NATIVE_TEXT_BYTES,
+        *, max_bytes_limit: int = 8192) -> str:
     """Decode a bounded hex payload emitted by the observer log."""
 
     selected = validate_native_text_codec(codec)
-    if not isinstance(encoded, str) or len(encoded) % 2 or len(encoded) > MAX_NATIVE_TEXT_BYTES * 2:
+    limit = _validate_max_bytes(max_bytes, max_bytes_limit)
+    if (not isinstance(encoded, str) or len(encoded) % 2
+            or len(encoded) > limit * 2):
         raise InvalidNativeText("native text hex is malformed or too large")
     if not re.fullmatch(r"[0-9A-Fa-f]*", encoded):
         raise InvalidNativeText("native text hex is not hexadecimal")
@@ -139,7 +163,8 @@ def decode_native_text_hex(encoded: str, codec: str = DEFAULT_NATIVE_TEXT_CODEC)
         raw = bytes.fromhex(encoded)
     except ValueError as error:
         raise InvalidNativeText("native text hex is not hexadecimal") from error
-    return decode_native_text(raw, selected)
+    return decode_native_text(raw, selected, max_bytes=limit,
+                              max_bytes_limit=max_bytes_limit)
 
 
 __all__ = [

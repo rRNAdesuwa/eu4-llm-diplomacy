@@ -52,19 +52,25 @@ static void declarewar_query_hex(const NativeShortString& text,char (&hex)[1025]
 }
 
 #include "declarewar-cost-query.inc"
+#include "declarewar-details-query.inc"
+#include "declarewar-peace-options-query.inc"
+#include "declarewar-participants-query.inc"
+#include "declarewar-forces-query.inc"
 
 static void declarewar_query_run(const char* id,const char* actor_tag,
     const char* recipient_tag,uint64_t actor,uint64_t recipient,int32_t date,
     const char* casus_belli=nullptr,int32_t province_id=-1,
-    const char* beneficiary_tag=nullptr) {
+    const char* beneficiary_tag=nullptr,const DeclareWarParticipantSelection* participant_selection=nullptr) {
     static constexpr FactoryActionQueryMethods methods{
         0x293b,0x1c80d90,0x508de0,0x50a0d0,0x100,0x8f440,
         "declare_war",false,0x500550};
     const uintptr_t table=base+methods.vtable_rva;
-    uintptr_t validity=0,common_method=0,send_method=0,destructor=0;
+    uintptr_t validity=0,common_method=0,send_method=0,requires_diplomat=0,destructor=0;
     if (!read(table+0x80,validity) || validity!=base+methods.validity_rva
         || !read(table+0x88,common_method) || common_method!=base+methods.display_rva
         || !read(table+0x90,send_method) || send_method!=base+0x509e60
+        || !read(table+methods.diplomat_slot,requires_diplomat)
+        || requires_diplomat!=base+methods.diplomat_rva
         || !read(table,destructor)
         || (destructor!=base+methods.destructor_rva
             && !(destructor==reinterpret_cast<uintptr_t>(&lifecycle_destructor_observe)
@@ -74,6 +80,10 @@ static void declarewar_query_run(const char* id,const char* actor_tag,
     bool visible=false;
     if (!factory_query_visibility(actor,recipient,true,visible,methods)) {
         alliance_query_failure(id,"QUERY_DECLARE_WAR_VISIBILITY_UNAVAILABLE"); return;
+    }
+    unsigned available_diplomats=0;
+    if (!alliance_query_diplomats(actor,available_diplomats)) {
+        alliance_query_failure(id,"NATIVE_DIPLOMAT_CONTEXT_UNAVAILABLE"); return;
     }
     void* action=factory_query_create(actor,recipient,true,methods);
     if (!action) { alliance_query_failure(id,"QUERY_DECLARE_WAR_FACTORY_UNAVAILABLE"); return; }
@@ -88,6 +98,7 @@ static void declarewar_query_run(const char* id,const char* actor_tag,
         reinterpret_cast<Destroy>(destructor)(action,1);
         alliance_query_failure(id,"QUERY_DECLARE_WAR_DEFAULT_CONTEXT_CHANGED"); return;
     }
+    const bool diplomat_required=reinterpret_cast<bool (*)(void*)>(requires_diplomat)(action);
     const bool selection_requested=casus_belli && casus_belli[0];
     const bool no_cb=selection_requested && !strcmp(casus_belli,"no_casus_belli");
     DeclareWarCandidateSelection selection{};
@@ -154,9 +165,25 @@ static void declarewar_query_run(const char* id,const char* actor_tag,
     const bool enumeration_complete=candidates.native_called && candidates.capture_complete
         && candidates.vector_cleanup_ok && candidates.callback_holder_cleanup_ok
         && candidates.callback_holder_empty_after && !candidates.truncated;
-    const bool parameter_complete=selection_matched && enumeration_complete;
+    DeclareWarParticipantSelection empty_participant_selection{};
+    const auto& participants_requested=participant_selection?*participant_selection:empty_participant_selection;
+    DeclareWarParticipantsResult participants{};
+    if (!declarewar_participants_apply(action,participants_requested,actor_tag,recipient_tag,participants)
+        || !declarewar_query_header(action,before)
+        || !declarewar_participants_query(action,participants_requested,participants,id,actor_tag,recipient_tag,date,true)) {
+        reinterpret_cast<Destroy>(destructor)(action,1);
+        alliance_query_failure(id,"QUERY_DECLARE_WAR_PARTICIPANT_CONTEXT_UNAVAILABLE"); return;
+    }
+    const bool parameter_complete=selection_matched && enumeration_complete
+        && participants.selection_applied && participants.action_unchanged;
+    DeclareWarForcesResult forces{};
+    const bool forces_unchanged=declarewar_forces_query_run(action,participants,forces);
     DeclareWarCostQueryResult costs{};
     const bool costs_unchanged=declarewar_cost_query_run(action,costs,true);
+    DeclareWarDetailsQueryResult details{};
+    const bool details_unchanged=declarewar_details_query_run(action,details);
+    DeclareWarPeaceOptionsQueryResult peace_options{};
+    const bool peace_options_unchanged=declarewar_peace_options_query_run(action,peace_options);
     NativeShortString diagnostic{},common_text{},send_text{};
     diagnostic.capacity=common_text.capacity=send_text.capacity=15;
     using Predicate=bool (*)(void*,void*,unsigned char);
@@ -170,7 +197,8 @@ static void declarewar_query_run(const char* id,const char* actor_tag,
     declarewar_query_hex(selected,hex,readable,truncated);
     declarewar_query_hex(common_text,common_hex,common_readable,common_truncated);
     declarewar_query_hex(send_text,send_hex,send_readable,send_truncated);
-    const bool unchanged=costs_unchanged && declarewar_query_header(action,after)
+    const bool unchanged=forces_unchanged && costs_unchanged && details_unchanged
+        && peace_options_unchanged && declarewar_query_header(action,after)
         && declarewar_query_same_header(before,after);
     using StringDestroy=void (*)(void*);
     reinterpret_cast<StringDestroy>(base+0x95660)(&diagnostic);
@@ -188,11 +216,24 @@ static void declarewar_query_run(const char* id,const char* actor_tag,
         costs.primary_raw_available?"true":"false",costs.primary_raw,
         costs.secondary_raw_available?"true":"false",costs.secondary_raw,costs.text_hex,
         costs.text_readable?"true":"false",costs.text_truncated?"true":"false");
-    char message[139520];
+    char details_json[38000]{};
+    if (!declarewar_details_query_json(details,details_json,sizeof(details_json))) {
+        alliance_query_failure(id,"QUERY_DECLARE_WAR_DETAILS_FORMAT_FAILED"); return;
+    }
+    char forces_json[3400]{};
+    if (!declarewar_forces_query_json(forces,forces_json,sizeof(forces_json))) {
+        alliance_query_failure(id,"QUERY_DECLARE_WAR_FORCES_FORMAT_FAILED"); return;
+    }
+    char peace_options_json[40000]{};
+    if (!declarewar_peace_options_query_json(peace_options,peace_options_json,sizeof(peace_options_json))) {
+        alliance_query_failure(id,"QUERY_DECLARE_WAR_PEACE_OPTIONS_FORMAT_FAILED"); return;
+    }
+    char message[190000];
     snprintf(message,sizeof(message),
-        "{\"event\":\"native_declare_war_inspection\",\"session_id\":\"%lu-%llx\",\"query_id\":\"%s\",\"action_id\":\"declare_war\",\"family\":\"declare_war\",\"actor\":\"%.3s\",\"recipient\":\"%.3s\",\"phase\":\"initiate\",\"date_raw\":%d,\"ui_selection_checked\":true,\"native_visibility\":%s,\"ui_enabled_gate_checked\":true,\"common_action_gate\":%s,\"validity_called\":true,\"native_validity\":%s,\"initiation_gate_checked\":true,\"initiation_gate\":%s,\"native_diagnostic_hex\":\"%s\",\"diagnostic_readable\":%s,\"diagnostic_truncated\":%s,\"common_diagnostic_hex\":\"%s\",\"common_diagnostic_readable\":%s,\"common_diagnostic_truncated\":%s,\"send_diagnostic_hex\":\"%s\",\"send_diagnostic_readable\":%s,\"send_diagnostic_truncated\":%s,",
+        "{\"event\":\"native_declare_war_inspection\",\"session_id\":\"%lu-%llx\",\"query_id\":\"%s\",\"action_id\":\"declare_war\",\"family\":\"declare_war\",\"actor\":\"%.3s\",\"recipient\":\"%.3s\",\"phase\":\"initiate\",\"date_raw\":%d,\"ui_selection_checked\":true,\"native_visibility\":%s,\"ui_enabled_gate_checked\":true,\"common_action_gate\":%s,\"validity_called\":true,\"native_validity\":%s,\"initiation_gate_checked\":true,\"initiation_gate\":%s,\"diplomat_context_readable\":true,\"diplomat_required\":%s,\"available_diplomat_count\":%u,\"diplomat_assignment_verified\":false,\"native_diagnostic_hex\":\"%s\",\"diagnostic_readable\":%s,\"diagnostic_truncated\":%s,\"common_diagnostic_hex\":\"%s\",\"common_diagnostic_readable\":%s,\"common_diagnostic_truncated\":%s,\"send_diagnostic_hex\":\"%s\",\"send_diagnostic_readable\":%s,\"send_diagnostic_truncated\":%s,",
         static_cast<unsigned long>(GetCurrentProcessId()),static_cast<unsigned long long>(observation_creation),
         id,actor_tag,recipient_tag,date,visible?"true":"false",common?"true":"false",valid?"true":"false",gate?"true":"false",
+        diplomat_required?"true":"false",available_diplomats,
         hex,readable?"true":"false",truncated?"true":"false",common_hex,common_readable?"true":"false",common_truncated?"true":"false",
         send_hex,send_readable?"true":"false",send_truncated?"true":"false");
     const size_t used=strlen(message);
@@ -207,5 +248,23 @@ static void declarewar_query_run(const char* id,const char* actor_tag,
         candidates.native_called?"true":"false",enumeration_complete?"true":"false",candidates.native_count,
         candidates.truncated?"true":"false",candidates.vector_cleanup_ok && candidates.callback_holder_cleanup_ok?"true":"false",
         candidate_json,cost_json,parameter_complete?"true":"false",static_cast<unsigned long>(GetCurrentThreadId()));
+    const size_t end=strlen(message);
+    // Replace only the terminal }\n so the details remain bound to this
+    // query's selected candidate, actor, recipient and date.
+    if (end<2 || message[end-2]!='}') {
+        alliance_query_failure(id,"QUERY_DECLARE_WAR_DETAILS_FORMAT_FAILED"); return;
+    }
+    char call_csv[64]{},promise_csv[64]{},co_csv[64]{};
+    declarewar_participant_csv(participants_requested.call_allies,call_csv);
+    declarewar_participant_csv(participants_requested.promise_land_to,promise_csv);
+    declarewar_participant_csv(participants_requested.co_belligerents,co_csv);
+    const int added=snprintf(message+end-2,sizeof(message)-(end-2),
+        ",\"native_details\":%s,\"native_forces\":%s,\"native_peace_options\":%s,\"native_participants\":{\"called\":%s,\"complete\":%s,\"selection_applied\":%s,\"selection_allowed\":%s,\"action_unchanged\":%s,\"candidate_count\":%u,\"requested_call_allies_csv\":\"%s\",\"requested_promise_land_to_csv\":\"%s\",\"requested_co_belligerents_csv\":\"%s\"}}\n",details_json,forces_json,peace_options_json,
+        participants.called?"true":"false",participants.complete?"true":"false",
+        participants.selection_applied?"true":"false",participants.selection_allowed?"true":"false",
+        participants.action_unchanged?"true":"false",participants.count,call_csv,promise_csv,co_csv);
+    if (added<0 || static_cast<size_t>(added)>=sizeof(message)-(end-2)) {
+        alliance_query_failure(id,"QUERY_DECLARE_WAR_DETAILS_FORMAT_FAILED"); return;
+    }
     line(message);
 }

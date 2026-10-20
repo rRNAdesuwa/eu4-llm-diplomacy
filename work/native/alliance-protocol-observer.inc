@@ -82,9 +82,15 @@ static bool protocol_shape_equal(const LifecycleActionShape& left,
         && left.support_independence==right.support_independence
         && left.military_access==right.military_access
         && left.vassalization==right.vassalization
+        && left.favor_gold==right.favor_gold
+        && left.favor_trust==right.favor_trust
+        && left.favor_men==right.favor_men
+        && left.curry_favors==right.curry_favors
         && left.insult==right.insult && left.declare_war==right.declare_war
         && left.peace_offer==right.peace_offer
         && left.parameter40==right.parameter40
+        && left.favor_cost40==right.favor_cost40
+        && left.favor_amount44==right.favor_amount44
         && left.extra60==right.extra60
         && (!left.declare_war || (left.war.valid() && right.war.valid()
             && left.war==right.war))
@@ -163,6 +169,14 @@ extern "C" void* bridge_wrapper_clone_observe(void* wrapper,void* context,uintpt
         || event.target.payload.vtable==base+lifecycle_military_access_vtable_rva
         || event.source.payload.vtable==base+lifecycle_vassalization_vtable_rva
         || event.target.payload.vtable==base+lifecycle_vassalization_vtable_rva
+        || event.source.payload.vtable==base+lifecycle_favor_gold_vtable_rva
+        || event.target.payload.vtable==base+lifecycle_favor_gold_vtable_rva
+        || event.source.payload.vtable==base+lifecycle_favor_trust_vtable_rva
+        || event.target.payload.vtable==base+lifecycle_favor_trust_vtable_rva
+        || event.source.payload.vtable==base+lifecycle_favor_men_vtable_rva
+        || event.target.payload.vtable==base+lifecycle_favor_men_vtable_rva
+        || event.source.payload.vtable==base+lifecycle_curry_favors_vtable_rva
+        || event.target.payload.vtable==base+lifecycle_curry_favors_vtable_rva
         || event.source.payload.vtable==base+lifecycle_insult_vtable_rva
         || event.target.payload.vtable==base+lifecycle_insult_vtable_rva
         || event.source.payload.vtable==base+lifecycle_declarewar_vtable_rva

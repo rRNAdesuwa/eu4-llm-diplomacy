@@ -45,6 +45,32 @@ int main() {
     const auto prior=reads;
     if (!require(!select(0x1234,base,read_byte,observed))
         || !require(!observed.matched && reads==prior)) return 2;
+    for (const auto& binding:kConditionalKeyBindings) {
+        const uintptr_t row=base+binding.row_rbp_offset;
+        frame[0x160]=1;
+        const auto* key=select(binding.caller_return_rva,row,read_byte,observed);
+        if (!require(key==&binding.key)
+            || !require(observed.matched && observed.condition_readable
+                && observed.condition_value==1
+                && observed.condition_offset==binding.condition_row_offset)) return 2;
+        frame[0x160]=2;
+        key=select(binding.caller_return_rva,row,read_byte,observed);
+        if (!require(key==&binding.key)
+            || !require(observed.condition_readable
+                && observed.condition_value==2)) return 2;
+        frame[0x160]=0;
+        if (!require(!select(binding.caller_return_rva,row,read_byte,observed))
+            || !require(observed.matched && observed.condition_readable
+                && observed.condition_value==0)) return 2;
+        const auto prior=reads;
+        frame[0x160]=1;
+        if (!require(!select(binding.caller_return_rva,
+                base+sizeof(frame)-0x80,read_byte,observed))
+            || !require(observed.matched && !observed.condition_readable)
+            || !require(reads>prior)) return 2;
+        if (!require(!select(binding.caller_return_rva,0,read_byte,observed))
+            || !require(observed.matched && !observed.condition_readable)) return 2;
+    }
     std::printf("{\"status\":\"passed\",\"checks\":%u}\n",checks);
     return 0;
 }
