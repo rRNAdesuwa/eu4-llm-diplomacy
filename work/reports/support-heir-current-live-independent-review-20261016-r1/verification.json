@@ -1,0 +1,1102 @@
+{
+  "attempts_IO": {
+    "delegated_fixed_host": 6167,
+    "game_disk": 39,
+    "ordinary": 1173
+  },
+  "author_imports_or_executions": 0,
+  "config_values_read_by_review": false,
+  "controller_including_seal_returned": 4606571,
+  "controller_returned": 2366517,
+  "decoder_imports": 0,
+  "entry_PE": {
+    "bytes": 8192,
+    "calls": 1,
+    "included_in_journal_totals": false,
+    "raw_replayed": false,
+    "source_declaration_only": true
+  },
+  "finish_allowance": 2097152,
+  "flat_pin_count": 75,
+  "game_fullhash_open_count": 1,
+  "host226_physical_rehashes": 0,
+  "host_extra_requested": 131074,
+  "host_extra_returned": 7976,
+  "host_main_pass_bytes": 255828142,
+  "host_main_passes": 9,
+  "journal_bytes": 55844,
+  "journal_calls": 2990,
+  "journal_largest": 11040,
+  "journal_stage_bytes": {
+    "code_after": 4308,
+    "code_before": 4308,
+    "host_after": 300,
+    "host_before": 300,
+    "sample_1": 23314,
+    "sample_2": 23314
+  },
+  "journal_stage_calls": {
+    "code_after": 2,
+    "code_before": 2,
+    "host_after": 46,
+    "host_before": 46,
+    "sample_1": 1447,
+    "sample_2": 1447
+  },
+  "loaded_bytes_per_guard": 4308,
+  "own_failures": 1,
+  "passed": true,
+  "peak_self_committed_bytes": 24289280,
+  "positive_task_body_reads": 0,
+  "preview_allowance": 6291456,
+  "prior_failed_and_diagnostic_source_bytes": 5305727,
+  "process_UI_native_operations": 0,
+  "requested_IO": {
+    "delegated_fixed_host": 6464602114,
+    "game_disk": 39854080,
+    "ordinary": 5693324626
+  },
+  "returned_IO": {
+    "delegated_fixed_host": 2302461254,
+    "game_disk": 38462504,
+    "ordinary": 69093511
+  },
+  "samples": [
+    {
+      "handles": {
+        "FRA": "0x100007a00415246",
+        "POL": "0x1000064004c4f50"
+      },
+      "index_key_presence": [
+        false,
+        false
+      ],
+      "index_reasons": [
+        "missing_key",
+        "missing_key"
+      ],
+      "roots": {
+        "alternate_player": 2960685,
+        "array": "0x2d88f9d0040",
+        "capacity": 1380,
+        "count": 1380,
+        "current_player": 72058118028218950,
+        "database": "0x2d87ddbb080",
+        "date": 56461512,
+        "game": "0x2d88ae9a030",
+        "ironman": 0,
+        "load_source": 0,
+        "manual_pause": 1,
+        "pause": "0x2d91e897230",
+        "recalculating": 0,
+        "reset": 0,
+        "selector": 0,
+        "server": "0x2d8c42ce860"
+      },
+      "task_body_reads": 0
+    },
+    {
+      "handles": {
+        "FRA": "0x100007a00415246",
+        "POL": "0x1000064004c4f50"
+      },
+      "index_key_presence": [
+        false,
+        false
+      ],
+      "index_reasons": [
+        "missing_key",
+        "missing_key"
+      ],
+      "roots": {
+        "alternate_player": 2960685,
+        "array": "0x2d88f9d0040",
+        "capacity": 1380,
+        "count": 1380,
+        "current_player": 72058118028218950,
+        "database": "0x2d87ddbb080",
+        "date": 56461512,
+        "game": "0x2d88ae9a030",
+        "ironman": 0,
+        "load_source": 0,
+        "manual_pause": 1,
+        "pause": "0x2d91e897230",
+        "recalculating": 0,
+        "reset": 0,
+        "selector": 0,
+        "server": "0x2d8c42ce860"
+      },
+      "task_body_reads": 0
+    }
+  ],
+  "schema": "EU4-SUPPORT-HEIR-LIVE-INDEPENDENT-VERIFICATION/1",
+  "sealed": true,
+  "source49_inventory_bytes": 524223,
+  "source49_pin_count": 49,
+  "source_events": [
+    {
+      "bytes": 708665,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/capture.json",
+      "phase": "fixed",
+      "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+    },
+    {
+      "bytes": 377024,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-io.json",
+      "phase": "fixed",
+      "sha256": "5e82ca397fb3b1ca67326ff1b612ab29ff7ff5c03e45c47faf83fb8e19595b7a"
+    },
+    {
+      "bytes": 422909,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+      "phase": "fixed",
+      "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+    },
+    {
+      "bytes": 34688,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+      "phase": "fixed",
+      "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+    },
+    {
+      "bytes": 16575,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion.json",
+      "phase": "fixed",
+      "sha256": "b949815ebc4d15a0db6792006fff759289a5fd70438997e3752bbe958fcada8a"
+    },
+    {
+      "bytes": 5356,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-delivery.json",
+      "phase": "fixed",
+      "sha256": "23901de82b520881b453b028978a47256afb321f22d342403e7528f957cae6a1"
+    },
+    {
+      "bytes": 2391,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion-corrigendum.json",
+      "phase": "fixed",
+      "sha256": "e50f7135d51eac5ca000c29eeac0651625cc396f2d837fdb5db0a11b225e3ac6"
+    },
+    {
+      "bytes": 1018,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-final-summary.json",
+      "phase": "fixed",
+      "sha256": "886efb078dbf3804c231e1c3051baf6b43f67d808fd761c082dd97530b17c6b1"
+    },
+    {
+      "bytes": 16257,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-manifest.json",
+      "phase": "source_preflight",
+      "sha256": "3d70675a5901635a00efd6415ac93ead4b4dcadc726df1a6f4f065b864bb20f7"
+    },
+    {
+      "bytes": 4573,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/run-authorization.json",
+      "phase": "auth_preflight",
+      "sha256": "102fa82e2ce6da0ae393c53940defe9f265edee7d410766951119dc7aa3a6cde"
+    },
+    {
+      "bytes": 25411,
+      "path": "bridge/diplomacy_effect_observer.py",
+      "phase": "before",
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    {
+      "bytes": 8109,
+      "path": "bridge/tag_command_audit.py",
+      "phase": "before",
+      "sha256": "9e90cd180818166fac9754a65d68203b84eb24b57569c3605f5b28e69c1b289d"
+    },
+    {
+      "bytes": 25398,
+      "path": "bridge/tag_command_backend.py",
+      "phase": "before",
+      "sha256": "74279bf8cb77d800ad53711e799260672b20b7d20cf6bee997527eaa29c55c53"
+    },
+    {
+      "bytes": 16856,
+      "path": "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py",
+      "phase": "before",
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    {
+      "bytes": 2494,
+      "path": "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json",
+      "phase": "before",
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    {
+      "bytes": 24560,
+      "path": "work/candidates/frida-entry-observer-1375-v1/capture_once.py",
+      "phase": "before",
+      "sha256": "b39823564ab26a9da7093e1812b2a1fec28a17141e3c4a1024460664b1943b6e"
+    },
+    {
+      "bytes": 43987,
+      "path": "work/candidates/frida-entry-observer-1375-v1/host-manifest.json",
+      "phase": "before",
+      "sha256": "e7673b0e07c052788d6d2c6378939e176f57e79a45ea09888b957741b7370166"
+    },
+    {
+      "bytes": 8615,
+      "path": "work/candidates/frida-entry-observer-1375-v1/job_tree.py",
+      "phase": "before",
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    {
+      "bytes": 7746,
+      "path": "work/candidates/peace-current-pending-observer-1375-v2/offline_child.py",
+      "phase": "before",
+      "sha256": "78435436c14d8f5c2728c4b3bbe181a7658d3266c1faf08b04d5438e8a62f7c4"
+    },
+    {
+      "bytes": 2678,
+      "path": "work/candidates/support-heir-current-observer-1375-v1/STATUS.md",
+      "phase": "before",
+      "sha256": "a8ac3c942bea17b0f94839f2c944b095105fae5eece2a9d87838de82ec7bc10f"
+    },
+    {
+      "bytes": 5075,
+      "path": "work/candidates/support-heir-current-observer-1375-v1/draft-source-manifest.json",
+      "phase": "before",
+      "sha256": "520b00a30d66b6f67c1649fae5af1ac815f4be334eda9048291ebdad3f2958d4"
+    },
+    {
+      "bytes": 5506,
+      "path": "work/candidates/support-heir-current-observer-1375-v1/source-manifest.json",
+      "phase": "before",
+      "sha256": "f8442eefa3dbacb5a952a5d8387cf0bcea83adfcb059034984af5bd40478c069"
+    },
+    {
+      "bytes": 21780,
+      "path": "work/candidates/support-heir-current-observer-1375-v1/support_heir_current_observer.py",
+      "phase": "before",
+      "sha256": "8b2eba840c3f6b4927f6fbf1aa04878c931fc548372dc10dd8432863ed68ec01"
+    },
+    {
+      "bytes": 5702,
+      "path": "work/candidates/v19-spy-bootstrap-lab-1375/build_manifest.py",
+      "phase": "before",
+      "sha256": "ffcf88551fdbd6f0095d8b1be9e3c9da10863ad18219f6761455b464abaae724"
+    },
+    {
+      "bytes": 5744,
+      "path": "work/candidates/v19-spy-bootstrap-lab-1375/loader.py",
+      "phase": "before",
+      "sha256": "f57741aa7026be7345b7b0ca0057013f717b7eaafecdd9b24b7cca7db9fb3d9f"
+    },
+    {
+      "bytes": 2533,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/frozen.py",
+      "phase": "before",
+      "sha256": "c919475965d0630dcba78223453a90191ef5636e772eb435044ea3edb3a30b76"
+    },
+    {
+      "bytes": 4432,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/graph.py",
+      "phase": "before",
+      "sha256": "99a6732af92ceff22f7226e292ef5f26a59df8998a7efc67818908b488aa45f4"
+    },
+    {
+      "bytes": 31340,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/inventory.json",
+      "phase": "before",
+      "sha256": "fe47d0dc016fbaa523d0f5b0010cd879fb57f7dcd33fd4edce39800b9c0b5e9d"
+    },
+    {
+      "bytes": 4690,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/launcher.py",
+      "phase": "before",
+      "sha256": "a7944c63e044e195a242b417afbea27c001ef2cae1f9d1a721bf3b83352845fe"
+    },
+    {
+      "bytes": 6985,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/readonly.py",
+      "phase": "before",
+      "sha256": "f5bc7d4187ebd5d6e6ce5f529a62657f49e8864db7aa8a458b5870fb5168b30b"
+    },
+    {
+      "bytes": 12011,
+      "path": "work/capture_direct_truce_flags_20261015.py",
+      "phase": "before",
+      "sha256": "1677ccf7f03b93c44d3bb5313bae3350605f51c58855f381f5b516504f4bb904"
+    },
+    {
+      "bytes": 2818,
+      "path": "work/local_config.py",
+      "phase": "before",
+      "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001"
+    },
+    {
+      "bytes": 23802,
+      "path": "work/native/inject_probe.py",
+      "phase": "before",
+      "sha256": "18a6e5d7cfab4607a4b964d23002b71b8c9352d41c8324f1c9e5740534ea0b4f"
+    },
+    {
+      "bytes": 18118,
+      "path": "work/probe_native_state.py",
+      "phase": "before",
+      "sha256": "220549d1b8db3028015b1ddf260d7605c3f3525941500eeb43255c69d34e2187"
+    },
+    {
+      "bytes": 783,
+      "path": "work/reports/dynastic-support-reader-entry-20261015-r50/owned-code.json",
+      "phase": "before",
+      "sha256": "14cbfd7e2ce8bb4de4992e9f71bef4e5430fb75b11d95424ff5054ddbd4687fd"
+    },
+    {
+      "bytes": 9002,
+      "path": "work/reports/dynastic-support-reader-static-20261015-r48/owned-code.json",
+      "phase": "before",
+      "sha256": "d392ac87b59dee56bd77f75f2e41243efbea7def5c1a1819d1df3c1ced42b197"
+    },
+    {
+      "bytes": 674,
+      "path": "work/reports/peace-current-pending-v2-config-pin-preparation-20261016-r1/preparation.json",
+      "phase": "before",
+      "sha256": "aa9d27c365c756163df0a714cde519b3a8f36ee6a4f1a7c960ec427f0160b7ae"
+    },
+    {
+      "bytes": 13495,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child.py",
+      "phase": "before",
+      "sha256": "8f807abd0a4e6e4eaa116fb8739d481ec1386bc15c4ccd551209601af02d22ba"
+    },
+    {
+      "bytes": 13431,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/controller.py",
+      "phase": "before",
+      "sha256": "e0807ad1f9f7c99e3193c962307c64b1e8a62242e527dde9842799ab2fc37df9"
+    },
+    {
+      "bytes": 8753,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/runtime_contract.py",
+      "phase": "before",
+      "sha256": "6c03f8e9eb0e806c3118eb90521cde4c93b85dc89a0ec4b99dcc49007ed288b2"
+    },
+    {
+      "bytes": 8861,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-manifest.json",
+      "phase": "before",
+      "sha256": "803d619df53c33b8698e78283c3ad223a61319c87b4a40ccaae732997d225127"
+    },
+    {
+      "bytes": 7297,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/text_config_adapter.py",
+      "phase": "before",
+      "sha256": "b1d44aff5c7ddfacba055565a9599cdbb05161de6ca0fcfc9927167a6e9680c0"
+    },
+    {
+      "bytes": 5817,
+      "path": "work/reports/peace-current-pending-v2-live-controller-source-independent-review-20261016-r2/findings.json",
+      "phase": "before",
+      "sha256": "4e38a2083274e8e82825ad63f0e50b7dc7ae3c90858703742341db33e3da31d7"
+    },
+    {
+      "bytes": 13944,
+      "path": "work/reports/peace-current-pending-v2-live-controller-source-independent-review-20261016-r2/manifest.json",
+      "phase": "before",
+      "sha256": "c80ea76a7847b55613672b0a7fbf0fd24dc13d91b8a3e4fba868d68737af1086"
+    },
+    {
+      "bytes": 10852,
+      "path": "work/reports/support-heir-current-controller-source-authorization-20261016-r1/authorization.json",
+      "phase": "before",
+      "sha256": "79ecd0456ecd8d99a8bc215313e610cc297be2075ae0042d2a12a76415cdd3a9"
+    },
+    {
+      "bytes": 36102,
+      "path": "work/reports/support-heir-current-controller-source-independent-review-20261016-r1/findings.json",
+      "phase": "before",
+      "sha256": "99e4496a5362d4b34089a3d9843133c34963ffbc5cd7acee160e88a3ffffd0a8"
+    },
+    {
+      "bytes": 33412,
+      "path": "work/reports/support-heir-current-controller-source-independent-review-20261016-r1/manifest.json",
+      "phase": "before",
+      "sha256": "a39124ca367c79ee2a068641da9bb68e2d446917b45af9bb0a879a056a5e3367"
+    },
+    {
+      "bytes": 3307,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/PROTOCOL.md",
+      "phase": "before",
+      "sha256": "dd5800c06b67d79a1984060756c326d0cfa6488497e006363cc2cb7a03135cb0"
+    },
+    {
+      "bytes": 34688,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+      "phase": "before",
+      "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+    },
+    {
+      "bytes": 638,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/attempt-start.json",
+      "phase": "before",
+      "sha256": "465f1db61b7f023452acec9e75e3672cf51ed4372bcd2fcbbbe660969b5c9701"
+    },
+    {
+      "bytes": 1520,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/budget.json",
+      "phase": "before",
+      "sha256": "3d24b226166937a59f422523bab19f0c08a73c17e1bffeaab41b29ae529e787b"
+    },
+    {
+      "bytes": 12640,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/build_source.py",
+      "phase": "before",
+      "sha256": "3c198ce8310971582ff04094f8548d7b322e2aabef8806ae48bb24feaa1d32a2"
+    },
+    {
+      "bytes": 708665,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/capture.json",
+      "phase": "before",
+      "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+    },
+    {
+      "bytes": 345,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-claim.json",
+      "phase": "before",
+      "sha256": "4a469bcac411899f5b6a2528df56a715782808bffe566ca57f70e16e2658ced4"
+    },
+    {
+      "bytes": 377024,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-io.json",
+      "phase": "before",
+      "sha256": "5e82ca397fb3b1ca67326ff1b612ab29ff7ff5c03e45c47faf83fb8e19595b7a"
+    },
+    {
+      "bytes": 596,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-status-start.json",
+      "phase": "before",
+      "sha256": "bdbda2b372735be00ed6fc2c60911d3d0fc7b7e5aa5d7322a81e8f2b17a4cb85"
+    },
+    {
+      "bytes": 13435,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child.py",
+      "phase": "before",
+      "sha256": "b5980332929156e91e160588f6e8aee2cbe1ddcd7d0dfed8a64a76482fff9b7d"
+    },
+    {
+      "bytes": 926,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/claim.json",
+      "phase": "before",
+      "sha256": "c96a8940c2194d0c4a28966028635d0757bed958ae0c2c2b9edb8a6a9acf2f56"
+    },
+    {
+      "bytes": 9571,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/complete_live_delivery.py",
+      "phase": "before",
+      "sha256": "14e348041505fd251c2bf330d51d04cd8f735000eeb39f656312f95b35bebab2"
+    },
+    {
+      "bytes": 14771,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/controller.py",
+      "phase": "before",
+      "sha256": "fc8206ff14216b0f2cbd574a769a50493f41e47a61bac0544a1fdc5d0760f7f5"
+    },
+    {
+      "bytes": 602,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/job.json",
+      "phase": "before",
+      "sha256": "6d81625f4296f3ad540a19b477e1438dcf6f1312f04104ebe486a90422fb27d4"
+    },
+    {
+      "bytes": 2391,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion-corrigendum.json",
+      "phase": "before",
+      "sha256": "e50f7135d51eac5ca000c29eeac0651625cc396f2d837fdb5db0a11b225e3ac6"
+    },
+    {
+      "bytes": 16575,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion.json",
+      "phase": "before",
+      "sha256": "b949815ebc4d15a0db6792006fff759289a5fd70438997e3752bbe958fcada8a"
+    },
+    {
+      "bytes": 1094,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-controller-shell.json",
+      "phase": "before",
+      "sha256": "998592748722d62e852de4ed747caaa4bb17878c31c1ac1f465498f96bd786dd"
+    },
+    {
+      "bytes": 5356,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-delivery.json",
+      "phase": "before",
+      "sha256": "23901de82b520881b453b028978a47256afb321f22d342403e7528f957cae6a1"
+    },
+    {
+      "bytes": 1018,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-final-summary.json",
+      "phase": "before",
+      "sha256": "886efb078dbf3804c231e1c3051baf6b43f67d808fd761c082dd97530b17c6b1"
+    },
+    {
+      "bytes": 51332,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-retained-preview-shell.json",
+      "phase": "before",
+      "sha256": "825b0d2d0ef21cdc6ebcfc7217204af35ef33b6d32fad20d9d022948548b3fbc"
+    },
+    {
+      "bytes": 678,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/preparation-notes.json",
+      "phase": "before",
+      "sha256": "67a9801d96ea25ec1d6015e20629fa0b2ae581d677d38e38deebeb1bf679971d"
+    },
+    {
+      "bytes": 422909,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+      "phase": "before",
+      "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+    },
+    {
+      "bytes": 4573,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/run-authorization.json",
+      "phase": "before",
+      "sha256": "102fa82e2ce6da0ae393c53940defe9f265edee7d410766951119dc7aa3a6cde"
+    },
+    {
+      "bytes": 3280,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/run_new_cases_once.py",
+      "phase": "before",
+      "sha256": "60b0d648fdefe4dc462be21be2291ee2ec4eb3e3540774daf3e14892b68760e9"
+    },
+    {
+      "bytes": 9160,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/runtime_contract.py",
+      "phase": "before",
+      "sha256": "f58ae024643881be413b9d81d5df7cc4b1f3b55bffb4d1d99bc608c2b5bccfc8"
+    },
+    {
+      "bytes": 9842,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-after.json",
+      "phase": "before",
+      "sha256": "1537aa4be604c5283f89990471a3aa4121ad783709c841ebd2fc893fe9447411"
+    },
+    {
+      "bytes": 9842,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-before.json",
+      "phase": "before",
+      "sha256": "1537aa4be604c5283f89990471a3aa4121ad783709c841ebd2fc893fe9447411"
+    },
+    {
+      "bytes": 9265,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-delta.json",
+      "phase": "before",
+      "sha256": "c34e5527f80cf657e4d99dcbbec6f04c928336493e75166d4789b293c9b857ac"
+    },
+    {
+      "bytes": 16257,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-manifest.json",
+      "phase": "before",
+      "sha256": "3d70675a5901635a00efd6415ac93ead4b4dcadc726df1a6f4f065b864bb20f7"
+    },
+    {
+      "bytes": 0,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/stderr.txt",
+      "phase": "before",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 708665,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/stdout.txt",
+      "phase": "before",
+      "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+    },
+    {
+      "bytes": 7020,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/test_controller_closure.py",
+      "phase": "before",
+      "sha256": "848b7c2213d02cbee3fc9c1260e1f7a8880447890db7416a37ee0d86e269b848"
+    },
+    {
+      "bytes": 7297,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/text_config_adapter.py",
+      "phase": "before",
+      "sha256": "b1d44aff5c7ddfacba055565a9599cdbb05161de6ca0fcfc9927167a6e9680c0"
+    },
+    {
+      "bytes": 2713,
+      "path": "work/reports/support-heir-current-observer-production-review-20261015-r1/production-passed.json",
+      "phase": "before",
+      "sha256": "5a5aeb0288436311715aadbad783475d0c965a822dd4248747f382a6d3b32ab2"
+    },
+    {
+      "bytes": 5732,
+      "path": "work/reports/support-heir-current-observer-source-review-20261015-r1/independent-source-ready.json",
+      "phase": "before",
+      "sha256": "6ca2a47412189b621ecc765791557f0e4ea861d26317b2831fb5d2b7f6842a21"
+    },
+    {
+      "bytes": 8223,
+      "path": "work/reports/support-heir-current-verification-plan-20261016-r1/manifest.json",
+      "phase": "before",
+      "sha256": "2a13665dc96f940572b53e1ff85648af8d9b765d8baa625a637f058e6b1430c6"
+    },
+    {
+      "bytes": 23293,
+      "path": "work/reports/support-heir-current-verification-plan-20261016-r1/plan.json",
+      "phase": "before",
+      "sha256": "641465b154c02d7749dfb61643833088d8784979935bbbc669306d8b36e78e55"
+    },
+    {
+      "bytes": 2375,
+      "path": "work/reports/war-peace-api-20261015-r23-truce-observation-contract/war/manifest.json",
+      "phase": "before",
+      "sha256": "27173b65e73e13f64c42c0891b7b299602a6a7944b2946f48907d17a3d9f7778"
+    },
+    {
+      "bytes": 25411,
+      "path": "bridge/diplomacy_effect_observer.py",
+      "phase": "after",
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    {
+      "bytes": 8109,
+      "path": "bridge/tag_command_audit.py",
+      "phase": "after",
+      "sha256": "9e90cd180818166fac9754a65d68203b84eb24b57569c3605f5b28e69c1b289d"
+    },
+    {
+      "bytes": 25398,
+      "path": "bridge/tag_command_backend.py",
+      "phase": "after",
+      "sha256": "74279bf8cb77d800ad53711e799260672b20b7d20cf6bee997527eaa29c55c53"
+    },
+    {
+      "bytes": 16856,
+      "path": "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py",
+      "phase": "after",
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    {
+      "bytes": 2494,
+      "path": "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json",
+      "phase": "after",
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    {
+      "bytes": 24560,
+      "path": "work/candidates/frida-entry-observer-1375-v1/capture_once.py",
+      "phase": "after",
+      "sha256": "b39823564ab26a9da7093e1812b2a1fec28a17141e3c4a1024460664b1943b6e"
+    },
+    {
+      "bytes": 43987,
+      "path": "work/candidates/frida-entry-observer-1375-v1/host-manifest.json",
+      "phase": "after",
+      "sha256": "e7673b0e07c052788d6d2c6378939e176f57e79a45ea09888b957741b7370166"
+    },
+    {
+      "bytes": 8615,
+      "path": "work/candidates/frida-entry-observer-1375-v1/job_tree.py",
+      "phase": "after",
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    {
+      "bytes": 7746,
+      "path": "work/candidates/peace-current-pending-observer-1375-v2/offline_child.py",
+      "phase": "after",
+      "sha256": "78435436c14d8f5c2728c4b3bbe181a7658d3266c1faf08b04d5438e8a62f7c4"
+    },
+    {
+      "bytes": 2678,
+      "path": "work/candidates/support-heir-current-observer-1375-v1/STATUS.md",
+      "phase": "after",
+      "sha256": "a8ac3c942bea17b0f94839f2c944b095105fae5eece2a9d87838de82ec7bc10f"
+    },
+    {
+      "bytes": 5075,
+      "path": "work/candidates/support-heir-current-observer-1375-v1/draft-source-manifest.json",
+      "phase": "after",
+      "sha256": "520b00a30d66b6f67c1649fae5af1ac815f4be334eda9048291ebdad3f2958d4"
+    },
+    {
+      "bytes": 5506,
+      "path": "work/candidates/support-heir-current-observer-1375-v1/source-manifest.json",
+      "phase": "after",
+      "sha256": "f8442eefa3dbacb5a952a5d8387cf0bcea83adfcb059034984af5bd40478c069"
+    },
+    {
+      "bytes": 21780,
+      "path": "work/candidates/support-heir-current-observer-1375-v1/support_heir_current_observer.py",
+      "phase": "after",
+      "sha256": "8b2eba840c3f6b4927f6fbf1aa04878c931fc548372dc10dd8432863ed68ec01"
+    },
+    {
+      "bytes": 5702,
+      "path": "work/candidates/v19-spy-bootstrap-lab-1375/build_manifest.py",
+      "phase": "after",
+      "sha256": "ffcf88551fdbd6f0095d8b1be9e3c9da10863ad18219f6761455b464abaae724"
+    },
+    {
+      "bytes": 5744,
+      "path": "work/candidates/v19-spy-bootstrap-lab-1375/loader.py",
+      "phase": "after",
+      "sha256": "f57741aa7026be7345b7b0ca0057013f717b7eaafecdd9b24b7cca7db9fb3d9f"
+    },
+    {
+      "bytes": 2533,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/frozen.py",
+      "phase": "after",
+      "sha256": "c919475965d0630dcba78223453a90191ef5636e772eb435044ea3edb3a30b76"
+    },
+    {
+      "bytes": 4432,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/graph.py",
+      "phase": "after",
+      "sha256": "99a6732af92ceff22f7226e292ef5f26a59df8998a7efc67818908b488aa45f4"
+    },
+    {
+      "bytes": 31340,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/inventory.json",
+      "phase": "after",
+      "sha256": "fe47d0dc016fbaa523d0f5b0010cd879fb57f7dcd33fd4edce39800b9c0b5e9d"
+    },
+    {
+      "bytes": 4690,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/launcher.py",
+      "phase": "after",
+      "sha256": "a7944c63e044e195a242b417afbea27c001ef2cae1f9d1a721bf3b83352845fe"
+    },
+    {
+      "bytes": 6985,
+      "path": "work/candidates/v19-spy-real-client-r2-1375/readonly.py",
+      "phase": "after",
+      "sha256": "f5bc7d4187ebd5d6e6ce5f529a62657f49e8864db7aa8a458b5870fb5168b30b"
+    },
+    {
+      "bytes": 12011,
+      "path": "work/capture_direct_truce_flags_20261015.py",
+      "phase": "after",
+      "sha256": "1677ccf7f03b93c44d3bb5313bae3350605f51c58855f381f5b516504f4bb904"
+    },
+    {
+      "bytes": 2818,
+      "path": "work/local_config.py",
+      "phase": "after",
+      "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001"
+    },
+    {
+      "bytes": 23802,
+      "path": "work/native/inject_probe.py",
+      "phase": "after",
+      "sha256": "18a6e5d7cfab4607a4b964d23002b71b8c9352d41c8324f1c9e5740534ea0b4f"
+    },
+    {
+      "bytes": 18118,
+      "path": "work/probe_native_state.py",
+      "phase": "after",
+      "sha256": "220549d1b8db3028015b1ddf260d7605c3f3525941500eeb43255c69d34e2187"
+    },
+    {
+      "bytes": 783,
+      "path": "work/reports/dynastic-support-reader-entry-20261015-r50/owned-code.json",
+      "phase": "after",
+      "sha256": "14cbfd7e2ce8bb4de4992e9f71bef4e5430fb75b11d95424ff5054ddbd4687fd"
+    },
+    {
+      "bytes": 9002,
+      "path": "work/reports/dynastic-support-reader-static-20261015-r48/owned-code.json",
+      "phase": "after",
+      "sha256": "d392ac87b59dee56bd77f75f2e41243efbea7def5c1a1819d1df3c1ced42b197"
+    },
+    {
+      "bytes": 674,
+      "path": "work/reports/peace-current-pending-v2-config-pin-preparation-20261016-r1/preparation.json",
+      "phase": "after",
+      "sha256": "aa9d27c365c756163df0a714cde519b3a8f36ee6a4f1a7c960ec427f0160b7ae"
+    },
+    {
+      "bytes": 13495,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/child.py",
+      "phase": "after",
+      "sha256": "8f807abd0a4e6e4eaa116fb8739d481ec1386bc15c4ccd551209601af02d22ba"
+    },
+    {
+      "bytes": 13431,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/controller.py",
+      "phase": "after",
+      "sha256": "e0807ad1f9f7c99e3193c962307c64b1e8a62242e527dde9842799ab2fc37df9"
+    },
+    {
+      "bytes": 8753,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/runtime_contract.py",
+      "phase": "after",
+      "sha256": "6c03f8e9eb0e806c3118eb90521cde4c93b85dc89a0ec4b99dcc49007ed288b2"
+    },
+    {
+      "bytes": 8861,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-manifest.json",
+      "phase": "after",
+      "sha256": "803d619df53c33b8698e78283c3ad223a61319c87b4a40ccaae732997d225127"
+    },
+    {
+      "bytes": 7297,
+      "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/text_config_adapter.py",
+      "phase": "after",
+      "sha256": "b1d44aff5c7ddfacba055565a9599cdbb05161de6ca0fcfc9927167a6e9680c0"
+    },
+    {
+      "bytes": 5817,
+      "path": "work/reports/peace-current-pending-v2-live-controller-source-independent-review-20261016-r2/findings.json",
+      "phase": "after",
+      "sha256": "4e38a2083274e8e82825ad63f0e50b7dc7ae3c90858703742341db33e3da31d7"
+    },
+    {
+      "bytes": 13944,
+      "path": "work/reports/peace-current-pending-v2-live-controller-source-independent-review-20261016-r2/manifest.json",
+      "phase": "after",
+      "sha256": "c80ea76a7847b55613672b0a7fbf0fd24dc13d91b8a3e4fba868d68737af1086"
+    },
+    {
+      "bytes": 10852,
+      "path": "work/reports/support-heir-current-controller-source-authorization-20261016-r1/authorization.json",
+      "phase": "after",
+      "sha256": "79ecd0456ecd8d99a8bc215313e610cc297be2075ae0042d2a12a76415cdd3a9"
+    },
+    {
+      "bytes": 36102,
+      "path": "work/reports/support-heir-current-controller-source-independent-review-20261016-r1/findings.json",
+      "phase": "after",
+      "sha256": "99e4496a5362d4b34089a3d9843133c34963ffbc5cd7acee160e88a3ffffd0a8"
+    },
+    {
+      "bytes": 33412,
+      "path": "work/reports/support-heir-current-controller-source-independent-review-20261016-r1/manifest.json",
+      "phase": "after",
+      "sha256": "a39124ca367c79ee2a068641da9bb68e2d446917b45af9bb0a879a056a5e3367"
+    },
+    {
+      "bytes": 3307,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/PROTOCOL.md",
+      "phase": "after",
+      "sha256": "dd5800c06b67d79a1984060756c326d0cfa6488497e006363cc2cb7a03135cb0"
+    },
+    {
+      "bytes": 34688,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+      "phase": "after",
+      "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+    },
+    {
+      "bytes": 638,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/attempt-start.json",
+      "phase": "after",
+      "sha256": "465f1db61b7f023452acec9e75e3672cf51ed4372bcd2fcbbbe660969b5c9701"
+    },
+    {
+      "bytes": 1520,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/budget.json",
+      "phase": "after",
+      "sha256": "3d24b226166937a59f422523bab19f0c08a73c17e1bffeaab41b29ae529e787b"
+    },
+    {
+      "bytes": 12640,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/build_source.py",
+      "phase": "after",
+      "sha256": "3c198ce8310971582ff04094f8548d7b322e2aabef8806ae48bb24feaa1d32a2"
+    },
+    {
+      "bytes": 708665,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/capture.json",
+      "phase": "after",
+      "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+    },
+    {
+      "bytes": 345,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-claim.json",
+      "phase": "after",
+      "sha256": "4a469bcac411899f5b6a2528df56a715782808bffe566ca57f70e16e2658ced4"
+    },
+    {
+      "bytes": 377024,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-io.json",
+      "phase": "after",
+      "sha256": "5e82ca397fb3b1ca67326ff1b612ab29ff7ff5c03e45c47faf83fb8e19595b7a"
+    },
+    {
+      "bytes": 596,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-status-start.json",
+      "phase": "after",
+      "sha256": "bdbda2b372735be00ed6fc2c60911d3d0fc7b7e5aa5d7322a81e8f2b17a4cb85"
+    },
+    {
+      "bytes": 13435,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child.py",
+      "phase": "after",
+      "sha256": "b5980332929156e91e160588f6e8aee2cbe1ddcd7d0dfed8a64a76482fff9b7d"
+    },
+    {
+      "bytes": 926,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/claim.json",
+      "phase": "after",
+      "sha256": "c96a8940c2194d0c4a28966028635d0757bed958ae0c2c2b9edb8a6a9acf2f56"
+    },
+    {
+      "bytes": 9571,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/complete_live_delivery.py",
+      "phase": "after",
+      "sha256": "14e348041505fd251c2bf330d51d04cd8f735000eeb39f656312f95b35bebab2"
+    },
+    {
+      "bytes": 14771,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/controller.py",
+      "phase": "after",
+      "sha256": "fc8206ff14216b0f2cbd574a769a50493f41e47a61bac0544a1fdc5d0760f7f5"
+    },
+    {
+      "bytes": 602,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/job.json",
+      "phase": "after",
+      "sha256": "6d81625f4296f3ad540a19b477e1438dcf6f1312f04104ebe486a90422fb27d4"
+    },
+    {
+      "bytes": 2391,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion-corrigendum.json",
+      "phase": "after",
+      "sha256": "e50f7135d51eac5ca000c29eeac0651625cc396f2d837fdb5db0a11b225e3ac6"
+    },
+    {
+      "bytes": 16575,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion.json",
+      "phase": "after",
+      "sha256": "b949815ebc4d15a0db6792006fff759289a5fd70438997e3752bbe958fcada8a"
+    },
+    {
+      "bytes": 1094,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-controller-shell.json",
+      "phase": "after",
+      "sha256": "998592748722d62e852de4ed747caaa4bb17878c31c1ac1f465498f96bd786dd"
+    },
+    {
+      "bytes": 5356,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-delivery.json",
+      "phase": "after",
+      "sha256": "23901de82b520881b453b028978a47256afb321f22d342403e7528f957cae6a1"
+    },
+    {
+      "bytes": 1018,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-final-summary.json",
+      "phase": "after",
+      "sha256": "886efb078dbf3804c231e1c3051baf6b43f67d808fd761c082dd97530b17c6b1"
+    },
+    {
+      "bytes": 51332,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-retained-preview-shell.json",
+      "phase": "after",
+      "sha256": "825b0d2d0ef21cdc6ebcfc7217204af35ef33b6d32fad20d9d022948548b3fbc"
+    },
+    {
+      "bytes": 678,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/preparation-notes.json",
+      "phase": "after",
+      "sha256": "67a9801d96ea25ec1d6015e20629fa0b2ae581d677d38e38deebeb1bf679971d"
+    },
+    {
+      "bytes": 422909,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+      "phase": "after",
+      "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+    },
+    {
+      "bytes": 4573,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/run-authorization.json",
+      "phase": "after",
+      "sha256": "102fa82e2ce6da0ae393c53940defe9f265edee7d410766951119dc7aa3a6cde"
+    },
+    {
+      "bytes": 3280,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/run_new_cases_once.py",
+      "phase": "after",
+      "sha256": "60b0d648fdefe4dc462be21be2291ee2ec4eb3e3540774daf3e14892b68760e9"
+    },
+    {
+      "bytes": 9160,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/runtime_contract.py",
+      "phase": "after",
+      "sha256": "f58ae024643881be413b9d81d5df7cc4b1f3b55bffb4d1d99bc608c2b5bccfc8"
+    },
+    {
+      "bytes": 9842,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-after.json",
+      "phase": "after",
+      "sha256": "1537aa4be604c5283f89990471a3aa4121ad783709c841ebd2fc893fe9447411"
+    },
+    {
+      "bytes": 9842,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-before.json",
+      "phase": "after",
+      "sha256": "1537aa4be604c5283f89990471a3aa4121ad783709c841ebd2fc893fe9447411"
+    },
+    {
+      "bytes": 9265,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-delta.json",
+      "phase": "after",
+      "sha256": "c34e5527f80cf657e4d99dcbbec6f04c928336493e75166d4789b293c9b857ac"
+    },
+    {
+      "bytes": 16257,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-manifest.json",
+      "phase": "after",
+      "sha256": "3d70675a5901635a00efd6415ac93ead4b4dcadc726df1a6f4f065b864bb20f7"
+    },
+    {
+      "bytes": 0,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/stderr.txt",
+      "phase": "after",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 708665,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/stdout.txt",
+      "phase": "after",
+      "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+    },
+    {
+      "bytes": 7020,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/test_controller_closure.py",
+      "phase": "after",
+      "sha256": "848b7c2213d02cbee3fc9c1260e1f7a8880447890db7416a37ee0d86e269b848"
+    },
+    {
+      "bytes": 7297,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/text_config_adapter.py",
+      "phase": "after",
+      "sha256": "b1d44aff5c7ddfacba055565a9599cdbb05161de6ca0fcfc9927167a6e9680c0"
+    },
+    {
+      "bytes": 2713,
+      "path": "work/reports/support-heir-current-observer-production-review-20261015-r1/production-passed.json",
+      "phase": "after",
+      "sha256": "5a5aeb0288436311715aadbad783475d0c965a822dd4248747f382a6d3b32ab2"
+    },
+    {
+      "bytes": 5732,
+      "path": "work/reports/support-heir-current-observer-source-review-20261015-r1/independent-source-ready.json",
+      "phase": "after",
+      "sha256": "6ca2a47412189b621ecc765791557f0e4ea861d26317b2831fb5d2b7f6842a21"
+    },
+    {
+      "bytes": 8223,
+      "path": "work/reports/support-heir-current-verification-plan-20261016-r1/manifest.json",
+      "phase": "after",
+      "sha256": "2a13665dc96f940572b53e1ff85648af8d9b765d8baa625a637f058e6b1430c6"
+    },
+    {
+      "bytes": 23293,
+      "path": "work/reports/support-heir-current-verification-plan-20261016-r1/plan.json",
+      "phase": "after",
+      "sha256": "641465b154c02d7749dfb61643833088d8784979935bbbc669306d8b36e78e55"
+    },
+    {
+      "bytes": 2375,
+      "path": "work/reports/war-peace-api-20261015-r23-truce-observation-contract/war/manifest.json",
+      "phase": "after",
+      "sha256": "27173b65e73e13f64c42c0891b7b299602a6a7944b2946f48907d17a3d9f7778"
+    }
+  ],
+  "source_exact_before_seal": 12868045,
+  "source_upper_bytes": 21256653,
+  "target_PE_or_env_accesses": 0,
+  "tests_run": 0
+}

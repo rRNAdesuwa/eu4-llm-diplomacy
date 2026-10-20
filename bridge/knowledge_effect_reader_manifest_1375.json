@@ -1,0 +1,89 @@
+{
+  "schema": "EU4DIPLOMACY-KNOWLEDGE-READER-MANIFEST/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "native_manifest_sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a",
+  "source_pins": {
+    "bridge/knowledge_effect_reader.py": {
+      "bytes": 15733,
+      "sha256": "cc5a67b4ff23ed421bc8a58acf4a433178f22069f1b7d67d8962b36fb344d663"
+    },
+    "bridge/tests/test_knowledge_effect_reader.py": {
+      "bytes": 14525,
+      "sha256": "a2577adb5444fb1a26254f18d80907278c1705ae1f7c5f453f5b92a2d4c0b79f"
+    },
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/diplomacy_effect_profiles.py": {
+      "bytes": 22643,
+      "sha256": "d4e23953c204f5c0f72e2227530e5f823e8bff8dbc1b15eeda4b6531654a0433"
+    },
+    "bridge/diplomacy_observer_manifest_1375.json": {
+      "bytes": 3988,
+      "sha256": "a75dab49e101ac95f2a714032829c4b52629fd78db04db0bd3896df1ce24143e"
+    },
+    "bridge/tag_command_backend.py": {
+      "bytes": 25398,
+      "sha256": "74279bf8cb77d800ad53711e799260672b20b7d20cf6bee997527eaa29c55c53"
+    },
+    "work/discover_diplomacy.py": {
+      "bytes": 29147,
+      "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/static.json": {
+      "bytes": 1160839,
+      "sha256": "874d2135b8e92bab67993664660ce5349762d64ed25e1a56467cb7412e889703"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/trace.py": {
+      "bytes": 5409,
+      "sha256": "dfd60fd21870e3b86351598e905a5eb8ac17949347ed1d9fd236c05b46d6c0e2"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/disassembly.txt": {
+      "bytes": 391232,
+      "sha256": "318bd45087a0f6fdd52e7f81219e93d762fe640b999ba3a0db17c38f994b4b75"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/README.md": {
+      "bytes": 7704,
+      "sha256": "532653bf1937dee8b99f0f87fadba2fca93d556af717394ffc5af63f80197e44"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/knowledge-layout-static.json": {
+      "bytes": 197713,
+      "sha256": "6d50336c2cf17782f74a9de3c35407ac8a8e552a160d7b6cc52a70c3baa11675"
+    },
+    "work/reports/diplomacy-corrective-20261014-r3/knowledge-layout-disassembly.txt": {
+      "bytes": 67271,
+      "sha256": "7d810d857da444822399a7b699239e2529d8bc5e52a5c1e5e9ec16866df335de"
+    },
+    "work/probe_knowledge_context_r3_1375.py": {
+      "bytes": 22918,
+      "sha256": "337f916b1a1f1608de66488381e6b0d4c653a5633aad9faccca1cf62b0630ea1"
+    }
+  },
+  "new_decode_bytes": 28117,
+  "new_decode_budget": 32768,
+  "pure_reader": true,
+  "game_process_opened": false,
+  "native_calls": 0,
+  "requests_published": 0,
+  "R1_core_modified": false,
+  "R1_profiles_modified": false,
+  "task_vtable_rva": "0x1cde0a0",
+  "task_allocation_bytes": 72,
+  "roles": {
+    "knowledge_sharing": {
+      "provider": "actor",
+      "recipient": "target"
+    },
+    "ask_knowledge_sharing": {
+      "provider": "target",
+      "recipient": "actor"
+    }
+  },
+  "proof_requirement": "Same typed full-endpoint object in both exact pair indexes and undeleted provider global node, normal flags and future deadline; effect success also requires absent baseline and matching consumed/closed dispatch receipt.",
+  "limitations": [
+    "Institution complete/embraced is distinct from an active sharing task.",
+    "No exact external request causality, exclusive causality, AI acceptance, world epoch or persistence is proved.",
+    "Full normal relation maintenance scheduling/frequency and special nonzero byte40 termination context remain unresolved."
+  ]
+}

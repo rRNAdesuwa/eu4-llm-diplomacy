@@ -1,0 +1,29 @@
+# These reviewed artifacts are checked by byte count and SHA-256.
+# Preserve their committed bytes when checking out on Windows.
+/bridge/diplomacy_contract_v2_pins.json -text
+/bridge/diplomacy_contract_v2_bindings.json -text
+/bridge/diplomacy_contract_v3_pins.json -text
+/work/reports/** -text
+/work/candidates/** -text
+
+# The observer manifests also pin these source files by their exact bytes.
+/bridge/diplomacy_effect_observer.py -text
+/bridge/diplomacy_effect_profiles.py -text
+/bridge/diplomacy_observer_service.py -text
+/bridge/diplomacy_research_evidence.json -text
+/bridge/native/tag_diplomacy_1375_v31/src/work/candidates/v24-pair-send-core-r2-1375/pair_send.h -text
+/bridge/relation_effect_reader.py -text
+/bridge/relation_state_service.py -text
+/bridge/tag_action_conditions_1375.json -text
+/bridge/tag_command_backend.py -text
+/bridge/tests/test_effect_observer_memory.py -text
+/bridge/tests/test_relation_effect_reader.py -text
+/bridge/tests/test_relation_state_service.py -text
+/tools/build_effect_observer_manifest.py -text
+/tools/build_relation_state_service_manifest.py -text
+/tools/observe_diplomacy.py -text
+/tools/observe_relation_runtime.py -text
+/work/discover_diplomacy.py -text
+/work/inspect_tag31_corrective_pairs.py -text
+/work/probe_annex_context_r3_1375.py -text
+/work/probe_knowledge_context_r3_1375.py -text

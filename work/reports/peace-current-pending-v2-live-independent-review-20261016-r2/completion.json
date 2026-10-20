@@ -1,0 +1,53 @@
+{
+  "schema": "EU4-PEACE-V2-R2-LIVE-INDEPENDENT-COMPLETION/1",
+  "sealed": true,
+  "passed": true,
+  "findings": {
+    "bytes": 6495,
+    "sha256": "dc511e9549891bd56f3d5eade28fd220db7420d8303879918f9b9ca1e3489a7e"
+  },
+  "manifest": {
+    "bytes": 16101,
+    "sha256": "76dc493bc241b6ab7cec22c7acf9ab56012a565d82ba06e109366bee1b41f2ae"
+  },
+  "verification": {
+    "bytes": 13493,
+    "sha256": "6b5d6ae8b07349ab6f9fd1fae4fa645966c314f9d76ddaf94eb6964fce0424a5"
+  },
+  "accounting_corrigendum": {
+    "bytes": 8567,
+    "sha256": "c8322dd6351dfaf9f5efe889b270abc283c55d03e49d19cfa61d8f06ae220acb"
+  },
+  "raw_replay": {
+    "bytes": 2030,
+    "sha256": "4ca2170841c79fc4f2065b644c484d78de19837bd99264356be8d965aec7a188"
+  },
+  "formal_review_R1_exit": 1,
+  "formal_review_R2_exit": 1,
+  "formal_review_R3_exit": 0,
+  "inspection_R1_exit": 1,
+  "filecheck_first_exit": 0,
+  "all_failures_preserved": true,
+  "source_upper_superseded_only_by_append_only_corrigendum": true,
+  "effective_source_upper": 19198112,
+  "source_cap": 33554432,
+  "retained_check_returned": 3344257,
+  "completion_input_returned": 262834,
+  "retained_reserve": 262144,
+  "retained_upper": 3869235,
+  "retained_cap": 8388608,
+  "self_filecheck_peak": 14069760,
+  "all_shells_collected": true,
+  "active_sessions": 0,
+  "own_final_review_chunk": "ab0667",
+  "own_check_chunk": "50f038",
+  "real_configuration_stat_open_hash": false,
+  "configuration_values_decoded_or_displayed": false,
+  "PE_engine_decoder_process_UI_game_native": false,
+  "author_program_tests_CLI": false,
+  "new_auth_claim_runtime_retry": false,
+  "selected_current_queue_absence_only": true,
+  "original_request_effect_accepted": false,
+  "native_ready": false,
+  "initial_inspection_partial_stdout_location": "Original tool transcript3821b2; stored source/traceback/readledger do not pretend a newly reconstructed stdout is the original."
+}

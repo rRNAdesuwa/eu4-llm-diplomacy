@@ -1,0 +1,53 @@
+{
+  "schema": "EU4DIPLOMACY-KNOWLEDGE-READER-MANIFEST/2",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "native_manifest_sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a",
+  "source_pins": {
+    "bridge/knowledge_effect_reader_v2.py": {
+      "bytes": 8484,
+      "sha256": "071751ee1cd325541a8ff41540cb1f684c77a4039d6711221354d565fd452982"
+    },
+    "bridge/tests/test_knowledge_effect_reader_v2.py": {
+      "bytes": 4322,
+      "sha256": "6d5d574da3c4d61aa5aa3325299321a9b3c53949f9a97055e83307cbe6b2671e"
+    },
+    "bridge/knowledge_effect_reader.py": {
+      "bytes": 15733,
+      "sha256": "cc5a67b4ff23ed421bc8a58acf4a433178f22069f1b7d67d8962b36fb344d663"
+    },
+    "bridge/knowledge_effect_reader_manifest_1375.json": {
+      "bytes": 3826,
+      "sha256": "c380455fcfb80ea872a3c3776cbc2922587a069cf2481cecf057faab870d11db"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json": {
+      "bytes": 40324,
+      "sha256": "c4f6c2fc4e3a37153b3d4ba8f099204001bd8e64af4aacfd9c8cf0a4c024a57e"
+    },
+    "work/extract_knowledge_index_guard_20261015.py": {
+      "bytes": 3869,
+      "sha256": "7db09fe920d195c4ae3c3339fdbeb3c1eb4a051bf66cc165c98b9fd94ef243b4"
+    },
+    "work/reports/war-peace-api-20261015-r4/peace/lifecycle/analysis.json": {
+      "bytes": 8041106,
+      "sha256": "f4e1748ffdfed567e65c6bac25fbbb79b33345a8c9b30076a47c79174e3c5517"
+    }
+  },
+  "supported_actions": [
+    "knowledge_sharing",
+    "ask_knowledge_sharing"
+  ],
+  "read_only": true,
+  "typed_index_layout": {
+    "vtable_rva": "0x1c3a538",
+    "array": 8,
+    "capacity": 16,
+    "used": 20,
+    "entry_bytes": 16
+  },
+  "new_decoded_bytes": 0,
+  "game_process_accessed": false,
+  "native_calls": 0,
+  "requests_published": 0,
+  "frozen_R1_modified": false,
+  "institution_completion_verified": false
+}

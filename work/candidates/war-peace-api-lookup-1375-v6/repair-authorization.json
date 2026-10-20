@@ -1,0 +1,30 @@
+{
+  "conditional_total_upper": 30348660,
+  "engine_or_old_row_changes_authorized": false,
+  "failed_stage_completed_bytes": 3015196,
+  "future_builder_conditional_allowance": 8388608,
+  "limit": 33554432,
+  "manual_allowance": 2097152,
+  "no_query_has_run": true,
+  "original_authorization": {
+    "bytes": 6779,
+    "sha256": "6ff710b74288f303a01df3049aab67901d49f7f1f2fbcfe0a0423251ce237de5"
+  },
+  "original_builder": {
+    "bytes": 29427,
+    "sha256": "5dda7f203b4e4c99c43e5d0891113c7dd9de760d0da8c035388da5828408fd1c"
+  },
+  "original_claim": {
+    "bytes": 244,
+    "sha256": "6cec078b3225d5f2d705b30a66e6ec4a208a49d7b9f20227af22cb730a84260e"
+  },
+  "original_failure": {
+    "bytes": 27390,
+    "sha256": "4aa14556a85a1663dbfa0748de6b836aac2995f22c5d485a9245cbf59bf499e6"
+  },
+  "repair_explicit_read_bytes": 70488,
+  "retained_seal_allowance": 16777216,
+  "root_supplement": "Allow one builder-only R2 narrow repair and new continuation claim. Preserve original failed source/claim/read journal; old58 fields cannot be added. Align core5false plus existing authority false with the original engine schema. This supplement is static source repair only; do not execute any already successful or attempted query (currently0). Failure+repair+build+seal stay within original32MiB, first4batch remains separate64MiB. Original6779B6ff710 grant unchanged; freeze full failurepins/ASTdelta/cumulative bill. No engine logic/olddata/oldtest/fixture/native/game changes.",
+  "root_supplement_received": true,
+  "schema": "EU4-LOOKUP-V6-ROOT-BUILDER-REPAIR/1"
+}

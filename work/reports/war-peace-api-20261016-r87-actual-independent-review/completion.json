@@ -1,0 +1,88 @@
+{
+  "schema": "EU4-R87-ACTUAL-INDEPENDENT-REVIEW-COMPLETION/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "reviewer": "D",
+  "author": "War",
+  "actual_executor": "root",
+  "all_shells_collected": true,
+  "author_acquisition_reexecuted": false,
+  "reviewer_attempts": 2,
+  "reviewer_first_failure": {
+    "source": "work/reports/war-peace-api-20261016-r87-actual-independent-review/review.py",
+    "failure": "work/reports/war-peace-api-20261016-r87-actual-independent-review/failure-r1.json",
+    "correction": "work/reports/war-peace-api-20261016-r87-actual-independent-review/review-r1-correction.json",
+    "reason": "Own selected-analysis dictionary shape assumption; separate instructions verified independently. Not an author defect.",
+    "exit_code": 1,
+    "chunk_id": "85821d",
+    "wall_time_seconds": 0.3045329
+  },
+  "final_reviewer_shell": {
+    "chunk_id": "23d6b0",
+    "wall_time_seconds": 0.4456974,
+    "exit_code": 0,
+    "original_token_count": 233,
+    "output": "{\"passed\": true, \"files\": {\"findings.json\": {\"bytes\": 12526, \"sha256\": \"dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0\"}, \"manifest.json\": {\"bytes\": 30861, \"sha256\": \"26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd\"}, \"raw-checks.json\": {\"bytes\": 22724, \"sha256\": \"f5776b5fd0d6d837fb03de69e1077ac91c8e15149e2e64f802a128704f634d9b\"}, \"verification.json\": {\"bytes\": 3723, \"sha256\": \"07047865bf7dca6dae598546085206952a6561026c961cf6af02091980545fcb\"}, \"accounting.json\": {\"bytes\": 44265, \"sha256\": \"ff5eb91a342bd3e44bbcfb0db8817dde556349dade539d802337db7300e91341\"}, \"report.md\": {\"bytes\": 1891, \"sha256\": \"06e8d74a76a0745f49f0357c3524930a8a5daaf5b7218b056c9bd55c80b281f9\"}}, \"source_explicit\": 17899651, \"source_upper\": 19996803, \"retained_upper\": 2472298, \"memory\": {\"commit_or_peak_pagefile\": 23175168, \"working\": 29442048, \"peak_working\": 31408128}, \"flat_source_pins\": 131, \"local_pins\": 12}\r\n"
+  },
+  "delivery_pins": {
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/findings.json": {
+      "bytes": 12526,
+      "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/manifest.json": {
+      "bytes": 30861,
+      "sha256": "26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/raw-checks.json": {
+      "bytes": 22724,
+      "sha256": "f5776b5fd0d6d837fb03de69e1077ac91c8e15149e2e64f802a128704f634d9b"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/verification.json": {
+      "bytes": 3723,
+      "sha256": "07047865bf7dca6dae598546085206952a6561026c961cf6af02091980545fcb"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/accounting.json": {
+      "bytes": 44265,
+      "sha256": "ff5eb91a342bd3e44bbcfb0db8817dde556349dade539d802337db7300e91341"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/report.md": {
+      "bytes": 1891,
+      "sha256": "06e8d74a76a0745f49f0357c3524930a8a5daaf5b7218b056c9bd55c80b281f9"
+    }
+  },
+  "reviewer_resources": {
+    "source_explicit_before_completion": 17899651,
+    "source_upper_including_2097152_manual_completion_reserve": 19996803,
+    "source_limit": 33554432,
+    "retained_upper_including_262144_completion_reserve": 2472298,
+    "retained_limit": 8388608,
+    "memory": {
+      "commit_or_peak_pagefile": 23175168,
+      "working": 29442048,
+      "peak_working": 31408128
+    },
+    "actual_flat_sources": 131,
+    "own_manifest_local_pins": 12,
+    "postguard_all_equal": true
+  },
+  "operations": {
+    "PE_target_access": 0,
+    "engine_body_reads": 0,
+    "Capstone_decoder": 0,
+    "author_programs": 0,
+    "old_tests": 0,
+    "CLI": 0,
+    "game_process": 0,
+    "native": 0
+  },
+  "native_ready": false,
+  "callable": false,
+  "world_lease": false,
+  "selected_effect_verified": false,
+  "ownership_verified": false,
+  "whole_function_closed": false,
+  "authorizes_retry": false,
+  "new_scope_authorized": false
+}
+

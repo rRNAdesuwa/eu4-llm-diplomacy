@@ -1,0 +1,3049 @@
+{
+  "entries": [
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "500560_raw",
+        "body_dtor",
+        "raw_body_probe",
+        "war_body",
+        "\u539f\u751fbody"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 8801,
+          "json_pointer": "/top_level",
+          "path": "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/body-probe-contract.json",
+          "sha256": "5b5fe6fe78e86795c16995364aa1b6bd515ab5bc3c10305fdd29c521fb7b92a1"
+        },
+        {
+          "bytes": 8801,
+          "json_pointer": "/owned_storage",
+          "path": "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/body-probe-contract.json",
+          "sha256": "5b5fe6fe78e86795c16995364aa1b6bd515ab5bc3c10305fdd29c521fb7b92a1"
+        },
+        {
+          "bytes": 8801,
+          "json_pointer": "/postconditions",
+          "path": "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/body-probe-contract.json",
+          "sha256": "5b5fe6fe78e86795c16995364aa1b6bd515ab5bc3c10305fdd29c521fb7b92a1"
+        },
+        {
+          "bytes": 5762,
+          "json_pointer": "/native_call_accounting",
+          "path": "work/reports/frida-owned-body-live-review-20261015-r1/independent-file-audit.json",
+          "sha256": "3c1e30094956fe57ca989896d76e79b6c3503f579d31e6c9fa80f8eb29857f26"
+        },
+        {
+          "bytes": 5762,
+          "json_pointer": "/owned_raw",
+          "path": "work/reports/frida-owned-body-live-review-20261015-r1/independent-file-audit.json",
+          "sha256": "3c1e30094956fe57ca989896d76e79b6c3503f579d31e6c9fa80f8eb29857f26"
+        },
+        {
+          "bytes": 5762,
+          "json_pointer": "/limits",
+          "path": "work/reports/frida-owned-body-live-review-20261015-r1/independent-file-audit.json",
+          "sha256": "3c1e30094956fe57ca989896d76e79b6c3503f579d31e6c9fa80f8eb29857f26"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.body_destructor",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "R19\u6b64\u9009\u5b9a\u8def\u5f84\u53ea\u5f15\u7528\u5df2\u6821\u9a8c\u6a21\u5757code/vtable\uff1b\u65e0world sentinel slot"
+        ],
+        "owned": [
+          "R19\u4ec5\u81ea\u6709A98/G60\uff1b\u5168\u91cfpre/post raw\u6bd4\u5bf9"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x500560",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=A pointer\uff1b\u5b9e\u91c7\u4ec5\u72ec\u5360152B A\u4e0e96B G test double"
+        ],
+        "returns": "\u8be5 raw probe \u4f7f\u7528 void(pointer)\uff0c\u4e0d\u4ee5\u8fd4\u56de\u6807\u91cf\u5224\u6210\u529f",
+        "status": "raw_probe_only"
+      },
+      "stage": "real_rawbody_postcondition",
+      "stage_scope": "\u4ec5R19\u5df2\u5ba11\u6b21\u9876\u5c42\u5c1d\u8bd5/\u6b63\u5e38wrapper\u8fd4\u56de\u7684owned raw postcondition\uff1b\u5d4c\u5957helper\u672a\u52a8\u6001\u8ba1\u6570\u3002",
+      "summary": "R19\u4ec5\u4e00\u6b21\u81ea\u6709A98/G60 raw ABI test double\u6b63\u5e38\u8fd4\u56de\uff0c\u6700\u7ec8A0=base+1c3e578\uff0c\u5176\u4f59A/G\u4e0d\u53d8\uff1b\u4e0d\u7b49\u4e8e\u5408\u6cd5C++\u6790\u6784\u3002",
+      "title": "\u5ba3\u6218 body\uff1a\u5df2\u5b9e\u91c7 raw ABI \u5b50\u8303\u56f4",
+      "unresolved": [
+        "\u4e0d\u662f\u5408\u6cd5C++\u5bf9\u8c61\u3001constructor\u7b49\u4ef7\u3001\u5b8c\u6574\u751f\u547d\u5468\u671f\u6216\u5ba3\u6218\u6548\u679c\u3002",
+        "\u4e0d\u8bc1\u660eworld/header/module lease\u3001TLS/xstate\u6216\u5f02\u5e38\u5c55\u5f00\uff1b\u4e0d\u5141\u8bb8\u590d\u6d4b\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "war_clone"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 2892,
+          "json_pointer": "/abi",
+          "path": "work/reports/war-peace-api-20261015-r6/war/lifecycle-contract.json",
+          "sha256": "3d0845b9ac7a642d94dc49a61e17b7b7461fc62c5dc99fd9f67e9a977d63f417"
+        },
+        {
+          "bytes": 9405,
+          "json_pointer": "/findings/4",
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.clone",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "source action\u3001goal definition\uff1bnoCB\u5171\u4eabsentinel"
+        ],
+        "owned": [
+          "\u65b0action\u4e0evector buffers\uff1b\u5177\u4f53goal\u53ef\u80fd\u72ec\u5360"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x50b8f0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u5b8c\u6574source action"
+        ],
+        "returns": "RAX=\u72ec\u7acb\u62e5\u6709\u7684action clone",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5206\u914d\u72ec\u7acb0x98 action\uff0c\u590d\u5236goal\u4e0e\u4e09\u7ec4\u53e5\u67c4vector\uff1b\u5171\u4eabsentinel\u4e0e\u72ec\u5360goal\u987b\u533a\u5206\u3002",
+      "title": "\u5ba3\u6218\u52a8\u4f5c\u514b\u9686",
+      "unresolved": [
+        "\u5206\u914d\u5931\u8d25/new-handler/\u5f02\u5e38\u53cadefinition\u5bff\u547d\u4ecd\u672a\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "commit",
+        "war_commit"
+      ],
+      "call_sites": [
+        {
+          "relationship": "call c06d0",
+          "rva": "0x501921"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/6",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.commit_site",
+      "kind": "callsite",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u5f53\u524dgame\u5bb9\u5668"
+        ],
+        "owned": [
+          "\u63d0\u4ea4\u7684war\u6307\u9488"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x501921",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "unknown"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u4e24\u65b9\u52a0\u5165\u6210\u529f\u540e\uff0c\u6b64CALL\u8c03\u7528c06d0\u628awar\u6307\u9488\u8ffd\u52a0\u5230game+1e28\u3002\u8fd9\u662fcallsite\uff0c\u4e0d\u662f\u51fd\u6570\u5165\u53e3\u3002",
+      "title": "\u9996\u6b21\u5168\u5c40\u6218\u4e89\u63d0\u4ea4\u8c03\u7528\u73b0\u573a",
+      "unresolved": [
+        "\u524d\u5e8f\u8d39\u7528\u53ef\u80fd\u5df2\u53d1\u751f\uff1b\u5355\u4e2aappend\u4e0d\u80fd\u8bc1\u660e\u5b8c\u6574\u6548\u679c/\u6301\u4e45\u5316\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "declarewar_ctor",
+        "war_ctor",
+        "\u5ba3\u6218\u6784\u9020"
+      ],
+      "call_sites": [
+        {
+          "relationship": "\u5de5\u5382\u6784\u9020\u8c03\u7528",
+          "rva": "0x35d399"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 4170,
+          "json_pointer": "/constructor",
+          "path": "work/reports/war-peace-api-20261014-r3/war/api-contract.json",
+          "sha256": "a4574eeb07ea23cd484e1348422403c474f37c9a39025285c0acf8db5cb99e7d"
+        },
+        {
+          "bytes": 8787,
+          "json_pointer": "/rejected_ctor_profile",
+          "path": "work/reports/war-peace-api-20261015-r17-owned-goal-independent-review/war/profiles.json",
+          "sha256": "c76853c78cd10cb8e1748ec4e3dbbd19bd53905fd3ecf2f40111379c0ac3b283"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.constructor",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u8f93\u5165goal\u4e0e\u5176definition\uff1bNULL\u5206\u652f\u53d62340030 sentinel"
+        ],
+        "owned": [
+          "caller\u63d0\u4f9b0x98 storage\uff1b\u4e09\u4e2avector\u521d\u59cb\u4e3a\u7a7a"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x500480",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=action storage",
+          "RDX=actor full country handle",
+          "R8=target full country handle",
+          "R9B=internal stability flag",
+          "entry RSP+0x28=date DWORD",
+          "entry RSP+0x30=goal pointer"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u521d\u59cb\u53160x98 action\uff1bnonnull goal\u4ecd\u8c03\u7528d9aaf0\uff0c\u5e76\u975e\u76f4\u63a5\u4fdd\u5b58\u8f93\u5165\u3002",
+      "title": "\u5ba3\u6218\u52a8\u4f5c\u6784\u9020",
+      "unresolved": [
+        "\u8f93\u5165goal\u4e0d\u53ef\u7528\u624b\u5199definition\u66ff\u4ee3\uff1b\u5b8c\u6574\u6784\u9020/\u5f02\u5e38/\u501f\u7528\u5bff\u547d\u672a\u9a8c\u6536\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "war_delete"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 2892,
+          "json_pointer": "/abi",
+          "path": "work/reports/war-peace-api-20261015-r6/war/lifecycle-contract.json",
+          "sha256": "3d0845b9ac7a642d94dc49a61e17b7b7461fc62c5dc99fd9f67e9a977d63f417"
+        },
+        {
+          "bytes": 8787,
+          "json_pointer": "/complete_retained_functions/1",
+          "path": "work/reports/war-peace-api-20261015-r17-owned-goal-independent-review/war/profiles.json",
+          "sha256": "c76853c78cd10cb8e1748ec4e3dbbd19bd53905fd3ecf2f40111379c0ac3b283"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.deleting_destructor",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u975e\u62e5\u6709sentinel/definition\u5fc5\u987b\u4fdd\u6301\u6709\u6548"
+        ],
+        "owned": [
+          "\u5b8c\u6574action\u53ca\u6761\u4ef6\u62e5\u6709\u7684goal/vectors"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x500520",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u5b8c\u6574action",
+          "EDX=deleting flag"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u8c03\u7528body\uff1bflagbit0\u51b3\u5b9a\u662f\u5426\u91ca\u653e0x98\u5916\u5c42\u3002",
+      "title": "\u5ba3\u6218 deleting wrapper",
+      "unresolved": [
+        "R19\u6ca1\u6709\u8c03\u7528\u6b64wrapper/free\uff1b\u5b8c\u6574native lifetime\u672a\u5b9e\u6d4b\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "war_effect"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 9405,
+          "json_pointer": "/findings/7",
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        },
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/6",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.effect",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "country\u3001goal/definition\u3001\u5173\u7cfb\u3001\u811a\u672c\u53cagame"
+        ],
+        "owned": [
+          "\u65b00x218 war\uff1b\u672a\u63d0\u4ea4join\u5931\u8d25\u5206\u652f\u5220\u9664"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x501290",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=declarewar action\uff1b\u5b8c\u6574\u7b7e\u540d unknown"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u8d39\u7528\u53calegacy\u56de\u8c03\u53d1\u751f\u5728\u521b\u5efawar\u4e4b\u524d\uff1b\u5931\u8d25\u4e0d\u662f\u4e8b\u52a1\u56de\u6eda\u3002",
+      "title": "\u5ba3\u6218\u6548\u679c\u5165\u53e3",
+      "unresolved": [
+        "\u4e0d\u5f97\u4f5c\u4e3a\u9884\u89c8/\u68c0\u67e5\uff1b\u771f\u5b9e\u5ba3\u6218\u6548\u679c\u3001\u5b8c\u6574\u52a8\u6001callee\u548c\u5f02\u5e38\u8fb9\u754c\u672a\u9a8c\u6536\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "declarewar_factory"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 4177,
+          "json_pointer": "/native_identity",
+          "path": "work/reports/war-peace-api-20261013/war/api-contract.json",
+          "sha256": "6c8312e30b34ed181a5ca9ee0807688ca6906d949d4ded905a0ec052cdd26903"
+        },
+        {
+          "bytes": 9405,
+          "json_pointer": "/findings/0",
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.factory",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "unknown"
+        ],
+        "owned": [
+          "case\u5206\u914d0x98 action"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x35d210",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "token293b\u9009\u62e9case35d32a\uff1b\u5de5\u5382\u9ed8\u8ba4\u53e5\u67c4/\u65e5\u671f\u4e0d\u662f\u53ef\u7528\u8bf7\u6c42\u3002",
+      "title": "\u5ba3\u6218\u901a\u7528\u5de5\u5382",
+      "unresolved": [
+        "\u901a\u7528\u5de5\u5382\u5b8c\u6574\u53ef\u8c03\u7528\u7b7e\u540d unknown\uff1b\u9ed8\u8ba4\u5b57\u6bb5\u4e0d\u53ef\u4f5c\u6b63\u5e38\u8bf7\u6c42\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "\u5206\u652f\u4e2d\u7684 constructor call",
+          "rva": "0x35d399"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 4177,
+          "json_pointer": "/native_identity",
+          "path": "work/reports/war-peace-api-20261013/war/api-contract.json",
+          "sha256": "6c8312e30b34ed181a5ca9ee0807688ca6906d949d4ded905a0ec052cdd26903"
+        },
+        {
+          "bytes": 9405,
+          "json_pointer": "/findings/0",
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.factory_case",
+      "kind": "basic_block",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "unknown"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x35d32a",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "unknown"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u8fd9\u662f\u5df2\u8bc1\u5206\u652f\u5757\u5730\u5740\uff0c\u4e0d\u662f\u72ec\u7acb\u53ef\u8c03\u7528\u51fd\u6570\u3002",
+      "title": "\u5ba3\u6218\u5de5\u5382\u5206\u652f",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "war_full88"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 4170,
+          "json_pointer": "/checks",
+          "path": "work/reports/war-peace-api-20261014-r3/war/api-contract.json",
+          "sha256": "a4574eeb07ea23cd484e1348422403c474f37c9a39025285c0acf8db5cb99e7d"
+        },
+        {
+          "bytes": 9405,
+          "json_pointer": "/findings/6",
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.full_check",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u56fd\u5bb6\u3001\u5173\u7cfb\u3001CB/goal\u53ca\u52a8\u6001\u6761\u4ef6"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x50a0a0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u5b8c\u6574action",
+          "RDX=optional native reason string"
+        ],
+        "returns": "bool\uff1b\u4e0d\u4ee3\u8868AI\u63a5\u53d7/\u6548\u679c/\u6301\u4e45\u5316",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "local/full\u5177\u6709\u4e0d\u540c\u804c\u8d23\uff1b\u68c0\u67e5\u4f1a\u89e3\u6790\u5f53\u524d\u56fd\u5bb6\u548c\u53ef\u53d8engine\u72b6\u6001\uff0c\u4e0d\u80fd\u89c6\u4e3a\u4efb\u610f\u7ebf\u7a0b\u7eaf\u67e5\u8be2\u3002",
+      "title": "\u5ba3\u6218\u5b8c\u6574\u68c0\u67e5",
+      "unresolved": [
+        "\u5b8c\u6574\u4f20\u9012callee/\u811a\u672c\u3001context\u548c\u751f\u547d\u5468\u671f\u672a\u77e5\uff1b\u989d\u5916\u53c2\u6570\u672a\u5728\u672c\u8bb0\u5f55\u8865\u731c\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "\u76f4\u63a5caller",
+          "rva": "0x501921"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/6",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.global_append",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u5f53\u524dgame"
+        ],
+        "owned": [
+          "war\u6307\u9488\u5bb9\u5668\uff1b\u5916\u5c42war\u5bff\u547d\u53e6\u8bba"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0xc06d0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "unknown"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "501921\u8c03\u7528\u7684\u5177\u4f53\u6570\u7ec4\u8ffd\u52a0\u7aef\u70b9\uff0c\u5173\u8054game+1e28\u5bb9\u5668\u3002",
+      "title": "\u5168\u5c40\u6218\u4e89\u6570\u7ec4\u8ffd\u52a0 helper",
+      "unresolved": [
+        "\u5b8c\u6574helper\u51fd\u6570\u7b7e\u540d unknown\uff1b\u4e0d\u63d0\u4f9b\u901a\u7528append\u8c03\u7528\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 4170,
+          "json_pointer": "/tiers/1",
+          "path": "work/reports/war-peace-api-20261014-r3/war/api-contract.json",
+          "sha256": "a4574eeb07ea23cd484e1348422403c474f37c9a39025285c0acf8db5cb99e7d"
+        },
+        {
+          "bytes": 9405,
+          "json_pointer": "/findings/3",
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.goal_clone",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "goal/definition/CB\u53ca\u5171\u4eabsentinel"
+        ],
+        "owned": [
+          "\u5177\u4f53enum0..10\u53ef\u80fd\u4ea7\u751f0x60 goal clone"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0xd9aaf0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=goal pointer\uff08NULL\u6709\u5df2\u8bc1\u9ed8\u8ba4\u5206\u652f\uff09"
+        ],
+        "returns": "goal pointer\uff1b\u53ef\u80fd\u662f\u5171\u4eabsentinel",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u901a\u8fc7goal virtual58\u53cadefinition+38\u5206\u6d3e\uff1bNULL\u53ca\u7279\u5b9aenum\u8fd4\u56de\u5171\u4eabsentinel\u3002",
+      "title": "\u5ba3\u6218\u76ee\u6807\u590d\u5236/\u9ed8\u8ba4\u76ee\u6807\u9009\u62e9",
+      "unresolved": [
+        "definition\u8eab\u4efd\u548c\u751f\u547d\u5468\u671f\uff1benum\u672c\u8eab\u4e0d\u662f\u5408\u6cd5\u5916\u90e8goal\u63cf\u8ff0\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "action virtual40",
+          "rva": "0xedfb96"
+        },
+        {
+          "relationship": "\u76f4\u63a5sender\u8c03\u7528",
+          "rva": "0xedfba4"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 10251,
+          "json_pointer": "/findings/2",
+          "path": "work/reports/war-peace-api-20261013-r2/war/findings.json",
+          "sha256": "76acade5a37cffcd1b39eae11f470c754f3bad50716a37f27b36b5bfa2568146"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.gui_send",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u771f\u5b9edialog/context/world"
+        ],
+        "owned": [
+          "dialog\u7f13\u5b58action\u4e0e\u65b0command\u5177\u6709\u4e0d\u540c\u751f\u547d\u5468\u671f"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0xedfa40",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u539f\u751fdialog\uff08\u5b8c\u6574\u7b7e\u540d unknown\uff09"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u66f4\u65b0\u65e5\u671f\uff0c\u901a\u8fc7action+40\u5305\u88c5command\uff0c\u518d\u76f4\u63a5\u8c03\u752814ca210\u3002",
+      "title": "\u666e\u901a\u5ba3\u6218 GUI \u53d1\u9001\u56de\u8c03",
+      "unresolved": [
+        "\u6b63\u5e38GUI\u9759\u6001\u8c03\u7528\u94fe\u4e0d\u662f\u53ef\u5916\u90e8\u6d3e\u53d1\u7684TAG\u63a5\u53e3\u3002",
+        "transport\u8fd4\u56de\u4e0d\u7b49\u4e8e\u6548\u679c\uff1b\u5931\u8d25\u4e0d\u5141\u8bb8\u91cd\u8bd5\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "war_local80"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 4170,
+          "json_pointer": "/checks",
+          "path": "work/reports/war-peace-api-20261014-r3/war/api-contract.json",
+          "sha256": "a4574eeb07ea23cd484e1348422403c474f37c9a39025285c0acf8db5cb99e7d"
+        },
+        {
+          "bytes": 9405,
+          "json_pointer": "/findings/6",
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.local_check",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u56fd\u5bb6\u3001\u5173\u7cfb\u3001CB/goal\u53ca\u52a8\u6001\u6761\u4ef6"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x508db0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u5b8c\u6574action",
+          "RDX=optional native reason string"
+        ],
+        "returns": "bool\uff1b\u4e0d\u4ee3\u8868AI\u63a5\u53d7/\u6548\u679c/\u6301\u4e45\u5316",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "local/full\u5177\u6709\u4e0d\u540c\u804c\u8d23\uff1b\u68c0\u67e5\u4f1a\u89e3\u6790\u5f53\u524d\u56fd\u5bb6\u548c\u53ef\u53d8engine\u72b6\u6001\uff0c\u4e0d\u80fd\u89c6\u4e3a\u4efb\u610f\u7ebf\u7a0b\u7eaf\u67e5\u8be2\u3002",
+      "title": "\u5ba3\u6218\u5c40\u90e8\u68c0\u67e5",
+      "unresolved": [
+        "\u5b8c\u6574\u4f20\u9012callee/\u811a\u672c\u3001context\u548c\u751f\u547d\u5468\u671f\u672a\u77e5\uff1b\u989d\u5916\u53c2\u6570\u672a\u5728\u672c\u8bb0\u5f55\u8865\u731c\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "\u505c\u6218\u68c0\u67e5",
+        "truce predicate"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 8540,
+          "json_pointer": "/native_consumer",
+          "path": "work/reports/war-peace-api-20261015-r23-truce-observation-contract/war/contract.json",
+          "sha256": "da506a026f1cbfa9c95929d43313283c12fc34ac073dfa711686a5e48f0ffab6"
+        },
+        {
+          "bytes": 8540,
+          "json_pointer": "/pair_cache",
+          "path": "work/reports/war-peace-api-20261015-r23-truce-observation-contract/war/contract.json",
+          "sha256": "da506a026f1cbfa9c95929d43313283c12fc34ac073dfa711686a5e48f0ffab6"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.truce_check",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "Action, country graph, pair rows and linked callees"
+        ],
+        "owned": [
+          "No ownership transfer established"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x506d70",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=declarewar action; actor full handle at+10; target full handle at+20"
+        ],
+        "returns": "Normal result in AL; all selected internal branches/RET covered, external effects unknown.",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "bounded ordinary static evidence; no observed execution or callable authority",
+      "summary": "Always evaluates the linked condition first; then may use a linked-country shortcut, otherwise returns directional pair+45 mask1. Direct cache is not the complete helper.",
+      "title": "\u5ba3\u6218\u505c\u6218\u68c0\u67e5\u6d88\u8d39\u8005",
+      "unresolved": [
+        "Transitive callee effects, reentrancy and object lifetimes",
+        "Typed truce object and expiry"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/8",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/9",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "declare_war.war_constructor",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u8f93\u5165goal/definition\uff1b\u5171\u4eabsentinel\u53ef\u80fd\u4fdd\u6301alias"
+        ],
+        "owned": [
+          "0x218 war\u4e0e\u6761\u4ef6\u62e5\u6709goal"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0xd859b0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5efa\u7acb0x218 war\u3001clone goal\u5230+160\uff0c\u5e76\u5199goal+48\u56de\u6307\uff1b\u5171\u4eabnoCB\u56de\u6307\u4e0d\u662f\u72ec\u5360war\u8eab\u4efd\u3002",
+      "title": "\u6218\u4e89\u5bf9\u8c61\u6784\u9020",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 34017,
+          "json_pointer": "/facts/3",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.ai_score",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "request/current AI/world"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x59bee0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "score\uff1b\u666e\u901a\u63a5\u53d7predicate\u4ee5>=1\u4e3a\u9608\u503c",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "virtual120\u542b\u7279\u6b8aoverride\uff1b\u666e\u901afallback1bf150\uff0c\u4e0d\u80fd\u628ascore\u5f53\u5b9e\u9645\u63a5\u53d7\u56de\u6267\u3002",
+      "title": "\u8bae\u548c AI score \u69fd",
+      "unresolved": [
+        "1bf150\u5177\u4f53\u63a5\u53d7\u89c4\u5219/\u7406\u7531\u5bf9\u8c61\u5bff\u547d unknown\uff1b\u672a\u5b9e\u91c7\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 42730,
+          "json_pointer": "/facts/4",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.clear_all",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "game/manager/country\u56fe"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x7496c0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u6536\u96c6wars\u3001\u79fb\u9664\u53c2\u6218\u8005\u3001\u6e05\u7406borrower\u8282\u70b9\u540e\u8c03\u7528war virtual0(1)\u3002",
+      "title": "\u5168\u5c40\u6218\u4e89 clear-all \u8def\u5f84",
+      "unresolved": [
+        "\u4e0d\u662f\u666e\u901a\u767d\u548c\u5e73\u6700\u7ec8retirement scheduler\u8bc1\u660e\uff1b\u5b8c\u6574\u7b7e\u540d unknown\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [
+        "date90",
+        "peace_date90"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/6",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 7345,
+          "json_pointer": "/findings/5",
+          "path": "work/reports/war-peace-api-20261013-r2/peace/findings.json",
+          "sha256": "66faa3a9d4f0ec031a7746980c746699549cc5c25ca1540028bb5433e40c6916"
+        },
+        {
+          "bytes": 6493,
+          "json_pointer": "/country_root/alias_arithmetic",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json",
+          "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.date_check",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "offer/request\u5185\u90e8\u62e5\u6709\u56fe\uff1b\u5177\u4f53\u8303\u56f4\u89c1\u6240\u9009\u5408\u540c"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x59b8d0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=request*",
+          "RDX=null reason string"
+        ],
+        "returns": "bool",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5f53\u524ddate\u5fc5\u987b\u4e25\u683c\u5927\u4e8e\u76f8\u5173\u56fd\u5bb6/player\u65e5\u671f\uff1bfull88\u6210\u529f\u4e0d\u66ff\u4ee3\u6b64\u68c0\u67e5\u3002",
+      "title": "\u8bae\u548c\u72ec\u7acb date90",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [
+        "peace_full88"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/5",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 7345,
+          "json_pointer": "/findings/1",
+          "path": "work/reports/war-peace-api-20261013-r2/peace/findings.json",
+          "sha256": "66faa3a9d4f0ec031a7746980c746699549cc5c25ca1540028bb5433e40c6916"
+        },
+        {
+          "bytes": 6493,
+          "json_pointer": "/country_root/alias_arithmetic",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json",
+          "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.full_check",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "offer/request\u5185\u90e8\u62e5\u6709\u56fe\uff1b\u5177\u4f53\u8303\u56f4\u89c1\u6240\u9009\u5408\u540c"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x59b630",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=request*",
+          "RDX=null reason string",
+          "R8B=false"
+        ],
+        "returns": "bool",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u516c\u5171/local\u68c0\u67e5\u540e\u8fd8\u62d2\u7eddpending enforce_peace\uff1b\u4e0edate90\u5206\u5f00\u3002",
+      "title": "\u8bae\u548c full88",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [
+        "SEND_OFFER",
+        "peace_send"
+      ],
+      "call_sites": [
+        {
+          "relationship": "listener tailcalls owner callback",
+          "rva": "0x83643d"
+        },
+        {
+          "relationship": "\u8c03\u7528request ctor",
+          "rva": "0x130f22f"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 215213,
+          "json_pointer": "/facts/send_button_binding",
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "bytes": 215213,
+          "json_pointer": "/facts/callback_allocates_original_and_copies_selected_offer",
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "bytes": 215213,
+          "json_pointer": "/facts/native_date_gate_and_context_lookup",
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.gui_send",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "GUI/context/world"
+        ],
+        "owned": [
+          "GUI offer\u3001original request offer\u3001command clone offer\u5404\u81ea\u62e5\u6709"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x130f1b0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u539f\u751fGUI owner\uff1b\u5176\u4f59\u53c2\u6570 unknown"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u9009\u5b9aGUI offer\u6df1\u62f7\u8d1d\u4e3arequest\uff0c\u72ec\u7acb\u65e5\u671fgate\u540e\u5305\u88c5\u53d1\u9001\uff0c\u518d\u6e05\u539frequest\uff1b\u4e09\u4e2aoffer\u56fe\u72ec\u7acb\u3002",
+      "title": "\u8bae\u548c GUI SEND_OFFER \u56de\u8c03",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [
+        "peace_local80"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/4",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 7345,
+          "json_pointer": "/findings/4",
+          "path": "work/reports/war-peace-api-20261013-r2/peace/findings.json",
+          "sha256": "66faa3a9d4f0ec031a7746980c746699549cc5c25ca1540028bb5433e40c6916"
+        },
+        {
+          "bytes": 6493,
+          "json_pointer": "/country_root/alias_arithmetic",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json",
+          "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.local_check",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "offer/request\u5185\u90e8\u62e5\u6709\u56fe\uff1b\u5177\u4f53\u8303\u56f4\u89c1\u6240\u9009\u5408\u540c"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x59b450",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=request*",
+          "RDX=null reason string"
+        ],
+        "returns": "bool",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5c40\u90e8\u68c0\u67e5\u5305\u62ec\u6709\u6548type3\u9886\u571fowner/controller\uff1b\u4e0d\u80fd\u66ff\u4ee3\u6240\u6709\u6761\u6b3e\u5408\u6cd5\u6027\u3002",
+      "title": "\u8bae\u548c local80",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "request effect\u76f4\u63a5\u8c03\u7528",
+          "rva": "0x59a6ea"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 34017,
+          "json_pointer": "/facts/5",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "bytes": 34017,
+          "json_pointer": "/facts/6",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "bytes": 42730,
+          "json_pointer": "/facts/5",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.offer_apply",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "war\u3001participants\u3001\u6761\u6b3e\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x976730",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "offer receiver\uff1b\u5b8c\u6574\u53c2\u6570/return unknown"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5e94\u7528\u6761\u6b3e\u5e76\u79fb\u9664\u9002\u7528\u53c2\u6218\u8005\uff1boutcome\u5199\u5165\u4e0d\u662fwar\u5df2\u91ca\u653e\u7684\u8bc1\u660e\u3002",
+      "title": "\u8bae\u548c offer \u5e94\u7528/\u7ed3\u7b97",
+      "unresolved": [
+        "\u53ea\u96f6\u91d1\u989dgold\u53f6\u6709\u7a84\u4e0d\u8f6c\u8d26\u8bc1\u636e\uff1b\u5b8c\u6574\u7ed3\u7b97/\u5176\u5b83\u6761\u6b3e/\u6700\u7ec8retirement\u672a\u9a8c\u6536\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/9",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.offer_cleanup",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "graph only; caller outer storage remains"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x9761c0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=in-place standalone offer"
+        ],
+        "returns": "ignored",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u6e05\u62e5\u6709components/\u5bb9\u5668\uff1b\u4fdd\u7559caller\u5916\u5c42storage\u3002",
+      "title": "\u8bae\u548c offer \u6e05\u7406\u4f53",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [
+        "offer_ctor"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/0",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.offer_constructor",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "offer/request\u5185\u90e8\u62e5\u6709\u56fe\uff1b\u5177\u4f53\u8303\u56f4\u89c1\u6240\u9009\u5408\u540c"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x975d40",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=dst",
+          "RDX=actor/taker full handle",
+          "R8=recipient/giver full handle",
+          "R9B=true"
+        ],
+        "returns": "offer*==dst",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u6784\u90200x1c0 offer\u5e76\u679a\u4e3e\u5019\u9009\uff1bactor/taker\u4e0erecipient/giver\u65b9\u5411\u660e\u786e\u3002",
+      "title": "\u8bae\u548c offer \u6784\u9020",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "request constructor\u8c03\u7528",
+          "rva": "0x598b4a"
+        },
+        {
+          "relationship": "request clone\u8c03\u7528",
+          "rva": "0x59bad1"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 1302642,
+          "json_pointer": "/facts/offer_copy_and_owner_fixup",
+          "path": "work/reports/native-owned-peace-1375.json",
+          "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+        },
+        {
+          "bytes": 34017,
+          "json_pointer": "/facts/1",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.offer_copy",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "source\u53ca\u5176\u5b9a\u4e49/\u4e16\u754c\u5f15\u7528"
+        ],
+        "owned": [
+          "\u72ec\u7acbdestination\u62e5\u6709\u56fe"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x975f40",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=destination offer",
+          "RDX=source offer"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u590d\u5236\u72ec\u7acbparticipant vectors/hash/component\u56fe\uff0c\u4fee\u6b63owner+self\uff1bmemcpy\u4f1a\u5f62\u6210\u522b\u540d\u3002",
+      "title": "\u8bae\u548c offer \u6df1\u62f7\u8d1d",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/1",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.offer_reset",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "offer/request\u5185\u90e8\u62e5\u6709\u56fe\uff1b\u5177\u4f53\u8303\u56f4\u89c1\u6240\u9009\u5408\u540c"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x97ae50",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=offer*"
+        ],
+        "returns": "ignored",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u539f\u751f\u53d6\u6d88/\u91cd\u7f6e\u9009\u62e9\uff1b\u4e0d\u662f\u4efb\u610f\u624b\u5199selected byte\u3002",
+      "title": "\u8bae\u548c offer \u9009\u62e9\u91cd\u7f6e",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "offer apply caller",
+          "rva": "0x9784cc"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 34017,
+          "json_pointer": "/facts/6",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "bytes": 42730,
+          "json_pointer": "/facts/2",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.remove_members",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "resolved war\u3001countries\u4e0e\u53cc\u65b9\u7269\u7406\u7d22\u5f15"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x98ffb0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u8c03\u7528d8ba80/d8e6b0\u53caside-vector\u79fb\u9664\uff1b\u4e0d\u7b49\u540c\u6700\u7ec8war\u91ca\u653e\u3002",
+      "title": "\u8bae\u548c\u7ed3\u7b97\u53c2\u6218\u8005\u79fb\u9664",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "accepted\u5206\u652f\u8c03\u7528offer apply",
+          "rva": "0x59a6ea"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 34017,
+          "json_pointer": "/facts/4",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "bytes": 42730,
+          "json_pointer": "/facts/6",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.reply_effect",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "offer/current war/countries/\u52a8\u6001\u811a\u672c"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x598ed0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=request action\uff1b\u5176\u4f59\u53c2\u6570 unknown"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "state2\u5206\u652f\u523059a6ea\u8c03\u7528976730\uff1b\u7981\u6b62\u901a\u8fc7\u6539state/force\u4f2a\u9020\u63a5\u53d7\u3002",
+      "title": "\u8bae\u548c\u8bf7\u6c42\u54cd\u5e94\u6548\u679c",
+      "unresolved": [
+        "on-action\u6709\u540c\u6b65\u52a8\u6001effect\uff1b\u5b8c\u6574\u5f02\u5e38/\u91cd\u5165/world\u5bff\u547d\u672a\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/3",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.request_clone",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "outer0x210 and deep embedded offer graph"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x59ba40",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=const request*"
+        ],
+        "returns": "independently engine allocated request*",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5206\u914d\u72ec\u7acb0x210 request\u53ca\u5d4c\u5165offer\u62e5\u6709\u56fe\u3002",
+      "title": "\u8bae\u548c request \u514b\u9686",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [
+        "requestpeace_ctor"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/2",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.request_constructor",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "offer/request\u5185\u90e8\u62e5\u6709\u56fe\uff1b\u5177\u4f53\u8303\u56f4\u89c1\u6240\u9009\u5408\u540c"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x598af0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=dst",
+          "RDX=actor full handle",
+          "R8=recipient full handle",
+          "R9B=true",
+          "stack arg5 const offer*",
+          "stack arg6 int32 raw date"
+        ],
+        "returns": "request*==dst",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u6784\u90200x210 request\uff0c\u6df1\u62f7\u8d1doffer\u5230+48\uff0cforce+208\u4e3a0\u3002",
+      "title": "\u8bae\u548c request \u6784\u9020",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/7",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 7306,
+          "json_pointer": "/operations/8",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.request_destructor",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u53cc\u65b9country/full handle\u3001\u5f53\u524dwar\u3001\u6761\u6b3edefinition\u4e0e\u5176\u5f15\u7528\u5bf9\u8c61"
+        ],
+        "owned": [
+          "\u9759\u6001\u6b63\u5e38\u8def\u5f84\uff08\u975e\u8fd0\u884c\u9a8c\u8bc1\uff09\uff1aembedded offer cleanup \u540e\uff0cEDX bit0=0 preserves caller outer storage\u3002",
+          "\u9759\u6001\u6b63\u5e38\u8def\u5f84\uff08\u975e\u8fd0\u884c\u9a8c\u8bc1\uff09\uff1aembedded offer cleanup \u540e\uff0cEDX bit0=1 frees engine outer 0x210\u3002"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x598b60",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u5b8c\u6574request",
+          "EDX bit0=\u662f\u5426\u91ca\u653e\u5916\u5c42\uff1b0\u4e0e1\u5bf9\u5e94\u4e0d\u540c\u6240\u6709\u6743"
+        ],
+        "returns": "ignored",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5148\u6e05\u5d4c\u5165offer\u56fe\uff0cflagbit0\u51b3\u5b9a\u662f\u5426\u91ca\u653e0x210\u5916\u5c42\uff1b\u4e0d\u80fd\u5355\u72ec\u5220\u5d4c\u5165offer\u3002",
+      "title": "\u8bae\u548c request deleting wrapper",
+      "unresolved": [
+        "\u5df2\u77e5referent\u8303\u56f4\u4e0d\u7b49\u4e8e\u5b8c\u6574\u4f20\u9012world\u62e5\u6709\u56fe\uff1b\u751f\u547d\u5468\u671f/\u52a8\u6001effects/\u5f02\u5e38\u672a\u95ed\u5408\u3002",
+        "R3 ABI\u7f16\u8bd1\u6216\u79bb\u7ebfcase\u4e0d\u662f\u672c\u7248\u771f\u5b9epeace\u8c03\u7528/\u6548\u679c\u8bc1\u636e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 8281,
+          "json_pointer": "/findings/0",
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "bytes": 8281,
+          "json_pointer": "/findings/1",
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.term_cancel",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u5019\u9009component\u53ca\u5f53\u524dwar/definition"
+        ],
+        "owned": [
+          "offer\u62e5\u6709pool\uff1btype buckets\u53ea\u5b58\u522b\u540d"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x97a8d0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=offer",
+          "RDX=component",
+          "R8B=false",
+          "R9B=false"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u53ef\u80fd\u7ea7\u8054\u53d6\u6d88\u5e76\u91cd\u67e5\u5176\u5b83\u9886\u571f\u6761\u6b3e\uff0c\u4e0d\u5220\u9664component\u62e5\u6709\u4f53\u3002",
+      "title": "\u8bae\u548c\u6761\u6b3e\u53d6\u6d88",
+      "unresolved": [
+        "\u52a8\u6001virtual check/update\u4e0e\u5f02\u5e38\u672a\u77e5\uff1b\u5b8c\u6574return ABI\u672a\u8865\u731c\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 8281,
+          "json_pointer": "/findings/0",
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "bytes": 8281,
+          "json_pointer": "/findings/1",
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.term_check",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u5019\u9009component\u53ca\u5f53\u524dwar/definition"
+        ],
+        "owned": [
+          "offer\u62e5\u6709pool\uff1btype buckets\u53ea\u5b58\u522b\u540d"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x97a1c0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=offer",
+          "RDX=component",
+          "R8=\u5df2\u521d\u59cb\u5316diagnostic vector",
+          "R9B=false",
+          "stack5=null reason"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u8bfb\u53d6\u5f53\u524dwar\u4e14\u6ca1\u6709null\u4fdd\u62a4\uff1b\u5fc5\u987b\u5c5e\u4e8e\u5f53\u524d\u539f\u751foffer\u7684\u5019\u9009\u3002",
+      "title": "\u8bae\u548c\u5019\u9009\u6761\u6b3e\u68c0\u67e5",
+      "unresolved": [
+        "\u52a8\u6001virtual check/update\u4e0e\u5f02\u5e38\u672a\u77e5\uff1b\u5b8c\u6574return ABI\u672a\u8865\u731c\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 8281,
+          "json_pointer": "/findings/0",
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "bytes": 8281,
+          "json_pointer": "/findings/1",
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "peace.term_select",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u5019\u9009component\u53ca\u5f53\u524dwar/definition"
+        ],
+        "owned": [
+          "offer\u62e5\u6709pool\uff1btype buckets\u53ea\u5b58\u522b\u540d"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x97a790",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=offer",
+          "RDX=component",
+          "R8B=false",
+          "R9B=false"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u6ca1\u6709\u5b8c\u6574\u5408\u6cd5\u6027/\u5f52\u5c5e/\u91cd\u590d\u68c0\u67e5\uff1b\u975e\u5e42\u7b49\uff0c\u4e0d\u5f97\u91cd\u590d\u52a0\u5165\u3002",
+      "title": "\u8bae\u548c\u6761\u6b3e\u9009\u62e9",
+      "unresolved": [
+        "\u52a8\u6001virtual check/update\u4e0e\u5f02\u5e38\u672a\u77e5\uff1b\u5b8c\u6574return ABI\u672a\u8865\u731c\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "action virtual48\u5206\u6d3e",
+          "rva": "0x4ea8cd"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/3",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.action_apply",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "action\u3001country/world"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x4ea820",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5148\u68c0\u67e5\u56fd\u5bb6\u5b58\u5728\uff0c\u518d\u8c03\u7528action+48\uff1b\u4e0d\u662f\u5916\u90e8\u5408\u6cd5\u6027\u9884\u68c0\u5165\u53e3\u3002",
+      "title": "\u516c\u5171\u52a8\u4f5c\u6548\u679c\u5206\u6d3e",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [
+        "command_execute"
+      ],
+      "call_sites": [
+        {
+          "relationship": "\u8c03\u75284ea820",
+          "rva": "0x4e8054"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/3",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/2",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.command_execute",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "command+50 action/world"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x4e7c50",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=command\uff1b\u5176\u4f59\u53c2\u6570 unknown"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "command+48\u91cd\u65b0\u505alocal80\uff0c\u518d\u7ecf4ea820\u5206\u6d3eaction\u6548\u679c\u3002",
+      "title": "command \u6267\u884c\u69fd",
+      "unresolved": [
+        "\u6548\u679c\u524d\u540e\u52a8\u6001\u8c03\u7528\u4e0e\u5f02\u5e38\u672a\u77e5\uff1b\u6b64\u8bb0\u5f55\u4e0d\u63d0\u4f9b\u6267\u884c\u80fd\u529b\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [
+        {
+          "relationship": "context\u8c03\u7528gate",
+          "rva": "0x14cab30"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/1",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.command_gate",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "command/action\u4e0e\u5f53\u524dengine\u72b6\u6001"
+        ],
+        "owned": [
+          "unknown"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x4e8630",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "bool",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "command+40\u68c0\u67e5cooldown/cost/local\uff0ctrue\u540e\u624d\u8fdb\u5165\u6267\u884c\uff1bgate\u672c\u8eab\u4e0d\u8c03\u7528action\u6548\u679c\u3002",
+      "title": "command \u68c0\u67e5\u69fd",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "\u4ece\u5c5e\u5b9a\u4e49\u53d6\u503c",
+        "dependency definition",
+        "pdata gap leaf"
+      ],
+      "call_sites": [
+        {
+          "relationship": "direct call in linked_country_condition",
+          "rva": "0x2f159f"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7709,
+          "json_pointer": "/entry",
+          "path": "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/contract.json",
+          "sha256": "24ca7959cc69478b25bc0bd3266b62f3da6d9a57b03f1c74a4884acfee50cecb"
+        },
+        {
+          "bytes": 7709,
+          "json_pointer": "/dataflow",
+          "path": "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/contract.json",
+          "sha256": "24ca7959cc69478b25bc0bd3266b62f3da6d9a57b03f1c74a4884acfee50cecb"
+        },
+        {
+          "bytes": 7709,
+          "json_pointer": "/register_contract",
+          "path": "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/contract.json",
+          "sha256": "24ca7959cc69478b25bc0bd3266b62f3da6d9a57b03f1c74a4884acfee50cecb"
+        },
+        {
+          "bytes": 4713,
+          "json_pointer": "/mapping",
+          "path": "work/reports/war-peace-api-20261015-r38-dependency-crosswalk/war/crosswalk.json",
+          "sha256": "aab78fe19dddd2197e6acd3eb98f06da41537eb6cf89da2cec9bf54fd8102d7e"
+        },
+        {
+          "bytes": 4713,
+          "json_pointer": "/limits",
+          "path": "work/reports/war-peace-api-20261015-r38-dependency-crosswalk/war/crosswalk.json",
+          "sha256": "aab78fe19dddd2197e6acd3eb98f06da41537eb6cf89da2cec9bf54fd8102d7e"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.dependency_definition_lookup",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "Country graph, index entries, P and U"
+        ],
+        "owned": [
+          "No allocations or explicit stores in selected leaf CFG"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x3d79f0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=C country pointer; incoming RDX/R8 overwritten before use"
+        ],
+        "returns": "RAX=0 or QWORD[P+40]; concrete selected normal paths preserve R9/R10, not an ABI assumption.",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "bounded ordinary static evidence; no observed execution or callable authority",
+      "summary": "A known direct-CALL entry in a pdata gap scans D+128 sixteen-byte entries and returns P+40. Conditional field match to the frozen dependency reader, with an extra linked-pair premise.",
+      "title": "\u6761\u4ef6\u4ece\u5c5e\u5b9a\u4e49\u53d6\u503c\u53f6\u51fd\u6570",
+      "unresolved": [
+        "Native has no typed/bounds/fullhandle guards",
+        "Exact U class/size/owner/lifetime",
+        "Reader pair must equal C and its C+18f0 linked country; sample_pair does not enforce that premise"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "\u5173\u8054\u6761\u4ef6\u6c42\u503c",
+        "linked evaluator"
+      ],
+      "call_sites": [
+        {
+          "relationship": "direct call in linked_country_condition",
+          "rva": "0x2f15fa"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 23863,
+          "json_pointer": "/entry",
+          "path": "work/reports/war-peace-api-20261015-r40-linked-condition-closure/war/contract.json",
+          "sha256": "7c5e6208276fe8c4edfea20f02956b1e2ce4fe5d27dc319cf6d09acbc5828bad"
+        },
+        {
+          "bytes": 23863,
+          "json_pointer": "/control_flow",
+          "path": "work/reports/war-peace-api-20261015-r40-linked-condition-closure/war/contract.json",
+          "sha256": "7c5e6208276fe8c4edfea20f02956b1e2ce4fe5d27dc319cf6d09acbc5828bad"
+        },
+        {
+          "bytes": 23863,
+          "json_pointer": "/return_contract",
+          "path": "work/reports/war-peace-api-20261015-r40-linked-condition-closure/war/contract.json",
+          "sha256": "7c5e6208276fe8c4edfea20f02956b1e2ce4fe5d27dc319cf6d09acbc5828bad"
+        },
+        {
+          "bytes": 23863,
+          "json_pointer": "/writes",
+          "path": "work/reports/war-peace-api-20261015-r40-linked-condition-closure/war/contract.json",
+          "sha256": "7c5e6208276fe8c4edfea20f02956b1e2ce4fe5d27dc319cf6d09acbc5828bad"
+        },
+        {
+          "bytes": 23863,
+          "json_pointer": "/callee_boundary",
+          "path": "work/reports/war-peace-api-20261015-r40-linked-condition-closure/war/contract.json",
+          "sha256": "7c5e6208276fe8c4edfea20f02956b1e2ce4fe5d27dc319cf6d09acbc5828bad"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.linked_condition_evaluator",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "U interior, country graph, module/TLS and unfollowed callees"
+        ],
+        "owned": [
+          "Selected stack frame"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0xb1e020",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=U+1c8",
+          "RDX=target full handle",
+          "R8=actor full handle",
+          "R9=flag; 0 at retained caller"
+        ],
+        "returns": "Conditional normal return contract in R40; not a total business predicate or arbitrary-input guarantee.",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "bounded ordinary static evidence; no observed execution or callable authority",
+      "summary": "Complete owned-byte instruction coverage supplements the earlier512-byte prefix; normal-return paths are address-bounded, while an INT3 terminal and unfollowed callees remain unresolved. The normal epilogue preserves AL; module/alias writes prevent a read-only API claim.",
+      "title": "\u5173\u8054\u6761\u4ef6\u51fd\u6570\uff08\u975e\u53ea\u8bfb\u4fdd\u8bc1\uff09",
+      "unresolved": [
+        "Transitive effects, return/termination and volatile preservation",
+        "Class, AND/OR and expiry semantics"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "\u5173\u8054\u56fd\u5bb6\u68c0\u67e5",
+        "linked truce condition"
+      ],
+      "call_sites": [
+        {
+          "relationship": "direct call from truce_check",
+          "rva": "0x506dba"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 8705,
+          "json_pointer": "/windows/0",
+          "path": "work/reports/war-peace-api-20261015-r25-linked-truce-callees/war/contract.json",
+          "sha256": "e0c0f4cd8369ddb63b0f8f6739377d7cd99e60291e8537bba7f80da979975d21"
+        },
+        {
+          "bytes": 4287,
+          "json_pointer": "/false_2f",
+          "path": "work/reports/war-peace-api-20261015-r26-linked-truce-tails/war/conclusions.json",
+          "sha256": "67c2af2fd010b16a40b0103993241cb4e3e3bf76cc4e00fcd0f2e1351f430178"
+        },
+        {
+          "bytes": 7709,
+          "json_pointer": "/register_contract",
+          "path": "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/contract.json",
+          "sha256": "24ca7959cc69478b25bc0bd3266b62f3da6d9a57b03f1c74a4884acfee50cecb"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.linked_country_condition",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "Country graph and U definition path"
+        ],
+        "owned": [
+          "Only selected stack scratch is owned"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x2f1590",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=target country",
+          "RDX=actor full handle",
+          "R8=flag; 0 in retained506d70 caller"
+        ],
+        "returns": "Selected normal AL0/1 exits closed by R26; external callee contracts remain conditional.",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "bounded ordinary static evidence; no observed execution or callable authority",
+      "summary": "Gets U, checks U+11a on one branch, and calls b1e020(U+1c8,...); AL result is inverted on the latter reaching normal path. No business class name is assigned.",
+      "title": "\u5173\u8054\u56fd\u5bb6\u6761\u4ef6\u8c03\u7528\u94fe",
+      "unresolved": [
+        "U fields business meaning",
+        "b1e020 and other transitive effects/lifetime"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "\u5173\u8054\u5c5e\u6027\u5730\u5740",
+        "linked interior address"
+      ],
+      "call_sites": [
+        {
+          "relationship": "direct call from truce_check",
+          "rva": "0x506e05"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 8705,
+          "json_pointer": "/windows/1",
+          "path": "work/reports/war-peace-api-20261015-r25-linked-truce-callees/war/contract.json",
+          "sha256": "e0c0f4cd8369ddb63b0f8f6739377d7cd99e60291e8537bba7f80da979975d21"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.linked_property_address",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "Country and P/fallback objects"
+        ],
+        "owned": [
+          "Only selected stack scratch"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x40a6d0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=resolved linked-country pointer"
+        ],
+        "returns": "P+38 or fallback return+78/+58; no safe external ownership or class established.",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "bounded ordinary static evidence; no observed execution or callable authority",
+      "summary": "If country+1420 P is nonnull, reads P+10 and returns P+38; null branch calls unreviewed fallbacks.",
+      "title": "\u5173\u8054\u5c5e\u6027\u5730\u5740\u9009\u62e9\u51fd\u6570",
+      "unresolved": [
+        "Fallback effects and return validity",
+        "P class/ownership/lifetime"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "\u5173\u8054\u5c5e\u6027\u5b57\u8282",
+        "linked byte result"
+      ],
+      "call_sites": [
+        {
+          "relationship": "direct call from truce_check",
+          "rva": "0x506e0d"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 8705,
+          "json_pointer": "/windows/2",
+          "path": "work/reports/war-peace-api-20261015-r25-linked-truce-callees/war/contract.json",
+          "sha256": "e0c0f4cd8369ddb63b0f8f6739377d7cd99e60291e8537bba7f80da979975d21"
+        },
+        {
+          "bytes": 4287,
+          "json_pointer": "/tail_7ae",
+          "path": "work/reports/war-peace-api-20261015-r26-linked-truce-tails/war/conclusions.json",
+          "sha256": "67c2af2fd010b16a40b0103993241cb4e3e3bf76cc4e00fcd0f2e1351f430178"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.linked_property_byte",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "Interior address, pointed object and byte source"
+        ],
+        "owned": [
+          "Selected stack scratch"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x7ae260",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=interior address returned by40a6d0"
+        ],
+        "returns": "EAX=selected byte on normal RET7ae2c6; not every path has a proved normal return.",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "bounded ordinary static evidence; no observed execution or callable authority",
+      "summary": "Selected branch returns a zero-extended byte, not normalized boolean. Another tail calls45b280 then executes INT3 if it returns; transitive effects and exception meaning are unknown.",
+      "title": "\u5173\u8054\u5c5e\u6027\u5b57\u8282\u8fd4\u56de\u51fd\u6570",
+      "unresolved": [
+        "Unreviewed callees, caching and lifetime",
+        "Data/literal identity",
+        "Nonreturn/exception class"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war"
+      ],
+      "aliases": [
+        "\u505c\u6218\u5b57\u7b26\u4e32\u72b6\u6001\u5199",
+        "excluded truce getter",
+        "state writer"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 14216,
+          "json_pointer": "/findings",
+          "path": "work/reports/war-peace-api-20261015-r35-forward-input9-path/war/contract.json",
+          "sha256": "ab35063beaa9c8c3e36fcad071261a8ef04009ea3632e6fba3afdcc9586554b0"
+        },
+        {
+          "bytes": 14216,
+          "json_pointer": "/analyst_inference",
+          "path": "work/reports/war-peace-api-20261015-r35-forward-input9-path/war/contract.json",
+          "sha256": "ab35063beaa9c8c3e36fcad071261a8ef04009ea3632e6fba3afdcc9586554b0"
+        },
+        {
+          "bytes": 14216,
+          "json_pointer": "/unknowns",
+          "path": "work/reports/war-peace-api-20261015-r35-forward-input9-path/war/contract.json",
+          "sha256": "ab35063beaa9c8c3e36fcad071261a8ef04009ea3632e6fba3afdcc9586554b0"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.literal_state_writer",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "Receiver and conditional module/alias destinations"
+        ],
+        "owned": [
+          "Selected stack frame"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x6ec450",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=receiver",
+          "EDX=input9 in retained string path",
+          "R8B=0",
+          "R9B=0"
+        ],
+        "returns": "Selected input9 normal RET covered; this is state mutation, not a truce status getter.",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "bounded ordinary static evidence; no observed execution or callable authority",
+      "summary": "Input9 changed-state path stores receiver+2c=9 and +40=7 before subsequent calls; this endpoint is an excluded read-only getter candidate. Display/view purpose remains inference.",
+      "title": "truce\u5b57\u7b26\u4e32\u8ffd\u8e2a\u6240\u5f97\u72b6\u6001\u5199\u51fd\u6570",
+      "unresolved": [
+        "Business class/display meaning",
+        "Callee effects, final values and lifetime"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [
+        "pending_sink",
+        "sink"
+      ],
+      "call_sites": [
+        {
+          "relationship": "\u5df2\u4fdd\u7559\u79fb\u4ea4\u73b0\u573a",
+          "rva": "0x14ca927"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 10375,
+          "json_pointer": "/findings/0",
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.pending_handoff",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "context/transport"
+        ],
+        "owned": [
+          "command\u6307\u9488\u4ecepending\u94fe\u79fb\u5165context vector"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x14ca870",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u4ecetransport\u5bb9\u5668\u79fb\u4ea4raw command\u5230context vector\uff0c\u4ec5\u91ca\u653e\u94fe\u8282\u70b9\u3002",
+      "title": "pending \u5230\u6267\u884c context \u7684\u79fb\u4ea4",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 3937,
+          "json_pointer": "/findings/4",
+          "path": "work/reports/war-peace-api-20261014-r3/sender/findings.json",
+          "sha256": "4151e7585728e42de0f4d31f77d01e778828cfa08d107787662818d9ba68ecfe"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.queue_consumer",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "transport\u961f\u5217/pending\u94fe"
+        ],
+        "owned": [
+          "\u65b0pending wrapper\u4e0e\u65e7\u961f\u5217wrapper\u5206\u79bb"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x15801c0",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "virtual38\u53d6\u961f\u5217command\u3001\u514b\u9686wrapper\u8fdb\u5165pending\u94fe\uff0c\u518d\u5220\u9664\u65e7wrapper\u3002",
+      "title": "transport \u961f\u5217\u9996\u6d88\u8d39\u8005",
+      "unresolved": [
+        "\u5b8c\u6574\u7b7e\u540d unknown\uff1b\u5f02\u5e38\u6240\u6709\u6743\u4e0e\u6267\u884c\u65f6\u5e8f\u672a\u77e5\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [
+        "send_command",
+        "sender"
+      ],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 7306,
+          "json_pointer": "/sender",
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "bytes": 215213,
+          "json_pointer": "/facts/submit_consumes_container_not_acceptance_ack",
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.sender",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "context+58 transport\u4e0e\u4e16\u754c"
+        ],
+        "owned": [
+          "\u8fdb\u5165\u65f6\u6d88\u8d39caller holder\uff1b\u6b63\u5e38transport\u5bf9original command\u53e6\u6709\u6e05\u7406"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x14ca210",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=context",
+          "RDX=caller owning command holder"
+        ],
+        "returns": "bool\uff1b\u975e\u6267\u884c/\u63a5\u53d7\u8bc1\u660e",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u5148\u6e05caller holder\uff0c\u518d\u6309context/transport\u6761\u4ef6\u63d0\u4ea4\uff1btrue\u4ec5\u8868\u793a\u672c\u5730transport\u8fd4\u56de\u3002",
+      "title": "command \u53d1\u9001\u5668",
+      "unresolved": [
+        "false/\u5f02\u5e38\u540e\u7684\u5b8c\u6574\u6240\u6709\u6743\u672a\u77e5\uff1b\u4e0d\u5f97\u636e\u8fd4\u56de\u503c\u91cd\u8bd5\u6216\u91ca\u653e\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 3937,
+          "json_pointer": "/findings/0",
+          "path": "work/reports/war-peace-api-20261014-r3/sender/findings.json",
+          "sha256": "4151e7585728e42de0f4d31f77d01e778828cfa08d107787662818d9ba68ecfe"
+        },
+        {
+          "bytes": 3937,
+          "json_pointer": "/findings/1",
+          "path": "work/reports/war-peace-api-20261014-r3/sender/findings.json",
+          "sha256": "4151e7585728e42de0f4d31f77d01e778828cfa08d107787662818d9ba68ecfe"
+        },
+        {
+          "bytes": 3937,
+          "json_pointer": "/findings/3",
+          "path": "work/reports/war-peace-api-20261014-r3/sender/findings.json",
+          "sha256": "4151e7585728e42de0f4d31f77d01e778828cfa08d107787662818d9ba68ecfe"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.transport_submit",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "transport/recipient\u961f\u5217"
+        ],
+        "owned": [
+          "\u539fcommand\u6b63\u5e38completion\u5220\u9664\uff1b\u961f\u5217\u4f7f\u7528\u91cd\u89e3\u6790\u5bf9\u8c61"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x1580370",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "unknown"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u56fa\u5b9avt1d96178\u7684+30\u7aef\u70b9\uff1b\u5e8f\u5217\u5316/\u91cd\u65b0\u6784\u9020\u961f\u5217command\uff0c\u6b63\u5e38\u8def\u5f84\u6e05\u7406\u539fcommand\u3002",
+      "title": "\u5df2\u8bc1 transport virtual30",
+      "unresolved": [
+        "\u5b8c\u6574\u539f\u578b unknown\uff1b\u52a8\u6001\u7c7b\u578b\u3001\u5931\u8d25\u3001\u5f02\u5e38\u4e0e\u63a5\u53d7\u8bed\u4e49\u672a\u95ed\u5408\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 42730,
+          "json_pointer": "/facts/3",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.war_body_retirement",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "game\u6570\u7ec4/list\u3001manager borrowers\u4e0egoal"
+        ],
+        "owned": [
+          "war goal/\u5bb9\u5668\u6309\u5176\u6b63\u5e38\u62e5\u6709\u6761\u4ef6\u6e05\u7406"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0xd85c40",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u5b8c\u6574war\uff1b\u5b8c\u6574\u539f\u578b unknown"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u79fb\u9664\u5168\u5c40\u6570\u7ec4\u548c\u501f\u7528\u94fe\u8282\u70b9\uff0c\u7ee7\u7eedgoal/container\u6e05\u7406\uff1b\u8282\u70b9\u5ef6\u8fdf\u5220\u9664\u4e0d\u4fdd\u6d3bwar\u3002",
+      "title": "\u6218\u4e89 body \u6e05\u7406\u4e0e\u5168\u5c40\u79fb\u9664",
+      "unresolved": [
+        "\u666e\u901aaccepted-whitepeace\u6700\u7ec8\u8c03\u7528\u8005/\u65f6\u70b9\u4ecdunknown\uff1b\u4e0d\u80fd\u4f5cliveness probe\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [],
+      "call_sites": [],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 6493,
+          "json_pointer": "/war",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json",
+          "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+        },
+        {
+          "bytes": 42730,
+          "json_pointer": "/facts/3",
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.war_deleting_destructor",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "\u5b8c\u6574\u6709\u6548world/goal\u56fe"
+        ],
+        "owned": [
+          "0x218 war\u53ca\u6761\u4ef6\u62e5\u6709\u56fe"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0xd85960",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=\u5b8c\u6574war",
+          "EDX=flagbit0"
+        ],
+        "returns": "unknown",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u8c03\u7528d85c40\uff0cflagbit0\u51b3\u5b9a\u662f\u5426\u91ca\u653e0x218 outer\u3002",
+      "title": "\u6218\u4e89 deleting wrapper",
+      "unresolved": [
+        "\u5916\u90e8destructor\u672a\u6388\u6743\uff1b\u4e0d\u80fd\u5728\u8c03\u7528\u540e\u6cbf\u7528\u65e7war pointer\u3002"
+      ]
+    },
+    {
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "aliases": [
+        "command_wrapper"
+      ],
+      "call_sites": [
+        {
+          "relationship": "peace GUI\u76f4\u63a5\u8c03\u7528wrapper",
+          "rva": "0x130f307"
+        },
+        {
+          "relationship": "war GUI virtual40\u8c03\u7528",
+          "rva": "0xedfb96"
+        }
+      ],
+      "callable": false,
+      "evidence": [
+        {
+          "bytes": 215213,
+          "json_pointer": "/facts/wrapper_clones_whole_owned_offer",
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "bytes": 9405,
+          "json_pointer": "/findings/5",
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        },
+        {
+          "bytes": 3116,
+          "json_pointer": "/scope",
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "gameplay_effect_verified": false,
+      "id": "shared.wrapper",
+      "kind": "function",
+      "native_ready": false,
+      "ownership": {
+        "borrowed": [
+          "source action\u4e0e\u5f53\u524dgame date"
+        ],
+        "owned": [
+          "0x58 command\u4e0e\u72ec\u7acbaction clone"
+        ]
+      },
+      "process_authenticated": false,
+      "rva": "0x4e9930",
+      "sender_authorized": false,
+      "signature": {
+        "complete_prototype": "unknown",
+        "parameters": [
+          "RCX=action",
+          "RDX=caller command holder"
+        ],
+        "returns": "caller holder\u5730\u5740",
+        "status": "partial_static"
+      },
+      "stage": "static",
+      "stage_scope": "\u56fa\u5b9a\u4e8c\u8fdb\u5236\u7684\u9759\u6001\u5408\u540c\uff1b\u6ca1\u6709\u8be5\u7aef\u70b9\u7684\u5b9e\u673a API \u6548\u679c\u9a8c\u6536\u3002",
+      "summary": "\u8c03\u7528action clone+b0\uff0ccommand+50\u62e5\u6709\u72ec\u7acbclone\uff0c\u5e76\u66f4\u65b0clone\u6b21\u65e5\u671f\u3002",
+      "title": "\u52a8\u4f5c\u5305\u88c5\u4e3a\u62e5\u6709\u5f0f command",
+      "unresolved": [
+        "\u5b9e\u9645\u5916\u90e8\u8c03\u7528\u6240\u9700\u8eab\u4efd\u3001\u5bff\u547d\u4e0e\u5f02\u5e38\u8fb9\u754c\u672a\u5168\u90e8\u95ed\u5408\u3002"
+      ]
+    }
+  ],
+  "family_aliases": {
+    "declare_war": [
+      "declarewar",
+      "declare_war",
+      "war",
+      "\u5ba3\u6218"
+    ],
+    "peace": [
+      "peace",
+      "requestpeace",
+      "request_peace",
+      "\u8bae\u548c"
+    ]
+  },
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "not_a_callable_API": true,
+  "schema": "EU4-WAR-PEACE-OFFLINE-INDEX/1",
+  "scope": "research_endpoint_lookup_only",
+  "version": "1.37.5"
+}

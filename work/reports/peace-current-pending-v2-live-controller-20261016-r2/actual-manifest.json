@@ -1,0 +1,642 @@
+{
+  "authorization_sha256": "e0c3af80e785c385ea0c65e2f719e0cfa9570a6c83b2de8c84afd3749180c1d7",
+  "authorizes_retry": false,
+  "control_passed": true,
+  "controller_read_events": [
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\run-authorization.json",
+      "requested": 5616,
+      "returned": 5615
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\source-manifest.json",
+      "requested": 8862,
+      "returned": 8861
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\runtime_contract.py",
+      "requested": 8754,
+      "returned": 8753
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-text-config-source-authorization-20261016-r1\\authorization.json",
+      "requested": 6173,
+      "returned": 6172
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\run-authorization.json",
+      "requested": 5616,
+      "returned": 5615
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\source-manifest.json",
+      "requested": 8862,
+      "returned": 8861
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\frida-entry-observer-1375-v1\\host-manifest.json",
+      "requested": 43988,
+      "returned": 43987
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\frida-entry-observer-1375-v1\\job_tree.py",
+      "requested": 8616,
+      "returned": 8615
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\peace-current-pending-observer-1375-v2\\offline_child.py",
+      "requested": 7747,
+      "returned": 7746
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\peace-current-pending-observer-1375-v2\\peace_current_pending.py",
+      "requested": 24250,
+      "returned": 24249
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\peace-current-pending-observer-1375-v2\\source-manifest.json",
+      "requested": 8851,
+      "returned": 8850
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\local_config.py",
+      "requested": 2819,
+      "returned": 2818
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-observer-live-after-restart-20261016-r2\\capture_once.py",
+      "requested": 9640,
+      "returned": 9639
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-controller-build-authorization-20261016-r1\\authorization.json",
+      "requested": 5495,
+      "returned": 5494
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-file-validation-delta-20261016-r2\\execution-r1\\delta_child.py",
+      "requested": 7302,
+      "returned": 7301
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-file-validation-delta-20261016-r2\\execution-r1\\run_delta.py",
+      "requested": 11745,
+      "returned": 11744
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-independent-review-20261016-r1\\findings.json",
+      "requested": 6952,
+      "returned": 6951
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\PROTOCOL.md",
+      "requested": 5977,
+      "returned": 5976
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\budget.json",
+      "requested": 1430,
+      "returned": 1429
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\capture.json",
+      "requested": 17943,
+      "returned": 17942
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\child.py",
+      "requested": 13018,
+      "returned": 13017
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\controller.py",
+      "requested": 11983,
+      "returned": 11982
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\runtime_contract.py",
+      "requested": 8264,
+      "returned": 8263
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\source-manifest.json",
+      "requested": 6030,
+      "returned": 6029
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\PROTOCOL.md",
+      "requested": 2681,
+      "returned": 2680
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\budget.json",
+      "requested": 1645,
+      "returned": 1644
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\build_profile.py",
+      "requested": 14462,
+      "returned": 14461
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\child.py",
+      "requested": 13496,
+      "returned": 13495
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\controller.py",
+      "requested": 13432,
+      "returned": 13431
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\run_adapter_once.py",
+      "requested": 3074,
+      "returned": 3073
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\runtime_contract.py",
+      "requested": 8754,
+      "returned": 8753
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\source-delta.json",
+      "requested": 898,
+      "returned": 897
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\test_text_config_adapter.py",
+      "requested": 10359,
+      "returned": 10358
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\text_config_adapter.py",
+      "requested": 7298,
+      "returned": 7297
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-preflight-20261016-r1\\manifest.json",
+      "requested": 6603,
+      "returned": 6602
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-preflight-20261016-r1\\proposal.json",
+      "requested": 8677,
+      "returned": 8676
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-independent-review-20261016-r1\\findings.json",
+      "requested": 7677,
+      "returned": 7676
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-production-independent-review-20261016-r1\\findings.json",
+      "requested": 4295,
+      "returned": 4294
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-production-review-20261016-r1\\findings.json",
+      "requested": 3927,
+      "returned": 3926
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-text-config-source-authorization-20261016-r1\\authorization.json",
+      "requested": 6173,
+      "returned": 6172
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-source-independent-review-20261016-r2\\findings.json",
+      "requested": 5818,
+      "returned": 5817
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-source-independent-review-20261016-r2\\manifest.json",
+      "requested": 13945,
+      "returned": 13944
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-text-config-source-authorization-20261016-r1\\authorization.json",
+      "requested": 6173,
+      "returned": 6172
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\run-authorization.json",
+      "requested": 5616,
+      "returned": 5615
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\source-manifest.json",
+      "requested": 8862,
+      "returned": 8861
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\frida-entry-observer-1375-v1\\host-manifest.json",
+      "requested": 43988,
+      "returned": 43987
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\frida-entry-observer-1375-v1\\job_tree.py",
+      "requested": 8616,
+      "returned": 8615
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\peace-current-pending-observer-1375-v2\\offline_child.py",
+      "requested": 7747,
+      "returned": 7746
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\peace-current-pending-observer-1375-v2\\peace_current_pending.py",
+      "requested": 24250,
+      "returned": 24249
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\peace-current-pending-observer-1375-v2\\source-manifest.json",
+      "requested": 8851,
+      "returned": 8850
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\local_config.py",
+      "requested": 2819,
+      "returned": 2818
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-observer-live-after-restart-20261016-r2\\capture_once.py",
+      "requested": 9640,
+      "returned": 9639
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-controller-build-authorization-20261016-r1\\authorization.json",
+      "requested": 5495,
+      "returned": 5494
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-file-validation-delta-20261016-r2\\execution-r1\\delta_child.py",
+      "requested": 7302,
+      "returned": 7301
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-file-validation-delta-20261016-r2\\execution-r1\\run_delta.py",
+      "requested": 11745,
+      "returned": 11744
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-independent-review-20261016-r1\\findings.json",
+      "requested": 6952,
+      "returned": 6951
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\PROTOCOL.md",
+      "requested": 5977,
+      "returned": 5976
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\budget.json",
+      "requested": 1430,
+      "returned": 1429
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\capture.json",
+      "requested": 17943,
+      "returned": 17942
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\child.py",
+      "requested": 13018,
+      "returned": 13017
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\controller.py",
+      "requested": 11983,
+      "returned": 11982
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\runtime_contract.py",
+      "requested": 8264,
+      "returned": 8263
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r1\\source-manifest.json",
+      "requested": 6030,
+      "returned": 6029
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\PROTOCOL.md",
+      "requested": 2681,
+      "returned": 2680
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\budget.json",
+      "requested": 1645,
+      "returned": 1644
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\build_profile.py",
+      "requested": 14462,
+      "returned": 14461
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\child.py",
+      "requested": 13496,
+      "returned": 13495
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\controller.py",
+      "requested": 13432,
+      "returned": 13431
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\run_adapter_once.py",
+      "requested": 3074,
+      "returned": 3073
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\runtime_contract.py",
+      "requested": 8754,
+      "returned": 8753
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\source-delta.json",
+      "requested": 898,
+      "returned": 897
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\test_text_config_adapter.py",
+      "requested": 10359,
+      "returned": 10358
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\text_config_adapter.py",
+      "requested": 7298,
+      "returned": 7297
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-preflight-20261016-r1\\manifest.json",
+      "requested": 6603,
+      "returned": 6602
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-preflight-20261016-r1\\proposal.json",
+      "requested": 8677,
+      "returned": 8676
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-independent-review-20261016-r1\\findings.json",
+      "requested": 7677,
+      "returned": 7676
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-production-independent-review-20261016-r1\\findings.json",
+      "requested": 4295,
+      "returned": 4294
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-production-review-20261016-r1\\findings.json",
+      "requested": 3927,
+      "returned": 3926
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-text-config-source-authorization-20261016-r1\\authorization.json",
+      "requested": 6173,
+      "returned": 6172
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-source-independent-review-20261016-r2\\findings.json",
+      "requested": 5818,
+      "returned": 5817
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-source-independent-review-20261016-r2\\manifest.json",
+      "requested": 13945,
+      "returned": 13944
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\stdout.txt",
+      "requested": 929945,
+      "returned": 929944
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\stderr.txt",
+      "requested": 1,
+      "returned": 0
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\child-io.json",
+      "requested": 382279,
+      "returned": 382278
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\claim.json",
+      "requested": 930,
+      "returned": 929
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\attempt-start.json",
+      "requested": 643,
+      "returned": 642
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\source-before.json",
+      "requested": 7388,
+      "returned": 7387
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\source-after.json",
+      "requested": 7388,
+      "returned": 7387
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\job.json",
+      "requested": 604,
+      "returned": 603
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\stdout.txt",
+      "requested": 929945,
+      "returned": 929944
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\stderr.txt",
+      "requested": 1,
+      "returned": 0
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\child-claim.json",
+      "requested": 342,
+      "returned": 341
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\child-status-start.json",
+      "requested": 590,
+      "returned": 589
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\child-io.json",
+      "requested": 382279,
+      "returned": 382278
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\capture.json",
+      "requested": 929945,
+      "returned": 929944
+    },
+    {
+      "completed": true,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\peace-current-pending-v2-live-controller-20261016-r2\\receipt.json",
+      "requested": 421299,
+      "returned": 421298
+    }
+  ],
+  "controller_returned_including_seal": 4728545,
+  "current_state_observed": true,
+  "independent_live_replay_pending": true,
+  "native_ready": false,
+  "retained": {
+    "attempt-start.json": {
+      "bytes": 642,
+      "sha256": "f2b64108766caa811f63eb28bffdd38267567b18902efe39b66eff23b68e079f"
+    },
+    "capture.json": {
+      "bytes": 929944,
+      "sha256": "482f13ffcf7f54177bd736795153f9e8996921c361af429dd15f98d5122f4c9e"
+    },
+    "child-claim.json": {
+      "bytes": 341,
+      "sha256": "dafbf84cfc9ed6a6cc0e8d35c0de11b86554919ba52be32896e1bf3ef5c347fa"
+    },
+    "child-io.json": {
+      "bytes": 382278,
+      "sha256": "2c15a378f92bb6efc838b426893c0c5fcfef918361b06e9a1207c953e5a3041d"
+    },
+    "child-status-start.json": {
+      "bytes": 589,
+      "sha256": "0fbf5a85fdfb3e80c8236fd9893054173ebff258130cb098d8d343d3925866ca"
+    },
+    "claim.json": {
+      "bytes": 929,
+      "sha256": "09d079e89adf97aa17c62b9fbe7b03ecbe533491c4b3335eff96c003205b70d5"
+    },
+    "job.json": {
+      "bytes": 603,
+      "sha256": "651324ad5ac90b756158e394b6f6d9f4dc6bbaeaca28581fb6022e5773b7bf71"
+    },
+    "receipt.json": {
+      "bytes": 421298,
+      "sha256": "44c1eeab3ca7fe25dc54a3087a208dbebd9bce23f5118e372d16ebc1ee435583"
+    },
+    "source-after.json": {
+      "bytes": 7387,
+      "sha256": "bfdef75cfe0093f1f3dc18fbb9841f9784619434267b84157ba4cf55a8b1f564"
+    },
+    "source-before.json": {
+      "bytes": 7387,
+      "sha256": "bfdef75cfe0093f1f3dc18fbb9841f9784619434267b84157ba4cf55a8b1f564"
+    },
+    "stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.txt": {
+      "bytes": 929944,
+      "sha256": "482f13ffcf7f54177bd736795153f9e8996921c361af429dd15f98d5122f4c9e"
+    }
+  },
+  "schema": "EU4-PEACE-V2-CURRENT-STATUS-DELIVERY/2",
+  "sealed": true,
+  "selected_effect_verified": false,
+  "source_prepost_equal": true,
+  "status_attempts": 1
+}

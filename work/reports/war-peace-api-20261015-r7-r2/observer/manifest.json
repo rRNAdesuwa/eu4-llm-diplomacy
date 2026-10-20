@@ -1,0 +1,81 @@
+{
+  "schema": "EU4-WAR-PEACE-MEMORY-CANDIDATE-R2/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "runtime_verified": false,
+  "production_ready": false,
+  "read_only": true,
+  "native_calls": 0,
+  "process_accessed": false,
+  "files": [
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/contract.json",
+      "bytes": 3162,
+      "sha256": "fee222fb6042fa14cf02ddb0c38920cf1701bce26f121531d65429fa0de49970"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/errata.json",
+      "bytes": 1167,
+      "sha256": "b5ea8d2ba05da86ae93aea7392646e835a2012cf28634c7211b19e767d263b2b"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/evidence.json",
+      "bytes": 5778,
+      "sha256": "bcdafefd9ddb4d7d937b700d311b31c516b7414a328ac563a08c26e6160afb6d"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/flag-disassembly.json",
+      "bytes": 174809,
+      "sha256": "d8a05d095624b1ac3ab45a5c0227bb65d3b4e54e2e8105aec7e123e1c318d9be"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/flag_probe.py",
+      "bytes": 1945,
+      "sha256": "cd2c6f05b5375cc89e6639b0ca16481db4c278e7417b99dc6593111113621468"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/report.md",
+      "bytes": 4886,
+      "sha256": "7584b2afc5efb57768cd80df7be6e62e10d12448dce052ebbb20d734cf3766d9"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/retained-layout.json",
+      "bytes": 36143,
+      "sha256": "01b483650b0229f2fb50d7dc8212245a807eef4840f737ba2dece202f11a84f8"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/seal.py",
+      "bytes": 5208,
+      "sha256": "2acad7ce4d88c8dde9455b548b8eb7338248f44912c0c0fd1d823ca319acd835"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/source-pins.json",
+      "bytes": 2900,
+      "sha256": "20d12add362d63b4bf72794c2b38331da7db322856553020e5da201fe0a59c57"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/source-snapshots/test_war_peace_memory_observer_r2.py",
+      "bytes": 8957,
+      "sha256": "2aefa9e7257b90649b6e53edabb1083663ec3b942fd641960016e14b334bedf2"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/source-snapshots/war_peace_memory_observer_r2.py",
+      "bytes": 14388,
+      "sha256": "4a1bfd91664a99e02a71837ac2b1ccf23dad719cbeecc77cb0847dd80562bfa9"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261015-r7-r2/observer/verify.py",
+      "bytes": 4718,
+      "sha256": "5a305d03a8b103165e525246f9534fb448589e922b07f5947ed6540942fbfd01"
+    },
+    {
+      "path": "bridge/war_peace_memory_observer_r2.py",
+      "bytes": 14388,
+      "sha256": "4a1bfd91664a99e02a71837ac2b1ccf23dad719cbeecc77cb0847dd80562bfa9"
+    },
+    {
+      "path": "bridge/tests/test_war_peace_memory_observer_r2.py",
+      "bytes": 8957,
+      "sha256": "2aefa9e7257b90649b6e53edabb1083663ec3b942fd641960016e14b334bedf2"
+    }
+  ]
+}

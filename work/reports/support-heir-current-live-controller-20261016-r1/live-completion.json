@@ -1,0 +1,443 @@
+{
+  "accounting": {
+    "manual_and_final_shell_allowance": 262144,
+    "memory": {
+      "hard_job_for_sealer": false,
+      "peak_commit": 0,
+      "private_commit": 0,
+      "soft_limit": 805306368,
+      "stop_limit": 1073741824
+    },
+    "prior_retained_preview_requested": 1547864,
+    "prior_retained_preview_returned": 1547859,
+    "read_events": [
+      {
+        "bytes": 4573,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/run-authorization.json",
+        "requested": 4574,
+        "returned": 4573,
+        "sha256": "102fa82e2ce6da0ae393c53940defe9f265edee7d410766951119dc7aa3a6cde"
+      },
+      {
+        "bytes": 34688,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+        "requested": 34689,
+        "returned": 34688,
+        "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+      },
+      {
+        "bytes": 708665,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/capture.json",
+        "requested": 708666,
+        "returned": 708665,
+        "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+      },
+      {
+        "bytes": 377024,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-io.json",
+        "requested": 377025,
+        "returned": 377024,
+        "sha256": "5e82ca397fb3b1ca67326ff1b612ab29ff7ff5c03e45c47faf83fb8e19595b7a"
+      },
+      {
+        "bytes": 422909,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+        "requested": 422910,
+        "returned": 422909,
+        "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+      },
+      {
+        "bytes": 926,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/claim.json",
+        "requested": 927,
+        "returned": 926,
+        "sha256": "c96a8940c2194d0c4a28966028635d0757bed958ae0c2c2b9edb8a6a9acf2f56"
+      },
+      {
+        "bytes": 345,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-claim.json",
+        "requested": 346,
+        "returned": 345,
+        "sha256": "4a469bcac411899f5b6a2528df56a715782808bffe566ca57f70e16e2658ced4"
+      },
+      {
+        "bytes": 638,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/attempt-start.json",
+        "requested": 639,
+        "returned": 638,
+        "sha256": "465f1db61b7f023452acec9e75e3672cf51ed4372bcd2fcbbbe660969b5c9701"
+      },
+      {
+        "bytes": 596,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-status-start.json",
+        "requested": 597,
+        "returned": 596,
+        "sha256": "bdbda2b372735be00ed6fc2c60911d3d0fc7b7e5aa5d7322a81e8f2b17a4cb85"
+      },
+      {
+        "bytes": 602,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/job.json",
+        "requested": 603,
+        "returned": 602,
+        "sha256": "6d81625f4296f3ad540a19b477e1438dcf6f1312f04104ebe486a90422fb27d4"
+      },
+      {
+        "bytes": 9842,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-before.json",
+        "requested": 9843,
+        "returned": 9842,
+        "sha256": "1537aa4be604c5283f89990471a3aa4121ad783709c841ebd2fc893fe9447411"
+      },
+      {
+        "bytes": 9842,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-after.json",
+        "requested": 9843,
+        "returned": 9842,
+        "sha256": "1537aa4be604c5283f89990471a3aa4121ad783709c841ebd2fc893fe9447411"
+      },
+      {
+        "bytes": 708665,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/stdout.txt",
+        "requested": 708666,
+        "returned": 708665,
+        "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+      },
+      {
+        "bytes": 0,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/stderr.txt",
+        "requested": 1,
+        "returned": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 1094,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-controller-shell.json",
+        "requested": 1095,
+        "returned": 1094,
+        "sha256": "998592748722d62e852de4ed747caaa4bb17878c31c1ac1f465498f96bd786dd"
+      },
+      {
+        "bytes": 51332,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-retained-preview-shell.json",
+        "requested": 51333,
+        "returned": 51332,
+        "sha256": "825b0d2d0ef21cdc6ebcfc7217204af35ef33b6d32fad20d9d022948548b3fbc"
+      },
+      {
+        "bytes": 9571,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/complete_live_delivery.py",
+        "requested": 9572,
+        "returned": 9571,
+        "sha256": "14e348041505fd251c2bf330d51d04cd8f735000eeb39f656312f95b35bebab2"
+      }
+    ],
+    "retained_cumulative_returned": 3889171,
+    "retained_cumulative_upper": 4151315,
+    "retained_limit": 8388608,
+    "source_build_limit": 33554432,
+    "source_build_plus_controller_plus_retained_upper_excludes_child": 14177142,
+    "source_build_previous_upper_witness": 5419256,
+    "this_sealer_requested": 2341329,
+    "this_sealer_returned": 2341312
+  },
+  "additional_status_attempts_after_sole_controller": 0,
+  "additional_tests_or_checkers_run": 0,
+  "all_execution_shells_collected": true,
+  "author": "D",
+  "authority": {
+    "AI_acceptance_verified": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "close_os_return_checked": false,
+    "complete_RPM_journal_claimed": false,
+    "final_heir_result_verified": false,
+    "known_normal_IO_closure": false,
+    "native_ready": false,
+    "original_request_correlated": false,
+    "persistence_verified": false,
+    "request_effect_verified": false,
+    "runtime_authorized_for_another_attempt": false,
+    "selected_effect_verified": false,
+    "world_lease": false
+  },
+  "authorization_pin": {
+    "bytes": 4573,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/run-authorization.json",
+    "sha256": "102fa82e2ce6da0ae393c53940defe9f265edee7d410766951119dc7aa3a6cde"
+  },
+  "capture_summary": {
+    "budget_accounting": {
+      "entry_PE_identity_read": {
+        "bytes": 8192,
+        "calls": 1,
+        "journaled": false,
+        "scope": "frozen RuntimeCapture.__enter__; separate from shared selected/host budget"
+      },
+      "limits": {
+        "bytes": 524288,
+        "calls": 4096,
+        "single_read": 65536
+      },
+      "shared": {
+        "bytes": 55844,
+        "calls": 2990,
+        "largest": 11040,
+        "scope": "host before/after, loaded code before/after, two fresh full tables and all selected reads; attempted counts include failures"
+      }
+    },
+    "captured_utc": "2026-10-16T07:06:29.498113+00:00",
+    "close_os_return_checked": false,
+    "commit_after_context_exit": true,
+    "errors": [],
+    "held_handle_cleared": true,
+    "loaded_code_after": [
+      {
+        "bytes": 4244,
+        "rva": "0x595120",
+        "sha256": "8ed000cd8a9e43c0f7878ca643155903245504d8b3c221b76ebd2d4dab716b26"
+      },
+      {
+        "bytes": 64,
+        "rva": "0xa69ab0",
+        "sha256": "65b3d369e4df87c28739ea24f489a34eaeafe57c072da4384a4b000a850580d2"
+      }
+    ],
+    "loaded_code_before": [
+      {
+        "bytes": 4244,
+        "rva": "0x595120",
+        "sha256": "8ed000cd8a9e43c0f7878ca643155903245504d8b3c221b76ebd2d4dab716b26"
+      },
+      {
+        "bytes": 64,
+        "rva": "0xa69ab0",
+        "sha256": "65b3d369e4df87c28739ea24f489a34eaeafe57c072da4384a4b000a850580d2"
+      }
+    ],
+    "normal_context_exit": true,
+    "operation": "status",
+    "samples": {
+      "canonical_json_pin": {
+        "bytes": 50908,
+        "sha256": "30c292287b6a2b0d8ecf1601f57fd235e0efe042f198410139ca5ff3e00e7d8a"
+      },
+      "count": 2,
+      "sample_top_keys": [
+        [
+          "absence_scope",
+          "country_pointer_table_raw_hex",
+          "directional_pairs",
+          "extra_reader_guards_not_native_getter_checks",
+          "forward_index",
+          "native_getter_does_not_check",
+          "reverse_index",
+          "roots",
+          "selected_handles",
+          "selected_task_present",
+          "state",
+          "task"
+        ],
+        [
+          "absence_scope",
+          "country_pointer_table_raw_hex",
+          "directional_pairs",
+          "extra_reader_guards_not_native_getter_checks",
+          "forward_index",
+          "native_getter_does_not_check",
+          "reverse_index",
+          "roots",
+          "selected_handles",
+          "selected_task_present",
+          "state",
+          "task"
+        ]
+      ],
+      "two_pass_equal_claim": true
+    },
+    "schema": "EU4-SUPPORT-HEIR-CURRENT/1",
+    "selected_task_present": false,
+    "selection": {
+      "actor": "FRA",
+      "creation": "01dd5d0e670312c4",
+      "pid": 98548,
+      "target": "POL"
+    },
+    "shared_raw_journal_count": 2990,
+    "status": "selected_task_absent"
+  },
+  "claims": {
+    "attempt-start.json": {
+      "bytes": 638,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/attempt-start.json",
+      "sha256": "465f1db61b7f023452acec9e75e3672cf51ed4372bcd2fcbbbe660969b5c9701"
+    },
+    "child-claim.json": {
+      "bytes": 345,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-claim.json",
+      "sha256": "4a469bcac411899f5b6a2528df56a715782808bffe566ca57f70e16e2658ced4"
+    },
+    "child-status-start.json": {
+      "bytes": 596,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-status-start.json",
+      "sha256": "bdbda2b372735be00ed6fc2c60911d3d0fc7b7e5aa5d7322a81e8f2b17a4cb85"
+    },
+    "claim.json": {
+      "bytes": 926,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/claim.json",
+      "sha256": "c96a8940c2194d0c4a28966028635d0757bed958ae0c2c2b9edb8a6a9acf2f56"
+    }
+  },
+  "controller_io": {
+    "attempted_requested_before_seal": 2366631,
+    "before_retained_seal_returned": 2366517,
+    "including_controller_seal_returned": 4606571,
+    "including_seal_event_count": 126,
+    "including_seal_requested_from_retained_events": 4606697,
+    "limit": 33554432
+  },
+  "controller_reported": {
+    "control_passed": true,
+    "current_state_observed": true,
+    "failure": null,
+    "maximum_status_attempts": 1,
+    "selected_task_present": false,
+    "source_prepost_equal": true,
+    "status": "selected_task_absent",
+    "status_attempts": 1
+  },
+  "controller_shell": {
+    "bytes": 1094,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-controller-shell.json",
+    "sha256": "998592748722d62e852de4ed747caaa4bb17878c31c1ac1f465498f96bd786dd"
+  },
+  "controller_shell_exit_code": 0,
+  "explicit_io_summary": {
+    "attempted_requested": {
+      "delegated_fixed_host": 6464602114,
+      "game_disk": 39854080,
+      "ordinary": 5693324626
+    },
+    "exit_code": 0,
+    "explicit_returned": {
+      "delegated_fixed_host": 2302461254,
+      "game_disk": 38462504,
+      "ordinary": 69093511
+    },
+    "failure": null,
+    "game_opens": [
+      {
+        "closed": true,
+        "eof": true,
+        "fstat_bytes": 38462504,
+        "full_expected_hash": true,
+        "mode": "rb",
+        "normal_context_exit": true,
+        "opened": true,
+        "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4.exe",
+        "returned": 38462504,
+        "sha256_so_far": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a"
+      }
+    ],
+    "game_successful_opens": 1,
+    "open_refusals": [],
+    "ordinary_routes_complete": false,
+    "read_attempts": {
+      "delegated_fixed_host": 6167,
+      "game_disk": 39,
+      "ordinary": 1173
+    },
+    "scope": "Explicit Python reads only; OS/import/cache internals excluded. Unknown ordinary paths retain original <=4MiB behavior and hard returned budget; only exact host/game paths have large-file exceptions.",
+    "source_prepost_equal": true,
+    "status_attempts": 1,
+    "text_config": {
+      "configuration_values_logged": false,
+      "events": [
+        {
+          "accepted": true,
+          "binary_closed": true,
+          "error": null,
+          "opened": true,
+          "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\local.env",
+          "raw_pin": {
+            "bytes": 226,
+            "sha256": "84abda5840824badc9fd5daef7f5faedd61e5c2a01e329843b2bd5a5caeb7658"
+          },
+          "requested": 227,
+          "returned": 226,
+          "virtual_closed": true,
+          "virtual_normal_exit": true
+        }
+      ],
+      "expected_pin": {
+        "bytes": 226,
+        "sha256": "84abda5840824badc9fd5daef7f5faedd61e5c2a01e329843b2bd5a5caeb7658"
+      },
+      "maximum_bytes": 65536,
+      "maximum_snapshots": 16,
+      "opened_snapshots": 1,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\local.env",
+      "physical_category": "ordinary",
+      "real_path_override_argument": false,
+      "schema": "EU4-EXACT-CONFIG-SNAPSHOT/1",
+      "snapshot_attempts": 1,
+      "virtual_reads_add_physical_bytes": false
+    }
+  },
+  "game_fields_written": 0,
+  "independent_live_replay_pending": true,
+  "job": {
+    "completed_command_descendants_terminated": false,
+    "cumulative_process_refusal_bound": 8,
+    "direct_child_collected": true,
+    "environment_logged": false,
+    "error": null,
+    "existing_target_game_assigned_to_job": false,
+    "exit_code": 0,
+    "hard_active_process_limit": 8,
+    "job_active_processes_final": 0,
+    "job_total_processes": 2,
+    "memory_limit": 805306368,
+    "output_writer_may_overshoot_before_refusal": true,
+    "peak_job_commit": 48107520,
+    "peak_process_commit": 46833664,
+    "per_stream_output_acceptance_bound": 2097152,
+    "seconds": 8.562,
+    "target_cleanup_proven_by_job": false
+  },
+  "limitations": [
+    "Current selected FRA-POL support-task absence is not an original request outcome, AI response, final heir result or effect.",
+    "Entry PE8192 is the frozen source declaration (one call), separate from shared attempted RPM; it is not an actual raw journal record and is not added as complete measured RPM.",
+    "normal_context_exit/held_handle_cleared are the capture claims; OS CloseHandle return remains unverified.",
+    "IO ledgers cover intercepted explicit Python routes; no full OS/import/cache/delegated IO, lease, atomicity or type-lifetime proof.",
+    "Runtime source guards and captured bytes are producer evidence pending independent retained replay; this append-only delivery does not rerun a verifier.",
+    "The first retained preview had overbroad stdout selection and tool-output truncation, exit0; raw artifacts remain complete and untouched. Its exact file-read bytes are included; no runtime retry.",
+    "Source/build, child ordinary, fixed host, game-disk, controller and retained publication budgets are separate; no aggregate represents full OS I/O."
+  ],
+  "native_game_calls": 0,
+  "requests_published": 0,
+  "schema": "EU4-SUPPORT-HEIR-CURRENT-LIVE-COMPLETION/1",
+  "seal_scope": "Only already-retained local files; no checker, candidate import, CLI, tests, source-graph traversal or additional target read.",
+  "sealed": true,
+  "status_attempts_this_profile": 1,
+  "subject_actual_manifest": {
+    "bytes": 34688,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+    "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+  },
+  "subject_capture_pin": {
+    "bytes": 708665,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/capture.json",
+    "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+  },
+  "subject_child_io_pin": {
+    "bytes": 377024,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-io.json",
+    "sha256": "5e82ca397fb3b1ca67326ff1b612ab29ff7ff5c03e45c47faf83fb8e19595b7a"
+  },
+  "subject_receipt_pin": {
+    "bytes": 422909,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+    "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+  },
+  "target_existing_game_not_assigned_to_job": true
+}

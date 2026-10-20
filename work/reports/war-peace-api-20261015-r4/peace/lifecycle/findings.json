@@ -1,0 +1,1036 @@
+{
+  "schema": "peace_lifecycle_findings_1375_r4_v1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "analysis_sha256": "f4e1748ffdfed567e65c6bac25fbbb79b33345a8c9b30076a47c79174e3c5517",
+  "evidence_kind": "ordinary bounded Capstone disk analysis; not REA decompilation",
+  "facts": [
+    {
+      "id": "L01_embedded_root_alias_native_proof",
+      "observations": [
+        "CCountry constructor passes country+14f8 to root constructor289b50. Country initialization passes the same address plus the country owner to28a670.",
+        "Root initialization writes root+10=owner and every relation record+0=root/+8=owner full handle/+10=counterpart full handle. CCountry destructor cleans root atcountry+14f8."
+      ],
+      "inference": "root+50 and country+1548 are exactly the same address; root+5c and country+1554 are exactly the same address. The two directions supply two physical indexes, with repeated alias read paths.",
+      "unknowns": [
+        "Repeating either alias cannot authenticate a world epoch or protect a freed root."
+      ],
+      "evidence": [
+        {
+          "rva": "0x2ca75e",
+          "bytes": "498d8ef8140000",
+          "instruction": "lea rcx, [r14 + 0x14f8]",
+          "source": "this_report",
+          "function_rva": "0x2c9960",
+          "json_pointer": "/evidence_index/0x2ca75e"
+        },
+        {
+          "rva": "0x2ca765",
+          "bytes": "e8e6f3fbff",
+          "instruction": "call 0x289b50",
+          "source": "this_report",
+          "function_rva": "0x2c9960",
+          "json_pointer": "/evidence_index/0x2ca765"
+        },
+        {
+          "rva": "0x2e3b07",
+          "bytes": "488d8df8140000",
+          "instruction": "lea rcx, [rbp + 0x14f8]",
+          "source": "this_report",
+          "function_rva": "0x2e3ac0",
+          "json_pointer": "/evidence_index/0x2e3b07"
+        },
+        {
+          "rva": "0x2e3b11",
+          "bytes": "488bd5",
+          "instruction": "mov rdx, rbp",
+          "source": "this_report",
+          "function_rva": "0x2e3ac0",
+          "json_pointer": "/evidence_index/0x2e3b11"
+        },
+        {
+          "rva": "0x2e3b14",
+          "bytes": "e8576bfaff",
+          "instruction": "call 0x28a670",
+          "source": "this_report",
+          "function_rva": "0x2e3ac0",
+          "json_pointer": "/evidence_index/0x2e3b14"
+        },
+        {
+          "rva": "0x28a8e3",
+          "bytes": "48894710",
+          "instruction": "mov qword ptr [rdi + 0x10], rax",
+          "source": "this_report",
+          "function_rva": "0x28a670",
+          "json_pointer": "/evidence_index/0x28a8e3"
+        },
+        {
+          "rva": "0x28a926",
+          "bytes": "48893a",
+          "instruction": "mov qword ptr [rdx], rdi",
+          "source": "this_report",
+          "function_rva": "0x28a670",
+          "json_pointer": "/evidence_index/0x28a926"
+        },
+        {
+          "rva": "0x28a929",
+          "bytes": "48894a08",
+          "instruction": "mov qword ptr [rdx + 8], rcx",
+          "source": "this_report",
+          "function_rva": "0x28a670",
+          "json_pointer": "/evidence_index/0x28a929"
+        },
+        {
+          "rva": "0x28a92d",
+          "bytes": "48894210",
+          "instruction": "mov qword ptr [rdx + 0x10], rax",
+          "source": "this_report",
+          "function_rva": "0x28a670",
+          "json_pointer": "/evidence_index/0x28a92d"
+        },
+        {
+          "rva": "0x2ccce2",
+          "bytes": "488d8bf8140000",
+          "instruction": "lea rcx, [rbx + 0x14f8]",
+          "source": "this_report",
+          "function_rva": "0x2cbf20",
+          "json_pointer": "/evidence_index/0x2ccce2"
+        },
+        {
+          "rva": "0x2ccce9",
+          "bytes": "e832d3fbff",
+          "instruction": "call 0x28a020",
+          "source": "this_report",
+          "function_rva": "0x2cbf20",
+          "json_pointer": "/evidence_index/0x2ccce9"
+        }
+      ],
+      "runtime_verified_this_round": false
+    },
+    {
+      "id": "L02_retained_runtime_alias_corroboration",
+      "observations": [
+        "A pinned historical RPM file contains two passes, six pairs per pass and both directions. All24 recorded root-country deltas are14f8.",
+        "First pass FRA country1f52da03770 and root1f52da04c68 have the same14f8 delta. This round only reads the disk JSON."
+      ],
+      "inference": "The recorded runtime addresses corroborate the native embedded-root proof for that historical session.",
+      "unknowns": [
+        "These are correlated samples of two physical indexes per country pair, not24 independent indexes or proof of current runtime liveness."
+      ],
+      "evidence": [],
+      "runtime_verified_this_round": false,
+      "historical_disk_evidence": [
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/0/pairs/0/actor_to_target/root",
+          "country_json_pointer": "/passes/0/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52dd5a8b0",
+          "root_pointer": "0x1f52dd5bda8",
+          "delta": "0x14f8",
+          "tag": "SAV",
+          "json_pointer": "/passes/0/pairs/0/target_to_actor/root",
+          "country_json_pointer": "/passes/0/countries/SAV/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/0/pairs/1/actor_to_target/root",
+          "country_json_pointer": "/passes/0/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da2a550",
+          "root_pointer": "0x1f52da2ba48",
+          "delta": "0x14f8",
+          "tag": "ORL",
+          "json_pointer": "/passes/0/pairs/1/target_to_actor/root",
+          "country_json_pointer": "/passes/0/countries/ORL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/0/pairs/2/actor_to_target/root",
+          "country_json_pointer": "/passes/0/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da2a550",
+          "root_pointer": "0x1f52da2ba48",
+          "delta": "0x14f8",
+          "tag": "ORL",
+          "json_pointer": "/passes/0/pairs/2/target_to_actor/root",
+          "country_json_pointer": "/passes/0/countries/ORL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da2a550",
+          "root_pointer": "0x1f52da2ba48",
+          "delta": "0x14f8",
+          "tag": "ORL",
+          "json_pointer": "/passes/0/pairs/3/actor_to_target/root",
+          "country_json_pointer": "/passes/0/countries/ORL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/0/pairs/3/target_to_actor/root",
+          "country_json_pointer": "/passes/0/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/0/pairs/4/actor_to_target/root",
+          "country_json_pointer": "/passes/0/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52e394190",
+          "root_pointer": "0x1f52e395688",
+          "delta": "0x14f8",
+          "tag": "JOL",
+          "json_pointer": "/passes/0/pairs/4/target_to_actor/root",
+          "country_json_pointer": "/passes/0/countries/JOL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52e31f7f0",
+          "root_pointer": "0x1f52e320ce8",
+          "delta": "0x14f8",
+          "tag": "MAL",
+          "json_pointer": "/passes/0/pairs/5/actor_to_target/root",
+          "country_json_pointer": "/passes/0/countries/MAL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/0/pairs/5/target_to_actor/root",
+          "country_json_pointer": "/passes/0/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/1/pairs/0/actor_to_target/root",
+          "country_json_pointer": "/passes/1/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52dd5a8b0",
+          "root_pointer": "0x1f52dd5bda8",
+          "delta": "0x14f8",
+          "tag": "SAV",
+          "json_pointer": "/passes/1/pairs/0/target_to_actor/root",
+          "country_json_pointer": "/passes/1/countries/SAV/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/1/pairs/1/actor_to_target/root",
+          "country_json_pointer": "/passes/1/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da2a550",
+          "root_pointer": "0x1f52da2ba48",
+          "delta": "0x14f8",
+          "tag": "ORL",
+          "json_pointer": "/passes/1/pairs/1/target_to_actor/root",
+          "country_json_pointer": "/passes/1/countries/ORL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/1/pairs/2/actor_to_target/root",
+          "country_json_pointer": "/passes/1/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da2a550",
+          "root_pointer": "0x1f52da2ba48",
+          "delta": "0x14f8",
+          "tag": "ORL",
+          "json_pointer": "/passes/1/pairs/2/target_to_actor/root",
+          "country_json_pointer": "/passes/1/countries/ORL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da2a550",
+          "root_pointer": "0x1f52da2ba48",
+          "delta": "0x14f8",
+          "tag": "ORL",
+          "json_pointer": "/passes/1/pairs/3/actor_to_target/root",
+          "country_json_pointer": "/passes/1/countries/ORL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/1/pairs/3/target_to_actor/root",
+          "country_json_pointer": "/passes/1/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/1/pairs/4/actor_to_target/root",
+          "country_json_pointer": "/passes/1/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52e394190",
+          "root_pointer": "0x1f52e395688",
+          "delta": "0x14f8",
+          "tag": "JOL",
+          "json_pointer": "/passes/1/pairs/4/target_to_actor/root",
+          "country_json_pointer": "/passes/1/countries/JOL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52e31f7f0",
+          "root_pointer": "0x1f52e320ce8",
+          "delta": "0x14f8",
+          "tag": "MAL",
+          "json_pointer": "/passes/1/pairs/5/actor_to_target/root",
+          "country_json_pointer": "/passes/1/countries/MAL/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        },
+        {
+          "source": "work/reports/diplomacy-corrective-20261014-r3/runtime/after-normal-advance.json",
+          "country_pointer": "0x1f52da03770",
+          "root_pointer": "0x1f52da04c68",
+          "delta": "0x14f8",
+          "tag": "FRA",
+          "json_pointer": "/passes/1/pairs/5/target_to_actor/root",
+          "country_json_pointer": "/passes/1/countries/FRA/address",
+          "authority": "historical_retained_RPM_observation_not_current_runtime_proof"
+        }
+      ]
+    },
+    {
+      "id": "L03_bilateral_index_erasure_not_war_free",
+      "observations": [
+        "Both side-removal functions call28ad30 for both relationship directions with R8=null.",
+        "28ad30 passes root+48 to28d810. The null branch compares DWORD keys to(int16)(other_handle>>32), saves old war+8, fills the hole from the last16-byte row and decrements signed DWORD count+14."
+      ],
+      "inference": "The physical country/root-alias index is removed directly. The map operation returns the old borrowed war pointer and does not destroy it.",
+      "unknowns": [
+        "Other callbacks inside the side-removal functions are not shown pure. External calls to native removal functions are not authorized by this contract."
+      ],
+      "evidence": [
+        {
+          "rva": "0xd8c7c4",
+          "bytes": "4533c0",
+          "instruction": "xor r8d, r8d",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0xd8ba80",
+          "json_pointer": "/evidence_index/0xd8c7c4"
+        },
+        {
+          "rva": "0xd8c7ce",
+          "bytes": "e85de54fff",
+          "instruction": "call 0x28ad30",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0xd8ba80",
+          "json_pointer": "/evidence_index/0xd8c7ce"
+        },
+        {
+          "rva": "0xd8c824",
+          "bytes": "4533c0",
+          "instruction": "xor r8d, r8d",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0xd8ba80",
+          "json_pointer": "/evidence_index/0xd8c824"
+        },
+        {
+          "rva": "0xd8c82e",
+          "bytes": "e8fde44fff",
+          "instruction": "call 0x28ad30",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0xd8ba80",
+          "json_pointer": "/evidence_index/0xd8c82e"
+        },
+        {
+          "rva": "0xd8f312",
+          "bytes": "4533c0",
+          "instruction": "xor r8d, r8d",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0xd8e6b0",
+          "json_pointer": "/evidence_index/0xd8f312"
+        },
+        {
+          "rva": "0xd8f31c",
+          "bytes": "e80fba4fff",
+          "instruction": "call 0x28ad30",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0xd8e6b0",
+          "json_pointer": "/evidence_index/0xd8f31c"
+        },
+        {
+          "rva": "0xd8f374",
+          "bytes": "4533c0",
+          "instruction": "xor r8d, r8d",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0xd8e6b0",
+          "json_pointer": "/evidence_index/0xd8f374"
+        },
+        {
+          "rva": "0xd8f37e",
+          "bytes": "e8adb94fff",
+          "instruction": "call 0x28ad30",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0xd8e6b0",
+          "json_pointer": "/evidence_index/0xd8f37e"
+        },
+        {
+          "rva": "0x28ad46",
+          "bytes": "4883c148",
+          "instruction": "add rcx, 0x48",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28ad30",
+          "json_pointer": "/evidence_index/0x28ad46"
+        },
+        {
+          "rva": "0x28ad4d",
+          "bytes": "e8be2a0000",
+          "instruction": "call 0x28d810",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28ad30",
+          "json_pointer": "/evidence_index/0x28ad4d"
+        },
+        {
+          "rva": "0x28d825",
+          "bytes": "0fbfc2",
+          "instruction": "movsx eax, dx",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28d810",
+          "json_pointer": "/evidence_index/0x28d825"
+        },
+        {
+          "rva": "0x28d82e",
+          "bytes": "4c634114",
+          "instruction": "movsxd r8, dword ptr [rcx + 0x14]",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28d810",
+          "json_pointer": "/evidence_index/0x28d82e"
+        },
+        {
+          "rva": "0x28d860",
+          "bytes": "488b7208",
+          "instruction": "mov rsi, qword ptr [rdx + 8]",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28d810",
+          "json_pointer": "/evidence_index/0x28d860"
+        },
+        {
+          "rva": "0x28d86d",
+          "bytes": "418b00",
+          "instruction": "mov eax, dword ptr [r8]",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28d810",
+          "json_pointer": "/evidence_index/0x28d86d"
+        },
+        {
+          "rva": "0x28d876",
+          "bytes": "48894208",
+          "instruction": "mov qword ptr [rdx + 8], rax",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28d810",
+          "json_pointer": "/evidence_index/0x28d876"
+        },
+        {
+          "rva": "0x28d885",
+          "bytes": "ffc8",
+          "instruction": "dec eax",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28d810",
+          "json_pointer": "/evidence_index/0x28d885"
+        },
+        {
+          "rva": "0x28d887",
+          "bytes": "894114",
+          "instruction": "mov dword ptr [rcx + 0x14], eax",
+          "source": "work/reports/war-peace-api-20261014-r3/sink/disassembly.json",
+          "function_rva": "0x28d810",
+          "json_pointer": "/evidence_index/0x28d887"
+        }
+      ],
+      "runtime_verified_this_round": false
+    },
+    {
+      "id": "L04_actual_global_retirement_and_deleting_destructor",
+      "observations": [
+        "CWar virtual0=d85960 calls d85c40, then optionally frees the0x218-byte outer allocation when flagbit0 is set.",
+        "d85c40 finds the exact war pointer in game+1e30/signed count1e3c, shifts the array tail and decrements count.",
+        "It removes a matching game list node or, while game+1e54 is nonzero, marks node+18 as a tombstone. It then continues goal/container cleanup regardless of that node deferral.",
+        "Goal war+160 virtual78 is invoked before a null test; native graph validity is a real destructor precondition."
+      ],
+      "inference": "The game list stores borrowed pointers. Deferred node cleanup does not keep a war allocation alive. This body must never be used as a standalone external destructor or liveness getter.",
+      "unknowns": [
+        "The normal accepted-whitepeace caller/time that eventually invokes this destructor is not established. The destructor body itself does not walk diplomatic pair indexes."
+      ],
+      "evidence": [
+        {
+          "rva": "0xd8596f",
+          "bytes": "e8cc020000",
+          "instruction": "call 0xd85c40",
+          "source": "this_report",
+          "function_rva": "0xd85960",
+          "json_pointer": "/evidence_index/0xd8596f"
+        },
+        {
+          "rva": "0xd85979",
+          "bytes": "ba18020000",
+          "instruction": "mov edx, 0x218",
+          "source": "this_report",
+          "function_rva": "0xd85960",
+          "json_pointer": "/evidence_index/0xd85979"
+        },
+        {
+          "rva": "0xd85981",
+          "bytes": "e86a3b9b00",
+          "instruction": "call 0x17394f0",
+          "source": "this_report",
+          "function_rva": "0xd85960",
+          "json_pointer": "/evidence_index/0xd85981"
+        },
+        {
+          "rva": "0xd85c57",
+          "bytes": "488b3d1aa25b01",
+          "instruction": "mov rdi, qword ptr [rip + 0x15ba21a]",
+          "rip_target": "0x233fe78",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85c57"
+        },
+        {
+          "rva": "0xd85c69",
+          "bytes": "448b873c1e0000",
+          "instruction": "mov r8d, dword ptr [rdi + 0x1e3c]",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85c69"
+        },
+        {
+          "rva": "0xd85c75",
+          "bytes": "4c8b8f301e0000",
+          "instruction": "mov r9, qword ptr [rdi + 0x1e30]",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85c75"
+        },
+        {
+          "rva": "0xd85c80",
+          "bytes": "483918",
+          "instruction": "cmp qword ptr [rax], rbx",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85c80"
+        },
+        {
+          "rva": "0xd85cc0",
+          "bytes": "498b0412",
+          "instruction": "mov rax, qword ptr [r10 + rdx]",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85cc0"
+        },
+        {
+          "rva": "0xd85cde",
+          "bytes": "4489873c1e0000",
+          "instruction": "mov dword ptr [rdi + 0x1e3c], r8d",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85cde"
+        },
+        {
+          "rva": "0xd85d01",
+          "bytes": "80bf541e000000",
+          "instruction": "cmp byte ptr [rdi + 0x1e54], 0",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85d01"
+        },
+        {
+          "rva": "0xd85d0a",
+          "bytes": "c6411801",
+          "instruction": "mov byte ptr [rcx + 0x18], 1",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85d0a"
+        },
+        {
+          "rva": "0xd85d4f",
+          "bytes": "e89c379b00",
+          "instruction": "call 0x17394f0",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85d4f"
+        },
+        {
+          "rva": "0xd85d54",
+          "bytes": "ff8f501e0000",
+          "instruction": "dec dword ptr [rdi + 0x1e50]",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85d54"
+        },
+        {
+          "rva": "0xd85d5a",
+          "bytes": "488b8b60010000",
+          "instruction": "mov rcx, qword ptr [rbx + 0x160]",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85d5a"
+        },
+        {
+          "rva": "0xd85d64",
+          "bytes": "ff5078",
+          "instruction": "call qword ptr [rax + 0x78]",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85d64"
+        },
+        {
+          "rva": "0xd85d7f",
+          "bytes": "ff10",
+          "instruction": "call qword ptr [rax]",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85d7f"
+        },
+        {
+          "rva": "0xd85d88",
+          "bytes": "48898360010000",
+          "instruction": "mov qword ptr [rbx + 0x160], rax",
+          "source": "this_report",
+          "function_rva": "0xd85c40",
+          "json_pointer": "/evidence_index/0xd85d88"
+        }
+      ],
+      "runtime_verified_this_round": false
+    },
+    {
+      "id": "L05_clear_all_path_cleans_borrowers_before_war_delete",
+      "observations": [
+        "7496c0 gathers war pointers from both game containers, repeatedly removes attackers/defenders, then examines manager global233fea0.",
+        "Manager lists60/78 use20-byte borrowed nodes, guards74/8c and tombstone+18. The helper removes or marks matching nodes, clears its temporary owner slot and calls war virtual0 withEDX1."
+      ],
+      "inference": "This is a concrete clear-all ownership path, including borrower cleanup, not a refcount or evidence that the normal whitepeace route takes the same path.",
+      "unknowns": [
+        "The ordinary post-whitepeace retirement scheduler remains unresolved; no semantics are assigned to an unverified caller candidate."
+      ],
+      "evidence": [
+        {
+          "rva": "0x749baf",
+          "bytes": "e8cc1e6400",
+          "instruction": "call 0xd8ba80",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749baf"
+        },
+        {
+          "rva": "0x749c36",
+          "bytes": "e8754a6400",
+          "instruction": "call 0xd8e6b0",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749c36"
+        },
+        {
+          "rva": "0x749c71",
+          "bytes": "48833d2762bf0100",
+          "instruction": "cmp qword ptr [rip + 0x1bf6227], 0",
+          "rip_target": "0x233fea0",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749c71"
+        },
+        {
+          "rva": "0x749c9c",
+          "bytes": "488b3dfd61bf01",
+          "instruction": "mov rdi, qword ptr [rip + 0x1bf61fd]",
+          "rip_target": "0x233fea0",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749c9c"
+        },
+        {
+          "rva": "0x749cc6",
+          "bytes": "807f7400",
+          "instruction": "cmp byte ptr [rdi + 0x74], 0",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749cc6"
+        },
+        {
+          "rva": "0x749ccc",
+          "bytes": "c6411801",
+          "instruction": "mov byte ptr [rcx + 0x18], 1",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749ccc"
+        },
+        {
+          "rva": "0x749d0d",
+          "bytes": "488b4f78",
+          "instruction": "mov rcx, qword ptr [rdi + 0x78]",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749d0d"
+        },
+        {
+          "rva": "0x749d2c",
+          "bytes": "80bf8c00000000",
+          "instruction": "cmp byte ptr [rdi + 0x8c], 0",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749d2c"
+        },
+        {
+          "rva": "0x749d35",
+          "bytes": "c6411801",
+          "instruction": "mov byte ptr [rcx + 0x18], 1",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749d35"
+        },
+        {
+          "rva": "0x749d82",
+          "bytes": "4c8926",
+          "instruction": "mov qword ptr [rsi], r12",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749d82"
+        },
+        {
+          "rva": "0x749d8d",
+          "bytes": "ba01000000",
+          "instruction": "mov edx, 1",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749d8d"
+        },
+        {
+          "rva": "0x749d92",
+          "bytes": "ff10",
+          "instruction": "call qword ptr [rax]",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749d92"
+        },
+        {
+          "rva": "0x749da6",
+          "bytes": "4589a73c1e0000",
+          "instruction": "mov dword ptr [r15 + 0x1e3c], r12d",
+          "source": "this_report",
+          "function_rva": "0x7496c0",
+          "json_pointer": "/evidence_index/0x749da6"
+        }
+      ],
+      "runtime_verified_this_round": false
+    },
+    {
+      "id": "L06_outcome_is_serialized_state_not_lifetime_flag",
+      "observations": [
+        "War serializer reads DWORD+210, writes nonzero values under token38b6, and the exact token descriptor contains ASCIIoutcome. Parser writes a DWORD back to+210.",
+        "Minimum whitepeace application writes1; later accepted-effect paths test nonzero for on-action/notification branches."
+      ],
+      "inference": "Record raw_outcome separately from bilateral membership, global membership, list membership and deletion. outcome1 cannot prove any of those lifetime transitions.",
+      "unknowns": [
+        "Business enum names for2/3 and the exhaustive set of outcome consumers are not proved."
+      ],
+      "evidence": [
+        {
+          "rva": "0xd88e47",
+          "bytes": "8b9e10020000",
+          "instruction": "mov ebx, dword ptr [rsi + 0x210]",
+          "source": "this_report",
+          "function_rva": "0xd88520",
+          "json_pointer": "/evidence_index/0xd88e47"
+        },
+        {
+          "rva": "0xd88e4f",
+          "bytes": "7445",
+          "instruction": "je 0xd88e96",
+          "source": "this_report",
+          "function_rva": "0xd88520",
+          "json_pointer": "/evidence_index/0xd88e4f"
+        },
+        {
+          "rva": "0xd88e51",
+          "bytes": "bab6380000",
+          "instruction": "mov edx, 0x38b6",
+          "source": "this_report",
+          "function_rva": "0xd88520",
+          "json_pointer": "/evidence_index/0xd88e51"
+        },
+        {
+          "rva": "0xd88e59",
+          "bytes": "e822049800",
+          "instruction": "call 0x1709280",
+          "source": "this_report",
+          "function_rva": "0xd88520",
+          "json_pointer": "/evidence_index/0xd88e59"
+        },
+        {
+          "rva": "0xd880bb",
+          "bytes": "898710020000",
+          "instruction": "mov dword ptr [rdi + 0x210], eax",
+          "source": "this_report",
+          "function_rva": "0xd87280",
+          "json_pointer": "/evidence_index/0xd880bb"
+        },
+        {
+          "rva": "0x9788b2",
+          "bytes": "c7801002000001000000",
+          "instruction": "mov dword ptr [rax + 0x210], 1",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0x976730",
+          "json_pointer": "/evidence_index/0x9788b2"
+        },
+        {
+          "rva": "0x59a9f4",
+          "bytes": "83bf1002000000",
+          "instruction": "cmp dword ptr [rdi + 0x210], 0",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x59a9f4"
+        },
+        {
+          "rva": "0x59ab48",
+          "bytes": "83bf1002000000",
+          "instruction": "cmp dword ptr [rdi + 0x210], 0",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x59ab48"
+        },
+        {
+          "rva": "0x59ab96",
+          "bytes": "83bf1002000000",
+          "instruction": "cmp dword ptr [rdi + 0x210], 0",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x59ab96"
+        }
+      ],
+      "runtime_verified_this_round": false,
+      "data_evidence": {
+        "descriptor_rva": "0x214dc48",
+        "string_rva": "0x214dc4c",
+        "bytes": "b63800006f7574636f6d6500",
+        "token_id": "0x38b6",
+        "ascii": "outcome",
+        "authority": "exact PE data plus serializer d88e47/d88e51/d88e59"
+      }
+    },
+    {
+      "id": "L07_on_action_has_synchronous_dynamic_effects",
+      "observations": [
+        "598ed0 calls943d00 and subsequently dereferences the borrowed war outcome.",
+        "943d00 calls6f4f40 for collected events and later invokes its embedded effect virtual78.",
+        "6f4f40 itself calls event+180 virtual78 synchronously at6f5110 before context dispatch/command branches; some branches later submit through14ca2d0."
+      ],
+      "inference": "The path is not pure asynchronous queuing. A pause, same-frame callback, stable pointer or command-context execution byte does not establish non-reentrant world/war lifetime.",
+      "unknowns": [
+        "Concrete dynamic effect classes and their transitive reload/save/destruction behavior remain unresolved. No actual reload, reentrancy or UAF is claimed or observed."
+      ],
+      "evidence": [
+        {
+          "rva": "0x59a9b3",
+          "bytes": "e848933a00",
+          "instruction": "call 0x943d00",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x59a9b3"
+        },
+        {
+          "rva": "0x59a9f4",
+          "bytes": "83bf1002000000",
+          "instruction": "cmp dword ptr [rdi + 0x210], 0",
+          "source": "work/reports/war-peace-api-20261014-r3/peace/analysis.json",
+          "function_rva": "0x598ed0",
+          "json_pointer": "/evidence_index/0x59a9f4"
+        },
+        {
+          "rva": "0x943d8d",
+          "bytes": "e8ee000000",
+          "instruction": "call 0x943e80",
+          "source": "this_report",
+          "function_rva": "0x943d00",
+          "json_pointer": "/evidence_index/0x943d8d"
+        },
+        {
+          "rva": "0x943e2f",
+          "bytes": "e80c11dbff",
+          "instruction": "call 0x6f4f40",
+          "source": "this_report",
+          "function_rva": "0x943d00",
+          "json_pointer": "/evidence_index/0x943e2f"
+        },
+        {
+          "rva": "0x943e4a",
+          "bytes": "ff5078",
+          "instruction": "call qword ptr [rax + 0x78]",
+          "source": "this_report",
+          "function_rva": "0x943d00",
+          "json_pointer": "/evidence_index/0x943e4a"
+        },
+        {
+          "rva": "0x6f5100",
+          "bytes": "488d8e80010000",
+          "instruction": "lea rcx, [rsi + 0x180]",
+          "source": "this_report",
+          "function_rva": "0x6f4f40",
+          "json_pointer": "/evidence_index/0x6f5100"
+        },
+        {
+          "rva": "0x6f5110",
+          "bytes": "ff5078",
+          "instruction": "call qword ptr [rax + 0x78]",
+          "source": "this_report",
+          "function_rva": "0x6f4f40",
+          "json_pointer": "/evidence_index/0x6f5110"
+        },
+        {
+          "rva": "0x6f518e",
+          "bytes": "ff9080000000",
+          "instruction": "call qword ptr [rax + 0x80]",
+          "source": "this_report",
+          "function_rva": "0x6f4f40",
+          "json_pointer": "/evidence_index/0x6f518e"
+        },
+        {
+          "rva": "0x6f5206",
+          "bytes": "ff90a0000000",
+          "instruction": "call qword ptr [rax + 0xa0]",
+          "source": "this_report",
+          "function_rva": "0x6f4f40",
+          "json_pointer": "/evidence_index/0x6f5206"
+        },
+        {
+          "rva": "0x6f523d",
+          "bytes": "ff9000030000",
+          "instruction": "call qword ptr [rax + 0x300]",
+          "source": "this_report",
+          "function_rva": "0x6f4f40",
+          "json_pointer": "/evidence_index/0x6f523d"
+        },
+        {
+          "rva": "0x6f5256",
+          "bytes": "41ff9208010000",
+          "instruction": "call qword ptr [r10 + 0x108]",
+          "source": "this_report",
+          "function_rva": "0x6f4f40",
+          "json_pointer": "/evidence_index/0x6f5256"
+        },
+        {
+          "rva": "0x6f52ca",
+          "bytes": "e80150dd00",
+          "instruction": "call 0x14ca2d0",
+          "source": "this_report",
+          "function_rva": "0x6f4f40",
+          "json_pointer": "/evidence_index/0x6f52ca"
+        }
+      ],
+      "runtime_verified_this_round": false
+    },
+    {
+      "id": "L08_observer_implementation_is_bounded_not_a_lease",
+      "observations": [
+        "candidate/lifecycle_reader.cpp uses the sealed R3 Reader/Input interface. It implements native root/record identity checks, relation vector bounds and two physical war-index decodes.",
+        "It separately samples outcome, game war array and three bounded borrower lists; it rejects duplicate/inconsistent/tombstoned/iterating shapes and reader failure.",
+        "MSVCx64/W4/WX compiled the isolated unit and24 synthetic-memory structural cases passed. No native bindings are linked or invoked."
+      ],
+      "inference": "This supplies an integratable read-only decoder under a pre-existing real lease. A true return reports layout consistency only.",
+      "unknowns": [
+        "The required exact loaded-image authentication, native thread provenance, epoch and war-specific allocation lifetime provider are not implemented. Runtime/production readiness remainsfalse."
+      ],
+      "evidence": [],
+      "runtime_verified_this_round": false,
+      "implementation_files": [
+        "candidate/lifecycle_reader.h",
+        "candidate/lifecycle_reader.cpp"
+      ],
+      "offline_cases": 24
+    },
+    {
+      "id": "L09_bounded_search_has_explicit_negative_coverage_limits",
+      "observations": [
+        "29 new bounded CFGs decode63866 bytes;12 earlier pinned CFGs are reused with every instruction byte checked against eu4.exe.",
+        "Ten surveys search executable-section displacement-byte patterns and decode at most3 small candidate instructions per hit. Candidate rows are not CFG boundary or receiver proofs."
+      ],
+      "inference": "Positive receiver claims rely on the bounded CFGs and exact data pins, not displacement hits alone.",
+      "unknowns": [
+        "Survey filtering omits movsxd, indirect receiver aliases and generic container helpers. It cannot prove all outcome consumers or all ordinary retirement paths have been enumerated."
+      ],
+      "evidence": [],
+      "runtime_verified_this_round": false,
+      "limits": {
+        "new_entries": 29,
+        "new_decoded_bytes": 63866,
+        "max_new_decoded_bytes": 65536,
+        "memory_guard_bytes": 805306368,
+        "calls_followed": false
+      }
+    }
+  ],
+  "runtime_verified_this_round": false,
+  "production_ready": false,
+  "process_access": false,
+  "native_calls": 0
+}

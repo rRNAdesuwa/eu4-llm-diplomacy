@@ -1,0 +1,335 @@
+{
+  "accepted_conditional_facts": {
+    "call_1a35750": {
+      "R8": 0,
+      "R9_XMM": "unknown",
+      "RCX": "S",
+      "RDX": 0,
+      "cc2e1_skipped_only_under_selected_read_equalities": true,
+      "site": "0xcc2f4",
+      "zero_count_implies_no_effect": false
+    },
+    "call_950b0": {
+      "R8": "0x1fffffffffffffff",
+      "R9_XMM": "unknown",
+      "RCX": 8,
+      "RDX": 0,
+      "allocator_proved": false,
+      "site": "0xcc29e"
+    },
+    "call_c9d60": {
+      "R8": 1,
+      "R9": 1,
+      "RCX": "C=preserved RBX",
+      "RDX": "S=preserved RSI",
+      "callee_header_cleanup_ownership": "unknown",
+      "site": "0xcc305"
+    },
+    "first_payload_store": {
+      "equation": "M64[(S+8*index) mod2^64] <- fresh M64[E]; index=0 implies M64[S]",
+      "header_or_ownership_proved": false,
+      "site": "0xcc2aa",
+      "width": 8
+    },
+    "frame": {
+      "F": "Q-0x48",
+      "Q": "R86 entry RSP",
+      "RSP_after_RET": "Q+8",
+      "homes": {
+        "R12": "F+0x60=Q+0x18",
+        "R14": "F+0x20=Q-0x28",
+        "RDI": "F+0x58=Q+0x10",
+        "RSI": "F+0x50=Q+0x8"
+      },
+      "normal_explicit_home_reads": 32,
+      "normal_implicit_pop_ret_reads": 40,
+      "pushes_in_R86": 4,
+      "sub": 40,
+      "total_conditional_stack_epilogue_reads": 72
+    },
+    "general_limits": [
+      "Other path can call 1a35750 twice and fresh-read header again.",
+      "RET/INT3 and external normal-return assumptions do not close exceptions or callee effects.",
+      "INT3 after 8f400/95050 is not a proof either callee is noreturn.",
+      "Historical local_normal_CFG_closed=false and whole_function_closed=false stay unchanged."
+    ],
+    "normal_zero_header_path": [
+      "0xcc266",
+      "0xcc26b",
+      "0xcc26f",
+      "0xcc272",
+      "0xcc277",
+      "0xcc27b",
+      "0xcc27e",
+      "0xcc281",
+      "0xcc284",
+      "0xcc287",
+      "0xcc2c6",
+      "0xcc2ca",
+      "0xcc2cd",
+      "0xcc2d0",
+      "0xcc2d4",
+      "0xcc2d7",
+      "0xcc2d9"
+    ],
+    "preconditions": [
+      "C header three QWORD reads all observe zero; D=0 at the inherited input.",
+      "Fresh header reads after unknown calls still observe zero.",
+      "C/E/stack valid; E provides a fresh readable QWORD at cc2a3.",
+      "Every reached external call returns normally with required Win64 nonvolatile registers/RSP preserved.",
+      "S=opaque 950b0 return is writable for selected 8B payload; no allocator extent is proved.",
+      "Needed noalias/no mutation of C/E/stack/homes/return slots are assumptions, not evidence of lifetime or ownership."
+    ],
+    "return": {
+      "assign": "cc30f RAX <- R14 before cc312 restores R14",
+      "object_type_or_valid_lifetime_proved": false,
+      "value": "(S+8*index) mod2^64 under preceding premises"
+    }
+  },
+  "actual_flat_pins_checked": 131,
+  "atomic_snapshot": false,
+  "author_seal_failure_preserved": {
+    "PE_engine_decoder_game_access": 0,
+    "actual_producer_reexecuted": false,
+    "conservative_failed_seal_owned_read_upper": 1310720,
+    "exit_code": 1,
+    "failed_at": "Own expected review_pins schema; before creating any contract/selected/replay/manifest.",
+    "instrumented_exact_failed_IO": false,
+    "review_pins_actual": {
+      "work/reports/war-peace-api-20261016-r86-actual-independent-review/findings.json": {
+        "bytes": 5580,
+        "sha256": "550c1edf7beee1ea7e5ae8e85f40c7ef556ede12bb27e2e6a4c8b1e5c2bad726"
+      },
+      "work/reports/war-peace-api-20261016-r86-actual-independent-review/manifest.json": {
+        "bytes": 12748,
+        "sha256": "5af832bd1e1be4d3a4cf7656d51b905f799e5d06215cd75ecb078798656d49dc"
+      },
+      "work/reports/war-peace-api-20261016-r86-root-actual-acceptance/findings.json": {
+        "bytes": 1102,
+        "sha256": "219391521cb71ca196cf318ed2525680db114ead6a94036f81565724e2342d59"
+      },
+      "work/reports/war-peace-api-20261016-r87-root-raw-frontier-review/findings.json": {
+        "bytes": 5243,
+        "sha256": "3cf18ea8a747889196e2fd7135d57f59812624b58dc9e938805c86a5c2b8059c"
+      },
+      "work/reports/war-peace-api-20261016-r87-root-raw-frontier-review/manifest.json": {
+        "bytes": 7876,
+        "sha256": "b01c759c350e13d9fbe9949286e10fa2a452f3a098edb911a973e84be474d477"
+      },
+      "work/reports/war-peace-api-20261016-r87-source-independent-review/findings.json": {
+        "bytes": 6026,
+        "sha256": "73c9edd7d2447e7535b9d7760a11144071bdd5c9e2b47149d02cc7f4fa6eac68"
+      },
+      "work/reports/war-peace-api-20261016-r87-source-independent-review/manifest.json": {
+        "bytes": 12733,
+        "sha256": "5201657ca1983b86555b70e1dc91d62f1e7b14aded6550b1ffbeaaf45a8158ce"
+      }
+    },
+    "schema": "EU4-R87-RETAINED-SEAL-OWN-FAILURE/1",
+    "source_pin": {
+      "bytes": 36747,
+      "sha256": "035c5cbe59612fb051235f9d58da61a1a3c85627a238b7807be55cce952e7283"
+    },
+    "stderr_pin": {
+      "bytes": 511,
+      "sha256": "46965875b4546732fcf47fb7b0a091e5baf79f16694093a3bfe2ecb18716c30b"
+    },
+    "stderr_provenance": "Text copied from exec tool result; not original raw process tee.",
+    "tool_chunk": "288286"
+  },
+  "authorizes_retry": false,
+  "blocking_findings": [],
+  "callable": false,
+  "engine_metadata_count_only": 38,
+  "further_actual_authorized": false,
+  "independent_raw_checks": {
+    "bytes": 22724,
+    "path": "work/reports/war-peace-api-20261016-r87-actual-independent-review/raw-checks.json",
+    "sha256": "f5776b5fd0d6d837fb03de69e1077ac91c8e15149e2e64f802a128704f634d9b"
+  },
+  "local_normal_CFG_closed": false,
+  "native_ready": false,
+  "operations": {
+    "CLI_tests": 0,
+    "PE": 0,
+    "author_execution": 0,
+    "decoder": 0,
+    "engine_body": 0,
+    "game_process": 0,
+    "native_calls": 0
+  },
+  "ownership_transfer_verified": false,
+  "passed": true,
+  "precision_notes": [
+    "46B not decoded as instructions; all256B were targeted owned and14B of that tail entered lookahead.",
+    "LEA access flags do not imply native memory reads.",
+    "Normal CFG model and fixed metadata do not grant standalone ABI, whole function, type, lease or runtime readiness.",
+    "Author source/global I/O numbers are frozen producer witnesses, not fresh engine/PE rehash by reviewer."
+  ],
+  "producer_witness_resources": {
+    "Job_receipt": {
+      "completed_command_descendants_terminated": false,
+      "cumulative_process_refusal_bound": 8,
+      "direct_child_collected": true,
+      "environment_logged": false,
+      "error": null,
+      "existing_target_game_assigned_to_job": false,
+      "exit_code": 0,
+      "hard_active_process_limit": 8,
+      "job_active_processes_final": 0,
+      "job_total_processes": 2,
+      "memory_limit": 805306368,
+      "output_writer_may_overshoot_before_refusal": true,
+      "peak_job_commit": 25493504,
+      "peak_process_commit": 24211456,
+      "per_stream_output_acceptance_bound": 2097152,
+      "seconds": 0.594,
+      "target_cleanup_proven_by_job": false
+    },
+    "PE_separate": {
+      "fixed_code": 256,
+      "pdata": 108,
+      "total": 76925372,
+      "whole_EXE_SHA_bytes": 76925008,
+      "whole_EXE_SHA_streams": 2
+    },
+    "all_shells_collected": true,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "callable": false,
+    "combined_explicit_source_bytes": 18830537,
+    "combined_limit": 33554432,
+    "complete_OS_loader_IO_claimed": false,
+    "decoder": {
+      "instructions": 61,
+      "lookahead_total": 915,
+      "lookahead_unique": 224,
+      "overlap": 691,
+      "unique_decoded": 210
+    },
+    "engine_body_reopened_in_author_seal": false,
+    "further_actual_authorized": false,
+    "launcher_source": {
+      "bytes": 1058487,
+      "events": 86,
+      "limit": 2097152
+    },
+    "native_ready": false,
+    "normal_target_close_and_source_postguards": "Producer flags supported by frozen acquisition source and source-peer; retained launcher receipt supports owned Job collection. No independent game process observation.",
+    "ownership_transfer_verified": false,
+    "producer_source": {
+      "bytes": 17772050,
+      "events": 233,
+      "limit": 31457280
+    },
+    "reader_adoption_allowed": false,
+    "retained_stderr_pin": {
+      "bytes": 0,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/producer.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "retained_stdout_pin": {
+      "bytes": 221,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/producer.stdout.txt",
+      "sha256": "4f1614eda24f56bfeb59ae92d1cad9051c8a626f70a3f002eb7c0d6df4f9d0df"
+    },
+    "root_exec_witness_pin": {
+      "bytes": 526,
+      "path": "work/reports/war-peace-api-20261016-r87-root-actual-authorization/exec-tool-witness.json",
+      "sha256": "a642bab37613b44745088beb22510185452c0f7fe96c959afc0173d0f126fa97"
+    },
+    "root_prior_manual_source_reads_charged_to_this_seal": false,
+    "schema": "EU4-R87-AUTHOR-ACTUAL-RESOURCES/1",
+    "selected_effect_verified": false,
+    "time_scope": {
+      "HTTP_RTT_claimed": false,
+      "outer_exec_tool_wall_seconds": 0.9564028,
+      "owned_Job_seconds": 0.594
+    },
+    "whole_function_closed": false,
+    "world_lease": false
+  },
+  "reader_adoption_allowed": false,
+  "reviewer_failure": "Initial selected-analysis shape assertion omitted the existing separate instructions field. Exact failed source/log/read ledger preserved; R2 changes only reviewer assertion and accounting.",
+  "reviewer_memory": {
+    "commit_or_peak_pagefile": 23175168,
+    "peak_working": 31125504,
+    "working": 29130752
+  },
+  "reviewer_source_upper_before_local_check": 17786649,
+  "role": {
+    "R86_full_review": "fixed non-author witness; only selected caller raw crosscheck here",
+    "actual_executor": "root",
+    "previous_source_peer_by_D": "fixed upstream witness; no recursive self-proof",
+    "producer_contract_author": "War",
+    "reviewer": "D"
+  },
+  "schema": "EU4-R87-ACTUAL-INDEPENDENT-REVIEW/1",
+  "scope": "Complete R87 retained 256B/61-row raw and conditional contract review; only direct 52 source and local/publication artifacts, no recursive closure.",
+  "sealed": true,
+  "selected_effect_verified": false,
+  "source_after_equal": true,
+  "subject_actual_manifest": {
+    "bytes": 34662,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/actual-manifest.json",
+    "sha256": "71e766158fdaf6f80a2dc55bf5c4fb8177bfcfcdaee35f1f7860c1fec0828b0d"
+  },
+  "subject_capture_pin": {
+    "bytes": 140752,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/capture.json",
+    "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+  },
+  "subject_contract_pin": {
+    "bytes": 7679,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/contract.json",
+    "sha256": "5e114f5c0efd47cbf92279bdf0d638732a40ae3b8a9d0f554d56c51df2304845"
+  },
+  "subject_launcher_receipt": {
+    "bytes": 26964,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/launcher-receipt.json",
+    "sha256": "b5386af3613ed128d1aed7bcf26b2282ba7a49999e6ee10cf82db99ff659ee13"
+  },
+  "subject_owned_pin": {
+    "bytes": 1099,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/owned-code.json",
+    "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+  },
+  "subject_selected_pin": {
+    "bytes": 47217,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/selected-cfg.json",
+    "sha256": "659b804677b9ffb2635afcc34ae46c26cd6e9b815a7515bf1faa8d0173db4f40"
+  },
+  "subject_source_manifest": {
+    "bytes": 26330,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/source-manifest.json",
+    "sha256": "e40ccf4eba10b12b7d626f0fc00b1bcdac50972d1a0a35559ba3756b64694817"
+  },
+  "summary": {
+    "CALL_sites": 6,
+    "INT3": [
+      "0xcc331",
+      "0xcc337"
+    ],
+    "LEA_address_only": 5,
+    "RET": [
+      "0xcc32b"
+    ],
+    "actual_cc32c_containing_record": 1257,
+    "branches": 5,
+    "cc32c_normal_reachable": false,
+    "decoded_rows": 61,
+    "decoded_unique_bytes": 210,
+    "decoder_input": 915,
+    "decoder_overlap": 691,
+    "decoder_union": 224,
+    "explicit_reads": 8,
+    "explicit_stores": 5,
+    "metadata_bytes": 108,
+    "metadata_records": 9,
+    "owned_bytes": 256,
+    "unique_unfollowed_targets": 5,
+    "unused_as_instructions": 46
+  },
+  "whole_function_closed": false,
+  "world_lease": false
+}

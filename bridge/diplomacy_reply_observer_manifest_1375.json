@@ -1,0 +1,94 @@
+{
+  "schema": "EU4DIPLOMACY-REPLY-OBSERVER-MANIFEST/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "native_manifest_sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a",
+  "source_pins": {
+    "bridge/diplomacy_reply_observer.py": {
+      "bytes": 27263,
+      "sha256": "7a7fdea49ee86b888336089b4982f1d2ff719d3eab9c530fb92f84c19a225761"
+    },
+    "bridge/tests/test_diplomacy_reply_observer.py": {
+      "bytes": 23614,
+      "sha256": "b9f5c3f1eedb9c898299c828aec25ee1a336cdd5bbd0aeca42a61857e58b43a4"
+    },
+    "tools/observe_diplomacy_replies.py": {
+      "bytes": 5267,
+      "sha256": "47187a472dfdcd76c3eb2a1dea5480f36098b06ad5b0694b71bd3560ad0d9701"
+    },
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/diplomacy_effect_profiles.py": {
+      "bytes": 22643,
+      "sha256": "d4e23953c204f5c0f72e2227530e5f823e8bff8dbc1b15eeda4b6531654a0433"
+    },
+    "bridge/diplomacy_observer_manifest_1375.json": {
+      "bytes": 3988,
+      "sha256": "a75dab49e101ac95f2a714032829c4b52629fd78db04db0bd3896df1ce24143e"
+    },
+    "bridge/diplomacy_observer_service.py": {
+      "bytes": 4598,
+      "sha256": "139727da50f8357418fb9885b7b0415b146081de8fd05b9497835d6b5a5066ec"
+    },
+    "bridge/tag_command_backend.py": {
+      "bytes": 25398,
+      "sha256": "74279bf8cb77d800ad53711e799260672b20b7d20cf6bee997527eaa29c55c53"
+    },
+    "bridge/tag_command_audit.py": {
+      "bytes": 8109,
+      "sha256": "9e90cd180818166fac9754a65d68203b84eb24b57569c3605f5b28e69c1b289d"
+    },
+    "work/reports/diplomacy-effect-profiles-20261015/ask-march-replies/static.json": {
+      "bytes": 298074,
+      "sha256": "25331327e18c4acf16f9cc9c82f3e19a6f6dfaea7f9fe42d4fa311e8d71fcdda"
+    },
+    "work/reports/diplomacy-effect-profiles-20261015/ask-march-replies/trace.py": {
+      "bytes": 4961,
+      "sha256": "478d3b9a33a6be7a918d07de757c38108248ea8c8d6d11795069f1e5acb44b34"
+    },
+    "work/reports/diplomacy-effect-profiles-20261015/ask-march-replies/disassembly.txt": {
+      "bytes": 104082,
+      "sha256": "736ad8e0cbfc9846efe83c790e7f9e4566058a9ec2c84c3a58e15fef5ab2e7fa"
+    },
+    "work/reports/native-pair-replies-1375.json": {
+      "bytes": 1894144,
+      "sha256": "da3faa061af3d9ee8a3003412151594c6305b765afd8d739b4cb4a4759f63510"
+    },
+    "work/reports/native-action-fields-1375.json": {
+      "bytes": 1144871,
+      "sha256": "cfabb4622b7c82f9e2476a82352f91fa5d0f8ba0f8150e75aac47fb4aeaddc96"
+    }
+  },
+  "supported_actions": [
+    "ask_for_march"
+  ],
+  "request_states": [
+    "waiting_for_recipient",
+    "accepted_notification",
+    "denied_notification",
+    "unknown"
+  ],
+  "read_only": true,
+  "native_calls": 0,
+  "requests_published": 0,
+  "saves_written": 0,
+  "effect_profile_changes": false,
+  "R1_core_changes": false,
+  "exact_external_request_id_causality_verified": false,
+  "AI_acceptance_verified": false,
+  "limits": {
+    "shared_reads": 4096,
+    "shared_read_bytes": 524288,
+    "pending_total_nodes": 128,
+    "history_total_nodes": 512,
+    "history_active_nodes": 200
+  },
+  "limitations": [
+    "Only a unique current typed state-0 node means waiting_for_recipient.",
+    "New pair/type/date notification since retained pending baseline is correlation, not exact external request attribution.",
+    "Queue disappearance and absent notifications are unknown.",
+    "Accepted notification never replaces original effect verification.",
+    "No atomic game-thread/world epoch or object lifetime lease is proved."
+  ]
+}

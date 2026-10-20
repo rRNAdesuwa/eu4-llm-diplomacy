@@ -1,0 +1,67 @@
+{
+  "schema": "EU4-WAR-R6-LIFECYCLE-CONTRACT/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "native_ready": false,
+  "runtime_verified": false,
+  "install_authorized": false,
+  "send_authorized": false,
+  "scope": {
+    "action": "ordinary noCB",
+    "goal_argument": null,
+    "stability": false,
+    "ally_vectors": [
+      [],
+      [],
+      []
+    ],
+    "operations": [
+      "construct",
+      "clone",
+      "destroy clone",
+      "destroy source"
+    ],
+    "native_checks": false
+  },
+  "abi": {
+    "constructor": "500480(RCX=owned98,RDX=actor_handle,R8=target_handle,R9B=0,stack5=date32,stack6=NULL)",
+    "clone": "50b8f0(RCX=complete source)->separate owned98 RAX",
+    "deleting_destructor": "500520(RCX=complete action,EDX=1)",
+    "shared_goal": "2340030, vt1d207f8, +10==definition2340038, definition+38==12; never delete or mutate"
+  },
+  "native_owned": {
+    "source_blocks": 1,
+    "clone_blocks": 1,
+    "block_bytes": 152,
+    "goal_blocks": 0,
+    "vector_blocks": 0,
+    "exact_normal_action_deletes": 2,
+    "source_and_clone_separate": true
+  },
+  "preallocation_requirements": [
+    "R4 exact process/image/pins/authenticated callback origin/thread/TLS/depth and health gates",
+    "strict ordinary selector0 full-country handles and current date/pair; no retained cross-frame pointers",
+    "already initialized sentinel and definition; do not call initializer or manufacture a definition",
+    "real full-interval lifetime authority for singleton/definition and host roots",
+    "allocator heap identity and concrete full-interval exclusion/authentication of dynamic handler changes and reentrancy",
+    "SEH/C++ exception policy, once-only attempt identity and ownership quarantine; no cleanup after lost authority"
+  ],
+  "may_not_substitute": [
+    "same root/date before and after for epoch",
+    "constant V31 world witness for epoch",
+    "CRT handler getter critical section for a world lease",
+    "newmode0 alone for handler exclusion",
+    "raw encoded handler slot0 for decoded null",
+    "manual_pause1 for teardown exclusion",
+    "offline FakeHost result for real host readiness"
+  ],
+  "normal_path_observation": "No application script/message pump/reload call is visible in the selected normal eu4.exe lifecycle path; OS internals and failures remain explicit boundaries.",
+  "runtime_decision": "refuse before allocation under current R4 host contract; static R6 does not open native readiness",
+  "full_checks": "Outside this reduced operation set; keep stronger R4 world lifetime/callee authority requirement.",
+  "unknowns": [
+    "handler target and setter exclusion",
+    "native TLS and exceptional unwind",
+    "singleton teardown exclusion",
+    "OS heap/PTD/error callbacks",
+    "actual engine lifecycle observation"
+  ]
+}

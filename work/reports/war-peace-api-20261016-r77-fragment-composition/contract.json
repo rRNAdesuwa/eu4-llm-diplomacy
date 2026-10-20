@@ -1,0 +1,374 @@
+{
+  "schema": "EU4-R77-CONDITIONAL-FRAGMENT-COMPOSITION/1",
+  "sealed": true,
+  "stage": "author-retained-composition-pending-non-author-review",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "roles": {
+    "composition_author": "D/diplomacy_static, also R71/R73 source+actual author and R75 proposal/source reviewer",
+    "R69_and_R75_actual_authors": "Val/validation_audit",
+    "upstream_full_reviewers": "War non-author actual reviews used as fixed witnesses; R69 reviewer source-design overlap is disclosed upstream",
+    "independent_reaudit_of_all_upstream_packages_claimed": false
+  },
+  "accepted_full_reviews": {
+    "R69": {
+      "findings": {
+        "path": "work/reports/war-peace-api-20261016-r69-actual-independent-review/findings.json",
+        "bytes": 6300,
+        "sha256": "529f00a30baeba2c1f600018455c1e050f6061429951da8ce2daf9c44de17f56"
+      },
+      "manifest": {
+        "path": "work/reports/war-peace-api-20261016-r69-actual-independent-review/manifest.json",
+        "bytes": 13503,
+        "sha256": "bceee11bb0cc11bb648d0b2e8d65b9862df971ecc10e161118ee762e3acf8058"
+      }
+    },
+    "R71": {
+      "findings": {
+        "path": "work/reports/war-peace-api-20261016-r71-actual-independent-review/findings.json",
+        "bytes": 8035,
+        "sha256": "40dbb7199f02244bcf1f95dba475db87171a81e226b7e0238004f788312cb045"
+      },
+      "manifest": {
+        "path": "work/reports/war-peace-api-20261016-r71-actual-independent-review/manifest.json",
+        "bytes": 12660,
+        "sha256": "9bcd6706361cb07936763b868f9f384e399194f4900f774ef91fe042c2eb3a96"
+      }
+    },
+    "R73": {
+      "findings": {
+        "path": "work/reports/war-peace-api-20261016-r73-actual-independent-review/findings.json",
+        "bytes": 5251,
+        "sha256": "5794b82df03b9fd1f407d3384f81fb366349f6cc7133c010f50d2206cfa2fd88"
+      },
+      "manifest": {
+        "path": "work/reports/war-peace-api-20261016-r73-actual-independent-review/manifest.json",
+        "bytes": 18044,
+        "sha256": "49d74153ee25a06a54fa03cb3711647e7fa5939a19a9183f4e7c4cc03f416afb"
+      }
+    },
+    "R75": {
+      "findings": {
+        "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+        "bytes": 6218,
+        "sha256": "e3d54d50cd97281872f32b2e3b7648d9b2ca3e1d8735ed010a63be0c7db27e53"
+      },
+      "manifest": {
+        "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/manifest.json",
+        "bytes": 12383,
+        "sha256": "6fe456906b3b55738657ac306a3a43722ee45533e38d8864f63be651f1a004f0"
+      }
+    }
+  },
+  "source_pins": {
+    "work/reports/war-peace-api-20261016-r69-actual-independent-review/findings.json": {
+      "bytes": 6300,
+      "sha256": "529f00a30baeba2c1f600018455c1e050f6061429951da8ce2daf9c44de17f56"
+    },
+    "work/reports/war-peace-api-20261016-r69-actual-independent-review/manifest.json": {
+      "bytes": 13503,
+      "sha256": "bceee11bb0cc11bb648d0b2e8d65b9862df971ecc10e161118ee762e3acf8058"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/manifest.json": {
+      "bytes": 27579,
+      "sha256": "3ca9f6aff9c0ceffd0d0096a4ace1a1f7ff294b36acb0f88ed0c3a0f9f9ec69b"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/contract.json": {
+      "bytes": 7825,
+      "sha256": "cf685af0d0287802ed06d830e804ee12c75865c4b527b3a676f3950cc96ef6cc"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/owned-code.json": {
+      "bytes": 609,
+      "sha256": "1d92edeaa15977881bfd94447292c63eaf93ab190aa5f14ae09435d2fd2c0be8"
+    },
+    "work/reports/war-peace-api-20261016-r69-generator-divisor-source/selected-evidence.json": {
+      "bytes": 19444,
+      "sha256": "e3f4d304acf93f674ec407c4cfdd330a5163ea8e328bc6a8afe5deab893a237f"
+    },
+    "work/reports/war-peace-api-20261016-r71-actual-independent-review/findings.json": {
+      "bytes": 8035,
+      "sha256": "40dbb7199f02244bcf1f95dba475db87171a81e226b7e0238004f788312cb045"
+    },
+    "work/reports/war-peace-api-20261016-r71-actual-independent-review/manifest.json": {
+      "bytes": 12660,
+      "sha256": "9bcd6706361cb07936763b868f9f384e399194f4900f774ef91fe042c2eb3a96"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-manifest.json": {
+      "bytes": 24771,
+      "sha256": "df5a1d0e3918347ff95d7199b184adefed4a816b2f08dc3dd2bba4576823777f"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-contract.json": {
+      "bytes": 12229,
+      "sha256": "3d370deb33fc006ecb8a0cee93e8744bc112da8fffe66154afee3dfe9f92ff98"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/owned-code.json": {
+      "bytes": 1168,
+      "sha256": "75273a3a5b75655703a01cfd5b1276f18d4089e5663c5d9bb3d4454dad716160"
+    },
+    "work/reports/war-peace-api-20261016-r71-divisor-fallthrough-fragment/actual-selected-evidence.json": {
+      "bytes": 41810,
+      "sha256": "12f1041c5d62da5d28fa9234e06e7081b3a2a73ad028ad83219e17a22917e5ae"
+    },
+    "work/reports/war-peace-api-20261016-r73-actual-independent-review/findings.json": {
+      "bytes": 5251,
+      "sha256": "5794b82df03b9fd1f407d3384f81fb366349f6cc7133c010f50d2206cfa2fd88"
+    },
+    "work/reports/war-peace-api-20261016-r73-actual-independent-review/manifest.json": {
+      "bytes": 18044,
+      "sha256": "49d74153ee25a06a54fa03cb3711647e7fa5939a19a9183f4e7c4cc03f416afb"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-manifest.json": {
+      "bytes": 24623,
+      "sha256": "a5eb1ebbfe46c9d590aa118729a330499a226d828458248c45530ada0feb987b"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-contract.json": {
+      "bytes": 13212,
+      "sha256": "5eb88b02b2a454104799c18703af2f7fdf3487e507661f6af6cad013ceb41857"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/owned-code.json": {
+      "bytes": 906,
+      "sha256": "531d218c6d62d25eedee87756f347cb6089fd5f32afeec51ceb634f22760482c"
+    },
+    "work/reports/war-peace-api-20261016-r73-divisor-nonpositive-fragment/actual-selected-evidence.json": {
+      "bytes": 8070,
+      "sha256": "724057630e576f976d48ad6e3044cdbdde7d0359e98bfd27f992f285cb680eea"
+    },
+    "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json": {
+      "bytes": 6218,
+      "sha256": "e3d54d50cd97281872f32b2e3b7648d9b2ca3e1d8735ed010a63be0c7db27e53"
+    },
+    "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/manifest.json": {
+      "bytes": 12383,
+      "sha256": "6fe456906b3b55738657ac306a3a43722ee45533e38d8864f63be651f1a004f0"
+    },
+    "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json": {
+      "bytes": 16739,
+      "sha256": "f05a565e8fdb8c2006cd9b2f94e77fef5a86c1c7fbf8d5bcd7e8c91f22c2eab9"
+    },
+    "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json": {
+      "bytes": 6999,
+      "sha256": "b841344c4c286f1cd7d5bfe7c5edea930913a9e9191c5731bb03a6f1b62c19ea"
+    },
+    "work/reports/war-peace-api-20261016-r75-null-successor-fragment/owned-code.json": {
+      "bytes": 584,
+      "sha256": "150e721451fdf8d071cb038d2530163f7c72be094ebb1598cf2c42249c9e9d3c"
+    },
+    "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json": {
+      "bytes": 10173,
+      "sha256": "5ae4eb40dc81a08ff3c328d8d436bfdee72e26b0211d2cbab0fe7fbf317e9efb"
+    },
+    "work/reports/war-peace-api-20261016-r77-fragment-composition/compose.py": {
+      "bytes": 21426,
+      "sha256": "c7fb2e757598d627cc4d9f510f50d9115ec2e8d63380c2cb593c27a7e41dffdf"
+    }
+  },
+  "raw_composition_pin": {
+    "bytes": 88665,
+    "sha256": "3bc59904e69c2cdbb4002181b7ab143fa0bfcc0f5e296f437e943e198d9afe2f"
+  },
+  "new_evidence_scope": {
+    "four_adjacent_retained_fragments": [
+      55,
+      156,
+      21,
+      16
+    ],
+    "union": [
+      "0x993570",
+      "0x993668"
+    ],
+    "owned_bytes": 248,
+    "retained_rows": 77,
+    "local_branches": 5,
+    "external_direct_CALLsites": 3,
+    "normal_RETsites": 3,
+    "loop_backedges": 1,
+    "new_native_bytes": 0,
+    "new_metadata": 0,
+    "new_decoder": 0
+  },
+  "observations": [
+    {
+      "id": "closed-local-successors",
+      "summary": "Replaying raw branch displacements connects all five local targets inside the retained248B. From993570 the normal-CALL-return overapproximation reaches77rows, threeRET terminals and one loop backedge; no local branch/fallthrough target remains outside this composition."
+    },
+    {
+      "id": "returned-pointer-bits",
+      "summary": "Each epilogue MOVRAX,currentR14 precedes POPR14, with no later RAX write beforeRET. It returns currentR14 bits, conditionally original entryRDX/D address; it does not dereference DWORD[D]. NULL helper-return RAX0 is overwritten."
+    },
+    {
+      "id": "direct-writes",
+      "summary": "R69 directly writes DWORD[entryRDX]=0 before97bd30. Positive path builds a12B local DWORD+QWORD, conditionally writes12B through cursor and ADD64[P+8],12 or calls996e30, then ADD32[currentR14],EBX. There are10 explicit writes/RMW sites in the full owned union; no pure/getter claim."
+    },
+    {
+      "id": "stack-and-flags",
+      "summary": "F=S-58 from fivePUSHes andSUB30. Each normal epilogue ADD30 +fivePOP +RET leavesS+8. Positive/nonpositive/NULL epilogues read9Q/7Q/6Q respectively. Their ADDRSP30 is the last arithmetic-flags writer; branch TEST/CMP flags are not final flags; DF remains unknown."
+    }
+  ],
+  "conditional_cases": [
+    {
+      "id": "NULL",
+      "route": "99358a normalreturn; TEST64(postcallRAX)==0; JE993595->993658->RET993667",
+      "facts": "RAX/R12 are zero on entry to suffix, then MOVRAX,R14 replacesRAX. Nonnull difference/SAR and all R71 saves/body are bypassed; R15/RBX/RDI are not restored from R71 homes on this route.",
+      "D_header_limit": "PrecallD0/header provenance cannot be treated as current/final values after unknown97bd30."
+    },
+    {
+      "id": "nonnull-lowcount",
+      "route": "postcallRAX!=0; freshQWORD[R13+78]-freshQWORD[R13+70] modulo64, SAR64by3; N=signed32(low32R8)<=0; JLE9935b2->993643->RET993657",
+      "facts": "R71 savesR15 atF78 before the signed test and the suffix reloads it. Positive-only RBX/RDI saves/body are bypassed; finalR15 equals saved bits only if that home was not corrupted."
+    },
+    {
+      "id": "nonnull-positive",
+      "route": "same nonnull setup; N=signed32(low32R8)>0; selected loop and RET993642",
+      "facts": "With initialRSI0 and required preserved loop registers, the local sequence uses indices0..N-1. Fresh array base is reloaded each iteration; this is a conditional arithmetic projection, not a count/capacity validation or total-termination guarantee.",
+      "per_iteration": "d959b0 receives RCX=currentR12,RDX=&F68,R8=fresh array element. EBX comes from freshDWORD[F68], notRAX. Cursor!=fresh[P+10] writesDWORD/QWORD thenADD64[P+8],12; equality calls996e30 withRCX=P,RDX=comparedcursor,R8=&F20. JoinADD32[D],EBX is modulo2^32 at its current destination."
+    }
+  ],
+  "normal_conditions": [
+    "Execution enters993570 with valid memory/stack and follows the retained instructions; this is not observed runtime.",
+    "Each external CALL returns normally to its architectural fallthrough and balances RSP; required nonvolatile registers/frame are preserved. Their memory effects are not inferred from ABI.",
+    "For normal epilogues, saved/control stack slots are valid and not corrupted by D/header/cursor/callee aliases, asynchronous writes or exceptional transfers.",
+    "Caller-provided pointers, cursor spans and arithmetic dereferences must be valid. The local code only compares cursor equality; no object extent/capacity or world lease is established."
+  ],
+  "epilogue_stack_contracts": [
+    {
+      "id": "positive",
+      "start": 10040868,
+      "ret": 10040898,
+      "rax": 10040873,
+      "add": 10040886,
+      "stack_QWORD_reads": 9,
+      "explicit_load_offsets_from_F": [
+        "0x70",
+        "0x60",
+        "0x78"
+      ],
+      "implicit_read_offsets_from_F": [
+        "0x30",
+        "0x38",
+        "0x40",
+        "0x48",
+        "0x50",
+        "0x58"
+      ],
+      "stack_read_bytes": 72,
+      "normal_return_RSP": "S+8",
+      "RAX": "currentR14 before POPR14, conditionally original entryRDX pointer",
+      "last_arithmetic_flags_writer": "0x993636",
+      "DF": "inherited unknown; these epilogue instructions do not modify DF"
+    },
+    {
+      "id": "nonnull_nonpositive",
+      "start": 10040899,
+      "ret": 10040919,
+      "rax": 10040904,
+      "add": 10040907,
+      "stack_QWORD_reads": 7,
+      "explicit_load_offsets_from_F": [
+        "0x78"
+      ],
+      "implicit_read_offsets_from_F": [
+        "0x30",
+        "0x38",
+        "0x40",
+        "0x48",
+        "0x50",
+        "0x58"
+      ],
+      "stack_read_bytes": 56,
+      "normal_return_RSP": "S+8",
+      "RAX": "currentR14 before POPR14, conditionally original entryRDX pointer",
+      "last_arithmetic_flags_writer": "0x99364b",
+      "DF": "inherited unknown; these epilogue instructions do not modify DF"
+    },
+    {
+      "id": "null",
+      "start": 10040920,
+      "ret": 10040935,
+      "rax": 10040920,
+      "add": 10040923,
+      "stack_QWORD_reads": 6,
+      "explicit_load_offsets_from_F": [],
+      "implicit_read_offsets_from_F": [
+        "0x30",
+        "0x38",
+        "0x40",
+        "0x48",
+        "0x50",
+        "0x58"
+      ],
+      "stack_read_bytes": 48,
+      "normal_return_RSP": "S+8",
+      "RAX": "currentR14 before POPR14, conditionally original entryRDX pointer",
+      "last_arithmetic_flags_writer": "0x99365b",
+      "DF": "inherited unknown; these epilogue instructions do not modify DF"
+    }
+  ],
+  "conditional_aliases": {
+    "S": "Original993570 entryRSP",
+    "F": "S-58 after balanced calls",
+    "W": "entryRCX ->R13",
+    "D": "entryRDX ->R14",
+    "P": "entryR8 ->RBP",
+    "loop_result": "post97bd30RAX ->R12",
+    "R15_home": "F78=S20",
+    "RBX_home_positive": "F60=S8",
+    "RDI_home_positive": "F70=S18",
+    "fresh_DWORD": "F68=S10",
+    "local12B": "F20..F2b=S-38..S-2d",
+    "aliases_are_register_projection_not_memory_stability": true
+  },
+  "unfollowed_calls": [
+    {
+      "rva": "0x99358a",
+      "raw_hex": "e8a187feff",
+      "kind": "call",
+      "signed_displacement": -96351,
+      "instruction_end": "0x99358f",
+      "target_rva": "0x97bd30",
+      "target_followed_now": false
+    },
+    {
+      "rva": "0x9935e3",
+      "raw_hex": "e8c8234000",
+      "kind": "call",
+      "signed_displacement": 4203464,
+      "instruction_end": "0x9935e8",
+      "target_rva": "0xd959b0",
+      "target_followed_now": false
+    },
+    {
+      "rva": "0x993614",
+      "raw_hex": "e817380000",
+      "kind": "call",
+      "signed_displacement": 14359,
+      "instruction_end": "0x993619",
+      "target_rva": "0x996e30",
+      "target_followed_now": false
+    }
+  ],
+  "unresolved": [
+    "97bd30/d959b0/996e30 formal consumption, side effects, output initialization, retention, exceptions and nonreturn behavior remain unknown.",
+    "PrecallD0 cannot establish finalD; currentD may change via earliercallee, directcursor/header aliases and ADD32. F68 is not initialized by the local snippet before d959b0; callee writing it is not proved.",
+    "Cursor may alias P/D/saved stack, and ADD64[P+8] rereads its location after cursor stores. Equality-only branch is not a capacity/ordered-range check.",
+    "No record semantic type, allocation/ownership/extent, divisor/amount units, currency, recipient direction, conservation or selected diplomatic effect follows.",
+    "The248B retained local normal CFG is closed only in the specified model. Whole semantic-function completeness, EH/unwind, arbitrary-input safety, live reachability, atomicity and lifetime remain unproven."
+  ],
+  "historical_delta": "R69/R71/R73/R75 contracts stay byte-identical. Their then-unread local successors are now connected in this new composition; their historical unknown fields are not rewritten.",
+  "source_review_precision": "R75 full review R2 records its earlier strict-bill assertion failure and preflight listed62571/billed65560 delta2989 as conservative accounting, not extra inferred reads; no upstream actual was repeated.",
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "independent_fragment_callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "runtime_verified": false,
+    "persistence_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false,
+    "unconditional_whole_function_safety_verified": false
+  }
+}

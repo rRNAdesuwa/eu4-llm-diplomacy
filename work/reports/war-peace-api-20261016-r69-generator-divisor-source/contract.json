@@ -1,0 +1,209 @@
+{
+  "schema": "EU4-R69-GENERATOR-DIVISOR-SELECTED-PREFIX/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "entry": {
+    "rva": "0x993570",
+    "direct_CALL_seed": "0x98453d",
+    "raw_seed_CALL": "e82ef00000",
+    "selected_exact_pdata_window": [
+      "0x993570",
+      "0x9935a7"
+    ],
+    "bytes": 55,
+    "rows": 18,
+    "all_selected_extent_bytes_owned_and_decoded": true,
+    "whole_function_or_normal_return_closed": false,
+    "normal_RET_count": 0,
+    "formal_semantic_types": "unknown"
+  },
+  "caller_inputs": {
+    "RCX": "SavedRSI=originalopaqueR62incomingRCX W; MOVRCX,RSI at98453a. PriorunfollowednormalcalleeABI preservesRSIregister, notWcontents.",
+    "RDX": "LEAsteady+a8 =>R62entryQ+20hex; DWORDout-shaped borrowedaddress, no preinitializationorcalleeoutwrite proved.",
+    "R8": "LEAsteady+38 =>R62entryQ-50hex; 3QWORDzeroheader fromMOVDQUzero at38/40 andMOVR15zero at48; calleeconsumption/allocation/typeunknown.",
+    "R9": "Unknowninheritedafterupstreamcalls; MOVABSaaaaaaaaaaaaaaab isafterCALL984542 andmustnotbeusedasinput.",
+    "XMM0": "zero128_from_98451c_XORPS_no_XMM_write_or_CALL_before_98453d",
+    "callee_consumption_of_XMM0_proved": false,
+    "arithmetic_flags": "LastXORR15D,R15D givesZF1,SF0,PF1,CF0,OF0,AFundefined; remainingMOV/LEA/CALLsetupdoesnotchangeflags; DFunknown.",
+    "incoming_D_out_memory_not_preinitialized_by_caller": true
+  },
+  "selected_control_flow": {
+    "direct_CALL_sites": [
+      {
+        "site": "0x99358a",
+        "target": "0x97bd30",
+        "raw": "e8a187feff",
+        "body_followed": false
+      }
+    ],
+    "branches": [
+      {
+        "site": "0x993595",
+        "condition": "RAX ==0 after97bd30, TEST64 RAX,RAX",
+        "target": "0x993658",
+        "target_outside_owned_extent": true
+      }
+    ],
+    "nonnull_fallthrough": "0x99359b then end0x9935a7 outside owned bytes",
+    "next_metadata_range": [
+      "0x9935a7",
+      "0x993643"
+    ],
+    "next_metadata_code_read": false,
+    "local_CFG_closed": false,
+    "normal_completion_stack_cleanup_and_return": "unknown"
+  },
+  "machine_dataflow": [
+    {
+      "sites": [
+        "0x993570",
+        "0x993572",
+        "0x993573",
+        "0x993575",
+        "0x993577",
+        "0x993579"
+      ],
+      "fact": "PUSH RBP,RSI,R12,R13,R14 then SUB RSP,30h. Let S=entry RSP; local preCALL RSP=S-58h."
+    },
+    {
+      "site": "0x99357d",
+      "fact": "XOR ESI,ESI sets full RSI=0; following register MOVs/store do not alter arithmetic flags."
+    },
+    {
+      "site": "0x99357f",
+      "fact": "RBP=entry R8, preserving the caller three-QWORD-header pointer as a register value; no header dereference in owned extent."
+    },
+    {
+      "site": "0x993582",
+      "fact": "DWORD[entry RDX]=ESI=0, exactly four bytes, before97bd30. Neighbor bytes are not initialized by this store."
+    },
+    {
+      "sites": [
+        "0x993584",
+        "0x993587"
+      ],
+      "fact": "R14=entry RDX and R13=entry RCX. RCX/RDX/R8 themselves are unchanged up to97bd30."
+    },
+    {
+      "site": "0x99358a",
+      "fact": "First CALL97bd30 receives original RCX/RDX/R8 register values, R9 inheritedunknown, and caller-derived zero128 XMM0; no consumption or pointed-content preservation proved."
+    },
+    {
+      "sites": [
+        "0x99358f",
+        "0x993592",
+        "0x993595"
+      ],
+      "fact": "Copy postCALL RAX to R12; TEST64 RAX,RAX; zero goes outside window to993658. Return meaning and callee alias effects are unknown."
+    },
+    {
+      "sites": [
+        "0x99359b",
+        "0x99359f",
+        "0x9935a3"
+      ],
+      "fact": "Nonnull path freshly loads QWORD[postCALL R13+78h], subtracts QWORD[postCALL R13+70h] modulo64, then SAR64 R8 by3. No element/type/count/units semantics proved."
+    }
+  ],
+  "width_and_memory": {
+    "explicit_memory_store_sites": 1,
+    "explicit_store": {
+      "site": "0x993582",
+      "base": "entry RDX",
+      "bytes": 4,
+      "value": 0
+    },
+    "explicit_memory_read_sites": 2,
+    "postCALL_read_widths": [
+      8,
+      8
+    ],
+    "implicit_PUSH_stack_store_sites": 5,
+    "implicit_PUSH_bytes_each": 8,
+    "implicit_CALL_return_address_stack_store_sites": 1,
+    "implicit_CALL_return_address_bytes": 8,
+    "header_R8_pointer_dereference_sites": 0,
+    "actual_header_writes_by_external_callee": "unknown",
+    "callee_world_alias_writes_and_borrow_retention": "unknown",
+    "pure_or_write_free": false
+  },
+  "conditional_frame_crosswalk": {
+    "assumptions": "Fixed R62 preceding normal CALL stack discipline; no intervening code/frame mutation.",
+    "R62_entry_RSP": "Q",
+    "R62_before_CALL_RSP": "Q-88h",
+    "R69_entry_RSP": "S=Q-90h",
+    "out_D_pointer": "Q+20h=S+b0h",
+    "three_QWORD_header_pointer": "Q-50h=S+40h",
+    "R69_before_97bd30_RSP": "S-58h",
+    "97bd30_entry_RSP_from_CALL": "S-60h",
+    "body_accesses_callers_selected_two_borrows_directly": "Only DWORDout store; header merely passed onward.",
+    "postCALL_R13_is_original_W": "Conditional on97bd30 preserving R13; the body is not read, so not a concrete register-preservation proof.",
+    "header_out_and_W_contents_across97bd30": "unknown"
+  },
+  "result_limits": {
+    "D_preCALL_write_zero_proved": true,
+    "final_D_value_proved": false,
+    "D_nonzero_or_positive_proved": false,
+    "preCALL_zero_can_stand_for_final_D": false,
+    "RAX_is_D_proved": false,
+    "normal_return_value_proved": false,
+    "R8_header_result_proved": false,
+    "division_count_or_money_units_proved": false,
+    "recipient_or_currency_proved": false,
+    "allocator_identity_or_success_proved": false,
+    "Cplusplus_class_or_lifecycle_proved": false,
+    "next_extent_or_97bd30_automatically_authorized": false
+  },
+  "flags": {
+    "before97bd30": "LastXOR ESI,ESI gives ZF1,SF0,PF1,CF0,OF0,AFundefined; DF inheritedunknown.",
+    "after97bd30": "No generic volatile/arithmetic-flag preservation assumed.",
+    "branch_condition": "PostCALL RAX zero/nonzero from TEST64 only.",
+    "last_owned_instruction": "SAR64 R8,3 changes flags; no normal RET in retained extent."
+  },
+  "resource": {
+    "pdata_requests": 20,
+    "pdata_physical_bytes": 240,
+    "pdata_unique_bytes": 204,
+    "selected_code_physical_unique_bytes": 55,
+    "decoder_input_bytes": 249,
+    "decoder_unique_bytes": 55,
+    "decoder_overlap_bytes": 194,
+    "two_full_PE_SHA_bytes": 76925008,
+    "all_target_PE_returned_bytes": 76925303,
+    "producer_source_bytes_at_capture": 19579065,
+    "final_capture_stdout_pin_read_bytes": 82235,
+    "producer_explicit_source_bytes_including_postcapture_pin": 19661300,
+    "producer_source_limit_bytes": 33554432,
+    "retained_stage_limit_bytes": 16777216,
+    "manual_runner_preparation_and_text_inspection_allowance_bytes": 1048576,
+    "producer_peak_own_private_observed_bytes": 22675456,
+    "elapsed_ns": 498531000,
+    "elapsed_scope": "Producerlaunchthroughcollectedexit, includingengine/source/twoPEsha; wrapperadmissionexcluded.",
+    "hard_Job_installed": false,
+    "direct_owned_child_collected": true,
+    "engine38_identities_only_producer_witness_in_retained_stage": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_static_actual_authorized": false,
+    "runtime_capture_authorized": false
+  },
+  "operations": {
+    "one_explicit_static_producer_execution": 1,
+    "callee_expansions": 0,
+    "new_data_header_unwind_virtualslot_reads": 0,
+    "game_process_accesses": 0,
+    "Frida_operations": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "tests": 0
+  }
+}

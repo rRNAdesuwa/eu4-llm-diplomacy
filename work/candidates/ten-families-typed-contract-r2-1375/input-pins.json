@@ -1,0 +1,150 @@
+{
+  "bridge/diplomacy_api.py": {
+    "bytes": 34672,
+    "sha256": "6966f5f2bbfe45a779b1d36776e9c8d643008798459f02daa18529493053d1ba"
+  },
+  "bridge/diplomacy_catalog.json": {
+    "bytes": 1304602,
+    "sha256": "0fbbf97d7e43f72cba9e45a4536fcca0f3d7b52517d01e24554bee623b7795e1"
+  },
+  "bridge/diplomacy_contract_v2.py": {
+    "bytes": 14025,
+    "sha256": "6b7ac3dced2d46fa1acd5d78c85ce698455182fa90314eb1e5345b3802a76121"
+  },
+  "bridge/diplomacy_contract_v2_bindings.json": {
+    "bytes": 16652,
+    "sha256": "c948b1183ac56af06ec5d0837f9d6dfaa9340649be253d9812c5431b183ec80c"
+  },
+  "bridge/diplomacy_contract_v2_pins.json": {
+    "bytes": 4381,
+    "sha256": "48572e9f6f1a82f8c4e9346a47ac387af66eff3e6350c0a6e3892586ca8b1818"
+  },
+  "bridge/diplomacy_service.py": {
+    "bytes": 9567,
+    "sha256": "225b83a7acfff78da91eb6ca8432ac45b2da3df8158e42f1b8d5230783abca5e"
+  },
+  "docs/diplomacy-api.md": {
+    "bytes": 16656,
+    "sha256": "28b44be1e73ea882ccee4dcee74143437ca487ee07f61048517e6da413d6fab0"
+  },
+  "work/AGENTS.md": {
+    "bytes": 959,
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  },
+  "work/candidates/favor-exchanges-contract-1375/contract.py": {
+    "bytes": 6356,
+    "sha256": "b7e503a4980dde7026deeaed33d4a17f1ee17b87bca4f3ca8483bcd180f60dbb"
+  },
+  "work/candidates/favor-exchanges-contract-1375/report.json": {
+    "bytes": 2149548,
+    "sha256": "c6350c76c956ae6d1bab4e3026944685d714aa74515052f5d5c490a65933c01f"
+  },
+  "work/candidates/favor-exchanges-contract-1375/review.json": {
+    "bytes": 2302,
+    "sha256": "aa5f9b7fd647d5b3fa5845a3d60ad4064b64a06369138eb91f71533f4033a80d"
+  },
+  "work/candidates/favor-trust-reduce-bindings-1375/README.md": {
+    "bytes": 5438,
+    "sha256": "abb8f9ed93300e740eedf555d997c2778a2b941cd8f7ca50d5b67733ef809751"
+  },
+  "work/candidates/favor-trust-reduce-bindings-1375/contract.py": {
+    "bytes": 5844,
+    "sha256": "ca4e069c00a3ba76da78f2b31ac12b0e6e956a48a819e54e2097888a6207c36c"
+  },
+  "work/candidates/favor-trust-reduce-bindings-1375/facts.json": {
+    "bytes": 5594,
+    "sha256": "561cb3e5f38c4a0219975e4c484d395806bdfe371981a852f689f8cd4e51a9c2"
+  },
+  "work/candidates/favor-trust-reduce-bindings-1375/report.json": {
+    "bytes": 751403,
+    "sha256": "50171adbab5602f1a83dd7e0b75002b1e0eaa6e8713a6e6571043036a276c19b"
+  },
+  "work/candidates/favor-trust-reduce-bindings-1375/review.json": {
+    "bytes": 2189,
+    "sha256": "5dd1074924f8d24a557dc51e042fb38c8ec1c4fdc32bc10e44193935adef8d06"
+  },
+  "work/candidates/favor-trust-reduce-bindings-1375/source-index.json": {
+    "bytes": 7267,
+    "sha256": "a557f83a70b35e68730d2bda889fc135ea918f7f952a5c50f15ef57bf1f37f32"
+  },
+  "work/candidates/ten-families-public-contract-1375/README.md": {
+    "bytes": 3910,
+    "sha256": "1276c5a79863b4644632f1e277770cdc11a6cf84116213fb52035b385b00f6fe"
+  },
+  "work/candidates/ten-families-public-contract-1375/catalog.py": {
+    "bytes": 3850,
+    "sha256": "c2f810fdc81951f22c950e399f28758e6c80db0f6983ac3b969fad0eefcd5b50"
+  },
+  "work/candidates/ten-families-public-contract-1375/contract.json": {
+    "bytes": 21366,
+    "sha256": "74679ba5b708d028da3ca8b2f9b25a34994c127ba2d2c561d5e2c20e289b842d"
+  },
+  "work/candidates/ten-families-public-contract-1375/generate.py": {
+    "bytes": 8352,
+    "sha256": "55116b65eea2389d12359ea4d46b7e5f3795f71857b9cfc2bc568d22631e5a82"
+  },
+  "work/candidates/ten-families-public-contract-1375/input-pins.json": {
+    "bytes": 1443,
+    "sha256": "af348d9068d2740ea0784d25609071d3123cc340e32285483a68c712bbe6a54d"
+  },
+  "work/candidates/ten-families-public-contract-1375/legacy-parameters.json": {
+    "bytes": 5120,
+    "sha256": "eea682a3922da617a2cfd4ae34354ac2d876ef17da46ddf32310d9e4ea7e6ab1"
+  },
+  "work/candidates/ten-families-public-contract-1375/prepare.py": {
+    "bytes": 1066,
+    "sha256": "bc62efb823584f7810e11265218226bb78183b4cd5c3e1efa13d566f9e271ae9"
+  },
+  "work/candidates/ten-families-public-contract-1375/review.json": {
+    "bytes": 3463,
+    "sha256": "201a13da1256a2fc10c2b033574c9d62a7ef15b3360edf40c9b3a529c992ea7f"
+  },
+  "work/candidates/ten-families-public-contract-1375/source-index.json": {
+    "bytes": 1398,
+    "sha256": "50b34a0a3de81c40633f8b902f4cae2faa26e9215ee2e7fea316ec8d4daf91ef"
+  },
+  "work/candidates/ten-families-public-contract-1375/test_contract.py": {
+    "bytes": 7430,
+    "sha256": "fb8be33209e8c12acaa62de8874e79a179c53b37e11012db50f99f26343e17fb"
+  },
+  "work/candidates/ten-families-public-contract-1375/validate.py": {
+    "bytes": 2047,
+    "sha256": "d084148c9c79c135b36049d9a593ae5358659dc1df04eb839f319abfa1656119"
+  },
+  "work/candidates/war-dynasty-province-contracts-1375/report.json": {
+    "bytes": 2398304,
+    "sha256": "89e2c647a115164a9f18093b44d904117102b1a96bf2fc70f78c7ad900954fc0"
+  },
+  "work/candidates/war-dynasty-province-contracts-r2-1375/contract.py": {
+    "bytes": 6675,
+    "sha256": "46a00d0d9ff81af3164a08cf7b2bd4bee04777b3be88cb2cfa6b38cacbb9a757"
+  },
+  "work/candidates/war-dynasty-province-contracts-r2-1375/review.json": {
+    "bytes": 3389,
+    "sha256": "58c4034cd5e7f9c0f63e7a0ce092ef4709482a90470e7ad6855aee0fb8839f43"
+  },
+  "work/review-results/favor-exchanges-action-catalog-20261008a/review.json": {
+    "bytes": 4748,
+    "sha256": "116735f43315bdb0a074570ee5225a844d8f7b60f2cf99a8109aa76c48e040d9"
+  },
+  "work/review-results/favor-trust-reduce-independent-20261008a/report.json": {
+    "bytes": 3771,
+    "sha256": "0255287d9d37ae8f515568f77452cb27bc0ec79561d612a0f2df45e59daa0194"
+  },
+  "work/review-results/favor-trust-reduce-independent-20261008a/validation.json": {
+    "bytes": 15147,
+    "sha256": "acd458adffc049d5e42da99579477a994446836042dae5665caed33c478eab90"
+  },
+  "work/review-results/ten-families-public-contract-native-inventory-20261008a/review.json": {
+    "bytes": 5254,
+    "sha256": "02ace53313d787fb7e792499af62b03df53220186d033067a8be97096dd19e8d"
+  },
+  "work/review-results/ten-families-public-contract-native-inventory-20261008a/validation.json": {
+    "bytes": 2900,
+    "sha256": "89b082b7797feea45f0c3637aabc85426ba41f6228530e5706738308f562c6ca"
+  },
+  "work/review-results/war4-r2-external-20261008a/review.json": {
+    "bytes": 3102,
+    "sha256": "15c30da2ebb20b1ce2eb2ae5c10b49e40e4b732fe98d1e2a3237a37e7bb1092b"
+  }
+}

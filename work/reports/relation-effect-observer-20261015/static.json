@@ -1,0 +1,972 @@
+{
+  "schema": "EU4-RELATION-EFFECT-STATIC/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "image_base": "0x140000000",
+  "evidence_kind": "retained ordinary native instruction replay, not REA decompilation",
+  "selected_instructions": {
+    "0x289bb7": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bb7",
+      "bytes": "48894160",
+      "instruction": "mov qword ptr [rcx + 0x60], rax"
+    },
+    "0x289bbb": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bbb",
+      "bytes": "48897168",
+      "instruction": "mov qword ptr [rcx + 0x68], rsi"
+    },
+    "0x289bbf": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bbf",
+      "bytes": "48897170",
+      "instruction": "mov qword ptr [rcx + 0x70], rsi"
+    },
+    "0x289bca": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bca",
+      "bytes": "48894178",
+      "instruction": "mov qword ptr [rcx + 0x78], rax"
+    },
+    "0x289bce": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bce",
+      "bytes": "4889b180000000",
+      "instruction": "mov qword ptr [rcx + 0x80], rsi"
+    },
+    "0x289bd5": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bd5",
+      "bytes": "4889b188000000",
+      "instruction": "mov qword ptr [rcx + 0x88], rsi"
+    },
+    "0x289d09": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289d09",
+      "bytes": "48898198010000",
+      "instruction": "mov qword ptr [rcx + 0x198], rax"
+    },
+    "0x289d10": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289d10",
+      "bytes": "4889b1a0010000",
+      "instruction": "mov qword ptr [rcx + 0x1a0], rsi"
+    },
+    "0x289d17": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289d17",
+      "bytes": "4889b1a8010000",
+      "instruction": "mov qword ptr [rcx + 0x1a8], rsi"
+    },
+    "0x4e4b97": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4e4b60",
+      "rva": "0x4e4b97",
+      "bytes": "c7410865010000",
+      "instruction": "mov dword ptr [rcx + 8], 0x165"
+    },
+    "0x4e4ba8": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4e4b60",
+      "rva": "0x4e4ba8",
+      "bytes": "488d0529cc7901",
+      "instruction": "lea rax, [rip + 0x179cc29]"
+    },
+    "0x4ef327": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4ef2f0",
+      "rva": "0x4ef327",
+      "bytes": "c7410865010000",
+      "instruction": "mov dword ptr [rcx + 8], 0x165"
+    },
+    "0x4ef338": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4ef2f0",
+      "rva": "0x4ef338",
+      "bytes": "488d05a1187901",
+      "instruction": "lea rax, [rip + 0x17918a1]"
+    },
+    "0x50f8d2": {
+      "source": "work/reports/native-pair-extension-v10-1375.json",
+      "json_pointer": "/functions/0x50f790",
+      "rva": "0x50f8d2",
+      "bytes": "c7470865010000",
+      "instruction": "mov dword ptr [rdi + 8], 0x165"
+    },
+    "0x50f91c": {
+      "source": "work/reports/native-pair-extension-v10-1375.json",
+      "json_pointer": "/functions/0x50f790",
+      "rva": "0x50f91c",
+      "bytes": "488d051dae7601",
+      "instruction": "lea rax, [rip + 0x176ae1d]",
+      "rip_target": "0x1c7a740"
+    },
+    "0x50f930": {
+      "source": "work/reports/native-pair-extension-v10-1375.json",
+      "json_pointer": "/functions/0x50f790",
+      "rva": "0x50f930",
+      "bytes": "48895710",
+      "instruction": "mov qword ptr [rdi + 0x10], rdx"
+    },
+    "0x50f934": {
+      "source": "work/reports/native-pair-extension-v10-1375.json",
+      "json_pointer": "/functions/0x50f790",
+      "rva": "0x50f934",
+      "bytes": "48894718",
+      "instruction": "mov qword ptr [rdi + 0x18], rax"
+    },
+    "0x50f938": {
+      "source": "work/reports/native-pair-extension-v10-1375.json",
+      "json_pointer": "/functions/0x50f790",
+      "rva": "0x50f938",
+      "bytes": "894f20",
+      "instruction": "mov dword ptr [rdi + 0x20], ecx"
+    },
+    "0x50f954": {
+      "source": "work/reports/native-pair-extension-v10-1375.json",
+      "json_pointer": "/functions/0x50f790",
+      "rva": "0x50f954",
+      "bytes": "e89719fdff",
+      "instruction": "call 0x4e12f0"
+    },
+    "0x4edb77": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4ed640",
+      "rva": "0x4edb77",
+      "bytes": "8b4634",
+      "instruction": "mov eax, dword ptr [rsi + 0x34]"
+    },
+    "0x4edb7a": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4ed640",
+      "rva": "0x4edb7a",
+      "bytes": "83f802",
+      "instruction": "cmp eax, 2"
+    },
+    "0x4edbc7": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4ed640",
+      "rva": "0x4edbc7",
+      "bytes": "48894810",
+      "instruction": "mov qword ptr [rax + 0x10], rcx"
+    },
+    "0x4edbcb": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4ed640",
+      "rva": "0x4edbcb",
+      "bytes": "48895018",
+      "instruction": "mov qword ptr [rax + 0x18], rdx"
+    },
+    "0x4edbcf": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4ed640",
+      "rva": "0x4edbcf",
+      "bytes": "44894020",
+      "instruction": "mov dword ptr [rax + 0x20], r8d"
+    },
+    "0x4edbec": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x4ed640",
+      "rva": "0x4edbec",
+      "bytes": "e8ff36ffff",
+      "instruction": "call 0x4e12f0"
+    },
+    "0x520e89": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x520900",
+      "rva": "0x520e89",
+      "bytes": "48894810",
+      "instruction": "mov qword ptr [rax + 0x10], rcx"
+    },
+    "0x520e8d": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x520900",
+      "rva": "0x520e8d",
+      "bytes": "48895018",
+      "instruction": "mov qword ptr [rax + 0x18], rdx"
+    },
+    "0x520e91": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x520900",
+      "rva": "0x520e91",
+      "bytes": "44894020",
+      "instruction": "mov dword ptr [rax + 0x20], r8d"
+    },
+    "0x520ea6": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0x520900",
+      "rva": "0x520ea6",
+      "bytes": "e84504fcff",
+      "instruction": "call 0x4e12f0"
+    },
+    "0x4e1504": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/static.json",
+      "json_pointer": "/ranges/10",
+      "rva": "0x4e1504",
+      "bytes": "c6472901",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rdi + 0x29], 1"
+    },
+    "0xa5d242": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa5d1b0",
+      "rva": "0xa5d242",
+      "bytes": "e8d9b90000",
+      "instruction": "call 0xa68c20"
+    },
+    "0xa5d28d": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa5d1b0",
+      "rva": "0xa5d28d",
+      "bytes": "e98eb90000",
+      "instruction": "jmp 0xa68c20"
+    },
+    "0xa5d2c7": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa5d2a0",
+      "rva": "0xa5d2c7",
+      "bytes": "c6432800",
+      "instruction": "mov byte ptr [rbx + 0x28], 0"
+    },
+    "0xa5f275": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa5f230",
+      "rva": "0xa5f275",
+      "bytes": "e856ac0000",
+      "instruction": "call 0xa69ed0"
+    },
+    "0xa5f2b6": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa5f230",
+      "rva": "0xa5f2b6",
+      "bytes": "e815ac0000",
+      "instruction": "call 0xa69ed0"
+    },
+    "0xa5f2bb": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa5f230",
+      "rva": "0xa5f2bb",
+      "bytes": "c6432800",
+      "instruction": "mov byte ptr [rbx + 0x28], 0"
+    },
+    "0xa68cf4": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68c20",
+      "rva": "0xa68cf4",
+      "bytes": "4180484604",
+      "instruction": "or byte ptr [r8 + 0x46], 4"
+    },
+    "0xa68b37": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68a80",
+      "rva": "0xa68b37",
+      "bytes": "4180494604",
+      "instruction": "or byte ptr [r9 + 0x46], 4"
+    },
+    "0xa68d90": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68d90",
+      "bytes": "488b11",
+      "instruction": "mov rdx, qword ptr [rcx]"
+    },
+    "0xa68d93": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68d93",
+      "bytes": "488b4110",
+      "instruction": "mov rax, qword ptr [rcx + 0x10]"
+    },
+    "0xa68d97": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68d97",
+      "bytes": "48c1e820",
+      "instruction": "shr rax, 0x20"
+    },
+    "0xa68d9b": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68d9b",
+      "bytes": "98",
+      "instruction": "cwde"
+    },
+    "0xa68d9c": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68d9c",
+      "bytes": "488b8a80000000",
+      "instruction": "mov rcx, qword ptr [rdx + 0x80]"
+    },
+    "0xa68da3": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68da3",
+      "bytes": "4c63828c000000",
+      "instruction": "movsxd r8, dword ptr [rdx + 0x8c]"
+    },
+    "0xa68daa": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68daa",
+      "bytes": "49c1e004",
+      "instruction": "shl r8, 4"
+    },
+    "0xa68dae": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68dae",
+      "bytes": "4c03c1",
+      "instruction": "add r8, rcx"
+    },
+    "0xa68db1": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68db1",
+      "bytes": "493bc8",
+      "instruction": "cmp rcx, r8"
+    },
+    "0xa68db4": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68db4",
+      "bytes": "740d",
+      "instruction": "je 0xa68dc3"
+    },
+    "0xa68db6": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68db6",
+      "bytes": "3901",
+      "instruction": "cmp dword ptr [rcx], eax"
+    },
+    "0xa68db8": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68db8",
+      "bytes": "740c",
+      "instruction": "je 0xa68dc6"
+    },
+    "0xa68dba": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68dba",
+      "bytes": "4883c110",
+      "instruction": "add rcx, 0x10"
+    },
+    "0xa68dbe": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68dbe",
+      "bytes": "493bc8",
+      "instruction": "cmp rcx, r8"
+    },
+    "0xa68dc1": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68dc1",
+      "bytes": "75f3",
+      "instruction": "jne 0xa68db6"
+    },
+    "0xa68dc3": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68dc3",
+      "bytes": "33c0",
+      "instruction": "xor eax, eax"
+    },
+    "0xa68dc5": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68dc5",
+      "bytes": "c3",
+      "instruction": "ret"
+    },
+    "0xa68dc6": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68dc6",
+      "bytes": "488b4108",
+      "instruction": "mov rax, qword ptr [rcx + 8]"
+    },
+    "0xa68dca": {
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json",
+      "json_pointer": "/functions/0xa68d90",
+      "rva": "0xa68dca",
+      "bytes": "c3",
+      "instruction": "ret"
+    },
+    "0xa68be0": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68be0",
+      "bytes": "488b11",
+      "instruction": "mov rdx, qword ptr [rcx]"
+    },
+    "0xa68be3": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68be3",
+      "bytes": "488b4110",
+      "instruction": "mov rax, qword ptr [rcx + 0x10]"
+    },
+    "0xa68be7": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68be7",
+      "bytes": "48c1e820",
+      "instruction": "shr rax, 0x20"
+    },
+    "0xa68beb": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68beb",
+      "bytes": "98",
+      "instruction": "cwde"
+    },
+    "0xa68bec": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68bec",
+      "bytes": "488b4a68",
+      "instruction": "mov rcx, qword ptr [rdx + 0x68]"
+    },
+    "0xa68bf0": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68bf0",
+      "bytes": "4c634274",
+      "instruction": "movsxd r8, dword ptr [rdx + 0x74]"
+    },
+    "0xa68bf4": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68bf4",
+      "bytes": "49c1e004",
+      "instruction": "shl r8, 4"
+    },
+    "0xa68bf8": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68bf8",
+      "bytes": "4c03c1",
+      "instruction": "add r8, rcx"
+    },
+    "0xa68bfb": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68bfb",
+      "bytes": "493bc8",
+      "instruction": "cmp rcx, r8"
+    },
+    "0xa68bfe": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68bfe",
+      "bytes": "740d",
+      "instruction": "je 0xa68c0d"
+    },
+    "0xa68c00": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c00",
+      "bytes": "3901",
+      "instruction": "cmp dword ptr [rcx], eax"
+    },
+    "0xa68c02": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c02",
+      "bytes": "740c",
+      "instruction": "je 0xa68c10"
+    },
+    "0xa68c04": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c04",
+      "bytes": "4883c110",
+      "instruction": "add rcx, 0x10"
+    },
+    "0xa68c08": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c08",
+      "bytes": "493bc8",
+      "instruction": "cmp rcx, r8"
+    },
+    "0xa68c0b": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c0b",
+      "bytes": "75f3",
+      "instruction": "jne 0xa68c00"
+    },
+    "0xa68c0d": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c0d",
+      "bytes": "33c0",
+      "instruction": "xor eax, eax"
+    },
+    "0xa68c0f": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c0f",
+      "bytes": "c3",
+      "instruction": "ret"
+    },
+    "0xa68c10": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c10",
+      "bytes": "488b4108",
+      "instruction": "mov rax, qword ptr [rcx + 8]"
+    },
+    "0xa68c14": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa68be0",
+      "rva": "0xa68c14",
+      "bytes": "c3",
+      "instruction": "ret"
+    },
+    "0xa6a050": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a050",
+      "bytes": "488b11",
+      "instruction": "mov rdx, qword ptr [rcx]"
+    },
+    "0xa6a053": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a053",
+      "bytes": "488b4110",
+      "instruction": "mov rax, qword ptr [rcx + 0x10]"
+    },
+    "0xa6a057": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a057",
+      "bytes": "48c1e820",
+      "instruction": "shr rax, 0x20"
+    },
+    "0xa6a05b": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a05b",
+      "bytes": "98",
+      "instruction": "cwde"
+    },
+    "0xa6a05c": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a05c",
+      "bytes": "488b8aa0010000",
+      "instruction": "mov rcx, qword ptr [rdx + 0x1a0]"
+    },
+    "0xa6a063": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a063",
+      "bytes": "4c6382ac010000",
+      "instruction": "movsxd r8, dword ptr [rdx + 0x1ac]"
+    },
+    "0xa6a06a": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a06a",
+      "bytes": "49c1e004",
+      "instruction": "shl r8, 4"
+    },
+    "0xa6a06e": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a06e",
+      "bytes": "4c03c1",
+      "instruction": "add r8, rcx"
+    },
+    "0xa6a071": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a071",
+      "bytes": "493bc8",
+      "instruction": "cmp rcx, r8"
+    },
+    "0xa6a074": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a074",
+      "bytes": "740d",
+      "instruction": "je 0xa6a083"
+    },
+    "0xa6a076": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a076",
+      "bytes": "3901",
+      "instruction": "cmp dword ptr [rcx], eax"
+    },
+    "0xa6a078": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a078",
+      "bytes": "740c",
+      "instruction": "je 0xa6a086"
+    },
+    "0xa6a07a": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a07a",
+      "bytes": "4883c110",
+      "instruction": "add rcx, 0x10"
+    },
+    "0xa6a07e": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a07e",
+      "bytes": "493bc8",
+      "instruction": "cmp rcx, r8"
+    },
+    "0xa6a081": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a081",
+      "bytes": "75f3",
+      "instruction": "jne 0xa6a076"
+    },
+    "0xa6a083": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a083",
+      "bytes": "33c0",
+      "instruction": "xor eax, eax"
+    },
+    "0xa6a085": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a085",
+      "bytes": "c3",
+      "instruction": "ret"
+    },
+    "0xa6a086": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a086",
+      "bytes": "488b4108",
+      "instruction": "mov rax, qword ptr [rcx + 8]"
+    },
+    "0xa6a08a": {
+      "source": "work/reports/native-pair-effects-1375.json",
+      "json_pointer": "/functions/0xa6a050",
+      "rva": "0xa6a08a",
+      "bytes": "c3",
+      "instruction": "ret"
+    },
+    "0x289b9d": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289b9d",
+      "bytes": "488d0594099b01",
+      "instruction": "lea rax, [rip + 0x19b0994]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289bb0": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bb0",
+      "bytes": "488d0581099b01",
+      "instruction": "lea rax, [rip + 0x19b0981]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289bc3": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bc3",
+      "bytes": "488d056e099b01",
+      "instruction": "lea rax, [rip + 0x19b096e]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289bdc": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bdc",
+      "bytes": "488d0555099b01",
+      "instruction": "lea rax, [rip + 0x19b0955]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289bf8": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289bf8",
+      "bytes": "488d0539099b01",
+      "instruction": "lea rax, [rip + 0x19b0939]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289c29": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289c29",
+      "bytes": "488d0508099b01",
+      "instruction": "lea rax, [rip + 0x19b0908]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289c5a": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289c5a",
+      "bytes": "488d05d7089b01",
+      "instruction": "lea rax, [rip + 0x19b08d7]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289c76": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289c76",
+      "bytes": "488d05bb089b01",
+      "instruction": "lea rax, [rip + 0x19b08bb]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289c92": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289c92",
+      "bytes": "488d059f089b01",
+      "instruction": "lea rax, [rip + 0x19b089f]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289cae": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289cae",
+      "bytes": "488d0583089b01",
+      "instruction": "lea rax, [rip + 0x19b0883]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289cca": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289cca",
+      "bytes": "488d0567089b01",
+      "instruction": "lea rax, [rip + 0x19b0867]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289ce6": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289ce6",
+      "bytes": "488d054b089b01",
+      "instruction": "lea rax, [rip + 0x19b084b]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289d02": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289d02",
+      "bytes": "488d052f089b01",
+      "instruction": "lea rax, [rip + 0x19b082f]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289d1e": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289d1e",
+      "bytes": "488d0513089b01",
+      "instruction": "lea rax, [rip + 0x19b0813]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289d3a": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289d3a",
+      "bytes": "488d05f7079b01",
+      "instruction": "lea rax, [rip + 0x19b07f7]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289d6b": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289d6b",
+      "bytes": "488d05c6079b01",
+      "instruction": "lea rax, [rip + 0x19b07c6]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289d87": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289d87",
+      "bytes": "488d05aa079b01",
+      "instruction": "lea rax, [rip + 0x19b07aa]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289da3": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289da3",
+      "bytes": "488d058e079b01",
+      "instruction": "lea rax, [rip + 0x19b078e]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289dd4": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289dd4",
+      "bytes": "488d055d079b01",
+      "instruction": "lea rax, [rip + 0x19b075d]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289e05": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289e05",
+      "bytes": "488d052c079b01",
+      "instruction": "lea rax, [rip + 0x19b072c]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289e21": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289e21",
+      "bytes": "488d0510079b01",
+      "instruction": "lea rax, [rip + 0x19b0710]",
+      "rip_target": "0x1c3a538"
+    },
+    "0x289e3d": {
+      "source": "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json",
+      "json_pointer": "/functions/0x289b50",
+      "rva": "0x289e3d",
+      "bytes": "488d05f4069b01",
+      "instruction": "lea rax, [rip + 0x19b06f4]",
+      "rip_target": "0x1c3a538"
+    }
+  },
+  "loaded_getter_pins": {
+    "offer_alliance": {
+      "entry_rva": "0xa68d90",
+      "raw_hex": "488b11488b411048c1e82098488b8a800000004c63828c00000049c1e0044c03c1493bc8740d3901740c4883c110493bc875f333c0c3488b4108c3",
+      "bytes": 59,
+      "sha256": "24deeb5fa6d72174d0e9189df95802a700016be93317be6c873ae3d502bb1d82",
+      "source": "work/reports/native-pair-extension-effects-v10-1375.json"
+    },
+    "royal_marriage": {
+      "entry_rva": "0xa68be0",
+      "raw_hex": "488b11488b411048c1e82098488b4a684c63427449c1e0044c03c1493bc8740d3901740c4883c110493bc875f333c0c3488b4108c3",
+      "bytes": 53,
+      "sha256": "cba1b58997c0a67b84aa1a91beb7ee75160fcd4b7b7d5255e857257b73402149",
+      "source": "work/reports/native-pair-effects-1375.json"
+    },
+    "guarantee": {
+      "entry_rva": "0xa6a050",
+      "raw_hex": "488b11488b411048c1e82098488b8aa00100004c6382ac01000049c1e0044c03c1493bc8740d3901740c4883c110493bc875f333c0c3488b4108c3",
+      "bytes": 59,
+      "sha256": "59ef73b384833a8dfc40b9a1b22f55929076115e5ca942986103e114fc3d9977",
+      "source": "work/reports/native-pair-effects-1375.json"
+    }
+  },
+  "reply_slot_bytes": {
+    "offer_alliance": {
+      "action_vtable_rva": "0x1c80720",
+      "reply_required_slot": "0xd0",
+      "target_rva": "0x50f120",
+      "prefix16_hex": "807938000f95c0c3cccccccccccccccc",
+      "newly_decoded": true,
+      "instructions": [
+        {
+          "rva": "0x50f120",
+          "bytes": "80793800",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [rcx + 0x38], 0"
+        },
+        {
+          "rva": "0x50f124",
+          "bytes": "0f95c0",
+          "mnemonic": "setne",
+          "operands": "al"
+        },
+        {
+          "rva": "0x50f127",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    },
+    "royal_marriage": {
+      "action_vtable_rva": "0x1c80ab0",
+      "reply_required_slot": "0xd0",
+      "target_rva": "0x4e4d50",
+      "prefix16_hex": "0fb64138c3cccccccccccccccccccccc",
+      "newly_decoded": true,
+      "instructions": [
+        {
+          "rva": "0x4e4d50",
+          "bytes": "0fb64138",
+          "mnemonic": "movzx",
+          "operands": "eax, byte ptr [rcx + 0x38]"
+        },
+        {
+          "rva": "0x4e4d54",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    },
+    "guarantee": {
+      "action_vtable_rva": "0x1c7fe50",
+      "reply_required_slot": "0xd0",
+      "target_rva": "0x8f450",
+      "prefix16_hex": "32c0c3cccccccccccccccccccccccccc",
+      "newly_decoded": true,
+      "instructions": [
+        {
+          "rva": "0x8f450",
+          "bytes": "32c0",
+          "mnemonic": "xor",
+          "operands": "al, al"
+        },
+        {
+          "rva": "0x8f452",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    }
+  },
+  "typed_index_vtable_rva": "0x1c3a538",
+  "new_decoded_bytes": 16,
+  "source_pins": {
+    "work/reports/native-pair-effects-1375.json": {
+      "bytes": 2190321,
+      "sha256": "b67e9e3ec3d333ad5603c9bcb7a70d614bab1107f283c6f01d99e7c744730ae0"
+    },
+    "work/reports/native-pair-extension-v10-1375.json": {
+      "bytes": 2862211,
+      "sha256": "0c1731b0b29b296da73dc406fb31544ada59c17c275d17d623677b16998698bd"
+    },
+    "work/reports/native-pair-extension-effects-v10-1375.json": {
+      "bytes": 313488,
+      "sha256": "b6f4b69db38f5e3eae0c3cebf1fa5298701b86a98e8299d6f0e9759b84861f62"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/index-guard/static.json": {
+      "bytes": 40324,
+      "sha256": "c4f6c2fc4e3a37153b3d4ba8f099204001bd8e64af4aacfd9c8cf0a4c024a57e"
+    },
+    "work/reports/knowledge-effect-observer-20261015-r1/static.json": {
+      "bytes": 1160839,
+      "sha256": "874d2135b8e92bab67993664660ce5349762d64ed25e1a56467cb7412e889703"
+    }
+  },
+  "game_process_accessed": false,
+  "native_calls": 0,
+  "peak_committed_bytes": 101052416
+}

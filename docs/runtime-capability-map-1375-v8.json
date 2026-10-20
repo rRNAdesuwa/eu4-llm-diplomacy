@@ -1,0 +1,494 @@
+{
+  "accepted_entry_count": 7,
+  "all120_effects_complete": false,
+  "authoritative_for_permissions": false,
+  "build_operations": {
+    "CLI_or_tests_run": 0,
+    "PE_opens": 0,
+    "native_game_calls": 0,
+    "process_accesses": 0,
+    "requests_published": 0
+  },
+  "current_process_authenticated": false,
+  "discovery_build_scope": "Exact v7 plus selected support canonical/controller and completed non-author live/root acceptance metadata. Only support record index5 changed; other six records are identical. No CLI/tests/process/PE/config-value/raw-capture or recursive source/host reads during publication.",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "historical_effect_signals": 48,
+  "historical_persistence_aggregate": 44,
+  "pending_active_world_reader_count": 0,
+  "previous_discovery": {
+    "bytes": 17565,
+    "path": "docs/runtime-capability-map-1375-v7.json",
+    "sha256": "137abeb35de8f6040cdcd3c5debe6d20ce91e4a3fdf149bed7b5bab7964591cc"
+  },
+  "purpose": "file-only tool selection; descriptive metadata does not authorize execution",
+  "remaining_repair_candidates": 42,
+  "rules": [
+    "Current state and successful reads do not establish original-request effects",
+    "Effects require the genuine original receipt, pre-send baseline and selected runtime object change",
+    "Save and cold reload test persistence separately",
+    "Unsupported layout, stale identity, changed sources or inconsistent reads remain unknown; no automatic retry",
+    "Fresh real process identity and manual pause are required by runtime readers; the game need not be foreground"
+  ],
+  "schema": "EU4-READONLY-TOOL-DISCOVERY/8",
+  "source_closures_rehashed": false,
+  "tools": [
+    {
+      "entry": "tools/eu4_observer.py",
+      "entry_pin": {
+        "bytes": 4201,
+        "sha256": "51346cc9011e6c4faef04ce73fc9ce423b184063b64a755624079dd8a3e8ebb2"
+      },
+      "game_functions_invoked_by_observer": false,
+      "guide": "docs/runtime-observer-1375.md",
+      "id": "original_effects_and_current_relations_wars",
+      "manifest": "bridge/eu4_observer_manifest_1375.json",
+      "manifest_direct_pin_count": 4,
+      "manifest_pin": {
+        "bytes": 845,
+        "sha256": "23c6831a861425c5f3012b583c93c6c1ccf7d10c769f9a23389474d389c9b361"
+      },
+      "original_receipt_and_prebaseline_required_for_effects": true,
+      "permission_authority": "exact owner manifest and runtime source gate, never this discovery map",
+      "publishes_diplomacy_requests": false,
+      "request_causality_from_current_state_alone": false,
+      "request_effect_profile_count": 15,
+      "scope": "15 original-request effect profiles; current alliance, marriage, guarantee and complete current war graph"
+    },
+    {
+      "action_labels_for_reference": [
+        "integrate_union",
+        "cancel_integration"
+      ],
+      "entry": "work/candidates/integration-task-observer-1375-v1/integration_task_observer.py",
+      "entry_pin": {
+        "bytes": 20891,
+        "sha256": "ec576a21a4018fa1b91d0864990b281a7a075ed3761404d9bdd7559de8b25cb9"
+      },
+      "game_functions_invoked_by_observer": false,
+      "guide": "work/candidates/integration-task-observer-1375-v1/STATUS.md",
+      "id": "integration_current_task",
+      "integration_completion_verified": false,
+      "manifest": "work/candidates/integration-task-observer-1375-v1/source-manifest.json",
+      "manifest_direct_pin_count": 21,
+      "manifest_pin": {
+        "bytes": 5626,
+        "sha256": "4b17a5862dbe4461497c6d187d6cb9dc0efb16a489fbb7048f6658ca5794cb9e"
+      },
+      "permission_authority": "exact owner manifest and runtime source gate, never this discovery map",
+      "publishes_diplomacy_requests": false,
+      "real_capture_scope": "FRA-ORL and DAN-NOR selected-index absence only; no active taskbody sample",
+      "request_effect_profile_count": 0,
+      "scope": "selected current task presence, selected index absence, or unknown"
+    },
+    {
+      "actual_native_predicate_evaluated": false,
+      "complete_truce_or_expiry_verified": false,
+      "entry": "work/candidates/linked-truce-projection-1375-v2/linked_truce_projection.py",
+      "entry_pin": {
+        "bytes": 24660,
+        "sha256": "31afcf307f62d77ab8dedaf8d01e73617488f07543e348ecfa891facd7a951e0"
+      },
+      "game_functions_invoked_by_observer": false,
+      "guide": "work/candidates/linked-truce-projection-1375-v2/STATUS.md",
+      "id": "linked_truce_conditional_projection_v2",
+      "manifest": "work/candidates/linked-truce-projection-1375-v2/source-manifest.json",
+      "manifest_direct_pin_count": 27,
+      "manifest_pin": {
+        "bytes": 5910,
+        "sha256": "15a221ec3eb1d63f1598a9c5305d2cbfd50b7e2c8492fbb10ce695b27b28ee93"
+      },
+      "path_count": 4,
+      "permission_authority": "exact owner manifest and runtime source gate, never this discovery map",
+      "publishes_diplomacy_requests": false,
+      "real_capture_scope": "v1 A/B paths retained; v2 new D POR-ORL once, false; C covered offline only",
+      "request_effect_profile_count": 0,
+      "scope": "four selected external normal-return path projections; other paths unknown"
+    },
+    {
+      "complete_truce_or_expiry_verified": false,
+      "entry": "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py",
+      "entry_pin": {
+        "bytes": 16856,
+        "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+      },
+      "game_functions_invoked_by_observer": false,
+      "guide": "work/candidates/direct-truce-cache-cli-1375-v1/STATUS.md",
+      "id": "directional_truce_cache",
+      "manifest": "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json",
+      "manifest_direct_pin_count": 10,
+      "manifest_pin": {
+        "bytes": 2494,
+        "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+      },
+      "permission_authority": "exact owner manifest and runtime source gate, never this discovery map",
+      "publishes_diplomacy_requests": false,
+      "request_effect_profile_count": 0,
+      "scope": "current directional pair byte45 mask1 only"
+    },
+    {
+      "endpoint_count": 60,
+      "entry": "work/candidates/war-peace-api-lookup-1375-v6/war_peace_lookup.py",
+      "entry_pin": {
+        "bytes": 3602,
+        "sha256": "7994ff7b4e3454b98f55919e786cd1582b8c320c650e94f01f3c20b078e43c0f"
+      },
+      "game_functions_invoked_by_observer": false,
+      "guide": "work/candidates/war-peace-api-lookup-1375-v6/REVIEW_STATUS.md",
+      "id": "war_peace_static_contract_lookup_v6",
+      "independent_review": {
+        "bytes": 6894,
+        "path": "work/reports/war-peace-api-lookup-v6-independent-review-20261016-r1/findings.json",
+        "sha256": "9faa862891553f821391d2fd81cb472a7bdd85c94fa9e370013a1cc76615d158"
+      },
+      "manifest": "work/candidates/war-peace-api-lookup-1375-v6/data-manifest.json",
+      "manifest_direct_pin_count": 95,
+      "manifest_pin": {
+        "bytes": 18868,
+        "sha256": "a45e5bda390f83f956e387638607a86509ac1a8a76a966372067accfe38ed778"
+      },
+      "permission_authority": "Exact data-manifest/index/evidence and pinned unchanged v5 Python engine guards; this descriptive map grants no runtime or native execution authority.",
+      "previous_file_lookup": {
+        "entry": "work/candidates/war-peace-api-lookup-1375-v5/war_peace_lookup.py",
+        "entry_pin": {
+          "bytes": 3602,
+          "sha256": "653530b8d60e789f33786819e43de7d057142de5c75c6841469d2802928a9da6"
+        }
+      },
+      "process_access": false,
+      "publishes_diplomacy_requests": false,
+      "query_engine": {
+        "bytes": 16583,
+        "path": "work/candidates/war-peace-api-lookup-1375-v5/query_engine.py",
+        "sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466"
+      },
+      "request_effect_profile_count": 0,
+      "scope": "60 offline retained evidence records / 94 selected JSON sources; file-only check/catalog/search/lookup, no executable diplomacy API promise",
+      "source_graph_scope": "Existing v5 ea030 engine/96cap unchanged. Original58 rows exact; generator receives explicit later R75/R77 context while historical fields persist; one selected97bd30 R80/R81 machine contract entry.",
+      "source_manifest": "work/candidates/war-peace-api-lookup-1375-v6/source-manifest.json",
+      "source_manifest_direct_pin_count": 125,
+      "source_manifest_pin": {
+        "bytes": 25179,
+        "sha256": "9e292ce2c077be0af996bad24ba44dab98ea88566726f88cd36093fc45828765"
+      },
+      "war_peace_executor_ready": false
+    },
+    {
+      "ABA_prevention_verified": false,
+      "AI_acceptance_verified": false,
+      "OS_CloseHandle_return_verified": false,
+      "actual_capture": {
+        "bytes": 708665,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/capture.json",
+        "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+      },
+      "actual_child_io": {
+        "bytes": 377024,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-io.json",
+        "sha256": "5e82ca397fb3b1ca67326ff1b612ab29ff7ff5c03e45c47faf83fb8e19595b7a"
+      },
+      "actual_completion": {
+        "bytes": 16575,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion.json",
+        "sha256": "b949815ebc4d15a0db6792006fff759289a5fd70438997e3752bbe958fcada8a"
+      },
+      "actual_completion_corrigendum": {
+        "bytes": 2391,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion-corrigendum.json",
+        "sha256": "e50f7135d51eac5ca000c29eeac0651625cc396f2d837fdb5db0a11b225e3ac6"
+      },
+      "actual_manifest": {
+        "bytes": 34688,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+        "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+      },
+      "actual_receipt": {
+        "bytes": 422909,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+        "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+      },
+      "atomic_snapshot": false,
+      "complete_IO_closure_verified": false,
+      "complete_RPM_journal_verified": false,
+      "configuration_metadata": {
+        "binary_closed": true,
+        "physical_bytes_already_charged_to_ordinary": true,
+        "raw_pin": {
+          "bytes": 226,
+          "sha256": "84abda5840824badc9fd5daef7f5faedd61e5c2a01e329843b2bd5a5caeb7658"
+        },
+        "values_logged": false,
+        "virtual_closed": true
+      },
+      "current_only": true,
+      "entry": "work/candidates/support-heir-current-observer-1375-v1/support_heir_current_observer.py",
+      "entry_PE_identity_read": {
+        "bytes": 8192,
+        "calls": 1,
+        "included_in_journal_totals": false,
+        "raw_replayed": false,
+        "source_declaration_only": true
+      },
+      "entry_pin": {
+        "bytes": 21780,
+        "sha256": "8b2eba840c3f6b4927f6fbf1aa04878c931fc548372dc10dd8432863ed68ec01"
+      },
+      "final_heir_result_verified": false,
+      "game_functions_invoked_by_observer": false,
+      "guide": "work/candidates/support-heir-current-observer-1375-v1/LIVE_REVIEW_STATUS.md",
+      "guide_pin": {
+        "bytes": 2146,
+        "sha256": "f3185f07a86839c319fe768dc206e9c35984fe0017fb98a3a4b40f1a30cc276a"
+      },
+      "id": "support_heir_current_task_missing_key_path_verified",
+      "independent_live_completion": {
+        "bytes": 2390,
+        "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/completion.json",
+        "sha256": "0b7cf884062f15f550ac1b38149339c94be96a46200d70479bfa8f4e14135dfb"
+      },
+      "independent_live_pincheck": {
+        "bytes": 19829,
+        "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/pincheck.json",
+        "sha256": "74f62e7bda50979e6254bde7f9f064f02f81802db2b23ca01bb01af5f64a51cc"
+      },
+      "independent_live_review": {
+        "bytes": 5248,
+        "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/findings.json",
+        "sha256": "bd3dc09480322dfbf2461e63015c57ec172d7361b9c305949034419cf479d595"
+      },
+      "independent_live_review_manifest": {
+        "bytes": 17892,
+        "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/manifest.json",
+        "sha256": "be2d26a8304e00415fba4acd1496d1c5e4083da7baa5d882754ad7f384f216b0"
+      },
+      "independent_live_verification": {
+        "bytes": 40878,
+        "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/verification.json",
+        "sha256": "11d8519284dbdbc4e89da7f86513e7c305d67e5c2152a6d8a7865e48df503c69"
+      },
+      "independent_reviews": {
+        "work/reports/support-heir-current-observer-production-review-20261015-r1/production-passed.json": {
+          "bytes": 2713,
+          "sha256": "5a5aeb0288436311715aadbad783475d0c965a822dd4248747f382a6d3b32ab2"
+        },
+        "work/reports/support-heir-current-observer-source-review-20261015-r1/independent-source-ready.json": {
+          "bytes": 5732,
+          "sha256": "6ca2a47412189b621ecc765791557f0e4ea861d26317b2831fb5d2b7f6842a21"
+        },
+        "work/reports/support-heir-current-observer-unknown-path-review-20261015-r1/findings.json": {
+          "bytes": 6891,
+          "sha256": "c945c55a2aae4d6c066134977d3c02a070cfb94a632ca63f9d715554ce3a6d02"
+        }
+      },
+      "limitations": [
+        "Missing-key current absence is not an original-request effect, refusal, AI response, final heir or persistence result.",
+        "Both matched-NULL-value and positive task-body paths remain unverified by runtime data.",
+        "Entry1x8192B remains source-declared and unjournaled; no all-RPM total is promoted.",
+        "Normal context/heldNone does not verify OS CloseHandle return. Full IO, ABA, atomicity, object lifetime and world lease remain unknown.",
+        "Historical identity and successful reads grant no new execution or retry permission. Exact owner graph and future authorization remain authoritative."
+      ],
+      "loaded_code_bytes_per_guard": 4308,
+      "manifest": "work/candidates/support-heir-current-observer-1375-v1/source-manifest.json",
+      "manifest_direct_pin_count": 22,
+      "manifest_pin": {
+        "bytes": 5506,
+        "sha256": "f8442eefa3dbacb5a952a5d8387cf0bcea83adfcb059034984af5bd40478c069"
+      },
+      "maturity": "source_production_and_real_bilateral_missing_key_path_reviewed",
+      "native_ready": false,
+      "original_request_correlated": false,
+      "original_request_effect_verified": false,
+      "permission_authority": "exact owner manifest and runtime source gate, never this discovery map",
+      "persistence_verified": false,
+      "positive_task_body_verified": false,
+      "publishes_diplomacy_requests": false,
+      "real_capture_scope": "One FRA->POL current query on paused1445-05-19. Two equal ordered samples; each forward/reverse root140 index had count=capacity0, missing key and selected pointer0. No task body read.",
+      "real_world_matched_null_value_path_verified": false,
+      "real_world_missing_key_path_verified": true,
+      "real_world_task_decoder_verified": false,
+      "request_effect_profile_count": 0,
+      "request_effect_verified": false,
+      "root_live_acceptance": {
+        "bytes": 1810,
+        "path": "work/reports/support-heir-current-root-live-acceptance-20261016-r1/findings.json",
+        "sha256": "7a90696fe7ff99d6709ef0449e304a7b6970b26116da2adc9effe11ab13aea54"
+      },
+      "root_live_acceptance_receipt": {
+        "bytes": 4424,
+        "path": "work/reports/support-heir-current-root-live-acceptance-20261016-r1/receipt.json",
+        "sha256": "4d4a940262e6f5af310d38175d518b619b12b837882d44140c3eba0d1440aff2"
+      },
+      "runtime_controller_source_manifest": {
+        "bytes": 16257,
+        "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-manifest.json",
+        "sha256": "3d70675a5901635a00efd6415ac93ead4b4dcadc726df1a6f4f065b864bb20f7"
+      },
+      "runtime_controller_source_pin_count": 49,
+      "scope": "Selected current task presence/absence/unknown profile. Real validation covers both directional missing-key lookups only; no positive task body or matched-NULL-value runtime sample.",
+      "selected_effect_verified": false,
+      "shared_attempt_budget": {
+        "bytes": 524288,
+        "calls": 4096,
+        "entry_PE8192_included": false,
+        "single_read": 65536
+      },
+      "source_graph_sha256": "191e54593a93fa7f42b402b3ee0c55b56f9cbbb868fb64d2f96926069789ccea",
+      "verified_missing_key_path_counts": {
+        "both_index_capacity": 0,
+        "both_index_count": 0,
+        "both_key_present": false,
+        "both_selected_pointer": 0,
+        "config_returned": 226,
+        "config_snapshot_count": 1,
+        "directional_indices_per_sample": 2,
+        "game_fullhash_count": 1,
+        "game_returned": 38462504,
+        "host_returned": 2302461254,
+        "matched_NULL_value_lookups_observed": 0,
+        "missing_key_lookups_total": 4,
+        "ordinary_returned": 69093511,
+        "positive_task_body_reads": 0,
+        "samples": 2,
+        "shared_RPM_bytes": 55844,
+        "shared_RPM_calls": 2990,
+        "shared_RPM_largest": 11040
+      },
+      "world_lease": false
+    },
+    {
+      "acceptance_verified": false,
+      "active_peace_body_observed": false,
+      "actual_capture": {
+        "bytes": 929944,
+        "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/capture.json",
+        "sha256": "482f13ffcf7f54177bd736795153f9e8996921c361af429dd15f98d5122f4c9e"
+      },
+      "actual_receipt": {
+        "bytes": 421298,
+        "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/receipt.json",
+        "sha256": "44c1eeab3ca7fe25dc54a3087a208dbebd9bce23f5118e372d16ebc1ee435583"
+      },
+      "actual_source_manifest": {
+        "bytes": 8861,
+        "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-manifest.json",
+        "sha256": "803d619df53c33b8698e78283c3ad223a61319c87b4a40ccaae732997d225127"
+      },
+      "additional_runtime_review_gates": 2,
+      "atomic_snapshot": false,
+      "attempt_budget": {
+        "bytes": 524288,
+        "entry_PE8192_included": true,
+        "reads": 4096,
+        "single_read": 65536
+      },
+      "current_only": true,
+      "entry": "work/candidates/peace-current-pending-observer-1375-v2/peace_current_pending.py",
+      "entry_pin": {
+        "bytes": 24249,
+        "sha256": "94faa085cc982230717f42b43b24bd777a26493a0cf18d2dc3c2cbfc23a7491d"
+      },
+      "game_functions_invoked_by_observer": false,
+      "guide": "work/candidates/peace-current-pending-observer-1375-v2/REVIEW_STATUS.md",
+      "id": "peace_current_pending_queue_v2_empty_path_verified",
+      "independent_live_accounting_corrigendum": {
+        "bytes": 8567,
+        "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/accounting-corrigendum.json",
+        "sha256": "c8322dd6351dfaf9f5efe889b270abc283c55d03e49d19cfa61d8f06ae220acb"
+      },
+      "independent_live_review": {
+        "bytes": 6495,
+        "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/findings.json",
+        "sha256": "dc511e9549891bd56f3d5eade28fd220db7420d8303879918f9b9ca1e3489a7e"
+      },
+      "independent_live_review_manifest": {
+        "bytes": 16101,
+        "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/manifest.json",
+        "sha256": "76dc493bc241b6ab7cec22c7acf9ab56012a565d82ba06e109366bee1b41f2ae"
+      },
+      "independent_live_review_verification": {
+        "bytes": 13493,
+        "path": "work/reports/peace-current-pending-v2-live-independent-review-20261016-r2/verification.json",
+        "sha256": "6b5d6ae8b07349ab6f9fd1fae4fa645966c314f9d76ddaf94eb6964fce0424a5"
+      },
+      "independent_source_review": {
+        "bytes": 6951,
+        "path": "work/reports/peace-current-pending-v2-independent-review-20261016-r1/findings.json",
+        "sha256": "62e95ab8af0fda65f43a89f23365e8893753b2c7e07b36b8ff4c818ddd936b82"
+      },
+      "limitations": [
+        "Current absence is not native rejection, AI response, original effect, settlement or peace completion.",
+        "No live node/action body or positive queue decoding validation.",
+        "Normal context/heldNone does not prove OS CloseHandle return; lease/ABA/atomic/persistence remain unproved.",
+        "Exact intercepted file API coverage only; full OS/import/cache/native/delegated IO closure unknown. Discovery grants no execution permission."
+      ],
+      "loaded_code_bytes_per_pass": 735,
+      "manifest": "work/candidates/peace-current-pending-observer-1375-v2/source-manifest.json",
+      "manifest_direct_pin_count": 41,
+      "manifest_pin": {
+        "bytes": 8850,
+        "sha256": "ece6b12d71aca0743bbac575447e32c333aaf64135ae283a8e0b987e9fbf0f1c"
+      },
+      "maturity": "source_production_and_real_empty_recipient_queue_path_reviewed",
+      "native_ready": false,
+      "original_request_effect_verified": false,
+      "peace_completed": false,
+      "permission_authority": "Exact owner source graph and independently bound source/production reviews plus fresh runtime guards; never this map.",
+      "persistence_verified": false,
+      "previous_reader": {
+        "entry": "work/candidates/peace-current-pending-observer-1375-v1/peace_current_pending.py",
+        "entry_pin": {
+          "bytes": 23345,
+          "sha256": "ac8c292d1320f776a6a8817f0158c275e624bcfe05f9a2dc51220e03532ba643"
+        },
+        "guide": "work/candidates/peace-current-pending-observer-1375-v1/REVIEW_STATUS.md",
+        "manifest": "work/candidates/peace-current-pending-observer-1375-v1/source-manifest.json",
+        "manifest_pin": {
+          "bytes": 7055,
+          "sha256": "55c2b33910e95f942c769358752810ff294e7667d99d63c01fd334adae2ff28d"
+        }
+      },
+      "production_review": {
+        "bytes": 3926,
+        "path": "work/reports/peace-current-pending-v2-production-review-20261016-r1/findings.json",
+        "sha256": "86be9106da51335aace48a21afa4fc1167ac77cedd515438d638563aa47c2205"
+      },
+      "publishes_diplomacy_requests": false,
+      "queue_profile": {
+        "action_prefix_bytes": 64,
+        "foreign_vtable_bytes": 8,
+        "iteration_byte": 0,
+        "max_nodes": 128,
+        "tombstones_allowed": false
+      },
+      "real_capture_scope": "One R2 FRA->ENG selected target inbox query on paused1445-05-19; two complete ENG empty-header samples. No node/action body was reached.",
+      "real_world_empty_queue_path_verified": true,
+      "real_world_queue_decoder_verified": false,
+      "request_effect_profile_count": 0,
+      "runtime_controller_source_manifest": {
+        "bytes": 8861,
+        "path": "work/reports/peace-current-pending-v2-live-controller-20261016-r2/source-manifest.json",
+        "sha256": "803d619df53c33b8698e78283c3ad223a61319c87b4a40ccaae732997d225127"
+      },
+      "scope": "Current selected actor->target inbox presence/absence/unknown profile. Real validation covers empty target queue only; nonempty action decoding has offline evidence, not a positive runtime sample.",
+      "source_graph_scope": "41 canonical source pins; runtime adds two review witnesses. Exact R2 text adapter controller separately binds raw configuration metadata; original v1/R1 attempts remain frozen.",
+      "source_graph_sha256": "5df0dcb56da6629ebbe9f3585ff6f10d120d66d903354be05887dcea9dc67a82",
+      "verified_empty_path_counts": {
+        "RPM_bytes": 77718,
+        "RPM_calls": 2967,
+        "RPM_largest": 11040,
+        "code_bytes_each": 735,
+        "config_returned": 226,
+        "controller_including_seal": 4728545,
+        "game_attempts": 115,
+        "game_returned": 115387512,
+        "host_attempts": 6167,
+        "host_returned": 2302461254,
+        "ordinary_attempts": 1296,
+        "ordinary_returned": 92044380,
+        "queue_nodes": 0,
+        "recipient_queues": 2,
+        "samples": 2
+      },
+      "world_lease": false
+    }
+  ]
+}

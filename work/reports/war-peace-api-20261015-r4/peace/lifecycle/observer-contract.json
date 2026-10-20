@@ -1,0 +1,159 @@
+{
+  "schema": "peace_lifecycle_observer_contract_1375_r4_v1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "addresses": "RVA; VA requires verified current module",
+  "runtime_verified": false,
+  "production_ready": false,
+  "scope": "pure bounded Reader decoder; no process opener, native calls, sender, hooks or install",
+  "implementation": {
+    "header": "candidate/lifecycle_reader.h",
+    "source": "candidate/lifecycle_reader.cpp",
+    "entry": "peace1375::inspect_lifecycle",
+    "reuse": "work/reports/war-peace-api-20261014-r3/peace/candidate/world_reader.h",
+    "return_true": "supported raw layout is self-consistent only; never epoch/lifetime/native readiness",
+    "false": "partial diagnostic snapshot; never authorize an action"
+  },
+  "host_preconditions": [
+    "Authenticate exact disk SHA and current loaded image identity/instruction and vtable pins before use.",
+    "Run on a separately authenticated native game callback thread. A caller-supplied TID does not prove this.",
+    "Hold a real world/save epoch and war-specific lifetime lease over all reads. expected_war must remain allocated for this entire call.",
+    "A critical scope excluding other threads is insufficient if the current native effect can destroy or reload that same object. Prove this effect boundary separately.",
+    "After a known deleting destructor, never pass or dereference the old war pointer. Do not inspect after an effect unless a real provider proves the allocation remains alive.",
+    "Safe Reader must catch its own read exceptions and reportfalse. The decoder never opens or reads a game process by itself."
+  ],
+  "country_root": {
+    "embedded_root": "country+14f8",
+    "root_vtable": "module+1c4f5f8",
+    "root_marker": "DWORD+8=165",
+    "owner": "root+10==country",
+    "relation_vector": "root+18 begin/+20 end/+28 cap, stride48; selected slot must be within actual end",
+    "relation_record": "+0==root/+8==owner full handle/+10==counterpart full handle",
+    "country_full_identity": "country+20 equals resolved full handle; db+118 country array and signed count+124",
+    "alias_arithmetic": {
+      "root+18": "country+1510",
+      "root+48": "country+1540",
+      "root+50": "country+1548",
+      "root+58": "country+1550",
+      "root+5c": "country+1554"
+    },
+    "independent_indexes": 2,
+    "repeated_paths_per_direction": 2
+  },
+  "war_index": {
+    "vtable": "module+1c3a538 atroot+48",
+    "data": "root+50",
+    "capacity": "signedDWORD root+58",
+    "count": "signedDWORD root+5c",
+    "row_stride": 16,
+    "key": "signedDWORD row+0 = sign-extended int16(other_full_handle>>32)",
+    "war": "QWORD row+8; borrowed",
+    "null_setter": "28ad30(root,other,null)->28d810(root+48,other,null), swap-last/count--, returns old war without free",
+    "decoder_limit": 64,
+    "missing_target_match": "allowed aszero after native membership removal; never proves deallocation"
+  },
+  "war": {
+    "vtable": "module+1d1f768",
+    "outer_bytes": "218",
+    "goal": "borrowed/conditional-owned pointer+160; never call virtual78 as a probe",
+    "raw_outcome": "DWORD+210; serialized token38b6/outcome; no lifetime conclusion",
+    "native_deleting_dtor": "d85960(this,flagbit0); bodyd85c40; flag1 frees218",
+    "external_destructor_call_allowed": false
+  },
+  "game": {
+    "global": "module+233fe78",
+    "array": "polymorphic object+1e28; QWORDdata+1e30/signedDWORDcapacity+1e38/signedDWORDcount+1e3c; stride8",
+    "array_limit": 512,
+    "list": {
+      "head": "+1e40",
+      "tail": "+1e48",
+      "count": "signedDWORD+1e50",
+      "iteration_guard": "BYTE+1e54 mustbe0 for supported observation"
+    }
+  },
+  "borrow_manager": {
+    "global": "module+233fea0; null means absent, never invoke lazy getter",
+    "lists": [
+      {
+        "head": "+60",
+        "tail": "+68",
+        "count": "signedDWORD+70",
+        "guard": "BYTE+74"
+      },
+      {
+        "head": "+78",
+        "tail": "+80",
+        "count": "signedDWORD+88",
+        "guard": "BYTE+8c"
+      }
+    ],
+    "business_name": "unresolved; node payload war is borrowed"
+  },
+  "borrow_list_node": {
+    "bytes": 32,
+    "war": "QWORD+0",
+    "previous": "QWORD+8",
+    "next": "QWORD+10",
+    "tombstone": "BYTE+18",
+    "limit_per_list": 128,
+    "reject": "nonzero guard/tombstone, duplicate node/war, inconsistent links/count/head/tail, failed safe read",
+    "lifetime": "node deferral does not retain or refcount the war allocation"
+  },
+  "budgets": {
+    "max_read_calls": 4096,
+    "max_read_bytes": 65536,
+    "max_relation_records": 4096,
+    "negative_signed_count_capacity": "reject",
+    "duplicate_keys_or_wars": "reject"
+  },
+  "stage_receipts": [
+    {
+      "name": "effect_entered",
+      "proof": "authenticated host callback/command identity; nottransport true"
+    },
+    {
+      "name": "effect_returned",
+      "proof": "normal return separately classified; does not retain borrowed war"
+    },
+    {
+      "name": "outcome_sample",
+      "proof": "rawDWORD only, sampled under real allocated-war lease"
+    },
+    {
+      "name": "bilateral_index_membership",
+      "proof": "two physical directional matches, repeated alias reads explicitly correlated"
+    },
+    {
+      "name": "global_and_borrower_membership",
+      "proof": "separate game array/list and manager list observations; no inferencefromoutcome"
+    },
+    {
+      "name": "war_retired",
+      "proof": "authenticated native destructor/retirement identity with no post-free dereference; ordinarywhitepeace trigger/time stillunknown"
+    }
+  ],
+  "normal_effect_boundaries": {
+    "war_effect": "501290",
+    "peace_effect": "598ed0",
+    "on_action": "943d00",
+    "event_apply": "6f4f40",
+    "synchronous_event_effect": "6f5110 event+180 virtual78",
+    "synchronous_on_action_effect": "943e4a def+68 virtual78",
+    "reload_save_exclusion": "notproved",
+    "force_or_state_patch_allowed": false
+  },
+  "missing_real_providers": [
+    "ordinary post-whitepeace final retirement invocation/time",
+    "authenticated native callback thread/world epoch",
+    "war-specific allocated-object lease through relevant native effects",
+    "concrete dynamic effect/reload/save closure"
+  ],
+  "offline_validation": {
+    "compiler": "MSVC19.44.35217.0 x64",
+    "flags": "/std:c++17 /W4 /WX /EHsc",
+    "synthetic_cases": 24,
+    "passed": true,
+    "proves": "structural decoder behavior only",
+    "game_access": false,
+    "host_lease_proved": false
+  }
+}

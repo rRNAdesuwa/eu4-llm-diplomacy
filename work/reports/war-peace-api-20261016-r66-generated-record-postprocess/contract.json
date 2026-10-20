@@ -1,0 +1,190 @@
+{
+  "schema": "EU4-R66-GENERATED-RECORD-POSTPROCESS-STATIC-CONTRACT/1",
+  "sealed": true,
+  "stage": "author_static_result_pending_independent_review",
+  "entry": {
+    "rva": "0x994f00",
+    "pdata_extent": [
+      "0x994f00",
+      "0x994fbe"
+    ],
+    "owned_bytes": 190,
+    "rows": 50,
+    "source_manifest": {
+      "bytes": 20632,
+      "sha256": "fd9b6080f2c82133abab4db8b3e96538acec545a5db27b7b9aebc6cd001d1e91"
+    },
+    "producer": {
+      "bytes": 23053,
+      "sha256": "b8b132b4ce3244c4570efdb888dc24db423a626c598d6216a135a3a9d48890ca"
+    },
+    "entry_seed": {
+      "bytes": 4721,
+      "sha256": "3f59299fe0acbef1c1827d48e93445a76c049a2eceb805cb18d8cff42255ef03"
+    },
+    "capture": {
+      "bytes": 106529,
+      "sha256": "afe78019ab8dc507a69611f00ed3807013f2c5f3a4d355fbd718ff33e05fb292"
+    },
+    "owned_code": {
+      "bytes": 881,
+      "sha256": "7a8d4de931b655d3292cde59d28bc7ca4e8a8bbf95e9abed54f1401abf94f42e"
+    },
+    "actual_exit_code": 0,
+    "failure_files": [],
+    "three_review_pins_prepost_equal": true
+  },
+  "caller_scope": {
+    "path": "SelectedreachableR62complexpostprocessonly. SimplebranchandcomplexD<=0paths bypass994f00.",
+    "RCX_before_entry": "OriginalH forwardedR14 at9846d2; contentsnotimmutableacrossupstreamcalls.",
+    "RDX_before_entry": "BorrowedDWORDaddressR62entryQ+18 viaLEAsteady+a0, currentTnotnecessarilyinitialT.",
+    "R8_R9_XMM": "Unknownafterunfollowedupstreamcalls; noinitialzero/positiveT/wholeH invariant."
+  },
+  "first_call_boundary": {
+    "site": "0x994f15",
+    "raw_hex": "e8d6e80901",
+    "target": "0x1a337f0",
+    "callee_followed": false,
+    "explicit_input": "MOV EAX,1040hexat994f10; RCX/RDX/R8/R9notlocallyreset beforeCALL.",
+    "post_call": "SUBRSP,RAXat994f1a; thenMOVZX EBX,BYTE[RDX],QWORD[RCX+8]toRBP,QWORD[RCX]toRSI.",
+    "required_contract_unknown": "MappingpostCALLRCX/RDXtotheentryH/TandpostCALLRAXto1040requiresactualspecificcallee preservation/return andnormalstackcontract. OrdinaryWin64ABI doesnotpreservevolatileRAX/RCX/RDX.",
+    "not_inferred": [
+      "__chkstk/CRT/businesshelpername",
+      "RAX1040orRCX/RDXpreserved",
+      "firstcalleehasnobody/worldsideeffects",
+      "nativecallpermission"
+    ]
+  },
+  "stack_profile_conditional": {
+    "formula": "EntryQ; PUSH_RDI makesQ-8; afternormalfirstCALLwithunchangedRSP, SUBpostRAX=A makessteadyQ-8-A.",
+    "balanced_selected_epilogue": "LEARR11,[steady+1040], MOVRSP,R11, POPRDI, RET balancesentryonlyifA==1040understandardnormalCALLstackcontract.",
+    "saved_homes": "RBX/RBP/RSI savedatentryQ+8/+10/+18 beforePUSH; epiloguereloadsR11+10/+18/+20.",
+    "temporary": "Localsteady+30/+38 QWORDs have no explicitinitializationbefore46a3b0; theirdefinitionrequirescalleeoutwriteorotherunprovedeffects."
+  },
+  "machine_reads": {
+    "T_low_byte": "994f1d reads onlyBYTE[postCALLRDX], zeroextendsEBX. UnderpreservationconditionthisisTlow8, notfullDWORD; all0..255 allowed, noBOOLguard.",
+    "begin_end": "RSI=QWORD[postCALLRCX],RBP=QWORD[postCALLRCX+8]; theseareopaqueaddresses, noalignment/order/span/type/fullhandlecheck.",
+    "N": "RDI=low64(SAR64((end-begin)mod2^64,2)*0xaaaaaaaaaaaaaaab). Validnonnegative12Bmultiplealignedrangegivesrecordcount, arbitrarybitpatternsnotunconditionaldivide12.",
+    "width_boundary": "Noamount/key/country/recordfieldaccessinthisbody; onlyheader0/8 andlowbyteborrowconditionalonfirstcallee."
+  },
+  "small_path": {
+    "branch": "CMP signed64N,20hex; JGnot taken meansN<=32, includingnegative/malformedvalues.",
+    "site": "0x994f4b",
+    "target": "0x998d50",
+    "arguments": {
+      "RCX": "RSIbegin",
+      "RDX": "RBPend",
+      "R8_R9_XMM": "unknown"
+    },
+    "effect": "Unfollowed. NoexplicitBLflagargumentsetupbeforethisCALL. No sort/recordmutation/normalreturn/conservationproof.",
+    "next": "JMP994fa5epilogue; nootherlocalrecord/header/borrowwrite."
+  },
+  "large_path": {
+    "condition": "signed64N>32, hencepositiveN onthisselectedbranch.",
+    "temporary_call": {
+      "site": "0x994f68",
+      "target": "0x46a3b0",
+      "RCX": "&steady[30]",
+      "RDX": "N-floor(N/2)=ceil(N/2) fromCQO/SUB/SAR whenNpositive",
+      "R8_R9_XMM": "unknown",
+      "out_definitions": "Local30/38afterCALLmaybewritten; bodydoesnotproveit. Contents/allocation/class/lifetimeunknown."
+    },
+    "worker_call": {
+      "site": "0x994f8a",
+      "target": "0x998e10",
+      "arguments": {
+        "RCX": "savedbeginRSI",
+        "RDX": "savedendRBP",
+        "R8": "savedN_RDI",
+        "R9": "freshQWORDlocal30",
+        "stack_arg5": "freshQWORDlocal38 copiedtosteady20",
+        "stack_arg6_low_BYTE": "savedBL copiedtosteady28",
+        "stack_arg6_upper7bytes": "notexplicitlyinitialized"
+      },
+      "limits": "ConformingnormalABInonvolatilepreservationkeepssavedregistervalues, notmemorycontents. Unfollowedworker/aliasmaymutatetemporary,records,borroworworld."
+    },
+    "cleanup_branch": {
+      "site": "0x994f90",
+      "predicate": "FreshQWORDlocal38 unsigned>155hex(341) causesCALL175da20 withfreshQWORDlocal30. JBE<=341skips.",
+      "callee": "0x175da20",
+      "unknown": "No unconditionaldeallocation/error/ownershipcompleteproof; postworkerfreshvaluesmaydifferfrompreworkervalues."
+    }
+  },
+  "borrow_and_alias": {
+    "local_behavior": "NoexplicitstorethroughentryRDXorpostCALLRDX; noexplicitlocalretentionoforiginalTaddress afterlowBYTEload.",
+    "limit": "OriginalRDXispresentatfirstunfollowedCALLandmayberetained/modifiedthere; calleesandaliascanchangeT/H/records. Absenceoflocalstoreisnotreadonly/purity/lease.",
+    "H": "NoexplicitHheaderor12Brecordstorehere; begin/endhandedto998d50/998e10. Theirwrites/completionareunknown."
+  },
+  "return": {
+    "normal_RET": "0x994fbd",
+    "RAX": "No commondefinedRAXreturnassignment. Itmayretainworker/cleanupcalleevalueorotherpathstate; no uniformbool/scalar/pointercontract.",
+    "normal_conditions": "FirstcalleeRAX/frame/volatilepreservationgap plusallunfollowedCALLnormalreturn/validspansandaliasconditions remainunknown."
+  },
+  "control_flow": {
+    "edges": 8,
+    "static_CALL_sites": 5,
+    "distinct_direct_targets": 5,
+    "branch_sites": 3,
+    "normal_RET_sites": [
+      "0x994fbd"
+    ],
+    "INT3_sites": [],
+    "local_normal_CFG_closed": true,
+    "meaning": "Completeownednormalinstructiongraph, CALLfallthroughassumesnormalreturn; noexceptions/calleebody/purity oractualexecutionproof."
+  },
+  "explicit_accesses": {
+    "store_sites": 5,
+    "stack_store_sites": 5,
+    "read_sites": 10,
+    "H_record_RDX_direct_store_sites": 0,
+    "implicit_stack": "PUSH/CALLreturnaddress/POP/RET separate. RegisterassignmentstoRDXarenotwritesintoborrowedmemory."
+  },
+  "unresolved": [
+    "1a337f0specificRAX/RCX/RDX/RSP/flagscontract",
+    "998d50/998e10recordmutationandnormalreturn",
+    "46a3b0temporaryoutwrite/type/buffer",
+    "175da20cleanup/lifetime/errors",
+    "H/T/recordalias/borrowretention",
+    "Ninputvalidity,amountunits/currency/recipient/goldconservation",
+    "runtimeeffects/persistence/lease"
+  ],
+  "resources": {
+    "pdata_requests": 19,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 192,
+    "code_physical_unique_bytes": 190,
+    "decoder_input_total_bytes": 705,
+    "decoder_unique_input_bytes": 190,
+    "decoder_overlap_bytes": 515,
+    "full_EXE_SHA_bytes": 76925008,
+    "full_EXE_SHA_passes": 2,
+    "PE_total_physical_bytes": 76925426,
+    "source_engine_journal_through_capture": 16973248,
+    "post_capture_stdout_pin_bytes": 106529,
+    "producer_source_IO_including_final_stdout_pin": 17079777,
+    "producer_source_IO_limit": 33554432,
+    "own_peak_committed_bytes_observed": 23101440,
+    "software_memory_guard": 805306368,
+    "hard_Job_installed": false,
+    "new_external_callee_data_header_literal_vtable_unwind_bytes": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "tests": 0,
+    "all_child_shells_collected": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "gold_conservation_verified": false,
+    "peace_completion_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

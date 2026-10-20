@@ -1,0 +1,590 @@
+{
+  "schema": "EU4-R80-RETAINED-SELECTED/1",
+  "capture_pin": {
+    "bytes": 78062,
+    "sha256": "b02239c0a90e463e1ed14330634df1114e2c5f80370740143ea27d30cc7bfa01"
+  },
+  "owned_pin": {
+    "bytes": 698,
+    "sha256": "17ad37416b8798e5f5ffc40a482aa471637ace5e62da5030cc1b11144e7d7598"
+  },
+  "all13_raw_reviewed_rows": [
+    {
+      "rva": "0x97bd30",
+      "raw_hex": "488b4118",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [rcx + 0x18]",
+      "raw_opcode_manual_class": "qword_load",
+      "meaning": "A = M64[O+0x18]; O is entry RCX, not an authenticated class or world object.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd34",
+      "raw_hex": "4c8b4910",
+      "mnemonic": "mov",
+      "operands": "r9, qword ptr [rcx + 0x10]",
+      "raw_opcode_manual_class": "qword_load",
+      "meaning": "B = M64[O+0x10], in the second ordered read; no atomic pair assumption.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd38",
+      "raw_hex": "48c1e820",
+      "mnemonic": "shr",
+      "operands": "rax, 0x20",
+      "raw_opcode_manual_class": "register_shift",
+      "meaning": "RAX = A >> 32; SHRx64 count32, flags changed, no memory access.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd3c",
+      "raw_hex": "480fbfd0",
+      "mnemonic": "movsx",
+      "operands": "rdx, ax",
+      "raw_opcode_manual_class": "register_sign_extend",
+      "meaning": "RDX = sign_extend_16_to_64(A bits32..47). Original entry RDX/D bits are overwritten without dereference.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd40",
+      "raw_hex": "488b05891b9c01",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [rip + 0x19c1b89]",
+      "raw_opcode_manual_class": "qword_load",
+      "meaning": "G = M64[loaded module base + RVA0x233d8d0]. Only the encoded RIP target is proved; data was not acquired.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd47",
+      "raw_hex": "49c1e920",
+      "mnemonic": "shr",
+      "operands": "r9, 0x20",
+      "raw_opcode_manual_class": "register_shift",
+      "meaning": "R9 = B >> 32; SHRx64 count32, flags changed, no memory access.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd4b",
+      "raw_hex": "488b8818010000",
+      "mnemonic": "mov",
+      "operands": "rcx, qword ptr [rax + 0x118]",
+      "raw_opcode_manual_class": "qword_load",
+      "meaning": "T = M64[G+0x118]; RCX now holds T, no longer O.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd52",
+      "raw_hex": "410fbfc1",
+      "mnemonic": "movsx",
+      "operands": "eax, r9w",
+      "raw_opcode_manual_class": "register_sign_extend_then_zero_upper",
+      "meaning": "EAX = sign_extend_16_to_32(B bits32..47); writing EAX sets RAX upper32 to zero. J = unsigned32(signed16(B bits32..47)).",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd56",
+      "raw_hex": "4c8b04d1",
+      "mnemonic": "mov",
+      "operands": "r8, qword ptr [rcx + rdx*8]",
+      "raw_opcode_manual_class": "qword_load",
+      "meaning": "P = M64[T + 8*I], I=sign_extend_16_to_64(A bits32..47). No local bounds/null/type check.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd5a",
+      "raw_hex": "488d14c0",
+      "mnemonic": "lea",
+      "operands": "rdx, [rax + rax*8]",
+      "raw_opcode_manual_class": "address_arithmetic_not_memory_read",
+      "meaning": "RDX = 9*J modulo2^64. LEA does not dereference despite Capstone memory_operand read=true.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd5e",
+      "raw_hex": "498b8010150000",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [r8 + 0x1510]",
+      "raw_opcode_manual_class": "qword_load",
+      "meaning": "U = M64[P+0x1510]. P is only the opaque table result in this scope.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd65",
+      "raw_hex": "4c8b04d0",
+      "mnemonic": "mov",
+      "operands": "r8, qword ptr [rax + rdx*8]",
+      "raw_opcode_manual_class": "qword_load",
+      "meaning": "R8 = M64[U + 8*(9*J)] = M64[U+72*J] modulo2^64.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    },
+    {
+      "rva": "0x97bd69",
+      "raw_hex": "488b44d010",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [rax + rdx*8 + 0x10]",
+      "raw_opcode_manual_class": "qword_load",
+      "meaning": "RAX = M64[U + 72*J + 0x10] modulo2^64. This is a live intermediate, not a proved return value.",
+      "explicit_memory_write": false,
+      "implicit_stack_write": false,
+      "runtime_observed": false
+    }
+  ],
+  "retained_decoder_rows": [
+    {
+      "rva": "0x97bd30",
+      "bytes": "488b4118",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [rcx + 0x18]",
+      "registers_read": [
+        "rcx"
+      ],
+      "registers_written": [
+        "rax"
+      ],
+      "memory_operands": [
+        {
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "displacement": 24,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "488b4118",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x97bd34",
+      "bytes": "4c8b4910",
+      "mnemonic": "mov",
+      "operands": "r9, qword ptr [rcx + 0x10]",
+      "registers_read": [
+        "rcx"
+      ],
+      "registers_written": [
+        "r9"
+      ],
+      "memory_operands": [
+        {
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "displacement": 16,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "4c8b4910",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x97bd38",
+      "bytes": "48c1e820",
+      "mnemonic": "shr",
+      "operands": "rax, 0x20",
+      "registers_read": [
+        "rax"
+      ],
+      "registers_written": [
+        "rflags",
+        "rax"
+      ],
+      "memory_operands": [],
+      "immediates": [
+        32
+      ],
+      "raw_memory_write_review": {
+        "raw_hex": "48c1e820",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "c1"
+      }
+    },
+    {
+      "rva": "0x97bd3c",
+      "bytes": "480fbfd0",
+      "mnemonic": "movsx",
+      "operands": "rdx, ax",
+      "registers_read": [
+        "ax"
+      ],
+      "registers_written": [
+        "rdx"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "480fbfd0",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "0fbf"
+      }
+    },
+    {
+      "rva": "0x97bd40",
+      "bytes": "488b05891b9c01",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [rip + 0x19c1b89]",
+      "registers_read": [
+        "rip"
+      ],
+      "registers_written": [
+        "rax"
+      ],
+      "memory_operands": [
+        {
+          "base": "rip",
+          "index": null,
+          "scale": 1,
+          "displacement": 27007881,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": "0x233d8d0"
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "488b05891b9c01",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x97bd47",
+      "bytes": "49c1e920",
+      "mnemonic": "shr",
+      "operands": "r9, 0x20",
+      "registers_read": [
+        "r9"
+      ],
+      "registers_written": [
+        "rflags",
+        "r9"
+      ],
+      "memory_operands": [],
+      "immediates": [
+        32
+      ],
+      "raw_memory_write_review": {
+        "raw_hex": "49c1e920",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "c1"
+      }
+    },
+    {
+      "rva": "0x97bd4b",
+      "bytes": "488b8818010000",
+      "mnemonic": "mov",
+      "operands": "rcx, qword ptr [rax + 0x118]",
+      "registers_read": [
+        "rax"
+      ],
+      "registers_written": [
+        "rcx"
+      ],
+      "memory_operands": [
+        {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 280,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "488b8818010000",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x97bd52",
+      "bytes": "410fbfc1",
+      "mnemonic": "movsx",
+      "operands": "eax, r9w",
+      "registers_read": [
+        "r9w"
+      ],
+      "registers_written": [
+        "eax"
+      ],
+      "memory_operands": [],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "410fbfc1",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "0fbf"
+      }
+    },
+    {
+      "rva": "0x97bd56",
+      "bytes": "4c8b04d1",
+      "mnemonic": "mov",
+      "operands": "r8, qword ptr [rcx + rdx*8]",
+      "registers_read": [
+        "rcx",
+        "rdx"
+      ],
+      "registers_written": [
+        "r8"
+      ],
+      "memory_operands": [
+        {
+          "base": "rcx",
+          "index": "rdx",
+          "scale": 8,
+          "displacement": 0,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "4c8b04d1",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x97bd5a",
+      "bytes": "488d14c0",
+      "mnemonic": "lea",
+      "operands": "rdx, [rax + rax*8]",
+      "registers_read": [
+        "rax"
+      ],
+      "registers_written": [
+        "rdx"
+      ],
+      "memory_operands": [
+        {
+          "base": "rax",
+          "index": "rax",
+          "scale": 8,
+          "displacement": 0,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "488d14c0",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8d"
+      }
+    },
+    {
+      "rva": "0x97bd5e",
+      "bytes": "498b8010150000",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [r8 + 0x1510]",
+      "registers_read": [
+        "r8"
+      ],
+      "registers_written": [
+        "rax"
+      ],
+      "memory_operands": [
+        {
+          "base": "r8",
+          "index": null,
+          "scale": 1,
+          "displacement": 5392,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "498b8010150000",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x97bd65",
+      "bytes": "4c8b04d0",
+      "mnemonic": "mov",
+      "operands": "r8, qword ptr [rax + rdx*8]",
+      "registers_read": [
+        "rax",
+        "rdx"
+      ],
+      "registers_written": [
+        "r8"
+      ],
+      "memory_operands": [
+        {
+          "base": "rax",
+          "index": "rdx",
+          "scale": 8,
+          "displacement": 0,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "4c8b04d0",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    },
+    {
+      "rva": "0x97bd69",
+      "bytes": "488b44d010",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [rax + rdx*8 + 0x10]",
+      "registers_read": [
+        "rax",
+        "rdx"
+      ],
+      "registers_written": [
+        "rax"
+      ],
+      "memory_operands": [
+        {
+          "base": "rax",
+          "index": "rdx",
+          "scale": 8,
+          "displacement": 16,
+          "segment": null,
+          "width_bytes": 8,
+          "read": true,
+          "write": false,
+          "rip_target_rva": null
+        }
+      ],
+      "immediates": [],
+      "raw_memory_write_review": {
+        "raw_hex": "488b44d010",
+        "status": "unclassified_requires_manual_review",
+        "explicit_memory_write": null,
+        "not_a_no_write_proof": true,
+        "opcode_hex": "8b"
+      }
+    }
+  ],
+  "partial": [
+    {
+      "kind": "undecodable_or_partial",
+      "rva": "0x97bd6e",
+      "raw_hex": "48c1"
+    }
+  ],
+  "old_CALL": {
+    "site": "0x99358a",
+    "raw": "e8a187feff",
+    "signed_rel32": -96351,
+    "target": "0x97bd30",
+    "pushed_return_address": "loaded module base + RVA0x99358f"
+  },
+  "RIP_arithmetic": {
+    "site": "0x97bd40",
+    "raw": "488b05891b9c01",
+    "next_rva": "0x97bd47",
+    "signed_displacement": 27007881,
+    "target_rva": "0x233d8d0",
+    "target_data_read": false
+  },
+  "semantic_memory_reads": {
+    "qword_loads": 8,
+    "bytes_per_load": 8,
+    "total_instruction_read_widths": 64,
+    "not_additional_PE_or_runtime_reads": true,
+    "LEA_excluded": true
+  },
+  "register_writes": [
+    "rax/eax",
+    "r9",
+    "rdx",
+    "rcx",
+    "r8",
+    "rflags"
+  ],
+  "complete_decoded_instruction_bytes": 62,
+  "partial_owned_bytes": 2,
+  "implicit_entry_CALL_stack_write_bytes": 8,
+  "entry_CALL_is_prior_scope_not_a_new_prefix_instruction": true,
+  "new_instruction_decode_by_sealer": 0
+}

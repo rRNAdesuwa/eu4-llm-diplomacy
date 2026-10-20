@@ -1,0 +1,85 @@
+{
+  "all_execution_unsupported": true,
+  "application_files": {
+    "bridge/diplomacy_api.py": {
+      "after": {
+        "bytes": 34795,
+        "sha256": "db822021ea721badab52509e37f56cbb8faadc7ea9d15a2da65f58726b59aa9c"
+      },
+      "before": {
+        "bytes": 34672,
+        "sha256": "6966f5f2bbfe45a779b1d36776e9c8d643008798459f02daa18529493053d1ba"
+      }
+    },
+    "bridge/diplomacy_contract_v3.py": {
+      "after": {
+        "bytes": 10516,
+        "sha256": "a0bd905086544ebbd2cbf311ba8a86cb9862301c0b75254d4360dc2522c145fa"
+      },
+      "before": null
+    },
+    "bridge/diplomacy_contract_v3_pins.json": {
+      "after": {
+        "bytes": 1121,
+        "sha256": "62219a79e2670ce3ff721bce9b9ba77fbf0059365dedc3857eb4265afebc46af"
+      },
+      "before": null
+    },
+    "bridge/diplomacy_service.py": {
+      "after": {
+        "bytes": 10363,
+        "sha256": "f7bcc32bdae976b2312aee61296397d40425c43a0c8cee4ebf0f625772b160cf"
+      },
+      "before": {
+        "bytes": 9567,
+        "sha256": "225b83a7acfff78da91eb6ca8432ac45b2da3df8158e42f1b8d5230783abca5e"
+      }
+    },
+    "bridge/tests/test_diplomacy_contract_v3.py": {
+      "after": {
+        "bytes": 16545,
+        "sha256": "b0819f2e013885da518dd6e1369045b3909da294c8275e71fce96e9d02d1e11a"
+      },
+      "before": null
+    },
+    "docs/diplomacy-api.md": {
+      "after": {
+        "bytes": 19196,
+        "sha256": "cc6ee74c06db12d245ec8d1a2fd458ae341ccba98952e05854c59f7ac65f6f7c"
+      },
+      "before": {
+        "bytes": 16656,
+        "sha256": "28b44be1e73ea882ccee4dcee74143437ca487ee07f61048517e6da413d6fab0"
+      }
+    },
+    "tools/diplomacy.py": {
+      "after": {
+        "bytes": 6257,
+        "sha256": "2d13e139a0541346d3b98cb71c9b54dbeeadc369f050abba9d4bfa100aad7c9b"
+      },
+      "before": {
+        "bytes": 6101,
+        "sha256": "402e82ef56e2db1599319f5158d432f109b7341076320b1043ac45cec358e8b9"
+      }
+    },
+    "tools/serve_diplomacy.py": {
+      "after": {
+        "bytes": 3206,
+        "sha256": "70d60124c24bd17b3f49d3fe828a111783382e1ec07e1c7f9a905549b7b3d139"
+      },
+      "before": {
+        "bytes": 2442,
+        "sha256": "647cffe2895d9ccbef9bc7f1ebffaa0e6ab7b9a0e0dbfff98417256aedebb89b"
+      }
+    }
+  },
+  "application_note": "Only the listed eight application files are proposed for later explicit application. Other files under files/ are unchanged pinned dependencies for isolated validation.",
+  "backend_registered": false,
+  "independent_review_required": true,
+  "original_files_modified": false,
+  "production_supported": false,
+  "protocol": "EU4DIPLOMACY-CONTRACT/3",
+  "schema": 1,
+  "status": "staging_only_not_applied",
+  "unchanged_supporting_dependency_copies": 46
+}

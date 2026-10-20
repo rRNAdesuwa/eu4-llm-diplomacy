@@ -1,0 +1,112 @@
+{
+  "schema": "EU4-R80-PREFIX-CONTRACT/1",
+  "sealed": true,
+  "stage": "ordinary_static_author_sealed_pending_non_author_full_review",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "game_bytes": 38462504,
+  "evidence_kind": "ordinary_locked_Capstone_plus_retained_raw_arithmetic_not_REA_Evidence_ID",
+  "capture_pin": {
+    "bytes": 78062,
+    "sha256": "b02239c0a90e463e1ed14330634df1114e2c5f80370740143ea27d30cc7bfa01"
+  },
+  "owned_pin": {
+    "bytes": 698,
+    "sha256": "17ad37416b8798e5f5ffc40a482aa471637ace5e62da5030cc1b11144e7d7598"
+  },
+  "selected_pin": {
+    "bytes": 15924,
+    "sha256": "6bd48ab81e3a493f7115d81585a6f3f4c02f926662b33b6b0cf5b2c485cb794a"
+  },
+  "source_manifest_pin": {
+    "bytes": 24123,
+    "sha256": "42b2d958a64df12ea3083402db08519226218876c51d526dae3285cc95bf5ce2"
+  },
+  "producer_pin": {
+    "bytes": 24738,
+    "sha256": "60009c332eedc75f766200e611930a299d1ec0dcb04f161dd8917c9a7c359c90"
+  },
+  "observations": [
+    "The sole targeted acquisition is64B[97bd30,97bd70);13 contiguous instructions use62B; partial48c1 at97bd6e is undecoded.",
+    "Decoded prefix has no CALL/branch/RET/PUSH/POP or explicit memory store. It is not a full-function/no-side-effect/leaf proof.",
+    "Eight ordered QWORD loads: O18,O10,module233d8d0,G118,T+8I,P1510,U+72J,U+72J+10. LEA is arithmetic, not a ninth read.",
+    "I uses signed16-to64; J uses signed16-to32 followed by EAX zero-upper32. A negative16-bit J is therefore a large positive64-bit value.",
+    "Incoming RDX and R8 are overwritten before their first use as address operands; this prefix has no direct dereference of original D/header solely through those incoming registers.",
+    "Other loaded addresses may alias D, header, stack, globals or each other; this scope does not authenticate object roles or rule out such read aliases.",
+    "No stack change occurs among the13 decoded instructions. The already-known incoming CALL writes8B return address at F-8; it must not be omitted from broader caller-state reasoning.",
+    "RAX at97bd6e is an intermediate loaded QWORD; no return is observed or proved. The partial tail can change registers/memory or control flow.",
+    "R79 bounded exactbegin miss under ordered-pdata assumptions remains unknown0code; R80 is separately authorized, not a global unwind absence claim."
+  ],
+  "conditional_projection": {
+    "premise": "Execution reaches known CALL entry; relevant instruction/data accesses are valid; ordinary architectural sequential semantics. No assertion of actual execution, atomic memory, world ownership or lifetime.",
+    "symbols": [
+      "O=entryRCX",
+      "A=firstM64[O18]",
+      "B=secondM64[O10]",
+      "I=sext64(A.bits32_47)",
+      "J=zext64(sext32(B.bits32_47))",
+      "G=M64[module+233d8d0]",
+      "T=M64[G118]",
+      "P=M64[T+8I]",
+      "U=M64[P1510]"
+    ],
+    "at_partial_boundary": {
+      "RSP": "incoming RSP=F-8=S69-0x60",
+      "RAX": "M64[U+72J+0x10]",
+      "R8": "M64[U+72J]",
+      "RDX": "9J",
+      "RCX": "T",
+      "R9": "B>>32",
+      "flags": "last decoded flag writer is SHR R9,32; no stable semantic condition or successor branch inferred"
+    },
+    "original_D_zero": "Not newly authenticated: caller wrote DWORD[D]=0, but alias with CALL return slot or earlier/later writes and unobserved tail prevents final-D proof.",
+    "header": "No direct original-header write in decoded prefix. Contents, pointer identity, capacity, aliases and tail effects remain unknown."
+  },
+  "unknowns": [
+    "remaining targeted-gap suffix48B is not owned",
+    "partial48c1 has no decoded effect",
+    "normal return and returned pointer",
+    "actual function extent/leaf/unwind registration",
+    "module slot data and all pointed runtime contents",
+    "bounds/type/endpoint/generation checks",
+    "D/header final contents and any aliases",
+    "units/currency/recipient/peace outcome",
+    "world validity/lifetime/host compatibility"
+  ],
+  "resources": {
+    "targeted_code_physical_bytes": 64,
+    "new_pdata_bytes": 0,
+    "new_other_targeted_bytes": 0,
+    "full_PE_SHA_bytes": 76925008,
+    "total_PE_physical_bytes": 76925072,
+    "decoded_unique_bytes": 62,
+    "partial_owned_bytes": 2,
+    "decoder_lookahead_inputs": 14,
+    "decoder_input_total_bytes": 185,
+    "decoder_input_unique_bytes": 64,
+    "decoder_overlap_bytes": 121,
+    "producer_source_completed_events": 158,
+    "producer_source_completed_bytes": 17127251,
+    "producer_peak_committed_bytes_witness": 22691840,
+    "producer_peak_is_not_independent_measurement": true,
+    "hard_Job_installed": false,
+    "producer_calls": 1,
+    "all_actual_shells_collected": true,
+    "new_sealer_PE_engine_decoder_game_native_test_accesses": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "reader_adoption_allowed": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "further_actual_authorized": false,
+    "whole_function_closed": false,
+    "function_extent_known": false,
+    "callee_formals_verified": false,
+    "returned_pointer_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "PE_native_decoder_game": 0,
+  "Python_engine_pin_reads_per_query": 3,
+  "actual94_source_bytes": 2646835,
+  "actual_data_bytes": 18868,
+  "actual_index_bytes": 221073,
+  "actual_query_explicit_read_bytes": 5823301,
+  "actual_selected_bytes_per_pass": 2886776,
+  "aggregate32M_is_successful_acceptance_not_OS_failedread_bound": true,
+  "build_manual_allowance": 2097152,
+  "build_seal_limit": 33554432,
+  "controller_source_output_allowance": 12582912,
+  "fourquery_explicit_bytes": 23293204,
+  "fourquery_plus_controller_upper_bytes": 35876116,
+  "memory_software_limit": 805306368,
+  "one_GiB_stop": true,
+  "ordinary_limit": 4194304,
+  "query_batch_limit": 67108864,
+  "schema": "EU4-LOOKUP-V6-BUDGET/1",
+  "seal_reserved_bytes": 16777216
+}

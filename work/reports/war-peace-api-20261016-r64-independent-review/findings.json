@@ -1,0 +1,130 @@
+{
+  "schema": "EU4-R64-INDEPENDENT-FINDINGS/1",
+  "sealed": true,
+  "passed": true,
+  "subject_manifest": {
+    "bytes": 14450,
+    "sha256": "ac219aa1b6adc947acf64d61dcd56126b370860b02ab7dcff22a1a8000d1fc81"
+  },
+  "subject_contract": {
+    "bytes": 9119,
+    "sha256": "737775651b93f23b69fe70059e8c424fa22ca0a48cbadc8bea7573da390d50ef"
+  },
+  "subject_capture": {
+    "bytes": 276303,
+    "sha256": "723c6a94b549d08f9f24b710b81426ba32d9eecee5cb9e17e4ddc43e8ef26d1c"
+  },
+  "blocking_findings": [],
+  "author_frozen_source_needs_change": false,
+  "raw_replay": {
+    "bytes": 183213,
+    "sha256": "5702ddf6a76674f435528712c238a1a8aeda3bcc791592290f7718febe8a8072"
+  },
+  "checks": {
+    "actual_source_pins": 38,
+    "additional_accounting_files": 10,
+    "engine_metadata_witness_pins_unopened": 38,
+    "full_rows": 266,
+    "full_owned_bytes": 1003,
+    "CALL_sites": 14,
+    "direct_CALL_sites": 12,
+    "direct_targets": 5,
+    "self_CALL_sites": 1,
+    "virtual_CALL_sites": 2,
+    "branches": 35,
+    "recorded_edges": 49,
+    "RET_sites": 1,
+    "INT3_sites": 0,
+    "explicit_stores": {
+      "stack": 4,
+      "P_header_DWORD": 4,
+      "P_data_QWORD": 3
+    },
+    "all_raw_bytes_and_CFG_and_integer_widths_replayed": true,
+    "three_review_gate_auth_claim_bound": true,
+    "source_current_postguard_equal": true
+  },
+  "machine_contract": {
+    "common": "DWORD[P+14]=0 before flag or CALL; P/W/F memory may alias and are not typed.",
+    "high_gate": "low8R9!=0 and (u64(Wa8-Wa0)>=8 or u64(Wc0-Wb8)>=8); wrapped pointer differences are not bounds checks",
+    "self_call": "sameW/sameP/&16BcopyF, R9D0; child does not take its local selfCALL; transitive reentry/termination remains unknown",
+    "A": "fresh A begin/end stride8; virtual(E,&stack20) returnsK; load32K==freshF0 and load64(K+8)==0; conditional append E then store newcount",
+    "B": "fresh B begin/end stride8, same virtual filter; signedpositive Pcount scansfirst equalpointer; shift following QWORDsleft; ADD32 count by -1 on ordinary matching index",
+    "append_count": "new=s32(addmod32(oldCount,1)); signed capacity comparisons; oldcount reloaded after growth; signed64fill compares signextended low32 values",
+    "preallocation": "required=s32(low32(sar64(submod64(end,begin),3)+Pcount)); doubledcap=addmod32(cap,cap); signed CMOVG; RCX=u32(chosencap)*8",
+    "growth": "1a33310(RCXbytecount,otherargsunknown) then8f4f0(P,returnedRAX,R8Dcap); no success/type/free/lifetime inferred",
+    "nonzeroF8": "R12=load64(F+8); Q=load64(W+d0), spanQ3a8/3b0; after1c20d0 freshQ/span; compare64(E+30)==savedF8 then append E",
+    "zeroF8": "capacityarg=low64(sar64(submod64(Wd8,Wd0),3)*aaaaaaaaaaaaaaab); after1c20d0 freshI=u32(F0), freshbase=Wd0, begin/end at24I/+8; record+10 unread",
+    "zeroF8_call": "77e640(P,EDXfreshPcount,&stack78QWORDE); R9/XMM/calleeappend/count/alias effects unknown",
+    "return_value": "no uniform RAX assignment on epilogue; source/destination fields and lastcalls/loads leave different values",
+    "base_layouts": "F8 nonzero dereferences Wd0 as Q with3a8/3b0; F8zero uses Wd0 as24Brecordbase. Do not merge into a guessed class.",
+    "lifetime": "normalcallee ABI preserves nonvolatile registers only, not pointed fields; validmemory/alias/loop/exception assumptions remain"
+  },
+  "precision_notes": [
+    "Self-call target is already in owned bytes. Flag0 bypasses that child's local self-call only; external reentry/termination are not closed.",
+    "Unsigned pointer subtraction gates, signed32 counts/capacity and wrapped arithmetic are raw operations, not bounds or typed container invariants.",
+    "MUL/CMOVO(-1) is syntactically present, but cap is zeroextended32 and RAX8 at each MUL, so local unsigned64 overflow fallback is infeasible. No allocator success follows.",
+    "A allows duplicate pointers; B removes the first pointer match per encountered B element. Header/data/inputs may alias and transitive calls may mutate fresh-read fields.",
+    "Virtual78 returns opaque K; fresh K0/F0 equality and K8zero do not identify enum0, C++ class, currency or recipient.",
+    "F8nonzero compares QWORD E30, unlike R63 DWORD E30. F8zero uses unsigned freshF0 with24Brecords; thirdQWORD is unread.",
+    "77e640 is only a fixed CALL target with bound selectedGP arguments, not a proven append helper. R9/XMM can be callee-dependent.",
+    "No uniformRAX, cardinality1, finaloutT, amountunit, business direction or runtime effect is proved.",
+    "Retained3606604/combined20733340 are explicit upper accounts including250000 manual-console allowance, not allOS/loader I/O.",
+    "Source/PE/engine/elapsed/peak/child-exit execution facts are authenticated retained witnesses; not re-executed in this review. Failure journals remain incomplete physical-I/O witnesses."
+  ],
+  "resource_witness": {
+    "source_journal": 16850433,
+    "capture_pin_read": 276303,
+    "producer_including_pin": 17126736,
+    "retained_upper": 3606604,
+    "manual_allowance": 250000,
+    "combined_upper": 20733340,
+    "PE_twoSHA": 76925008,
+    "pdata_physical": 240,
+    "pdata_unique": 216,
+    "code": 1003,
+    "PE_total": 76926251,
+    "decoder_input_total": 3916,
+    "decoder_unique": 1003,
+    "overlap": 2913,
+    "producer_peak": 26136576,
+    "elapsed_ns": 471019100,
+    "elapsed_scope": "Producerlaunchthroughcollectedexit, includingengine/source/twoPEsha; wrapperadmissionexcluded.",
+    "hard_Job": false,
+    "collected_owned_child_exit0": true
+  },
+  "independent_resources": {
+    "known_explicit_data_reads_before_final_seal": 7185614,
+    "source_file_limit": 4194304,
+    "source_budget": 25165824,
+    "self_peak": 28512256,
+    "memory_guard": 805306368,
+    "not_all_OS_tool_source_interpreter_IO": true
+  },
+  "operations": {
+    "PE_reads": 0,
+    "engine_opens": 0,
+    "decoder_imports": 0,
+    "author_producer_runs": 0,
+    "old_tests": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_calls": 0,
+    "requests": 0
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "peace_completion_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  },
+  "self_diagnostic": "R1 retained cache lacked verify_actual.py pin present only in delivery; R1 source/failure retained. R2 adds exactly that2749B frozen text supplement and accounting only; author bytes unchanged.",
+  "all_shells_collected": true,
+  "next_scope_auto_authorized": false
+}

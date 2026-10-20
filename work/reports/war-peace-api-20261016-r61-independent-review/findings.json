@@ -1,0 +1,135 @@
+{
+  "schema": "EU4-R61-INDEPENDENT-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_manifest": {
+    "bytes": 15099,
+    "sha256": "3e92d2244c8c5a532e86c8f8bfd1f2147391beb0302e0c16f5d4e5cd10d9cd6c"
+  },
+  "subject_contract": {
+    "bytes": 10638,
+    "sha256": "c4625af496eb7f561d6a2fe6ab5bc06c02cba779a50f3e5d8d9befd10baf26e3"
+  },
+  "subject_capture": {
+    "bytes": 73944,
+    "sha256": "c1c0e32395459361bd3a3fcc37e18022cf53cf13044b0d318242d0c14a753551"
+  },
+  "subject_selected": {
+    "bytes": 15695,
+    "sha256": "61296f9c52b490d25e1ced4c900cd52651ad95740a2e52aca3a64372bebb1c0c"
+  },
+  "source_review": {
+    "actual_file_pins_before_after": 41,
+    "subject_manifest_extra_pin": 1,
+    "engine_witness_pins_metadata_only": 38,
+    "engine_files_opened": 0,
+    "full_pre_actual_source_review_reused": {
+      "bytes": 6340,
+      "sha256": "5840f07863ac3199cc52e1fd36c2f59309208314a14e278e0109d3ba44380b73"
+    },
+    "runner_and_sealer_and_verifier_AST_text_only": true,
+    "author_programs_invoked": 0
+  },
+  "observations": [
+    {
+      "id": "bounded_body",
+      "summary": "新raw恰47B/12条连续指令，全等capture/owned/selected/disassembly。containing14174长57B，目标偏移10；前10B和旧38/183B未做targeted重新读取。后缀无RET，1JNE/1CALL/1INT3，CFG非全闭合。"
+    },
+    {
+      "id": "slot_postincrement",
+      "summary": "8bc8保存oldV至ECX；ffc0对EAX做32位INC；8902写DWORD[RDX]；8bc1把oldV恢复至EAX并零扩展RAX。RDX是继承的fresh P+14槽地址。写入是(V+1) mod2^32；不是原子RMW，也不是对当前世界的观察。"
+    },
+    {
+      "id": "normal_return_composition",
+      "summary": "83f9ff只检查旧V的ffffffff位型；其它值JNE771bfd。旧R58五条epilogue原字节确为ADD RSP30/POP R14/RSI/RBP/RET，与Q-48匹配，RAX不变。故在原caller/valid memory/normal ABI/栈与buffer条件下，选定组合路径返回zeroextended oldV。0与带符号位的值均未被排除。"
+    },
+    {
+      "id": "maximum_bitpattern",
+      "summary": "V=ffffffff时先写槽0，再形成两模块地址和Q-28局部QWORD，CALL1a36038；若callee正常返回则下一条INT3。callee/异常/终止/零写保留情况未知，不能声称正常wrap或可复用ID。"
+    },
+    {
+      "id": "error_parameters",
+      "summary": "两LEA raw signed RIP位移分别得1cb1298/1fa4b48；地址形成不读取目标数据。CALL时RCX=&QWORD[Q-28]、RDX=第二模块地址，R8路径相关/R9未知。未读取字面量或异常类型，不追1a36038。"
+    },
+    {
+      "id": "writes_and_stack",
+      "summary": "完整后缀只有两处显式store：DWORD slot和QWORD[steadyRSP+20]=[Q-28]；CALL的隐式returnslot写单列。Q-28不是原Q+20 shadow位置。LEA的Capstone read标志不等同实际内存解引用。"
+    }
+  ],
+  "resources_replayed": {
+    "pdata_requests": 19,
+    "pdata_unique_records": 16,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 192,
+    "code_bytes": 47,
+    "PE_two_SHA_bytes_witness": 76925008,
+    "PE_total_physical_bytes_witness": 76925283,
+    "decoder_input_bytes": 153,
+    "decoder_input_union": 47,
+    "decoder_overlap": 106,
+    "producer_source_journal_events": 131,
+    "producer_source_journal_bytes": 16704822,
+    "source_scope": "successful producer explicit journal through owned-code pin/capture publication; not OS-loader/failure-complete IO",
+    "capture_self_hash_after_snapshot_bytes": 73944,
+    "producer_peak_committed_bytes_witness": 22892544,
+    "software_guard_bytes": 805306368,
+    "hard_Job_installed": false,
+    "producer_elapsed_ns_witness": 451763000,
+    "owned_child_exit_code_witness": 0,
+    "owned_child_collected_witness": true
+  },
+  "precision_and_unknowns": [
+    "源guard、两SHA、峰值与一次actual来自已pin回执，本审仅文件算术重放，没有重新打开目标或引擎认证。",
+    "成功journal不能扩称全OS/loader或失败计账；stream pin中途失败可能少计，peNone也不能否认构造中曾打开目标。",
+    "本体写入时的槽内容取决于旧V和继承地址，不能承诺并发安全、当前值、最终持久化或全局唯一。",
+    "generic EBP!=ffffffff的未选10B、其它kind/初始化/reset/epoch/完整函数与callee异常行为未闭合。",
+    "selected return不证明bridge request_id映射、合法业务ID范围、世界对象类型/生命周期或请求效果。"
+  ],
+  "review_resources": {
+    "previous_tool_reads": [
+      {
+        "shell": "301fa5",
+        "bytes": 41859,
+        "scope": "manifest/contract/selected/disassembly"
+      },
+      {
+        "shell": "84d6c1",
+        "bytes": 488847,
+        "scope": "manifest and41 actual pins; run/seal/capture/receipts source review"
+      }
+    ],
+    "this_audit_source_bytes": 977694,
+    "physical_source_bytes_through_findings": 1508400,
+    "limit_bytes": 25165824,
+    "single_source_limit": 4194304,
+    "largest_source": 73944,
+    "committed_memory_peak_not_measured": true,
+    "PE_stat_open_hash": 0,
+    "engine_stat_open_hash": 0,
+    "decoder": 0,
+    "author_programs": 0,
+    "tests": 0,
+    "game_process": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0
+  },
+  "replay_evidence_pin": {
+    "bytes": 6156,
+    "sha256": "15fb09f2dd86242d859975a4916d5fa6dbcd823665d5ca67866f0a57c250bc1e"
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "global_ID_uniqueness_verified": false,
+    "bridge_request_ID_binding_verified": false,
+    "ownership_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "new_scope_authorized": false
+  }
+}

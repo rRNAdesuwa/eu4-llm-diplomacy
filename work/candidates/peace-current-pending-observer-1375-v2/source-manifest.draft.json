@@ -1,0 +1,178 @@
+{
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "independent_source_review": null,
+  "native_ready": false,
+  "production_review": null,
+  "runtime_capture_authorized": false,
+  "schema": "EU4-PEACE-CURRENT-PENDING-MANIFEST/2",
+  "sealed": false,
+  "selected_effect_verified": false,
+  "source_graph_sha256": "5df0dcb56da6629ebbe9f3585ff6f10d120d66d903354be05887dcea9dc67a82",
+  "source_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "bridge/diplomacy_reply_observer.py": {
+      "bytes": 27263,
+      "sha256": "7a7fdea49ee86b888336089b4982f1d2ff719d3eab9c530fb92f84c19a225761"
+    },
+    "bridge/diplomacy_reply_observer_manifest_1375.json": {
+      "bytes": 3739,
+      "sha256": "31f3c1d936b751433ecf1dcbf989fb50e2cb65f529651bd23976060fb1e07580"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py": {
+      "bytes": 16856,
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json": {
+      "bytes": 2494,
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/peace_current_pending.py": {
+      "bytes": 23345,
+      "sha256": "ac8c292d1320f776a6a8817f0158c275e624bcfe05f9a2dc51220e03532ba643"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v1/test_peace_current_pending.py": {
+      "bytes": 13657,
+      "sha256": "96f41c4e8752f639c67db42144437734d9dee1ff38a09ae770f6cfc271b65ca5"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/README.md": {
+      "bytes": 2318,
+      "sha256": "3cd0c599aa473ab415cd1c76fdb22d891c6c837269f5067d856bc88878e5eea2"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/budget.json": {
+      "bytes": 1221,
+      "sha256": "d3a3e36d0facd75a245d1bd9f86c6864f0ba8c28bf391600b20914ff39760c65"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/build_manifest.py": {
+      "bytes": 4350,
+      "sha256": "37af3292147a1bc8607ea57663d12af84e6eaf8ed66d7974894fbe1832e34943"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/offline_child.py": {
+      "bytes": 7746,
+      "sha256": "78435436c14d8f5c2728c4b3bbe181a7658d3266c1faf08b04d5438e8a62f7c4"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/peace_current_pending.py": {
+      "bytes": 24249,
+      "sha256": "94faa085cc982230717f42b43b24bd777a26493a0cf18d2dc3c2cbfc23a7491d"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/prepare_sources.py": {
+      "bytes": 9264,
+      "sha256": "63691baa042cefc021a6f09a143e755465e95492b3883af82d751c7a6c121afe"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/run_offline.py": {
+      "bytes": 6522,
+      "sha256": "8f8b385f1079da1119d4575a6b930f3c111b97f96dee073162cd541e7bdf384d"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/source-delta.json": {
+      "bytes": 1622,
+      "sha256": "e58df6967f532b9e066e01fb600847e09bf40b57cb2c803491e84973a6d2fa76"
+    },
+    "work/candidates/peace-current-pending-observer-1375-v2/test_peace_current_pending.py": {
+      "bytes": 9395,
+      "sha256": "0b83d325955ccec0fcbd0a5c19ad32afb42dd5552208d7d2d13787e537836bac"
+    },
+    "work/reports/native-owned-peace-1375.json": {
+      "bytes": 1302642,
+      "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+    },
+    "work/reports/native-pair-replies-1375.json": {
+      "bytes": 1894144,
+      "sha256": "da3faa061af3d9ee8a3003412151594c6305b765afd8d739b4cb4a4759f63510"
+    },
+    "work/reports/peace-current-pending-guard-proposal-20261016-r1/proposal.json": {
+      "bytes": 13232,
+      "sha256": "ba2b0931280bb38087c686b8bf6e47688c49d68178c8a8183815cd604e4030e7"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/budget.json": {
+      "bytes": 810,
+      "sha256": "226ec2695ef0c033a769cda6479d29ee37ab408f0a40a75a08a66248edca31fb"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/build_design.py": {
+      "bytes": 8793,
+      "sha256": "cdad52f198d7d1681e09c547e5ebc25e25dbbe18bee64a4082b9be12fafdb4c7"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/design.json": {
+      "bytes": 16325,
+      "sha256": "8656c12a1fa9bcbcf8be5a2d5f378fab8324500da1eca5b7b50a2ac975562140"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/extraction-result.json": {
+      "bytes": 508,
+      "sha256": "565043e3d284980c551490e1e36fafa36ec0908b4feed1acff233e6af897cf5b"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/loaded-code-candidates.json": {
+      "bytes": 4437,
+      "sha256": "49a201eb2649bac908c2e370bfb5819cc3961d52e28454a2669bfd2702ad36be"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/manifest.json": {
+      "bytes": 5290,
+      "sha256": "cdf18bdd8e36eaca11db2d80b7f94b7f6cd444e09731e924f03868d81c6f4b03"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/read-accounting.json": {
+      "bytes": 5676,
+      "sha256": "393f3139038d08845a56502efe01b7b8e135dac22bad4665d01e646dc1623e25"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/report.md": {
+      "bytes": 4016,
+      "sha256": "aafe44b150a10a6b8c1dab56803ec23d3de979ad3ebc0601e3fc0c3418c0199a"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/retained-layout.json": {
+      "bytes": 54045,
+      "sha256": "d357f06d5cf6573d0af9ac322228d83675ac17947643bd908704a44bf0215f33"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/seal_design.py": {
+      "bytes": 3266,
+      "sha256": "cc7de89240aefb73ca06fded79607bc9765fd51367efa01eaf89c4213a3bad06"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/source-pins.json": {
+      "bytes": 1733,
+      "sha256": "573ec2776e71ad9b5fabadb24199a2391a5457a5c03be51e704f0afe2991cd58"
+    },
+    "work/reports/peace-current-pending-reader-design-20261016-r1/verify.py": {
+      "bytes": 1060,
+      "sha256": "77c0d460da4c3fb3815d7225f9de1336e7a3031bf95b57e8a3ef43928f2b48cf"
+    },
+    "work/reports/peace-current-pending-reader-design-independent-review-20261016-r1/findings.json": {
+      "bytes": 5126,
+      "sha256": "229908a7d5933b065ff18707df19f3e4a303f25b34050e53b7690d49772401e5"
+    },
+    "work/reports/peace-current-pending-reader-design-independent-review-20261016-r1/manifest.json": {
+      "bytes": 13248,
+      "sha256": "0b1ff8d258ef59b52b3a1c71feba2fd3b13e47b13ce23fa5f21f967bf901c01a"
+    },
+    "work/reports/peace-current-pending-v2-host-hash-budget-20261016-r1/authorization.json": {
+      "bytes": 3267,
+      "sha256": "f1e988ca94bcf8f7519218e8eced9fcac367269f596f40205af71c8828f944ac"
+    },
+    "work/reports/peace-current-pending-v2-source-authorization-20261016-r1/authorization.json": {
+      "bytes": 3296,
+      "sha256": "423d8b9e04d29e0fe3de58228e79903dac49e4a07881e38e3b92a81df38a1dec"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/crosswalk.json": {
+      "bytes": 12455,
+      "sha256": "4829fef072fbfeb7d123a009b87dae281a3d0a493565bd979f2d2bae0f2edf66"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/manifest.json": {
+      "bytes": 4947,
+      "sha256": "b8a275647f591850fe04ee7f82b536603186596981ff25846225150631956b30"
+    },
+    "work/reports/peace-reply-locator-crosswalk-20261015-r1/selected-evidence.json": {
+      "bytes": 19226,
+      "sha256": "3b8c932a3a903f36e6a274e26336063f8f4cb347ce8672f76d5c41e284db21f0"
+    },
+    "work/reports/peace-reply-locator-crosswalk-independent-review-20261016-r1/findings.json": {
+      "bytes": 5193,
+      "sha256": "22c05ce4bd8ee3aa95c6efe880e6dd0c20d8102dfb78e6316fd2168d694410d6"
+    },
+    "work/reports/peace-reply-locator-crosswalk-independent-review-20261016-r1/manifest.json": {
+      "bytes": 7599,
+      "sha256": "e6c83416d7b93bc2280ca22471064d91effc9120d4b217da462b00a8f62112c9"
+    }
+  },
+  "stage": "draft_source_frozen_before_first_six_new_fakes"
+}

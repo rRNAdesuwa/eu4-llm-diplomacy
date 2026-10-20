@@ -1,0 +1,86 @@
+{
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "findings": [
+    {
+      "id": "declare_war_factory_and_constructor",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Token 0x293b selects factory 0x35d32a through the verified byte/RVA tables. It allocates 0x98 and calls 0x500480. Constructor ABI is this, actor handle, target handle, internal stability flag, date DWORD, goal pointer; actor also fills current_actor, state is 0, envoy is -1, value is true, succession/colonial flags are false, and three handle vectors start empty.",
+      "rvas": ["0x35d240", "0x35d259", "0x35d261", "0x35d32a", "0x35d374", "0x35d399", "0x500480", "0x5004ce", "0x5004db", "0x5004e4"],
+      "unknowns": ["Factory defaults use invalid country handles and a sentinel date; they are not a usable request.", "Allocation failure and complete exception unwind remain unverified."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json", "work/reports/war-peace-api-20261013/war/probe.py"]
+    },
+    {
+      "id": "declare_war_stability_true_suppresses_cost",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "The serialized stability byte at action+0x40 is an internal suppression switch: cost helper 0x507200 writes zero and skips remaining stability-cost logic when it is true. An observed GUI tooltip construction and AI construction use false; the script-effect construction uses true and immediately applies the action.",
+      "rvas": ["0x50723e", "0x507242", "0x507244", "0x507247", "0x106ce09", "0x106ce1a", "0x12f957", "0x12f967", "0x62a535", "0x62a546", "0x62a553"],
+      "unknowns": ["Other cost helpers and all condition modifiers were not semantically decoded.", "This does not prove all ordinary caller sites use false; ordinary API design must keep this internal flag fixed false until separately reviewed."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json", "work/reports/native-action-fields-1375.json"]
+    },
+    {
+      "id": "declare_war_no_cb_and_no_goal_sentinels",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Initializer 0xda4950 creates the nowargoal definition with enum 12 and a 0x60 goal object at global 0x2340030, vtable 0x1d207f8, whose +0x78 is false. Its +0x40 refers to global 0x233d8b8, initialized as the nocasusbelli definition. Null input or indices 11/12 to the clone/factory helpers return the default goal singleton, not a null goal.",
+      "rvas": ["0xda49a7", "0xda49df", "0xda49e6", "0xda4a53", "0xda4a6a", "0xda4a74", "0x1f91ca", "0x1f9201", "0xd9aaf9", "0xd9b03a", "0xd9b668", "0x8f450"],
+      "unknowns": ["Live initialization, singleton addresses and lifetime must be verified on the engine thread.", "Structural no-CB representation does not prove a selected country pair is legally allowed to declare war."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json", "work/reports/war-peace-api-20261013/war/probe.py"]
+    },
+    {
+      "id": "declare_war_goal_dispatch_uses_definition_enum",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Goal copying dispatches via goal virtual +0x58, then definition DWORD +0x38. All eleven factory cases allocate 0x60 and use the common serializer/parser, with nine distinct concrete vtables; take_core/take_border/take_province share one vtable. New factory objects initially bind the nowargoal definition, so choosing a factory enum alone does not produce a correctly bound goal.",
+      "rvas": ["0xd9ab05", "0xd9ab08", "0xd9ab26", "0xd9b0a3", "0xd9b134", "0xd9b1c5", "0xd9b256", "0xd9f264", "0x9b120"],
+      "unknowns": ["Resolving and binding the correct live goal definition from the selected CB remains required.", "All field combinations for each goal and CB are not yet validated.", "Only the typed field evidence is reused for names; enum or vtable alone is not a public goal identifier."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json", "work/reports/native-action-fields-1375.json"]
+    },
+    {
+      "id": "declare_war_goal_and_vector_ownership",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "The action clone allocates 0x98, creates a separately allocated goal copy when the definition enum is 0..10, and copies all three handle vectors through 0x144150. Both clone dates take source+0x28 and +0x39 is zeroed. Destruction unconditionally dereferences the goal, deletes it only if goal+0x78 returns true, then frees the three vectors. Concrete goal deleting destructor frees only its 0x60 wrapper and retains referenced definitions.",
+      "rvas": ["0x50b8fd", "0x50b938", "0x50b93e", "0x50b984", "0x50b995", "0x50b9a3", "0x50b9b7", "0x500573", "0x50057a", "0x500592", "0x5005a6", "0xd9a068", "0xd9a06d"],
+      "unknowns": ["Definition/rebel-reference lifetime authentication is not implemented.", "Do not fill action+0x48 with NULL, a string, a CB definition pointer, or an external shallow-copy buffer.", "Complete allocator/unwind and no-send native lifecycle tests remain pending."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json"]
+    },
+    {
+      "id": "declare_war_wrapper_owns_distinct_clone",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "declarewar virtual +0x40 is the existing generic 0x4e9930 wrapper. It calls clone+0xb0, replaces clone secondary date with current game date, allocates a 0x58 command, and stores the clone at command+0x50. Generic sender 0xbfe50 clears its caller-owned command container before calling 0x14ca210.",
+      "rvas": ["0x4e9940", "0x4e9950", "0x4e995c", "0x4e9960", "0x4e9991", "0xbfe74", "0xbfe77", "0xbfe8b"],
+      "unknowns": ["A normal declarewar GUI/AI caller reaching this exact wrapper-plus-sender route was not proven in this bounded investigation.", "Sender return is not application, acceptance, or persistence evidence.", "Current TAG-only host does not bind this action."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json", "work/reports/native-diplomacy-1.37.5.json"]
+    },
+    {
+      "id": "declare_war_check_boundaries_and_engine_context",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "The action uses local+0x80=0x508db0 and full+0x88=0x50a0a0. Full first calls common 0x4e9d00 and adds country/subject/stability/rebels/succession conditions; local separately checks country relation restrictions. Both resolve countries from handles using engine globals. NULL tooltip suppresses text allocation branches but does not replace or establish local evaluation.",
+      "rvas": ["0x508de1", "0x508dfb", "0x508e2a", "0x50a0ca", "0x50a0d2", "0x50a2e3", "0x50a32d", "0x12f979"],
+      "unknowns": ["Transitive script, government, cache, TLS, and mutable helper behavior is not fully closed.", "No callback may be treated as an arbitrary-thread read-only check.", "A complete preflight also needs selected CB instance, correct goal definition, participants and all common diplomacy gates."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json"]
+    },
+    {
+      "id": "declare_war_effect_writes_before_war_creation",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Effect+0x48=0x501290 runs legacy callbacks and calculates/applies several costs before allocating a 0x218 war object through 0xd859b0 and checking 0xd8caf0. It later computes participant data through 0x503e70 and performs relation, CB, notification and further command changes. It has no direct local/full check call in its decoded body and must not be used as a safe validating entry point.",
+      "rvas": ["0x501358", "0x501374", "0x5014b5", "0x501522", "0x501544", "0x501571", "0x501804", "0x50181f", "0x50189d", "0x501cee", "0x502d21"],
+      "unknowns": ["Callees and all indirect behavior remain unclosed; this is not a transactional failure model.", "War persistence, participants, penalties and notification effects require runtime observation and save/reload evidence."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json"]
+    },
+    {
+      "id": "declare_war_ally_parameters_are_owned_handle_vectors",
+      "actions": ["declare_war"],
+      "kind": "observation",
+      "summary": "Existing exact-PE parser evidence binds attacker+0x50, promised_land+0x68 and full_ally+0x80 to separate country-handle vectors. This increment confirms vector copies and full_ally participation in helper 0x503e70 and cost helper 0x506e60. The parser's attacker_call_all token validates yes/no without storing a field in the reviewed path.",
+      "rvas": ["0x50b995", "0x50b9a3", "0x50b9b7", "0x5040d2", "0x5040e0", "0x506e99", "0x506ea5"],
+      "unknowns": ["Complete mapping from UI ally selections/co-belligerents/promised land to all three vectors is not yet closed.", "Do not synthesize attacker_call_all storage or assume independent vector choices are always legal.", "Call-ally response, participation order and exact war-side membership remain unverified."],
+      "evidence_files": ["work/reports/war-peace-api-20261013/war/disassembly.json", "work/reports/native-action-fields-1375.json"]
+    }
+  ]
+}

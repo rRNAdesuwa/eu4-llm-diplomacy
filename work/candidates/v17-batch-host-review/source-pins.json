@@ -1,0 +1,42 @@
+{
+  "tools/request_diplomacy_lab_v17.py": {
+    "bytes": 8697,
+    "sha256": "4cfc15afcca2e6c3f2496008e2ae6d385567963aecb981bda735acca38df86c2"
+  },
+  "tools/verify_diplomacy_acceptance_v17.py": {
+    "bytes": 20313,
+    "sha256": "2ff9065cea99239c90ed504465eeb9ff2c76c67f8fee8b8479881fd0d4c3eb14"
+  },
+  "work/candidates/v17-batch-action-matrix-1375/plan.json": {
+    "bytes": 27171,
+    "sha256": "f63080fd20ee949dc44ec76b819deac7b00eae71ae05220cc268f3a715b23a6b"
+  },
+  "work/candidates/v17-batch-action-matrix-1375/review.json": {
+    "bytes": 4128,
+    "sha256": "1e5554ac4e4d52309f2fbd1b21ace8f486c370226a5557b355a8a754860815a4"
+  },
+  "work/native/lab_protocol_v17_1375.py": {
+    "bytes": 76229,
+    "sha256": "5bce16b8c951850cbbdc47c88e1edb0cd5b565d3dae2f9785246a92656afa202"
+  },
+  "work/native/run_lab_speed_v17_1375.py": {
+    "bytes": 11526,
+    "sha256": "ed3967c54bdc4f9e31b6b534753688f6b37531538c9d5d23338d35591d3eefec"
+  },
+  "work/native/v17/pair-engine-1375.h": {
+    "bytes": 5377,
+    "sha256": "f5257b31ca81e3c886f501433cce1da3eaba0da868bec3225412cb03fee2a526"
+  },
+  "work/native/v17/research-lab-1375.cpp": {
+    "bytes": 58756,
+    "sha256": "3f2ca8c56275d741a3bd02a30b292056b8e37a10a3cfe62a9e4c0dcff306338d"
+  },
+  "work/run_lab_step_v17_1375.py": {
+    "bytes": 3562,
+    "sha256": "9c42a335ee733ababbc952679f18144a0c42545c01d61daf6833b8d54a9343d5"
+  },
+  "work/runtime/native1375-v17/build.json": {
+    "bytes": 6903,
+    "sha256": "b7cf7bb7b31cddf621729e0d541404d80bdb155c6f804082e2a25f651c97067d"
+  }
+}

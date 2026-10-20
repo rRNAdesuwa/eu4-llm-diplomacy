@@ -1,0 +1,67 @@
+{
+  "PE_stat_open_hash": 0,
+  "all_previous_own_shells_collected": true,
+  "author_defects": 0,
+  "author_files_modified": false,
+  "author_runs": 0,
+  "decoder_imports": 0,
+  "engine_body_reads": 0,
+  "final_check_and_completion_reserve_bytes": 2097152,
+  "final_check_reserve_consumed_known_minimum": 904770,
+  "first_pincheck": {
+    "checked_files": 61,
+    "exit_code": 0,
+    "source_bytes": 699719,
+    "tool_chunk": "4d1cf9"
+  },
+  "formal_review_executions": [
+    {
+      "exit_code": 1,
+      "reason": "Reviewer omitted separate264684B preflight from author source_reads760288B when comparing1024972B total.",
+      "source": "review.py",
+      "tool_chunk": "8570c3"
+    },
+    {
+      "exit_code": 0,
+      "source": "review-r2.py",
+      "tool_chunk": "b39629"
+    }
+  ],
+  "formal_review_failures": 1,
+  "formal_source_bytes_including_failed_review": 1538142,
+  "game_native_calls": 0,
+  "manual_preview_and_small_diagnostics_allowance_bytes": 2097152,
+  "native_ready": false,
+  "new_requests": 0,
+  "own_peak_self_committed_bytes": 16740352,
+  "own_seal_read_bytes_from_pinned_local_sizes": 205051,
+  "passed": true,
+  "precision": "Normal sequential SAR64 value range excludesK; JE remains syntactic, not value-feasible; unread cc266 still blocks wholecallee closure.",
+  "reader_adoption_allowed": false,
+  "retained_limit_bytes": 8388608,
+  "return_verified": false,
+  "revision_construction_executions": [
+    {
+      "exit_code": 1,
+      "reason": "Reviewer expected one string occurrence; actual2. No revised file written.",
+      "tool_chunk": "7468a6"
+    },
+    {
+      "exit_code": 0,
+      "source": "build-review-r2.py",
+      "tool_chunk": "6e99c3"
+    }
+  ],
+  "root_OS_exit_walltime": "Pinned parent witness only; no original stdout/stderr tee and no independent OS exit measurement.",
+  "schema": "EU4-R86-INDEPENDENT-REVIEW-COMPLETION/1",
+  "sealed": true,
+  "sessions_or_listeners_created": 0,
+  "source_engine_PE_hash_truth": "Producer witnesses plus retained source/ledger consistency; no reviewer target/engine stat/open/hash.",
+  "source_limit_bytes": 33554432,
+  "source_upper_bytes": 5732446,
+  "target_process_accesses": 0,
+  "tests_runs": 0,
+  "total_own_failures_preserved": 2,
+  "whole_function_closed": false,
+  "world_lease": false
+}

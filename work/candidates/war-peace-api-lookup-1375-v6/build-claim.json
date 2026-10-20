@@ -1,0 +1,10 @@
+{
+  "authorization": {
+    "bytes": 6779,
+    "sha256": "6ff710b74288f303a01df3049aab67901d49f7f1f2fbcfe0a0423251ce237de5"
+  },
+  "no_query_run_yet": true,
+  "no_retry": true,
+  "schema": "EU4-LOOKUP-V6-BUILD-CLAIM/1",
+  "single_build": true
+}

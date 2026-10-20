@@ -1,0 +1,111 @@
+{
+  "local_pins": {
+    "docs/runtime-capability-map-1375-v8.json": {
+      "bytes": 24391,
+      "sha256": "6ffc1cc14c588f44319b5646c3f5b9b4b727de7f2ba3cf59c3674d4f4d519b41"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/LIVE_REVIEW_STATUS.md": {
+      "bytes": 2146,
+      "sha256": "f3185f07a86839c319fe768dc206e9c35984fe0017fb98a3a4b40f1a30cc276a"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/build_v8.py": {
+      "bytes": 19583,
+      "sha256": "5082f8f800b68277d1e9928cda041398fabd3597b0939bd69f4b94c2f301c6e1"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/delta.json": {
+      "bytes": 1179,
+      "sha256": "caaaa55ef00f7b0e52dee120dd296a093ebacd19025e70fd4c2375cfdd9e4dba"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/inspect_metadata.py": {
+      "bytes": 2102,
+      "sha256": "3e5b21cb159e3538f559841da0e5b43ce5d9e25d4e91627b486e4099f41df774"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/intake-output-note.json": {
+      "bytes": 631,
+      "sha256": "7cb42387531e1fa761cb79cd1d4a02086bf3f75e2f8a14a503ab3c2d7c1c2294"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/plan-extension.json": {
+      "bytes": 574,
+      "sha256": "c2edf4e92b057afd34972e396985b1cfc653cac82f2016e1f5d746fc0cb06a2c"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/plan.json": {
+      "bytes": 3096,
+      "sha256": "3084442758bba2ceb4a36152cf557f02b3e2fd225470f91d649a96036bcb9155"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/receipt.json": {
+      "bytes": 11681,
+      "sha256": "5271d81d1fb4dc11ac89115e43ca998575ad937dcdc904ed9a9ff02af67c630e"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/report.md": {
+      "bytes": 1314,
+      "sha256": "560217d6261f36aad71a410957ef23cc2d2fed55803c2b615375edadbfd73b3c"
+    },
+    "work/reports/support-heir-discovery-publication-20261016-r1/selected-metadata.json": {
+      "bytes": 231298,
+      "sha256": "19c0e1db893d86f74cbd4b4be5023c666a9f9e18783ba2f2b5191625fa40ca3f"
+    }
+  },
+  "native_ready": false,
+  "runtime_authority": false,
+  "schema": "EU4-SUPPORT-V8-PUBLICATION-MANIFEST/1",
+  "sealed": true,
+  "source_guard_scope": "Only selected14, no recursive graph re-certification",
+  "source_pins": {
+    "docs/runtime-capability-map-1375-v7.json": {
+      "bytes": 17565,
+      "sha256": "137abeb35de8f6040cdcd3c5debe6d20ce91e4a3fdf149bed7b5bab7964591cc"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/source-manifest.json": {
+      "bytes": 5506,
+      "sha256": "f8442eefa3dbacb5a952a5d8387cf0bcea83adfcb059034984af5bd40478c069"
+    },
+    "work/candidates/support-heir-current-observer-1375-v1/support_heir_current_observer.py": {
+      "bytes": 21780,
+      "sha256": "8b2eba840c3f6b4927f6fbf1aa04878c931fc548372dc10dd8432863ed68ec01"
+    },
+    "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json": {
+      "bytes": 34688,
+      "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+    },
+    "work/reports/support-heir-current-live-controller-20261016-r1/live-completion-corrigendum.json": {
+      "bytes": 2391,
+      "sha256": "e50f7135d51eac5ca000c29eeac0651625cc396f2d837fdb5db0a11b225e3ac6"
+    },
+    "work/reports/support-heir-current-live-controller-20261016-r1/live-completion.json": {
+      "bytes": 16575,
+      "sha256": "b949815ebc4d15a0db6792006fff759289a5fd70438997e3752bbe958fcada8a"
+    },
+    "work/reports/support-heir-current-live-controller-20261016-r1/source-manifest.json": {
+      "bytes": 16257,
+      "sha256": "3d70675a5901635a00efd6415ac93ead4b4dcadc726df1a6f4f065b864bb20f7"
+    },
+    "work/reports/support-heir-current-live-independent-review-20261016-r1/completion.json": {
+      "bytes": 2390,
+      "sha256": "0b7cf884062f15f550ac1b38149339c94be96a46200d70479bfa8f4e14135dfb"
+    },
+    "work/reports/support-heir-current-live-independent-review-20261016-r1/findings.json": {
+      "bytes": 5248,
+      "sha256": "bd3dc09480322dfbf2461e63015c57ec172d7361b9c305949034419cf479d595"
+    },
+    "work/reports/support-heir-current-live-independent-review-20261016-r1/manifest.json": {
+      "bytes": 17892,
+      "sha256": "be2d26a8304e00415fba4acd1496d1c5e4083da7baa5d882754ad7f384f216b0"
+    },
+    "work/reports/support-heir-current-live-independent-review-20261016-r1/pincheck.json": {
+      "bytes": 19829,
+      "sha256": "74f62e7bda50979e6254bde7f9f064f02f81802db2b23ca01bb01af5f64a51cc"
+    },
+    "work/reports/support-heir-current-live-independent-review-20261016-r1/verification.json": {
+      "bytes": 40878,
+      "sha256": "11d8519284dbdbc4e89da7f86513e7c305d67e5c2152a6d8a7865e48df503c69"
+    },
+    "work/reports/support-heir-current-root-live-acceptance-20261016-r1/findings.json": {
+      "bytes": 1810,
+      "sha256": "7a90696fe7ff99d6709ef0449e304a7b6970b26116da2adc9effe11ab13aea54"
+    },
+    "work/reports/support-heir-current-root-live-acceptance-20261016-r1/receipt.json": {
+      "bytes": 4424,
+      "sha256": "4d4a940262e6f5af310d38175d518b619b12b837882d44140c3eba0d1440aff2"
+    }
+  }
+}

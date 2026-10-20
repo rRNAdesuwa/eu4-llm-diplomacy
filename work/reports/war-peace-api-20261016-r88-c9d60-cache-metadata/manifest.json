@@ -1,0 +1,72 @@
+{
+  "no_target_execution": true,
+  "owned_pins": {
+    "findings.json": {
+      "bytes": 1900,
+      "sha256": "37b737b926ca54c0a750e17038c1625851edfce8860eba396be0349d01cba43a"
+    }
+  },
+  "read_journal": [
+    {
+      "bytes": 1302642,
+      "path": "work/reports/native-owned-peace-1375.json",
+      "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+    },
+    {
+      "bytes": 1894144,
+      "path": "work/reports/native-pair-replies-1375.json",
+      "sha256": "da3faa061af3d9ee8a3003412151594c6305b765afd8d739b4cb4a4759f63510"
+    },
+    {
+      "bytes": 140752,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/capture.json",
+      "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+    },
+    {
+      "bytes": 1099,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/owned-code.json",
+      "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+    },
+    {
+      "bytes": 1302642,
+      "path": "work/reports/native-owned-peace-1375.json",
+      "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+    },
+    {
+      "bytes": 1894144,
+      "path": "work/reports/native-pair-replies-1375.json",
+      "sha256": "da3faa061af3d9ee8a3003412151594c6305b765afd8d739b4cb4a4759f63510"
+    },
+    {
+      "bytes": 140752,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/capture.json",
+      "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+    },
+    {
+      "bytes": 1099,
+      "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/owned-code.json",
+      "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+    }
+  ],
+  "schema": "EU4-R88-CACHE-METADATA-MANIFEST/1",
+  "sealed": true,
+  "source_before_after_equal": true,
+  "source_pins": {
+    "work/reports/native-owned-peace-1375.json": {
+      "bytes": 1302642,
+      "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+    },
+    "work/reports/native-pair-replies-1375.json": {
+      "bytes": 1894144,
+      "sha256": "da3faa061af3d9ee8a3003412151594c6305b765afd8d739b4cb4a4759f63510"
+    },
+    "work/reports/war-peace-api-20261016-r87-dual-frontier-source/capture.json": {
+      "bytes": 140752,
+      "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+    },
+    "work/reports/war-peace-api-20261016-r87-dual-frontier-source/owned-code.json": {
+      "bytes": 1099,
+      "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+    }
+  }
+}

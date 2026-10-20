@@ -1,0 +1,91 @@
+{
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "independent_source_review": {
+    "bytes": 3920,
+    "path": "work/reports/linked-truce-projection-source-review-20261015-r1/independent-source-ready.json",
+    "sha256": "d51905d22caa5c4f28fb4bdcc260a0a89b440e01c2cc977814da601848c95eec"
+  },
+  "native_ready": false,
+  "runtime_capture_authorized": true,
+  "schema": "EU4-LINKED-TRUCE-PROJECTION-MANIFEST/1",
+  "sealed": true,
+  "source_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py": {
+      "bytes": 16856,
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json": {
+      "bytes": 2494,
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/candidates/linked-truce-projection-1375-v1/README.md": {
+      "bytes": 3776,
+      "sha256": "8a8d7ba8331e0515002f5e8ff7c815b394a26b20316a32990f471acbedf9fcb5"
+    },
+    "work/candidates/linked-truce-projection-1375-v1/build_manifest.py": {
+      "bytes": 1116,
+      "sha256": "7e25e00a37ce48724b4758812360d8c8c95d98e85265a51171482474bd13a7f7"
+    },
+    "work/candidates/linked-truce-projection-1375-v1/linked_truce_projection.py": {
+      "bytes": 23235,
+      "sha256": "873ea638227e7543dbe2a18d74097559083756f08bc3186c945412c6d9907225"
+    },
+    "work/candidates/linked-truce-projection-1375-v1/run_offline.py": {
+      "bytes": 1924,
+      "sha256": "e945a976f1de90a4805325a3c2fe9bb873d65df554cdf45bdf55684aa66c7980"
+    },
+    "work/candidates/linked-truce-projection-1375-v1/test_linked_truce_projection.py": {
+      "bytes": 14209,
+      "sha256": "1938708c0422087c6e36e4f2b239f42fd1a07a5bfb41162d50005f8b8a407b1f"
+    },
+    "work/reports/war-peace-api-20261015-r23-truce-observation-contract/war/selected-decode.json": {
+      "bytes": 16926,
+      "sha256": "e38c687f4f6d4f3321cddad7c7910112350491acb19cd2090fe8f74e868c08bc"
+    },
+    "work/reports/war-peace-api-20261015-r26-linked-truce-tails/war/selected-decode.json": {
+      "bytes": 29646,
+      "sha256": "e59486834e38e541a243353b73673fb0e1170724282f258c86cb106ad2b5fb52"
+    },
+    "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/selected-cfg.json": {
+      "bytes": 53888,
+      "sha256": "fdd76416a42c5cc2b000707909eb6a0afcdd4a1aaca990c2c957d1207f83bb00"
+    },
+    "work/reports/war-peace-api-20261015-r38-dependency-crosswalk/war/crosswalk.json": {
+      "bytes": 4713,
+      "sha256": "aab78fe19dddd2197e6acd3eb98f06da41537eb6cf89da2cec9bf54fd8102d7e"
+    },
+    "work/reports/war-peace-api-20261015-r38-independent-review/war/findings.json": {
+      "bytes": 4913,
+      "sha256": "07308a07a4e38fdafa736247928f91c763eac37729e270a379f6ff79eefaa7fd"
+    },
+    "work/reports/war-peace-api-20261015-r40-linked-condition-closure/war/selected-cfg.json": {
+      "bytes": 828776,
+      "sha256": "880152447a23b8a9b8878d466e2089aaace05cb5785b3a4d394eb5d1782c752e"
+    },
+    "work/reports/war-peace-api-20261015-r42-empty-linked-condition/war/projection.json": {
+      "bytes": 43701,
+      "sha256": "5e7cd6bf875abc427d5bfd46a37a6683486fa3c0779ab0e1bccc26c1598047b8"
+    },
+    "work/reports/war-peace-api-20261015-r43-independent-review/war/findings.json": {
+      "bytes": 1711,
+      "sha256": "f1bda10a358ce338165a5031462cd8b6a753a9b4beed8f2e2c2a07118fafc6be"
+    },
+    "work/reports/war-peace-api-20261015-r43-linked-cleanup-constant/war/capture.json": {
+      "bytes": 5808,
+      "sha256": "2feef2cdb8fb7b2e8db3d0321f86505eef941eaa9ad9a0515a05b5cbbda279c5"
+    },
+    "work/reports/war-peace-api-20261015-r43-linked-cleanup-constant/war/delta.json": {
+      "bytes": 8401,
+      "sha256": "d0239818c0496409ee535cf99a409acc8eb39ba205354a522a859a44a2b1a999"
+    }
+  },
+  "stage": "source_reviewed_readonly_selected_path_capture"
+}

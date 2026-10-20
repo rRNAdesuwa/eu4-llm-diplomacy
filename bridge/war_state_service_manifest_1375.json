@@ -1,0 +1,36 @@
+{
+  "schema": "EU4-WAR-STATE-HOST-MANIFEST/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "read_only": true,
+  "native_calls": 0,
+  "source_pins": {
+    "bridge/war_state_service.py": {
+      "bytes": 11783,
+      "sha256": "37146b8aed9902ed14ff7e83feb8a42338fef9b378b91402b0b68758b4f04a29"
+    },
+    "tools/observe_war_runtime.py": {
+      "bytes": 3275,
+      "sha256": "946728d30e02d99ea16017aa2ae6270822c810f13c008357fd99b127d20d5768"
+    },
+    "tools/eu4_runtime_observer.py": {
+      "bytes": 3794,
+      "sha256": "a28a65895a9a563f4d8fe22776bac2d8a06f025ffb1d66044ca5ef4bc94a47ed"
+    },
+    "bridge/tests/test_war_state_service.py": {
+      "bytes": 7745,
+      "sha256": "0e7e099c2265e9f0dad0676493d5478b1b55818e8447f988fc22177a2ba095c5"
+    },
+    "tools/build_war_state_service_manifest.py": {
+      "bytes": 1204,
+      "sha256": "963234a40e83e54ff964f3c72cb3978995d6d68bb5f7d22b0bf31e99ada68df2"
+    },
+    "bridge/diplomacy_live_observer_manifest_1375.json": {
+      "bytes": 3602,
+      "sha256": "f7a2a64aa2c9fbc79a843af0b4c1b81cb7df22e3d09104a3fb718b06306b43ca"
+    },
+    "work/reports/war-peace-api-20261015-r7-r2/observer/manifest.json": {
+      "bytes": 3193,
+      "sha256": "7f844951adb72c5843088f00172310642f9ef1f5efe12c1157b5260242227d8c"
+    }
+  }
+}

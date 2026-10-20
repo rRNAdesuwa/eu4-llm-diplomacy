@@ -1,0 +1,47 @@
+[
+  {
+    "bytes": 396593,
+    "path": "work/reports/native-subject-interactions-1375.json",
+    "sha256": "462b698ccb63878ea317af16ece5da78d03ce644c10b6cfa3219f0db932e704e"
+  },
+  {
+    "bytes": 543787,
+    "path": "work/candidates/subject-military-focus-contract-1375/report.json",
+    "sha256": "7be628d0e30f1c2e0d92b89d40b3757f310659865dd3d49427114e5a64cedffb"
+  },
+  {
+    "bytes": 240953,
+    "path": "work/candidates/subject-military-focus-observer-1375/report.json",
+    "sha256": "3bc89887cca5cc3c17fdf3dde2354368920481ffd1125e6650b5df9adbc85da9"
+  },
+  {
+    "bytes": 115116,
+    "path": "work/candidates/next-diplomacy-interface-scope-1375/report.json",
+    "sha256": "be256340c0fe8fb779ba54e3011cb1e7dd5c33a060a6f1e4181c567ed799881b"
+  },
+  {
+    "bytes": 29147,
+    "path": "work/discover_diplomacy.py",
+    "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+  },
+  {
+    "bytes": 32914,
+    "path": "work/map_diplomacy_fields.py",
+    "sha256": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85"
+  },
+  {
+    "bytes": 48700,
+    "path": "../common/subject_types/00_subject_types.txt",
+    "sha256": "81706ed7cd5f707c6b5ff94bd7fb9a5be8487335c0076879bfe02d4bc3eadfce"
+  },
+  {
+    "bytes": 959,
+    "path": "work/AGENTS.md",
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  },
+  {
+    "bytes": 2010953,
+    "path": "work/reports/native-pair-extension-v11-1375.json",
+    "sha256": "ac4559379e218aaf1fa8ffc1dd7dc6b8332ed5b7bf681c4b66bfc59349944344"
+  }
+]

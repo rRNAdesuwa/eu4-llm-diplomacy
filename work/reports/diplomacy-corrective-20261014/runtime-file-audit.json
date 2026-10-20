@@ -1,0 +1,518 @@
+{
+  "actions": [
+    {
+      "call_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "cold_reload_verified": false,
+      "command": {
+        "action": "trade_favors_for_gold",
+        "actor": "FRA",
+        "request_id": "tag31-corrective-20261014-1-trade_favors_for_gold",
+        "target": "SCO"
+      },
+      "current_legality_proven_for_a_future_attempt": false,
+      "development_reservation_verified": true,
+      "normal_native_call_pairs": 7,
+      "ownership_closed": true,
+      "reason": "normal_dispatch_slot_consumed",
+      "retry_forbidden": true,
+      "saved_state_verified": false,
+      "selected_effect": {
+        "FRA_after": 902006641,
+        "FRA_before": 901548905,
+        "FRA_delta": 457736,
+        "SCO_after": 98859406,
+        "SCO_before": 99317142,
+        "SCO_delta": -457736,
+        "field": "treasury_milli",
+        "selected_two_country_total_after": 1000866047,
+        "selected_two_country_total_before": 1000866047,
+        "selected_two_country_total_conserved": true
+      },
+      "selected_effect_observed": true,
+      "sequence": 1,
+      "state": "dispatched",
+      "strict_clean_rejection": false
+    },
+    {
+      "call_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "cold_reload_verified": false,
+      "command": {
+        "action": "trade_favors_for_men",
+        "actor": "FRA",
+        "request_id": "tag31-corrective-20261014-2-trade_favors_for_men",
+        "target": "SCO"
+      },
+      "current_legality_proven_for_a_future_attempt": false,
+      "development_reservation_verified": true,
+      "normal_native_call_pairs": 7,
+      "ownership_closed": true,
+      "reason": "normal_dispatch_slot_consumed",
+      "retry_forbidden": true,
+      "saved_state_verified": false,
+      "selected_effect": {
+        "FRA_after": 9013838,
+        "FRA_before": 9011798,
+        "FRA_delta": 2040,
+        "SCO_after": 1003389,
+        "SCO_before": 1005429,
+        "SCO_delta": -2040,
+        "field": "manpower_milli",
+        "selected_two_country_total_after": 10017227,
+        "selected_two_country_total_before": 10017227,
+        "selected_two_country_total_conserved": true
+      },
+      "selected_effect_observed": true,
+      "sequence": 2,
+      "state": "dispatched",
+      "strict_clean_rejection": false
+    },
+    {
+      "call_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "cold_reload_verified": false,
+      "command": {
+        "action": "trade_favors_for_sailors",
+        "actor": "FRA",
+        "request_id": "tag31-corrective-20261014-3-trade_favors_for_sailors",
+        "target": "SCO"
+      },
+      "current_legality_proven_for_a_future_attempt": false,
+      "development_reservation_verified": true,
+      "normal_native_call_pairs": 7,
+      "ownership_closed": true,
+      "reason": "normal_dispatch_slot_consumed",
+      "retry_forbidden": true,
+      "saved_state_verified": false,
+      "selected_effect": {
+        "FRA_after": 900461974,
+        "FRA_before": 900335218,
+        "FRA_delta": 126756,
+        "SCO_after": 101282099,
+        "SCO_before": 101408855,
+        "SCO_delta": -126756,
+        "field": "sailors_milli",
+        "selected_two_country_total_after": 1001744073,
+        "selected_two_country_total_before": 1001744073,
+        "selected_two_country_total_conserved": true
+      },
+      "selected_effect_observed": true,
+      "sequence": 3,
+      "state": "dispatched",
+      "strict_clean_rejection": false
+    },
+    {
+      "call_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "cold_reload_verified": false,
+      "command": {
+        "action": "trade_favors_for_war_prep",
+        "actor": "FRA",
+        "request_id": "tag31-corrective-20261014-4-trade_favors_for_war_prep",
+        "target": "SCO"
+      },
+      "current_legality_proven_for_a_future_attempt": false,
+      "development_reservation_verified": true,
+      "normal_native_call_pairs": 7,
+      "ownership_closed": true,
+      "reason": "normal_dispatch_slot_consumed",
+      "retry_forbidden": true,
+      "saved_state_verified": false,
+      "selected_effect": {
+        "after_actor": "0x100007a00415246",
+        "after_date_raw": 56468208,
+        "before_actor": "0x2d2d2d",
+        "before_date_raw": 43808760
+      },
+      "selected_effect_observed": true,
+      "sequence": 4,
+      "state": "dispatched",
+      "strict_clean_rejection": false
+    },
+    {
+      "call_order": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "cold_reload_verified": false,
+      "command": {
+        "action": "trade_favors_for_heir",
+        "actor": "FRA",
+        "request_id": "tag31-corrective-20261014-5-trade_favors_for_heir",
+        "target": "SCO"
+      },
+      "current_legality_proven_for_a_future_attempt": false,
+      "development_reservation_verified": true,
+      "normal_native_call_pairs": 4,
+      "ownership_closed": true,
+      "reason": "full88_normal_false",
+      "retry_forbidden": false,
+      "saved_state_verified": false,
+      "selected_effect": null,
+      "selected_effect_observed": false,
+      "sequence": 5,
+      "state": "native_rejected",
+      "strict_clean_rejection": true
+    },
+    {
+      "call_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "cold_reload_verified": false,
+      "command": {
+        "action": "revoke_march",
+        "actor": "FRA",
+        "request_id": "tag31-corrective-20261014-6-revoke_march",
+        "target": "ORL"
+      },
+      "current_legality_proven_for_a_future_attempt": false,
+      "development_reservation_verified": true,
+      "normal_native_call_pairs": 7,
+      "ownership_closed": true,
+      "reason": "normal_dispatch_slot_consumed",
+      "retry_forbidden": true,
+      "saved_state_verified": false,
+      "selected_effect": {
+        "after_type": "vassal",
+        "before_type": "march",
+        "overlord_handle": "0x100007a00415246"
+      },
+      "selected_effect_observed": true,
+      "sequence": 6,
+      "state": "dispatched",
+      "strict_clean_rejection": false
+    }
+  ],
+  "aggregate_favors": {
+    "after_milli": 94160,
+    "before_milli": 98160,
+    "delta_milli": -4000,
+    "direction": "SCO_to_FRA",
+    "four_dispatched_favor_actions": 4,
+    "separate_per_request_cost_causality_measured": false
+  },
+  "all_ownership_closed": true,
+  "audit_rows": 104,
+  "audit_sha256": "18aeaa9c4783e241c6fdc7a5e6cf38a2ae2f874f7fd529b24d5c188b6ca679e4",
+  "cold_reload_verified": false,
+  "coverage_calculation": {
+    "additional_cross_version_dispatch_blocks": 2,
+    "current_bound_actions_with_selected_effect_evidence": 44,
+    "new_dispatch_blocks": 5,
+    "new_distinct_selected_effects": 5,
+    "original_final_batch_repair_remainder": 53,
+    "previous_bound_actions_with_selected_effect_evidence": 39,
+    "remaining_not_tested_in_this_batch": 45,
+    "remaining_rejected_in_this_batch": 1,
+    "remaining_repair_candidates": 46
+  },
+  "current_partition_120": {
+    "additional_historical_fleet_dispatch_blocks": 2,
+    "historical_selected_effects": 35,
+    "new_clean_heir_rejection": 1,
+    "new_selected_live_effects_pending_save_reload": 5,
+    "old_dispatch_without_selected_effects": 25,
+    "other_repair_candidates_not_tested_in_this_batch": 45,
+    "other_unknown_blocks": 1,
+    "previous_corrective_selected_effects_and_reload": 4,
+    "sparse_rejection_blocks": 2
+  },
+  "development_reservations_verified": 6,
+  "file_only": true,
+  "game_calls_by_this_tool": 0,
+  "game_process_accessed_by_this_tool": false,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "identity": {
+    "creation": "01dd5b2fd032fd53",
+    "dll_sha256": "6a0683dacc069b743979b7442ad02205f13e8be972ce5c4f26a46fd9b530ed2a",
+    "manifest_sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a",
+    "pid": 19876,
+    "session": "3ea93e5210cf4f96aaefc00ac3e97535"
+  },
+  "limitations": [
+    "Observed selected live effects only; save and cold reload are pending independent evidence.",
+    "The four-point favor drop is an aggregate batch observation, not individually sampled per-request cost attribution.",
+    "Resource conservation covers only the three selected fields of FRA/SCO, not all world effects.",
+    "Heir full88 returned normal false and cleanup is proven; the actual first failed legality branch is not identified.",
+    "Five dispatched actions cannot be repeated; a clean heir rejection is a condition-repair candidate, not an automatic retry."
+  ],
+  "native_call_pairs_verified": 39,
+  "native_call_returns_all_normal_exception_zero": true,
+  "peak_committed_bytes": 39153664,
+  "remaining_repair_actions": [
+    "agitate_for_liberty",
+    "annex_vassal",
+    "ask_for_march",
+    "ask_knowledge_sharing",
+    "ask_to_be_tributary",
+    "call_trade_protectorate_into_wars",
+    "cancel_annexation",
+    "cancel_integration",
+    "claim_throne",
+    "convert_tributary_to_vassal",
+    "demand_sacrifices",
+    "elevate_influenced_country_to_vassal",
+    "establish_tributary",
+    "fabricate_ottoman_invasion_cb",
+    "fabricate_tributary_cb",
+    "grant_autonomy_to_core_eyalet",
+    "incorporate_vassal",
+    "infiltrate_administration",
+    "integrate_union",
+    "invite_into_cultural_sphere_of_influence",
+    "invite_to_federation",
+    "invite_to_trade_league",
+    "invite_to_zoroastrian_community",
+    "kick_from_federation",
+    "knowledge_sharing",
+    "leave_coalition",
+    "leave_federation",
+    "leave_the_cultural_sphere_of_influece",
+    "mam_export_grain",
+    "mam_sponsor_hajj",
+    "offer_protectorate",
+    "promote_primary_culture",
+    "reign_in_eyalet",
+    "release_pronia",
+    "remove_them_from_cultural_sphere_of_influece",
+    "request_access_to_modern_ideas",
+    "request_to_join_federation",
+    "request_to_join_trade_league",
+    "revoke_war_rights",
+    "sell_indulgence",
+    "send_royal_ambassador",
+    "share_modern_ideas",
+    "steal_modern_ideas",
+    "stop_supporting_heir",
+    "support_heir",
+    "trade_favors_for_heir"
+  ],
+  "requests_published_by_this_tool": 0,
+  "same_date_raw": 56459448,
+  "same_player_handle": "0x100007a00415246",
+  "saved_state_verified": false,
+  "schema": "EU4TAG31-FAVOR-MARCH-RUNTIME-FILE-AUDIT/1",
+  "selected_effects_observed": 5,
+  "source_pins": {
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/build.json": {
+      "bytes": 13802,
+      "sha256": "d4b3069cfac70cf9ff8e1270733ad64592c3d545a6d005fd0ed8b26c6070728a"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/eu4_tag_command_1375_v31.dll": {
+      "bytes": 343552,
+      "sha256": "6a0683dacc069b743979b7442ad02205f13e8be972ce5c4f26a46fd9b530ed2a"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/1.claim": {
+      "bytes": 442,
+      "sha256": "a030906d82bc842660f961ebed8958dcdbfb3e7e06ab1fdd75bc8b3103a172d9"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/1.request": {
+      "bytes": 442,
+      "sha256": "a030906d82bc842660f961ebed8958dcdbfb3e7e06ab1fdd75bc8b3103a172d9"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/2.claim": {
+      "bytes": 441,
+      "sha256": "d750d830c66144f34f1bd158c18a714a1330fc34cba5a79d028829e6ce352cb7"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/2.request": {
+      "bytes": 441,
+      "sha256": "d750d830c66144f34f1bd158c18a714a1330fc34cba5a79d028829e6ce352cb7"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/3.claim": {
+      "bytes": 445,
+      "sha256": "6180596b1fafc056b90f61ed00076097aa72959485a248dc9d435dd5e071b99a"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/3.request": {
+      "bytes": 445,
+      "sha256": "6180596b1fafc056b90f61ed00076097aa72959485a248dc9d435dd5e071b99a"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/4.claim": {
+      "bytes": 446,
+      "sha256": "3bf55b340d5f87521eb0ec355112cfee28076d5268d40c7ca07a3794b0b4618f"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/4.request": {
+      "bytes": 446,
+      "sha256": "3bf55b340d5f87521eb0ec355112cfee28076d5268d40c7ca07a3794b0b4618f"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/5.claim": {
+      "bytes": 442,
+      "sha256": "b7b5c486d6baf5445679f09d5817d31af05b4965e1c5104030766b44ab56bf96"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/5.request": {
+      "bytes": 442,
+      "sha256": "b7b5c486d6baf5445679f09d5817d31af05b4965e1c5104030766b44ab56bf96"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/6.claim": {
+      "bytes": 433,
+      "sha256": "8617588c613aeec14ad402a3043f438626eeca2515831192a80db908b63bc839"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/6.request": {
+      "bytes": 433,
+      "sha256": "8617588c613aeec14ad402a3043f438626eeca2515831192a80db908b63bc839"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/events.jsonl": {
+      "bytes": 54106,
+      "sha256": "18aeaa9c4783e241c6fdc7a5e6cf38a2ae2f874f7fd529b24d5c188b6ca679e4"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/key-0623e75a824e77844c54a35b5868d8207dd894bcba14612ed7874c9ff7e5cd48.json": {
+      "bytes": 599,
+      "sha256": "d0a5edd28ba33863a90454dec45df7de42d624e74b8a55dc624d3f9c114bbee5"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/key-20ea64c9a5bac5af153aea2821f4f45ae507b09505906019b6711745fca80de3.json": {
+      "bytes": 607,
+      "sha256": "d4962cc486078de7287e259db9735628ce587cff6816b8dcc18e63ccea53b2be"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/key-633df61a066210aa3fe0c1d91aff5e34236c2cba02ef954f4a2e92343a6434d2.json": {
+      "bytes": 583,
+      "sha256": "778b57b76216bfcc0a749f1c74db3c8beb0020c01f7d55f888e06866674b1eef"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/key-88ea6aff0092e257f3f553a2a58f214f3c7bb945e5922c6fe4bf331b4a120dc9.json": {
+      "bytes": 601,
+      "sha256": "0eb77bde0dd3c03ef98ad80c5403270bc70728e5bba669bc52207f67a408c542"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/key-d13f119fb81d7c7493ba65cfcfbff66c28e2f5fde016b7db46606b0e4aea19c4.json": {
+      "bytes": 601,
+      "sha256": "39d4b929b5b45e0765e842d520282045921cd00b13e68ad4f35bc1a13b8eecc3"
+    },
+    "bridge/native/tag_diplomacy_1375_v31/build-7/build/tagcommand31-19876-01dd5b2fd032fd53-3ea93e5210cf4f96aaefc00ac3e97535/key-d8f9c16fd4bab329f64405bf3bcf7fdb143c355e455d5c102a0a99c18d15d5dc.json": {
+      "bytes": 609,
+      "sha256": "da1a4dd9921f175e2090b58ebae9844d2229c7bb58cb5b2e639b29d205560ada"
+    },
+    "bridge/tag_command_audit.py": {
+      "bytes": 8109,
+      "sha256": "9e90cd180818166fac9754a65d68203b84eb24b57569c3605f5b28e69c1b289d"
+    },
+    "bridge/tag_test_policy.py": {
+      "bytes": 11384,
+      "sha256": "bb3ecd27943df25d50f6f0edb1833b26f720ef86549dc1f672dabdb9b0c14d85"
+    },
+    "work/audit_corrective_runtime_20261014.py": {
+      "bytes": 16633,
+      "sha256": "a437586461478a8ab560d057d02a20ee2f45ff4b3ba6222d78ae26188c8b6043"
+    },
+    "work/inspect_tag31_corrective_pairs.py": {
+      "bytes": 19485,
+      "sha256": "3253c36d90e1be90111d0d4f1cf84642afcdca80c8c273f9e0e3c2d352942d5d"
+    },
+    "work/observe_pair29_favors_1375.py": {
+      "bytes": 3812,
+      "sha256": "e5c7e21ed8941e5d87c4537277f74cfd41142a4d765aea2537c9cf1c4e016fae"
+    },
+    "work/probe_corrective_favors_r3_1375.py": {
+      "bytes": 7439,
+      "sha256": "6d1a12727d0844d451b88a6b30cff3366388c6cd8c9a45a7d1e0fb5484295b28"
+    },
+    "work/probe_current_diplomacy_1375.py": {
+      "bytes": 7023,
+      "sha256": "b69b2960ee595dac28cd96b734e0b5b61de8f41edeeb628a5847c098b7772d3e"
+    },
+    "work/probe_pair_effects_1375.py": {
+      "bytes": 26397,
+      "sha256": "e5ae9d341c57e7cc79169b708c1d37ccf79ac3d09e88c953e1d4bcbb3ab1cf67"
+    },
+    "work/reports/diplomacy-corrective-20261013-r2/cross-version-no-repeat-audit.json": {
+      "bytes": 164728,
+      "sha256": "88d07ef93c781c5f208b9d379dbafec9533718285281f09cf14bcab2fa004a31"
+    },
+    "work/reports/diplomacy-corrective-20261014/after.json": {
+      "bytes": 1157198,
+      "sha256": "5fe95ff12219415c26bc6dc9143f20fe5627cc81343ae5e8dc63801a4616fe85"
+    },
+    "work/reports/diplomacy-corrective-20261014/commands.json": {
+      "bytes": 989,
+      "sha256": "65df3c61419f14c278c210a284a475761209b47ca6bd0e71ec6a138b8ecaf419"
+    },
+    "work/reports/diplomacy-corrective-20261014/final-before.json": {
+      "bytes": 1153684,
+      "sha256": "a6c3758a7267fec985e4f5f08d083de7ce8793e39df886e5bbef47f9f71c82b7"
+    },
+    "work/reports/diplomacy-corrective-20261014/load.json": {
+      "bytes": 981,
+      "sha256": "aab09015324a9de7434869015598b6b77cdd2b28df779f3f306a24a2648d3321"
+    },
+    "work/reports/diplomacy-corrective-20261014/publication.json": {
+      "bytes": 1274,
+      "sha256": "5a6aabe4429ecddb272f004bef3e8c4fadc5cadc770c6dabf9eecccf269438f3"
+    },
+    "work/reports/diplomacy-corrective-20261014/results.json": {
+      "bytes": 17030,
+      "sha256": "1fa3b57dc5eae9ee5049a1b237b39c813660ea062503e56c4de32e554cb013e3"
+    },
+    "work/reports/native-pair29-favor-effects-1375.json": {
+      "bytes": 603966,
+      "sha256": "62abf72b2c30e71a7157e5f1fe08c3e5d49f091cf9ac31f1b436e8c6f79604a9"
+    },
+    "work/reports/unified-validation-20261013/current-action-validation.json": {
+      "bytes": 244736,
+      "sha256": "0b8f732f4a772f0eaabac16e84dfcb6c155eb9bb05ff6180e935ce5264564ae4"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-0623e75a824e77844c54a35b5868d8207dd894bcba14612ed7874c9ff7e5cd48.json": {
+      "bytes": 905,
+      "sha256": "4ba5f5acfa644434369cc587c655f54787d0ede04f191e14684455f8d50cb918"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-20ea64c9a5bac5af153aea2821f4f45ae507b09505906019b6711745fca80de3.json": {
+      "bytes": 913,
+      "sha256": "0f9a81c8019c1b9562b7ea4c4eb957e781e334949241220586b13909b6d35cae"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-633df61a066210aa3fe0c1d91aff5e34236c2cba02ef954f4a2e92343a6434d2.json": {
+      "bytes": 889,
+      "sha256": "425e4ab757b1f2da73a4c0974817b8f648105670f76c59d31bcfb50f3d854920"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-88ea6aff0092e257f3f553a2a58f214f3c7bb945e5922c6fe4bf331b4a120dc9.json": {
+      "bytes": 907,
+      "sha256": "9ea499459b2dfa036ef283fc1df879922417d4de546fc061647592569686e0e2"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-d13f119fb81d7c7493ba65cfcfbff66c28e2f5fde016b7db46606b0e4aea19c4.json": {
+      "bytes": 907,
+      "sha256": "53121642eb1a09eb28ec29551248e9c1e7f3f43387b489352ea00c4c5388563d"
+    },
+    "work/runtime/tag-command-development-history-1375/attempt-d8f9c16fd4bab329f64405bf3bcf7fdb143c355e455d5c102a0a99c18d15d5dc.json": {
+      "bytes": 915,
+      "sha256": "5faac3056f0f940bd601c3ddd33b346af8b76d0b090f7c1f1b3d2d6e9c7233a4"
+    }
+  },
+  "states": {
+    "dispatched": 5,
+    "native_rejected": 1
+  },
+  "strict_clean_rejection_actions": [
+    "trade_favors_for_heir"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "EU4-WAR-R4-HOST-CONTRACT/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "native_ready": false,
+  "runtime_verified": false,
+  "native_calls": 0,
+  "minimal_action_scope": "ordinary noCB, empty three ally vectors, flag40=false; R3 constructor/check/destructor ABI unchanged",
+  "capture": {
+    "timing": "entry10a6ec0 before original prologue",
+    "registers": {
+      "RCX": "map helper object",
+      "XMM1": "delta, preserved and not used for authorization",
+      "R8": "native caller app"
+    },
+    "stack_entry_offsets": {
+      "0x0": "return base+10a6d61",
+      "0x40": "outer return base+81582e"
+    },
+    "reject_outer_return": "base+10d3c9d",
+    "derivation": "wrapper push RSI8 + sub30 + call8 =40",
+    "existing_frozen_stub_passes_explicit_capture": false
+  },
+  "required_fresh_chain": [
+    {
+      "from": "base",
+      "offset": "0x233fe78",
+      "value": "game",
+      "vtable": "base+1cb00c8"
+    },
+    {
+      "from": "game",
+      "offset": "0x1e00",
+      "value": "server==capture.R8",
+      "vtable": "base+1cb8460"
+    },
+    {
+      "from": "server",
+      "offset": "0x330",
+      "value": "holder"
+    },
+    {
+      "from": "holder",
+      "offset": "0x360",
+      "value": "map==capture.RCX"
+    },
+    {
+      "from": "holder",
+      "offset": "0x370",
+      "value": "context",
+      "vtable": "base+1d8c900"
+    },
+    {
+      "from": "context",
+      "offset": "0x58",
+      "value": "transport",
+      "vtable": "base+1d96178"
+    },
+    {
+      "from": "transport",
+      "offset": "0x70",
+      "value": "context"
+    }
+  ],
+  "native_persisted_state_predicate": {
+    "entry_rva": "0x7495e0",
+    "expression": "game.load_source_74c8==0 && game.recalculating_2521==0",
+    "acquires_lease": false,
+    "native_call_required": false
+  },
+  "additional_reject_conditions": [
+    "image/process/file pins missing",
+    "wrong owner thread",
+    "callback depth !=1",
+    "native context executing7d4!=0",
+    "native context stop841!=0",
+    "manual_pause!=1",
+    "game.reset7485!=0",
+    "ironman/alternate player/multiplayer classifier",
+    "changed database/array/count/fullhandles/date/roots"
+  ],
+  "lifetime": {
+    "borrowed_objects": [
+      "game",
+      "server",
+      "holder",
+      "map",
+      "context",
+      "transport",
+      "country DB/array/countries",
+      "goal definitions"
+    ],
+    "cross_callback_retention_allowed": false,
+    "root_equality_is_epoch": false,
+    "world_witness_constant_is_epoch": false,
+    "native_addref_or_world_lock_found": false,
+    "save_mutex_23587a8_is_world_lease": false,
+    "must_not_write": [
+      "2521",
+      "7485",
+      "74c8",
+      "context7d4",
+      "context841",
+      "transport128",
+      "goal singleton backpointer"
+    ]
+  },
+  "integration_sequence": [
+    "authenticate exact callback capture and enter bridge CAS depth guard",
+    "re-sample pinned image/process/chain and complete country fullhandle identity inside callback",
+    "reject native persisted-state predicate and all health gates",
+    "obtain independently proven world lifetime and native TLS/callee authority; absent => reject before allocation",
+    "only after that authority exists run R3 construct/local/full/check/destroy sequence within callback, without UI pumping/waits/cross-frame pointers",
+    "quarantine and suppress retries on identity loss/abnormal native result/unknown cleanup; release callback guard only after owned objects are closed"
+  ],
+  "still_required_from_root": [
+    "real capture forwarding and independent observation of exact callback identity, TLS and SEH behavior",
+    "proved world lifetime or exclusion from all reset/load/destruction and reentrant mutation throughout native action lifecycle",
+    "complete R3 actor/target signed slot/fullhandle/header resolution and definition/goal ownership proof",
+    "separate new disposable no-send test authorization/build/source pins and once-only intent; no change to frozen default DLL",
+    "final sender/effect/result and war removal/persistence verification before any later dispatch"
+  ],
+  "offline_candidate": {
+    "path": "candidate/capture_guard.h",
+    "scope_matches_can_be_true": true,
+    "native_ready_can_be_true": false,
+    "tests_do_not_verify_host": true
+  }
+}

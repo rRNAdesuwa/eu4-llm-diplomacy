@@ -1,0 +1,81 @@
+{
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "analysis_kind": "ordinary_capstone_disk_analysis_not_REA_decompilation",
+  "runtime_verified": false,
+  "execution_verified": false,
+  "public_backend_registered": false,
+  "findings": [
+    {
+      "id": "peace_gui_selection_checker_abi",
+      "actions": ["peace.select_term"],
+      "kind": "observation",
+      "summary": "GUI1313e70 calls97a1c0(offer,component,initialized diagnostic vector,false,null reason text) before97a790(offer,component,false,false); selected terms instead call97a8d0 with both false. Checker evaluates surrender record, current pair war/CB descriptor exclusions,virtual80, normal total-cost cap andvirtual88. It dereferences97bd30 result without a null guard at97a309, so a no-war preview is not safe.",
+      "rvas": ["0x1313e70", "0x1313ed5", "0x1313eeb", "0x97a1c0", "0x97a309", "0x97a3e5", "0x97a635"],
+      "unknowns": ["979060 and all40 component check/cost methods not exhaustively followed", "Live war/full handle identity, world epoch, native thread and transitive side effects unverified", "Diagnostic vector is caller-initialized native storage; not an arbitrary external buffer"],
+      "evidence_files": ["work/reports/war-peace-api-20261013/peace/analysis.json", "work/reports/war-peace-api-20261013/peace/README.md"]
+    },
+    {
+      "id": "peace_selection_not_idempotent_or_owning",
+      "actions": ["peace.select_term", "peace.cancel_term"],
+      "kind": "observation",
+      "summary": "Normal97a790 first sets selected1, appends the candidate pointer to its type bucket and updates auxiliary state, with no duplicate/membership/legality check and no owning-pool insertion.97a8d0 clears selected and1aa090 removes only the first matching pointer from the type bucket; it does not destroy the component. Repeated selection is not idempotent and foreign component ownership is not established.",
+      "rvas": ["0x97a7ab", "0x97a7de", "0x97a7ed", "0x97a81b", "0x97a8e4", "0x97a921", "0x1aa090"],
+      "unknowns": ["Partial mutation after native allocation failure or exception", "Future adapter must independently prove candidate belongs uniquely to same owning offer and bucket consistency"],
+      "evidence_files": ["work/reports/native-peace-parameters-1375.json", "work/reports/native-owned-peace-1375.json", "work/reports/war-peace-api-20261013/peace/analysis.json"]
+    },
+    {
+      "id": "peace_selected_dependency_switch_closed",
+      "actions": ["peace.select_term", "peace.cancel_term"],
+      "kind": "observation",
+      "summary": "97a670 triggers only for virtual50 true, exactly component types3,4,5 in pinned40-vtable inventory. Its two-stage switch invokes other selected components' virtual118 in types1,2,15,18,19,20,21,22,23,26,30,31,33,34. Initial counter-1/bucket0 means byte-table index n maps to bucket type n+1. Selection/cancel invoke undo then redo around direct term updates.",
+      "rvas": ["0x97a68a", "0x97a6b7", "0x97a6bf", "0x97a6c8", "0x97a710", "0x97a730", "0x97a76c"],
+      "unknowns": ["All selected-term virtual118 implementations and their side effects not recursively proven", "Runtime auxiliary correctness unverified"],
+      "evidence_files": ["work/reports/native-peace-parameters-1375.json", "work/reports/native-owned-peace-1375.json", "work/reports/war-peace-api-20261013/peace/analysis.json"]
+    },
+    {
+      "id": "peace_independence_cancellation_cascade_closed",
+      "actions": ["peace.cancel_term"],
+      "kind": "observation",
+      "summary": "Normal cancellation of descriptor(type18,definitionnull), with taker slot equal war+150 slot, cascades through selected buckets1,2,3,5,15,19,20,30,31: virtual118 undo,selected0,free bucket alias buffer. Type3 is skipped when war+18 object exists and byte+159 nonzero.8eac0 frees pointer-array buffer without component destruction; owning pool+88 persists.",
+      "rvas": ["0x97a935", "0x97a95a", "0x97a9de", "0x97a9e6", "0x97aa0e", "0x97aa59", "0x97aa69", "0x97aa87", "0x8eac0"],
+      "unknowns": ["war+18 object's+159 business name", "All cascade term update virtuals and failure cleanup not dynamically validated", "Pointer/slot comparisons do not prove stable full identities"],
+      "evidence_files": ["work/reports/native-peace-parameters-1375.json", "work/reports/native-owned-peace-1375.json", "work/reports/war-peace-api-20261013/peace/analysis.json"]
+    },
+    {
+      "id": "peace_cancel_can_revalidate_territory_terms",
+      "actions": ["peace.cancel_term"],
+      "kind": "observation",
+      "summary": "For non-independence path, descriptor(type3,null) or effective CB/goal+1d4 nonzero causes97abe0. It repeatedly temporarily removes selected type3 terms and their auxiliary contributions, calls each virtual88, re-adds only valid terms and rescans if any became invalid. A cancellation can therefore deselect additional province-demand terms.",
+      "rvas": ["0x97aae6", "0x97aaf2", "0x97aafe", "0x97ac6b", "0x97acaf", "0x97ad33", "0x97ad42", "0x97ada1"],
+      "unknowns": ["Concrete province-demand virtual88 semantics and transitive effects not reviewed here", "Exception/unwind and runtime stabilization not tested"],
+      "evidence_files": ["work/reports/native-peace-parameters-1375.json", "work/reports/war-peace-api-20261013/peace/analysis.json"]
+    },
+    {
+      "id": "peace_selection_overlay_flags_are_internal",
+      "actions": ["peace.select_term", "peace.cancel_term"],
+      "kind": "observation",
+      "summary": "Third flag true switches97a790/97a8d0 from normal type-bucket path to overlays. Select fourthfalse appends+a0, fourthtrue removes first match from+b8; cancel fourthfalse appends+b8, fourthtrue removes first match from+a0. selected still changes. Each temporarily sets offer+f4=fourth_bool+1, calls termvirtual118, then restores+f4. GUI normal path fixes both flagsfalse.",
+      "rvas": ["0x97a83e", "0x97a854", "0x97a872", "0x97a89d", "0x97a8be", "0x97ab35", "0x97ab46", "0x97ab64", "0x97ab86", "0x97aba8"],
+      "unknowns": ["Other callers' full speculative-lifecycle rules not followed", "Overlay flags do not establish public authorization or legal bypass"],
+      "evidence_files": ["work/reports/native-peace-parameters-1375.json", "work/reports/war-peace-api-20261013/peace/analysis.json"]
+    },
+    {
+      "id": "peace_gold_setter_raw_pointer_abi",
+      "actions": ["peace.set_gold"],
+      "kind": "observation",
+      "summary": "97b390(offer,const int32_raw_amount*) enumerates effective descriptor(type0,null) with overlays. It mutates only when exactly one gold term exists and value differs: virtual118 undo, verbatimDWORD write+30,virtual118 redo. Setter body has no amount clamp/sign/step validation and no proven successbool return contract. Serialized amount representation remains signed fixedpoint1000.",
+      "rvas": ["0x97b390", "0x97b3fb", "0x97b405", "0x97b40f", "0x97b42c", "0x97b435", "0x97b44d"],
+      "unknowns": ["Permitted public monetary bounds and error/overflow policy not complete", "Setter is not AI acceptance or final application", "Gold virtual118 borrowed-state effects not newly closed"],
+      "evidence_files": ["work/reports/native-peace-parameters-1375.json", "work/reports/native-action-fields-1375.json", "work/reports/war-peace-api-20261013/peace/analysis.json"]
+    },
+    {
+      "id": "peace_gui_gold_clamp_precedes_setter",
+      "actions": ["peace.set_gold"],
+      "kind": "observation",
+      "summary": "GUI1311810 computes current+delta, calls97b530(offer,&max,&raw_cap100000), clamps to[0,max], rounds with raw quantum100 then calls97b390.97b530 depends on globals233f9e8/233f98c and first actualgiver country+1105/+e3c, so maximum is dynamic rather than a fixed monetary constant.",
+      "rvas": ["0x131185f", "0x1311869", "0x1311879", "0x131187e", "0x1311886", "0x13118c9", "0x13118de", "0x97b530", "0x97b550", "0x97b5e6"],
+      "unknowns": ["Names/units of global and country max-money inputs not fully recovered", "UI raw quantum is not yet a public monetary schema", "Input overflow/extreme limits and post-round boundary behavior require further validation"],
+      "evidence_files": ["work/reports/native-action-fields-1375.json", "work/reports/war-peace-api-20261013/peace/analysis.json"]
+    }
+  ]
+}

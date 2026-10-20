@@ -1,0 +1,102 @@
+{
+  "work/AGENTS.md": {
+    "bytes": 959,
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  },
+  "work/candidates/core-five-full88-and-spy-entry-1375/report.json": {
+    "bytes": 414265,
+    "sha256": "d5a209db5c96f65710cdd1aa71390a55342630e872a83ecc9737000042559dc2"
+  },
+  "work/candidates/core-five-full88-and-spy-entry-1375/review.json": {
+    "bytes": 924,
+    "sha256": "4a89957edf48bdaa7db355d08341c65ec9d59c074fa31a393997e42a3d33787e"
+  },
+  "work/candidates/curry-favors-observer-1375/observer.py": {
+    "bytes": 18414,
+    "sha256": "1d960aee7de4daeb4afe1f53cef4f37ec6972b5b577252e026fd8c9e5e33c8f9"
+  },
+  "work/candidates/curry-favors-observer-1375/report.json": {
+    "bytes": 342002,
+    "sha256": "95a837d212f8f415c2d9d0714820ae90e2c98ae485710573b19c15d1c58df6b6"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/build_test.cmd": {
+    "bytes": 1778,
+    "sha256": "c4f47316eb2341bdd262c9ac732cdfd6612efb8b5c107331d582706544b8e187"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.cpp": {
+    "bytes": 21944,
+    "sha256": "22dc8da31e3ec9baef1af453cc49b730c830bd21804d252ea189f680582cf53a"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/pair_component.h": {
+    "bytes": 6428,
+    "sha256": "3d3fe1fe1828d6b0a01af351f366354d82bf2ad1735646cef68ed5a5b3338c47"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/profile-registry.json": {
+    "bytes": 6894,
+    "sha256": "04da164a2ef23f088243d933dd773b03fed06e253eda49617f3d5a384fe77e91"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/review.json": {
+    "bytes": 1124,
+    "sha256": "4675e39339d3f2c4f807da3d63b7ab6194dae74ee472d2a03c91b9cb0f3bbda7"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/source-index.json": {
+    "bytes": 1426,
+    "sha256": "ffddffe2c0a82ed7e4e999fcc3eded44581d211ae142bdb3b8e8fd7eaa16716d"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/test_pair_component.cpp": {
+    "bytes": 17198,
+    "sha256": "f155e01429498324db8114ac09c1845b07145109c2c89e1dfdd98b5a19606a5d"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/test_r2_counter.cpp": {
+    "bytes": 7638,
+    "sha256": "80ebb9dd41fd67fbee12db620cfd87ec02a407ba7c2b21948b09ec9a80880f84"
+  },
+  "work/candidates/v21-core-pair-nosend-r2-1375/validate.py": {
+    "bytes": 14052,
+    "sha256": "8a053dc5245dbd7daea44b63dcc910d856cd7634b0bf87ea89bedb19c3efb895"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_pair_engine.cpp": {
+    "bytes": 13222,
+    "sha256": "1102d170d13d92f95347f01381f7b8cce1874abf08fca1bc65ccb7ecf73ded16"
+  },
+  "work/candidates/v21-native-pair-port-1375/native_pair_engine.h": {
+    "bytes": 4773,
+    "sha256": "f17589286bbf90fe888db9bf3c5f320259347c90808150c6360096dc134f480f"
+  },
+  "work/candidates/v21-native-pair-port-1375/report.json": {
+    "bytes": 3685,
+    "sha256": "d041dde7d2af93f92d5e2d01282eebdfd4ba212ab3b32415ca1a455f62082956"
+  },
+  "work/candidates/v21-native-pair-port-1375/review.json": {
+    "bytes": 1282,
+    "sha256": "0bbcf1e9f93e45e8822b733561b1a98323cc7f8b3c3d4ee1305586de8d8b6435"
+  },
+  "work/candidates/v21-native-pair-port-1375/source-index.json": {
+    "bytes": 2431,
+    "sha256": "7a67c3e5f398b1cf8259852cb774841080e15a426ac15489433a11d631e26065"
+  },
+  "work/candidates/v21-native-pair-port-1375/test_native_pair_engine.cpp": {
+    "bytes": 17902,
+    "sha256": "356dcbb6447dad9cbbad1962a6ff6810ea51f6e3541ca7306ad04a23651546c5"
+  },
+  "work/candidates/v21-native-pair-port-1375/test_r2_spy_setter.cpp": {
+    "bytes": 3434,
+    "sha256": "3a774c0ad932a886e10ceebffa78db9ec70958f31006c939293990275aa847d1"
+  },
+  "work/candidates/v21-native-pair-port-1375/validate.py": {
+    "bytes": 7521,
+    "sha256": "47ad664d8bdf18524c064ba4246f7bff32fd8c10eeb8d9b38385c41648475199"
+  },
+  "work/candidates/v21-native-pair-port-1375/validation-final/build/r2.stdout": {
+    "bytes": 76,
+    "sha256": "2364649d03fac14cd45107b0c1f836d4e1dbe050afc421dbf6815b0d403f5404"
+  },
+  "work/reports/native-pair-cancel-1375.json": {
+    "bytes": 1342305,
+    "sha256": "54dc047d85fe8c06528d5fb3824a1928f56fac2c4bbf24c26e205bcfb08e0df3"
+  },
+  "work/review-results/v21-pair-r2-action-catalog-20261008a/review.json": {
+    "bytes": 10919,
+    "sha256": "d60e69164605b6505d891448029622b3e7a2baa18a7dce397c79460cecb46e4f"
+  }
+}

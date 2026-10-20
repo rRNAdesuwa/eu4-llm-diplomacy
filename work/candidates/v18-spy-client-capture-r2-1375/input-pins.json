@@ -1,0 +1,302 @@
+{
+  "work/candidates/spy-four-normal-callers-contract-1375/report.json": {
+    "bytes": 291016,
+    "sha256": "76f5e60a7dbbed7508ee2e6cf124fe39c24cbaa978e51d02963f3a5fc8bff92f"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/review.json": {
+    "bytes": 4036,
+    "sha256": "1bc91ed02a3668a4c61991fe4612bbaebd63a775dea34e3b9f35dc1f4163aaab"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/candidate-index.json": {
+    "bytes": 1781,
+    "sha256": "515d3f4149e49c28f8ceb13bb148b0c26942daf6caf49155ad27046b9214b3cf"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/capture_mock.cpp": {
+    "bytes": 5512,
+    "sha256": "c9e0c24c2f18b33688fdb550fd58c31ea3301e138e96631d9332aee9a5e2579e"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/prepare.py": {
+    "bytes": 1705,
+    "sha256": "63b1350b6a85ea6317b091a0c1dd59a10293246ceea3efda42c17addbf435d8e"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/projection.py": {
+    "bytes": 24382,
+    "sha256": "313fbafd18b29f3cd0d4edab672b2ac39d867e0f5f383568601548a46b5b5fbe"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/review.json": {
+    "bytes": 1187,
+    "sha256": "e0928f24bd11c6baf5fa3188963dc88e6d4428d68f6fc496d6cf391ef5c3ed8c"
+  },
+  "work/candidates/v18-spy-audit-projection-r2-1375/test_projection.py": {
+    "bytes": 16347,
+    "sha256": "2924decef70ca068e85fe3cec4ba04893e441a4c61d59a87adc550c9b1743e64"
+  },
+  "work/candidates/v18-spy-bootstrap-capture-r2-1375/_frozen.py": {
+    "bytes": 1394,
+    "sha256": "e0da1e3b4c1ee24f19b295267a849e23e294d818dcbd4986f1a7eff86c74d774"
+  },
+  "work/candidates/v18-spy-bootstrap-capture-r2-1375/candidate-index.json": {
+    "bytes": 1444,
+    "sha256": "f53faf5ed2d3258ba9caee22a161b7d137e51d9fab26cb3af2e4f0e034233dd6"
+  },
+  "work/candidates/v18-spy-bootstrap-capture-r2-1375/capture-r2.diff": {
+    "bytes": 1598,
+    "sha256": "135779d90666aeeea0feda4f0660df4422b738df0cae1f6fdf0b5d913272ad9b"
+  },
+  "work/candidates/v18-spy-bootstrap-capture-r2-1375/input-pins.json": {
+    "bytes": 19556,
+    "sha256": "2fda82d505aab8fd1028f133a5a8d2f1434b9a0fe32ccfc5964ee07156a9f297"
+  },
+  "work/candidates/v18-spy-bootstrap-capture-r2-1375/real_capture.py": {
+    "bytes": 13394,
+    "sha256": "9375538dac1f325b0d7f60ed7c4098954dd930c0ea08dd48fac81f01f3a82c3b"
+  },
+  "work/candidates/v18-spy-bootstrap-capture-r2-1375/review.json": {
+    "bytes": 2933,
+    "sha256": "39b88525304bb5c41712fa3fc4c05bb0212eda1a89855e3f17db9346f2cbd625"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/bootstrap.cpp": {
+    "bytes": 14514,
+    "sha256": "eb241e9cd7dcc9d125a0a75b8561edbaf46ab0d8e1f30ff51253fe6adcd24e1c"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/bootstrap_codec.h": {
+    "bytes": 2644,
+    "sha256": "f8d0a83dbbf2cfb897b0f22513e4ff4c0a3b4bc0f5573b1314c547fbdfb905fa"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/build-final/build.json": {
+    "bytes": 12012,
+    "sha256": "d1f65cae88cfb7ed2535c590206b9844882f0870f02773da23c747a6346aa5e5"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/build-final/eu4_spy_no_send_lab_1375_v18.dll": {
+    "bytes": 212480,
+    "sha256": "6aff9a9fc4d46692c9be0ac39b0c741bf8eeb840abaf8731d0144510a938f00b"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/build.cmd": {
+    "bytes": 2229,
+    "sha256": "57e523dfac6dc701838fb9ee7aeb0d6f2379d948fdfc4e698e49c5d31002c364"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/build_manifest.py": {
+    "bytes": 5476,
+    "sha256": "0dc1e7a6db9eb951e629719782acc544d44112d74a92f442298bac57045d935a"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/candidate-index.json": {
+    "bytes": 12175,
+    "sha256": "800c60fc644cd762c5649d8b241e1c57a2e339d936bd0118c52fa2581aca2e4e"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/client.py": {
+    "bytes": 6285,
+    "sha256": "cb02dca51fd67053b226f60e56c4660f1902b60a4c7cbbc6690e706b485b98fa"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/frame.asm": {
+    "bytes": 1582,
+    "sha256": "3d5da5aea5408d4991fce7bb19275025e7d28bcbbfc90c08d82e797ad09d30f0"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/installer.cpp": {
+    "bytes": 4200,
+    "sha256": "bbf3f02b587760b596b44f943d31f36453506183144d942a377457446c8a1108"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/installer.h": {
+    "bytes": 302,
+    "sha256": "beea4f6f8d41345febab7cceb455439a27c135ccb746cbedaf11f19b02079adc"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/loader.py": {
+    "bytes": 5725,
+    "sha256": "82ba00dd6382e5e7e4ba87ee30bb3fd6db3af049d0ad238507e6ece38faf860a"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/native_projection.py": {
+    "bytes": 24483,
+    "sha256": "90c03362e7c722ab09c73e0f2eace69a17fd4176adf3d248fea7993b49f6048d"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/native_trace.py": {
+    "bytes": 9327,
+    "sha256": "a35434204ddccc0fc212a0b11e777187bb16b0597c069f78fbe45c0bbfd784a5"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/predecessor-pins.json": {
+    "bytes": 8184,
+    "sha256": "ddf1b3a02a1c4b49738d77edd35d8174187c8a335c2401da38a1b9156ff02e89"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/real_capture.py": {
+    "bytes": 13073,
+    "sha256": "3733d95683ff86d748d709775a129c24852559dc0c1941b7b48e7574a2ed208e"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/review.json": {
+    "bytes": 3889,
+    "sha256": "f5be402172d19961b8d2a34b9da4a488a748d493815e7996ebf75d2bb821e439"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/scheduler.h": {
+    "bytes": 1502,
+    "sha256": "27e7b3e54528d627bc6e1b4bf096fd508cc3faef7cd9b044d5ff3137edd3b72a"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/test_capture.py": {
+    "bytes": 12526,
+    "sha256": "62c6b00b8458d3f5f5612f0632e441e9c4dfc2d9aea38f158b897cb14a36ceb6"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/thread_freeze.inc": {
+    "bytes": 5776,
+    "sha256": "3fe7cbec05ccdfbf8cbaf5a74da3058a7ed0c969baf48c41ca65174801feb6c4"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/wire.py": {
+    "bytes": 2457,
+    "sha256": "20d29ef7557533addfd2bc709ed0602c8af61994319f81c24e5966b1d0c9f312"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/candidate-index.json": {
+    "bytes": 1755,
+    "sha256": "598cd3bc1005b03d16dd2361bb0ea340a8d3ebf174a747d5a2ceceb5f7c89aa4"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/model.py": {
+    "bytes": 13864,
+    "sha256": "96f0205740025c51f06b90d86c75b96432e338bec0b0d5fe6729b8a9848f18d1"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/prepare.py": {
+    "bytes": 1456,
+    "sha256": "a1f50d436c5c12b2e38e90445f7133747adeb7399e893ef9639e9b128c139ac3"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/protocol.py": {
+    "bytes": 5103,
+    "sha256": "3da952bc3ab0836f951a3df091972655792de82f33c07be5f4e679603131604d"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/review.json": {
+    "bytes": 2479,
+    "sha256": "84be84f82878707ef5ae18e6b58bd5dac3f195e528c372e08cf67a71eddeb16b"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/test_contract.py": {
+    "bytes": 11670,
+    "sha256": "4e08af1538e0bd1515f6c3a54977535c1a04c993be5e5a9a5f86b9e9c38c489d"
+  },
+  "work/candidates/v18-spy-no-send-contract-1375/test_sources.py": {
+    "bytes": 3914,
+    "sha256": "52d6310fc286ae439014cb863b13d42b17aee4f2c46217729455367c9e712de5"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/candidate-index.json": {
+    "bytes": 1677,
+    "sha256": "f0ea0c1d7899b36e8c6201ad9dc39d0f034ce9aef7e9a05473a1b4e29d4064fd"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/pins.h": {
+    "bytes": 3439,
+    "sha256": "c9bb4ad8595bb09bba03d630bf03ca9babe5c22faa604d406f5a51aaf8f27fbd"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/prepare.py": {
+    "bytes": 5128,
+    "sha256": "66cc56c866bf0947634023f2b08e228f857bcd99a441713f9d1f06a6de84b478"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/review.json": {
+    "bytes": 10863,
+    "sha256": "14ed360b28f4e0c0d407a91003a41029fa063cda961f53f9187fba104d4d7b5d"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/spy_core.cpp": {
+    "bytes": 19571,
+    "sha256": "be276541836f50137d38a3c1250357a0dc614d76d20ba6a61bf37a53c58a0819"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/spy_core.h": {
+    "bytes": 3797,
+    "sha256": "290d2db8201bd51901e5d2e080f4bb76952e548f23ec6e82b1df17def1d68321"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/test_spy_core.cpp": {
+    "bytes": 21671,
+    "sha256": "0986f485331bd8274e1f5ff730754aaec766745729b522565250d6e3ff3339dd"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/audit_mock.py": {
+    "bytes": 8819,
+    "sha256": "b870396ee4dc724e88be2e671001d4fbf068b304e2791a1daab9e5f5ce04be44"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/candidate-index.json": {
+    "bytes": 3071,
+    "sha256": "89c05d4112f8c244f924491272936248dc3653eb23f19a7c90181ef1bc87fc2c"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/check_image_pins.py": {
+    "bytes": 3371,
+    "sha256": "529797b22bce43b4639fe0dabb176927a5aef4649b1c444936965d02d9181aee"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/codec.h": {
+    "bytes": 5043,
+    "sha256": "c4532a652baeb635cd84ec08e4ef68332d7336b9a87bc590f8cd24a18c4b47fa"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/host.cpp": {
+    "bytes": 20067,
+    "sha256": "d923b20fe48fa7f88360969bffe15bc33085379a074115ca4f385b55520995a0"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/host.h": {
+    "bytes": 3546,
+    "sha256": "86bae216d512e44fe013754342e8fe9ab97e9ced23745b5ae689a7a2bd29d7f9"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/journal.cpp": {
+    "bytes": 5195,
+    "sha256": "9b8862489fe1bd1a738becc74b27b09b3a635502b1d99f2ce04450c5051659e2"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/journal.h": {
+    "bytes": 882,
+    "sha256": "7af3579f4c30f6fef0a84f68e047b614b875f4d0ff255bbf07ac74c709b5bfc7"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/native_env.cpp": {
+    "bytes": 11212,
+    "sha256": "a3de24cb70c38b096ba9ab3a6878d261f4f754b2b1ef41c8ae826caeb8592cd0"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/native_env.h": {
+    "bytes": 1427,
+    "sha256": "8aec96f180b37783560ff9b11583fdbc3b44bd7363c3b3c585e5f84474b3b243"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/prepare.py": {
+    "bytes": 1779,
+    "sha256": "25eb66539f46a9c6e2379ae4473dfd9068ac377a9cf9d741c95ae9edc54acfbc"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/review.json": {
+    "bytes": 5050,
+    "sha256": "2548ad1797d37bebc85d1b2151d3a78818ccfee6740604a36d25b3d29c41cde2"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/test_audit.py": {
+    "bytes": 2954,
+    "sha256": "f9e19d1b0d6256b52df51a7e953c077166a94a6bbcce224aaabcb00d817435bf"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/test_host.cpp": {
+    "bytes": 11712,
+    "sha256": "867651493ce4055fe7013a9131544a99da539c29117b94673bc934a4924c1bc5"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/test_memory.cpp": {
+    "bytes": 4640,
+    "sha256": "1fa7306374e38a37c293ed954668333bd9b0d3e46f3596076d087f83162a5f2e"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/validation-attempt-7/mock-events.jsonl": {
+    "bytes": 381665,
+    "sha256": "603a305cfa41c8a803fcc8cb94a6b70ade7a74a46dc03fc1f09a54cea30729da"
+  },
+  "work/local_config.py": {
+    "bytes": 2818,
+    "sha256": "55a3bce5a2bf98f83c58e27884699c780456ea40b84d11bcac5fe78082262001"
+  },
+  "work/native/inject_probe.py": {
+    "bytes": 23802,
+    "sha256": "18a6e5d7cfab4607a4b964d23002b71b8c9352d41c8324f1c9e5740534ea0b4f"
+  },
+  "work/native/v17/research-frame-v6-1375.asm": {
+    "bytes": 1582,
+    "sha256": "3d5da5aea5408d4991fce7bb19275025e7d28bcbbfc90c08d82e797ad09d30f0"
+  },
+  "work/native/v17/research-lab-1375.cpp": {
+    "bytes": 58756,
+    "sha256": "3f2ca8c56275d741a3bd02a30b292056b8e37a10a3cfe62a9e4c0dcff306338d"
+  },
+  "work/native/v17/research-lab-bootstrap-1375.inc": {
+    "bytes": 14376,
+    "sha256": "8d4c4c27f30d6800d095c35b97dc9c88b9dcfbcd6a8c838f362d64c9824b71db"
+  },
+  "work/probe_native_state.py": {
+    "bytes": 18118,
+    "sha256": "220549d1b8db3028015b1ddf260d7605c3f3525941500eeb43255c69d34e2187"
+  },
+  "work/review-results/v18-spy-bootstrap-capture-r2-action-catalog-20261008a/review.json": {
+    "bytes": 4263,
+    "sha256": "72070b5706d26ae49c55ad84ca564ca1427d6c49bbe085c2aca63af2c86eadad"
+  },
+  "work/review-results/v18-spy-core-action-catalog-20261008a/review.json": {
+    "bytes": 24886,
+    "sha256": "3069c9cd23782283da344c87df303e1c2cbfd998d23940d8dc4bf4851a877dc6"
+  },
+  "work/review-results/v18-spy-host-action-catalog-20261008a/review.json": {
+    "bytes": 6321,
+    "sha256": "816850fa802a0de45bc9d5d7979531b649b803a968c3b6e2c688af0cb51b723c"
+  },
+  "work/review-results/v18-spy-projection-r2-native-inventory-20261008a/review.json": {
+    "bytes": 53783,
+    "sha256": "573259762a4bc4d0a3e3a3cbdabc9ba0066668abfbe81aa3bff0be339c07398e"
+  }
+}

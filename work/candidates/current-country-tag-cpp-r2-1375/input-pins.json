@@ -1,0 +1,86 @@
+{
+  "work/AGENTS.md": {
+    "bytes": 959,
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  },
+  "work/candidates/current-country-tag-cpp-1375/README.md": {
+    "bytes": 1971,
+    "sha256": "4ac6e5459b2e496223ca1874b5e307c858a1f18fde3e18813aab3f941de188ef"
+  },
+  "work/candidates/current-country-tag-cpp-1375/build_test.cmd": {
+    "bytes": 873,
+    "sha256": "fbbe1a09d0a1d414fc0a6177709f7c3ea4524d136bc4e687a03d13608e14c4a5"
+  },
+  "work/candidates/current-country-tag-cpp-1375/country_resolver.cpp": {
+    "bytes": 8010,
+    "sha256": "6e00438a553593813b3845d109287daf3fd3c9676e5feb2b7ceda099808c90dc"
+  },
+  "work/candidates/current-country-tag-cpp-1375/country_resolver.h": {
+    "bytes": 1955,
+    "sha256": "a1067c0b80ec3bb9b5ac77ca857a5d269626ebfb37060d41679ace4f70557ae2"
+  },
+  "work/candidates/current-country-tag-cpp-1375/prepare.py": {
+    "bytes": 2693,
+    "sha256": "14334b94eebf6fc857928ddfb28e327614171d25d9e9de8c63370151eaae9a44"
+  },
+  "work/candidates/current-country-tag-cpp-1375/review.json": {
+    "bytes": 709,
+    "sha256": "4ad511bc500dddf2fa9268359e924093afeb0396069782bde992664f472aa8ec"
+  },
+  "work/candidates/current-country-tag-cpp-1375/selected_pins.h": {
+    "bytes": 3009,
+    "sha256": "edc711aaefca337205201c4513010c64a0e0de7a9f8722d0724dc4d260bd09e6"
+  },
+  "work/candidates/current-country-tag-cpp-1375/source-index.json": {
+    "bytes": 1156,
+    "sha256": "30f3c05e13eed76bf342c5e83b08ac39d0283a8d4c248fda327e916a3da30296"
+  },
+  "work/candidates/current-country-tag-cpp-1375/test_country_resolver.cpp": {
+    "bytes": 7871,
+    "sha256": "a0f3954e7934e190d97092199a9a35358447272d2bdc48cad9c915f00fd8c394"
+  },
+  "work/candidates/current-country-tag-cpp-1375/validate.py": {
+    "bytes": 3221,
+    "sha256": "0fee68b66af10cb6cca686eba1a1d03126e026ca202b595f85a2665e07d58dd1"
+  },
+  "work/candidates/current-country-tag-resolver-1375/layout.py": {
+    "bytes": 1660,
+    "sha256": "3aea89eb797282a55ca5810253a6b638cbf3d5e627713d764be2ffd245259a1f"
+  },
+  "work/candidates/current-country-tag-resolver-1375/resolver.py": {
+    "bytes": 11963,
+    "sha256": "0378f980a9eed280dedc08a18eff92b31dc17566eb031cd29218e51bf4e42370"
+  },
+  "work/candidates/current-country-tag-resolver-1375/review.json": {
+    "bytes": 4597,
+    "sha256": "83dcb5580a325cc63e98882948573d4263bc7762e976d6f3c034ac13b70c4264"
+  },
+  "work/candidates/current-country-tag-resolver-1375/source-index.json": {
+    "bytes": 3047,
+    "sha256": "f4525e12314b9ab09269b758fe60f9d45e98b90f0151d61a6fe17aa04ecb870b"
+  },
+  "work/candidates/v21-core-pair-nosend-1375/validate.py": {
+    "bytes": 12608,
+    "sha256": "35a3a339f594051da06de4122adf785454b3cf3a3d00919fc1f324b7c5c285f4"
+  },
+  "work/create_pair_country_r2_guard_r3_1375.py": {
+    "bytes": 8044,
+    "sha256": "f46a9760c9884bac7a4f0530a1cf7cc59811b7121a7d80750819398f246fb745"
+  },
+  "work/review-results/current-country-tag-resolver-independent-20261008a/report.json": {
+    "bytes": 8248,
+    "sha256": "2ac712c7def6958fc98c94b58385f3a40c3ddc923456f484893e0dde43f161fb"
+  },
+  "work/review-results/current-country-tag-resolver-independent-20261008a/review.json": {
+    "bytes": 1026,
+    "sha256": "0288b01333ebb1695f77d5af9f46329995fa0d27ae49e0c04ed556506ec3e67d"
+  },
+  "work/review-results/current-country-tag-resolver-independent-20261008a/validation.json": {
+    "bytes": 17197,
+    "sha256": "94353a46a34a7e1bbfb4398532255ca87816d88873265c204e15b671784ab5c4"
+  },
+  "work/runtime/pair22-session-20261012a/lease-diagnostic.json": {
+    "bytes": 289399,
+    "sha256": "af34902ec7274cd926b32a543d59301e7a86826fca359b7aa7f0df46448d68e1"
+  }
+}

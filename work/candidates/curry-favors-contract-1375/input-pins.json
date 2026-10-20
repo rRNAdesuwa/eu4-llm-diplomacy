@@ -1,0 +1,18 @@
+{
+  "work/reports/native-diplomacy-1.37.5.json": "c64df6e043c9e7a498a25082e0e768902764e4a271ab3579f0eaddb2f1391633",
+  "work/reports/native-action-fields-1375.json": "cfabb4622b7c82f9e2476a82352f91fa5d0f8ba0f8150e75aac47fb4aeaddc96",
+  "work/reports/native-diplomacy-modes-1375.json": "1c0fa12b630a134036c32caf826750ce82608c44fab80108e6cfd2b738d06676",
+  "work/reports/native-pair-effects-1375.json": "b67e9e3ec3d333ad5603c9bcb7a70d614bab1107f283c6f01d99e7c744730ae0",
+  "work/reports/native-pair-cancel-1375.json": "54dc047d85fe8c06528d5fb3824a1928f56fac2c4bbf24c26e205bcfb08e0df3",
+  "work/reports/native-coalition-queue-1375.json": "b36c788c3eeb589abaa208df83cb3f97bf3697023188149588b41bb60dde5b65",
+  "work/reports/action-factories.json": "0401a4b605c4541f601742b86b15a72d523d9d00d76ebb28b979160ce63ee9c5",
+  "work/discover_diplomacy.py": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318",
+  "work/map_diplomacy_fields.py": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85",
+  "work/trace_change_subject_type.py": "8bc16d94e8f6104a79ce541c6de0843894293e158f44efb6c47f27b9b8dec6da",
+  "work/candidates/curry-favors-contract-1375/decode-01.json": "81070b1bb5fb0844a588bf58138256d898aae1138a7fae6505aea3791f3474a6",
+  "work/candidates/curry-favors-contract-1375/decode-02.json": "d5d85acfb65e06dad9c3bc09012fa2c1572c794dc67c47435e9a8bacb6ec1e06",
+  "work/candidates/curry-favors-contract-1375/decode-03.json": "110049527ff41a79fba42915efa5bb228b82b87a4c06a65ca5210db0dfb46454",
+  "work/candidates/curry-favors-contract-1375/decode-04.json": "0b7d93368ab60dada2065643f43772dbb39fe6fb3a6a3465564b9931ce399148",
+  "work/candidates/curry-favors-contract-1375/decode-05.json": "0a7bb4cf8844ce2c06bc152b445a0bb4ddd8efe0929679662e5bfed228793739",
+  "work/candidates/curry-favors-contract-1375/decode-01.failed.txt": "5e95572b5ef7069fc6af33e22d805a073a3264b81496f6dea78498329c8a70cb"
+}

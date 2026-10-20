@@ -1,0 +1,11 @@
+# R87 retained actual author contract
+
+The first author sealer failed before canonical output on its own review-pins schema assumption. Exact failed source and tool stderr text are retained; R2 uses the actual flat path-to-pin mapping and charges a conservative failed-read upper. Producer/source/capture were unchanged and acquisition was not repeated.
+
+The fixed256B window contains61 retained instructions/210 decoded bytes, six CALL sites to five unexamined targets, one normal RET and two INT3 terminals. The46B suffix remains owned and undecoded. Original localCFG/whole-function flags remain false. CC266 is the normal R86 sequential frontier; CC32C is only a hypothetical seed because the prior SAR3 value cannot satisfy that JE. Actual metadata covers both seeds; the authorized gap exception was not used.
+
+For a valid stable three-zero header and D=0, the selected arithmetic gives size/index/capacity0 and requested count1. The unknown callee950b0 receives RCX8; allocation is only a candidate interpretation. Under normal callee/valid returned-address/noalias/header-stability premises, the explicit store writes the freshly read QWORD payload into S. The subsequent1a35750(S,0,0) is still an unexamined call, and c9d60(C,S,1,1) is the unresolved final header/ownership step. No completed vector update, allocation/cleanup contract or borrow lifetime is claimed.
+
+The retained epilogue places the computed slot address in RAX before restoring R14. Saved RDI/RSI/R12 homes, R14 local, four POPs and RET restore RSP from F=Q-48 to Q+8 only under the stated normal ABI, valid-stack and no saved-slot mutation premises. These observations do not establish native readiness or any game effect.
+
+Root performed the only acquisition. Producer and launcher source bills total18,830,537 bytes under32MiB; two whole-PE hashes,108B metadata and256B code total76,925,372 bytes in a separate account. The retained Job has two cumulative processes, active0, exit0, no error, direct child collected and peak25,493,504 bytes. Outer tool wall time and Job time are separate witnesses. This seal opened only fixed cached text/JSON, never PE/engine/decoder/game, and proposes c9d60 without authorizing another acquisition.

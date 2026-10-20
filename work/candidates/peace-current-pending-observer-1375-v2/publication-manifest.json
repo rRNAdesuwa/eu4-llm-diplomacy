@@ -1,0 +1,76 @@
+{
+  "all_shells_collected": true,
+  "catalog_attempted": false,
+  "explicit_reads": 34863,
+  "files": {
+    "author-manifest.json": {
+      "bytes": 14006,
+      "sha256": "0447ffeb325847aa3880ceb88810b48bcafd92d8410b0f42c947688fba8fd3c1"
+    },
+    "build-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build-stdout.txt": {
+      "bytes": 270,
+      "sha256": "395be2329d6bb8673da4db1ccfc39dace4df9cf4fb32877125cbc39cc3e791c8"
+    },
+    "delivery.json": {
+      "bytes": 1539,
+      "sha256": "8c890dd7df9f90276f1138cada4bdca511a810111e27046385183de7d99facb4"
+    },
+    "filecheck.json": {
+      "bytes": 447,
+      "sha256": "390d74067504d6a6fcd5a6b3a18108bcab8e2e767bf079b6d6b929adae9f059b"
+    },
+    "offline-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "offline-stdout.txt": {
+      "bytes": 407,
+      "sha256": "ffda2786f7cfb6d8e5e4ee31e8a672a82337b509b4a41508b1f8245b9dbff3c0"
+    },
+    "seal-stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "seal-stdout.txt": {
+      "bytes": 1338,
+      "sha256": "d92c6009cba10dbe2370f0af0a1f9dd8ba48e011e4c35e80fe79d64b637d1489"
+    },
+    "source-manifest.draft.json": {
+      "bytes": 8428,
+      "sha256": "6a4c081d3709d734eee90b9c19f9da535620cd56665e4fcb02cc6270871ab2a0"
+    },
+    "source-manifest.json": {
+      "bytes": 8428,
+      "sha256": "6a4c081d3709d734eee90b9c19f9da535620cd56665e4fcb02cc6270871ab2a0"
+    }
+  },
+  "game_access": 0,
+  "native_game_calls": 0,
+  "real_status_authorized": false,
+  "schema": "EU4-PEACE-V2-AUTHOR-PUBLICATION/1",
+  "sealed": true,
+  "shell_exits": [
+    {
+      "chunk": "027399",
+      "exit_code": 0,
+      "operation": "build_freeze"
+    },
+    {
+      "chunk": "c08ed0",
+      "exit_code": 1,
+      "operation": "first_offline_stopped"
+    },
+    {
+      "chunk": "177496",
+      "exit_code": 0,
+      "operation": "retained_seal_and_filecheck"
+    }
+  ],
+  "six_new_fakes_passed": true,
+  "source_ready": false,
+  "stage": "retained_first_budget_refusal_no_retry"
+}

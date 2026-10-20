@@ -1,0 +1,73 @@
+{
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "analysis_kind": "ordinary_capstone_disk_analysis_not_REA_decompilation",
+  "runtime_verified": false,
+  "execution_verified": false,
+  "public_backend_registered": false,
+  "api_scope": "Static future requestpeace contract; not a current TAG120 binding",
+  "findings": [
+    {
+      "id": "peace_r2_full_checker_slots_and_string_abi",
+      "actions": ["requestpeace"],
+      "kind": "observation",
+      "summary": "Pinned requestpeace vtable1c7b840 useslocal80=59b450,full88=59b630,date90=59b8d0. Full passesRCXrequest,RDXoptionalNativeString32 and incomingR8B unchanged tocommon4e9d00. Common invokeslocal80 after its gates; with nonnull diagnostic string it may still calllocal after recording common failure. This output is a32B native string, not the candidate-checker's pointer vector or AI reason-record list.",
+      "rvas": ["0x59b642", "0x59b648", "0x4ea174", "0x4ea185", "0x4ea198", "0x4ea1a8", "0x59b825", "0x59b830"],
+      "unknowns": ["Runtime ABI, correctly owned native string storage and exception unwind unverified", "Common-mode byte is internal and not promoted to public policy", "Native allocation/localization transitive side effects not proven pure"],
+      "evidence_files": ["work/reports/native-owned-peace-1375.json", "work/reports/rea-diplomacy-20261013/four-candidate-bounded-disassembly.txt", "work/reports/war-peace-api-20261013-r2/peace/analysis.json"]
+    },
+    {
+      "id": "peace_r2_pending_enforce_peace_extra_gate",
+      "actions": ["requestpeace"],
+      "kind": "observation",
+      "summary": "Aftercommontrue,full59b630 resolveswar fromactor country+1548/+1554 keyedrecipient slot, obtains opposite-side first member throughd94480, traversesactor+18d8 nodes(action+0,next+10), and checksactionvirtual80(null,false),tokenvirtual98=2dda,enforce_peace+40handle slot equal opposite member slot. A match returnsfalse withOFFER_PEACE_PENDING_ENFORCE. Token2dda and serializedhandle+40 are pinned to enforce_peace.",
+      "rvas": ["0x59b650", "0x59b67f", "0x59b686", "0x59b6bf", "0x59b6cf", "0x59b6fe", "0x59b70e", "0x59b714", "0x59b71b", "0x59b72d", "0x59b74a"],
+      "unknowns": ["Concrete pending actionvirtual80 script/helper effects and list lifetime unverified", "Handle comparisons here use slots rather than full identity", "Enforce field role is established by this matching path, not a generic public war_id"],
+      "evidence_files": ["work/reports/native-action-fields-1375.json", "work/reports/war-peace-api-20261013-r2/peace/analysis.json"]
+    },
+    {
+      "id": "peace_r2_full_requires_second_war_index_consistency",
+      "actions": ["requestpeace"],
+      "kind": "observation",
+      "summary": "Full uses country+1548/+1554 index separately fromlocal/constructor relation-root+50/+5c. No full-index match makesRCX0 at59b6b1 but still callsd94480 at59b6bf. d94480 immediately readswar+50 withoutnull guard. A null recordwar is also unguarded. This syntactic path establishes a future prerequisite to validate both indexes and same nonnull war before full; it does not prove an actual inconsistent game state or crash.",
+      "rvas": ["0x59b4b1", "0x59b4b5", "0x59b67f", "0x59b686", "0x59b6b1", "0x59b6bf", "0x59b741", "0xd94485"],
+      "unknowns": ["Engine invariant tying both indexes and world invalidation synchronization", "Observed current war identity, unique index keys and full member identities", "No runtime null-path experiment performed"],
+      "evidence_files": ["work/reports/native-peace-parameters-1375.json", "work/reports/war-peace-api-20261013-r2/peace/analysis.json"]
+    },
+    {
+      "id": "peace_r2_opposite_side_member_getter_abi",
+      "actions": ["requestpeace"],
+      "kind": "observation",
+      "summary": "d94480(RCXborrowedwar,RDX8Boutput,R8actorhandle) returnsRDX. Actor slot in sideA+48/+50 produces sideB+78/+80 first fullhandle, actor inB producesA first; no usable match writes sentinel00000000002d2d2d. Getter has no calls and writes only calleroutput/stack; nullwar is not accepted and membership uses slot comparisons.",
+      "rvas": ["0xd94485", "0xd944ab", "0xd944db", "0xd944e6", "0xd944fc", "0xd94523", "0xd94526", "0xd9453e", "0xd94546"],
+      "unknowns": ["First member is not independently proven unique warleader for every war type", "Borrowed war lifetime, member vector validity and stable full identities require guards"],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/peace/analysis.json"]
+    },
+    {
+      "id": "peace_r2_local_province_check_is_type3_only",
+      "actions": ["requestpeace"],
+      "kind": "observation",
+      "summary": "981d20(offer,initialized native pointer vector) appends nonnullprovince pointers from effective selected descriptor(type3,null),including overlays, usingcomponentvirtual58. Type3vt1cd4ee0+58=9b140 returnscomponent+38. Local59b450 then requires each listedprovince owner+468 orcontroller+488 slot inactualgivers(request+a0/+a8). Emptytype3 set skipsloop. Output is borrowed pointers; it is not initialized, cleared or deduplicated by981d20. This is not exhaustive40-term legality checking.",
+      "rvas": ["0x981d62", "0x981d7e", "0x981d8b", "0x981da9", "0x981db4", "0x981dc3", "0x9b140", "0x59b545", "0x59b568", "0x59b5a6", "0x59b5c7"],
+      "unknowns": ["Other component selection/legality methods and all-term request validation not exhaustively followed", "Null or malformed selected province objects need independent rejection", "Owner/controller slots do not prove full world identity"],
+      "evidence_files": ["work/reports/native-peace-parameters-1375.json", "work/reports/war-peace-api-20261013-r2/peace/analysis.json"]
+    },
+    {
+      "id": "peace_r2_date90_is_independent_strict_gate",
+      "actions": ["requestpeace"],
+      "kind": "observation",
+      "summary": "Date90=59b8d0 requiresgame rawdate+1dd0 strictly greaterthanactor+24a0, and whenactorslot==game.player+1da0 additionally greaterthangame+1d9c. Equalityrejects withMUST_WAIT_UNTIL_NEXT_PEACE_OFFER. Full88 containsno90 call, so fullsuccess doesnot substitute theindependent temporal gate.",
+      "rvas": ["0x59b8e7", "0x59b901", "0x59b906", "0x59b90d", "0x59b925", "0x59b92c", "0x59b983", "0x59b9c2"],
+      "unknowns": ["Exact normal external caller and runtime scheduling/world identity not verified", "Date values and native thread context not observed this round"],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/peace/analysis.json"]
+    },
+    {
+      "id": "peace_r2_diagnostic_nonempty_not_rejection",
+      "actions": ["requestpeace"],
+      "kind": "observation",
+      "summary": "Full88 optionally appendsDECWARDESC incommon tail regardless of accumulatedbool, anddate90 appendssame description on its success path. Nonemptyreason string alone doesnot establish rejection; fullreturnsbpl at59b8a8,date90returnsdil. SharedDECWARDESC doesnot identify the action asdeclarewar.",
+      "rvas": ["0x59b81c", "0x59b86d", "0x59b898", "0x59b8a8", "0x59b9cf", "0x59b9e2", "0x59ba1d"],
+      "unknowns": ["Localized display text and output allocation behavior not runtime validated", "Bool success remains distinct fromAI acceptance,effect dispatch or final peace"],
+      "evidence_files": ["work/reports/war-peace-api-20261013-r2/peace/analysis.json"]
+    }
+  ]
+}

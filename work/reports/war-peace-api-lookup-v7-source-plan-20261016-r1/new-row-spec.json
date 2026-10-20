@@ -1,0 +1,69 @@
+{
+  "actions": [
+    "peace"
+  ],
+  "actions_scope": "Navigation/investigation lineage only; no action type, enum, class, native invocation or dual-family usage is proved.",
+  "aliases": [
+    "cc220",
+    "conditional raw slot helper"
+  ],
+  "authority": {
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "callable": false,
+    "gameplay_effect_verified": false,
+    "native_ready": false,
+    "process_authenticated": false,
+    "selected_effect_verified": false,
+    "sender_authorized": false,
+    "world_lease": false
+  },
+  "call_sites": [
+    {
+      "relationship": "Retained directE882d074ff targetcc220; caller context not a full formal contract.",
+      "rva": "0x97f199"
+    }
+  ],
+  "complete_prototype": "unknown",
+  "evidence_bundle_pointers_proposed": [
+    "/machine/r86/formal_inputs",
+    "/machine/r86/local_dataflow",
+    "/precision/r86",
+    "/machine/r87/inherited_machine_state",
+    "/machine/r87/normal_firstappend_selected_conditions",
+    "/machine/r87/normal_firstappend_steps",
+    "/machine/r87/normal_return_and_stack",
+    "/machine/r87/general_branch_limits",
+    "/reviews/r86",
+    "/reviews/r87",
+    "/source_pin_metadata"
+  ],
+  "id": "shared.raw_slot_machine",
+  "kind": "basic_block",
+  "ownership_borrowed": [
+    "C/E, stack/homes/saved slots/return slot and opaqueS under explicit validmemory/noalias/normalcallee premises; no lease."
+  ],
+  "ownership_owned": [
+    "Only caller-visible raw stack/frame and selected machine arithmetic; objectownership unknown."
+  ],
+  "plan_only": true,
+  "return_summary": "Conditional normal epilogue atcc32b returns the pre-restoration R14 rawS+8*index. For explicitly listed empty-header,D0 and normal/validmemory/noalias premises index0; it is not an acceptance code or proved vector state.",
+  "rva": "0xcc220",
+  "schema": "EU4-LOOKUP-V7-NEW-ROW-SPEC/1",
+  "signature_parameters": [
+    "Inherited R86 C=entryRCX,D=entryRDX,E=entryR8,Q=entryRSP; typed signature unknown.",
+    "R87 is a continuation atF=Q-0x48, not new Win64 function formals."
+  ],
+  "signature_status": "partial_static",
+  "stage": "static",
+  "stage_scope": "Ordinary retained static contracts only. R86 SARnormalpath excludescc32c; R87 conditionalRET is not all-input safety, completefunction, originaleffect or runtime permission.",
+  "summary": "R86 bounded70B plus R87 inherited continuation support explicit conditional local arithmetic, fresh payload store and normal epilogue; completevector/ownership/helpersemantics remainunknown.",
+  "title": "cc220: conditional machine fragment and raw slot-shaped result",
+  "unresolved": [
+    "c9d60 body atcc305 not read; no new body record, ownership/header cleanup/allocation effectsunknown.",
+    "950b0 and1a35750 bodies/alias effects unknown; zero length doesnotprove no access or callback.",
+    "cc32c hypothetical/syntactic after R86 SAR precision; normal pathfirstappend is conditional and doesnot close all paths.",
+    "R14restore follows MOVRAX,R14, savedslot mutation assumptions remainexplicit.",
+    "No fullvector/typedclass/units/recipient/nativecallable/APIeffect/AI/expiry/peace orwar completion."
+  ]
+}

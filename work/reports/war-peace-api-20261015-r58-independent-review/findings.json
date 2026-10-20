@@ -1,0 +1,89 @@
+{
+  "schema": "EU4-R58-INDEPENDENT-FILE-REVIEW/1",
+  "sealed": true,
+  "passed": true,
+  "blocking_findings": [],
+  "subject_path": "work/reports/war-peace-api-20261015-r58-pending-id-source/manifest.json",
+  "subject_manifest": {
+    "bytes": 13949,
+    "sha256": "f989fde03fae380c52ff0694bdb009116cec96877ace3c6f5f4e44326bc4edcf"
+  },
+  "scope": "36 exact actual file pins, 38 decoder pins only producer witness, retained caller seed/pdata/38B instructions and conditional machine projection; no PE or engine reopening",
+  "checks": [
+    {
+      "id": "source-pins",
+      "passed": true,
+      "fact": "All36 subject actual pins independently read stat-first under4MiB each. Engine38 pins copied from retained manifests/capture only, never opened. Base24actual+38engine before/after journal exactly matches captured source pins."
+    },
+    {
+      "id": "caller-entry",
+      "passed": true,
+      "fact": "Native source instructions387..391 match all five seed/root-review rows. E837992800 at4e82a4 resolves771be0; RIPd47be501 at4e829d resolves233fe78. EDX5/R8Dffffffff local assignments are exact, R9/XMM/stack remain unknown."
+    },
+    {
+      "id": "pdata",
+      "passed": true,
+      "fact": "19 raw12B records/17unique parsed uint32 tuples; selected index14172=[771be0,771c06), next14173=[771c06,771cbd)183B. Next metadata is retained, code was not read."
+    },
+    {
+      "id": "raw-and-branch",
+      "passed": true,
+      "fact": "38 owned bytes,16 contiguous rows match capture, rawSHAe3686fd3 and selected source pins. 771bf9:720b is unsignedJB to771c06 outside window; EDX5 selects it. Only unsignedEDX>=12 takes XOR EAX,EAX and retained RET0."
+    },
+    {
+      "id": "register-widths",
+      "passed": true,
+      "fact": "R8Dffffffff gives fullR8=00000000ffffffff at call; EBP assignment also zeroextendsRBP. R14D copiesEDX, RSI copiesRCX. On selected edge RAX/R9 unchanged incoming unknown, not synthesized IDs."
+    },
+    {
+      "id": "stack",
+      "passed": true,
+      "fact": "Before pushes byte[entryQ+20]=R9B, only1byte. PUSH RBP/RSI/R14 thenSUB30 givesRSP=Q-48 atJBtarget; nonselected pathADD30+POPs balances beforeRET. Three pushes implicitwrites; three pops/RET implicitreads. Unwind not authenticated."
+    },
+    {
+      "id": "no-whole-function-purity",
+      "passed": true,
+      "fact": "Within16 rows noCALL/receiver/global dereference or store; oneexplicitstackwrite only. Selected EDX5 exits window, so no full function/pure/current native-ID/counter/uniqueness/epoch/bridge-ID semantics are proved."
+    },
+    {
+      "id": "resource-witness",
+      "passed": true,
+      "fact": "Author twoSHA76925008 +pdata228 +code38 =76925274; decoder179overlapinput/38unique/141repeat. Sourcejournal144events22363609B separately billed, not full OS/loader IO. Authorpeak37457920/software768MiB, no hardJob claim."
+    }
+  ],
+  "precision_notes": [
+    "A full pdata range is a complete selected runtime-function record, not proof of a whole callable function. The direct JB enters adjacent record; no successor bytes reviewed.",
+    "Unsignedselector bound must remain uint32; negative signedEDX bit patterns are >=12 unsigned, not selected byJB.",
+    "ID5 is merely a conditional caller value; it is not a global kind enumeration or evidence of actual native execution.",
+    "Captured source/decoder and peak/elapsed fields are producer witnesses; this audit does not re-run authentication, engine, acquisition or timing.",
+    "Pre-final local owned-selection.subject_manifest label corrected in separate R2 snapshot, original preserved; no author source defect or external read repeated."
+  ],
+  "review_resources": {
+    "original_source_read_events": 41,
+    "original_source_bytes": 2339670,
+    "individual_file_limit": 4194304,
+    "total_source_limit": 25165824,
+    "own_process_peak_private_or_pagefile_bytes": 11472896,
+    "software_guard_bytes": 805306368,
+    "engine_files_opened": 0,
+    "PE_opens": 0,
+    "decoder_imports": 0,
+    "author_programs_executed": 0,
+    "tests_run": 0,
+    "game_process_access": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "shells_collected": true
+  },
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "selected_effect_verified": false,
+    "reader_adoption_allowed": false,
+    "native_ID_uniqueness_verified": false,
+    "request_ID_binding_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

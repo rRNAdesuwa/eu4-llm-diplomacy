@@ -1,0 +1,103 @@
+{
+  "Cxx_type_verified": false,
+  "accepted": [
+    "Exact70B/20 contiguous rows; declared pdata extent owned, no RET/CALL. Three explicit QWORD loads and four PUSH stack writes are distinguished.",
+    "All19 metadata raw records, binary-search decisions, selected/previous/next fences, unique cached mappings and70B window arithmetic replayed.",
+    "One syntactic JE cc32c and external fallthrough cc266 remain unclosed. Intermediate RAX is not a return value.",
+    "Lookahead278/unique70/repeat208, source148/16772282 and separate PE76925306 producer ledgers agree.",
+    "New exact once grant, three accepted review gates, authorized raw manifest buffer before parse, pre/post source/engine witnesses and normal file-close-before-final-guard capture ordering agree.",
+    "Separate first filecheck passed; older delivery pending flag is historical, not rewritten or mislabeled failure."
+  ],
+  "all_own_shells_collected_at_review_boundary": true,
+  "amount_units_verified": false,
+  "atomic_snapshot": false,
+  "authorizes_retry": false,
+  "blocking_findings": [],
+  "callable": false,
+  "further_actual_authorized": false,
+  "limits": [
+    "Instruction-time loads occur after PUSH writes; no stack/C disjointness or immutability assumed.",
+    "Q-0x48 frame has no observed epilogue; untouched R9/R10/R11/XMM only means this20-row subset did not access them.",
+    "Only cached raw/rows and pure arithmetic were replayed.38 engine files are metadata witnesses, not opened or rehashed.",
+    "No further actual scope, retry, reader adoption, callable/native/effect/persistence/lease/atomic authority is granted."
+  ],
+  "native_ready": false,
+  "nonblocking_precision": [
+    "For normal sequential ISA execution SAR64 RAX,3 cannot equal0x1fffffffffffffff; CMP ZF0 and JE not taken. This sharpens the author syntactic overapprox without changing its frozen contract.",
+    "Root exit0/1.217s/all-shells-collected is a retained parent witness, not independent OS exit or original full stdout/stderr proof.",
+    "The generic external CALL normal-return analysis flag is vacuous in this no-CALL slice."
+  ],
+  "own_review_failures": 1,
+  "own_source_upper_bytes": 5732446,
+  "ownership_transfer_verified": false,
+  "passed": true,
+  "precision_corrigendum_pin": {
+    "bytes": 1713,
+    "path": "work/reports/war-peace-api-20261016-r86-actual-independent-review/precision-corrigendum.json",
+    "sha256": "2c4fab900dd774369a40507a0414fb6a81c2d1cf451505d9b91c5726ebb83304"
+  },
+  "reader_adoption_allowed": false,
+  "recipient_direction_verified": false,
+  "roles": {
+    "actual_executor": "root",
+    "actual_source_author": "War",
+    "prior_role": "Val was R86 source peer and historical R69/R75 author; accepted upstream reviews are fixed witnesses, not recursively self-certified.",
+    "reviewer": "Val"
+  },
+  "schema": "EU4-R86-ACTUAL-INDEPENDENT-FINDINGS/1",
+  "scope": "Full flat retained actual/raw/contract review; no target or author execution",
+  "sealed": true,
+  "selected_effect_verified": false,
+  "source_before_after_equal": true,
+  "subject_actual_manifest": {
+    "bytes": 16602,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/actual-manifest.json",
+    "sha256": "69e7167005ff08e09ca29e790786f6055512614debecc72f31d3b37d0583df72"
+  },
+  "subject_capture_pin": {
+    "bytes": 85315,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/capture.json",
+    "sha256": "e3a06664b11a14f483705cd3ae4852b0cd562a85ab46ac7395bfc428673bb28f"
+  },
+  "subject_contract_pin": {
+    "bytes": 5478,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/contract.json",
+    "sha256": "ddea250f47187a4b6b47075186a2ca54c09157168b3b2db9d016b3a5b81e5943"
+  },
+  "subject_owned_pin": {
+    "bytes": 635,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/owned-code.json",
+    "sha256": "65d0c63efdc37f369bb8aa4f0f55a0a5c3d59c79db8bc37e98723a30048fde82"
+  },
+  "subject_producer": {
+    "bytes": 27099,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/produce.py",
+    "sha256": "0a3c13e779e4da424316b0e3a3ff3f86f49a460243f18b14c91644ca717522b4"
+  },
+  "subject_raw_replay_pin": {
+    "bytes": 4456,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/raw-replay.json",
+    "sha256": "805159cd07d160c73f43baede15816cf822e542bc972f5ba323e89e190e494fc"
+  },
+  "subject_selected_cfg_pin": {
+    "bytes": 15248,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/selected-cfg.json",
+    "sha256": "d8126c5c08e73e84c3f12df83fe84abe55eccf43f45e976cf2c9cbe54c8f47ab"
+  },
+  "subject_source_manifest": {
+    "bytes": 22473,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/source-manifest.json",
+    "sha256": "74f6c8f8eeeadea9e4216c7b37e2a8034e9fb7967d8dfe7167c7ee1ffd143472"
+  },
+  "unknown": [
+    "Unread cc266 and hypothetical cc32c; return/cleanup/allocation/whole logical function and full calling convention.",
+    "C++ types, payload E use, first append, receiver ownership, alias disjointness, amount/currency/recipient/actual gold or any API effect.",
+    "Complete OS/loader/partial-failure IO, independent target/engine hash authenticity and hardJob enforcement."
+  ],
+  "verification_pin": {
+    "bytes": 24077,
+    "path": "work/reports/war-peace-api-20261016-r86-actual-independent-review/verification.json",
+    "sha256": "fcc2994462a52fc47cac968b7f6cb9f821af29b4ba611f949a6feae3f85475d3"
+  },
+  "world_lease": false
+}

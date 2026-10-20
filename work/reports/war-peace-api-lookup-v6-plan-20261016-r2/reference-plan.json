@@ -1,0 +1,711 @@
+{
+  "schema": "EU4-LOOKUP-V6-R2-EXACT-POINTER-PLAN/1",
+  "sealed": true,
+  "references": [
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json",
+      "json_pointer": "/capture_pin",
+      "bytes": 16739,
+      "sha256": "f05a565e8fdb8c2006cd9b2f94e77fef5a86c1c7fbf8d5bcd7e8c91f22c2eab9"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json",
+      "json_pointer": "/contract_pin",
+      "bytes": 16739,
+      "sha256": "f05a565e8fdb8c2006cd9b2f94e77fef5a86c1c7fbf8d5bcd7e8c91f22c2eab9"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json",
+      "json_pointer": "/owned_code_pin",
+      "bytes": 16739,
+      "sha256": "f05a565e8fdb8c2006cd9b2f94e77fef5a86c1c7fbf8d5bcd7e8c91f22c2eab9"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/return_register_contract",
+      "bytes": 6999,
+      "sha256": "b841344c4c286f1cd7d5bfe7c5edea930913a9e9191c5731bb03a6f1b62c19ea"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/stack_contract",
+      "bytes": 6999,
+      "sha256": "b841344c4c286f1cd7d5bfe7c5edea930913a9e9191c5731bb03a6f1b62c19ea"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/inherited_state",
+      "bytes": 6999,
+      "sha256": "b841344c4c286f1cd7d5bfe7c5edea930913a9e9191c5731bb03a6f1b62c19ea"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/unknowns",
+      "bytes": 6999,
+      "sha256": "b841344c4c286f1cd7d5bfe7c5edea930913a9e9191c5731bb03a6f1b62c19ea"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/local_selected_CFG",
+      "bytes": 6999,
+      "sha256": "b841344c4c286f1cd7d5bfe7c5edea930913a9e9191c5731bb03a6f1b62c19ea"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json",
+      "json_pointer": "/raw_code",
+      "bytes": 10173,
+      "sha256": "5ae4eb40dc81a08ff3c328d8d436bfdee72e26b0211d2cbab0fe7fbf317e9efb"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json",
+      "json_pointer": "/analysis/instructions",
+      "bytes": 10173,
+      "sha256": "5ae4eb40dc81a08ff3c328d8d436bfdee72e26b0211d2cbab0fe7fbf317e9efb"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json",
+      "json_pointer": "/metadata",
+      "bytes": 10173,
+      "sha256": "5ae4eb40dc81a08ff3c328d8d436bfdee72e26b0211d2cbab0fe7fbf317e9efb"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+      "json_pointer": "/passed",
+      "bytes": 6218,
+      "sha256": "e3d54d50cd97281872f32b2e3b7648d9b2ca3e1d8735ed010a63be0c7db27e53"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+      "json_pointer": "/subject_actual_manifest",
+      "bytes": 6218,
+      "sha256": "e3d54d50cd97281872f32b2e3b7648d9b2ca3e1d8735ed010a63be0c7db27e53"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+      "json_pointer": "/subject_contract_pin",
+      "bytes": 6218,
+      "sha256": "e3d54d50cd97281872f32b2e3b7648d9b2ca3e1d8735ed010a63be0c7db27e53"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+      "json_pointer": "/precision_notes",
+      "bytes": 6218,
+      "sha256": "e3d54d50cd97281872f32b2e3b7648d9b2ca3e1d8735ed010a63be0c7db27e53"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/manifest.json",
+      "json_pointer": "/source_pins",
+      "bytes": 12383,
+      "sha256": "6fe456906b3b55738657ac306a3a43722ee45533e38d8864f63be651f1a004f0"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/manifest.json",
+      "json_pointer": "/source_pins",
+      "bytes": 6577,
+      "sha256": "ae8c40082da1c9a0fab20c36a3b54360fdd554891a972da2c5fe7587446029f4"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/manifest.json",
+      "json_pointer": "/files",
+      "bytes": 6577,
+      "sha256": "ae8c40082da1c9a0fab20c36a3b54360fdd554891a972da2c5fe7587446029f4"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/conditional_cases",
+      "bytes": 16978,
+      "sha256": "93911bd7dcaa02fc6c4c9ab9cb0084a1e06ea070f7517d534176154eef78f53c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/normal_conditions",
+      "bytes": 16978,
+      "sha256": "93911bd7dcaa02fc6c4c9ab9cb0084a1e06ea070f7517d534176154eef78f53c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/epilogue_stack_contracts",
+      "bytes": 16978,
+      "sha256": "93911bd7dcaa02fc6c4c9ab9cb0084a1e06ea070f7517d534176154eef78f53c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/unresolved",
+      "bytes": 16978,
+      "sha256": "93911bd7dcaa02fc6c4c9ab9cb0084a1e06ea070f7517d534176154eef78f53c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/historical_delta",
+      "bytes": 16978,
+      "sha256": "93911bd7dcaa02fc6c4c9ab9cb0084a1e06ea070f7517d534176154eef78f53c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/source_review_precision",
+      "bytes": 16978,
+      "sha256": "93911bd7dcaa02fc6c4c9ab9cb0084a1e06ea070f7517d534176154eef78f53c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+      "json_pointer": "/fragments",
+      "bytes": 88665,
+      "sha256": "3bc59904e69c2cdbb4002181b7ab143fa0bfcc0f5e296f437e943e198d9afe2f"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+      "json_pointer": "/epilogue_projections",
+      "bytes": 88665,
+      "sha256": "3bc59904e69c2cdbb4002181b7ab143fa0bfcc0f5e296f437e943e198d9afe2f"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+      "json_pointer": "/RET_sites",
+      "bytes": 88665,
+      "sha256": "3bc59904e69c2cdbb4002181b7ab143fa0bfcc0f5e296f437e943e198d9afe2f"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+      "json_pointer": "/signed_edge_replay",
+      "bytes": 88665,
+      "sha256": "3bc59904e69c2cdbb4002181b7ab143fa0bfcc0f5e296f437e943e198d9afe2f"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/passed",
+      "bytes": 20892,
+      "sha256": "83a284955c31d19cbc4feaf54514d5e617e560a5acb4b99d282557ffa6ed9342"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/subject_manifest",
+      "bytes": 20892,
+      "sha256": "83a284955c31d19cbc4feaf54514d5e617e560a5acb4b99d282557ffa6ed9342"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/subject_contract",
+      "bytes": 20892,
+      "sha256": "83a284955c31d19cbc4feaf54514d5e617e560a5acb4b99d282557ffa6ed9342"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/subject_raw_composition",
+      "bytes": 20892,
+      "sha256": "83a284955c31d19cbc4feaf54514d5e617e560a5acb4b99d282557ffa6ed9342"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/precision_notes",
+      "bytes": 20892,
+      "sha256": "83a284955c31d19cbc4feaf54514d5e617e560a5acb4b99d282557ffa6ed9342"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/manifest.json",
+      "json_pointer": "/source_pins",
+      "bytes": 11318,
+      "sha256": "996ed219e20c130e4dda798ba309d68bb74c60d547a3c5bb8e06adaa7f42091a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-manifest.json",
+      "json_pointer": "/files",
+      "bytes": 17047,
+      "sha256": "4537f650656dab1ce8c9511f65ebe5211adc81c4f10c8a1daf8b0b47db62dc18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-manifest.json",
+      "json_pointer": "/authority",
+      "bytes": 17047,
+      "sha256": "4537f650656dab1ce8c9511f65ebe5211adc81c4f10c8a1daf8b0b47db62dc18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-manifest.json",
+      "json_pointer": "/decoder_witness_only_not_rehashed_by_sealer",
+      "bytes": 17047,
+      "sha256": "4537f650656dab1ce8c9511f65ebe5211adc81c4f10c8a1daf8b0b47db62dc18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/observations",
+      "bytes": 5247,
+      "sha256": "b73969a9eabc1c874998f38e29ea0911b050755b290c0188e9725a6563abe73c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/conditional_projection",
+      "bytes": 5247,
+      "sha256": "b73969a9eabc1c874998f38e29ea0911b050755b290c0188e9725a6563abe73c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/unknowns",
+      "bytes": 5247,
+      "sha256": "b73969a9eabc1c874998f38e29ea0911b050755b290c0188e9725a6563abe73c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/resources",
+      "bytes": 5247,
+      "sha256": "b73969a9eabc1c874998f38e29ea0911b050755b290c0188e9725a6563abe73c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/authority",
+      "bytes": 5247,
+      "sha256": "b73969a9eabc1c874998f38e29ea0911b050755b290c0188e9725a6563abe73c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/all13_raw_reviewed_rows",
+      "bytes": 15924,
+      "sha256": "6bd48ab81e3a493f7115d81585a6f3f4c02f926662b33b6b0cf5b2c485cb794a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/partial",
+      "bytes": 15924,
+      "sha256": "6bd48ab81e3a493f7115d81585a6f3f4c02f926662b33b6b0cf5b2c485cb794a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/old_CALL",
+      "bytes": 15924,
+      "sha256": "6bd48ab81e3a493f7115d81585a6f3f4c02f926662b33b6b0cf5b2c485cb794a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/RIP_arithmetic",
+      "bytes": 15924,
+      "sha256": "6bd48ab81e3a493f7115d81585a6f3f4c02f926662b33b6b0cf5b2c485cb794a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/semantic_memory_reads",
+      "bytes": 15924,
+      "sha256": "6bd48ab81e3a493f7115d81585a6f3f4c02f926662b33b6b0cf5b2c485cb794a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/passed",
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_actual_manifest",
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_capture_pin",
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_contract_pin",
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_owned_pin",
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_selected_pin",
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/limits",
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/authority",
+      "bytes": 9252,
+      "sha256": "81bb504dd809001a9a1549f094e9b9889013808607d16be7e176748ae61d7e18"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/manifest.json",
+      "json_pointer": "/files",
+      "bytes": 15918,
+      "sha256": "91ed106282413b91fbc5d34a2cd096c7f41f1569a2df4ab0bf33ffa0c571a9c4"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/manifest.json",
+      "json_pointer": "/subject_actual_manifest",
+      "bytes": 15918,
+      "sha256": "91ed106282413b91fbc5d34a2cd096c7f41f1569a2df4ab0bf33ffa0c571a9c4"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/manifest.json",
+      "json_pointer": "/engine_metadata_only",
+      "bytes": 15918,
+      "sha256": "91ed106282413b91fbc5d34a2cd096c7f41f1569a2df4ab0bf33ffa0c571a9c4"
+    }
+  ],
+  "resolved": [
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json",
+      "json_pointer": "/capture_pin",
+      "value_type": "dict",
+      "canonical_value_sha256": "802449931dda8e781e99db7e1eb2014cfcea6e7f6df99fd533a4d8b537944715"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json",
+      "json_pointer": "/contract_pin",
+      "value_type": "dict",
+      "canonical_value_sha256": "eea9cc37f1c21d68f6427c664f9f5561a28ff230d829e19adcf465253b0e238f"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-manifest.json",
+      "json_pointer": "/owned_code_pin",
+      "value_type": "dict",
+      "canonical_value_sha256": "4fa7fe95d93101c1a7302e93235a83ecd933d5fb9955d698855bd2e345f75556"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/return_register_contract",
+      "value_type": "dict",
+      "canonical_value_sha256": "8f28e72080856666c7ba37395473bb63a6a81bc9e07b33657f5f6d5b06871ccf"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/stack_contract",
+      "value_type": "dict",
+      "canonical_value_sha256": "91aecfedee0a1118f535f0638b2198c7344325f4fd65b16be470a04c5e02fc78"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/inherited_state",
+      "value_type": "dict",
+      "canonical_value_sha256": "0e0733e2d5367dc0e5a2223955491068fd0068ebd3b278c1c53d8ea0079941f1"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/unknowns",
+      "value_type": "list",
+      "canonical_value_sha256": "7fc771a72661d6fdd6f72f143f086ab7977d2ff403ee3766677fb4a3d0b5d90a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-contract.json",
+      "json_pointer": "/local_selected_CFG",
+      "value_type": "dict",
+      "canonical_value_sha256": "8cffea9335f8765a3fb160880e95481ba50fd17dd6905b83bd53554128e357ff"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json",
+      "json_pointer": "/raw_code",
+      "value_type": "dict",
+      "canonical_value_sha256": "635a6808c63fc4209cda31973316766947da13e72ca74d59258f8f1902988cf8"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json",
+      "json_pointer": "/analysis/instructions",
+      "value_type": "list",
+      "canonical_value_sha256": "7142ecc3b84340375a8dbd19d063cceb4d853623983dc11676a61c9a68c85e5f"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-null-successor-fragment/actual-selected-evidence.json",
+      "json_pointer": "/metadata",
+      "value_type": "dict",
+      "canonical_value_sha256": "a2eb16c0252654590501683af49c4e7724e214deb599cfa4dd85e318e65f27e8"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+      "json_pointer": "/passed",
+      "value_type": "bool",
+      "canonical_value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+      "json_pointer": "/subject_actual_manifest",
+      "value_type": "dict",
+      "canonical_value_sha256": "4dcf6bb73b6d4595ed4cd91831635049afb5859dfb464eaa5cca8415914441bf"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+      "json_pointer": "/subject_contract_pin",
+      "value_type": "dict",
+      "canonical_value_sha256": "eea9cc37f1c21d68f6427c664f9f5561a28ff230d829e19adcf465253b0e238f"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/findings.json",
+      "json_pointer": "/precision_notes",
+      "value_type": "list",
+      "canonical_value_sha256": "de57cfd4225f740346f6b3460a80be810296e6fb0450ea5c1bb26faa2b4185ab"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r75-actual-independent-review-r2/manifest.json",
+      "json_pointer": "/source_pins",
+      "value_type": "dict",
+      "canonical_value_sha256": "2c5777438846053029ed1883c4c9a157b6e6f40bf456e4f83421be003c860032"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/manifest.json",
+      "json_pointer": "/source_pins",
+      "value_type": "dict",
+      "canonical_value_sha256": "e64d5df6d4dc879279cfef9870a15d4f6412e05399d69cd40a5d5f26b6bab4da"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/manifest.json",
+      "json_pointer": "/files",
+      "value_type": "dict",
+      "canonical_value_sha256": "e39ab3886c221286f62b82cc5e69fa92d5900a6f002656e41196475d89befe57"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/conditional_cases",
+      "value_type": "list",
+      "canonical_value_sha256": "010f8311a3d6eef6fdb544249018128c196f404f7bf4d8e1abb0d61e6c6a21cc"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/normal_conditions",
+      "value_type": "list",
+      "canonical_value_sha256": "9ce452bd586f61cc2a30ffc0e976f021666654256a990ad8f2a0c56976f5e0fc"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/epilogue_stack_contracts",
+      "value_type": "list",
+      "canonical_value_sha256": "6d07eb050334f4bfa011fed406703935ef8584223c1238bc374a45400605e155"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/unresolved",
+      "value_type": "list",
+      "canonical_value_sha256": "daea37786fac70dd084d06631ad54494d801befea1505569b087e35dd21a2b96"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/historical_delta",
+      "value_type": "str",
+      "canonical_value_sha256": "5492057e2602d87c63bc1c369db2c8e99e61133ad8ccf796437a1e0241470774"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/contract.json",
+      "json_pointer": "/source_review_precision",
+      "value_type": "str",
+      "canonical_value_sha256": "1f61cdc80bd6f578b6369471bfe5f70380c29c3bf6d4c2b1745658bda8b9fbe5"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+      "json_pointer": "/fragments",
+      "value_type": "list",
+      "canonical_value_sha256": "62e723e351ee0e3e2b3ab79009e8249d9afd85c25e34440acb7547d0d4c2318b"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+      "json_pointer": "/epilogue_projections",
+      "value_type": "list",
+      "canonical_value_sha256": "8797b5340a228299dd2b8f10514d0048e7ca22bccdf710165398243433301d99"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+      "json_pointer": "/RET_sites",
+      "value_type": "list",
+      "canonical_value_sha256": "02b7a306181c8f52d7a8209dd1a5cd389da64f8736eddb1793c4e8059bea1550"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-fragment-composition/raw-composition.json",
+      "json_pointer": "/signed_edge_replay",
+      "value_type": "list",
+      "canonical_value_sha256": "44ee4bff46461bf4b180178b7f2c9b972ebcfeb8c4cdbf76bf95207603d21b32"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/passed",
+      "value_type": "bool",
+      "canonical_value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/subject_manifest",
+      "value_type": "dict",
+      "canonical_value_sha256": "8725f78bef64780e51e73d7db6598411d400a51af378a4bf3253db0dfb46f57a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/subject_contract",
+      "value_type": "dict",
+      "canonical_value_sha256": "dc16a7dbcd820c7a31ab64c3ed4818802b34686c07a1cd8b71cf32990823d8db"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/subject_raw_composition",
+      "value_type": "dict",
+      "canonical_value_sha256": "1fb4f006c8ada99fdcddf339e1d0829e2b4360800d1d2c27b48a942e05665241"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/findings.json",
+      "json_pointer": "/precision_notes",
+      "value_type": "list",
+      "canonical_value_sha256": "f0094bb971a57636556b7757f9e67fa81cef1ca31d8a79d88a91794f0b4183af"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r77-composition-independent-review/manifest.json",
+      "json_pointer": "/source_pins",
+      "value_type": "dict",
+      "canonical_value_sha256": "44b5f79e4b609821e8f4fdc76ad50fab3a6b62d2c55eb2a4df3cd2d207a565c5"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-manifest.json",
+      "json_pointer": "/files",
+      "value_type": "dict",
+      "canonical_value_sha256": "d9c31ec8142423b3cf0830d7774ebe78b81fca7996f1269d6694af5dc09251e2"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-manifest.json",
+      "json_pointer": "/authority",
+      "value_type": "dict",
+      "canonical_value_sha256": "092fdaf3092779e0c2e9ce87976040df15a9fc3ce0c415cc2cde9302104ef4dc"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-manifest.json",
+      "json_pointer": "/decoder_witness_only_not_rehashed_by_sealer",
+      "value_type": "bool",
+      "canonical_value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/observations",
+      "value_type": "list",
+      "canonical_value_sha256": "85ce757f1f8c801b00dda17d09ca9d084d00a553ae102ce254f079c2ab73802b"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/conditional_projection",
+      "value_type": "dict",
+      "canonical_value_sha256": "07553cb16a77f6bc603bdc99a821183f349c00d8c9a449a0b3f1af2ef9d27249"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/unknowns",
+      "value_type": "list",
+      "canonical_value_sha256": "099bb3db922785dcfe11d4f9c58f79f5e3b3c74159b1d453bb23afaafbac928c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/resources",
+      "value_type": "dict",
+      "canonical_value_sha256": "f1e2e9cd27c1cc1001bb2dc372daa571800623626b23daa3e23d194576545638"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-contract.json",
+      "json_pointer": "/authority",
+      "value_type": "dict",
+      "canonical_value_sha256": "092fdaf3092779e0c2e9ce87976040df15a9fc3ce0c415cc2cde9302104ef4dc"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/all13_raw_reviewed_rows",
+      "value_type": "list",
+      "canonical_value_sha256": "9c04f0216bcd1ea502d42a6531788486bae70d88a8b5347678084115cf87e2a4"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/partial",
+      "value_type": "list",
+      "canonical_value_sha256": "6bd5bf064490c787e58d456564ea3d08aaef7fad506d431ac44f85fd4564c98c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/old_CALL",
+      "value_type": "dict",
+      "canonical_value_sha256": "c41b81470da7f2b88f2080e0f73bcc9b6e45037d10458e9ddb70f180de8b7c12"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/RIP_arithmetic",
+      "value_type": "dict",
+      "canonical_value_sha256": "5d2afca25fd4e6b013b09fdb23342c2d1cbadf69bd00793bb6c8aa64dfc6db7e"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-unregistered-call-prefix/actual-selected-evidence.json",
+      "json_pointer": "/semantic_memory_reads",
+      "value_type": "dict",
+      "canonical_value_sha256": "634cc90e8270d87ae217a6988b7e9b7b2fcdd9a22a7e0f1828af0b10bf8d94c3"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/passed",
+      "value_type": "bool",
+      "canonical_value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_actual_manifest",
+      "value_type": "dict",
+      "canonical_value_sha256": "cdf5d51d238c2d6610c969fc6e4e9ad96807e419c452d295f9892b784857a1d5"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_capture_pin",
+      "value_type": "dict",
+      "canonical_value_sha256": "b00dfac1398643633b8e12851f894920c675a5345e26837c8262cb379553396f"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_contract_pin",
+      "value_type": "dict",
+      "canonical_value_sha256": "10384bef98889f251d0ba7a4ba80cd1c420750da504e747e22f38f2a9dec3ab4"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_owned_pin",
+      "value_type": "dict",
+      "canonical_value_sha256": "4b6ba9fddeca0089236be7825e57ea5762fe117efae4e50afdf68d368fee234a"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/subject_selected_pin",
+      "value_type": "dict",
+      "canonical_value_sha256": "5afa4825f7ccb657247943e6bfa4320ae148a4305afc5ee637abbed31e6ef7c3"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/limits",
+      "value_type": "list",
+      "canonical_value_sha256": "0920fd4f3b8d3d6aa0aca0df552e954d0b186b4d2c8b03ec9cc4921bc15fae9e"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/findings.json",
+      "json_pointer": "/authority",
+      "value_type": "dict",
+      "canonical_value_sha256": "092fdaf3092779e0c2e9ce87976040df15a9fc3ce0c415cc2cde9302104ef4dc"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/manifest.json",
+      "json_pointer": "/files",
+      "value_type": "dict",
+      "canonical_value_sha256": "7efb4dfaa94b0bcdb892bc5ff444414b11b84ff3c3d2c9e8a1344f7118c1c14c"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/manifest.json",
+      "json_pointer": "/subject_actual_manifest",
+      "value_type": "dict",
+      "canonical_value_sha256": "cdf5d51d238c2d6610c969fc6e4e9ad96807e419c452d295f9892b784857a1d5"
+    },
+    {
+      "path": "work/reports/war-peace-api-20261016-r80-actual-independent-review-r3/manifest.json",
+      "json_pointer": "/engine_metadata_only",
+      "value_type": "bool",
+      "canonical_value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    }
+  ],
+  "reference_count": 58,
+  "current_new_source_count": 15,
+  "R75_R77_consumers": "Only generator copied row later_checked_context and evidence append",
+  "R80_consumer": "Future new97bd30 entry after R81 actual/full acceptance",
+  "future_R81_refs": "Not guessed; fix exact raw/contract/full-review pointers from final R81 schema after acceptance.",
+  "all94_direct_sources_must_be_referenced_in_entry_evidence": true,
+  "no_unreferenced_top_level_supplement": true
+}

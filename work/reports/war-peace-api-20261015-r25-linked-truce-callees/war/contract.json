@@ -1,0 +1,126 @@
+{
+  "schema": "EU4-LINKED-TRUCE-CALLEE-STATIC-CONTRACT/1",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "stage": "ordinary_bounded_static_only",
+  "scope": "three R23 direct callees; selected normal branches, not a complete transitive native predicate",
+  "authority": {
+    "native_ready": false,
+    "callable": false,
+    "side_effect_free_transitive": false,
+    "world_lifetime_lease": false,
+    "truce_expiry_known": false,
+    "peace_completion_verified": false,
+    "reader_implemented": false,
+    "runtime_calls_performed": false
+  },
+  "windows": [
+    {
+      "target": "0x2f1590",
+      "R23_callsite": "0x506dba",
+      "pdata_extent": ["0x2f1590", "0x2f1613"],
+      "pdata_bytes": 131,
+      "read_window": ["0x2f1590", "0x2f1610"],
+      "read_bytes": 128,
+      "decoded_bytes": 125,
+      "partial_instruction_tail": {"rva": "0x2f160d", "bytes": "4883c4", "meaning": "unknown incomplete instruction; not decoded"},
+      "unread_extent_tail": ["0x2f1610", "0x2f1613"],
+      "complete_function": false,
+      "normal_observations": [
+        "Before call 3d79f0, copies incoming R8 to saved RBX, RDX to R10, RCX to R9. R23 supplied R8D=0, actor full handle in RDX and target country pointer in RCX.",
+        "Calls 3d79f0 at 2f159f. Copies its RAX result to R11; null selects 2f160b where AL is cleared, but that exit's epilogue is not fully decoded.",
+        "On nonnull result U, compares byte U+0x11a with zero and loads QWORD [R9+0x20]. R9/R10 were copied before the external call; their preservation/contract by that callee has not been independently closed.",
+        "If U+0x11a is nonzero, resolves the signed16 slot of the [R9+0x20] value through the country table, reads that country's +0x18f0 handle and compares only its slot word with R10's slot word. Equality selects the unclosed false exit.",
+        "Otherwise calls b1e020 with RCX=U+0x1c8, RDX=current value loaded from [R9+0x20], R8=R10, R9=saved incoming R8. This is an observed register assignment, not a guessed C++ class/signature.",
+        "AL nonzero from b1e020 selects 2f160b; AL zero reaches 2f1603 setting AL=1 and the fully selected normal RET at 2f160a."
+      ],
+      "explicit_nonstack_writes_in_selected_instructions": [],
+      "stack_writes_in_selected_instructions": ["push RBX; frame adjustment"],
+      "known_return_subsets": ["normal true path sets AL=1 and reaches RET 2f160a", "false branch clears AL at 2f160b but remaining epilogue is not closed"],
+      "unfollowed_calls": [
+        {"site": "0x2f159f", "target": "0x3d79f0"},
+        {"site": "0x2f15fa", "target": "0xb1e020"}
+      ],
+      "unknowns": ["callee effects, return contracts and R9/R10 preservation", "business identity of U/+11a/+1c8 or country+18f0", "complete false exit and exception behavior"]
+    },
+    {
+      "target": "0x40a6d0",
+      "R23_callsite": "0x506e05",
+      "pdata_extent": ["0x40a6d0", "0x40a71b"],
+      "pdata_bytes": 75,
+      "read_window": ["0x40a6d0", "0x40a71b"],
+      "read_bytes": 75,
+      "decoded_bytes": 75,
+      "complete_function": true,
+      "normal_observations": [
+        "At 40a6d6 reads P=QWORD [RCX+0x1420]. R23 supplied the country resolved from its linked handle.",
+        "For P nonnull, 40a6e2 reads QWORD [P+0x10], then 40a6f3 overwrites RAX with P+0x38 and returns at 40a6fc. The P+0x10 read still occurs even though that loaded value does not determine this branch's final result.",
+        "For P null, calls 798dc0 at 40a6e8. A nonnull RAX becomes RAX+0x78 and returns at 40a70b.",
+        "If that result is null, calls 7a73c0 at 40a70c, adds 0x58 to its RAX and returns at 40a71a. There is no later nonnull validation in this function."
+      ],
+      "explicit_nonstack_writes_in_selected_instructions": [],
+      "stack_writes_in_selected_instructions": ["push RBX; frame adjustment"],
+      "known_return_subsets": ["P nonnull: P+0x38 with no external call on that selected branch", "P null: return depends on unreviewed fallback callees"],
+      "normal_ret_sites": ["0x40a6fc", "0x40a70b", "0x40a71a"],
+      "unfollowed_calls": [
+        {"site": "0x40a6e8", "target": "0x798dc0"},
+        {"site": "0x40a70c", "target": "0x7a73c0"}
+      ],
+      "unknowns": ["business type/identity/ownership of P and all three returned interior addresses", "fallback effects, allocation, lifetime and failure behavior", "does not prove that any returned pointer is safely callable/readable outside its native context"]
+    },
+    {
+      "target": "0x7ae260",
+      "R23_callsite": "0x506e0d",
+      "pdata_extent": ["0x7ae260", "0x7ae2ea"],
+      "pdata_bytes": 138,
+      "read_window": ["0x7ae260", "0x7ae2e0"],
+      "read_bytes": 128,
+      "decoded_bytes": 128,
+      "unread_extent_tail": ["0x7ae2e0", "0x7ae2ea"],
+      "complete_function": false,
+      "normal_observations": [
+        "Reads P=QWORD [RCX+0x188]. RCX is the returned address from 40a6d0 in R23; P's type/name is not established.",
+        "P nonnull path reads DWORD [P]. EDX receives that DWORD if its sign bit is clear, otherwise its bitwise complement; it does not simply compute an absolute value. R8D retains the original DWORD for call 7b3950.",
+        "Reads a byte at current RSP+0x70 after push RBX/sub RSP,0x60, i.e. entry RSP+8, and copies it to outgoing/local stack+0x28. Its origin and purpose are unknown; it is not labeled a defined argument or an uninitialized value.",
+        "Calls 7b3950, then sets RCX=returned RAX+8 and RDX to RIP-derived 0x232e9c8 before calling 1a3514c. That data address was not read; its content and the callee's business operation are unknown.",
+        "Zero EAX from 1a3514c calls 45b6e0(P). Nonnull result feeds the selected byte-return path; null selects an initialization path whose tail is outside the window.",
+        "P null or nonzero EAX from 1a3514c selects address 0x1c38150 via LEA. Its byte content was not read and is not assumed false.",
+        "At 7ae2be reads a byte from the selected RAX address and zero-extends it into EAX, then returns at 7ae2c6. This is a byte return; strict boolean normalization is not proved. R23 only tests AL for zero/nonzero.",
+        "The null 45b6e0 result path zeroes 24 local stack bytes at current RSP+0x40..+0x57 and calls 45b260 with RCX=&local buffer. No subsequent instruction is in the permitted window."
+      ],
+      "explicit_nonstack_writes_in_selected_instructions": [],
+      "stack_writes_in_selected_instructions": ["push RBX", "byte current RSP+0x28", "16 zero bytes current RSP+0x40", "8 zero bytes current RSP+0x50"],
+      "known_return_subsets": ["7ae2c6 returns EAX=zero-extended byte read through selected pointer", "45b260 branch continuation/return is unclosed"],
+      "unfollowed_calls": [
+        {"site": "0x7ae28f", "target": "0x7b3950"},
+        {"site": "0x7ae29f", "target": "0x1a3514c"},
+        {"site": "0x7ae2ab", "target": "0x45b6e0"},
+        {"site": "0x7ae2db", "target": "0x45b260"}
+      ],
+      "unknowns": ["unread data/literal content and pointed object types", "callee side effects, caching, allocation, failure and lifetime", "unread 10B tail and complete return behavior"]
+    }
+  ],
+  "implication_for_observation": [
+    "R23's direct actor-to-target cache flag remains a separate bounded observation. It must not be advertised as the complete 506d70 result.",
+    "The linked path goes through conditional evaluator calls and an interior-address selector with fallback calls. The available prefixes do not establish a transitive read-only native predicate.",
+    "No +0x18f0, +0x1420, +0x188, +0x11a or +0x1c8 business class name is assigned; in particular no overlord/tributary inference is used.",
+    "The windows expose no proven truce typed index, expiry/date unit, removed flag, full-object ownership or peace-request causal completion proof.",
+    "No helper invocation, process read, reader implementation or extension of native readiness follows from these static records."
+  ],
+  "resources": {
+    "new_code_bytes_read": 331,
+    "new_decoded_bytes": 328,
+    "per_target_limit": 128,
+    "total_limit": 384,
+    "pdata_metadata_phase_requests": 60,
+    "pdata_decode_phase_direct_rereads": 9,
+    "pdata_total_record_requests": 69,
+    "pdata_unique_records_across_phases": 42,
+    "metadata_peak_committed_bytes": 22016000,
+    "decode_peak_committed_bytes": 28577792,
+    "memory_guard_bytes": 805306368,
+    "hard_job_object_installed": false,
+    "unwind_or_external_data_read": false,
+    "external_callees_followed": 0
+  },
+  "execution": {"process_accesses":0,"Frida_operations":0,"game_native_calls":0,"requests_published":0,"tests_run":0,"old_sealed_sources_changed":false}
+}

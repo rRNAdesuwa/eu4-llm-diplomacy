@@ -1,0 +1,21 @@
+{
+  "schema": "EU4-PUBLICATION-DIFF-CHECK/1",
+  "editorial_diff_check_exit": 0,
+  "whole_snapshot_diff_check_exit": 2,
+  "whole_snapshot_warning_lines": 18949,
+  "preserved_source_whitespace_warning_examples": [
+    "bridge/native/tag_command_1375/src/work/candidates/v26-gap-curry-bootstrap-1375/thread_freeze.inc:117: new blank line at EOF.",
+    "bridge/native/tag_diplomacy_1375_v31/src/work/candidates/v26-gap-curry-bootstrap-1375/thread_freeze.inc:117: new blank line at EOF.",
+    "bridge/tests/test_diplomacy_reply_observer.py:451: new blank line at EOF.",
+    "bridge/tests/test_v10_experiment_review.py:104: trailing whitespace.",
+    "work/candidates/diplomacy-api-contract-v3-review/files/bridge/__init__.py:37: new blank line at EOF.",
+    "work/candidates/diplomacy-api-contract-v3-review/files/bridge/compiler.py:300: new blank line at EOF.",
+    "work/candidates/diplomacy-api-contract-v3-review/files/bridge/planner.py:145: new blank line at EOF.",
+    "work/candidates/diplomacy-api-contract-v3-review/files/bridge/protocol.py:329: new blank line at EOF."
+  ],
+  "policy": "Pinned historical source bytes are preserved; CRLF is accepted. Existing whitespace warnings do not authorize changing frozen source.",
+  "merge_conflicts": [],
+  "new_binary_or_credential_artifacts": false,
+  "third_party_engine_payloads_added": false,
+  "dependency_receipt_json_only": true
+}

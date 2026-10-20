@@ -1,0 +1,185 @@
+{
+  "schema": "EU4-R63-GOLD-SCALAR-SOURCE-STATIC-CONTRACT/1",
+  "sealed": true,
+  "stage": "author_static_result_pending_independent_review",
+  "entry": {
+    "rva": "0x97b2c0",
+    "preferred_VA": "0x14097b2c0",
+    "pdata_extent": [
+      "0x97b2c0",
+      "0x97b387"
+    ],
+    "owned_bytes": 199,
+    "decoded_rows": 49,
+    "normal_ret": "0x97b386",
+    "code_identity": "fixed disk EXE plus source/engine guards; not live loaded code"
+  },
+  "evidence": {
+    "capture": {
+      "bytes": 107151,
+      "sha256": "43b43f911772730b84a4750f3f4c1ada68c44fc3239afd0b4b752a247171bcab"
+    },
+    "owned_code": {
+      "bytes": 898,
+      "sha256": "b161c3bfe65f5749131c5c5e2bfa90a574e686a220966cef764055cd34f8428d"
+    },
+    "source_manifest": {
+      "bytes": 19311,
+      "sha256": "17fe6ea0ee577b36c36accbdc88ff25e6a2f21aebdccea8f29c3549afa211200"
+    },
+    "producer": {
+      "bytes": 23023,
+      "sha256": "4084a0f39990c76dcf94c3810134d993ddcedfd7314ca39455d699f5bc161e19"
+    },
+    "entry_seed": {
+      "bytes": 12360,
+      "sha256": "cbf9d9f367e98c0822286471ccb68a84d01fa039e83650cac76d6d3503881bad"
+    },
+    "three_independent_review_groups_prepost": true,
+    "actual_invocation_exit": 0,
+    "failure_files": []
+  },
+  "inputs": {
+    "RCX": "Incoming opaqueW is not assigned before firstCALL97b31f; forwarded to97b8a0. No actor/country/war/currency type is proved.",
+    "RDX": "Saved in nonvolatileRBX at97b2d2. Restricted callerR62 supplies addressableDWORD atR62entryQ+18; current body has two explicit outputDWORD stores through savedpointer.",
+    "R8_R9": "Incoming values not used before replacement by localR8 address andR9B=1 for97b8a0; R9 high56bits are not initialized here.",
+    "incoming_XMM0": "Knownzero128 from retained parent prefix, but thisbody explicitlyXORPS at97b2d5 before usingXMM0. No incoming floating/scalar parameter consumption is proved."
+  },
+  "stack": {
+    "steady_rsp": "entryQ-0x458 afterPUSH_RDI8 andSUB_RSP450; normalvalidWin64 entry alignment implies steadyRSP16aligned.",
+    "descriptor": "Atsteady+30:modulepointer1c3def0; +38:steady+48 inlineaddress; QWORD+40=0x80, hence lowDWORD80 and highDWORD+44zero initially. Virtual class/semantic fields remain unproved.",
+    "selector_raw": "DWORDsteady+20=0; QWORDsteady+28=0; paddingsteady+24..27 is not explicitlyinitialized. MOVAPS reads16Bfrom+20 thenMOVDQA writes same16B back.",
+    "XMM0_at_97b8a0": "DWORDbits0..31zero, bits32..63 may be prior stackbytes, bits64..127zero under shown writes; notall128zero. CalleeXMMconsumptionunknown.",
+    "bounds": "199B staticbody establishes offsets, not arbitrary pointer validity or object allocation/lease."
+  },
+  "first_call": {
+    "site": "0x97b31f",
+    "raw_hex": "e87c050000",
+    "target": "0x97b8a0",
+    "followed": false,
+    "arguments": {
+      "RCX": "incomingW",
+      "RDX": "&steady[30] descriptor",
+      "R8": "&steady[20] raw16Bregion",
+      "R9B": 1,
+      "R9_upper56": "unknown"
+    },
+    "effects": "Unfollowed; descriptor/content/aliases, allocation, worldwrites and return semantics unknown. Following body assumes normalreturn andconforming preservation ofnonvolatileRBX/RSI/RDI, not generallypreservedvolatile registers."
+  },
+  "output_paths": [
+    {
+      "condition": "Post97b8a0 DWORD[steady+44]==1 (raw32 equality)",
+      "path": [
+        "0x97b324",
+        "0x97b329 nottaken",
+        "0x97b32b",
+        "0x97b330",
+        "0x97b333",
+        "0x97b336"
+      ],
+      "machine_expression": "B=freshQWORD[steady+38]; E=QWORD[B]; DWORD[saved_out]=DWORD[E+30].",
+      "required": "Normalreturningcallee; validB/E/out andstackspans; ABIpreservedRBX. E/vtable/class/fullhandle/recordmeaning notchecked. Thevalue neednot bepositive.",
+      "cleanup": "Resetdescriptor+30 to1c3def0 andcount+44 to0. Comparethe sameB inRCX againststeady+48; ifdifferent, call17394f0(B)."
+    },
+    {
+      "condition": "Post97b8a0 DWORD[steady+44]!=1 (including0 oranyotherrawvalue)",
+      "path": [
+        "0x97b324",
+        "0x97b329 taken",
+        "0x97b34b"
+      ],
+      "machine_expression": "DWORD[saved_out]=0 usingABI-preservedEDI initializedzero.",
+      "cleanup": "Resetdescriptor+30/count44, freshreadB=QWORD[steady+38]; skip17394f0 ifB==steady+48 orB==0, otherwisecallit."
+    }
+  ],
+  "return": {
+    "site": "0x97b36f",
+    "expression": "RAX=saved_out pointer, thenrestoreRBX/RSI/RDI/RSP andRET97b386.",
+    "not": "RAX isnot the scalarT. CallerR62 separatelyMOVSXD readsoutputDWORDafterreturn andtestsitslow32 signedpositive.",
+    "final_output_caveat": "Theexplicitstore isafter97b8a0 butbeforeoptional17394f0. Withoutcallee/aliasvaliditycontract, outputpreservationthroughcleanup andallnormal/exceptionsemantics remainconditional."
+  },
+  "control_flow": {
+    "edges": 6,
+    "direct_CALL_sites": 2,
+    "distinct_external_CALL_targets": 2,
+    "branch_sites": 4,
+    "branch_sites_rva": [
+      "0x97b329",
+      "0x97b349",
+      "0x97b363",
+      "0x97b368"
+    ],
+    "normal_RET_sites": [
+      "0x97b386"
+    ],
+    "INT3_sites": [],
+    "local_normal_CFG_closed": true,
+    "closure_condition": "FiniteownednormalCFG, CALLfallthroughassumesnormalreturn; no calleebodies orunwind/exceptionproof."
+  },
+  "writes": {
+    "explicit_sites": 15,
+    "stack_sites": 13,
+    "output_DWORD_sites": 2,
+    "explicit_module_or_object_field_stores": 0,
+    "meaning": "Outputpointerstore isparameter-relative. SelectedR62 calleroutput isstack; genericRDXalias maynameothermemory. Unfollowedcalls preventwholefunctionno-worldwrite/readonlyproof.",
+    "MOVUPS_precision": "97b2d8 raw0f11442430 mustcount16Bstackwrite; decoderwriteflagaloneisinsufficient.",
+    "implicit_stack_writes": "PUSH_RDI andtwoCALLreturnaddresses excludedfrom15explicitstorecount."
+  },
+  "data_provenance": {
+    "T_zero": "ExplicitoutputDWORD0 oncount!=1 normalbranch.",
+    "T_nonzero_possible": "RawDWORD+30 ofobjectreachedthroughfreshdescriptorDATA\u2192firstQWORD; no signed/range/unit/typeguard.",
+    "business_meaning": "Moneyunit, denomination, country/recipientdirection, treasuryrelation andamountcalculationunproved.",
+    "not_inferred": [
+      "97b8a0 name/returnvalue",
+      "R62positivecontinuationasunit",
+      "descriptorcapacity80ascurrency",
+      "recordshape12BfromdifferentcallerastypedE"
+    ]
+  },
+  "unresolved": [
+    "97b8a0 fullbody/forms/descriptormutation/element+30origin",
+    "17394f0 normal/alias/error behavior",
+    "sourceW/elementclassandidentity",
+    "allworld/objectwritesinsidecalls",
+    "finaloutputinvariantandexceptioncleanup",
+    "actualruntime/Tvalue/amountunits/recipientdirection"
+  ],
+  "resources": {
+    "pdata_requests": 19,
+    "pdata_physical_bytes": 228,
+    "pdata_unique_bytes": 192,
+    "code_physical_unique_bytes": 199,
+    "decoder_input_total_bytes": 690,
+    "decoder_unique_input_bytes": 199,
+    "decoder_overlap_bytes": 491,
+    "full_EXE_SHA_passes": 2,
+    "full_EXE_SHA_bytes": 76925008,
+    "PE_total_physical_bytes": 76925435,
+    "source_engine_journal_through_capture": 16971754,
+    "post_capture_stdout_pin_read_bytes": 107151,
+    "producer_explicit_source_IO_including_final_stdout_pin": 17078905,
+    "producer_IO_limit": 33554432,
+    "owned_process_peak_committed_bytes_observed": 22822912,
+    "software_memory_guard": 805306368,
+    "hard_Job_installed": false,
+    "new_external_callee_header_data_unwind_bytes": 0,
+    "game_process_access": 0,
+    "Frida": 0,
+    "native_game_calls": 0,
+    "requests": 0,
+    "tests": 0,
+    "direct_owned_child_collected": true
+  },
+  "authority": {
+    "callable": false,
+    "native_ready": false,
+    "reader_adoption_allowed": false,
+    "selected_effect_verified": false,
+    "amount_units_verified": false,
+    "recipient_direction_verified": false,
+    "peace_completion_verified": false,
+    "world_lease": false,
+    "atomic_snapshot": false,
+    "authorizes_retry": false
+  }
+}

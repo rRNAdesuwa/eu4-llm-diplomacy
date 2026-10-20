@@ -1,0 +1,123 @@
+{
+  "schema": "EU4-LINKED-TRUCE-PROJECTION-MANIFEST/1",
+  "sealed": true,
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "source_pins": {
+    "bridge/diplomacy_effect_observer.py": {
+      "bytes": 25411,
+      "sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/direct_truce_cache.py": {
+      "bytes": 16856,
+      "sha256": "5429932a8f4fb81180c566caa0905008d60880f51f7c5868dd7568b4040fe518"
+    },
+    "work/candidates/direct-truce-cache-cli-1375-v1/source-manifest.json": {
+      "bytes": 2494,
+      "sha256": "47cfc947bac30cf47eaf9aa09b46bc423a0cefb49168930b03af4be6a2b47bb8"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/job_tree.py": {
+      "bytes": 8615,
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    "work/candidates/linked-truce-projection-1375-v1/linked_truce_projection.py": {
+      "bytes": 23235,
+      "sha256": "873ea638227e7543dbe2a18d74097559083756f08bc3186c945412c6d9907225"
+    },
+    "work/candidates/linked-truce-projection-1375-v1/source-manifest.json": {
+      "bytes": 4235,
+      "sha256": "176cb7ce2638767be0b98afbe673c06f08fa6430db41cb267a5eb3996b53da47"
+    },
+    "work/candidates/linked-truce-projection-1375-v2/README.md": {
+      "bytes": 2113,
+      "sha256": "ff64a59bb2b49b2dbb71e08048598f78840cdf2de3a2a299b48b08279fdc7f17"
+    },
+    "work/candidates/linked-truce-projection-1375-v2/build_manifest.py": {
+      "bytes": 1116,
+      "sha256": "7e25e00a37ce48724b4758812360d8c8c95d98e85265a51171482474bd13a7f7"
+    },
+    "work/candidates/linked-truce-projection-1375-v2/linked_truce_projection.py": {
+      "bytes": 24660,
+      "sha256": "31afcf307f62d77ab8dedaf8d01e73617488f07543e348ecfa891facd7a951e0"
+    },
+    "work/candidates/linked-truce-projection-1375-v2/prepare_source.py": {
+      "bytes": 8725,
+      "sha256": "ae1256198e520f04a951ab962ad43a07bc6e8abe5b973eceba5a33a2f887d9f8"
+    },
+    "work/candidates/linked-truce-projection-1375-v2/run_offline.py": {
+      "bytes": 1924,
+      "sha256": "e945a976f1de90a4805325a3c2fe9bb873d65df554cdf45bdf55684aa66c7980"
+    },
+    "work/candidates/linked-truce-projection-1375-v2/source-delta.json": {
+      "bytes": 742,
+      "sha256": "f41c4ef597eba38573908011f612ebafa9ce1d6f1d0bfc2d2228f76ae2b18e95"
+    },
+    "work/candidates/linked-truce-projection-1375-v2/test_linked_truce_projection.py": {
+      "bytes": 4643,
+      "sha256": "53eb9a37f9e45a8d3cb6bceea1eb5158d8e074954ef3dafe8dc4c1aa3af29643"
+    },
+    "work/reports/linked-truce-projection-live-review-20261015-r1/findings.json": {
+      "bytes": 2438,
+      "sha256": "c5faea27aa8164d8cd4fff9fd319dd4c08489b739948a7106018f7077ecd9f70"
+    },
+    "work/reports/war-peace-api-20261015-r23-truce-observation-contract/war/selected-decode.json": {
+      "bytes": 16926,
+      "sha256": "e38c687f4f6d4f3321cddad7c7910112350491acb19cd2090fe8f74e868c08bc"
+    },
+    "work/reports/war-peace-api-20261015-r26-linked-truce-tails/war/selected-decode.json": {
+      "bytes": 29646,
+      "sha256": "e59486834e38e541a243353b73673fb0e1170724282f258c86cb106ad2b5fb52"
+    },
+    "work/reports/war-peace-api-20261015-r37-linked-leaf-entry/war/selected-cfg.json": {
+      "bytes": 53888,
+      "sha256": "fdd76416a42c5cc2b000707909eb6a0afcdd4a1aaca990c2c957d1207f83bb00"
+    },
+    "work/reports/war-peace-api-20261015-r38-dependency-crosswalk/war/crosswalk.json": {
+      "bytes": 4713,
+      "sha256": "aab78fe19dddd2197e6acd3eb98f06da41537eb6cf89da2cec9bf54fd8102d7e"
+    },
+    "work/reports/war-peace-api-20261015-r38-independent-review/war/findings.json": {
+      "bytes": 4913,
+      "sha256": "07308a07a4e38fdafa736247928f91c763eac37729e270a379f6ff79eefaa7fd"
+    },
+    "work/reports/war-peace-api-20261015-r40-linked-condition-closure/war/selected-cfg.json": {
+      "bytes": 828776,
+      "sha256": "880152447a23b8a9b8878d466e2089aaace05cb5785b3a4d394eb5d1782c752e"
+    },
+    "work/reports/war-peace-api-20261015-r42-empty-linked-condition/war/projection.json": {
+      "bytes": 43701,
+      "sha256": "5e7cd6bf875abc427d5bfd46a37a6683486fa3c0779ab0e1bccc26c1598047b8"
+    },
+    "work/reports/war-peace-api-20261015-r43-independent-review/war/findings.json": {
+      "bytes": 1711,
+      "sha256": "f1bda10a358ce338165a5031462cd8b6a753a9b4beed8f2e2c2a07118fafc6be"
+    },
+    "work/reports/war-peace-api-20261015-r43-linked-cleanup-constant/war/capture.json": {
+      "bytes": 5808,
+      "sha256": "2feef2cdb8fb7b2e8db3d0321f86505eef941eaa9ad9a0515a05b5cbbda279c5"
+    },
+    "work/reports/war-peace-api-20261015-r43-linked-cleanup-constant/war/delta.json": {
+      "bytes": 8401,
+      "sha256": "d0239818c0496409ee535cf99a409acc8eb39ba205354a522a859a44a2b1a999"
+    },
+    "work/reports/war-peace-api-20261015-r47-header61-projection/war/precision.json": {
+      "bytes": 873,
+      "sha256": "2cffa3c97b9e4f55b93db2b8b106bb0f0bf59c946b0aec0841808699daedb122"
+    },
+    "work/reports/war-peace-api-20261015-r47-header61-projection/war/projection.json": {
+      "bytes": 17689,
+      "sha256": "70bb89b6b7913bb5124ebc83d494266c75d8f1f6b2a50bb51815079d6a53fcb9"
+    },
+    "work/reports/war-peace-api-20261015-r47-independent-review/war/findings.json": {
+      "bytes": 1984,
+      "sha256": "a06c0cc61b00200abc7ce02d3fa4906a7fbe34fc87daeebf9d22e4faeab57140"
+    }
+  },
+  "runtime_capture_authorized": true,
+  "stage": "independently_reviewed_readonly_runtime_candidate",
+  "native_ready": false,
+  "independent_source_review": {
+    "path": "work/reports/linked-truce-projection-v2-source-review-20261015-r1/independent-source-ready.json",
+    "bytes": 2587,
+    "sha256": "7a7f659372887ef2940f579eb93f757ee55c6a6c770b14a27c4cb7afbb0e7f27"
+  }
+}

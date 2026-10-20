@@ -1,0 +1,433 @@
+{
+  "Job": {
+    "completed_command_descendants_terminated": false,
+    "cumulative_process_refusal_bound": 8,
+    "direct_child_collected": true,
+    "environment_logged": false,
+    "error": null,
+    "existing_target_game_assigned_to_job": false,
+    "exit_code": 0,
+    "hard_active_process_limit": 8,
+    "job_active_processes_final": 0,
+    "job_total_processes": 2,
+    "memory_limit": 805306368,
+    "output_writer_may_overshoot_before_refusal": true,
+    "peak_job_commit": 11882496,
+    "peak_process_commit": 10596352,
+    "per_stream_output_acceptance_bound": 2097152,
+    "seconds": 0.125,
+    "target_cleanup_proven_by_job": false
+  },
+  "PE_engine_decoder_game_access": 0,
+  "actual_authorized": false,
+  "all_shells_collected": true,
+  "child_source_bytes": 1150002,
+  "failure": null,
+  "native_ready": false,
+  "old_tests_or_cases": 0,
+  "passed": true,
+  "producer_or_actual_launcher_runs": 0,
+  "runner_source_bytes": 1194656,
+  "runner_source_reads": [
+    {
+      "bytes": 29452,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\source-manifest.json",
+      "sha256": "208d34192f5aed513bcf0586c607eb6a4397a59693575d0014745ee48780d8fd"
+    },
+    {
+      "bytes": 23249,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\build_r89_source_20261016.py",
+      "sha256": "809837a8b93e4b112ea152653f255a70b76da6671845ac1a8b020af5aabffa86"
+    },
+    {
+      "bytes": 8615,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\frida-entry-observer-1375-v1\\job_tree.py",
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    {
+      "bytes": 12398,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261015-r27-truce-literal-anchors\\war\\anchors.json",
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    {
+      "bytes": 27099,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r86-cc220-actual-source\\produce.py",
+      "sha256": "0a3c13e779e4da424316b0e3a3ff3f86f49a460243f18b14c91644ca717522b4"
+    },
+    {
+      "bytes": 4081,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r86-source-independent-review\\findings.json",
+      "sha256": "075c2b62c093453b838957669c1872d3a14c20e39a073e13df32ca05d411e2ef"
+    },
+    {
+      "bytes": 12526,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-actual-independent-review\\findings.json",
+      "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+    },
+    {
+      "bytes": 30861,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-actual-independent-review\\manifest.json",
+      "sha256": "26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd"
+    },
+    {
+      "bytes": 3530,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\PROTOCOL.md",
+      "sha256": "9019a3abaeec09b793e44ffed081461191405df23c6032d7ff6f012bf671ffa2"
+    },
+    {
+      "bytes": 34662,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\actual-manifest.json",
+      "sha256": "71e766158fdaf6f80a2dc55bf5c4fb8177bfcfcdaee35f1f7860c1fec0828b0d"
+    },
+    {
+      "bytes": 7679,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\contract.json",
+      "sha256": "5e114f5c0efd47cbf92279bdf0d638732a40ae3b8a9d0f554d56c51df2304845"
+    },
+    {
+      "bytes": 47217,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\selected-cfg.json",
+      "sha256": "659b804677b9ffb2635afcc34ae46c26cd6e9b815a7515bf1faa8d0173db4f40"
+    },
+    {
+      "bytes": 140752,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\capture.json",
+      "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+    },
+    {
+      "bytes": 5363,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\cfg_core.py",
+      "sha256": "54a11ab860dbf234645d16cd33ddfd1bfa4a3323a76f59d39f401e41a1b55550"
+    },
+    {
+      "bytes": 4138,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\launch_once.py",
+      "sha256": "4c8ae66eee0de433e4f19f0809759a6cbf804364f521aedfaba93ab680c0d203"
+    },
+    {
+      "bytes": 1099,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\owned-code.json",
+      "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+    },
+    {
+      "bytes": 19265,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\produce.py",
+      "sha256": "a418c6781b65cbf94672622f9aa3dbfc26e3e8df1135dd889c4f84e9187ff8e6"
+    },
+    {
+      "bytes": 6667,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\runtime_contract.py",
+      "sha256": "de314e4bff94667a3fab0ed49f72c9ba6467310a3218dd0c11f892e44aa6c32a"
+    },
+    {
+      "bytes": 26330,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\source-manifest.json",
+      "sha256": "e40ccf4eba10b12b7d626f0fc00b1bcdac50972d1a0a35559ba3756b64694817"
+    },
+    {
+      "bytes": 6026,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-source-independent-review\\findings.json",
+      "sha256": "73c9edd7d2447e7535b9d7760a11144071bdd5c9e2b47149d02cc7f4fa6eac68"
+    },
+    {
+      "bytes": 1900,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r88-c9d60-cache-metadata\\findings.json",
+      "sha256": "37b737b926ca54c0a750e17038c1625851edfce8860eba396be0349d01cba43a"
+    },
+    {
+      "bytes": 2625,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r88-c9d60-cache-metadata\\manifest.json",
+      "sha256": "e3aa44d71ff0ce0915acfd4e55da5d8500844b92e2d4bdeef17b06b82968b56c"
+    },
+    {
+      "bytes": 4689,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source-plan\\manifest.json",
+      "sha256": "89068eefa2db4dcd2d6ceb05cc03b3eccb62416558e52f612ce9d8aaefc25659"
+    },
+    {
+      "bytes": 15747,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source-plan\\proposal.json",
+      "sha256": "5aa951e2818b5525a969a16903707ed66e5ddb78e3524266ecb7b763f9a1237f"
+    },
+    {
+      "bytes": 3314,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\PROTOCOL.md",
+      "sha256": "aa68367055b0f8a0c41175f4da3385a85d7a65e0a7e5624bf9116df7224ff57d"
+    },
+    {
+      "bytes": 1718,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\budget.json",
+      "sha256": "405277c7b4b915bb4e7bbf0e27322c05bed202bb312f0314b64d700ce86b4fed"
+    },
+    {
+      "bytes": 6034,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cases_child.py",
+      "sha256": "43a8fcf519888f5bd9f3fe3095799d1f0f21b419eb39c99ec415f74cad9f907a"
+    },
+    {
+      "bytes": 5317,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cfg_core.py",
+      "sha256": "5f0b566a36b7a765c895dd0068941ab828e82d34c088fc33250d6083b9d43252"
+    },
+    {
+      "bytes": 6275,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\entry-seed.json",
+      "sha256": "e4f1e085c7e1b7147432508c51e355c0e30473b8813a149d4e7043e28ebdaf9e"
+    },
+    {
+      "bytes": 4138,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\launch_once.py",
+      "sha256": "b3b2083f94576b4bfd399b8a5dde0e910eba8268f498ce84e3a5cabfbbbd9c27"
+    },
+    {
+      "bytes": 9838,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\main-template.py.inc",
+      "sha256": "dfaa3980ba82c694e3281d85f3134a46c669c7a5fd3bb15d72da3be511092e85"
+    },
+    {
+      "bytes": 4120,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\metadata_core.py",
+      "sha256": "ea32c610a8b578911eb2c8696535b3becf3db20d86977d91bc2463f8b563b4d0"
+    },
+    {
+      "bytes": 18739,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\produce.py",
+      "sha256": "667e6cdd3d5e7390d0b5ce08d19ac127abee5824b7c68b102254ae3a94931ab0"
+    },
+    {
+      "bytes": 3447,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\run_cases_once.py",
+      "sha256": "765057076f0e0cbb00492c94f177d78be2989805db8be7044a827bbc1d0c68b3"
+    },
+    {
+      "bytes": 6333,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\runtime-template.py.inc",
+      "sha256": "3b7ce91ae3f0ad6430035f407df97c13fe037cccc4da848435e6abffcf1d0f16"
+    },
+    {
+      "bytes": 7777,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\runtime_contract.py",
+      "sha256": "824eba3705c3bd0b7f33917f40c6bfc34de9de31e1093115e3ad47ceab7f1e67"
+    },
+    {
+      "bytes": 4622,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\source-delta.json",
+      "sha256": "b469f85b0398dbb357dbb61a94c9e164b553f76638a3d80ff3dd99943febbb1a"
+    },
+    {
+      "bytes": 9647,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-root-source-authorization\\authorization.json",
+      "sha256": "c6e844b1d6f8e635d673caab18c5c2eade3c7faa2fa8109810f3bb95f003f012"
+    },
+    {
+      "bytes": 7712,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-root-source-authorization\\receipt.json",
+      "sha256": "42d43b23744c8f811b075c53ca85e46238c9867f8ccef46c4c043962d3d0fb5c"
+    },
+    {
+      "bytes": 44654,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cases.json",
+      "sha256": "93cfa1de20bbc629997148ff78d047a666aea1ad6cf4af677bf85fb96acd22d0"
+    },
+    {
+      "bytes": 29452,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\source-manifest.json",
+      "sha256": "208d34192f5aed513bcf0586c607eb6a4397a59693575d0014745ee48780d8fd"
+    },
+    {
+      "bytes": 23249,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\build_r89_source_20261016.py",
+      "sha256": "809837a8b93e4b112ea152653f255a70b76da6671845ac1a8b020af5aabffa86"
+    },
+    {
+      "bytes": 8615,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\candidates\\frida-entry-observer-1375-v1\\job_tree.py",
+      "sha256": "5fca5b41161829a15554b08371e3fc64765164479e41bda015fec910972e9011"
+    },
+    {
+      "bytes": 12398,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261015-r27-truce-literal-anchors\\war\\anchors.json",
+      "sha256": "0d10e6676653d92a440fe14259729719219e2c1c008a114da42df1d92287b94e"
+    },
+    {
+      "bytes": 27099,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r86-cc220-actual-source\\produce.py",
+      "sha256": "0a3c13e779e4da424316b0e3a3ff3f86f49a460243f18b14c91644ca717522b4"
+    },
+    {
+      "bytes": 4081,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r86-source-independent-review\\findings.json",
+      "sha256": "075c2b62c093453b838957669c1872d3a14c20e39a073e13df32ca05d411e2ef"
+    },
+    {
+      "bytes": 12526,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-actual-independent-review\\findings.json",
+      "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+    },
+    {
+      "bytes": 30861,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-actual-independent-review\\manifest.json",
+      "sha256": "26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd"
+    },
+    {
+      "bytes": 3530,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\PROTOCOL.md",
+      "sha256": "9019a3abaeec09b793e44ffed081461191405df23c6032d7ff6f012bf671ffa2"
+    },
+    {
+      "bytes": 34662,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\actual-manifest.json",
+      "sha256": "71e766158fdaf6f80a2dc55bf5c4fb8177bfcfcdaee35f1f7860c1fec0828b0d"
+    },
+    {
+      "bytes": 7679,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\contract.json",
+      "sha256": "5e114f5c0efd47cbf92279bdf0d638732a40ae3b8a9d0f554d56c51df2304845"
+    },
+    {
+      "bytes": 47217,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\actual-sealed-r1\\selected-cfg.json",
+      "sha256": "659b804677b9ffb2635afcc34ae46c26cd6e9b815a7515bf1faa8d0173db4f40"
+    },
+    {
+      "bytes": 140752,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\capture.json",
+      "sha256": "0f4ab901823ec893da60ebdeb9d237c1feec469cf67f4bed223b660a070955ec"
+    },
+    {
+      "bytes": 5363,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\cfg_core.py",
+      "sha256": "54a11ab860dbf234645d16cd33ddfd1bfa4a3323a76f59d39f401e41a1b55550"
+    },
+    {
+      "bytes": 4138,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\launch_once.py",
+      "sha256": "4c8ae66eee0de433e4f19f0809759a6cbf804364f521aedfaba93ab680c0d203"
+    },
+    {
+      "bytes": 1099,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\owned-code.json",
+      "sha256": "dd4d12d21f9903eacfbcaeb1e6769e8ebb8f1bf98715cfdc6f0e0ea7bc125a69"
+    },
+    {
+      "bytes": 19265,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\produce.py",
+      "sha256": "a418c6781b65cbf94672622f9aa3dbfc26e3e8df1135dd889c4f84e9187ff8e6"
+    },
+    {
+      "bytes": 6667,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\runtime_contract.py",
+      "sha256": "de314e4bff94667a3fab0ed49f72c9ba6467310a3218dd0c11f892e44aa6c32a"
+    },
+    {
+      "bytes": 26330,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-dual-frontier-source\\source-manifest.json",
+      "sha256": "e40ccf4eba10b12b7d626f0fc00b1bcdac50972d1a0a35559ba3756b64694817"
+    },
+    {
+      "bytes": 6026,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r87-source-independent-review\\findings.json",
+      "sha256": "73c9edd7d2447e7535b9d7760a11144071bdd5c9e2b47149d02cc7f4fa6eac68"
+    },
+    {
+      "bytes": 1900,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r88-c9d60-cache-metadata\\findings.json",
+      "sha256": "37b737b926ca54c0a750e17038c1625851edfce8860eba396be0349d01cba43a"
+    },
+    {
+      "bytes": 2625,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r88-c9d60-cache-metadata\\manifest.json",
+      "sha256": "e3aa44d71ff0ce0915acfd4e55da5d8500844b92e2d4bdeef17b06b82968b56c"
+    },
+    {
+      "bytes": 4689,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source-plan\\manifest.json",
+      "sha256": "89068eefa2db4dcd2d6ceb05cc03b3eccb62416558e52f612ce9d8aaefc25659"
+    },
+    {
+      "bytes": 15747,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source-plan\\proposal.json",
+      "sha256": "5aa951e2818b5525a969a16903707ed66e5ddb78e3524266ecb7b763f9a1237f"
+    },
+    {
+      "bytes": 3314,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\PROTOCOL.md",
+      "sha256": "aa68367055b0f8a0c41175f4da3385a85d7a65e0a7e5624bf9116df7224ff57d"
+    },
+    {
+      "bytes": 1718,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\budget.json",
+      "sha256": "405277c7b4b915bb4e7bbf0e27322c05bed202bb312f0314b64d700ce86b4fed"
+    },
+    {
+      "bytes": 6034,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cases_child.py",
+      "sha256": "43a8fcf519888f5bd9f3fe3095799d1f0f21b419eb39c99ec415f74cad9f907a"
+    },
+    {
+      "bytes": 5317,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\cfg_core.py",
+      "sha256": "5f0b566a36b7a765c895dd0068941ab828e82d34c088fc33250d6083b9d43252"
+    },
+    {
+      "bytes": 6275,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\entry-seed.json",
+      "sha256": "e4f1e085c7e1b7147432508c51e355c0e30473b8813a149d4e7043e28ebdaf9e"
+    },
+    {
+      "bytes": 4138,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\launch_once.py",
+      "sha256": "b3b2083f94576b4bfd399b8a5dde0e910eba8268f498ce84e3a5cabfbbbd9c27"
+    },
+    {
+      "bytes": 9838,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\main-template.py.inc",
+      "sha256": "dfaa3980ba82c694e3281d85f3134a46c669c7a5fd3bb15d72da3be511092e85"
+    },
+    {
+      "bytes": 4120,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\metadata_core.py",
+      "sha256": "ea32c610a8b578911eb2c8696535b3becf3db20d86977d91bc2463f8b563b4d0"
+    },
+    {
+      "bytes": 18739,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\produce.py",
+      "sha256": "667e6cdd3d5e7390d0b5ce08d19ac127abee5824b7c68b102254ae3a94931ab0"
+    },
+    {
+      "bytes": 3447,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\run_cases_once.py",
+      "sha256": "765057076f0e0cbb00492c94f177d78be2989805db8be7044a827bbc1d0c68b3"
+    },
+    {
+      "bytes": 6333,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\runtime-template.py.inc",
+      "sha256": "3b7ce91ae3f0ad6430035f407df97c13fe037cccc4da848435e6abffcf1d0f16"
+    },
+    {
+      "bytes": 7777,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\runtime_contract.py",
+      "sha256": "824eba3705c3bd0b7f33917f40c6bfc34de9de31e1093115e3ad47ceab7f1e67"
+    },
+    {
+      "bytes": 4622,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-c9d60-source\\source-delta.json",
+      "sha256": "b469f85b0398dbb357dbb61a94c9e164b553f76638a3d80ff3dd99943febbb1a"
+    },
+    {
+      "bytes": 9647,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-root-source-authorization\\authorization.json",
+      "sha256": "c6e844b1d6f8e635d673caab18c5c2eade3c7faa2fa8109810f3bb95f003f012"
+    },
+    {
+      "bytes": 7712,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Europa Universalis IV\\eu4-llm-diplomacy\\work\\reports\\war-peace-api-20261016-r89-root-source-authorization\\receipt.json",
+      "sha256": "42d43b23744c8f811b075c53ca85e46238c9867f8ccef46c4c043962d3d0fb5c"
+    }
+  ],
+  "schema": "EU4-R89-FIRST-FOUR-NEW-CASES-RECEIPT/1",
+  "source_manifest": {
+    "bytes": 29452,
+    "sha256": "208d34192f5aed513bcf0586c607eb6a4397a59693575d0014745ee48780d8fd"
+  }
+}

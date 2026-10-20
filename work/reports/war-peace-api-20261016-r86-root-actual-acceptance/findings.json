@@ -1,0 +1,25 @@
+{
+  "accepted": true,
+  "accepted_scope": "Exact70B/20-row fragment and independent SAR3 precision; source/metadata/close-order producer witnesses. Normal path exits at unread cc266, hypothetical JE not value-feasible.",
+  "atomic_snapshot": false,
+  "callable": false,
+  "further_actual_authorized_by_this_acceptance": false,
+  "independent_raw_review_used": true,
+  "native_ready": false,
+  "ownership_transfer_verified": false,
+  "reader_adoption_allowed": false,
+  "root_did_not_repeat_full_flat_PE_engine_review": true,
+  "schema": "EU4-R86-ROOT-COMPLETE-ACTUAL-ACCEPTANCE/1",
+  "sealed": true,
+  "subject_actual_manifest": {
+    "bytes": 16602,
+    "path": "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/actual-manifest.json",
+    "sha256": "69e7167005ff08e09ca29e790786f6055512614debecc72f31d3b37d0583df72"
+  },
+  "subject_full_review": {
+    "bytes": 5580,
+    "path": "work/reports/war-peace-api-20261016-r86-actual-independent-review/findings.json",
+    "sha256": "550c1edf7beee1ea7e5ae8e85f40c7ef556ede12bb27e2e6a4c8b1e5c2bad726"
+  },
+  "world_lease": false
+}

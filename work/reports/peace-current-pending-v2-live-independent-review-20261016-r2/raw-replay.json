@@ -1,0 +1,78 @@
+{
+  "schema": "EU4-PEACE-V2-R2-INDEPENDENT-RAW-REPLAY/1",
+  "all_RPM_order_address_length_bytes_checked": true,
+  "stages": {
+    "entry_PE": 1,
+    "host_before": 46,
+    "code_before": 4,
+    "sample_1": 1433,
+    "sample_2": 1433,
+    "code_after": 4,
+    "host_after": 46
+  },
+  "calls": 2967,
+  "returned_bytes": 77718,
+  "largest": 11040,
+  "code_ranges": [
+    {
+      "rva": "0x598af0",
+      "bytes": 111,
+      "sha256": "082ecab94c5dfee28370d6d9c03999b3bd262e1bc6f8cf52b82bea5c70ec5e0e"
+    },
+    {
+      "rva": "0x59ba40",
+      "bytes": 177,
+      "sha256": "e7920460d96546e77947e48534325587784539292b0ef4046750b80031162b11"
+    },
+    {
+      "rva": "0x4e8205",
+      "bytes": 254,
+      "sha256": "bf7edfdfff58cbc5b6eb6b9a030df938d118eb158489a2998fa227bbd3794a56"
+    },
+    {
+      "rva": "0x360970",
+      "bytes": 193,
+      "sha256": "12bc14141b472ad1cfc2c8ecdebd5c91ce3c2ba3d6e31ce9606ddaef8f6bd1a0"
+    }
+  ],
+  "country_slots": {
+    "FRA": 122,
+    "ENG": 46
+  },
+  "country_full_handles": {
+    "FRA": "0x100007a00415246",
+    "ENG": "0x100002e00474e45"
+  },
+  "country_table_bytes_each": 11040,
+  "target_queue": "ENG",
+  "queue_headers_each_pass": 2,
+  "canonical_source_pins": 41,
+  "runtime_actual_source_pins": 43,
+  "queue_nodes_read": 0,
+  "queue_action_bodies_read": 0,
+  "queue_empty_profile": {
+    "active_count": 0,
+    "branch_byte": 0,
+    "count_guard_scope": "Supported no-tombstone/iteration0 profile, not a universal native active-count invariant",
+    "declared_count_raw_u32": 0,
+    "head": "0x0",
+    "header_raw_hex": "000000000000000000000000000000000000000000",
+    "nodes": [],
+    "physical_count": 0,
+    "selected": [],
+    "selected_queue_presence": false,
+    "tail": "0x0"
+  },
+  "unclassified_scalar": {
+    "i32": 1,
+    "raw_hex": "01000000",
+    "rva": "0x233e064",
+    "semantics": "unknown",
+    "u32": 1
+  },
+  "config_metadata_only": true,
+  "host_base_passes": 9,
+  "host_extra_manifest_reads": 2,
+  "host_extra_bytes": 7976,
+  "config_content_not_copied": true
+}

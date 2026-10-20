@@ -1,0 +1,26 @@
+{
+  "work/candidates/ten-families-typed-contract-r2-1375/contract.json": {
+    "bytes": 23501,
+    "sha256": "d89cd608b27116dce88ecac718dc024ebe26ffe2c50c143462ca47ae8a3df2ac"
+  },
+  "work/candidates/ten-families-typed-contract-r2-1375/report.json": {
+    "bytes": 6103,
+    "sha256": "637561bd1a9c69a8b928224cec6866a8005e466743934dc98d3ff0b489357d0d"
+  },
+  "work/candidates/ten-families-typed-contract-r2-1375/review.json": {
+    "bytes": 1212,
+    "sha256": "300dec7716d84c11ee1ec68978a18422063cc9a3892cb6d32894e1d9cd745d78"
+  },
+  "work/candidates/ten-families-typed-contract-r2-1375/source-index.json": {
+    "bytes": 1863,
+    "sha256": "b16a8a976a38e3f6f7034559c30bb37f4b278498042fdfb1f75a3b380904baf4"
+  },
+  "work/candidates/ten-families-typed-contract-r2-1375/static-binding-index.json": {
+    "bytes": 12293,
+    "sha256": "f3b581731a5a73cbc3a95e23b97d06e371387f86d450fab4238abb8e57b7c614"
+  },
+  "work/review-results/ten-families-r2-native-inventory-20261008a/review.json": {
+    "bytes": 28543,
+    "sha256": "ede7abf3bd2898b7a911375643a10ba58458ae1d38cfae26543ef7e9d84af63c"
+  }
+}

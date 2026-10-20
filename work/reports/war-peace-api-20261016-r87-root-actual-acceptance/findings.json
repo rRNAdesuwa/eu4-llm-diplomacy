@@ -1,0 +1,28 @@
+{
+  "accepted": true,
+  "accepted_scope": "Fixed256 raw/61rows210B conditional machine contract, independent source/PE/Job ledgers, one observed RET and guarded register/stack restoration; no complete logical function, callee semantics or native API readiness.",
+  "atomic_snapshot": false,
+  "callable": false,
+  "further_actual_authorized_by_this_acceptance": false,
+  "limits": [
+    "Root accepts D completed non-author raw/contract findings and binds five exact current artifacts; it does not repeat all131 flat/PE/engine checks.",
+    "Unknown950b0/1a35750/c9d60 effects and all ABI/noalias/normalreturn/validity conditions remain.",
+    "Current machine data is static; no game process, runtime API call, request or lifetime lease is authorized."
+  ],
+  "native_ready": false,
+  "ownership_transfer_verified": false,
+  "reader_adoption_allowed": false,
+  "schema": "EU4-R87-ROOT-COMPLETE-ACTUAL-ACCEPTANCE/1",
+  "sealed": true,
+  "subject_actual_manifest": {
+    "bytes": 34662,
+    "path": "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/actual-manifest.json",
+    "sha256": "71e766158fdaf6f80a2dc55bf5c4fb8177bfcfcdaee35f1f7860c1fec0828b0d"
+  },
+  "subject_full_review": {
+    "bytes": 12526,
+    "path": "work/reports/war-peace-api-20261016-r87-actual-independent-review/findings.json",
+    "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+  },
+  "world_lease": false
+}

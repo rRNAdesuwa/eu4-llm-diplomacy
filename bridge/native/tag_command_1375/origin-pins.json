@@ -1,0 +1,142 @@
+{
+  "work/candidates/v29-gap-batch-1375/build_test.cmd": {
+    "bytes": 2949,
+    "sha256": "b699aea630fd1d1babb5275ce0b8d7872315af4c5f44a83b735f16ff359ef925"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/current-country-tag-cpp-r2-1375/country_resolver.cpp": {
+    "bytes": 8224,
+    "sha256": "ccd41f4e288227fcc8583819e697063b8a322feddb76e2dc9b196a77e5f0c34e"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/current-country-tag-cpp-r2-1375/country_resolver.h": {
+    "bytes": 1955,
+    "sha256": "a1067c0b80ec3bb9b5ac77ca857a5d269626ebfb37060d41679ace4f70557ae2"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/current-country-tag-cpp-r2-1375/selected_pins.h": {
+    "bytes": 3009,
+    "sha256": "edc711aaefca337205201c4513010c64a0e0de7a9f8722d0724dc4d260bd09e6"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v19-spy-restricted-host-r2-1375/core/v18-preimage/pins.h": {
+    "bytes": 3439,
+    "sha256": "c9bb4ad8595bb09bba03d630bf03ca9babe5c22faa604d406f5a51aaf8f27fbd"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v19-spy-restricted-host-r2-1375/core/v18-preimage/spy_core.h": {
+    "bytes": 3797,
+    "sha256": "290d2db8201bd51901e5d2e080f4bb76952e548f23ec6e82b1df17def1d68321"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v19-spy-restricted-host-r2-1375/preflight/codec.h": {
+    "bytes": 5027,
+    "sha256": "671a4337762256f42789fd8a37450db24f04f060aa81af579dd0ceec2cb6c4fd"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v19-spy-restricted-host-r2-1375/preflight/host.h": {
+    "bytes": 3946,
+    "sha256": "c4726204d2570e3b82930c1d7ba3e551aae34d63aa5c83847e59137d55534d95"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-core-pair-nosend-r2-1375/pair_component.h": {
+    "bytes": 6641,
+    "sha256": "e2f099b9895bed0c33c60b540f33a757adf0ccd8e25e4f0b952cc04c1c7fcadf"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-five-cancel-reader-1375/cancel_reader.cpp": {
+    "bytes": 12866,
+    "sha256": "ed7feaaed7ee73df71e8a858600c3036dfc7a82398e1f71644e718b2918ad50d"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-five-cancel-reader-1375/cancel_reader.h": {
+    "bytes": 1032,
+    "sha256": "920044f857e1882bfe3bb516835f7f9b61e199c425bd6dba7cacf02baf20668a"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-native-pair-guard-r3-1375/native_env.cpp": {
+    "bytes": 11591,
+    "sha256": "d9eaed2a342f6d706c4e1972c5ebc140ff0e8cbabe2c8af44bcbe1e73af67869"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-native-pair-guard-r3-1375/native_env.h": {
+    "bytes": 1472,
+    "sha256": "54cc7daac0bd15cddd79aec7845e84a0351e11c7f5a58473039d474c56a06223"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-native-pair-guard-r3-1375/native_guard.cpp": {
+    "bytes": 10649,
+    "sha256": "cb40948921fea117e5094d92ba5c5cca3f8746546c499d349613e1baf0eee10e"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-native-pair-guard-r3-1375/native_guard.h": {
+    "bytes": 2536,
+    "sha256": "1c903c91d5ab1339e4dd9db112e9983841cda7c95616460b74e474e713ae5c3b"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-native-pair-port-r2-1375/native_pair_engine.h": {
+    "bytes": 4795,
+    "sha256": "2bee1d052e4eed96519ccf15dd1dff592fa7d29616f9d5e16f792fbe00710f60"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v21-native-pair-port-r2-1375/native_platform.h": {
+    "bytes": 1518,
+    "sha256": "08b9fa77159a3f448b7b26a5beddf13d048b66a122be695e2168d082ef69da65"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-core-r2-1375/pair_send.cpp": {
+    "bytes": 27446,
+    "sha256": "e8cdd48f25e6312f6334504a93600409d998033f5876ab92e46b737edfdd8b65"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-core-r2-1375/pair_send.h": {
+    "bytes": 1657,
+    "sha256": "eff58f320fab82573040028a7a85e98f54f553dd8b1f0ee9594565c5d4217bf3"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-port-r2-1375/native_pair_engine.cpp": {
+    "bytes": 15274,
+    "sha256": "7f6b5fdda475bae4c5bd72a505338886c5057b0ba4f2282c7b944c6b7e0552fb"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-port-r2-1375/native_pair_engine.h": {
+    "bytes": 5189,
+    "sha256": "a10b259106e298a7be36c97e3e77366a70cf57e7ff3cdd90318ac896c0fe97da"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-port-r2-1375/native_pins.h": {
+    "bytes": 4138,
+    "sha256": "53ccfea372b7d214067372bb735137a580bf31faacf849ce043f34360a7788ee"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-port-r2-1375/native_platform.cpp": {
+    "bytes": 7575,
+    "sha256": "d627a8192d4a3e2a2c1853691235898e2c713fbfff8ae04f9b7d922d18a3f0a8"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-port-r2-1375/native_platform.h": {
+    "bytes": 2206,
+    "sha256": "642eee1e6f8dfbff09ff898a5d34034e3134e60ed491f5415387dc52b3170512"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-port-r2-1375/sender_pins.h": {
+    "bytes": 664,
+    "sha256": "bf361b86ed568dfb94e6ffeed1b97e0b0230849fd8fd96123f7fc48298845fcb"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-port-r2-1375/submission_guard.cpp": {
+    "bytes": 4275,
+    "sha256": "a42a4e013e73cfe3ed5afecd90cac92c3baa69cbe00a908bc4d68a67788ad828"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v24-pair-send-port-r2-1375/submission_guard.h": {
+    "bytes": 1311,
+    "sha256": "ee651b036aba6e6ba0e16f5e8330f70fef24f638d1a8ee9105c35daffa9d982b"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v26-gap-curry-bootstrap-1375/bootstrap.cpp": {
+    "bytes": 13437,
+    "sha256": "f9126d23ab4931fe3b80d7261a7ccb6abc4660e5904e3052dd7aa4a9537c34cd"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v26-gap-curry-bootstrap-1375/build_test.cmd": {
+    "bytes": 2900,
+    "sha256": "e4062b889c76ba9531518b31c77c2e9a2cff2e56d76cfcd1232ef9d4c27ab726"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v26-gap-curry-bootstrap-1375/codec.h": {
+    "bytes": 5230,
+    "sha256": "c37b8ffab26e4b93ee2e03ef32a177f41403a820344b520f98629980bdc41c37"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v26-gap-curry-bootstrap-1375/frame.asm": {
+    "bytes": 1582,
+    "sha256": "3d5da5aea5408d4991fce7bb19275025e7d28bcbbfc90c08d82e797ad09d30f0"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v26-gap-curry-bootstrap-1375/installer.cpp": {
+    "bytes": 4200,
+    "sha256": "c3e2cce82a55f8badca5893a58539ed682388bdebc412ad054195b69609c53d9"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v26-gap-curry-bootstrap-1375/installer.h": {
+    "bytes": 302,
+    "sha256": "df69cc29b93c8a70fb1f347e513dbb7e7b6edc6b55f484e28b721e239bf64e75"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v26-gap-curry-bootstrap-1375/test_codec.cpp": {
+    "bytes": 3018,
+    "sha256": "eaaf45b42069c180be9fd50d7e0b0aeb483e0fbc3df056f9306f847851786e44"
+  },
+  "work/candidates/v29-gap-batch-1375/src/work/candidates/v26-gap-curry-bootstrap-1375/thread_freeze.inc": {
+    "bytes": 5776,
+    "sha256": "3fe7cbec05ccdfbf8cbaf5a74da3058a7ed0c969baf48c41ca65174801feb6c4"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "work/candidates/spy-action-contracts-1375/report.json": {
+    "bytes": 1446454,
+    "sha256": "274221df57719404edfcacd7451ebc28c678369dab9d4377e6201be5db734774"
+  },
+  "work/candidates/spy-action-contracts-1375/review.json": {
+    "bytes": 1031,
+    "sha256": "d01a7a88961d3a9fad47479ebbef2304cca1fc1214521a3f98eca31738e6ef8c"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/report.json": {
+    "bytes": 291016,
+    "sha256": "76f5e60a7dbbed7508ee2e6cf124fe39c24cbaa978e51d02963f3a5fc8bff92f"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/review.json": {
+    "bytes": 4036,
+    "sha256": "1bc91ed02a3668a4c61991fe4612bbaebd63a775dea34e3b9f35dc1f4163aaab"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/pins.h": {
+    "bytes": 3439,
+    "sha256": "c9bb4ad8595bb09bba03d630bf03ca9babe5c22faa604d406f5a51aaf8f27fbd"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/review.json": {
+    "bytes": 10863,
+    "sha256": "14ed360b28f4e0c0d407a91003a41029fa063cda961f53f9187fba104d4d7b5d"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/spy_core.cpp": {
+    "bytes": 19571,
+    "sha256": "be276541836f50137d38a3c1250357a0dc614d76d20ba6a61bf37a53c58a0819"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/spy_core.h": {
+    "bytes": 3797,
+    "sha256": "290d2db8201bd51901e5d2e080f4bb76952e548f23ec6e82b1df17def1d68321"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/test_spy_core.cpp": {
+    "bytes": 21671,
+    "sha256": "0986f485331bd8274e1f5ff730754aaec766745729b522565250d6e3ff3339dd"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/host.cpp": {
+    "bytes": 20067,
+    "sha256": "d923b20fe48fa7f88360969bffe15bc33085379a074115ca4f385b55520995a0"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/host.h": {
+    "bytes": 3546,
+    "sha256": "86bae216d512e44fe013754342e8fe9ab97e9ced23745b5ae689a7a2bd29d7f9"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/native_env.cpp": {
+    "bytes": 11212,
+    "sha256": "a3de24cb70c38b096ba9ab3a6878d261f4f754b2b1ef41c8ae826caeb8592cd0"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/native_env.h": {
+    "bytes": 1427,
+    "sha256": "8aec96f180b37783560ff9b11583fdbc3b44bd7363c3b3c585e5f84474b3b243"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/review.json": {
+    "bytes": 5050,
+    "sha256": "2548ad1797d37bebc85d1b2151d3a78818ccfee6740604a36d25b3d29c41cde2"
+  },
+  "work/candidates/v19-spy-send-context-pins-1375/contract.py": {
+    "bytes": 4488,
+    "sha256": "a3b51e62d57999f567f13189b278785d5fe7cb07d7925d8f0d0b299cdc9e5e39"
+  },
+  "work/candidates/v19-spy-send-context-pins-1375/report.json": {
+    "bytes": 50062,
+    "sha256": "4b56c7da7d1cdc430ca5519227bdcda8ebe77f14a822d3526141823c8ffaeb39"
+  },
+  "work/candidates/v19-spy-send-context-pins-1375/review.json": {
+    "bytes": 3321,
+    "sha256": "03a316aa84e9b3db79159157ba31257d99f97903593defea0c009f3312d1c151"
+  },
+  "work/candidates/v19-spy-send-context-pins-1375/sender-pins.h": {
+    "bytes": 4171,
+    "sha256": "1bcbc4f220e98720aa27f944a81814f068c8b3c7b93d93379ac2a80570dd9c6e"
+  },
+  "work/candidates/v19-spy-send-context-pins-1375/source-index.json": {
+    "bytes": 3872,
+    "sha256": "fdd03532118cc05b5683e41bafaab40304ceeef1661959b9e80ce5a75e2b6436"
+  },
+  "work/candidates/v19-spy-send-plan-r2-1375/contract.json": {
+    "bytes": 3201,
+    "sha256": "d47977387b7a3e5a7e7987fd2fbe7c108b74c9e222104e1d1cc42d24516ceaa3"
+  },
+  "work/candidates/v19-spy-send-plan-r2-1375/model.py": {
+    "bytes": 11875,
+    "sha256": "8066d08ed1a077eebefc537d8ecac02badd8fd46cbbf41543933e3615697c86d"
+  },
+  "work/candidates/v19-spy-send-plan-r2-1375/review.json": {
+    "bytes": 2515,
+    "sha256": "0f5b2cbccd17ab0e52494c7177317baadefc6f2b2086f001419950e16e87a0cc"
+  },
+  "work/candidates/v19-spy-send-plan-r2-1375/source-index.json": {
+    "bytes": 1334,
+    "sha256": "f0889e77a236ba1d5fe360412ff097f67ede96403005aa477866835f97ddd7b3"
+  },
+  "work/review-results/v18-spy-core-action-catalog-20261008a/review.json": {
+    "bytes": 24886,
+    "sha256": "3069c9cd23782283da344c87df303e1c2cbfd998d23940d8dc4bf4851a877dc6"
+  },
+  "work/review-results/v19-spy-send-plan-r2-native-inventory-20261008a/review.json": {
+    "bytes": 3661,
+    "sha256": "b6a6994c85f621eb35a041dc2d95bbd4105f942cd26d036285bb69cf6dca7fd6"
+  }
+}

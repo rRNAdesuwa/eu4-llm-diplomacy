@@ -1,0 +1,1 @@
+V26 gap sender. Only curry_favors (token 3acc, family 5) is accepted by the canonical wire renderer/parser. No previously successful action can be published. Existing corrected V25 native port and ownership implementation is reused unchanged. Gameplay effects are not inferred from dispatch.

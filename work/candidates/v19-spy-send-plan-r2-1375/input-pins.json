@@ -1,0 +1,218 @@
+{
+  "docs/native-command-1375.md": {
+    "bytes": 4668,
+    "sha256": "a02f7916a44d64adb92bc198a136a40491dbb01ac934387e48f47eee93f9242f"
+  },
+  "work/AGENTS.md": {
+    "bytes": 959,
+    "sha256": "2de6274076bff59dbf96ff6db2636abb598cc48e62e8dd07b09101857c789187"
+  },
+  "work/candidates/spy-action-contracts-1375/report.json": {
+    "bytes": 1446454,
+    "sha256": "274221df57719404edfcacd7451ebc28c678369dab9d4377e6201be5db734774"
+  },
+  "work/candidates/spy-action-contracts-1375/review.json": {
+    "bytes": 1031,
+    "sha256": "d01a7a88961d3a9fad47479ebbef2304cca1fc1214521a3f98eca31738e6ef8c"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/report.json": {
+    "bytes": 291016,
+    "sha256": "76f5e60a7dbbed7508ee2e6cf124fe39c24cbaa978e51d02963f3a5fc8bff92f"
+  },
+  "work/candidates/spy-four-normal-callers-contract-1375/review.json": {
+    "bytes": 4036,
+    "sha256": "1bc91ed02a3668a4c61991fe4612bbaebd63a775dea34e3b9f35dc1f4163aaab"
+  },
+  "work/candidates/subject-toggle-contracts-1375/report.json": {
+    "bytes": 1102475,
+    "sha256": "ac0853a35387f67af7a1b8c4dcb9173f1efd2c44e438eb1193b9ccd10307b291"
+  },
+  "work/candidates/v17-batch-summary-review-r6/native_stream.py": {
+    "bytes": 12638,
+    "sha256": "e5a395c8dd936cf68f3eb51499459c54258d91062f1662bf64e2b3be22b589ac"
+  },
+  "work/candidates/v17-batch-summary-review-r6/pair_contract.py": {
+    "bytes": 6883,
+    "sha256": "dcfd0be3f33ef34506aba5ab1dbf35c6306f981612d2aefd7ce0d51959788342"
+  },
+  "work/candidates/v18-spy-bootstrap-capture-r2-1375/review.json": {
+    "bytes": 2933,
+    "sha256": "39b88525304bb5c41712fa3fc4c05bb0212eda1a89855e3f17db9346f2cbd625"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/build-final/build.json": {
+    "bytes": 12012,
+    "sha256": "d1f65cae88cfb7ed2535c590206b9844882f0870f02773da23c747a6346aa5e5"
+  },
+  "work/candidates/v18-spy-bootstrap-lab-1375/review.json": {
+    "bytes": 3889,
+    "sha256": "f5be402172d19961b8d2a34b9da4a488a748d493815e7996ebf75d2bb821e439"
+  },
+  "work/candidates/v18-spy-client-capture-r2-1375/review.json": {
+    "bytes": 4008,
+    "sha256": "4105e6542790774684c98c3e391578417812f8505970543503c6434e436b80c8"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/contract.json": {
+    "bytes": 7050,
+    "sha256": "31e6bf18b43e94d3c4ff603e3d87ac82faef843b8233ac97d05812da1675e7d3"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/review.json": {
+    "bytes": 10863,
+    "sha256": "14ed360b28f4e0c0d407a91003a41029fa063cda961f53f9187fba104d4d7b5d"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/spy_core.cpp": {
+    "bytes": 19571,
+    "sha256": "be276541836f50137d38a3c1250357a0dc614d76d20ba6a61bf37a53c58a0819"
+  },
+  "work/candidates/v18-spy-no-send-core-1375/spy_core.h": {
+    "bytes": 3797,
+    "sha256": "290d2db8201bd51901e5d2e080f4bb76952e548f23ec6e82b1df17def1d68321"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/contract.json": {
+    "bytes": 2486,
+    "sha256": "64d543f78254a2c51af17c033da2f14c19674f2e9f40ef609d49067609aa8b54"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/host.cpp": {
+    "bytes": 20067,
+    "sha256": "d923b20fe48fa7f88360969bffe15bc33085379a074115ca4f385b55520995a0"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/host.h": {
+    "bytes": 3546,
+    "sha256": "86bae216d512e44fe013754342e8fe9ab97e9ced23745b5ae689a7a2bd29d7f9"
+  },
+  "work/candidates/v18-spy-restricted-host-1375/review.json": {
+    "bytes": 5050,
+    "sha256": "2548ad1797d37bebc85d1b2151d3a78818ccfee6740604a36d25b3d29c41cde2"
+  },
+  "work/candidates/v19-spy-send-plan-1375/README.md": {
+    "bytes": 11489,
+    "sha256": "2df241396c8cc9047bec38033f4be5988c9f0de00a77511f9a389f680facbe5b"
+  },
+  "work/candidates/v19-spy-send-plan-1375/candidate-index.json": {
+    "bytes": 9655,
+    "sha256": "3b750334fd33f450703821e407112651b5a349a2556c7a37426b1cec9fbca379"
+  },
+  "work/candidates/v19-spy-send-plan-1375/contract.json": {
+    "bytes": 3201,
+    "sha256": "d47977387b7a3e5a7e7987fd2fbe7c108b74c9e222104e1d1cc42d24516ceaa3"
+  },
+  "work/candidates/v19-spy-send-plan-1375/evidence.py": {
+    "bytes": 6179,
+    "sha256": "85671d33370d40109f80235800a2acbf5542067eab8893cc664cd5dc12bd657c"
+  },
+  "work/candidates/v19-spy-send-plan-1375/exploration-01.json": {
+    "bytes": 86448,
+    "sha256": "9bc5cd02fae2136aa54416e8d45abf6745955e96e7ebb7318825823d0cf56941"
+  },
+  "work/candidates/v19-spy-send-plan-1375/exploration-02.json": {
+    "bytes": 12630,
+    "sha256": "b8325f559f4502cc616bc474f4f0741349c85c6900eb2f699f920206087ffadf"
+  },
+  "work/candidates/v19-spy-send-plan-1375/exploration-03.json": {
+    "bytes": 2666,
+    "sha256": "38293f4163b0beda354a6f68f33d51113333793ef500e0a8dbf9f3578be7304b"
+  },
+  "work/candidates/v19-spy-send-plan-1375/exploration-04.json": {
+    "bytes": 1862,
+    "sha256": "d0de2fc51f410f2831c5caef295b5c9635fecd9cdc2580ef89463352d19e7af1"
+  },
+  "work/candidates/v19-spy-send-plan-1375/explore.py": {
+    "bytes": 1842,
+    "sha256": "0059f95eb9dded7bef408448c4ae8e61a3f5056d9bed5154e3270b9d0874ff8d"
+  },
+  "work/candidates/v19-spy-send-plan-1375/explore2.py": {
+    "bytes": 2031,
+    "sha256": "985aedcabc44328c743d51621511b230d8e415f78525e3ef4ea13f2a58b70eab"
+  },
+  "work/candidates/v19-spy-send-plan-1375/explore3.py": {
+    "bytes": 1993,
+    "sha256": "75ea52435e59a5ac7079155cadb5448c4463edb023d8fc0d8d4ae6daffbb27cd"
+  },
+  "work/candidates/v19-spy-send-plan-1375/explore4.py": {
+    "bytes": 1993,
+    "sha256": "29a28b920d780955b66f964d1d9b03226540471b9c01b1017ed5ef9ac59a1e24"
+  },
+  "work/candidates/v19-spy-send-plan-1375/model.py": {
+    "bytes": 10821,
+    "sha256": "126d4207c7e206a9bf77ca9be9d8010d94f0844180b0ef4f816b5949a746fb03"
+  },
+  "work/candidates/v19-spy-send-plan-1375/prepare.py": {
+    "bytes": 3735,
+    "sha256": "b475f6f3246964888f400dcfdef634cc82d1d8394db460a7c7c5dd446ee11756"
+  },
+  "work/candidates/v19-spy-send-plan-1375/report.json": {
+    "bytes": 682956,
+    "sha256": "107dd35cf80f1dfb589244dfdae57ffa017769ceba3da908fb5a79e35d9da659"
+  },
+  "work/candidates/v19-spy-send-plan-1375/review.json": {
+    "bytes": 3331,
+    "sha256": "40fb5a9df00a59defd990647110b20d20864a28f22f7bbff0906f1cc2c774f8c"
+  },
+  "work/candidates/v19-spy-send-plan-1375/source-pins.json": {
+    "bytes": 5912,
+    "sha256": "dd91d9576f8ca69463c775ad6939c8ac84e4b26a0affec4dfc8edaf641ab27d3"
+  },
+  "work/candidates/v19-spy-send-plan-1375/test_model.py": {
+    "bytes": 9361,
+    "sha256": "2e5cca4937bf3f38def5aab0416612ea4303fe931304887e3f4ec3a2eaee1347"
+  },
+  "work/candidates/v19-spy-send-plan-1375/validate.py": {
+    "bytes": 2132,
+    "sha256": "93dcc31dee0729e5b03214fbf4bd04ed106a124a61415cc6c3b535270abd5deb"
+  },
+  "work/discover_diplomacy.py": {
+    "bytes": 29147,
+    "sha256": "a4df91d82e12db0687fcf7e52a2f97d0ac4d2d9af78f837ce6724d099ff50318"
+  },
+  "work/map_diplomacy_fields.py": {
+    "bytes": 32914,
+    "sha256": "a8334910e72d05cb0336ef55a20eb028d1a018efa04da4493c6cb5fe3157ae85"
+  },
+  "work/native/v17/pair-engine-1375.cpp": {
+    "bytes": 84162,
+    "sha256": "22ca42eb642b4baeebc02bb73ed0cf3e889d782bdf68527c93ca9ea4559a6c3e"
+  },
+  "work/native/v17/pair-engine-1375.h": {
+    "bytes": 5377,
+    "sha256": "f5257b31ca81e3c886f501433cce1da3eaba0da868bec3225412cb03fee2a526"
+  },
+  "work/reports/native-peace-gui-send-1375.json": {
+    "bytes": 215213,
+    "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+  },
+  "work/reports/native-preview-1375.json": {
+    "bytes": 9813,
+    "sha256": "7946a5fdf8aaf6708d97c48f6c7a86bd35c790a608f6e4dacbb36e7c055d8379"
+  },
+  "work/reports/preview-string-and-transport-1375.json": {
+    "bytes": 71747,
+    "sha256": "2259a30d058f45c2ed956a6e014c5258220dcd5f2131a510b720be8595a950ae"
+  },
+  "work/review-results/spy-four-normal-callers-action-catalog-20261008a/review.json": {
+    "bytes": 7347,
+    "sha256": "5cec43d4a37926ed031f3941563a922731e99a414bdb194f373fd7d5cbbd9604"
+  },
+  "work/review-results/v18-spy-bootstrap-capture-r2-action-catalog-20261008a/review.json": {
+    "bytes": 4263,
+    "sha256": "72070b5706d26ae49c55ad84ca564ca1427d6c49bbe085c2aca63af2c86eadad"
+  },
+  "work/review-results/v18-spy-client-capture-r2-action-catalog-20261008a/review.json": {
+    "bytes": 4730,
+    "sha256": "dd307aa77f5ea2829cde7a5e9d3761de6e6e444a37c6d86972365beaf08f5b90"
+  },
+  "work/review-results/v18-spy-core-action-catalog-20261008a/review.json": {
+    "bytes": 24886,
+    "sha256": "3069c9cd23782283da344c87df303e1c2cbfd998d23940d8dc4bf4851a877dc6"
+  },
+  "work/review-results/v18-spy-host-action-catalog-20261008a/review.json": {
+    "bytes": 6321,
+    "sha256": "816850fa802a0de45bc9d5d7979531b649b803a968c3b6e2c688af0cb51b723c"
+  },
+  "work/review-results/v19-spy-send-plan-native-inventory-20261008a/counterexamples.json": {
+    "bytes": 5755,
+    "sha256": "c3918874f8f6fea1318c8d566ed43d028d47a4ab5cf467e9b407bbb9220db53f"
+  },
+  "work/review-results/v19-spy-send-plan-native-inventory-20261008a/review.json": {
+    "bytes": 5537,
+    "sha256": "25a57ba12a3515e2cd348171f54a3c29776678642cdfc615bff2b07a4171f110"
+  }
+}

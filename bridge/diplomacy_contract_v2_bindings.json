@@ -1,0 +1,385 @@
+{
+  "actions": {
+    "corrupt_officials": {
+      "binding_kind": "owned_action",
+      "evidence": [
+        "work/candidates/spy-action-contracts-1375/report.json",
+        "work/candidates/spy-action-contracts-1375/review.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/report.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 13180,
+      "normal_ai_initialization_evidence": true,
+      "semantics": [
+        "False is not a proved cancellation/undo mode",
+        "Full family preview may initialize TLS/caches; it is not read-only",
+        "Owned command destroys its clone; unresolved ownership forbids cleanup guesses/retry"
+      ],
+      "source_mock_profile": "v18-spy-no-send: five fixed families, FRA->ENG, lifecycle/family_preview/owned_command only",
+      "unresolved": [
+        "Current capability and adjusted spy-network cost",
+        "Owner-thread full family preview (+88), distinct from action +80 and owned-command gate +40",
+        "Live no-send host integration and native transport remain unavailable"
+      ]
+    },
+    "curry_favors": {
+      "binding_kind": "owned_action",
+      "evidence": [
+        "work/candidates/curry-favors-contract-1375/report.json",
+        "work/candidates/curry-favors-contract-1375/contract.json",
+        "work/candidates/curry-favors-contract-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 15052,
+      "semantics": [
+        "Cancel uses the same action family and keeps envoy_id=-1",
+        "Relation/mission removal does not prove favors amount, accrual rate or persistence"
+      ],
+      "unresolved": [
+        "Full actor/target relationship, mission and envoy graph",
+        "Current command/AI acceptance and consuming-thread authorization"
+      ]
+    },
+    "sabotage_recruitment": {
+      "binding_kind": "owned_action",
+      "evidence": [
+        "work/candidates/spy-action-contracts-1375/report.json",
+        "work/candidates/spy-action-contracts-1375/review.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/report.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 13247,
+      "normal_ai_initialization_evidence": true,
+      "semantics": [
+        "False is not a proved cancellation/undo mode",
+        "Full family preview may initialize TLS/caches; it is not read-only",
+        "Owned command destroys its clone; unresolved ownership forbids cleanup guesses/retry"
+      ],
+      "source_mock_profile": "v18-spy-no-send: five fixed families, FRA->ENG, lifecycle/family_preview/owned_command only",
+      "unresolved": [
+        "Current capability and adjusted spy-network cost",
+        "Owner-thread full family preview (+88), distinct from action +80 and owned-command gate +40",
+        "Live no-send host integration and native transport remain unavailable"
+      ]
+    },
+    "sabotage_reputation": {
+      "binding_kind": "owned_action",
+      "evidence": [
+        "work/candidates/spy-action-contracts-1375/report.json",
+        "work/candidates/spy-action-contracts-1375/review.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/report.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 11741,
+      "normal_ai_initialization_evidence": true,
+      "semantics": [
+        "False is not a proved cancellation/undo mode",
+        "Full family preview may initialize TLS/caches; it is not read-only",
+        "Owned command destroys its clone; unresolved ownership forbids cleanup guesses/retry"
+      ],
+      "source_mock_profile": "v18-spy-no-send: five fixed families, FRA->ENG, lifecycle/family_preview/owned_command only",
+      "unresolved": [
+        "Current capability and adjusted spy-network cost",
+        "Owner-thread full family preview (+88), distinct from action +80 and owned-command gate +40",
+        "Live no-send host integration and native transport remain unavailable"
+      ]
+    },
+    "slander_merchants": {
+      "binding_kind": "owned_action",
+      "evidence": [
+        "work/candidates/spy-action-contracts-1375/report.json",
+        "work/candidates/spy-action-contracts-1375/review.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/report.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 13179,
+      "normal_ai_initialization_evidence": true,
+      "semantics": [
+        "False is not a proved cancellation/undo mode",
+        "Full family preview may initialize TLS/caches; it is not read-only",
+        "Owned command destroys its clone; unresolved ownership forbids cleanup guesses/retry"
+      ],
+      "source_mock_profile": "v18-spy-no-send: five fixed families, FRA->ENG, lifecycle/family_preview/owned_command only",
+      "unresolved": [
+        "Current capability and adjusted spy-network cost",
+        "Owner-thread full family preview (+88), distinct from action +80 and owned-command gate +40",
+        "Live no-send host integration and native transport remain unavailable"
+      ]
+    },
+    "sow_discontent": {
+      "binding_kind": "owned_action",
+      "evidence": [
+        "work/candidates/spy-action-contracts-1375/report.json",
+        "work/candidates/spy-action-contracts-1375/review.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/report.json",
+        "work/candidates/spy-four-normal-callers-contract-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 11743,
+      "normal_ai_initialization_evidence": true,
+      "semantics": [
+        "False is not a proved cancellation/undo mode",
+        "Full family preview may initialize TLS/caches; it is not read-only",
+        "Owned command destroys its clone; unresolved ownership forbids cleanup guesses/retry"
+      ],
+      "source_mock_profile": "v18-spy-no-send: five fixed families, FRA->ENG, lifecycle/family_preview/owned_command only",
+      "unresolved": [
+        "Current capability and adjusted spy-network cost",
+        "Owner-thread full family preview (+88), distinct from action +80 and owned-command gate +40",
+        "Live no-send host integration and native transport remain unavailable"
+      ]
+    },
+    "steal_maps": {
+      "binding_kind": "selected_region_action",
+      "evidence": [
+        "work/candidates/spy-extra-parameter-contracts-1375/report.json",
+        "work/candidates/spy-extra-parameter-contracts-1375/facts.json",
+        "work/candidates/spy-extra-parameter-contracts-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 13256,
+      "schema_migration": {
+        "added": "region_index",
+        "native_binding_complete": false,
+        "removed": "region_id"
+      },
+      "semantics": [
+        "Native +40 is a signed region index; default -1 is only generic candidate search",
+        "value=false is not undo; the selected index is not a public string-to-index mapping"
+      ],
+      "unresolved": [
+        "Bounded live region registry, index membership, name/type and lifetime",
+        "Full family permissions, adjusted costs and owned transport"
+      ]
+    },
+    "steal_modern_ideas": {
+      "binding_kind": "fixed_borrowed_script_definition",
+      "evidence": [
+        "work/candidates/spy-extra-parameter-contracts-1375/report.json",
+        "work/candidates/spy-extra-parameter-contracts-1375/facts.json",
+        "work/candidates/spy-extra-parameter-contracts-1375/review.json",
+        "work/runtime/unpacked-1.37.5/base/common/new_diplomatic_actions/00_diplomatic_actions.txt"
+      ],
+      "fixed_fields": {
+        "definition_name": "steal_modern_ideas",
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 13922,
+      "semantics": [
+        "Stock definition changes Russian modernization government power, not technology levels",
+        "No generic steal-technology interface or caller-supplied script/definition/event"
+      ],
+      "unresolved": [
+        "Loaded named definition identity, condition, borrowing lifetime and current exact script hashes",
+        "Registry getter may initialize data; cannot be treated as read-only resolution",
+        "Actual government mechanic and 24/30 spy-network script conditions"
+      ]
+    },
+    "stop_currying_favors": {
+      "binding_kind": "owned_action",
+      "evidence": [
+        "work/candidates/curry-favors-contract-1375/report.json",
+        "work/candidates/curry-favors-contract-1375/contract.json",
+        "work/candidates/curry-favors-contract-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": false
+      },
+      "native_token": 15052,
+      "semantics": [
+        "Cancel uses the same action family and keeps envoy_id=-1",
+        "Relation/mission removal does not prove favors amount, accrual rate or persistence"
+      ],
+      "unresolved": [
+        "Full actor/target relationship, mission and envoy graph",
+        "Current command/AI acceptance and consuming-thread authorization"
+      ]
+    },
+    "stop_supporting_rebels": {
+      "binding_kind": "unsupported_false_mode",
+      "evidence": [
+        "work/candidates/spy-extra-parameter-contracts-1375/report.json",
+        "work/candidates/spy-extra-parameter-contracts-1375/facts.json",
+        "work/candidates/spy-extra-parameter-contracts-1375/review.json"
+      ],
+      "fixed_fields": {},
+      "native_token": 11742,
+      "semantics": [
+        "Catalog name is discoverable; no executable cancellation is derived from it"
+      ],
+      "unresolved": [
+        "No ordinary false-mode interface: full family preview rejects false",
+        "False effect searches first actor-supported faction, not selected +40; normal owning caller unclosed"
+      ]
+    },
+    "subject.divert_trade": {
+      "binding_kind": "desired_state_subject_command",
+      "evidence": [
+        "work/candidates/subject-toggle-contracts-1375/report.json",
+        "work/candidates/subject-toggle-contracts-1375/contract.json",
+        "work/candidates/subject-toggle-contracts-1375/review.json"
+      ],
+      "fixed_fields": {},
+      "flag_mask": 64,
+      "native_token": 12836,
+      "semantics": [
+        "enabled is a desired state, never a caller-selected raw cancel bit",
+        "Only a live binder may return already_desired; this module has no current-state authority",
+        "On transition, constructor snapshots current flag as cancel; recheck before handoff; never silently rebuild",
+        "Disabling may restore default 50% trade power, not relation absence"
+      ],
+      "unresolved": [
+        "Full current subject/overlord graph and loaded borrowed singleton registration",
+        "Current subject flag and active overlord-handle high byte",
+        "Complete common/stale-state/family permissions and exact command clone ownership"
+      ]
+    },
+    "subject.embargo_rivals": {
+      "binding_kind": "desired_state_subject_command",
+      "evidence": [
+        "work/candidates/subject-toggle-contracts-1375/report.json",
+        "work/candidates/subject-toggle-contracts-1375/contract.json",
+        "work/candidates/subject-toggle-contracts-1375/review.json"
+      ],
+      "fixed_fields": {},
+      "flag_mask": 2,
+      "native_token": 12762,
+      "semantics": [
+        "enabled is a desired state, never a caller-selected raw cancel bit",
+        "Only a live binder may return already_desired; this module has no current-state authority",
+        "On transition, constructor snapshots current flag as cancel; recheck before handoff; never silently rebuild",
+        "Enabling requires rival list; per-rival effects may fail independently"
+      ],
+      "unresolved": [
+        "Full current subject/overlord graph and loaded borrowed singleton registration",
+        "Current subject flag and active overlord-handle high byte",
+        "Complete common/stale-state/family permissions and exact command clone ownership"
+      ]
+    },
+    "subject.scutage": {
+      "binding_kind": "desired_state_subject_command",
+      "evidence": [
+        "work/candidates/subject-toggle-contracts-1375/report.json",
+        "work/candidates/subject-toggle-contracts-1375/contract.json",
+        "work/candidates/subject-toggle-contracts-1375/review.json"
+      ],
+      "fixed_fields": {},
+      "flag_mask": 16,
+      "native_token": 12767,
+      "semantics": [
+        "enabled is a desired state, never a caller-selected raw cancel bit",
+        "Only a live binder may return already_desired; this module has no current-state authority",
+        "On transition, constructor snapshots current flag as cancel; recheck before handoff; never silently rebuild",
+        "Both directions require target not at war; cancel modifier vector/layout differs from spy modifiers"
+      ],
+      "unresolved": [
+        "Full current subject/overlord graph and loaded borrowed singleton registration",
+        "Current subject flag and active overlord-handle high byte",
+        "Complete common/stale-state/family permissions and exact command clone ownership"
+      ]
+    },
+    "subject.set_military_focus": {
+      "binding_kind": "already_command",
+      "enum_binding": {
+        "aggressive": 1,
+        "defensive": 4,
+        "no_focus": 0,
+        "passive": 3,
+        "siege": 5,
+        "supportive": 2
+      },
+      "evidence": [
+        "work/candidates/subject-military-focus-contract-1375/report.json",
+        "work/candidates/subject-military-focus-contract-1375/contract.json",
+        "work/candidates/subject-military-focus-contract-1375/review.json"
+      ],
+      "fixed_fields": {},
+      "native_token": 12311,
+      "semantics": [
+        "Native command gate alone does not prove overlord/player authority",
+        "TLS-backed availability helpers are not read-only permission proofs"
+      ],
+      "unresolved": [
+        "Full overlord/subject/dependency identity and allowed definition",
+        "Both uses_military_focus and can_set_mil_focus plus current enum entitlement",
+        "Clone consumes a temporary engine String32; no zero-argument clone ABI",
+        "Final queue consumer authorization and ownership"
+      ]
+    },
+    "support_rebels": {
+      "binding_kind": "borrowed_faction_action",
+      "evidence": [
+        "work/candidates/spy-extra-parameter-contracts-1375/report.json",
+        "work/candidates/spy-extra-parameter-contracts-1375/facts.json",
+        "work/candidates/spy-extra-parameter-contracts-1375/review.json"
+      ],
+      "fixed_fields": {
+        "envoy_id": -1,
+        "state": 0,
+        "value": true
+      },
+      "native_token": 11742,
+      "schema_migration": {
+        "added": "faction_identity",
+        "native_binding_complete": false,
+        "removed": "rebel_faction_id"
+      },
+      "semantics": [
+        "Two DWORD serialized identity is not a pointer or sufficient live ownership proof",
+        "Clone borrows the faction; never destroy it as an action-owned allocation"
+      ],
+      "unresolved": [
+        "Resolve exactly one matching +10/+14 identity in selected target's bounded faction pointer vector",
+        "Prove full target/type/faction/supporter identity and borrowed lifetime through queued execution",
+        "Normal selected owning caller, current full preview and treasury cost formula"
+      ]
+    }
+  },
+  "common_blockers": [
+    "No registered production execution backend",
+    "No authenticated current process/session/world-generation binding",
+    "No strict single-player origin or engine world-lifetime synchronization proof",
+    "No consuming-owner-thread recheck of pause, full country identities and native permissions",
+    "No durable native dispatch/ownership/unknown-result reconciliation for this binding"
+  ],
+  "live_readiness": null,
+  "production_supported": false,
+  "protocol": "EU4DIPLOMACY-CONTRACT/2",
+  "schema_version": 1
+}

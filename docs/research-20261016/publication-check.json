@@ -1,0 +1,17 @@
+{
+  "schema": "EU4-PUBLICATION-TREE-CHECK/2",
+  "checked_original_files": 3118,
+  "checked_text_files": 3130,
+  "standalone_python_sources_preparsed": 1699,
+  "lookup_entries": 60,
+  "lookup_sources": 94,
+  "lookup_references_resolved": 346,
+  "lookup_reference_check": "first publication pass resolved all 346; those 94 original pins are unchanged",
+  "errors": [],
+  "credential_or_personal_path_pattern_hits": [],
+  "historical_game_install_path_literals": "retained in immutable JSON evidence; not runtime configuration",
+  "source_export_corrections": "include fragments classified separately; oversized raw analysis omitted without a body read; two local path scripts omitted; credential-like action IDs rejected as scanner false positives by token boundary",
+  "project_execution": false,
+  "old_tests_rerun": false,
+  "target_actions": 0
+}

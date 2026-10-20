@@ -1,0 +1,90 @@
+{
+  "AI_acceptance_verified": false,
+  "OS_CloseHandle_return_verified": false,
+  "accepted": [
+    "All2990 shared journal reads/55844B replayed in exact address/size/order/stage; roots/pausedworld/1380 complete table+handles/typed countries/rootowner/full pair and two nullable140 indices agree.",
+    "Both selected pointers0; both key_presentfalse andmissing_key, preserved distinctly from matchedNULL. Two selected samples exactly equal; code4308B before/after matches fixed owned R48/R50.",
+    "49 direct text sources and selected retained artifacts match before/after. Four source triples/source-peer witness/root oncegrant/claims/actual__main__ status once align; close+heldNone+finalsourceguard precedecommit.",
+    "Ordinary69093511, host2302461254=9baseline+7976 two extra manifestbytes, game38462504 one fullhash, controllerseal4606571 agree. Requested/returned/EOF/attempts are distinct.",
+    "Job2 cumulative/active0/directcollected/exit0/errornull/peak48107520 agree; existing game notassigned."
+  ],
+  "all_own_prior_shells_collected": true,
+  "atomic_snapshot": false,
+  "authorizes_retry": false,
+  "blocking_findings": [],
+  "current_selected_absence_observed": true,
+  "final_heir_result_verified": false,
+  "limits": [
+    "Entry1x8192B is frozen source declaration without raw record and remains outside shared journal; complete allRPM isfalse.",
+    "PID/creation/path/modules/OS CloseHandle actual truth and diskhash truth are pinned producer witnesses; no reviewer process or PE/env opened.",
+    "226host paths and other capturedcandidate graph dependencies are metadata/accepted source witness except explicitly selected two owned codefiles; no recursivebinary rehash.",
+    "Only interceptedread/readinto/readline/iteration andknown routes are metered. Otherdelegatedstream/fileno/os.read/mmap/native/import/cacheIO andcompleteclosureunknown.",
+    "Source/config/object reads are non-atomic; PIDcreation doesnotproveworldepoch or preventABA. Currentmissinglookup isnotoriginalsupport/stop result, refusal, AI acceptance, finalheir, persistence or lease.",
+    "Authorpostseal .then orchestrationfailure retained without rerun; unchecked sealer memory0 correctednull/unvalidated, not substituted for actualJobpeak."
+  ],
+  "native_ready": false,
+  "normal_context_exit_reported": true,
+  "original_request_correlated": false,
+  "own_failures": 1,
+  "passed": true,
+  "persistence_verified": false,
+  "positive_task_body_verified": false,
+  "request_effect_verified": false,
+  "roles": {
+    "controller_author_and_executor": "D",
+    "prior_reviewer_role": "Val authored prior support source/production review and text-adapterR2 review; those are accepted fixed witnesses, not recursively re-certified.",
+    "reviewer": "Val",
+    "source_peer": "War"
+  },
+  "schema": "EU4-SUPPORT-HEIR-CURRENT-LIVE-INDEPENDENT-FINDINGS/1",
+  "scope": "One current FRA-POL support-task absent raw path. Two samples, both directional selected lookups missing keys withNULL native lookup result. No positive64B task body observed.",
+  "sealed": true,
+  "selected_effect_verified": false,
+  "source_upper_bytes": 21256653,
+  "subject_actual_manifest": {
+    "bytes": 34688,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+    "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+  },
+  "subject_capture_pin": {
+    "bytes": 708665,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/capture.json",
+    "sha256": "a974a7e186a68eac5a5baec580fe80e3962565ab66d6f1fa5391899e945c5cef"
+  },
+  "subject_child_io_pin": {
+    "bytes": 377024,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/child-io.json",
+    "sha256": "5e82ca397fb3b1ca67326ff1b612ab29ff7ff5c03e45c47faf83fb8e19595b7a"
+  },
+  "subject_completion_pin": {
+    "bytes": 16575,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion.json",
+    "sha256": "b949815ebc4d15a0db6792006fff759289a5fd70438997e3752bbe958fcada8a"
+  },
+  "subject_corrigendum_pin": {
+    "bytes": 2391,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion-corrigendum.json",
+    "sha256": "e50f7135d51eac5ca000c29eeac0651625cc396f2d837fdb5db0a11b225e3ac6"
+  },
+  "subject_once_grant": {
+    "bytes": 4573,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/run-authorization.json",
+    "sha256": "102fa82e2ce6da0ae393c53940defe9f265edee7d410766951119dc7aa3a6cde"
+  },
+  "subject_receipt_pin": {
+    "bytes": 422909,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+    "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+  },
+  "subject_source_manifest": {
+    "bytes": 16257,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-manifest.json",
+    "sha256": "3d70675a5901635a00efd6415ac93ead4b4dcadc726df1a6f4f065b864bb20f7"
+  },
+  "verification_pin": {
+    "bytes": 40878,
+    "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/verification.json",
+    "sha256": "11d8519284dbdbc4e89da7f86513e7c305d67e5c2152a6d8a7865e48df503c69"
+  },
+  "world_lease": false
+}

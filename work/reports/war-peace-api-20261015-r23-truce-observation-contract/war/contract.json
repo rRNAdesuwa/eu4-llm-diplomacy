@@ -1,0 +1,133 @@
+{
+  "schema": "EU4-TRUCE-OBSERVATION-STATIC-CONTRACT/1",
+  "game_version": "1.37.5",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "scope": "source_only_native_cache_consumer_and_typed_pair_identity_contract_no_reader",
+  "evidence_grade": "ordinary_static_retained_bytes_and_bounded_Capstone_not_REA_or_runtime",
+  "authority": {
+    "callable": false,
+    "native_ready": false,
+    "sender_authorized": false,
+    "runtime_truce_observed_this_round": false,
+    "typed_truce_object_layout_complete": false,
+    "expiry_semantics_verified": false,
+    "world_lifetime_lease": false,
+    "atomic_snapshot": false,
+    "peace_completion_verified": false,
+    "request_causality_verified": false
+  },
+  "native_consumer": {
+    "rva": "0x506d70",
+    "signature_observed": "RCX=declarewar action; normal result boolean in AL; full source-level prototype unknown",
+    "normal_return_sites": ["0x506e42", "0x506e54"],
+    "false_store": "0x506e31 xor al,al",
+    "true_store": "0x506e48 mov al,1",
+    "selected_extent": ["0x506d70", "0x506e55"],
+    "selected_bytes": 229,
+    "all_internal_branch_targets_selected": true,
+    "first_ret_is_not_complete_function_proof": true,
+    "side_effect_free_proven": false,
+    "pair_flag_equivalent": false,
+    "action_handles": {
+      "actor": "QWORD action+0x10",
+      "target": "QWORD action+0x20",
+      "resolution": "signed16(handle>>32) indexes country_database+0x118 pointer table; this body does not validate complete handle equality or bounds"
+    },
+    "callers": [
+      {
+        "rva": "0x507292",
+        "function": "0x507200",
+        "meaning": "stability cost consumer; AL true reaches retained STABHIT_FROM_TRUCE literal branch; internal action+0x40 suppression can skip this consumer"
+      },
+      {
+        "rva": "0x50a56d",
+        "function": "0x50a0a0",
+        "meaning": "full88 invokes this only within a contextual branch; neither full88 nor local80 is a pure direct-pair getter"
+      }
+    ],
+    "ordered_control_flow": [
+      "Resolve actor country A and target country T from action handles.",
+      "Always call 0x2f1590 with RCX=T, RDX=actor full handle, R8D=0; retain AL predicate P.",
+      "After P returns normally, load linked handle H from T+0x18f0; test H high byte nonzero. H's business role is unknown in this selected proof.",
+      "If H high byte is zero or P is false, proceed to the direct actor-to-target cache test.",
+      "Otherwise test actor's relation row for signed16(H>>32), byte+0x45 mask1. If clear, proceed to the direct actor-to-target cache test.",
+      "If that linked-country cache bit is set, resolve H country, call 0x40a6d0(H_country), then 0x7ae260(RAX). AL zero from the second callee immediately selects the true return.",
+      "All remaining normal paths test actor's relation row for target slot, byte+0x45 mask1: clear returns AL=0; set returns AL=1."
+    ],
+    "control_flow_shorthand": "Normal control flow: linked-country shortcut may return true; otherwise sample actor-to-target cache bit and return that bit. This is not a simultaneous-world Boolean snapshot.",
+    "unfollowed_callees": [
+      {"callsite": "0x506dba", "target": "0x2f1590", "semantics": "unknown", "effects_and_reentrancy": "unknown"},
+      {"callsite": "0x506e05", "target": "0x40a6d0", "semantics": "unknown", "effects_and_reentrancy": "unknown"},
+      {"callsite": "0x506e0d", "target": "0x7ae260", "semantics": "unknown", "effects_and_reentrancy": "unknown"}
+    ]
+  },
+  "pair_cache": {
+    "status": "native_consumer_uses_current_directional_truce_cache_flag",
+    "record_address": "owner_country+0x1510 holds array pointer; row=array+signed16(other_handle>>32)*0x48",
+    "record_stride": "0x48",
+    "field_offset": "0x45",
+    "mask": "0x01",
+    "direction": "owner country to counterpart slot; the selected native helper samples actor-to-target and conditionally actor-to-linked-country; reverse equality is not proved here",
+    "actual_direct_pair_consumer_rvas": ["0x506e16", "0x506e23", "0x506e2a", "0x506e2f"],
+    "independent_GUI_anchors": [
+      {"bit_read": "0xee28e9", "mask": "0xee28ed", "true_literal_use": "0xee28f1", "literal": "CALL_CHECKBOX_TRUCE_OFF"},
+      {"bit_read": "0xee2c23", "mask": "0xee2c29", "true_literal_use": "0xee2c34", "literal": "CALL_CHECKBOX_TRUCE"}
+    ],
+    "limits": [
+      "This is a consumed cache flag, not a typed truce object or expiry test.",
+      "No new runtime sample was taken; current means the memory field sampled at the native consumer's execution time.",
+      "A clear direct-pair bit does not imply the full action helper is false because the linked-country shortcut may return true.",
+      "Do not substitute relation+0x46 mask4 (the separately proven war flag) for this field or infer other masks by analogy.",
+      "No transitive side-effect-free guarantee follows from this helper's own visible reads."
+    ]
+  },
+  "typed_pair_identity_reuse": {
+    "grade": "adopted_existing_pinned_reader_profile_not_new_truce_object_proof",
+    "source": "bridge/diplomacy_effect_observer.py",
+    "source_sha256": "9eafecba34e74a6bf1cc3d081b9ce4dee10395cf6bae7da233f915328ec876d1",
+    "root": "owner_country+0x14f8",
+    "root_vtable_rva": "0x1c4f5f8",
+    "root_marker_u32": 357,
+    "root_owner_pointer": "root+0x10 == owner_country",
+    "array_header": "QWORD begin/end/capacity at root+0x18/+0x20/+0x28; country+0x1510 aliases root+0x18",
+    "pair_record_identity": "row+0=root pointer; row+8=owner full handle; row+0x10=other full handle; row itself is not assumed to begin with a vtable",
+    "bounds": "existing profile requires canonical aligned pointers, ordered extents divisible by 0x48, at most 4096 rows, selected slot within current length, and complete current country handle validation",
+    "reverse_direction": "resolve the other country's own current root and full-handle row independently; do not infer symmetry from one direction"
+  },
+  "truce_object_layout": {
+    "status": "unknown",
+    "native_typed_index_offset": "unknown",
+    "index_key_and_stride": "unknown_for_a_truce_object_index; pair-cache array is separately known",
+    "object_vtable": "unknown",
+    "object_size": "unknown",
+    "object_full_endpoints": "unknown",
+    "start_date_field": "unknown",
+    "expiry_date_field": "unknown",
+    "expiry_comparison_and_equality_boundary": "unknown",
+    "date_units": "unknown",
+    "removed_and_insertion_flags": "unknown",
+    "actual_retirement_consumer": "unknown",
+    "non_substitution": "Do not repurpose the generic relation reader's object+0x28/+0x29 or pair+0x30 deadline as truce removal/expiry without exact truce-specific consumption evidence."
+  },
+  "future_read_side_minimum": [
+    "Reuse an already authenticated bounded external read port and fresh current roots/countries; never call 0x506d70 or retain old heap pointers as a capability.",
+    "Resolve both full country handles and typed pair roots, validate array extents and exact full-handle row identity before reading either cache byte.",
+    "Preserve raw row bytes, direction and code/source provenance; repeat complete selected identity/row/root projection after reads. Changed, short, malformed or unsupported reads return unknown.",
+    "Report each directional native-cache flag explicitly. Without additional evidence, do not upgrade disagreement, a flag alone, or a missing current war into typed truce validity or completed white peace.",
+    "Two matching read passes detect sampled changes; they do not prove an atomic moment, lifetime lease, ABA exclusion or request causality. External observation does not require inventing a whole-world native execution lease.",
+    "Keep native truce-cache observation, current war graph, actual peace terms and original request audit/baseline as separate evidence scopes. This contract implements none of these joins."
+  ],
+  "next_evidence_edges": [
+    "The three exact calls listed above are the only unresolved helper edges exposed by this window; they are not asserted to lead to a truce object or expiry field.",
+    "No exact truce-object/index/expiry access edge is established in this bounded material. Future work needs a separately evidenced truce writer or typed index consumer; no address is guessed here."
+  ],
+  "execution": {
+    "process_accesses": 0,
+    "Frida_operations": 0,
+    "game_native_calls": 0,
+    "requests_published": 0,
+    "old_tests_run": 0,
+    "reader_implemented": false,
+    "existing_sealed_sources_changed": false
+  }
+}

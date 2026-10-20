@@ -1,0 +1,135 @@
+{
+  "automatic_retry": false,
+  "base": "0x7ff7034b0000",
+  "creation": "01dd5c075fcf8c26",
+  "independent_review": "work/reports/frida-owned-body-final-review-20261015-r1/independent-source-ready.json",
+  "independent_review_pin": {
+    "bytes": 5706,
+    "sha256": "ae68de5afe71970b3b87393d8aa9e8d024dd5721fa283b156473fd6e5d699fa9"
+  },
+  "lifetime_lease": false,
+  "native_ready": false,
+  "pid": 80340,
+  "schema": "EU4-OWNED-BODY-HOST-MANIFEST/1",
+  "sealed": true,
+  "sender_authorized": false,
+  "source_only_draft": false,
+  "source_pins": {
+    "work/candidates/frida-entry-observer-1375-v1/capture_once.py": {
+      "bytes": 24560,
+      "sha256": "b39823564ab26a9da7093e1812b2a1fec28a17141e3c4a1024460664b1943b6e"
+    },
+    "work/candidates/frida-entry-observer-1375-v1/host-manifest.json": {
+      "bytes": 43987,
+      "sha256": "e7673b0e07c052788d6d2c6378939e176f57e79a45ea09888b957741b7370166"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/PROTOCOL.md": {
+      "bytes": 7707,
+      "sha256": "ecf9bbe48c058f2784e692e17aeac50398faa5d6b61bb2bb75ae6a44b07e5f9d"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/body_parser.py": {
+      "bytes": 22921,
+      "sha256": "d04bf897fc14053e5678431c2d20785c631102ff749d0107b74df7c5d8f5418a"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/body_probe.js": {
+      "bytes": 20908,
+      "sha256": "98047207a4e5fd9560eaad2b29ab2a0006a1b8174346d9cc1851ff9c589590bc"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/capture_body_once.py": {
+      "bytes": 14109,
+      "sha256": "7ba910bef7f9b8247f139c4a5fe8d1b7938d273d494cbb4afc05bc7e63d35c67"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/offline-r1/receipt.json": {
+      "bytes": 3401,
+      "sha256": "ec46f859dabe7899a25889d52aef633b35627e0fb912271ad68e6bb9f4dbadf3"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/offline-r1/vm-corpus.json": {
+      "bytes": 85262,
+      "sha256": "bb07a72843cffdc95ce331af8da57fa897f6aa66f9c20ef4ecdc46d540b102ba"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/prepare_body_manifest.py": {
+      "bytes": 3301,
+      "sha256": "53bc09379b1cb21888d3d8ec23089b057a2900c05a2f33491176873ff11148f3"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/source-manifest.json": {
+      "bytes": 3118,
+      "sha256": "941c5a281151f1d47579c39514b89ba06dee4f0ce4faa08f2107ec7efff818f9"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/test_body_parser.py": {
+      "bytes": 7051,
+      "sha256": "4a11c882e479c132960a21054d50aae5c2092cc34b5cbbcd20fc905d95aa4268"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/test_body_probe.js": {
+      "bytes": 16086,
+      "sha256": "68c3d18dbe150611b869e14320c6ac36d6171bbc7319ac891357516c1b98c604"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/test_capture_body_once.py": {
+      "bytes": 3173,
+      "sha256": "86c22a59f35390111d8cd3a3bb3ccec97c8e024fa3add7311a2d4b40518ab3bf"
+    },
+    "work/candidates/frida-owned-body-probe-1375-v1/verify_offline.py": {
+      "bytes": 7139,
+      "sha256": "0fd160716c14144d99cef5c36d01dbc79125fd430f653f64ed666c2ed136a48b"
+    },
+    "work/candidates/rea-frida-owned-ffi-smoke-20261015/source-manifest.json": {
+      "bytes": 9989,
+      "sha256": "03e9829212c3888ce63e417a7a8dffab3fef17c42578b19909481a8125480875"
+    },
+    "work/reports/frida-entry-host-review-20261015-r1/independent-source-ready.json": {
+      "bytes": 7681,
+      "sha256": "1e6a4d13331e19bfd63047936bf23a2113c2e88f9294026df44ea4577417ffaf"
+    },
+    "work/reports/frida-owned-body-component-review-20261015-r1/component-source-ready.json": {
+      "bytes": 6879,
+      "sha256": "3962a0f047223c874441a8eb49a1b31cf4880f6d3a9c4ac185b5debe1edc88d5"
+    },
+    "work/reports/frida-owned-body-component-review-20261015-r1/manifest.json": {
+      "bytes": 6368,
+      "sha256": "ca4d61f58d468474b891eb2c72e0deff40cabdcb6c3f805003a9b00f32af88bd"
+    },
+    "work/reports/rea-frida-owned-ffi-live-review-20261015/independent-file-audit.json": {
+      "bytes": 4777,
+      "sha256": "ab32a9010424f8cacd10f61ca2aba4119f98eaf4f5430a6a5af5c114eae00419"
+    },
+    "work/reports/rea-frida-owned-ffi-live-review-20261015/manifest.json": {
+      "bytes": 14724,
+      "sha256": "5217427e107c2fc3971a53f948a5e7a35eeb4d9c7f6c6071563552f22c274e32"
+    },
+    "work/reports/rea-frida-owned-ffi-smoke-20261015/f724e4537abba85248a900c51ca487c3/launcher-receipt.json": {
+      "bytes": 5318,
+      "sha256": "0b164e895bad4aa131b24c84f94c41ea5b9e459d017efbe6e1372d58ca900d03"
+    },
+    "work/reports/rea-frida-owned-ffi-source-review-20261015/independent-source-ready.json": {
+      "bytes": 4132,
+      "sha256": "1f73ebbb09e5fee68cabb79506b039b579c9205aaa34776157e0e8ca2cad17f4"
+    },
+    "work/reports/war-peace-api-20261015-r17-owned-goal-independent-review/war/profiles.json": {
+      "bytes": 8787,
+      "sha256": "c76853c78cd10cb8e1748ec4e3dbbd19bd53905fd3ecf2f40111379c0ac3b283"
+    },
+    "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/body-probe-contract.json": {
+      "bytes": 8801,
+      "sha256": "5b5fe6fe78e86795c16995364aa1b6bd515ab5bc3c10305fdd29c521fb7b92a1"
+    },
+    "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/manifest.json": {
+      "bytes": 5175,
+      "sha256": "edca1b873c18c4fb126fd8bb31a63f147e744e45008b6f6c710c2c6c24f9e870"
+    },
+    "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/required-loaded-bytes.json": {
+      "bytes": 6122,
+      "sha256": "a0ad16d0c2fffd2ecb4a41014c7984e36b3a228089201d32e4edbf25b932b048"
+    },
+    "work/reports/war-peace-api-20261015-r19-body-host-offline/host-tests.stderr.txt": {
+      "bytes": 714,
+      "sha256": "d77b631c72c17433323a3cc6e272ca9a188f8e246267c3d7f60b6f518162f44b"
+    },
+    "work/reports/war-peace-api-20261015-r19-body-host-offline/initial-tests.json": {
+      "bytes": 1109,
+      "sha256": "158e8014bde94114bca34baf0c2d143bb8b4e612e8b7ba844a0a0d056dfe13bb"
+    },
+    "work/reports/war-peace-api-20261015-r19-body-host-review/war/independent-source-ready.json": {
+      "bytes": 7688,
+      "sha256": "b8be8e6386a7b4d5dec9b030b3d37e9721c3b008840b931cdd3efeca827d2a57"
+    }
+  }
+}

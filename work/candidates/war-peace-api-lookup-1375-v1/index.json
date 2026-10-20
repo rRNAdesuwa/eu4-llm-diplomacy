@@ -1,0 +1,2578 @@
+{
+  "schema": "EU4-WAR-PEACE-OFFLINE-INDEX/1",
+  "version": "1.37.5",
+  "game_sha256": "9ad3efe1af169f40ee577f9dae5debbc87af6fb8b5450fb345ebf110dc4d771a",
+  "scope": "research_endpoint_lookup_only",
+  "not_a_callable_API": true,
+  "family_aliases": {
+    "declare_war": [
+      "declarewar",
+      "declare_war",
+      "war",
+      "宣战"
+    ],
+    "peace": [
+      "peace",
+      "requestpeace",
+      "request_peace",
+      "议和"
+    ]
+  },
+  "entries": [
+    {
+      "id": "declare_war.body_destructor",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战 body：已实采 raw ABI 子范围",
+      "summary": "R19仅一次自有A98/G60 raw ABI test double正常返回，最终A0=base+1c3e578，其余A/G不变；不等于合法C++析构。",
+      "aliases": [
+        "500560_raw",
+        "body_dtor",
+        "raw_body_probe",
+        "war_body",
+        "原生body"
+      ],
+      "kind": "function",
+      "rva": "0x500560",
+      "signature": {
+        "status": "raw_probe_only",
+        "parameters": [
+          "RCX=A pointer；实采仅独占152B A与96B G test double"
+        ],
+        "returns": "该 raw probe 使用 void(pointer)，不以返回标量判成功",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "R19仅自有A98/G60；全量pre/post raw比对"
+        ],
+        "borrowed": [
+          "R19此选定路径只引用已校验模块code/vtable；无world sentinel slot"
+        ]
+      },
+      "stage": "real_rawbody_postcondition",
+      "stage_scope": "仅R19已审1次顶层尝试/正常wrapper返回的owned raw postcondition；嵌套helper未动态计数。",
+      "unresolved": [
+        "不是合法C++对象、constructor等价、完整生命周期或宣战效果。",
+        "不证明world/header/module lease、TLS/xstate或异常展开；不允许复测。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/body-probe-contract.json",
+          "json_pointer": "/top_level",
+          "bytes": 8801,
+          "sha256": "5b5fe6fe78e86795c16995364aa1b6bd515ab5bc3c10305fdd29c521fb7b92a1"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/body-probe-contract.json",
+          "json_pointer": "/owned_storage",
+          "bytes": 8801,
+          "sha256": "5b5fe6fe78e86795c16995364aa1b6bd515ab5bc3c10305fdd29c521fb7b92a1"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r18-body-probe-contract/war/body-probe-contract.json",
+          "json_pointer": "/postconditions",
+          "bytes": 8801,
+          "sha256": "5b5fe6fe78e86795c16995364aa1b6bd515ab5bc3c10305fdd29c521fb7b92a1"
+        },
+        {
+          "path": "work/reports/frida-owned-body-live-review-20261015-r1/independent-file-audit.json",
+          "json_pointer": "/native_call_accounting",
+          "bytes": 5762,
+          "sha256": "3c1e30094956fe57ca989896d76e79b6c3503f579d31e6c9fa80f8eb29857f26"
+        },
+        {
+          "path": "work/reports/frida-owned-body-live-review-20261015-r1/independent-file-audit.json",
+          "json_pointer": "/owned_raw",
+          "bytes": 5762,
+          "sha256": "3c1e30094956fe57ca989896d76e79b6c3503f579d31e6c9fa80f8eb29857f26"
+        },
+        {
+          "path": "work/reports/frida-owned-body-live-review-20261015-r1/independent-file-audit.json",
+          "json_pointer": "/limits",
+          "bytes": 5762,
+          "sha256": "3c1e30094956fe57ca989896d76e79b6c3503f579d31e6c9fa80f8eb29857f26"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.clone",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战动作克隆",
+      "summary": "分配独立0x98 action，复制goal与三组句柄vector；共享sentinel与独占goal须区分。",
+      "aliases": [
+        "war_clone"
+      ],
+      "kind": "function",
+      "rva": "0x50b8f0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=完整source action"
+        ],
+        "returns": "RAX=独立拥有的action clone",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "新action与vector buffers；具体goal可能独占"
+        ],
+        "borrowed": [
+          "source action、goal definition；noCB共享sentinel"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "分配失败/new-handler/异常及definition寿命仍未闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261015-r6/war/lifecycle-contract.json",
+          "json_pointer": "/abi",
+          "bytes": 2892,
+          "sha256": "3d0845b9ac7a642d94dc49a61e17b7b7461fc62c5dc99fd9f67e9a977d63f417"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "json_pointer": "/findings/4",
+          "bytes": 9405,
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.commit_site",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "首次全局战争提交调用现场",
+      "summary": "两方加入成功后，此CALL调用c06d0把war指针追加到game+1e28。这是callsite，不是函数入口。",
+      "aliases": [
+        "commit",
+        "war_commit"
+      ],
+      "kind": "callsite",
+      "rva": "0x501921",
+      "signature": {
+        "status": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x501921",
+          "relationship": "call c06d0"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "提交的war指针"
+        ],
+        "borrowed": [
+          "当前game容器"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "前序费用可能已发生；单个append不能证明完整效果/持久化。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/6",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.constructor",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战动作构造",
+      "summary": "初始化0x98 action；nonnull goal仍调用d9aaf0，并非直接保存输入。",
+      "aliases": [
+        "declarewar_ctor",
+        "war_ctor",
+        "宣战构造"
+      ],
+      "kind": "function",
+      "rva": "0x500480",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=action storage",
+          "RDX=actor full country handle",
+          "R8=target full country handle",
+          "R9B=internal stability flag",
+          "entry RSP+0x28=date DWORD",
+          "entry RSP+0x30=goal pointer"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x35d399",
+          "relationship": "工厂构造调用"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "caller提供0x98 storage；三个vector初始为空"
+        ],
+        "borrowed": [
+          "输入goal与其definition；NULL分支取2340030 sentinel"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "输入goal不可用手写definition替代；完整构造/异常/借用寿命未验收。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/war/api-contract.json",
+          "json_pointer": "/constructor",
+          "bytes": 4170,
+          "sha256": "a4574eeb07ea23cd484e1348422403c474f37c9a39025285c0acf8db5cb99e7d"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r17-owned-goal-independent-review/war/profiles.json",
+          "json_pointer": "/rejected_ctor_profile",
+          "bytes": 8787,
+          "sha256": "c76853c78cd10cb8e1748ec4e3dbbd19bd53905fd3ecf2f40111379c0ac3b283"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.deleting_destructor",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战 deleting wrapper",
+      "summary": "调用body；flagbit0决定是否释放0x98外层。",
+      "aliases": [
+        "war_delete"
+      ],
+      "kind": "function",
+      "rva": "0x500520",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=完整action",
+          "EDX=deleting flag"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "完整action及条件拥有的goal/vectors"
+        ],
+        "borrowed": [
+          "非拥有sentinel/definition必须保持有效"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "R19没有调用此wrapper/free；完整native lifetime未实测。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261015-r6/war/lifecycle-contract.json",
+          "json_pointer": "/abi",
+          "bytes": 2892,
+          "sha256": "3d0845b9ac7a642d94dc49a61e17b7b7461fc62c5dc99fd9f67e9a977d63f417"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r17-owned-goal-independent-review/war/profiles.json",
+          "json_pointer": "/complete_retained_functions/1",
+          "bytes": 8787,
+          "sha256": "c76853c78cd10cb8e1748ec4e3dbbd19bd53905fd3ecf2f40111379c0ac3b283"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.effect",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战效果入口",
+      "summary": "费用及legacy回调发生在创建war之前；失败不是事务回滚。",
+      "aliases": [
+        "war_effect"
+      ],
+      "kind": "function",
+      "rva": "0x501290",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=declarewar action；完整签名 unknown"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "新0x218 war；未提交join失败分支删除"
+        ],
+        "borrowed": [
+          "country、goal/definition、关系、脚本及game"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "不得作为预览/检查；真实宣战效果、完整动态callee和异常边界未验收。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "json_pointer": "/findings/7",
+          "bytes": 9405,
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/6",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.factory",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战通用工厂",
+      "summary": "token293b选择case35d32a；工厂默认句柄/日期不是可用请求。",
+      "aliases": [
+        "declarewar_factory"
+      ],
+      "kind": "function",
+      "rva": "0x35d210",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "case分配0x98 action"
+        ],
+        "borrowed": [
+          "unknown"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "通用工厂完整可调用签名 unknown；默认字段不可作正常请求。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261013/war/api-contract.json",
+          "json_pointer": "/native_identity",
+          "bytes": 4177,
+          "sha256": "6c8312e30b34ed181a5ca9ee0807688ca6906d949d4ded905a0ec052cdd26903"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "json_pointer": "/findings/0",
+          "bytes": 9405,
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.factory_case",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战工厂分支",
+      "summary": "这是已证分支块地址，不是独立可调用函数。",
+      "aliases": [],
+      "kind": "basic_block",
+      "rva": "0x35d32a",
+      "signature": {
+        "status": "unknown",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x35d399",
+          "relationship": "分支中的 constructor call"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "unknown"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261013/war/api-contract.json",
+          "json_pointer": "/native_identity",
+          "bytes": 4177,
+          "sha256": "6c8312e30b34ed181a5ca9ee0807688ca6906d949d4ded905a0ec052cdd26903"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "json_pointer": "/findings/0",
+          "bytes": 9405,
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.full_check",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战完整检查",
+      "summary": "local/full具有不同职责；检查会解析当前国家和可变engine状态，不能视为任意线程纯查询。",
+      "aliases": [
+        "war_full88"
+      ],
+      "kind": "function",
+      "rva": "0x50a0a0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=完整action",
+          "RDX=optional native reason string"
+        ],
+        "returns": "bool；不代表AI接受/效果/持久化",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "国家、关系、CB/goal及动态条件"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "完整传递callee/脚本、context和生命周期未知；额外参数未在本记录补猜。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/war/api-contract.json",
+          "json_pointer": "/checks",
+          "bytes": 4170,
+          "sha256": "a4574eeb07ea23cd484e1348422403c474f37c9a39025285c0acf8db5cb99e7d"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "json_pointer": "/findings/6",
+          "bytes": 9405,
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.global_append",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "全局战争数组追加 helper",
+      "summary": "501921调用的具体数组追加端点，关联game+1e28容器。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0xc06d0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "unknown"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x501921",
+          "relationship": "直接caller"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "war指针容器；外层war寿命另论"
+        ],
+        "borrowed": [
+          "当前game"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "完整helper函数签名 unknown；不提供通用append调用。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/6",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.goal_clone",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战目标复制/默认目标选择",
+      "summary": "通过goal virtual58及definition+38分派；NULL及特定enum返回共享sentinel。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0xd9aaf0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=goal pointer（NULL有已证默认分支）"
+        ],
+        "returns": "goal pointer；可能是共享sentinel",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "具体enum0..10可能产生0x60 goal clone"
+        ],
+        "borrowed": [
+          "goal/definition/CB及共享sentinel"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "definition身份和生命周期；enum本身不是合法外部goal描述。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/war/api-contract.json",
+          "json_pointer": "/tiers/1",
+          "bytes": 4170,
+          "sha256": "a4574eeb07ea23cd484e1348422403c474f37c9a39025285c0acf8db5cb99e7d"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "json_pointer": "/findings/3",
+          "bytes": 9405,
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.gui_send",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "普通宣战 GUI 发送回调",
+      "summary": "更新日期，通过action+40包装command，再直接调用14ca210。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0xedfa40",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=原生dialog（完整签名 unknown）"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0xedfb96",
+          "relationship": "action virtual40"
+        },
+        {
+          "rva": "0xedfba4",
+          "relationship": "直接sender调用"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "dialog缓存action与新command具有不同生命周期"
+        ],
+        "borrowed": [
+          "真实dialog/context/world"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "正常GUI静态调用链不是可外部派发的TAG接口。",
+        "transport返回不等于效果；失败不允许重试。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261013-r2/war/findings.json",
+          "json_pointer": "/findings/2",
+          "bytes": 10251,
+          "sha256": "76acade5a37cffcd1b39eae11f470c754f3bad50716a37f27b36b5bfa2568146"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.local_check",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "宣战局部检查",
+      "summary": "local/full具有不同职责；检查会解析当前国家和可变engine状态，不能视为任意线程纯查询。",
+      "aliases": [
+        "war_local80"
+      ],
+      "kind": "function",
+      "rva": "0x508db0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=完整action",
+          "RDX=optional native reason string"
+        ],
+        "returns": "bool；不代表AI接受/效果/持久化",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "国家、关系、CB/goal及动态条件"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "完整传递callee/脚本、context和生命周期未知；额外参数未在本记录补猜。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/war/api-contract.json",
+          "json_pointer": "/checks",
+          "bytes": 4170,
+          "sha256": "a4574eeb07ea23cd484e1348422403c474f37c9a39025285c0acf8db5cb99e7d"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "json_pointer": "/findings/6",
+          "bytes": 9405,
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "declare_war.war_constructor",
+      "actions": [
+        "declare_war"
+      ],
+      "title": "战争对象构造",
+      "summary": "建立0x218 war、clone goal到+160，并写goal+48回指；共享noCB回指不是独占war身份。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0xd859b0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "0x218 war与条件拥有goal"
+        ],
+        "borrowed": [
+          "输入goal/definition；共享sentinel可能保持alias"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/8",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/9",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.ai_score",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 AI score 槽",
+      "summary": "virtual120含特殊override；普通fallback1bf150，不能把score当实际接受回执。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x59bee0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "score；普通接受predicate以>=1为阈值",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "request/current AI/world"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "1bf150具体接受规则/理由对象寿命 unknown；未实采。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "json_pointer": "/facts/3",
+          "bytes": 34017,
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.clear_all",
+      "actions": [
+        "peace"
+      ],
+      "title": "全局战争 clear-all 路径",
+      "summary": "收集wars、移除参战者、清理borrower节点后调用war virtual0(1)。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x7496c0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "game/manager/country图"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "不是普通白和平最终retirement scheduler证明；完整签名 unknown。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "json_pointer": "/facts/4",
+          "bytes": 42730,
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.date_check",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和独立 date90",
+      "summary": "当前date必须严格大于相关国家/player日期；full88成功不替代此检查。",
+      "aliases": [
+        "date90",
+        "peace_date90"
+      ],
+      "kind": "function",
+      "rva": "0x59b8d0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=request*",
+          "RDX=null reason string"
+        ],
+        "returns": "bool",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer/request内部拥有图；具体范围见所选合同"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/6",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013-r2/peace/findings.json",
+          "json_pointer": "/findings/5",
+          "bytes": 7345,
+          "sha256": "66faa3a9d4f0ec031a7746980c746699549cc5c25ca1540028bb5433e40c6916"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json",
+          "json_pointer": "/country_root/alias_arithmetic",
+          "bytes": 6493,
+          "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.full_check",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 full88",
+      "summary": "公共/local检查后还拒绝pending enforce_peace；与date90分开。",
+      "aliases": [
+        "peace_full88"
+      ],
+      "kind": "function",
+      "rva": "0x59b630",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=request*",
+          "RDX=null reason string",
+          "R8B=false"
+        ],
+        "returns": "bool",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer/request内部拥有图；具体范围见所选合同"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/5",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013-r2/peace/findings.json",
+          "json_pointer": "/findings/1",
+          "bytes": 7345,
+          "sha256": "66faa3a9d4f0ec031a7746980c746699549cc5c25ca1540028bb5433e40c6916"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json",
+          "json_pointer": "/country_root/alias_arithmetic",
+          "bytes": 6493,
+          "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.gui_send",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 GUI SEND_OFFER 回调",
+      "summary": "选定GUI offer深拷贝为request，独立日期gate后包装发送，再清原request；三个offer图独立。",
+      "aliases": [
+        "SEND_OFFER",
+        "peace_send"
+      ],
+      "kind": "function",
+      "rva": "0x130f1b0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=原生GUI owner；其余参数 unknown"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x83643d",
+          "relationship": "listener tailcalls owner callback"
+        },
+        {
+          "rva": "0x130f22f",
+          "relationship": "调用request ctor"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "GUI offer、original request offer、command clone offer各自拥有"
+        ],
+        "borrowed": [
+          "GUI/context/world"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "json_pointer": "/facts/send_button_binding",
+          "bytes": 215213,
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "json_pointer": "/facts/callback_allocates_original_and_copies_selected_offer",
+          "bytes": 215213,
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "json_pointer": "/facts/native_date_gate_and_context_lookup",
+          "bytes": 215213,
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.local_check",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 local80",
+      "summary": "局部检查包括有效type3领土owner/controller；不能替代所有条款合法性。",
+      "aliases": [
+        "peace_local80"
+      ],
+      "kind": "function",
+      "rva": "0x59b450",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=request*",
+          "RDX=null reason string"
+        ],
+        "returns": "bool",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer/request内部拥有图；具体范围见所选合同"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/4",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013-r2/peace/findings.json",
+          "json_pointer": "/findings/4",
+          "bytes": 7345,
+          "sha256": "66faa3a9d4f0ec031a7746980c746699549cc5c25ca1540028bb5433e40c6916"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json",
+          "json_pointer": "/country_root/alias_arithmetic",
+          "bytes": 6493,
+          "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.offer_apply",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 offer 应用/结算",
+      "summary": "应用条款并移除适用参战者；outcome写入不是war已释放的证明。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x976730",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "offer receiver；完整参数/return unknown"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x59a6ea",
+          "relationship": "request effect直接调用"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "war、participants、条款引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "只零金额gold叶有窄不转账证据；完整结算/其它条款/最终retirement未验收。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "json_pointer": "/facts/5",
+          "bytes": 34017,
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "json_pointer": "/facts/6",
+          "bytes": 34017,
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "json_pointer": "/facts/5",
+          "bytes": 42730,
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.offer_cleanup",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 offer 清理体",
+      "summary": "清拥有components/容器；保留caller外层storage。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x9761c0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=in-place standalone offer"
+        ],
+        "returns": "ignored",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "graph only; caller outer storage remains"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/9",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.offer_constructor",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 offer 构造",
+      "summary": "构造0x1c0 offer并枚举候选；actor/taker与recipient/giver方向明确。",
+      "aliases": [
+        "offer_ctor"
+      ],
+      "kind": "function",
+      "rva": "0x975d40",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=dst",
+          "RDX=actor/taker full handle",
+          "R8=recipient/giver full handle",
+          "R9B=true"
+        ],
+        "returns": "offer*==dst",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer/request内部拥有图；具体范围见所选合同"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/0",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.offer_copy",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 offer 深拷贝",
+      "summary": "复制独立participant vectors/hash/component图，修正owner+self；memcpy会形成别名。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x975f40",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=destination offer",
+          "RDX=source offer"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x598b4a",
+          "relationship": "request constructor调用"
+        },
+        {
+          "rva": "0x59bad1",
+          "relationship": "request clone调用"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "独立destination拥有图"
+        ],
+        "borrowed": [
+          "source及其定义/世界引用"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/native-owned-peace-1375.json",
+          "json_pointer": "/facts/offer_copy_and_owner_fixup",
+          "bytes": 1302642,
+          "sha256": "f78ca33e46e8a7ea153055ffb77f940710b263a7a366acfc7dfee40c35e7488d"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "json_pointer": "/facts/1",
+          "bytes": 34017,
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.offer_reset",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 offer 选择重置",
+      "summary": "原生取消/重置选择；不是任意手写selected byte。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x97ae50",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=offer*"
+        ],
+        "returns": "ignored",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer/request内部拥有图；具体范围见所选合同"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/1",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.remove_members",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和结算参战者移除",
+      "summary": "调用d8ba80/d8e6b0及side-vector移除；不等同最终war释放。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x98ffb0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x9784cc",
+          "relationship": "offer apply caller"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "resolved war、countries与双方物理索引"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "json_pointer": "/facts/6",
+          "bytes": 34017,
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "json_pointer": "/facts/2",
+          "bytes": 42730,
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.reply_effect",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和请求响应效果",
+      "summary": "state2分支到59a6ea调用976730；禁止通过改state/force伪造接受。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x598ed0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=request action；其余参数 unknown"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x59a6ea",
+          "relationship": "accepted分支调用offer apply"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "offer/current war/countries/动态脚本"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "on-action有同步动态effect；完整异常/重入/world寿命未闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/findings.json",
+          "json_pointer": "/facts/4",
+          "bytes": 34017,
+          "sha256": "cfc34fde96a600ade57b1e17e13ec7ed4c28996294f5cf56251716a4f87d16f9"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "json_pointer": "/facts/6",
+          "bytes": 42730,
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.request_clone",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 request 克隆",
+      "summary": "分配独立0x210 request及嵌入offer拥有图。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x59ba40",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=const request*"
+        ],
+        "returns": "independently engine allocated request*",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "outer0x210 and deep embedded offer graph"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/3",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.request_constructor",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 request 构造",
+      "summary": "构造0x210 request，深拷贝offer到+48，force+208为0。",
+      "aliases": [
+        "requestpeace_ctor"
+      ],
+      "kind": "function",
+      "rva": "0x598af0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=dst",
+          "RDX=actor full handle",
+          "R8=recipient full handle",
+          "R9B=true",
+          "stack arg5 const offer*",
+          "stack arg6 int32 raw date"
+        ],
+        "returns": "request*==dst",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer/request内部拥有图；具体范围见所选合同"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/2",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.request_destructor",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和 request deleting wrapper",
+      "summary": "先清嵌入offer图，flagbit0决定是否释放0x210外层；不能单独删嵌入offer。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x598b60",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=完整request",
+          "EDX bit0=是否释放外层；0与1对应不同所有权"
+        ],
+        "returns": "ignored",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "静态正常路径（非运行验证）：embedded offer cleanup 后，EDX bit0=0 preserves caller outer storage。",
+          "静态正常路径（非运行验证）：embedded offer cleanup 后，EDX bit0=1 frees engine outer 0x210。"
+        ],
+        "borrowed": [
+          "双方country/full handle、当前war、条款definition与其引用对象"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "已知referent范围不等于完整传递world拥有图；生命周期/动态effects/异常未闭合。",
+        "R3 ABI编译或离线case不是本版真实peace调用/效果证据。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/7",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/operations/8",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.term_cancel",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和条款取消",
+      "summary": "可能级联取消并重查其它领土条款，不删除component拥有体。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x97a8d0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=offer",
+          "RDX=component",
+          "R8B=false",
+          "R9B=false"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer拥有pool；type buckets只存别名"
+        ],
+        "borrowed": [
+          "候选component及当前war/definition"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "动态virtual check/update与异常未知；完整return ABI未补猜。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "json_pointer": "/findings/0",
+          "bytes": 8281,
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "json_pointer": "/findings/1",
+          "bytes": 8281,
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.term_check",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和候选条款检查",
+      "summary": "读取当前war且没有null保护；必须属于当前原生offer的候选。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x97a1c0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=offer",
+          "RDX=component",
+          "R8=已初始化diagnostic vector",
+          "R9B=false",
+          "stack5=null reason"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer拥有pool；type buckets只存别名"
+        ],
+        "borrowed": [
+          "候选component及当前war/definition"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "动态virtual check/update与异常未知；完整return ABI未补猜。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "json_pointer": "/findings/0",
+          "bytes": 8281,
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "json_pointer": "/findings/1",
+          "bytes": 8281,
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "peace.term_select",
+      "actions": [
+        "peace"
+      ],
+      "title": "议和条款选择",
+      "summary": "没有完整合法性/归属/重复检查；非幂等，不得重复加入。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x97a790",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=offer",
+          "RDX=component",
+          "R8B=false",
+          "R9B=false"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "offer拥有pool；type buckets只存别名"
+        ],
+        "borrowed": [
+          "候选component及当前war/definition"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "动态virtual check/update与异常未知；完整return ABI未补猜。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "json_pointer": "/findings/0",
+          "bytes": 8281,
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/peace/findings.json",
+          "json_pointer": "/findings/1",
+          "bytes": 8281,
+          "sha256": "21a6af7ffbc4f3cf6e619e6ccb4e270abfcdc493a7079a161ee354de8e363d8c"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.action_apply",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "公共动作效果分派",
+      "summary": "先检查国家存在，再调用action+48；不是外部合法性预检入口。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x4ea820",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x4ea8cd",
+          "relationship": "action virtual48分派"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "action、country/world"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/3",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.command_execute",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "command 执行槽",
+      "summary": "command+48重新做local80，再经4ea820分派action效果。",
+      "aliases": [
+        "command_execute"
+      ],
+      "kind": "function",
+      "rva": "0x4e7c50",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=command；其余参数 unknown"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x4e8054",
+          "relationship": "调用4ea820"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "command+50 action/world"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "效果前后动态调用与异常未知；此记录不提供执行能力。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/3",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/2",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.command_gate",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "command 检查槽",
+      "summary": "command+40检查cooldown/cost/local，true后才进入执行；gate本身不调用action效果。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x4e8630",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "bool",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x14cab30",
+          "relationship": "context调用gate"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "unknown"
+        ],
+        "borrowed": [
+          "command/action与当前engine状态"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/1",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.pending_handoff",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "pending 到执行 context 的移交",
+      "summary": "从transport容器移交raw command到context vector，仅释放链节点。",
+      "aliases": [
+        "pending_sink",
+        "sink"
+      ],
+      "kind": "function",
+      "rva": "0x14ca870",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x14ca927",
+          "relationship": "已保留移交现场"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "command指针从pending链移入context vector"
+        ],
+        "borrowed": [
+          "context/transport"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sink/findings.json",
+          "json_pointer": "/findings/0",
+          "bytes": 10375,
+          "sha256": "79d7b8998a36ae4dcfa504f721c768f7437276b43b85fd1a1ee419d778b1d402"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.queue_consumer",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "transport 队列首消费者",
+      "summary": "virtual38取队列command、克隆wrapper进入pending链，再删除旧wrapper。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x15801c0",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "新pending wrapper与旧队列wrapper分离"
+        ],
+        "borrowed": [
+          "transport队列/pending链"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "完整签名 unknown；异常所有权与执行时序未知。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sender/findings.json",
+          "json_pointer": "/findings/4",
+          "bytes": 3937,
+          "sha256": "4151e7585728e42de0f4d31f77d01e778828cfa08d107787662818d9ba68ecfe"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.sender",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "command 发送器",
+      "summary": "先清caller holder，再按context/transport条件提交；true仅表示本地transport返回。",
+      "aliases": [
+        "send_command",
+        "sender"
+      ],
+      "kind": "function",
+      "rva": "0x14ca210",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=context",
+          "RDX=caller owning command holder"
+        ],
+        "returns": "bool；非执行/接受证明",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "进入时消费caller holder；正常transport对original command另有清理"
+        ],
+        "borrowed": [
+          "context+58 transport与世界"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "false/异常后的完整所有权未知；不得据返回值重试或释放。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/peace/adapter-contract.json",
+          "json_pointer": "/sender",
+          "bytes": 7306,
+          "sha256": "725a20efacced412d0b59580cb07cd3ec296bf1607bb00e7a01ff202af1e57e0"
+        },
+        {
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "json_pointer": "/facts/submit_consumes_container_not_acceptance_ack",
+          "bytes": 215213,
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.transport_submit",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "已证 transport virtual30",
+      "summary": "固定vt1d96178的+30端点；序列化/重新构造队列command，正常路径清理原command。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0x1580370",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "unknown"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "原command正常completion删除；队列使用重解析对象"
+        ],
+        "borrowed": [
+          "transport/recipient队列"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "完整原型 unknown；动态类型、失败、异常与接受语义未闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sender/findings.json",
+          "json_pointer": "/findings/0",
+          "bytes": 3937,
+          "sha256": "4151e7585728e42de0f4d31f77d01e778828cfa08d107787662818d9ba68ecfe"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sender/findings.json",
+          "json_pointer": "/findings/1",
+          "bytes": 3937,
+          "sha256": "4151e7585728e42de0f4d31f77d01e778828cfa08d107787662818d9ba68ecfe"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261014-r3/sender/findings.json",
+          "json_pointer": "/findings/3",
+          "bytes": 3937,
+          "sha256": "4151e7585728e42de0f4d31f77d01e778828cfa08d107787662818d9ba68ecfe"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.war_body_retirement",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "战争 body 清理与全局移除",
+      "summary": "移除全局数组和借用链节点，继续goal/container清理；节点延迟删除不保活war。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0xd85c40",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=完整war；完整原型 unknown"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "war goal/容器按其正常拥有条件清理"
+        ],
+        "borrowed": [
+          "game数组/list、manager borrowers与goal"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "普通accepted-whitepeace最终调用者/时点仍unknown；不能作liveness probe。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "json_pointer": "/facts/3",
+          "bytes": 42730,
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.war_deleting_destructor",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "战争 deleting wrapper",
+      "summary": "调用d85c40，flagbit0决定是否释放0x218 outer。",
+      "aliases": [],
+      "kind": "function",
+      "rva": "0xd85960",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=完整war",
+          "EDX=flagbit0"
+        ],
+        "returns": "unknown",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [],
+      "ownership": {
+        "owned": [
+          "0x218 war及条件拥有图"
+        ],
+        "borrowed": [
+          "完整有效world/goal图"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "外部destructor未授权；不能在调用后沿用旧war pointer。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/observer-contract.json",
+          "json_pointer": "/war",
+          "bytes": 6493,
+          "sha256": "fe9b625139df424544c825d39cc3f8992a4fd7e890515c38f124e9058dada86b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r4/peace/lifecycle/findings.json",
+          "json_pointer": "/facts/3",
+          "bytes": 42730,
+          "sha256": "dbf87f67ea5d882dd8aeb539a4e5d211ae5912c2c4fc9cf9af3550f83632323b"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    },
+    {
+      "id": "shared.wrapper",
+      "actions": [
+        "declare_war",
+        "peace"
+      ],
+      "title": "动作包装为拥有式 command",
+      "summary": "调用action clone+b0，command+50拥有独立clone，并更新clone次日期。",
+      "aliases": [
+        "command_wrapper"
+      ],
+      "kind": "function",
+      "rva": "0x4e9930",
+      "signature": {
+        "status": "partial_static",
+        "parameters": [
+          "RCX=action",
+          "RDX=caller command holder"
+        ],
+        "returns": "caller holder地址",
+        "complete_prototype": "unknown"
+      },
+      "call_sites": [
+        {
+          "rva": "0x130f307",
+          "relationship": "peace GUI直接调用wrapper"
+        },
+        {
+          "rva": "0xedfb96",
+          "relationship": "war GUI virtual40调用"
+        }
+      ],
+      "ownership": {
+        "owned": [
+          "0x58 command与独立action clone"
+        ],
+        "borrowed": [
+          "source action与当前game date"
+        ]
+      },
+      "stage": "static",
+      "stage_scope": "固定二进制的静态合同；没有该端点的实机 API 效果验收。",
+      "unresolved": [
+        "实际外部调用所需身份、寿命与异常边界未全部闭合。"
+      ],
+      "evidence": [
+        {
+          "path": "work/reports/native-peace-gui-send-1375.json",
+          "json_pointer": "/facts/wrapper_clones_whole_owned_offer",
+          "bytes": 215213,
+          "sha256": "1aa1be072578a2c3f21e432ba6c0928ab01d9920d85063060a91512e9a882b64"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261013/war/findings.json",
+          "json_pointer": "/findings/5",
+          "bytes": 9405,
+          "sha256": "5f1bf20c4ee20c0a85ec6ab00e71c3ce915cde7e63f109fa6b3d46d29a5ee2a6"
+        },
+        {
+          "path": "work/reports/war-peace-api-20261015-r5/peace/adapter-contract.json",
+          "json_pointer": "/scope",
+          "bytes": 3116,
+          "sha256": "57342fd3ca1db78605edc41f8bf5c9fc474ef404f5533e8910d3ceca70443204"
+        }
+      ],
+      "callable": false,
+      "native_ready": false,
+      "sender_authorized": false,
+      "gameplay_effect_verified": false,
+      "process_authenticated": false
+    }
+  ]
+}

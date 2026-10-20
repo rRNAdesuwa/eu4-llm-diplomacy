@@ -1,0 +1,232 @@
+{
+  "accounting": {
+    "bytes": 10290,
+    "path": "work/reports/war-peace-api-lookup-v7-source-plan-20261016-r1/read-accounting.json",
+    "sha256": "83eaf6137008ca99aa7dc801693d998a0a38cc953b695b0f084c4fddcf2abc5d"
+  },
+  "authority": {
+    "atomic_snapshot": false,
+    "authorizes_retry": false,
+    "callable": false,
+    "gameplay_effect_verified": false,
+    "native_ready": false,
+    "process_authenticated": false,
+    "selected_effect_verified": false,
+    "sender_authorized": false,
+    "world_lease": false
+  },
+  "blocking_findings": [],
+  "bundle_spec": {
+    "bytes": 7809,
+    "path": "work/reports/war-peace-api-lookup-v7-source-plan-20261016-r1/bundle-spec.json",
+    "sha256": "0ef2a28f4366689a8fa468dd4a7bcbcef2dacb62b0b014c8174d15eac2134c8a"
+  },
+  "critical_schema_facts": [
+    "New bundle must reside under work/reports normalizedrelative JSON path; candidate-local evidence path would be refused.",
+    "Identifier uses onlyletters/underscore: shared.raw_slot_machine; cc220 is alias/RVA, not a digit-containing ID.",
+    "Entries must sort by ID; filter all61 back to old60 and require canonical/value equality on every field.",
+    "All old94 sourcepins remain exact and directly referenced by unchangedoldrows; exactly1derived path added, all95used."
+  ],
+  "engine": {
+    "bytes": 16583,
+    "changed": false,
+    "forked": false,
+    "old_paths_or_files_modified": false,
+    "path": "work/candidates/war-peace-api-lookup-1375-v5/query_engine.py",
+    "sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466"
+  },
+  "entry_count": {
+    "new_cc220": 1,
+    "old60_unchanged": 60,
+    "planned_total": 61
+  },
+  "future_first_queries": [
+    {
+      "expected": "61records/95sources, exit0 offline verification only",
+      "maximum_runs": 1,
+      "operation": "check"
+    },
+    {
+      "expected": "61researchrecords",
+      "maximum_runs": 1,
+      "operation": "catalog"
+    },
+    {
+      "expected": "Oneconditional partial static record; allauthorityfalse",
+      "maximum_runs": 1,
+      "operation": "lookup",
+      "selector": "0xcc220"
+    },
+    {
+      "expected": "Same oldv6 row everyfield; querywrapperprovenance revision7 only",
+      "maximum_runs": 1,
+      "operation": "lookup",
+      "selector": "0x993570"
+    }
+  ],
+  "future_prerequisites_in_order": [
+    "Independent planreview and rootacceptance, without build permission implied.",
+    "Freeze newgenerator/derivation schema/budget/onceclaim and obtain nonauthor sourcepeer.",
+    "Newexact root buildonce grant; build failures preserved with noautomaticrerun.",
+    "Nonauthor fullsource/data/old60 preservation/derivation refs review before querygrant.",
+    "Newroot firstcommands grant: check once, catalog once, lookup0xcc220 once, lookup0x993570 once; ownedJobs collect allchildren, no oldfixtures/tests.",
+    "Nonauthor retainedfirstoutputs/IO audit before mutablepublicstatus or capabilitymap update."
+  ],
+  "future_resource_design": {
+    "derived_bundle_max": 262144,
+    "each_file_cap": 4194304,
+    "engine_graph_perpass_cap": 33554432,
+    "explicit_IO_not_OS_loader_complete": true,
+    "first_four_plus_controller8MiB_upper": 34218732,
+    "first_query_batch_cap": 67108864,
+    "future_build_proposed_retained_cap": 8388608,
+    "future_build_proposed_source_cap": 33554432,
+    "new_data_manifest_max": 32768,
+    "new_index_max": 262144,
+    "old94_selected_JSON_bytes_metadata": 2646835,
+    "old_perpass_bytes_metadata": 2886776,
+    "perpass_upper": 3203891,
+    "perquery_upper_including3engine_reads": 6457531,
+    "software_memory": 805306368,
+    "stop_memory": 1073741824
+  },
+  "minimal_generator_changes": [
+    "Newgenerator innewnamespace; do not run or overwrite oldv6builder or inherit historicalrepair grant.",
+    "Load exactv6 index/data manifests from authorized rawbuffers, deepcopy60rows and94sourcepins; do not append context/evidence to any oldrow.",
+    "Construct reviewedderived snapshot from selected R86/R87 originals/fullpeer/rootacceptance metadata and provenance; publish exclusive newbundle underreports.",
+    "Append one staticpartial row, sort IDs; strict allold60 deep equality and old94 map equality; enforce95sources/61rows/cap96/allrefsused.",
+    "Validate real newbundlepointers against its parsedownedJSON, never fakeoriginalpath/hash; guard originals before/after plus two passes futurequery."
+  ],
+  "new_row_spec": {
+    "bytes": 3146,
+    "path": "work/reports/war-peace-api-lookup-v7-source-plan-20261016-r1/new-row-spec.json",
+    "sha256": "0de4447b0cd1ff7e89a281c10b4e8308cb440da4576cf58ea8949a22dda05db0"
+  },
+  "old_preservation": {
+    "bytes": 30567,
+    "path": "work/reports/war-peace-api-lookup-v7-source-plan-20261016-r1/old-preservation.json",
+    "sha256": "38a6e141494531765843d37d474158d0a4ea2428d68432aadb76e2bd152d02aa"
+  },
+  "old_reference_count": 346,
+  "permissions": {
+    "CLI_queries_executed": false,
+    "PE_decoder_enginebody_process_game_native": false,
+    "build_authorized": false,
+    "bundle_built": false,
+    "runtime_authorized": false,
+    "tests_run": false,
+    "v7_generator_created": false,
+    "v7_index_built": false
+  },
+  "plan_source_pins": {
+    "work/build_lookup_v6_r2_20261016.py": {
+      "bytes": 30958,
+      "sha256": "f904e083850c03a9c1b7e91c298bdd7217c5344dfc3556f4aa13b864799a0f50"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v5/query_engine.py": {
+      "bytes": 16583,
+      "sha256": "ea030ce19461b2e414e0cdbc42f4933551fa9e654f7a7a43db948670b27fa466"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v6/data-manifest.json": {
+      "bytes": 18868,
+      "sha256": "a45e5bda390f83f956e387638607a86509ac1a8a76a966372067accfe38ed778"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v6/index.json": {
+      "bytes": 221073,
+      "sha256": "ad458026ced277c44170ed4ea36773c3c3176a5561a714ad961d713efc525e8f"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v6/publication-manifest.json": {
+      "bytes": 5910,
+      "sha256": "b75c189e30de5ab171e32559d069bc8211cfa65fb48fbce3b229eeb8a68b162c"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v6/source-manifest.json": {
+      "bytes": 25179,
+      "sha256": "9e292ce2c077be0af996bad24ba44dab98ea88566726f88cd36093fc45828765"
+    },
+    "work/candidates/war-peace-api-lookup-1375-v6/war_peace_lookup.py": {
+      "bytes": 3602,
+      "sha256": "7994ff7b4e3454b98f55919e786cd1582b8c320c650e94f01f3c20b078e43c0f"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/findings.json": {
+      "bytes": 5580,
+      "sha256": "550c1edf7beee1ea7e5ae8e85f40c7ef556ede12bb27e2e6a4c8b1e5c2bad726"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/manifest.json": {
+      "bytes": 12748,
+      "sha256": "5af832bd1e1be4d3a4cf7656d51b905f799e5d06215cd75ecb078798656d49dc"
+    },
+    "work/reports/war-peace-api-20261016-r86-actual-independent-review/precision-corrigendum.json": {
+      "bytes": 1713,
+      "sha256": "2c4fab900dd774369a40507a0414fb6a81c2d1cf451505d9b91c5726ebb83304"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/actual-manifest.json": {
+      "bytes": 16602,
+      "sha256": "69e7167005ff08e09ca29e790786f6055512614debecc72f31d3b37d0583df72"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/actual-sealed-r1/contract.json": {
+      "bytes": 5478,
+      "sha256": "ddea250f47187a4b6b47075186a2ca54c09157168b3b2db9d016b3a5b81e5943"
+    },
+    "work/reports/war-peace-api-20261016-r86-cc220-actual-source/source-manifest.json": {
+      "bytes": 22473,
+      "sha256": "74f6c8f8eeeadea9e4216c7b37e2a8034e9fb7967d8dfe7167c7ee1ffd143472"
+    },
+    "work/reports/war-peace-api-20261016-r86-root-actual-acceptance/findings.json": {
+      "bytes": 1102,
+      "sha256": "219391521cb71ca196cf318ed2525680db114ead6a94036f81565724e2342d59"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/findings.json": {
+      "bytes": 12526,
+      "sha256": "dd62d0fb531ecaccc51d4812ad317b92a04bf121580f5be35b8d65d4abd458e0"
+    },
+    "work/reports/war-peace-api-20261016-r87-actual-independent-review/manifest.json": {
+      "bytes": 30861,
+      "sha256": "26997cc636afbe1940b8037fca028d85fd70ac2175e5856fbb6c2d94a2424bfd"
+    },
+    "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/actual-manifest.json": {
+      "bytes": 34662,
+      "sha256": "71e766158fdaf6f80a2dc55bf5c4fb8177bfcfcdaee35f1f7860c1fec0828b0d"
+    },
+    "work/reports/war-peace-api-20261016-r87-dual-frontier-source/actual-sealed-r1/contract.json": {
+      "bytes": 7679,
+      "sha256": "5e114f5c0efd47cbf92279bdf0d638732a40ae3b8a9d0f554d56c51df2304845"
+    },
+    "work/reports/war-peace-api-20261016-r87-dual-frontier-source/source-manifest.json": {
+      "bytes": 26330,
+      "sha256": "e40ccf4eba10b12b7d626f0fc00b1bcdac50972d1a0a35559ba3756b64694817"
+    },
+    "work/reports/war-peace-api-20261016-r87-root-actual-acceptance/findings.json": {
+      "bytes": 1439,
+      "sha256": "c8d6d6512c997855716564e2ab98ae3eca92562fd4469621fdd0956a752c5f0c"
+    },
+    "work/reports/war-peace-api-20261016-r87-root-actual-acceptance/receipt.json": {
+      "bytes": 4384,
+      "sha256": "ce5f62e43a5197e8d7af4cc1671fc37776b209026dd0e74fa78f94a829a850e4"
+    }
+  },
+  "provenance_limits": [
+    "Derivedbundle is a buildtime retainedsnapshot, not originalPE/decoder/runtime evidence or currentoriginalfile revalidation.",
+    "R86/R87 acceptedfullreviews and sourcepins are fixed witnesses, not recursively re-certified here.",
+    "No old94 JSON physicallyopened thisplan; counts/pins/byteestimates come from frozenmanifests.",
+    "Successful currenttruce/support readers are unrelated currentstate and will not be new native entries/effects."
+  ],
+  "roles": {
+    "plan_author": "Val",
+    "prior_roles": "Val authoredR86 independentfull+precision and peer-reviewedR80/R81 andv6; D authoredR87full, War machinecontracts. Rootacceptance and nonauthor R87full are fixedwitnesses; no recursive self-certification."
+  },
+  "schema": "EU4-LOOKUP-V7-SOURCE-PLAN/1",
+  "schema_feasible": true,
+  "sealed": true,
+  "selected_source_count": {
+    "frozen_engine_cap": 96,
+    "new_derived_bundle": 1,
+    "old_preserved": 94,
+    "planned_total": 95
+  },
+  "status": "conditional_source_plan_only",
+  "wrapper_metadata_only": [
+    "Newfixedv7directory/HERE; originalv5engine path and BASE_SHA unchanged.",
+    "Replace DATA_SHA once; tool_revision6to7 twice and help revision6to7 once; allfunctions/classes AST unchanged after metadata normalization.",
+    "No new graph override, runtime/session/HTTP/publisher/OSprocess route."
+  ]
+}

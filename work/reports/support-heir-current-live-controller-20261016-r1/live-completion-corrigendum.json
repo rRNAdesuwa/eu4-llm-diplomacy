@@ -1,0 +1,59 @@
+{
+  "additional_checkers_tests_or_status": 0,
+  "all_shells_collected": true,
+  "append_only": true,
+  "budget": {
+    "author_source_build_upper_witness": 5419256,
+    "combined_is_not_complete_OS_IO": true,
+    "controller_including_seal_returned": 4606571,
+    "manual_and_final_shell_allowance": 262144,
+    "retained_explicit_returned": 3889171,
+    "retained_limit": 8388608,
+    "retained_upper": 4151315,
+    "source_build_plus_controller_plus_retained_upper_excluding_child": 14177142,
+    "this_append_reads_existing_files": false
+  },
+  "does_not_modify_original_artifacts": true,
+  "independent_live_replay_pending": true,
+  "orchestration_failure": {
+    "message": "Cannot read properties of undefined (reading 'then')",
+    "occurred_after_sealer_returned": true,
+    "rerun": false,
+    "source": "functions.exec trailer attempted .then on text() return; the awaited shell had already exited 0",
+    "type": "TypeError"
+  },
+  "runtime_retry": false,
+  "runtime_status_attempts": 1,
+  "schema": "EU4-SUPPORT-HEIR-CURRENT-LIVE-DELIVERY-CORRIGENDUM/1",
+  "sealed": true,
+  "sealer_memory_correction": {
+    "actual_runtime_job_unaffected": true,
+    "effective_peak_commit": null,
+    "effective_private_commit": null,
+    "original_peak_commit": 0,
+    "original_private_commit": 0,
+    "reason": "Self GetProcessMemoryInfo call return value was not checked and ctypes handle prototypes were not declared. Zero counters are unavailable evidence, not measured zero commit; no successful soft-memory sample is claimed for this small retained-only sealer.",
+    "runtime_job_memory_limit": 805306368,
+    "runtime_peak_job_commit": 48107520,
+    "runtime_peak_process_commit": 46833664,
+    "validated": false
+  },
+  "sealer_shell": {
+    "chunk_id": "8c503b",
+    "collected": true,
+    "exit_code": 0,
+    "session_id": null,
+    "wall_time_seconds": 0.3067639
+  },
+  "source_runtime_and_frozen_capture_unchanged": true,
+  "subject_completion": {
+    "bytes": 16575,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion.json",
+    "sha256": "b949815ebc4d15a0db6792006fff759289a5fd70438997e3752bbe958fcada8a"
+  },
+  "subject_delivery": {
+    "bytes": 5356,
+    "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-delivery.json",
+    "sha256": "23901de82b520881b453b028978a47256afb321f22d342403e7528f957cae6a1"
+  }
+}

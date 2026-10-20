@@ -1,0 +1,106 @@
+{
+  "findings": {
+    "bytes": 1810,
+    "path": "work/reports/support-heir-current-root-live-acceptance-20261016-r1/findings.json",
+    "sha256": "7a90696fe7ff99d6709ef0449e304a7b6970b26116da2adc9effe11ab13aea54"
+  },
+  "new_query_PE_engine_game_native_requests_tests": 0,
+  "passed": true,
+  "read_journal": [
+    {
+      "bytes": 5248,
+      "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/findings.json",
+      "sha256": "bd3dc09480322dfbf2461e63015c57ec172d7361b9c305949034419cf479d595"
+    },
+    {
+      "bytes": 17892,
+      "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/manifest.json",
+      "sha256": "be2d26a8304e00415fba4acd1496d1c5e4083da7baa5d882754ad7f384f216b0"
+    },
+    {
+      "bytes": 19829,
+      "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/pincheck.json",
+      "sha256": "74f62e7bda50979e6254bde7f9f064f02f81802db2b23ca01bb01af5f64a51cc"
+    },
+    {
+      "bytes": 2390,
+      "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/completion.json",
+      "sha256": "0b7cf884062f15f550ac1b38149339c94be96a46200d70479bfa8f4e14135dfb"
+    },
+    {
+      "bytes": 34688,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+      "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+    },
+    {
+      "bytes": 422909,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+      "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+    },
+    {
+      "bytes": 16257,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-manifest.json",
+      "sha256": "3d70675a5901635a00efd6415ac93ead4b4dcadc726df1a6f4f065b864bb20f7"
+    },
+    {
+      "bytes": 4573,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/run-authorization.json",
+      "sha256": "102fa82e2ce6da0ae393c53940defe9f265edee7d410766951119dc7aa3a6cde"
+    },
+    {
+      "bytes": 2391,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion-corrigendum.json",
+      "sha256": "e50f7135d51eac5ca000c29eeac0651625cc396f2d837fdb5db0a11b225e3ac6"
+    },
+    {
+      "bytes": 5248,
+      "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/findings.json",
+      "sha256": "bd3dc09480322dfbf2461e63015c57ec172d7361b9c305949034419cf479d595"
+    },
+    {
+      "bytes": 17892,
+      "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/manifest.json",
+      "sha256": "be2d26a8304e00415fba4acd1496d1c5e4083da7baa5d882754ad7f384f216b0"
+    },
+    {
+      "bytes": 19829,
+      "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/pincheck.json",
+      "sha256": "74f62e7bda50979e6254bde7f9f064f02f81802db2b23ca01bb01af5f64a51cc"
+    },
+    {
+      "bytes": 2390,
+      "path": "work/reports/support-heir-current-live-independent-review-20261016-r1/completion.json",
+      "sha256": "0b7cf884062f15f550ac1b38149339c94be96a46200d70479bfa8f4e14135dfb"
+    },
+    {
+      "bytes": 34688,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/actual-manifest.json",
+      "sha256": "83fe5ba2a6aa40eaffabd92f6a64aec4deb76dfc7b29bdfc998e2f4c1e4f94ce"
+    },
+    {
+      "bytes": 422909,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/receipt.json",
+      "sha256": "11a394513bef7b810b9262b5373610207991ecd10cc7e9d9440c2767997b75b3"
+    },
+    {
+      "bytes": 16257,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/source-manifest.json",
+      "sha256": "3d70675a5901635a00efd6415ac93ead4b4dcadc726df1a6f4f065b864bb20f7"
+    },
+    {
+      "bytes": 4573,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/run-authorization.json",
+      "sha256": "102fa82e2ce6da0ae393c53940defe9f265edee7d410766951119dc7aa3a6cde"
+    },
+    {
+      "bytes": 2391,
+      "path": "work/reports/support-heir-current-live-controller-20261016-r1/live-completion-corrigendum.json",
+      "sha256": "e50f7135d51eac5ca000c29eeac0651625cc396f2d837fdb5db0a11b225e3ac6"
+    }
+  ],
+  "schema": "EU4-ROOT-SUPPORT-LIVE-ACCEPTANCE-RECEIPT/1",
+  "sealed": true,
+  "source_before_after_equal": true,
+  "source_cap": 4194304,
+  "source_upper": 1314498
+}

@@ -1,0 +1,38 @@
+{
+  "accepted_entry_count": 7,
+  "authority_added": false,
+  "canonical_and_controller_sources_unchanged": true,
+  "changed_record_indices": [
+    5
+  ],
+  "existing_falseflags_unchanged": true,
+  "new_map": {
+    "bytes": 24391,
+    "path": "docs/runtime-capability-map-1375-v8.json",
+    "sha256": "6ffc1cc14c588f44319b5646c3f5b9b4b727de7f2ba3cf59c3674d4f4d519b41"
+  },
+  "new_sidecar": {
+    "bytes": 2146,
+    "path": "work/candidates/support-heir-current-observer-1375-v1/LIVE_REVIEW_STATUS.md",
+    "sha256": "f3185f07a86839c319fe768dc206e9c35984fe0017fb98a3a4b40f1a30cc276a"
+  },
+  "pending_active_world_reader_count": 0,
+  "previous_map": {
+    "bytes": 17565,
+    "path": "docs/runtime-capability-map-1375-v7.json",
+    "sha256": "137abeb35de8f6040cdcd3c5debe6d20ce91e4a3fdf149bed7b5bab7964591cc"
+  },
+  "schema": "EU4-SUPPORT-V8-DATA-DELTA/1",
+  "sidecar_absent_from_canonical22_and_controller49": true,
+  "support_new_id": "support_heir_current_task_missing_key_path_verified",
+  "support_old_id": "support_heir_current_task_pending_active_world",
+  "unchanged_other_six_dataequal": true,
+  "unchanged_record_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6
+  ]
+}
