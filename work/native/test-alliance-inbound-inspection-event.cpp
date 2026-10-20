@@ -18,7 +18,7 @@ int main() {
     observed.envoy30=7;
     observed.variant38=1;
     observed.proposal3c=15;
-    char event[1600]{};
+    char event[2400]{};
     if (!bridge::alliance_inbound_inspection_event::format(event,sizeof(event),request,observed)) return 2;
     if (!std::strstr(event,"\"action_id\":\"offer_alliance\"")
         || !std::strstr(event,"\"family\":\"alliance\"")
@@ -118,6 +118,35 @@ int main() {
         || std::strstr(event,"\"alliance_before\"")
         || std::strstr(event,"\"native_current_alliance\"")
         || std::strstr(event,"\"support_independence_before\"")) return 12;
+    std::fputs(event,stdout);
+
+    constexpr char favor_wire[]="v1|favor_formatter|1234-abcdef|100000000|56459880|trade_favors_for_gold|SAV|FRA|accept|51\n";
+    if (!bridge::alliance_inbound_response_wire::parse_inspection_request(
+            favor_wire,sizeof(favor_wire)-1,request).ok()) return 19;
+    observed={};
+    observed.favor_gold=true;
+    observed.pending_active=true;
+    observed.decision_country_verified=true;
+    observed.native_validity=true;
+    observed.response_rules_complete=true;
+    observed.favor_context_complete=true;
+    observed.favor_amount_readable=true;
+    observed.favor_amount_raw=10500;
+    observed.favor_cost_raw=2000;
+    observed.favor_favors_available_raw=7000;
+    observed.favor_actor_treasury_raw=50000;
+    observed.favor_recipient_treasury_raw=125000;
+    observed.reason="FAVOR_PROPOSAL_ACTIVE";
+    if (!bridge::alliance_inbound_inspection_event::format(event,sizeof(event),
+            request,observed)) return 20;
+    if (!std::strstr(event,"\"action_id\":\"trade_favors_for_gold\"")
+        || !std::strstr(event,"\"family\":\"favor_trade\"")
+        || !std::strstr(event,"\"favor_trade\":{\"kind\":\"gold\"")
+        || !std::strstr(event,"\"amount_raw\":10500")
+        || !std::strstr(event,"\"favor_cost_raw\":2000")
+        || !std::strstr(event,"\"recipient_treasury_raw\":125000")
+        || !std::strstr(event,"\"complete\":true")
+        || std::strstr(event,"\"alliance_before\"")) return 21;
     std::fputs(event,stdout);
 
     constexpr char peace_wire[]="v1|peace_formatter|1234-abcdef|100000000|56459880|peace_offer|SAV|FRA|accept|52\n";

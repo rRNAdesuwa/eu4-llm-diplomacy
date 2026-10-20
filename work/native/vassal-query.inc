@@ -16,9 +16,14 @@ struct VassalQueryState {
 // starts with its owner pointer; it is not a virtual table. Each 16-byte array
 // item stores the other country's slot at +0 and the association pointer at +8.
 static bool vassal_query_entry(uintptr_t country,uint64_t other,uintptr_t& entry) {
-    uintptr_t rows=0,owner=0,begin=0; uint64_t actual=0; int32_t count=0;
+    uintptr_t database=0,rows=0,owner=0,begin=0;
+    uint32_t country_count=0; uint64_t actual=0; int32_t count=0;
     const unsigned slot=static_cast<unsigned>((other>>32)&0xffffu);
-    if (slot>=256 || !read(country+0x1510,rows) || !rows) return false;
+    // Use the live CountryDB count instead of the legacy 256-slot bridge
+    // bound. The relation-row handle check below remains mandatory.
+    if (!read(base+0x233d8b0,database) || !read(database+0x124,country_count)
+        || country_count>4096 || slot>=country_count
+        || !read(country+0x1510,rows) || !rows) return false;
     const uintptr_t row=rows+static_cast<uintptr_t>(slot)*0x48;
     if (!read(row+0x10,actual) || actual!=other || !read(row,owner) || !owner
         || !read(owner+0x128,begin) || !read(owner+0x134,count)

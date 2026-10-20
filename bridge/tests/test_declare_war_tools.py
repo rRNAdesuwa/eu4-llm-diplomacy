@@ -166,11 +166,14 @@ class DeclareWarToolsTests(unittest.TestCase):
         item = next(item for item in catalog["actions"]
                     if item["action_id"] == "declare_war")
         self.assertEqual("declare_war", item["native_identifier"])
-        self.assertEqual({
-            "casus_belli": {"status": "context_required"},
-            "war_goal": {"status": "context_required"},
-            "call_allies": {"status": "context_required"},
-        }, item["parameter_definitions"])
+        self.assertEqual("required_for_selected",
+                         item["parameter_definitions"]["casus_belli"]["status"])
+        self.assertEqual("required_for_selected",
+                         item["parameter_definitions"]["war_goal"]["status"])
+        self.assertEqual("optional_for_selected",
+                         item["parameter_definitions"]["promise_land_to"]["status"])
+        self.assertEqual("optional_for_selected",
+                         item["parameter_definitions"]["co_belligerents"]["status"])
         self.assertEqual("unimplemented", item["phases"]["initiate"]["execute"])
 
     def test_query_ack_is_top_level_literal_true_only(self):
@@ -373,7 +376,7 @@ class DeclareWarToolsTests(unittest.TestCase):
         self.assertEqual("partial", costs["status"])
         self.assertFalse(costs["complete"])
         self.assertEqual("default_parameters_unselected", costs["context"])
-        self.assertEqual(1, len(costs["items"]))
+        self.assertEqual(2, len(costs["items"]))
         item = costs["items"][0]
         self.assertEqual("stability_loss", item["resource"])
         self.assertEqual(1500, item["native_raw"])
@@ -381,6 +384,12 @@ class DeclareWarToolsTests(unittest.TestCase):
         self.assertEqual(1000, item["scale"])
         self.assertEqual("native_rule", item["source"])
         self.assertEqual(1500, costs["raw_components"]["warex_display_raw"])
+        exhaustion = costs["items"][1]
+        self.assertEqual("war_exhaustion", exhaustion["resource"])
+        self.assertEqual(1.5, exhaustion["amount"])
+        self.assertEqual(1000, exhaustion["scale"])
+        self.assertTrue(exhaustion["unit_verified"])
+        self.assertTrue(exhaustion["scale_verified"])
         self.assertEqual(10000, costs["raw_components"]["primary_raw"])
         self.assertEqual(15000, costs["raw_components"]["secondary_raw"])
         self.assertEqual("WAREX_FROM_STABHIT",
@@ -530,10 +539,11 @@ class DeclareWarToolsTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             session = ObserverSession(self._installation(root, ack=True), root / "eu4.exe")
-            api = DiplomacyTools(self.journal, session)
-            with self.assertRaisesRegex(ValueError, "DECLARE_WAR_CALL_ALLIES_UNSUPPORTED"):
-                api.inspect_diplomatic_action("declare_war", "FRA", "ENG",
-                                              parameters=parameters)
+            result = session.inspect_declare_war(
+                "declare_war", "FRA", "ENG", "initiate", parameters)
+            self.assertEqual(
+                "NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY_MISSING",
+                result["error_code"])
 
     def test_query_capability_gates_dispatch(self):
         with tempfile.TemporaryDirectory() as temporary:

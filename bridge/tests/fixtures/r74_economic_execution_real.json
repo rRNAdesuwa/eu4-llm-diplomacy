@@ -1,0 +1,71 @@
+[
+  {
+    "event": "native_diplomacy_gift_execution_result",
+    "request_id": "r74_d_gift_pap_002",
+    "session_id": "46424-1dd6012c9a2b066",
+    "action_id": "send_gift",
+    "actor": "FRA",
+    "recipient": "PAP",
+    "phase": "initiate",
+    "date_raw": 56556984,
+    "outcome": "accepted",
+    "native_state": 2,
+    "native_variant": 1,
+    "family": "gift",
+    "gift": {
+      "kind": "gift",
+      "before": {
+        "complete": true,
+        "actor_treasury_raw": 126468,
+        "recipient_treasury_raw": 8801
+      },
+      "after": {
+        "complete": true,
+        "actor_treasury_raw": 101468,
+        "recipient_treasury_raw": 33801
+      },
+      "ducats": 25,
+      "amount_raw": 25000,
+      "complete": true,
+      "verified": true
+    },
+    "execution_verified": true,
+    "request_binding_verified": true
+  },
+  {
+    "event": "native_diplomacy_influence_execution_result",
+    "request_id": "r74_d_influence_sav_001",
+    "session_id": "46424-1dd6012c9a2b066",
+    "action_id": "influence_nation",
+    "actor": "FRA",
+    "recipient": "SAV",
+    "phase": "initiate",
+    "date_raw": 56556984,
+    "outcome": "accepted",
+    "native_state": 2,
+    "native_variant": 1,
+    "family": "influence",
+    "influence": {
+      "kind": "influence",
+      "before": {
+        "complete": true,
+        "actor_treasury_raw": 101468,
+        "recipient_trust_raw": 50,
+        "influencer_active": false
+      },
+      "after": {
+        "complete": true,
+        "actor_treasury_raw": 41468,
+        "recipient_trust_raw": 55,
+        "influencer_active": true
+      },
+      "cost_raw": 60000,
+      "opinion_raw": 25,
+      "duration_months": 120,
+      "complete": true,
+      "verified": true
+    },
+    "execution_verified": true,
+    "request_binding_verified": true
+  }
+]

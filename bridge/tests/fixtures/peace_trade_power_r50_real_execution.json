@@ -1,0 +1,970 @@
+{
+  "fixture_version": 1,
+  "description": "Portable replay of the real R50 A outbound transfer_trade_power submission and rejected execution, the real C inbound pending and accept/reject inspections, and the real D reject/E accept inbound executions.",
+  "sources": {
+    "a": {
+      "runtime_artifact": "work/runtime/diplomacy-query-20261017-r50-peace-a-trade-power",
+      "execution_artifact": "work/runtime/diplomacy-query-20261017-r50-peace-a-trade-power/trade-power-offer-execution-001",
+      "report_path": "work/runtime/diplomacy-query-20261017-r50-peace-a-trade-power/trade-power-offer-execution-001/report.json",
+      "report_size": 62645,
+      "report_sha256": "41b63d38f37bbe0221868e62f0b26a13690c39aedca6a43c8aaae4a5827d297f",
+      "native_events_path": "work/runtime/diplomacy-query-20261017-r50-peace-a-trade-power/trade-power-offer-execution-001/report-evidence/native-events-slice.jsonl",
+      "native_events_size": 180599,
+      "native_events_sha256": "9f904258183006240ef55fa1016a978962a5b5c55d633f704a1e63810296abb2",
+      "native_event_slice_start_offset": 988476,
+      "native_event_slice_end_offset": 1169075,
+      "selected_inspection_path": "work/runtime/diplomacy-query-20261017-r50-peace-a-trade-power/trade-power-offer-execution-001/report-evidence/selected-inspection.json",
+      "selected_inspection_size": 15528,
+      "selected_inspection_sha256": "74c333fd70ed86200eecb19d0aaafa45a246f8853b60bfa90e512a799190b9d7",
+      "installation_path": "work/runtime/diplomacy-query-20261017-r50-peace-a-trade-power/installation.json",
+      "installation_size": 6193,
+      "installation_sha256": "9748a981294faed2063c81cd423f7bd602cb9779a85c6a85e56f32b39e1530ad",
+      "build_manifest_path": "work/runtime/diplomacy-query-20261017-r50-peace-a-trade-power/build-manifest.json",
+      "build_manifest_size": 10487,
+      "build_manifest_sha256": "f4a6fa8d08cffd56f234b7d168e3d2c3d71377a8eb388c9ae0a9d189db354595",
+      "build_manifest_dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "installation_dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "experiment_id": "diplomacy-query-20261017-r50-peace-a-trade-power",
+      "session_id": "32456-1dd5e4d5da576e7",
+      "pid": 32456,
+      "event_line_sha256_scope": "UTF-8 JSONL line without trailing newline"
+    },
+    "c": {
+      "runtime_artifact": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power",
+      "query_artifact": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/inbound-trade-power-query-001",
+      "list_result_path": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/inbound-trade-power-query-001/list-result.json",
+      "list_result_size": 72259,
+      "list_result_sha256": "bb9b7e720dbe90fece1d376d76744aa3283d58e6da81608223180c4996196cfc",
+      "native_events_path": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/inbound-trade-power-query-001/native-events-slice.jsonl",
+      "native_events_size": 12552,
+      "native_events_sha256": "c294d72a623a1828f87a8ab23300070366a2a0bd73bbd7fcf478e42bc33f7168",
+      "accept_result_path": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/inbound-trade-power-query-001/accept-result.json",
+      "accept_result_size": 5111,
+      "accept_result_sha256": "7802306f85aaf395e85dd937d0161c0b4b0e4c4b88a8a9967e93f2412c2c35ce",
+      "reject_result_path": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/inbound-trade-power-query-001/reject-result.json",
+      "reject_result_size": 5111,
+      "reject_result_sha256": "94be13961634d49200f39421cc13df91c1fbc0133022852ff81458f32acada25",
+      "installation_path": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/installation.json",
+      "installation_size": 25143,
+      "installation_sha256": "e940b73f43122a323918036b1e20f4280373772ac70597e62c1f09a463f56648",
+      "build_manifest_path": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/build-manifest.json",
+      "build_manifest_size": 10875,
+      "build_manifest_sha256": "5d4eda6a3866be26c4cc137253eb6b4d88e7415e4ce8ad5aed47bdd77b89e877",
+      "build_manifest_dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "installation_dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "experiment_id": "diplomacy-query-20261018-r50-peace-c-inbound-trade-power",
+      "session_id": "32960-1dd5ece5caffb10",
+      "pid": 32960,
+      "event_line_sha256_scope": "UTF-8 JSONL line without trailing newline"
+    },
+    "d": {
+      "runtime_artifact": "work/runtime/diplomacy-query-20261018-r50-peace-d-inbound-trade-reject",
+      "execution_artifact": "work/runtime/diplomacy-query-20261018-r50-peace-d-inbound-trade-reject/inbound-trade-power-reject-001",
+      "report_path": "work/runtime/diplomacy-query-20261018-r50-peace-d-inbound-trade-reject/inbound-trade-power-reject-001/report.json",
+      "report_size": 47874,
+      "report_sha256": "efa2bf1e70222fc2df42e2b16e17ced65915292cd161297ed59579ac3547a7be",
+      "native_events_path": "work/runtime/diplomacy-query-20261018-r50-peace-d-inbound-trade-reject/inbound-trade-power-reject-001/report-evidence/native-events-slice.jsonl",
+      "native_events_size": 47730,
+      "native_events_sha256": "280981ecc0a4c958fdd6326b46e90c6c1ca231f562539e62640067a32bacef61",
+      "build_manifest_path": "work/runtime/diplomacy-query-20261018-r50-peace-d-inbound-trade-reject/build-manifest.json",
+      "build_manifest_size": 10877,
+      "build_manifest_sha256": "d54076b56a8fce5f744d36a80269347deca460744bc8d67e765f2490296d9b7b",
+      "installation_path": "work/runtime/diplomacy-query-20261018-r50-peace-d-inbound-trade-reject/installation.json",
+      "installation_size": 38273,
+      "installation_sha256": "e8d189f1f506cde3f9f9e33050d7f57ff651d5bf45079be827d8d47f3cd6340a",
+      "build_manifest_dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "installation_dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "experiment_id": "diplomacy-query-20261018-r50-peace-d-inbound-trade-reject",
+      "session_id": "11420-1dd5ecf75617207",
+      "pid": 11420,
+      "save_observer_report_path": "work/runtime/diplomacy-query-20261018-r50-peace-d-inbound-trade-reject/save-observer-report-1792307500982713100.json",
+      "save_observer_report_size": 75490,
+      "save_observer_report_sha256": "644d23cb22c6824d20c3aee2aa31f544f791a52409a36ec3450777a29afa702d",
+      "event_line_sha256_scope": "UTF-8 JSONL line without trailing newline"
+    },
+    "e": {
+      "runtime_artifact": "work/runtime/diplomacy-query-20261018-r50-peace-e-inbound-trade-accept",
+      "execution_artifact": "work/runtime/diplomacy-query-20261018-r50-peace-e-inbound-trade-accept/inbound-trade-power-accept-001",
+      "report_path": "work/runtime/diplomacy-query-20261018-r50-peace-e-inbound-trade-accept/inbound-trade-power-accept-001/report.json",
+      "report_size": 48047,
+      "report_sha256": "377f47576cf9b5bda00795d7b26c7c5509804dde0a2a2a17424467010b34d629",
+      "native_events_path": "work/runtime/diplomacy-query-20261018-r50-peace-e-inbound-trade-accept/inbound-trade-power-accept-001/report-evidence/native-events-slice.jsonl",
+      "native_events_size": 47499,
+      "native_events_sha256": "94ddd69b28afda89ae315b4d1a99e42c4c4525534f8ba1077dd1a218fe2799b7",
+      "build_manifest_path": "work/runtime/diplomacy-query-20261018-r50-peace-e-inbound-trade-accept/build-manifest.json",
+      "build_manifest_size": 10877,
+      "build_manifest_sha256": "63063db68baabd6b43a578bf59e01eedfcaf0f6499977e8f4c1c9ab6248428bf",
+      "installation_path": "work/runtime/diplomacy-query-20261018-r50-peace-e-inbound-trade-accept/installation.json",
+      "installation_size": 18730,
+      "installation_sha256": "c178b0ff18c42a165e88289c30f61c271895fc48bb69911e8cef49aff5987263",
+      "build_manifest_dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "installation_dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "dll_sha256": "dd3338bb193531d369596a87dc87881824834c15e317e3eff467fd283b0f8a54",
+      "experiment_id": "diplomacy-query-20261018-r50-peace-e-inbound-trade-accept",
+      "session_id": "32524-1dd5ed000d60df1",
+      "pid": 32524,
+      "save_observer_report_path": "work/runtime/diplomacy-query-20261018-r50-peace-e-inbound-trade-accept/save-observer-report-1792307636512785200.json",
+      "save_observer_report_size": 76136,
+      "save_observer_report_sha256": "eccaada03b24ef9c2e9c03019062309493ef6b11cebd32181975c543fa24414c",
+      "event_line_sha256_scope": "UTF-8 JSONL line without trailing newline"
+    }
+  },
+  "request": {
+    "request_id": "r50a_offer_eng_trade_power_001",
+    "session_id": "32456-1dd5e4d5da576e7",
+    "action_id": "transfer_trade_power",
+    "actor": "FRA",
+    "recipient": "ENG",
+    "phase": "initiate",
+    "date_raw": 56548944,
+    "parameters": {
+      "peace_context": {
+        "direction": "offer",
+        "terms": [
+          {
+            "action_id": "transfer_trade_power",
+            "beneficiary": "ENG",
+            "source": "FRA"
+          }
+        ],
+        "war_id": "war_b629b38fbd44ae0f_00000001"
+      }
+    }
+  },
+  "submission_event": {
+    "source_line": 206,
+    "source_byte_start": 113351,
+    "source_byte_end": 113956,
+    "source_line_sha256": "585c21b9111308ce8ee3c8a280849a4053722437ff03839f4ca4cbcba901adbc",
+    "event": {
+      "event": "native_peace_submission_result",
+      "family": "peace",
+      "session_id": "32456-1dd5e4d5da576e7",
+      "request_id": "r50a_offer_eng_trade_power_001",
+      "action_id": "transfer_trade_power",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56548944,
+      "war_id": "war_b629b38fbd44ae0f_00000001",
+      "direction": "offer",
+      "amount_raw": -1,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "t",
+      "trade_power_source": "FRA",
+      "trade_power_beneficiary": "ENG",
+      "submitted": true,
+      "transport_verified": true,
+      "request_binding_verified": true,
+      "reason": "NATIVE_ENTRY_VERIFIED",
+      "native_origin": 65535,
+      "native_flags": 0,
+      "native_sequence": 16
+    }
+  },
+  "execution_event": {
+    "source_line": 252,
+    "source_byte_start": 167213,
+    "source_byte_end": 168166,
+    "source_line_sha256": "fc7dcb43649a0267cba582313b9a637eda1f1633c6ef11f2e2fd08e5e2b42d28",
+    "event": {
+      "event": "native_peace_execution_result",
+      "family": "peace",
+      "session_id": "32456-1dd5e4d5da576e7",
+      "request_id": "r50a_offer_eng_trade_power_001",
+      "action_id": "transfer_trade_power",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56548944,
+      "war_id": "war_b629b38fbd44ae0f_00000001",
+      "direction": "offer",
+      "amount_raw": -1,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "t",
+      "trade_power_source": "FRA",
+      "trade_power_beneficiary": "ENG",
+      "native_state": 1,
+      "outcome": "rejected",
+      "war_before": true,
+      "war_after": true,
+      "response_verified": true,
+      "request_binding_verified": true,
+      "execution_verified": false,
+      "terms_verified": false,
+      "effects": {
+        "complete": true,
+        "date_unchanged": true,
+        "currency_scale": 1000,
+        "money": null,
+        "provinces": [],
+        "war_reparations": null,
+        "transfer_trade_power": {
+          "source": "FRA",
+          "beneficiary": "ENG",
+          "present_before": false,
+          "present_after": false,
+          "start_date_raw": 0,
+          "end_date_raw": 0,
+          "amount_raw": 0,
+          "amount_scale": 1000,
+          "peace_treaty": false,
+          "verified": false
+        }
+      }
+    }
+  },
+  "public_submission": {
+    "event": "native_peace_submission_result",
+    "request_id": "r50a_offer_eng_trade_power_001",
+    "action_id": "transfer_trade_power",
+    "family": "peace",
+    "actor": "FRA",
+    "recipient": "ENG",
+    "phase": "initiate",
+    "date_raw": 56548944,
+    "war_id": "war_b629b38fbd44ae0f_00000001",
+    "direction": "offer",
+    "amount_raw": -1,
+    "province_ids": [],
+    "beneficiary": null,
+    "term_mask": "t",
+    "trade_power_source": "FRA",
+    "trade_power_beneficiary": "ENG",
+    "submitted": true,
+    "transport_verified": true,
+    "request_binding_verified": true
+  },
+  "public_result": {
+    "event": "native_peace_execution_result",
+    "request_id": "r50a_offer_eng_trade_power_001",
+    "action_id": "transfer_trade_power",
+    "family": "peace",
+    "actor": "FRA",
+    "recipient": "ENG",
+    "phase": "initiate",
+    "date_raw": 56548944,
+    "war_id": "war_b629b38fbd44ae0f_00000001",
+    "direction": "offer",
+    "amount_raw": -1,
+    "province_ids": [],
+    "beneficiary": null,
+    "term_mask": "t",
+    "trade_power_source": "FRA",
+    "trade_power_beneficiary": "ENG",
+    "native_state": 1,
+    "outcome": "rejected",
+    "response_verified": true,
+    "request_binding_verified": true,
+    "execution_verified": false,
+    "terms_verified": false,
+    "war_before": true,
+    "war_after": true,
+    "native_outcome": "rejected",
+    "effects": {
+      "complete": true,
+      "date_unchanged": true,
+      "currency_scale": 1000,
+      "money": null,
+      "war_reparations": null,
+      "transfer_trade_power": {
+        "source": "FRA",
+        "beneficiary": "ENG",
+        "present_before": false,
+        "present_after": false,
+        "start_date_raw": 0,
+        "end_date_raw": 0,
+        "amount_raw": 0,
+        "amount_scale": 1000,
+        "peace_treaty": false,
+        "verified": false
+      },
+      "provinces": []
+    }
+  },
+  "report_contract": {
+    "status": "passed",
+    "business_submission": true,
+    "business_submission_count": 1,
+    "business_transport_submitted": true,
+    "submission_status": "rejected",
+    "game_outcome": "rejected",
+    "native_result_contract_all": true,
+    "effects_contract_all": true,
+    "public_query_has_no_private_identifiers": true
+  },
+  "inbound_pending": {
+    "source_ref": "c.list_result_path",
+    "proposal": {
+      "proposal_id": "96f70795ca9c8fb57a42102c8c1b2166",
+      "action_id": "peace_offer",
+      "family": "peace",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "decision_country": "FRA",
+      "phase": "initiate",
+      "observer_status": "observed_pending",
+      "currently_pending": null,
+      "legality": {
+        "status": "unknown",
+        "complete": false
+      },
+      "legality_status": "unknown",
+      "execute": {
+        "accept": "native_inbound_response",
+        "reject": "native_inbound_response"
+      }
+    }
+  },
+  "inbound_inspections": [
+    {
+      "name": "accept_inspection",
+      "source_line": 3,
+      "source_byte_start": 236,
+      "source_byte_end": 1325,
+      "source_line_sha256": "1ebe104c3724c8d431a14d7583c0094111f07d7ea1c3ea3225297cdde084a2bb",
+      "event": {
+        "event": "native_alliance_inbound_inspection",
+        "query_id": "inbound_inspect_2d920562260f4321bc00837c87fad168",
+        "session_id": "32960-1dd5ece5caffb10",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "extra60": 0,
+        "actor": "ENG",
+        "mirror": "ENG",
+        "recipient": "FRA",
+        "phase": "accept",
+        "native_proposal_id": 1,
+        "date_raw": 56545056,
+        "pending_active": true,
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "native_validity": true,
+        "response_rules_complete": true,
+        "war_active": true,
+        "war_readable": true,
+        "war_before": true,
+        "native_current_war": true,
+        "native_current_war_readable": true,
+        "peace_payload_complete": true,
+        "selected_terms_complete": true,
+        "term_count": 83,
+        "selected_term_count": 2,
+        "peace_context": {
+          "war_id": "war_24c6cccde9507ba4_00000001",
+          "direction": "demand",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "FRA",
+              "beneficiary": "ENG"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "reason": "none"
+        },
+        "date28": 56545056,
+        "date2c": 56545056,
+        "envoy30": 2,
+        "state34": 0,
+        "variant38": 1,
+        "token3c": 199,
+        "requested_decision": "accept",
+        "reason": "none"
+      }
+    },
+    {
+      "name": "reject_inspection",
+      "source_line": 7,
+      "source_byte_start": 6394,
+      "source_byte_end": 7483,
+      "source_line_sha256": "37e4044ee8439d3bb65891b100016166db14d25b0b9876c046ac4da715ecec30",
+      "event": {
+        "event": "native_alliance_inbound_inspection",
+        "query_id": "inbound_inspect_220fd8bb3a314f3fa6bafba68c52c855",
+        "session_id": "32960-1dd5ece5caffb10",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "extra60": 0,
+        "actor": "ENG",
+        "mirror": "ENG",
+        "recipient": "FRA",
+        "phase": "reject",
+        "native_proposal_id": 1,
+        "date_raw": 56545056,
+        "pending_active": true,
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "native_validity": true,
+        "response_rules_complete": true,
+        "war_active": true,
+        "war_readable": true,
+        "war_before": true,
+        "native_current_war": true,
+        "native_current_war_readable": true,
+        "peace_payload_complete": true,
+        "selected_terms_complete": true,
+        "term_count": 83,
+        "selected_term_count": 2,
+        "peace_context": {
+          "war_id": "war_24c6cccde9507ba4_00000001",
+          "direction": "demand",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "FRA",
+              "beneficiary": "ENG"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "reason": "none"
+        },
+        "date28": 56545056,
+        "date2c": 56545056,
+        "envoy30": 2,
+        "state34": 0,
+        "variant38": 1,
+        "token3c": 199,
+        "requested_decision": "reject",
+        "reason": "none"
+      }
+    }
+  ],
+  "inbound_public_results": {
+    "accept": {
+      "path": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/inbound-trade-power-query-001/accept-result.json",
+      "size": 5111,
+      "sha256": "7802306f85aaf395e85dd937d0161c0b4b0e4c4b88a8a9967e93f2412c2c35ce",
+      "phase": "accept",
+      "legality_status": "available",
+      "authorization_status": "available",
+      "requested_parameters": {
+        "proposal_id": "96f70795ca9c8fb57a42102c8c1b2166"
+      },
+      "actual_parameter_keys": [
+        "decision_country",
+        "original_actor",
+        "original_recipient",
+        "peace_context",
+        "proposal_id"
+      ],
+      "parameters_complete": false,
+      "replay_parameters_complete": true,
+      "actual_context_complete": true,
+      "actual_selected_terms_complete": true,
+      "peace_context": {
+        "war_id": "war_24c6cccde9507ba4_00000001",
+        "direction": "demand",
+        "original_actor": "ENG",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "transfer_trade_power",
+            "source": "FRA",
+            "beneficiary": "ENG"
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      }
+    },
+    "reject": {
+      "path": "work/runtime/diplomacy-query-20261018-r50-peace-c-inbound-trade-power/inbound-trade-power-query-001/reject-result.json",
+      "size": 5111,
+      "sha256": "94be13961634d49200f39421cc13df91c1fbc0133022852ff81458f32acada25",
+      "phase": "reject",
+      "legality_status": "available",
+      "authorization_status": "available",
+      "requested_parameters": {
+        "proposal_id": "96f70795ca9c8fb57a42102c8c1b2166"
+      },
+      "actual_parameter_keys": [
+        "decision_country",
+        "original_actor",
+        "original_recipient",
+        "peace_context",
+        "proposal_id"
+      ],
+      "parameters_complete": false,
+      "replay_parameters_complete": true,
+      "actual_context_complete": true,
+      "actual_selected_terms_complete": true,
+      "peace_context": {
+        "war_id": "war_24c6cccde9507ba4_00000001",
+        "direction": "demand",
+        "original_actor": "ENG",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "transfer_trade_power",
+            "source": "FRA",
+            "beneficiary": "ENG"
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      }
+    }
+  },
+  "inbound_executions": {
+    "d_reject": {
+      "source": "d",
+      "phase": "reject",
+      "request_id": "r50d_reject_eng_trade_power_001",
+      "proposal_id": "5b1c85687fa0a2d5703412380907e03b",
+      "native_proposal_id": 1,
+      "submission_event": {
+        "source_line": 25,
+        "source_line_sha256": "5020de36d060660093b2dc5ef7e98ee4274ff81cc07ddf4dceb49e5a6854ab50",
+        "event": {
+          "event": "native_peace_inbound_submission_result",
+          "family": "peace",
+          "session_id": "11420-1dd5ecf75617207",
+          "request_id": "r50d_reject_eng_trade_power_001",
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "reject",
+          "date_raw": 56545080,
+          "submitted": true,
+          "transport_verified": true,
+          "request_binding_verified": true
+        }
+      },
+      "response_event": {
+        "source_line": 36,
+        "source_line_sha256": "5ed923fff36f9adf7b50733ac6807616026624dc90faf4a05bdbaab1afb1d0f4",
+        "event": {
+          "event": "native_peace_inbound_response_result",
+          "family": "peace",
+          "session_id": "11420-1dd5ecf75617207",
+          "request_id": "r50d_reject_eng_trade_power_001",
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "reject",
+          "date_raw": 56545080,
+          "native_state": 1,
+          "outcome": "rejected",
+          "war_before": true,
+          "war_after": true,
+          "war_state_verified": true,
+          "response_verified": true,
+          "request_binding_verified": true,
+          "execution_verified": true,
+          "pending_removed": true,
+          "terms_verified": false,
+          "peace_context": {
+            "war_id": "war_a0a28ba144c2d7e6_00000001",
+            "direction": "demand",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "transfer_trade_power",
+                "source": "FRA",
+                "beneficiary": "ENG"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "effects": {
+            "complete": true,
+            "date_unchanged": true,
+            "currency_scale": 1000,
+            "money": null,
+            "provinces": [],
+            "war_reparations": null,
+            "transfer_trade_power": {
+              "source": "FRA",
+              "beneficiary": "ENG",
+              "present_before": false,
+              "present_after": false,
+              "start_date_raw": 0,
+              "end_date_raw": 0,
+              "amount_raw": 0,
+              "amount_scale": 1000,
+              "peace_treaty": false,
+              "verified": false
+            }
+          }
+        }
+      },
+      "public_submission": {
+        "event": "native_peace_inbound_submission_result",
+        "request_id": "r50d_reject_eng_trade_power_001",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "reject",
+        "date_raw": 56545080,
+        "submitted": true,
+        "transport_verified": true,
+        "request_binding_verified": true
+      },
+      "public_result": {
+        "event": "native_peace_inbound_response_result",
+        "request_id": "r50d_reject_eng_trade_power_001",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "reject",
+        "date_raw": 56545080,
+        "native_state": 1,
+        "native_outcome": "rejected",
+        "response_verified": true,
+        "request_binding_verified": true,
+        "pending_removed": true,
+        "war_before": true,
+        "war_after": true,
+        "war_state_verified": true,
+        "terms_verified": false,
+        "peace_context": {
+          "war_id": "war_a0a28ba144c2d7e6_00000001",
+          "direction": "demand",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "FRA",
+              "beneficiary": "ENG"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "reason": "none"
+        },
+        "effects": {
+          "complete": true,
+          "date_unchanged": true,
+          "currency_scale": 1000,
+          "money": null,
+          "war_reparations": null,
+          "transfer_trade_power": {
+            "source": "FRA",
+            "beneficiary": "ENG",
+            "present_before": false,
+            "present_after": false,
+            "start_date_raw": 0,
+            "end_date_raw": 0,
+            "amount_raw": 0,
+            "amount_scale": 1000,
+            "peace_treaty": false,
+            "verified": false
+          },
+          "provinces": []
+        }
+      },
+      "inspection_projection": {
+        "parameters_complete": true,
+        "requested_parameters": {
+          "proposal_id": "5b1c85687fa0a2d5703412380907e03b"
+        },
+        "actual_parameter_keys": [
+          "decision_country",
+          "original_actor",
+          "original_recipient",
+          "peace_context",
+          "proposal_id"
+        ],
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "legality_status": "available",
+        "pending_active": true,
+        "peace_context_complete": true,
+        "selected_terms_complete": true
+      },
+      "save_evidence": {
+        "path": "C:/Users/wangyufei/Documents/Paradox Interactive/Europa Universalis IV/save games/llm_diplomacy_peace_trade_power_inbound_rejected_20261018_r50d.eu4",
+        "sha256": "c4f640399c06393e25956b5b034dccd5407b5c96a493cfd195889ce2baae8f18",
+        "file_size": 42776216,
+        "date": "1454.12.2"
+      },
+      "report_contract": {
+        "status": "passed",
+        "decision": "reject",
+        "execute_call_count": 1,
+        "request_publish_count": 1,
+        "checks": {
+          "after_four_probes_complete": true,
+          "before_four_probes_complete": true,
+          "decision_outcome": true,
+          "execute_once": true,
+          "inspection_contract": true,
+          "native_event_slice_complete": true,
+          "native_full_payload": true,
+          "native_handler_consumed": true,
+          "native_handler_forwarded": true,
+          "native_response_contract": true,
+          "native_response_verified": true,
+          "peace_context_contract": true,
+          "pending_removed": true,
+          "poll_same_request": true,
+          "por_paused_same_date": true,
+          "public_pending_catalog_read": true,
+          "request_bound": true,
+          "request_id_unique": true,
+          "result_effect_contract": true,
+          "war_after": true,
+          "war_before": true,
+          "war_state_transition": true
+        },
+        "native_state": 1,
+        "outcome": "rejected",
+        "pending_removed": true,
+        "war_before": true,
+        "war_after": true,
+        "terms_verified": false
+      }
+    },
+    "e_accept": {
+      "source": "e",
+      "phase": "accept",
+      "request_id": "r50e_accept_eng_trade_power_001",
+      "proposal_id": "11cdc40ea958d70c08b355180ee4925c",
+      "native_proposal_id": 1,
+      "submission_event": {
+        "source_line": 23,
+        "source_line_sha256": "ce2ac721c662e0fbb9fbaac7a9e50e2ec08c1aea1811ad9318187ff1cc7a4953",
+        "event": {
+          "event": "native_peace_inbound_submission_result",
+          "family": "peace",
+          "session_id": "32524-1dd5ed000d60df1",
+          "request_id": "r50e_accept_eng_trade_power_001",
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "accept",
+          "date_raw": 56545080,
+          "submitted": true,
+          "transport_verified": true,
+          "request_binding_verified": true
+        }
+      },
+      "response_event": {
+        "source_line": 34,
+        "source_line_sha256": "23e6418251b678bb18dd1f00e9332280f516e6fb1c92aeb05050f1729129f444",
+        "event": {
+          "event": "native_peace_inbound_response_result",
+          "family": "peace",
+          "session_id": "32524-1dd5ed000d60df1",
+          "request_id": "r50e_accept_eng_trade_power_001",
+          "action_id": "peace_offer",
+          "actor": "ENG",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "accept",
+          "date_raw": 56545080,
+          "native_state": 2,
+          "outcome": "accepted",
+          "war_before": true,
+          "war_after": false,
+          "war_state_verified": true,
+          "response_verified": true,
+          "request_binding_verified": true,
+          "execution_verified": true,
+          "pending_removed": true,
+          "terms_verified": true,
+          "peace_context": {
+            "war_id": "war_f529c700826d3f6f_00000001",
+            "direction": "demand",
+            "original_actor": "ENG",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "transfer_trade_power",
+                "source": "FRA",
+                "beneficiary": "ENG"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "effects": {
+            "complete": true,
+            "date_unchanged": true,
+            "currency_scale": 1000,
+            "money": null,
+            "provinces": [],
+            "war_reparations": null,
+            "transfer_trade_power": {
+              "source": "FRA",
+              "beneficiary": "ENG",
+              "present_before": false,
+              "present_after": true,
+              "start_date_raw": 56545080,
+              "end_date_raw": 43808760,
+              "amount_raw": 500,
+              "amount_scale": 1000,
+              "peace_treaty": true,
+              "verified": true
+            }
+          }
+        }
+      },
+      "public_submission": {
+        "event": "native_peace_inbound_submission_result",
+        "request_id": "r50e_accept_eng_trade_power_001",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "accept",
+        "date_raw": 56545080,
+        "submitted": true,
+        "transport_verified": true,
+        "request_binding_verified": true
+      },
+      "public_result": {
+        "event": "native_peace_inbound_response_result",
+        "request_id": "r50e_accept_eng_trade_power_001",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "accept",
+        "date_raw": 56545080,
+        "native_state": 2,
+        "native_outcome": "accepted",
+        "response_verified": true,
+        "request_binding_verified": true,
+        "pending_removed": true,
+        "war_before": true,
+        "war_after": false,
+        "war_state_verified": true,
+        "terms_verified": true,
+        "peace_context": {
+          "war_id": "war_f529c700826d3f6f_00000001",
+          "direction": "demand",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "transfer_trade_power",
+              "source": "FRA",
+              "beneficiary": "ENG"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "reason": "none"
+        },
+        "effects": {
+          "complete": true,
+          "date_unchanged": true,
+          "currency_scale": 1000,
+          "money": null,
+          "war_reparations": null,
+          "transfer_trade_power": {
+            "source": "FRA",
+            "beneficiary": "ENG",
+            "present_before": false,
+            "present_after": true,
+            "start_date_raw": 56545080,
+            "end_date_raw": 43808760,
+            "amount_raw": 500,
+            "amount_scale": 1000,
+            "peace_treaty": true,
+            "verified": true
+          },
+          "provinces": []
+        }
+      },
+      "inspection_projection": {
+        "parameters_complete": true,
+        "requested_parameters": {
+          "proposal_id": "11cdc40ea958d70c08b355180ee4925c"
+        },
+        "actual_parameter_keys": [
+          "decision_country",
+          "original_actor",
+          "original_recipient",
+          "peace_context",
+          "proposal_id"
+        ],
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "legality_status": "available",
+        "pending_active": true,
+        "peace_context_complete": true,
+        "selected_terms_complete": true
+      },
+      "save_evidence": {
+        "path": "C:/Users/wangyufei/Documents/Paradox Interactive/Europa Universalis IV/save games/llm_diplomacy_peace_trade_power_inbound_accepted_20261018_r50e.eu4",
+        "sha256": "0c86fd537390ba717f658b4d5ec66499c1d7d71be134466a8f6948c686f389f8",
+        "file_size": 42783708,
+        "date": "1454.12.2"
+      },
+      "report_contract": {
+        "status": "passed",
+        "decision": "accept",
+        "execute_call_count": 1,
+        "request_publish_count": 1,
+        "checks": {
+          "after_four_probes_complete": true,
+          "before_four_probes_complete": true,
+          "decision_outcome": true,
+          "execute_once": true,
+          "inspection_contract": true,
+          "native_event_slice_complete": true,
+          "native_full_payload": true,
+          "native_handler_consumed": true,
+          "native_handler_forwarded": true,
+          "native_response_contract": true,
+          "native_response_verified": true,
+          "peace_context_contract": true,
+          "pending_removed": true,
+          "poll_same_request": true,
+          "por_paused_same_date": true,
+          "public_pending_catalog_read": true,
+          "request_bound": true,
+          "request_id_unique": true,
+          "result_effect_contract": true,
+          "war_after": true,
+          "war_before": true,
+          "war_state_transition": true
+        },
+        "native_state": 2,
+        "outcome": "accepted",
+        "pending_removed": true,
+        "war_before": true,
+        "war_after": false,
+        "terms_verified": true
+      }
+    }
+  }
+}

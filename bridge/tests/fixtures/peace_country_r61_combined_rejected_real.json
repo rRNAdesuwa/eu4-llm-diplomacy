@@ -1,0 +1,326 @@
+{
+  "schema": "peace_country_r61_combined_rejected_real_v1",
+  "description": "Bounded replay of the real R61 combined country-term outbound receipt and delayed native rejection. No execute call is made by the test.",
+  "request": {
+    "request_id": "r61_country_combined_20261019_001_outbound",
+    "session_id": "11252-1dd5f87ff03288a",
+    "experiment_id": "diplomacy-query-20261019-r61-country-c",
+    "action_id": "release_nation",
+    "actor": "FRA",
+    "recipient": "ENG",
+    "phase": "initiate",
+    "parameters": {
+      "peace_context": {
+        "direction": "demand",
+        "terms": [
+          {
+            "action_id": "release_nation",
+            "country": "FLY",
+            "source": "ENG"
+          },
+          {
+            "action_id": "full_annexation",
+            "beneficiary": "FRA",
+            "country": "TYR"
+          }
+        ],
+        "war_id": "war_101ec4511cc0b0ef_00000001"
+      }
+    }
+  },
+  "sources": {
+    "events": {
+      "path": "work/runtime/r61-country-combined-execution-20261019-001/reconciliation-001/original-native-receipt-and-response.jsonl",
+      "size": 2325,
+      "sha256": "f1f1c62c394d0f37ce7cc1d8296dff390a9728f568975bc9f62d52bb80875729",
+      "line_records": [
+        {
+          "line": 1,
+          "bytes": 662,
+          "sha256": "84ef4b1c1a750f71c6a0fff9cd26e0419764493d31a93d210ed0d9113114c8b8",
+          "event": "native_peace_submission_result",
+          "request_id": "r61_country_combined_20261019_001_outbound"
+        },
+        {
+          "line": 2,
+          "bytes": 1661,
+          "sha256": "53a8bab2ff181b6c3c3accfe71323554f4e90a170fc2057c23b21a11a17e0567",
+          "event": "native_peace_execution_result",
+          "request_id": "r61_country_combined_20261019_001_outbound"
+        }
+      ],
+      "original_control_log": {
+        "path": "C:/Users/wangyufei/Documents/ChatGPT/欧陆风云4/work/runtime/diplomacy-query-20261019-r61-country-c/control-probe.jsonl",
+        "source_lines": [
+          6795,
+          6839
+        ],
+        "selected_source_sha256": "f1f1c62c394d0f37ce7cc1d8296dff390a9728f568975bc9f62d52bb80875729"
+      }
+    },
+    "journal_before_reconciliation": {
+      "path": "work/runtime/r61-country-combined-execution-20261019-001/reconciliation-001/before.sqlite3",
+      "size": 61440,
+      "sha256": "15fd06dda8c96ca7c76af83e350c7ac78ae58d4b55dd6aabc4ead40b418f2ceb",
+      "status": "invalidated",
+      "submission_id": "native_r61_country_combined_20261019_001_outbound",
+      "evidence_count": 1,
+      "reason_code": "NATIVE_PEACE_SUBMISSION_RECEIPT_INVALID"
+    },
+    "reconciliation_report": {
+      "path": "work/runtime/r61-country-combined-execution-20261019-001/reconciliation-001/report.json",
+      "sha256": "a34e1a7777d071b9313bc827022bd35b2c242aa9affed8d6a5fa0a7eb7439789",
+      "source_lines": [
+        6795,
+        6839
+      ]
+    },
+    "corrected_public_result": {
+      "path": "work/runtime/r61-country-combined-execution-20261019-001/reconciliation-001/corrected-public-result.json",
+      "sha256": "c7179a35971de04ce3fd77ceafea9bd5d1e7e57ec8c4a75211df2687d42f4a77"
+    }
+  },
+  "events": {
+    "submission": {
+      "event": "native_peace_submission_result",
+      "family": "peace",
+      "session_id": "11252-1dd5f87ff03288a",
+      "request_id": "r61_country_combined_20261019_001_outbound",
+      "action_id": "release_nation",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56549064,
+      "war_id": "war_101ec4511cc0b0ef_00000001",
+      "direction": "demand",
+      "amount_raw": -1,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "ne",
+      "release_nation_country": "FLY",
+      "release_nation_source": "ENG",
+      "annex_country": "TYR",
+      "annex_beneficiary": "FRA",
+      "submitted": true,
+      "transport_verified": true,
+      "request_binding_verified": true,
+      "reason": "NATIVE_ENTRY_VERIFIED",
+      "native_origin": 65535,
+      "native_flags": 0,
+      "native_sequence": 15
+    },
+    "execution": {
+      "event": "native_peace_execution_result",
+      "family": "peace",
+      "session_id": "11252-1dd5f87ff03288a",
+      "request_id": "r61_country_combined_20261019_001_outbound",
+      "action_id": "release_nation",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56549064,
+      "war_id": "war_101ec4511cc0b0ef_00000001",
+      "direction": "demand",
+      "amount_raw": -1,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "ne",
+      "release_nation_country": "FLY",
+      "release_nation_source": "ENG",
+      "annex_country": "TYR",
+      "annex_beneficiary": "FRA",
+      "native_state": 1,
+      "outcome": "rejected",
+      "war_before": true,
+      "war_after": true,
+      "response_verified": true,
+      "request_binding_verified": true,
+      "execution_verified": false,
+      "terms_verified": false,
+      "effects": {
+        "complete": true,
+        "date_unchanged": true,
+        "currency_scale": 1000,
+        "money": null,
+        "provinces": [],
+        "war_reparations": null,
+        "country_terms": {
+          "release_nation": {
+            "country": "FLY",
+            "source": "ENG",
+            "owned_count_before": 0,
+            "owned_count_after": 0,
+            "source_owned_count_before": 42,
+            "source_owned_count_after": 42,
+            "province_rows": [
+              {
+                "province_id": 4379,
+                "owner_before": "ENG",
+                "owner_after": "ENG",
+                "controller_before": "ENG",
+                "controller_after": "ENG",
+                "complete": true
+              }
+            ],
+            "complete": true,
+            "values_readable": true,
+            "unchanged": true,
+            "verified": false
+          },
+          "force_vassalization": null,
+          "form_personal_union": null,
+          "grant_independence": null,
+          "full_annexation": {
+            "country": "TYR",
+            "beneficiary": "FRA",
+            "owned_count_before": 1,
+            "owned_count_after": 1,
+            "beneficiary_owned_count_before": 21,
+            "beneficiary_owned_count_after": 21,
+            "province_rows": [
+              {
+                "province_id": 372,
+                "owner_before": "TYR",
+                "owner_after": "TYR",
+                "controller_before": "TYR",
+                "controller_after": "TYR",
+                "complete": true
+              }
+            ],
+            "complete": true,
+            "values_readable": true,
+            "unchanged": true,
+            "verified": false
+          }
+        }
+      }
+    }
+  },
+  "expected": {
+    "status_before_reconciliation": "invalidated",
+    "status_after_reconciliation": "rejected",
+    "reason_code": "NATIVE_PEACE_SUBMISSION_RECEIPT_INVALID",
+    "submitted": true,
+    "native_state": 1,
+    "native_outcome": "rejected",
+    "term_mask": "ne",
+    "selected_country_terms": {
+      "release_nation": {
+        "country": "FLY",
+        "source": "ENG"
+      },
+      "full_annexation": {
+        "country": "TYR",
+        "beneficiary": "FRA"
+      }
+    },
+    "public_result": {
+      "contract_version": 1,
+      "request_id": "r61_country_combined_20261019_001_outbound",
+      "action_id": "release_nation",
+      "status": "rejected",
+      "submitted": true,
+      "game_outcome": "rejected",
+      "result": {
+        "action_id": "release_nation",
+        "actor": "FRA",
+        "amount_raw": -1,
+        "annex_beneficiary": "FRA",
+        "annex_country": "TYR",
+        "beneficiary": null,
+        "date_raw": 56549064,
+        "direction": "demand",
+        "effects": {
+          "complete": true,
+          "country_terms": {
+            "force_vassalization": null,
+            "form_personal_union": null,
+            "full_annexation": {
+              "beneficiary": "FRA",
+              "beneficiary_owned_count_after": 21,
+              "beneficiary_owned_count_before": 21,
+              "complete": true,
+              "country": "TYR",
+              "owned_count_after": 1,
+              "owned_count_before": 1,
+              "province_rows": [
+                {
+                  "complete": true,
+                  "controller_after": "TYR",
+                  "controller_before": "TYR",
+                  "owner_after": "TYR",
+                  "owner_before": "TYR",
+                  "province_id": 372
+                }
+              ],
+              "unchanged": true,
+              "values_readable": true,
+              "verified": false
+            },
+            "grant_independence": null,
+            "release_nation": {
+              "complete": true,
+              "country": "FLY",
+              "owned_count_after": 0,
+              "owned_count_before": 0,
+              "province_rows": [
+                {
+                  "complete": true,
+                  "controller_after": "ENG",
+                  "controller_before": "ENG",
+                  "owner_after": "ENG",
+                  "owner_before": "ENG",
+                  "province_id": 4379
+                }
+              ],
+              "source": "ENG",
+              "source_owned_count_after": 42,
+              "source_owned_count_before": 42,
+              "unchanged": true,
+              "values_readable": true,
+              "verified": false
+            }
+          },
+          "currency_scale": 1000,
+          "date_unchanged": true,
+          "money": null,
+          "provinces": [],
+          "transfer_trade_power": null,
+          "war_reparations": null
+        },
+        "event": "native_peace_execution_result",
+        "execution_verified": false,
+        "family": "peace",
+        "native_outcome": "rejected",
+        "native_state": 1,
+        "outcome": "rejected",
+        "phase": "initiate",
+        "province_ids": [],
+        "recipient": "ENG",
+        "release_nation_country": "FLY",
+        "release_nation_source": "ENG",
+        "request_binding_verified": true,
+        "request_id": "r61_country_combined_20261019_001_outbound",
+        "response_verified": true,
+        "term_mask": "ne",
+        "terms_verified": false,
+        "war_after": true,
+        "war_before": true,
+        "war_id": "war_101ec4511cc0b0ef_00000001"
+      },
+      "updated_at": "2026-10-19T05:43:08.342306+00:00",
+      "evidence": [
+        {
+          "type": "native_submission_failure",
+          "layer": "bridge_validation",
+          "sha256": "1dcc359138e70eb3b84bb5869ba462089834e0e923c1b75ed6b9310ac80ed3a7"
+        },
+        {
+          "type": "native_response_reconciliation",
+          "layer": "native_response_reconcile",
+          "sha256": "4505caf150c540faa9f170c8315852ad48e87633364b4cf86044539bcc6f8233"
+        }
+      ]
+    }
+  }
+}

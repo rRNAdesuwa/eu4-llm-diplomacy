@@ -1,6 +1,7 @@
 """Read-only extraction of the observed EU4 minidump; no upload or process access."""
 import argparse
 import json
+import mmap
 import struct
 from pathlib import Path
 
@@ -12,7 +13,8 @@ parser.add_argument('--output', type=Path, default=Path(__file__).parent / 'runt
 args = parser.parse_args()
 SOURCE = args.source or get_path('EU4_CRASH_DUMP')
 assert SOURCE is not None
-data = SOURCE.read_bytes()
+source_file = SOURCE.open('rb')
+data = mmap.mmap(source_file.fileno(), 0, access=mmap.ACCESS_READ)
 def u32(offset): return struct.unpack_from('<I', data, offset)[0]
 def u64(offset): return struct.unpack_from('<Q', data, offset)[0]
 assert data[:4] == b'MDMP'
@@ -83,5 +85,7 @@ report = {'source': SOURCE.name, 'exception_thread': u32(start), 'exception_code
 output = args.output
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps(report, indent=2), encoding='utf-8')
+data.close()
+source_file.close()
 if __name__ == '__main__':
     print(json.dumps({k:v for k,v in report.items() if k not in ('stack_address_candidates','source')}, indent=2))

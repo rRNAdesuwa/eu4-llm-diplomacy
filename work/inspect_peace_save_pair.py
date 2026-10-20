@@ -2,8 +2,8 @@
 """Stream a bounded before/after comparison for EU4 peace-operation saves.
 
 The tool reads only the requested country blocks and province blocks from each
-``EU4txt``/ZIP gamestate.  It keeps the serialized treasury, owner,
-controller, and core fields together with their gamestate line numbers.  An
+    ``EU4txt``/ZIP gamestate.  It keeps the serialized treasury, prestige,
+    owner, controller, and core fields together with their gamestate line numbers.  An
 optional bounded active-war scan is included when the existing war scanner can
 find a block containing both requested countries.
 
@@ -33,6 +33,7 @@ if str(ROOT) not in sys.path:
 
 from work import inspect_dissolve_save_pair as bounded
 from work.inspect_declare_war_save_pair import compare_scans, scan_active_wars
+from work import inspect_peace_treaty_save as treaty_save
 
 
 DEFAULT_OUTPUT = ROOT / "work" / "runtime" / "peace-save-pair-20261016-001" / "report.json"
@@ -48,6 +49,7 @@ PROVINCE_RE = re.compile(r"^\s*(-?\d+)\s*=\s*\{")
 DIRECT_SCALAR_RE = re.compile(r"^\s*([A-Za-z0-9_]+)\s*=\s*(.*?)\s*$")
 BLOCK_START_RE = re.compile(r"^\s*([A-Za-z0-9_]+)\s*=\s*\{")
 CORE_TOKEN_RE = re.compile(r"\b[A-Z][A-Z0-9_]{1,5}\b")
+INTEGER_TOKEN_RE = re.compile(r"(?<![A-Za-z0-9_])-?\d+(?![A-Za-z0-9_])")
 
 
 class PeaceSaveParseError(RuntimeError):
@@ -139,9 +141,151 @@ def _capture_top_block(capture: BlockCapture, key: str) -> dict[str, Any] | None
                 "field_name": key,
                 "line_start": active_start,
                 "line_end": capture.start_line + index,
-                "raw": "".join(active),
+                "raw": "\n".join(active) + "\n",
             }
     return None
+
+
+def _capture_top_blocks(capture: BlockCapture, key: str) -> list[dict[str, Any]]:
+    """Capture all direct nested blocks with one requested key.
+
+    The country blocks are already bounded by :class:`PeaceSaveScanner`, so
+    retaining these small direct children does not load the gamestate as a
+    whole.  This is used for repeated ``power_projection`` records, where the
+    first-match helper above would lose the relation-specific record.
+    """
+
+    blocks: list[dict[str, Any]] = []
+    local_depth = 0
+    active: list[str] | None = None
+    active_start: int | None = None
+    active_depth: int | None = None
+    for index, line in enumerate(capture.text.splitlines(), 0):
+        before = local_depth
+        if active is None and before == 1:
+            match = BLOCK_START_RE.match(line)
+            if match and match.group(1) == key:
+                active = [line]
+                active_start = capture.start_line + index
+                active_depth = before + bounded.brace_delta(line)
+        elif active is not None:
+            active.append(line)
+        local_depth += bounded.brace_delta(line)
+        if (
+            active is not None
+            and active_depth is not None
+            and local_depth == 1
+            and before >= active_depth
+        ):
+            blocks.append({
+                "field_name": key,
+                "line_start": active_start,
+                "line_end": capture.start_line + index,
+                "raw": "\n".join(active) + "\n",
+            })
+            active = None
+            active_start = None
+            active_depth = None
+    return blocks
+
+
+def _nested_field_occurrence(
+        capture: BlockCapture, block_key: str, field: str
+        ) -> dict[str, Any]:
+    """Read one scalar from a direct child block, retaining absolute lines."""
+
+    block = _capture_top_block(capture, block_key)
+    if block is None:
+        return {
+            "field_name": field,
+            "found": False,
+            "raw": None,
+            "value": None,
+            "line": None,
+            "occurrences": [],
+            "unknown": [f"{block_key}_block_not_found"],
+        }
+    nested = BlockCapture(
+        key=block_key,
+        serialized_key=block_key,
+        start_line=int(block["line_start"]),
+        end_line=int(block["line_end"]),
+        text=str(block["raw"]),
+        complete=True,
+        bytes_captured=len(str(block["raw"]).encode("utf-8", "replace")),
+        bytes_seen=len(str(block["raw"]).encode("utf-8", "replace")),
+    )
+    return _field_occurrence(nested, field)
+
+
+def _projection_fields(block: dict[str, Any]) -> dict[str, Any]:
+    raw = str(block.get("raw", ""))
+    nested = BlockCapture(
+        key="power_projection",
+        serialized_key="power_projection",
+        start_line=int(block.get("line_start") or 0),
+        end_line=int(block.get("line_end") or 0),
+        text=raw,
+        complete=True,
+        bytes_captured=len(raw.encode("utf-8", "replace")),
+        bytes_seen=len(raw.encode("utf-8", "replace")),
+    )
+    fields = {
+        key: _field_occurrence(nested, key)
+        for key in ("target", "modifier", "current")
+    }
+    modifier = fields["modifier"].get("value")
+    if modifier not in {"humiliated_rival", "humiliated_by_rival"}:
+        return {}
+    return {
+        "line_start": block.get("line_start"),
+        "line_end": block.get("line_end"),
+        "target": fields["target"],
+        "modifier": fields["modifier"],
+        "current": fields["current"],
+    }
+
+
+def _parse_humiliation(capture: BlockCapture) -> dict[str, Any]:
+    """Parse serialized H/S relation evidence without assuming it exists."""
+
+    humiliated_block = _capture_top_block(capture, "humiliated_countries")
+    tags: list[str] = []
+    raw = None
+    line_start = None
+    line_end = None
+    if humiliated_block is not None:
+        raw = str(humiliated_block["raw"])
+        line_start = humiliated_block.get("line_start")
+        line_end = humiliated_block.get("line_end")
+        body = raw[raw.find("{") + 1 : raw.rfind("}")]
+        for token in CORE_TOKEN_RE.findall(body):
+            if token not in tags:
+                tags.append(token)
+            if len(tags) >= MAX_CORE_TAGS:
+                break
+    projections = []
+    for block in _capture_top_blocks(capture, "power_projection"):
+        parsed = _projection_fields(block)
+        if parsed:
+            projections.append(parsed)
+    flags_field = _nested_field_occurrence(capture, "flags", "humiliated_rival")
+    return {
+        "relation_readable": capture.complete,
+        "humiliated_rival": flags_field,
+        "humiliated_countries": {
+            "found": humiliated_block is not None,
+            "tags": tags,
+            "line_start": line_start,
+            "line_end": line_end,
+            "raw": raw,
+            "unknown": [],
+        },
+        "humiliated_power_projection": projections,
+        "explicit_humiliation_fields_present": bool(
+            flags_field.get("found") or humiliated_block is not None or projections),
+        "unknown": [],
+    }
 
 
 def _parse_cores(capture: BlockCapture) -> dict[str, Any]:
@@ -180,6 +324,42 @@ def _parse_cores(capture: BlockCapture) -> dict[str, Any]:
     }
 
 
+def _parse_powers(capture: BlockCapture) -> dict[str, Any]:
+    """Parse integer monarch points from the bounded ``powers`` block.
+
+    Unlike prestige and treasury, serialized monarch points are already
+    integer points.  Their scale is therefore 1; the values themselves are
+    left unchanged.
+    """
+    block = _capture_top_block(capture, "powers")
+    if block is None:
+        return {
+            "field_name": "powers", "found": False, "values": [],
+            "scale": 1, "line_start": None, "line_end": None,
+            "raw": None, "unknown": ["powers_block_not_found"],
+        }
+    raw = str(block["raw"])
+    open_index = raw.find("{")
+    close_index = raw.rfind("}")
+    body = raw[open_index + 1:close_index if close_index > open_index else None]
+    values: list[int] = []
+    for token in INTEGER_TOKEN_RE.findall(body):
+        try:
+            values.append(int(token))
+        except ValueError:
+            continue
+        if len(values) >= 3:
+            break
+    unknown: list[str] = []
+    if len(values) != 3:
+        unknown.append("powers_requires_three_values")
+    return {
+        "field_name": "powers", "found": True, "values": values,
+        "scale": 1, "line_start": block["line_start"],
+        "line_end": block["line_end"], "raw": raw, "unknown": unknown,
+    }
+
+
 def _field_occurrence(capture: BlockCapture, key: str) -> dict[str, Any]:
     occurrences = _capture_scalar_line(capture, key)
     if not occurrences:
@@ -200,6 +380,19 @@ def _field_occurrence(capture: BlockCapture, key: str) -> dict[str, Any]:
     return item
 
 
+def _scaled_raw(value: object, scale: int) -> int | None:
+    """Convert one serialized decimal resource to a bounded integer scale."""
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        decimal = Decimal(str(value).strip().strip('"'))
+    except (InvalidOperation, ValueError):
+        return None
+    scaled = decimal * scale
+    integral = scaled.to_integral_value()
+    return int(integral) if scaled == integral else None
+
+
 def _parse_country(capture: BlockCapture | None, tag: str) -> dict[str, Any]:
     item: dict[str, Any] = {
         "tag": tag,
@@ -210,6 +403,11 @@ def _parse_country(capture: BlockCapture | None, tag: str) -> dict[str, Any]:
         "bytes_captured": capture.bytes_captured if capture else 0,
         "bytes_seen": capture.bytes_seen if capture else 0,
         "treasury": None,
+        "prestige": None,
+        "prestige_raw": None,
+        "prestige_scale": 1000,
+        "religion": None,
+        "powers": None,
         "unknown": [],
     }
     if capture is None:
@@ -221,6 +419,27 @@ def _parse_country(capture: BlockCapture | None, tag: str) -> dict[str, Any]:
     treasury = _field_occurrence(capture, "treasury")
     item["treasury"] = treasury
     item["unknown"].extend(treasury["unknown"])
+    prestige = _field_occurrence(capture, "prestige")
+    item["prestige"] = prestige
+    item["unknown"].extend(prestige["unknown"])
+    prestige_raw = _scaled_raw(prestige.get("raw"), 1000)
+    item["prestige_raw"] = prestige_raw
+    if prestige_raw is None and prestige.get("found") is True:
+        item["unknown"].append("prestige_not_integral_x1000")
+    religion = _field_occurrence(capture, "religion")
+    item["religion"] = religion
+    # R54 reads these fields when present; their absence is retained as an
+    # optional observation so legacy money/province scans stay complete.
+    if religion.get("found") is True:
+        item["unknown"].extend(religion["unknown"])
+    powers = _parse_powers(capture)
+    item["powers"] = powers
+    if powers.get("found") is True:
+        item["unknown"].extend(powers["unknown"])
+    # H/S relation membership is serialized on the beneficiary's country
+    # block when the game has accepted the term.  Keep absence as a readable
+    # false state; do not turn it into an unknown parser error.
+    item["humiliation"] = _parse_humiliation(capture)
     return item
 
 
@@ -243,7 +462,7 @@ def _parse_province(capture: BlockCapture | None, province_id: int) -> dict[str,
     if not capture.complete:
         item["unknown"].append("province_capture_incomplete")
         return item
-    for key in ("owner", "controller", "previous_controller"):
+    for key in ("owner", "controller", "previous_controller", "religion"):
         field = _field_occurrence(capture, key)
         item["fields"][key] = field
         item["unknown"].extend(field["unknown"])
@@ -501,6 +720,28 @@ def _treasury_delta(before: dict[str, Any], after: dict[str, Any]) -> dict[str, 
     }
 
 
+def _prestige_delta(before: dict[str, Any], after: dict[str, Any]) -> dict[str, Any]:
+    old = before.get("prestige") or {}
+    new = after.get("prestige") or {}
+    old_raw = old.get("raw")
+    new_raw = new.get("raw")
+    old_scaled = before.get("prestige_raw")
+    new_scaled = after.get("prestige_raw")
+    delta = new_scaled - old_scaled \
+        if isinstance(old_scaled, int) and isinstance(new_scaled, int) else None
+    return {
+        "field_name": "prestige",
+        "scale1000": 1000,
+        "before": {"raw": old_raw, "scaled_raw": old_scaled,
+                    "line": old.get("line")},
+        "after": {"raw": new_raw, "scaled_raw": new_scaled,
+                   "line": new.get("line")},
+        "delta_raw": delta,
+        "numeric_comparison_available": delta is not None,
+        "interpretation": "serialized prestige observation scaled by 1000; delta is not attributed solely to the peace operation",
+    }
+
+
 def _province_diff(before: dict[str, Any], after: dict[str, Any]) -> dict[str, Any]:
     result: dict[str, Any] = {
         "province_id": before.get("province_id", after.get("province_id")),
@@ -524,6 +765,56 @@ def _province_diff(before: dict[str, Any], after: dict[str, Any]) -> dict[str, A
     return result
 
 
+def _humiliated_relation_diff(
+        before: dict[str, Any], after: dict[str, Any],
+        country: str, beneficiary: str,
+        ) -> dict[str, Any]:
+    """Compare the directed saved H/S relation on the beneficiary block."""
+
+    def state(snapshot: dict[str, Any]) -> dict[str, Any]:
+        item = snapshot.get("countries", {}).get(beneficiary, {})
+        humiliation = item.get("humiliation", {}) if isinstance(item, dict) else {}
+        relation = (
+            humiliation.get("humiliated_countries", {})
+            if isinstance(humiliation, dict) else {})
+        tags = relation.get("tags", []) if isinstance(relation, dict) else []
+        readable = (
+            item.get("complete") is True
+            and isinstance(humiliation, dict)
+            and humiliation.get("relation_readable") is True
+            and isinstance(relation, dict)
+        )
+        return {
+            "beneficiary": beneficiary,
+            "country": country,
+            "readable": readable,
+            "present": country in tags if isinstance(tags, list) else None,
+            "humiliated_countries": relation,
+            "humiliated_rival": humiliation.get("humiliated_rival")
+            if isinstance(humiliation, dict) else None,
+            "humiliated_power_projection": humiliation.get(
+                "humiliated_power_projection", [])
+            if isinstance(humiliation, dict) else [],
+        }
+
+    old = state(before)
+    new = state(after)
+    return {
+        "field_name": "countries.<beneficiary>.humiliated_countries",
+        "directed_pair": {"country": country, "beneficiary": beneficiary},
+        "before": old,
+        "after": new,
+        "readable": old["readable"] and new["readable"],
+        "present_before": old["present"],
+        "present_after": new["present"],
+        "changed": old["present"] != new["present"],
+        "interpretation": (
+            "The beneficiary country block lists the country it has humiliated; "
+            "the absence in a complete block is a readable false state."
+        ),
+    }
+
+
 def _war_scan(path: Path, source: dict[str, Any], actor: str, recipient: str) -> dict[str, Any]:
     try:
         return scan_active_wars(path, source, actor, recipient)
@@ -538,7 +829,12 @@ def _war_scan(path: Path, source: dict[str, Any], actor: str, recipient: str) ->
         }
 
 
-def scan_save(path: Path, actor: str, recipient: str, province_ids: tuple[int, ...]) -> dict[str, Any]:
+def scan_save(
+        path: Path, actor: str, recipient: str,
+        province_ids: tuple[int, ...],
+        annul_country: str | None = None,
+        annul_partners: tuple[str, ...] = (),
+        ) -> dict[str, Any]:
     resolved = path.expanduser().resolve()
     if not resolved.is_file():
         raise PeaceSaveParseError(f"save path is not a file: {resolved}")
@@ -548,6 +844,22 @@ def scan_save(path: Path, actor: str, recipient: str, province_ids: tuple[int, .
     parsed["source"] = source
     parsed["war_scan"] = _war_scan(resolved, source, actor, recipient)
     parsed["parse"]["unknown"].extend(parsed["war_scan"].get("unknown", []))
+    if annul_country is not None:
+        treaty = treaty_save.scan_save(
+            resolved, None, None,
+            annul_country=annul_country, annul_partners=list(annul_partners))
+        parsed["annul_treaties"] = treaty["annul_treaties"]
+        parsed["annul_query"] = treaty["query"]
+        parsed["parse"]["unknown"].extend(treaty["parse"].get("unknown", []))
+    else:
+        parsed["annul_treaties"] = {
+            "records": [], "total_records": 0, "records_returned": 0,
+            "records_truncated": False,
+        }
+        parsed["annul_query"] = {
+            "annul_country": None, "annul_partners": [],
+            "annul_exact_pair_present": False, "annul_reverse_pair_present": False,
+        }
     return parsed
 
 
@@ -561,7 +873,8 @@ def _war_comparison(before: dict[str, Any], after: dict[str, Any]) -> dict[str, 
 def compare_pair(before: dict[str, Any], after: dict[str, Any], actor: str, recipient: str, province_ids: tuple[int, ...]) -> dict[str, Any]:
     countries = {
         tag: {
-            "treasury": _treasury_delta(before["countries"].get(tag, {}), after["countries"].get(tag, {}))
+            "treasury": _treasury_delta(before["countries"].get(tag, {}), after["countries"].get(tag, {})),
+            "prestige": _prestige_delta(before["countries"].get(tag, {}), after["countries"].get(tag, {})),
         }
         for tag in (actor, recipient)
     }
@@ -576,6 +889,8 @@ def compare_pair(before: dict[str, Any], after: dict[str, Any], actor: str, reci
         "countries": countries,
         "provinces": provinces,
         "war": _war_comparison(before, after),
+        "humiliation": _humiliated_relation_diff(
+            before, after, actor, recipient),
         "attribution": "Observed before/after serialization only. Treasury, ownership, controller, core, and war changes are not assigned solely to the peace operation.",
     }
 
@@ -600,9 +915,16 @@ def parse_province_ids(values: list[str] | None, repeated: list[int] | None) -> 
     return tuple(unique)
 
 
-def build_payload(baseline: Path, result: Path, actor: str, recipient: str, province_ids: tuple[int, ...]) -> dict[str, Any]:
-    before = scan_save(baseline, actor, recipient, province_ids)
-    after = scan_save(result, actor, recipient, province_ids)
+def build_payload(
+        baseline: Path, result: Path, actor: str, recipient: str,
+        province_ids: tuple[int, ...],
+        annul_country: str | None = None,
+        annul_partners: tuple[str, ...] = (),
+        ) -> dict[str, Any]:
+    before = scan_save(
+        baseline, actor, recipient, province_ids, annul_country, annul_partners)
+    after = scan_save(
+        result, actor, recipient, province_ids, annul_country, annul_partners)
     return {
         "tool": {
             "name": "work/inspect_peace_save_pair.py",
@@ -614,6 +936,14 @@ def build_payload(baseline: Path, result: Path, actor: str, recipient: str, prov
             "province_capture_limit_bytes": MAX_PROVINCE_CAPTURE,
             "active_war_capture_limit_bytes": 2 * 1024 * 1024,
             "treasury_field_name": "treasury",
+            "prestige_field_name": "prestige",
+            "prestige_scale": 1000,
+            "humiliation_relation_fields": {
+                "beneficiary_list": "humiliated_countries",
+                "beneficiary_date_flag": "flags.humiliated_rival",
+                "winner_projection_modifier": "humiliated_rival",
+                "loser_projection_modifier": "humiliated_by_rival",
+            },
             "scanner_helpers": [
                 "work/inspect_dissolve_save_pair.py",
                 "work/inspect_declare_war_save_pair.py",
@@ -623,15 +953,18 @@ def build_payload(baseline: Path, result: Path, actor: str, recipient: str, prov
             "actor": actor,
             "recipient": recipient,
             "province_ids": list(province_ids),
+            "annul_country": annul_country,
+            "annul_partners": list(annul_partners),
         },
         "before": before,
         "after": after,
         "comparison": compare_pair(before, after, actor, recipient, province_ids),
         "limitations": [
-            "treasury 的明确序列化字段名是 treasury；ai.treasury 等嵌套字段不计入本报告。",
+            "treasury 和 prestige 的明确序列化字段名分别是 treasury、prestige；ai.treasury 等嵌套字段不计入本报告。",
             "treasury delta 是两个存档之间的数值差，不代表议和操作单独产生的金额变化。",
             "province owner/controller/cores 只报告所选省份；缺失、未闭合或超过边界的块保留在 unknown。",
             "active_war 只作为可复用的序列化战争关系观察，不替代 native 和平执行结果。",
+            "H/S 的关系状态来自 beneficiary 国家块：完整块中缺少 humiliated_countries 时报告 present=false；flags.humiliated_rival 和两侧 power_projection 作为旁证字段保留。",
         ],
     }
 
@@ -672,10 +1005,16 @@ def render_report(payload: dict[str, Any]) -> str:
         ])
         for tag, country in side["countries"].items():
             treasury = country.get("treasury") or {}
+            prestige = country.get("prestige") or {}
+            humiliation = country.get("humiliation") or {}
+            humiliated = humiliation.get("humiliated_countries") or {}
             lines.append(
                 f"- {tag}: lines={country.get('start_line')}-{country.get('end_line')} "
                 f"complete={country.get('complete')} treasury={treasury.get('raw')} "
-                f"treasury_line={treasury.get('line')}"
+                f"treasury_line={treasury.get('line')} prestige={prestige.get('raw')} "
+                f"prestige_raw={country.get('prestige_raw')} prestige_line={prestige.get('line')} "
+                f"humiliated_countries={humiliated.get('tags', [])} "
+                f"humiliated_countries_lines={humiliated.get('line_start')}-{humiliated.get('line_end')}"
             )
         lines.append("")
         lines.append("provinces:")
@@ -699,6 +1038,9 @@ def render_report(payload: dict[str, Any]) -> str:
         "",
         "provinces:",
         _json_text(payload["comparison"]["provinces"]),
+        "",
+        "humiliation_serialization:",
+        _json_text(payload["comparison"]["humiliation"]),
         "",
         "war_serialization:",
         _json_text(payload["comparison"]["war"]),
@@ -728,12 +1070,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--recipient", required=True, type=lambda value: validate_tag(value, "--recipient"))
     parser.add_argument("--province-id", action="append", type=int, default=[], help="request one province; repeat at most 16 times")
     parser.add_argument("--province-ids", action="append", default=[], help="comma-separated province ids; at most 16 total")
+    parser.add_argument("--annul-country", type=lambda value: validate_tag(value, "--annul-country"))
+    parser.add_argument("--annul-partner", action="append", default=[],
+                        type=lambda value: validate_tag(value, "--annul-partner"))
     parser.add_argument("--output", required=True, type=Path, help="JSON output path, or directory when no .json suffix is used")
     args = parser.parse_args(argv)
     if args.actor == args.recipient:
         parser.error("--actor and --recipient must differ")
     try:
         province_ids = parse_province_ids(args.province_ids, args.province_id)
+        annul_partners = tuple(args.annul_partner)
+        if args.annul_country is None and annul_partners:
+            raise PeaceSaveParseError("--annul-partner requires --annul-country")
+        if args.annul_country is not None:
+            if not 1 <= len(annul_partners) <= 16:
+                raise PeaceSaveParseError("--annul-partner requires 1..16 tags")
+            if (len(set(annul_partners)) != len(annul_partners)
+                    or list(annul_partners) != sorted(annul_partners)
+                    or args.annul_country in annul_partners):
+                raise PeaceSaveParseError("--annul-partner values must be sorted and unique")
         json_path, markdown_path = _output_paths(args.output)
         json_path.parent.mkdir(parents=True, exist_ok=True)
         if json_path.exists() or markdown_path.exists():
@@ -744,6 +1099,8 @@ def main(argv: list[str] | None = None) -> int:
             args.actor,
             args.recipient,
             province_ids,
+            args.annul_country,
+            annul_partners,
         )
         json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         markdown_path.write_text(render_report(payload), encoding="utf-8")

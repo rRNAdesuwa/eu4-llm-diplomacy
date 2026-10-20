@@ -159,6 +159,12 @@ extern "C" void bridge_transport_observe(void* transport,void* outgoing) {
             || initial.payload.vtable==base+lifecycle_support_vtable_rva
             || initial.payload.vtable==base+lifecycle_military_access_vtable_rva
             || initial.payload.vtable==base+lifecycle_vassalization_vtable_rva
+            || initial.payload.vtable==base+lifecycle_favor_gold_vtable_rva
+            || initial.payload.vtable==base+lifecycle_favor_trust_vtable_rva
+            || initial.payload.vtable==base+lifecycle_favor_men_vtable_rva
+            || initial.payload.vtable==base+lifecycle_curry_favors_vtable_rva
+            || initial.payload.vtable==base+lifecycle_gift_vtable_rva
+            || initial.payload.vtable==base+lifecycle_influence_vtable_rva
             || initial.payload.vtable==base+lifecycle_insult_vtable_rva
             || initial.payload.vtable==base+lifecycle_declarewar_vtable_rva
             || initial.payload.vtable==base+lifecycle_peace_vtable_rva)

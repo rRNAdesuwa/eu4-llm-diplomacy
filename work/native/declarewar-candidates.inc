@@ -17,6 +17,28 @@ static constexpr uintptr_t declarewar_candidates_enumerator_rva=0xd9e9b0;
 static constexpr uintptr_t declarewar_candidates_clone_rva=0xd9a960;
 static constexpr uintptr_t declarewar_candidates_native_vector_vtable_rva=0x1c3d1e0;
 static constexpr uintptr_t declarewar_candidates_candidate_vtable_rva=0x1d20290;
+// d9a960 case 5 clones the same 0x60-byte fields into this independence
+// candidate class. Actual cb_independence_war uses province=-1 and ---.
+static constexpr uintptr_t declarewar_candidates_independence_vtable_rva=0x1d204e0;
+// d9a960's eleven base war-goal cases copy this same 0x60-byte base payload.
+// Cases 1/2/3 share a concrete class; all retain province+18, beneficiary+38
+// and CB metadata+40. A non-territorial goal carries province=-1.
+static bool declarewar_candidates_known_vtable(uintptr_t rva) noexcept {
+    switch (rva) {
+    case 0x1d203b8: // superiority
+    case declarewar_candidates_candidate_vtable_rva: // province/core/capital
+    case 0x1d20730:
+    case declarewar_candidates_independence_vtable_rva:
+    case 0x1d20608:
+    case 0x1d1ff18:
+    case 0x1d20040:
+    case 0x1d1fcc8:
+    case 0x1d1fdf0:
+        return true;
+    default:
+        return false;
+    }
+}
 // ee6930 passes the value at this global as the empty candidate sentinel when
 // it has no default selection.  A selected clone equal to this value is not
 // transferred to the caller.
@@ -224,7 +246,7 @@ static bool declarewar_candidates_capture_one(uintptr_t candidate,
     output.readable=true;
     if (output.vtable>=base && output.vtable-base<=0xffffffffull)
         output.vtable_rva=static_cast<uint32_t>(output.vtable-base);
-    if (output.vtable_rva==declarewar_candidates_candidate_vtable_rva) {
+    if (declarewar_candidates_known_vtable(output.vtable_rva)) {
         if (read(candidate+0x18,output.target_province_id)) {
             output.target_province_id_verified=true;
             output.province_identifier_verified=true;

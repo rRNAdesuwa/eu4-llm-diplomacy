@@ -1,0 +1,371 @@
+{
+  "cases": [
+    {
+      "action_id": "trade_favors_for_trust",
+      "actor": "FRA",
+      "date_raw": 56555376,
+      "event": "native_diplomacy_favor_trade_execution_result",
+      "name": "trust_outbound_accept",
+      "native_proposal_id": null,
+      "native_state": 2,
+      "phase": "initiate",
+      "raw": {
+        "action_id": "trade_favors_for_trust",
+        "actor": "FRA",
+        "date_raw": 56555376,
+        "event": "native_diplomacy_favor_trade_execution_result",
+        "execution_verified": true,
+        "family": "favor_trade",
+        "favor_trade": {
+          "after": {
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 13383,
+            "recipient_trust_raw": 55
+          },
+          "amount_raw": 5,
+          "before": {
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 23383,
+            "recipient_trust_raw": 50
+          },
+          "complete": true,
+          "kind": "trust",
+          "verified": true
+        },
+        "native_state": 2,
+        "native_variant": 1,
+        "outcome": "accepted",
+        "pending_removed": false,
+        "phase": "initiate",
+        "recipient": "PAP",
+        "request_binding_verified": true,
+        "request_id": "r73_b_trust_outbound_pap_001",
+        "session_id": "3228-1dd6006ee2dc2bc"
+      },
+      "raw_sha256": "a3507cc4ecade3f7a2af1ebbbc2b408c7f436c7450ed3d2542f0f44009bcdf4a",
+      "recipient": "PAP",
+      "request_id": "r73_b_trust_outbound_pap_001",
+      "session_id": "3228-1dd6006ee2dc2bc",
+      "source_batch": "r73-trust-outbound-20261020-001",
+      "source_native_line_sha256": "35a58543058317a57d939bbce99671546270003135e4d5017f44c0c44f835ba4",
+      "source_native_sha256": "09d75703193e45fd2e681b162472159891d5a6f29a26657a798be04b9a7ca35e",
+      "source_report_sha256": "69b06194b597916f0fb69567938c433a0073879882fb59bec32687bc21c1673c"
+    },
+    {
+      "action_id": "trade_favors_for_trust",
+      "actor": "PAP",
+      "date_raw": 56555376,
+      "event": "native_diplomacy_favor_trade_response_result",
+      "name": "trust_inbound_reject",
+      "native_proposal_id": 3,
+      "native_state": 1,
+      "phase": "reject",
+      "raw": {
+        "action_id": "trade_favors_for_trust",
+        "actor": "PAP",
+        "date_raw": 56555376,
+        "event": "native_diplomacy_favor_trade_response_result",
+        "execution_verified": true,
+        "family": "favor_trade",
+        "favor_trade": {
+          "after": {
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 14406,
+            "recipient_trust_raw": 50
+          },
+          "amount_raw": 5,
+          "before": {
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 14406,
+            "recipient_trust_raw": 50
+          },
+          "complete": true,
+          "kind": "trust",
+          "verified": true
+        },
+        "native_state": 1,
+        "native_variant": 1,
+        "outcome": "rejected",
+        "pending_removed": true,
+        "phase": "reject",
+        "recipient": "FRA",
+        "request_binding_verified": true,
+        "request_id": "r73_b_trust_reject_pap_001",
+        "session_id": "3228-1dd6006ee2dc2bc"
+      },
+      "raw_sha256": "13546fec7b3663c4458b97359ad24a497dedc53e67f410c010e1259d928d6015",
+      "recipient": "FRA",
+      "request_id": "r73_b_trust_reject_pap_001",
+      "session_id": "3228-1dd6006ee2dc2bc",
+      "source_batch": "r73-trust-inbound-reject-20261020-001",
+      "source_inbound_line_sha256": "77c3d21428e32b8200a7aad83ddcd9f805ebf41e5ebddd375b7d565ae7a90e76",
+      "source_native_line_sha256": "a6bd38ef09632520a41db90db27e620c545c93b9978c9c71dda9affa96471f7b",
+      "source_native_sha256": "67e4cb46974113986b78c752450f9b332a6d500902225fba461149af3a5742bd",
+      "source_report_sha256": "2ea3eaeb6916baf507c42d3b7b620877b2ad51517783cfed6072e231b1752e3c"
+    },
+    {
+      "action_id": "trade_favors_for_men",
+      "actor": "SAV",
+      "date_raw": 56555376,
+      "event": "native_diplomacy_favor_trade_response_result",
+      "name": "men_inbound_reject",
+      "native_proposal_id": 4,
+      "native_state": 1,
+      "phase": "reject",
+      "raw": {
+        "action_id": "trade_favors_for_men",
+        "actor": "SAV",
+        "date_raw": 56555376,
+        "event": "native_diplomacy_favor_trade_response_result",
+        "execution_verified": true,
+        "family": "favor_trade",
+        "favor_trade": {
+          "after": {
+            "actor_manpower_raw": 21454,
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 10346,
+            "recipient_manpower_raw": 39347
+          },
+          "amount_raw": 1764,
+          "before": {
+            "actor_manpower_raw": 21454,
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 10346,
+            "recipient_manpower_raw": 39347
+          },
+          "complete": true,
+          "kind": "men",
+          "verified": true
+        },
+        "native_state": 1,
+        "native_variant": 1,
+        "outcome": "rejected",
+        "pending_removed": true,
+        "phase": "reject",
+        "recipient": "FRA",
+        "request_binding_verified": true,
+        "request_id": "r73_b_men_reject_sav_001",
+        "session_id": "3228-1dd6006ee2dc2bc"
+      },
+      "raw_sha256": "26554b790e4cae59141993ca19ac318ae0d928ab2ac4d78a245363bc48407b98",
+      "recipient": "FRA",
+      "request_id": "r73_b_men_reject_sav_001",
+      "session_id": "3228-1dd6006ee2dc2bc",
+      "source_batch": "r73-men-inbound-reject-20261020-001",
+      "source_inbound_line_sha256": "a9d225bad22cdf2e21c27c59c63d97b51c2686ba5cbf62c6cac66c897b6f2cba",
+      "source_native_line_sha256": "66fc4bc146d445ad895148603f3884191e8f831c33cc9043d30cabf6ef756c7e",
+      "source_native_sha256": "ae09f062c8be4dc26fcc5c0d1326143e2819c6a33fa3ab4f9801d9d16187da8e",
+      "source_report_sha256": "c8a85cc52b72f258f52eeff5b63053d7dc7ccb4c30ceca14db53c76da454a827"
+    },
+    {
+      "action_id": "trade_favors_for_men",
+      "actor": "FRA",
+      "date_raw": 56556144,
+      "event": "native_diplomacy_favor_trade_execution_result",
+      "name": "men_outbound_accept",
+      "native_proposal_id": null,
+      "native_state": 2,
+      "phase": "initiate",
+      "raw": {
+        "action_id": "trade_favors_for_men",
+        "actor": "FRA",
+        "date_raw": 56556144,
+        "event": "native_diplomacy_favor_trade_execution_result",
+        "execution_verified": true,
+        "family": "favor_trade",
+        "favor_trade": {
+          "after": {
+            "actor_manpower_raw": 41706,
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 13086,
+            "recipient_manpower_raw": 19690
+          },
+          "amount_raw": 1764,
+          "before": {
+            "actor_manpower_raw": 39942,
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 23086,
+            "recipient_manpower_raw": 21454
+          },
+          "complete": true,
+          "kind": "men",
+          "verified": true
+        },
+        "native_state": 2,
+        "native_variant": 1,
+        "outcome": "accepted",
+        "pending_removed": false,
+        "phase": "initiate",
+        "recipient": "SAV",
+        "request_binding_verified": true,
+        "request_id": "r73_b_men_outbound_sav_002",
+        "session_id": "3228-1dd6006ee2dc2bc"
+      },
+      "raw_sha256": "ae4310403785c0adba7dd192b74987f39ead42aedafc9f282a4efceb19dd3ef7",
+      "recipient": "SAV",
+      "request_id": "r73_b_men_outbound_sav_002",
+      "session_id": "3228-1dd6006ee2dc2bc",
+      "source_batch": "r73-men-outbound-20261020-002",
+      "source_native_line_sha256": "735e3e7de905b099e5fe39df21eceb3caf04d550c506fca01ac407a96986e41e",
+      "source_native_sha256": "ed2d40ebc3e1c01ce1d20dd0af45a939f77132053ce6eeea85bf5c7556500178",
+      "source_report_sha256": "09329ff1206656d8c4832c158fc418591e1ebe4cb3a9812c37a867e8354e0263"
+    },
+    {
+      "action_id": "trade_favors_for_trust",
+      "actor": "SAV",
+      "date_raw": 56556144,
+      "event": "native_diplomacy_favor_trade_response_result",
+      "name": "trust_inbound_accept",
+      "native_proposal_id": 10,
+      "native_state": 2,
+      "phase": "accept",
+      "raw": {
+        "action_id": "trade_favors_for_trust",
+        "actor": "SAV",
+        "date_raw": 56556144,
+        "event": "native_diplomacy_favor_trade_response_result",
+        "execution_verified": true,
+        "family": "favor_trade",
+        "favor_trade": {
+          "after": {
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 461,
+            "recipient_trust_raw": 55
+          },
+          "amount_raw": 5,
+          "before": {
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 10461,
+            "recipient_trust_raw": 50
+          },
+          "complete": true,
+          "kind": "trust",
+          "verified": true
+        },
+        "native_state": 2,
+        "native_variant": 1,
+        "outcome": "accepted",
+        "pending_removed": true,
+        "phase": "accept",
+        "recipient": "FRA",
+        "request_binding_verified": true,
+        "request_id": "r73_b_trust_accept_sav_001",
+        "session_id": "3228-1dd6006ee2dc2bc"
+      },
+      "raw_sha256": "0108e080dcbdac6d88eb2e1fddc47254a702a03e068b2d011864647fd7d03167",
+      "recipient": "FRA",
+      "request_id": "r73_b_trust_accept_sav_001",
+      "session_id": "3228-1dd6006ee2dc2bc",
+      "source_batch": "r73-trust-inbound-accept-20261020-001",
+      "source_inbound_line_sha256": "968e79e098cb599aa70bbde257fad8922af670f761e0717f138de1c8e5d2e7c8",
+      "source_native_line_sha256": "4aa0f8d06143151766ba90e8b12317f05ba52b4e644d65c65c1e47ef48a3af91",
+      "source_native_sha256": "16cb8d7e242c224dde3a41dd9ae3d8c24bf5d39ea75af67bd029d872bdbd80b4",
+      "source_report_sha256": "dd6c7e7927bec0d15ea098f43a12bf2ae60c175a97dbf35c78c1be8359ff2ca6"
+    },
+    {
+      "action_id": "trade_favors_for_men",
+      "actor": "PAP",
+      "date_raw": 56556144,
+      "event": "native_diplomacy_favor_trade_response_result",
+      "name": "men_inbound_accept",
+      "native_proposal_id": 11,
+      "native_state": 2,
+      "phase": "accept",
+      "raw": {
+        "action_id": "trade_favors_for_men",
+        "actor": "PAP",
+        "date_raw": 56556144,
+        "event": "native_diplomacy_favor_trade_response_result",
+        "execution_verified": true,
+        "family": "favor_trade",
+        "favor_trade": {
+          "after": {
+            "actor_manpower_raw": 12215,
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 4323,
+            "recipient_manpower_raw": 40008
+          },
+          "amount_raw": 1698,
+          "before": {
+            "actor_manpower_raw": 10517,
+            "complete": true,
+            "cost_raw": 10000,
+            "favors_raw": 14323,
+            "recipient_manpower_raw": 41706
+          },
+          "complete": true,
+          "kind": "men",
+          "verified": true
+        },
+        "native_state": 2,
+        "native_variant": 1,
+        "outcome": "accepted",
+        "pending_removed": true,
+        "phase": "accept",
+        "recipient": "FRA",
+        "request_binding_verified": true,
+        "request_id": "r73_b_men_accept_pap_001",
+        "session_id": "3228-1dd6006ee2dc2bc"
+      },
+      "raw_sha256": "03380e2868756a57aa2224041084b491027a0f3022cb13a098c08e9ceb07635e",
+      "recipient": "FRA",
+      "request_id": "r73_b_men_accept_pap_001",
+      "session_id": "3228-1dd6006ee2dc2bc",
+      "source_batch": "r73-men-inbound-accept-20261020-001",
+      "source_inbound_line_sha256": "faf356126f50d2a493ab33fd8b5206912b72e9fb0dad4373b44df8e030d36d13",
+      "source_native_line_sha256": "2cd2f047a8d99f0aea16cf0fe992ec26fa6d90a3a3ac683bd4067d650a8f2161",
+      "source_native_sha256": "d01e7f780356c02a814c8cff9cf9643a7c1aec9140bcc64eb21ad341f578bf5e",
+      "source_report_sha256": "27ea9f395d700ae3681e11b4a10964c0d05e2f1617df26f28bec28225dda46c2"
+    }
+  ],
+  "format": "r73_favor_trade_execution_real_fixture_v1",
+  "source_reports": [
+    {
+      "batch": "r73-trust-outbound-20261020-001",
+      "native_sha256": "09d75703193e45fd2e681b162472159891d5a6f29a26657a798be04b9a7ca35e",
+      "report_sha256": "69b06194b597916f0fb69567938c433a0073879882fb59bec32687bc21c1673c",
+      "report_status": "passed"
+    },
+    {
+      "batch": "r73-trust-inbound-reject-20261020-001",
+      "native_sha256": "67e4cb46974113986b78c752450f9b332a6d500902225fba461149af3a5742bd",
+      "report_sha256": "2ea3eaeb6916baf507c42d3b7b620877b2ad51517783cfed6072e231b1752e3c",
+      "report_status": "passed"
+    },
+    {
+      "batch": "r73-men-inbound-reject-20261020-001",
+      "native_sha256": "ae09f062c8be4dc26fcc5c0d1326143e2819c6a33fa3ab4f9801d9d16187da8e",
+      "report_sha256": "c8a85cc52b72f258f52eeff5b63053d7dc7ccb4c30ceca14db53c76da454a827",
+      "report_status": "passed"
+    },
+    {
+      "batch": "r73-men-outbound-20261020-002",
+      "native_sha256": "ed2d40ebc3e1c01ce1d20dd0af45a939f77132053ce6eeea85bf5c7556500178",
+      "report_sha256": "09329ff1206656d8c4832c158fc418591e1ebe4cb3a9812c37a867e8354e0263",
+      "report_status": "passed"
+    },
+    {
+      "batch": "r73-trust-inbound-accept-20261020-001",
+      "native_sha256": "16cb8d7e242c224dde3a41dd9ae3d8c24bf5d39ea75af67bd029d872bdbd80b4",
+      "report_sha256": "dd6c7e7927bec0d15ea098f43a12bf2ae60c175a97dbf35c78c1be8359ff2ca6",
+      "report_status": "passed"
+    },
+    {
+      "batch": "r73-men-inbound-accept-20261020-001",
+      "native_sha256": "d01e7f780356c02a814c8cff9cf9643a7c1aec9140bcc64eb21ad341f578bf5e",
+      "report_sha256": "27ea9f395d700ae3681e11b4a10964c0d05e2f1617df26f28bec28225dda46c2",
+      "report_status": "passed"
+    }
+  ]
+}

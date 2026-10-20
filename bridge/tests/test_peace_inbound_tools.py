@@ -106,6 +106,23 @@ def inbound_response(**overrides):
     return event
 
 
+def peace_effects():
+    """Complete money consequence evidence for the legacy non-white fixture."""
+    return {
+        "complete": True,
+        "date_unchanged": True,
+        "currency_scale": 1000,
+        "money": {
+            "amount_raw": 10000,
+            "payer": "FRA",
+            "paid_raw": 10000,
+            "credits": [{"country": "ENG", "amount_raw": 10000}],
+            "verified": True,
+        },
+        "provinces": [],
+    }
+
+
 class PeaceInboundToolsTests(unittest.TestCase):
     def test_r44b_real_inspection_replays_bool_current_war_contract(self):
         fixture_path = (Path(__file__).parent / "fixtures" /
@@ -277,8 +294,8 @@ class PeaceInboundToolsTests(unittest.TestCase):
         self.assertNotIn("execution_verified", result)
         self.assertNotIn("native_proposal_id", result)
 
-    def test_aggregate_catalog_stays_separate_from_40_action_catalog(self):
-        self.assertEqual(40, len(ACTIONS))
+    def test_aggregate_catalog_stays_separate_from_action_catalog(self):
+        self.assertTrue(set(ACTIONS).isdisjoint(INBOUND_ACTIONS))
         self.assertEqual({"peace_offer"}, set(INBOUND_ACTIONS))
         description = INBOUND_ACTIONS["peace_offer"].describe()
         self.assertEqual(["accept", "reject"], list(description["phases"]))
@@ -322,11 +339,16 @@ class PeaceInboundToolsTests(unittest.TestCase):
         self.assertEqual("peace", receipt["family"])
         self.assertNotIn("native_proposal_id", receipt)
         accepted = ObserverSession._public_native_inbound_response_result(
-            inbound_response(), "peace-request", "peace-session", "ENG", "accept",
-            56545080, 1, "peace_offer")
+            inbound_response(effects=peace_effects()), "peace-request",
+            "peace-session", "ENG", "accept", 56545080, 1, "peace_offer")
         self.assertEqual("accepted", accepted["native_outcome"])
         self.assertFalse(accepted["war_after"])
         self.assertTrue(accepted["terms_verified"])
+        unknown = ObserverSession._public_native_inbound_response_result(
+            inbound_response(), "peace-request", "peace-session", "ENG", "accept",
+            56545080, 1, "peace_offer")
+        self.assertEqual("unknown", unknown["native_outcome"])
+        self.assertFalse(unknown["terms_verified"])
         self.assertIsNone(ObserverSession._public_native_inbound_response_result(
             inbound_response(event="native_alliance_response_result"),
             "peace-request", "peace-session", "ENG", "accept", 56545080, 1,
@@ -385,7 +407,8 @@ class PeaceInboundToolsTests(unittest.TestCase):
                 event = inbound_response(request_id=request_id,
                                          session_id=self.session_id,
                                          actor=actor, recipient=recipient,
-                                         phase=phase, date_raw=date_raw)
+                                         phase=phase, date_raw=date_raw,
+                                         effects=peace_effects())
                 result = ObserverSession._public_native_inbound_response_result(
                     event, request_id, self.session_id, actor, phase, date_raw,
                     native_proposal_id, "peace_offer")
@@ -396,7 +419,8 @@ class PeaceInboundToolsTests(unittest.TestCase):
             try:
                 api = DiplomacyTools(journal, FakePeaceSession())
                 listed = api.list_diplomatic_actions(actor="ENG", recipient="FRA")
-                self.assertEqual(40, len(listed["actions"]))
+                self.assertNotIn("peace_offer", {
+                    item["action_id"] for item in listed["actions"]})
                 incoming = {item["action_id"] for item in listed["incoming_action_definitions"]}
                 self.assertIn("peace_offer", incoming)
                 inspection = api.inspect_diplomatic_action(
@@ -415,6 +439,11 @@ class PeaceInboundToolsTests(unittest.TestCase):
                 self.assertEqual("accepted", execution["status"])
                 self.assertEqual("peace", execution["result"]["family"])
                 self.assertFalse(execution["result"]["war_after"])
+                unknown = ObserverSession._public_native_inbound_response_result(
+                    inbound_response(), "peace-request", "peace-session", "ENG",
+                    "accept", 56545080, 1, "peace_offer")
+                self.assertEqual("unknown", unknown["native_outcome"])
+                self.assertFalse(unknown["terms_verified"])
             finally:
                 journal.close()
 

@@ -17,6 +17,10 @@ import time
 import uuid
 
 from .diplomacy_catalog import ACTIONS, INBOUND_ACTIONS, PEACE_ACTION_IDS
+from .diplomat_availability import (
+    apply_diplomat_legality, project_native_diplomat_context,
+    validate_native_diplomat_context,
+)
 from .diplomacy_journal import (AmbiguousRequestError, ContextMismatchError, DurableJournal,
                                 EvidenceConflictError, InvalidTransitionError,
                                 RequestConflictError, UnknownRequestError)
@@ -24,6 +28,85 @@ from .diplomacy_session import probe_identity
 from .native_text import (DEFAULT_NATIVE_TEXT_CODEC, InvalidNativeText,
                           decode_native_text_hex, validate_native_text_codec)
 from .peace_execution import normalize_peace_execution_parameters
+from .peace_costs import project_special_cost_comparisons
+from .favor_trade import (ACTION_ID as _FAVOR_GOLD_ACTION,
+    QUERY_CAPABILITY as _NATIVE_FAVOR_GOLD_QUERY_CAPABILITY,
+    SUBMISSION_CAPABILITY as _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY,
+    RESPONSE_CAPABILITY as _NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_CAPABILITY,
+    validate_query as validate_favor_query, project_query as project_favor_query,
+    validate_result as validate_favor_result, project_result as project_favor_result)
+from .favor_resources import (
+    MEN_ACTION_ID as _FAVOR_MEN_ACTION,
+    MEN_QUERY_CAPABILITY as _NATIVE_FAVOR_MEN_QUERY_CAPABILITY,
+    MEN_SUBMISSION_CAPABILITY as _NATIVE_FAVOR_MEN_SUBMISSION_CAPABILITY,
+    MEN_RESPONSE_CAPABILITY as _NATIVE_INBOUND_FAVOR_MEN_RESPONSE_CAPABILITY,
+    TRUST_ACTION_ID as _FAVOR_TRUST_ACTION,
+    TRUST_QUERY_CAPABILITY as _NATIVE_FAVOR_TRUST_QUERY_CAPABILITY,
+    TRUST_SUBMISSION_CAPABILITY as _NATIVE_FAVOR_TRUST_SUBMISSION_CAPABILITY,
+    TRUST_RESPONSE_CAPABILITY as _NATIVE_INBOUND_FAVOR_TRUST_RESPONSE_CAPABILITY,
+    validate_query as validate_favor_resource_query,
+    project_query as project_favor_resource_query,
+    validate_result as validate_favor_resource_result,
+    project_result as project_favor_resource_result,
+)
+from .gift_influence import (
+    GIFT_ACTION_ID as _GIFT_ACTION,
+    INFLUENCE_ACTION_ID as _INFLUENCE_ACTION,
+    GIFT_QUERY_CAPABILITY as _NATIVE_GIFT_QUERY_CAPABILITY,
+    GIFT_SUBMISSION_CAPABILITY as _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+    INFLUENCE_QUERY_CAPABILITY as _NATIVE_INFLUENCE_QUERY_CAPABILITY,
+    INFLUENCE_SUBMISSION_CAPABILITY as _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
+    gift_amount_raw as _gift_amount_raw,
+    normalize_gift_parameters as _normalize_gift_parameters,
+    normalize_influence_parameters as _normalize_influence_parameters,
+    validate_gift_query as _validate_gift_query,
+    validate_influence_query as _validate_influence_query,
+    project_gift_query as _project_gift_query,
+    project_influence_query as _project_influence_query,
+    validate_gift_result as _validate_gift_result,
+    validate_influence_result as _validate_influence_result,
+    project_gift_result as _project_gift_result,
+    project_influence_result as _project_influence_result,
+    GIFT_EXECUTION_EVENT as _GIFT_EXECUTION_EVENT,
+    INFLUENCE_EXECUTION_EVENT as _INFLUENCE_EXECUTION_EVENT,
+    NATIVE_EXECUTED as _GIFT_NATIVE_EXECUTED,
+    NATIVE_ACCEPT as _GIFT_NATIVE_ACCEPT,
+    NATIVE_REJECT as _GIFT_NATIVE_REJECT,
+)
+from .peace_consequences import (
+    project_event_consequences,
+    validate_native_consequences,
+)
+from .peace_core import (
+    CORE_ACTION_IDS, CORE_QUERY_CAPABILITY, build_query14_wire,
+    normalize_core_query_parameters, project_native_core_terms,
+    validate_native_core_offer_query)
+from .peace_country import (
+    COUNTRY_SELECTION_KEYS, COUNTRY_TERM_ACTIONS, COUNTRY_TERM_MASKS,
+    extract_country_selection, country_mask_for_terms)
+from .declarewar_details import valid_declare_war_details, project_declare_war_details
+from .declarewar_peace_options import (
+    validate_native_peace_options, project_native_peace_options,
+)
+from .peace_rejection import (
+    validate_native_peace_rejection, project_native_peace_rejection,
+)
+from .declarewar_selection import (
+    PARTICIPANT_FIELDS, country_csv, normalize_participant_selection,
+    participant_selection_requested,
+)
+from .declarewar_participants import validate_participants, project_participants
+from .declarewar_forces import (
+    project_declare_war_forces,
+    valid_declare_war_forces,
+)
+from .war_score import (
+    QUERY_CAPABILITY as _NATIVE_LIVE_WAR_SCORE_QUERY_CAPABILITY,
+    EVENT as _NATIVE_LIVE_WAR_SCORE_EVENT,
+    FAILED_EVENTS as _NATIVE_LIVE_WAR_SCORE_FAILED_EVENTS,
+    attach_live_war_score as _attach_live_war_score,
+    validate_live_war_score_event as _validate_live_war_score_event,
+)
 
 
 def reason(code: str, text: str, source: str, complete: bool = False) -> dict:
@@ -37,6 +120,7 @@ _NATIVE_DISSOLVE_SUBMISSION_CAPABILITY = "native_dissolve_submission"
 _NATIVE_ROYAL_MARRIAGE_SUBMISSION_CAPABILITY = "native_royal_marriage_submission"
 _NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY = "native_improve_relations_submission"
 _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY = "native_spy_network_submission"
+_NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY = "native_curry_favors_submission"
 _NATIVE_GUARANTEE_SUBMISSION_CAPABILITY = "native_guarantee_submission"
 _NATIVE_SUPPORT_INDEPENDENCE_SUBMISSION_CAPABILITY = "native_support_independence_submission"
 _NATIVE_MILITARY_ACCESS_SUBMISSION_CAPABILITY = "native_military_access_submission"
@@ -52,6 +136,7 @@ _NATIVE_REASON_METADATA_CAPABILITY = "native_alliance_reason_metadata"
 _NATIVE_ROYAL_MARRIAGE_QUERY_CAPABILITY = "native_royal_marriage_query"
 _NATIVE_IMPROVE_RELATIONS_QUERY_CAPABILITY = "native_improve_relations_query"
 _NATIVE_SPY_NETWORK_QUERY_CAPABILITY = "native_spy_network_query"
+_NATIVE_CURRY_FAVORS_QUERY_CAPABILITY = "native_curry_favors_query"
 _NATIVE_GUARANTEE_QUERY_CAPABILITY = "native_guarantee_query"
 _NATIVE_SUPPORT_INDEPENDENCE_QUERY_CAPABILITY = "native_support_independence_query"
 _NATIVE_MILITARY_ACCESS_QUERY_CAPABILITY = "native_military_access_query"
@@ -62,6 +147,10 @@ _NATIVE_VASSALIZATION_QUERY_CAPABILITY = "native_vassalization_query"
 _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY = "native_vassalization_submission"
 _NATIVE_DECLARE_WAR_QUERY_CAPABILITY = "native_declare_war_query"
 _NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY = "native_declare_war_submission"
+_NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY = "native_declare_war_participants"
+_NATIVE_DECLARE_WAR_FORCES_CAPABILITY = "native_declare_war_forces"
+_NATIVE_DECLARE_WAR_PEACE_OPTIONS_CAPABILITY = "native_declare_war_peace_options"
+_NATIVE_PEACE_CONSEQUENCES_CAPABILITY = "native_peace_consequences"
 _NATIVE_PEACE_SUBMISSION_CAPABILITY = "native_peace_submission"
 _NATIVE_PEACE_CONTEXT_QUERY_CAPABILITY = "native_peace_context_query"
 _NATIVE_PEACE_EMPTY_OFFER_QUERY_CAPABILITY = "native_peace_empty_offer_query"
@@ -71,6 +160,22 @@ _NATIVE_PEACE_PROVINCE_OFFER_QUERY_CAPABILITY = "native_peace_province_offer_que
 _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY = "native_peace_combined_query"
 _NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY = "native_peace_reparations_query"
 _NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY = "native_peace_reparations_execution"
+_NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY = "native_peace_trade_power_query"
+_NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY = "native_peace_trade_power_execution"
+_NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY = "native_peace_trade_power_sources"
+_NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY = "native_peace_concede_defeat_query"
+_NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY = "native_peace_concede_defeat_execution"
+_NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY = "native_peace_annul_treaties_query"
+_NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY = "native_peace_annul_treaties_execution"
+_NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY = "native_peace_special_terms_query"
+_NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY = "native_peace_special_terms_execution"
+_NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY = CORE_QUERY_CAPABILITY
+_NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY = "native_peace_core_terms_execution"
+_NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY = "native_peace_subject_terms_query"
+_NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY = "native_peace_subject_terms_execution"
+_NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY = "native_peace_country_terms_query"
+_NATIVE_PEACE_COUNTRY_MONEY_QUERY_CAPABILITY = "native_peace_country_money_query"
+_NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY = "native_peace_country_terms_execution"
 _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY = "native_peace_wrapper_rule_query"
 _EXECUTE_REQUEST_NAME = "diplomacy-execute.req"
 _PEACE_EXECUTE_REQUEST_NAME = "diplomacy-peace-execute.req"
@@ -103,15 +208,102 @@ _NEGOTIATED_NATIVE_ACTIONS = {
         "military_access", _NATIVE_MILITARY_ACCESS_SUBMISSION_CAPABILITY),
     "offer_vassalization": (
         "vassalization", _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY),
+    _FAVOR_GOLD_ACTION: ("favor_trade", _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY),
+    _FAVOR_TRUST_ACTION: ("favor_trade", _NATIVE_FAVOR_TRUST_SUBMISSION_CAPABILITY),
+    _FAVOR_MEN_ACTION: ("favor_trade", _NATIVE_FAVOR_MEN_SUBMISSION_CAPABILITY),
 }
 _NEGOTIATED_INITIATION_ACTIONS = frozenset(_NEGOTIATED_NATIVE_ACTIONS)
+_FAVOR_RESOURCE_ACTIONS = frozenset((_FAVOR_TRUST_ACTION, _FAVOR_MEN_ACTION))
+_FAVOR_ACTIONS = frozenset((_FAVOR_GOLD_ACTION, *_FAVOR_RESOURCE_ACTIONS))
+_GIFT_INFLUENCE_ACTIONS = frozenset((_GIFT_ACTION, _INFLUENCE_ACTION))
+_SINGLE_SIDED_NATIVE_ACTIONS = frozenset((_GIFT_ACTION, _INFLUENCE_ACTION,
+                                            "improve_relations", "stop_improving_relations",
+                                            "build_spy_network", "stop_building_spy_network",
+                                            "curry_favors", "stop_curry_favors",
+                                            "proclaim_guarantee", "revoke_guarantee",
+                                            "cancel_vassalization"))
+_FAVOR_RESOURCE_CAPABILITIES = {
+    _FAVOR_TRUST_ACTION: (
+        _NATIVE_FAVOR_TRUST_QUERY_CAPABILITY,
+        _NATIVE_FAVOR_TRUST_SUBMISSION_CAPABILITY,
+        _NATIVE_INBOUND_FAVOR_TRUST_RESPONSE_CAPABILITY,
+    ),
+    _FAVOR_MEN_ACTION: (
+        _NATIVE_FAVOR_MEN_QUERY_CAPABILITY,
+        _NATIVE_FAVOR_MEN_SUBMISSION_CAPABILITY,
+        _NATIVE_INBOUND_FAVOR_MEN_RESPONSE_CAPABILITY,
+    ),
+}
 _INSULT_ACTIONS = frozenset(("send_insult", "scornful_insult"))
 _RIVAL_ACTIONS = frozenset(("set_rival", "remove_rival"))
 _VASSALIZATION_ACTIONS = frozenset(("offer_vassalization", "cancel_vassalization"))
 _PEACE_EXECUTION_ACTIONS = frozenset(
-    ("white_peace", "demand_ducats", "cede_province", "war_reparations"))
+    ("white_peace", "demand_ducats", "cede_province", "war_reparations",
+     "transfer_trade_power", "concede_defeat", "annul_treaties",
+     "humiliate_rival", "show_strength", "force_religion",
+     "return_core", "revoke_core", "release_subject", "transfer_subject",
+     "release_nation", "force_vassalization", "form_personal_union",
+     "grant_independence", "full_annexation"))
+_PEACE_SUBJECT_ACTIONS = frozenset(("release_subject", "transfer_subject"))
 _PEACE_WAR_ID_PATTERN = r"war_[0-9a-f]{16}_[0-9a-f]{8}"
+_PEACE_OPEN_END_DATE_RAW = 0x29C77F8
 _MAX_PEACE_EVALUATION_FACTORS = 64
+
+
+def _normalize_peace_subject_query_parameters(
+        action_id: str, actor: str, recipient: str, phase: str,
+        parameters: object) -> dict | None:
+    """Normalize the QUERY16 subject candidate/selection shape.
+
+    An empty public parameter object is intentionally left to the existing
+    peace-war discovery path.  An explicit empty ``terms`` array is QUERY16
+    candidate discovery; a one-term array selects exactly one native subject
+    country.  Native legality, role binding and candidate membership remain
+    native decisions.
+    """
+
+    if (action_id not in _PEACE_SUBJECT_ACTIONS or phase != "initiate"
+            or not isinstance(actor, str)
+            or re.fullmatch(r"[A-Z0-9]{3}", actor) is None
+            or not isinstance(recipient, str)
+            or re.fullmatch(r"[A-Z0-9]{3}", recipient) is None
+            or actor == recipient):
+        raise ValueError("QUERY_PEACE_SUBJECT_PARAMETERS_INVALID")
+    if parameters == {}:
+        return None
+    if not isinstance(parameters, dict) or set(parameters) != {"peace_context"}:
+        raise ValueError("QUERY_PEACE_SUBJECT_PARAMETERS_INVALID")
+    context = parameters.get("peace_context")
+    if (not isinstance(context, dict)
+            or set(context) not in ({"war_id", "terms"},
+                                    {"war_id", "direction", "terms"})):
+        raise ValueError("QUERY_PEACE_SUBJECT_PARAMETERS_INVALID")
+    war_id = context.get("war_id")
+    direction = context.get("direction", "demand")
+    terms = context.get("terms")
+    if (not isinstance(war_id, str)
+            or re.fullmatch(_PEACE_WAR_ID_PATTERN, war_id) is None
+            or direction not in ("demand", "offer")
+            or not isinstance(terms, list)
+            or len(terms) > 1):
+        raise ValueError("QUERY_PEACE_SUBJECT_PARAMETERS_INVALID")
+    if not terms:
+        return {
+            "action_id": action_id, "war_id": war_id,
+            "direction": direction, "country": None, "discovery": True,
+        }
+    term = terms[0]
+    if (not isinstance(term, dict)
+            or set(term) != {"action_id", "country"}
+            or term.get("action_id") != action_id
+            or not isinstance(term.get("country"), str)
+            or re.fullmatch(r"[A-Z0-9]{3}", term["country"]) is None):
+        raise ValueError("QUERY_PEACE_SUBJECT_PARAMETERS_INVALID")
+    return {
+        "action_id": action_id, "war_id": war_id,
+        "direction": direction, "country": term["country"],
+        "discovery": False,
+    }
 
 
 def _native_tick_count_ms() -> int:
@@ -151,9 +343,43 @@ def _inbound_response_capability(action_id: str) -> str | None:
         return _NATIVE_INBOUND_MILITARY_ACCESS_RESPONSE_CAPABILITY
     if action_id == "offer_vassalization":
         return _NATIVE_INBOUND_VASSAL_RESPONSE_CAPABILITY
+    if action_id == _FAVOR_GOLD_ACTION:
+        return _NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_CAPABILITY
+    if action_id in _FAVOR_RESOURCE_CAPABILITIES:
+        return _FAVOR_RESOURCE_CAPABILITIES[action_id][2]
     if action_id == "peace_offer":
         return _NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY
     return None
+
+
+def _is_favor_resource_action(action_id: str) -> bool:
+    return action_id in _FAVOR_RESOURCE_ACTIONS
+
+
+def _favor_resource_kind(action_id: str) -> str | None:
+    if action_id == _FAVOR_TRUST_ACTION:
+        return "trust"
+    if action_id == _FAVOR_MEN_ACTION:
+        return "men"
+    return None
+
+
+def _valid_favor_query_for_action(action_id: str, value: object) -> bool:
+    if action_id == _FAVOR_GOLD_ACTION:
+        return validate_favor_query(value)
+    kind = _favor_resource_kind(action_id)
+    return (kind is not None and isinstance(value, dict)
+            and value.get("kind") == kind
+            and validate_favor_resource_query(value))
+
+
+def _project_favor_query_for_action(action_id: str, value: object,
+                                    actor: str, recipient: str) -> dict | None:
+    if action_id == _FAVOR_GOLD_ACTION:
+        return project_favor_query(value, actor, recipient)
+    if _favor_resource_kind(action_id) is None:
+        return None
+    return project_favor_resource_query(value, actor, recipient)
 
 
 class ObserverSession:
@@ -224,10 +450,13 @@ class ObserverSession:
         capabilities.discard(_NATIVE_ROYAL_MARRIAGE_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY)
+        capabilities.discard(_NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_GUARANTEE_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_SUPPORT_INDEPENDENCE_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_MILITARY_ACCESS_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_INSULT_SUBMISSION_CAPABILITY)
+        capabilities.discard(_NATIVE_GIFT_SUBMISSION_CAPABILITY)
+        capabilities.discard(_NATIVE_INFLUENCE_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_RIVAL_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_DECLARE_WAR_QUERY_CAPABILITY)
         capabilities.discard(_NATIVE_PEACE_SUBMISSION_CAPABILITY)
@@ -241,6 +470,9 @@ class ObserverSession:
         # Spy Network inspection is granted only by its dedicated top-level
         # literal ACK; a copied caps entry cannot grant this family.
         capabilities.discard(_NATIVE_SPY_NETWORK_QUERY_CAPABILITY)
+        # Curry Favors inspection is granted only by its dedicated top-level
+        # literal ACK; a copied caps entry cannot authorize this family.
+        capabilities.discard(_NATIVE_CURRY_FAVORS_QUERY_CAPABILITY)
         # Guarantee inspection is granted only by its dedicated top-level
         # literal ACK; a copied caps entry cannot grant this family.
         capabilities.discard(_NATIVE_GUARANTEE_QUERY_CAPABILITY)
@@ -249,6 +481,8 @@ class ObserverSession:
         capabilities.discard(_NATIVE_SUPPORT_INDEPENDENCE_QUERY_CAPABILITY)
         capabilities.discard(_NATIVE_MILITARY_ACCESS_QUERY_CAPABILITY)
         capabilities.discard(_NATIVE_INSULT_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_GIFT_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_INFLUENCE_QUERY_CAPABILITY)
         # Rival inspection is granted only by its dedicated top-level literal
         # ACK; a copied caps entry cannot grant the countrycommands adapter.
         capabilities.discard(_NATIVE_RIVAL_QUERY_CAPABILITY)
@@ -257,6 +491,10 @@ class ObserverSession:
         capabilities.discard(_NATIVE_VASSALIZATION_QUERY_CAPABILITY)
         capabilities.discard(_NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY)
         capabilities.discard(_NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY)
+        capabilities.discard(_NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY)
+        capabilities.discard(_NATIVE_DECLARE_WAR_FORCES_CAPABILITY)
+        capabilities.discard(_NATIVE_DECLARE_WAR_PEACE_OPTIONS_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_CONSEQUENCES_CAPABILITY)
         # Peace-context discovery is granted only by its exact top-level
         # literal ACK; a copied caps entry cannot authorize QUERY1.
         capabilities.discard(_NATIVE_PEACE_CONTEXT_QUERY_CAPABILITY)
@@ -278,6 +516,29 @@ class ObserverSession:
         # The wrapper-rule proof is a separate read-only ACK.  Older query
         # capability lists must not activate the new four-proof validator.
         capabilities.discard(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        # Reparations has an independent QUERY8/EXEC2 contract.  Neither the
+        # legacy peace ACK nor any older term-specific ACK can imply it.
+        capabilities.discard(_NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_COUNTRY_MONEY_QUERY_CAPABILITY)
+        capabilities.discard(_NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY)
+        # Live war-score capture is an optional auxiliary event.  A copied
+        # caps list cannot install it; only the exact top-level ACK below can.
+        capabilities.discard(_NATIVE_LIVE_WAR_SCORE_QUERY_CAPABILITY)
         capabilities.discard(_NATIVE_INBOUND_VASSAL_RESPONSE_CAPABILITY)
         # v10's exact ack uses this boolean instead of a caps array.
         if ack.get("native_queries_enabled") is True:
@@ -294,6 +555,8 @@ class ObserverSession:
             capabilities.add(_NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY)
         if ack.get(_NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY) is True:
             capabilities.add(_NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY)
+        if ack.get(_NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY)
         if ack.get(_NATIVE_GUARANTEE_SUBMISSION_CAPABILITY) is True:
             capabilities.add(_NATIVE_GUARANTEE_SUBMISSION_CAPABILITY)
         if ack.get(_NATIVE_SUPPORT_INDEPENDENCE_SUBMISSION_CAPABILITY) is True:
@@ -302,12 +565,24 @@ class ObserverSession:
             capabilities.add(_NATIVE_MILITARY_ACCESS_SUBMISSION_CAPABILITY)
         if ack.get(_NATIVE_INSULT_SUBMISSION_CAPABILITY) is True:
             capabilities.add(_NATIVE_INSULT_SUBMISSION_CAPABILITY)
+        if ack.get(_NATIVE_GIFT_SUBMISSION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_GIFT_SUBMISSION_CAPABILITY)
+        if ack.get(_NATIVE_INFLUENCE_SUBMISSION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_INFLUENCE_SUBMISSION_CAPABILITY)
         if ack.get(_NATIVE_RIVAL_SUBMISSION_CAPABILITY) is True:
             capabilities.add(_NATIVE_RIVAL_SUBMISSION_CAPABILITY)
         if ack.get(_NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY) is True:
             capabilities.add(_NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY)
         if ack.get(_NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY) is True:
             capabilities.add(_NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY)
+        if ack.get(_NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY) is True:
+            capabilities.add(_NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY)
+        if ack.get(_NATIVE_DECLARE_WAR_FORCES_CAPABILITY) is True:
+            capabilities.add(_NATIVE_DECLARE_WAR_FORCES_CAPABILITY)
+        if ack.get(_NATIVE_DECLARE_WAR_PEACE_OPTIONS_CAPABILITY) is True:
+            capabilities.add(_NATIVE_DECLARE_WAR_PEACE_OPTIONS_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_CONSEQUENCES_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_CONSEQUENCES_CAPABILITY)
         if ack.get(_NATIVE_PEACE_SUBMISSION_CAPABILITY) is True:
             capabilities.add(_NATIVE_PEACE_SUBMISSION_CAPABILITY)
         # r21's inbound build is observation/defer only.  This flag grants
@@ -334,6 +609,8 @@ class ObserverSession:
             capabilities.add(_NATIVE_IMPROVE_RELATIONS_QUERY_CAPABILITY)
         if ack.get(_NATIVE_SPY_NETWORK_QUERY_CAPABILITY) is True:
             capabilities.add(_NATIVE_SPY_NETWORK_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_CURRY_FAVORS_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_CURRY_FAVORS_QUERY_CAPABILITY)
         if ack.get(_NATIVE_GUARANTEE_QUERY_CAPABILITY) is True:
             capabilities.add(_NATIVE_GUARANTEE_QUERY_CAPABILITY)
         if ack.get(_NATIVE_SUPPORT_INDEPENDENCE_QUERY_CAPABILITY) is True:
@@ -342,6 +619,10 @@ class ObserverSession:
             capabilities.add(_NATIVE_MILITARY_ACCESS_QUERY_CAPABILITY)
         if ack.get(_NATIVE_INSULT_QUERY_CAPABILITY) is True:
             capabilities.add(_NATIVE_INSULT_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_GIFT_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_GIFT_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_INFLUENCE_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_INFLUENCE_QUERY_CAPABILITY)
         if ack.get(_NATIVE_RIVAL_QUERY_CAPABILITY) is True:
             capabilities.add(_NATIVE_RIVAL_QUERY_CAPABILITY)
         if ack.get(_NATIVE_VASSALIZATION_QUERY_CAPABILITY) is True:
@@ -362,6 +643,57 @@ class ObserverSession:
             capabilities.add(_NATIVE_PEACE_COMBINED_QUERY_CAPABILITY)
         if ack.get(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY) is True:
             capabilities.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_COUNTRY_MONEY_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_COUNTRY_MONEY_QUERY_CAPABILITY)
+        if ack.get(_NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY) is True:
+            capabilities.add(_NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY)
+        if ack.get(_NATIVE_LIVE_WAR_SCORE_QUERY_CAPABILITY) is True:
+            capabilities.add(_NATIVE_LIVE_WAR_SCORE_QUERY_CAPABILITY)
+        for capability in (_NATIVE_FAVOR_GOLD_QUERY_CAPABILITY,
+                           _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY,
+                           _NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_CAPABILITY):
+            capabilities.discard(capability)
+            if ack.get(capability) is True:
+                capabilities.add(capability)
+        for capability in {
+                capability
+                for triple in _FAVOR_RESOURCE_CAPABILITIES.values()
+                for capability in triple}:
+            capabilities.discard(capability)
+            if ack.get(capability) is True:
+                capabilities.add(capability)
         return frozenset(capabilities)
 
     @staticmethod
@@ -410,6 +742,14 @@ class ObserverSession:
                         isinstance(event.get("extra60"), bool)
                         or not isinstance(event.get("extra60"), int)
                         or event.get("extra60") != 0))):
+                return False
+        elif family == "favor_trade":
+            # Favor-for-gold pending offers use the same queue envelope but
+            # must remain bound to their own family before QUERY1 inspection.
+            if (event.get("family") != "favor_trade"
+                    or isinstance(event.get("extra60"), bool)
+                    or not isinstance(event.get("extra60"), int)
+                    or event.get("extra60") != 0):
                 return False
         elif family == "peace":
             # Peace is an aggregate inbound proposal.  The pending event may
@@ -473,7 +813,8 @@ class ObserverSession:
         A restored queue item has the same diplomatic payload identity as an
         inbound offer, but it is not a newly created offer.  Keep this
         contract separate from ``_valid_native_inbound_offer_event`` so a
-        restored item cannot silently satisfy the old ``new_entry`` or
+        restored item cannot silently satisfy the old `
+ew_entry`` or
         ``call_redirected`` proof.
         """
 
@@ -557,6 +898,12 @@ class ObserverSession:
         }
         if event.get("event") == "native_diplomacy_inbound_pending_restored":
             public["source"] = "saved_native_pending"
+        if family == "peace":
+            public_context = ObserverSession._canonicalize_inbound_peace_context(
+                event.get("peace_context"))
+            if (public_context is not None
+                    and public_context.get("complete") is True):
+                public["peace_context"] = public_context
         return public
 
     def read_native_alliance_inbound_offers(self) -> list[dict]:
@@ -684,7 +1031,7 @@ class ObserverSession:
                 or family is None
                 or payload.get("family", family) != family):
             return None
-        return {
+        public = {
             "actor": actor,
             "recipient": "FRA",
             "native_proposal_id": native_proposal_id,
@@ -692,6 +1039,7 @@ class ObserverSession:
             "action_id": action_id,
             "family": family,
         }
+        return public
 
     @staticmethod
     def _safe_submission_sequence(value: object) -> int | None:
@@ -814,6 +1162,29 @@ class ObserverSession:
             expected_date, action_id)
 
     @classmethod
+    def _valid_native_curry_favors_submission_result(
+            cls, event: object, request_id: str, session_id: str,
+            actor: str, recipient: str, phase: str,
+            expected_date: object, action_id: str) -> bool:
+        """Validate the family-bound Curry Favors transport receipt."""
+
+        if (action_id not in ("curry_favors", "stop_curry_favors")
+                or actor != "FRA" or phase != "initiate"
+                or not isinstance(recipient, str)
+                or re.fullmatch(r"[A-Z]{3}", recipient) is None
+                or recipient == "FRA"
+                or not isinstance(event, dict)
+                or event.get("family") != "curry_favors"
+                or type(event.get("native_variant")) is not int
+                or event.get("native_variant") != (
+                    1 if action_id == "curry_favors" else 0)
+                or not isinstance(event.get("before_active"), bool)):
+            return False
+        return cls._valid_native_submission_result(
+            event, request_id, session_id, actor, recipient, phase,
+            expected_date, action_id)
+
+    @classmethod
     def _valid_native_rival_submission_result(cls, event: object, request_id: str,
                                               session_id: str, actor: str,
                                               recipient: str, phase: str,
@@ -822,7 +1193,9 @@ class ObserverSession:
         """Validate the independent Rival transport receipt.
 
         Rival countrycommands do not use the Alliance receipt fields.  The
-        native adapter supplies ``native_sequence``/``native_flags`` as private header
+        native adapter supplies `
+ative_sequence``/`
+ative_flags`` as private header
         evidence; only their bounded types are checked here and they are
         removed before the receipt is persisted in the public journal.
         """
@@ -937,7 +1310,8 @@ class ObserverSession:
                 or cls._safe_submission_date(event.get("date_raw")) != wanted_date):
             return False
         try:
-            selected = cls._normalize_declare_war_selection(parameters)
+            selected = cls._normalize_declare_war_selection(
+                parameters, actor=actor, recipient=recipient)
         except (TypeError, ValueError):
             selected = None
         if selected is None:
@@ -945,6 +1319,9 @@ class ObserverSession:
         if (event.get("casus_belli") != selected["casus_belli"]
                 or event.get("war_goal_province") != selected["province_id"]
                 or event.get("war_goal_beneficiary") != selected["beneficiary"]):
+            return False
+        if not cls._valid_declare_war_participant_echo(
+                event, selected, actor, recipient):
             return False
         if not isinstance(event.get("submitted"), bool):
             return False
@@ -972,7 +1349,10 @@ class ObserverSession:
                     event, request_id, event.get("session_id", ""), actor,
                     recipient, phase, date_raw, parameters)):
             return None
-        selected = cls._normalize_declare_war_selection(parameters)
+        selected = cls._normalize_declare_war_selection(
+            parameters, actor=actor, recipient=recipient)
+        participant_values = cls._declare_war_participant_values(
+            selected, actor, recipient)
         return {
             "event": "native_declare_war_submission_result",
             "request_id": request_id,
@@ -988,16 +1368,19 @@ class ObserverSession:
             "submitted": True,
             "transport_verified": True,
             "request_binding_verified": True,
+            **participant_values,
         }
 
     @staticmethod
     def _peace_execution_fields(parameters: object) -> tuple | None:
         """Return normalized fields used by the independent Peace wire.
 
-        The final three fields are the direction-bound reparations parties and
-        the canonical term mask.  Keeping the mask here makes every receipt,
+        The final nine fields are the direction-bound R/T/C parties and the
+        explicit annul-treaties country/partners followed by the
+        canonical term mask.  H/S/F roles are validated from the public term
+        objects but deliberately do not expand this 14-item tuple.  Keeping the mask here makes every receipt,
         result and journal re-open path compare the same complete selection,
-        rather than inferring a reparations term from the primary action ID.
+        rather than inferring a base term from the primary action ID.
         """
 
         if not isinstance(parameters, dict):
@@ -1018,6 +1401,12 @@ class ObserverSession:
         beneficiary: str | None = None
         reparations_payer: str | None = None
         reparations_claimant: str | None = None
+        trade_power_source: str | None = None
+        trade_power_beneficiary: str | None = None
+        concede_defeat_country: str | None = None
+        concede_defeat_beneficiary: str | None = None
+        annul_country: str | None = None
+        annul_partners: list[str] | None = None
         term_actions: set[str] = set()
         for term in terms:
             if not isinstance(term, dict):
@@ -1053,13 +1442,253 @@ class ObserverSession:
                     return None
                 reparations_payer = term["payer"]
                 reparations_claimant = term["claimant"]
+            elif term.get("action_id") == "transfer_trade_power":
+                term_actions.add("t")
+                if (not isinstance(term.get("source"), str)
+                        or not isinstance(term.get("beneficiary"), str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", term["source"]) is None
+                        or re.fullmatch(r"[A-Z0-9]{3}", term["beneficiary"]) is None):
+                    return None
+                trade_power_source = term["source"]
+                trade_power_beneficiary = term["beneficiary"]
+            elif term.get("action_id") == "concede_defeat":
+                term_actions.add("c")
+                if (not isinstance(term.get("conceding_country"), str)
+                        or not isinstance(term.get("beneficiary"), str)
+                        or re.fullmatch(r"[A-Z0-9]{3}",
+                                        term["conceding_country"]) is None
+                        or re.fullmatch(r"[A-Z0-9]{3}",
+                                        term["beneficiary"]) is None):
+                    return None
+                concede_defeat_country = term["conceding_country"]
+                concede_defeat_beneficiary = term["beneficiary"]
+            elif term.get("action_id") == "annul_treaties":
+                term_actions.add("a")
+                country = term.get("country")
+                partners = term.get("treaty_partners")
+                if (not isinstance(country, str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", country) is None
+                        or not isinstance(partners, list)
+                        or not 1 <= len(partners) <= 16
+                        or any(not isinstance(partner, str)
+                               or re.fullmatch(r"[A-Z0-9]{3}", partner) is None
+                               or partner == country for partner in partners)
+                        or len(set(partners)) != len(partners)
+                        or partners != sorted(partners)):
+                    return None
+                annul_country = country
+                annul_partners = list(partners)
+            elif term.get("action_id") in {
+                    "humiliate_rival", "show_strength", "force_religion"}:
+                term_actions.add({
+                    "humiliate_rival": "h", "show_strength": "s",
+                    "force_religion": "f"}[term.get("action_id")])
+                country = term.get("country")
+                special_beneficiary = term.get("beneficiary")
+                if (not isinstance(country, str)
+                        or not isinstance(special_beneficiary, str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", country) is None
+                        or re.fullmatch(r"[A-Z0-9]{3}", special_beneficiary) is None
+                        or country == special_beneficiary):
+                    return None
+            elif term.get("action_id") in {"return_core", "revoke_core"}:
+                letter = "b" if term.get("action_id") == "return_core" else "v"
+                term_actions.add(letter)
+                ids = term.get("province_ids")
+                owner = term.get("core_owner")
+                if (not isinstance(ids, list)
+                        or not 1 <= len(ids) <= 16
+                        or any(isinstance(value, bool)
+                               or not isinstance(value, int)
+                               or value <= 0 or value > 0x7FFFFFFF
+                               for value in ids)
+                        or len(set(ids)) != len(ids)
+                        or not isinstance(owner, str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", owner) is None):
+                    return None
+            elif term.get("action_id") in {"release_subject", "transfer_subject"}:
+                action = term.get("action_id")
+                if "country" in term and set(term) == {"action_id", "country"}:
+                    countries = [term.get("country")]
+                elif ("countries" in term
+                      and set(term) == {"action_id", "countries"}
+                      and isinstance(term.get("countries"), list)):
+                    countries = list(term.get("countries"))
+                else:
+                    return None
+                if (not 1 <= len(countries) <= 16
+                        or len(set(countries)) != len(countries)
+                        or countries != sorted(countries)
+                        or any(not isinstance(country, str)
+                               or re.fullmatch(r"[A-Z0-9]{3}", country) is None
+                               for country in countries)):
+                    return None
+                term_actions.add("l" if action == "release_subject" else "x")
+            elif term.get("action_id") in COUNTRY_TERM_ACTIONS:
+                action = term.get("action_id")
+                term_actions.add(COUNTRY_TERM_MASKS[action])
             else:
                 return None
         if not province_ids:
             beneficiary = None
-        term_mask = "".join(letter for letter in "mpr" if letter in term_actions)
+        # EXEC1 remains the wire for legacy white/money/province terms.
+        # EXEC2 is reserved for R; EXEC3 for T; EXEC5 for C and EXEC6 for A;
+        # EXEC7 is used whenever H/S/F is present; EXEC8 is used whenever a
+        # selected return/revoke-core term is present.  The mask is always
+        # canonical m,p,r,t,c,a,h,s,f,b,v,l,x,n,z,u,i,e order. EXEC1
+        # receipts/results omit term_mask, including money/province mixtures.
+        term_mask = ("".join(letter for letter in "mprtcahsfbvlxnzuie" if letter in term_actions)
+                     if term_actions - {"m", "p"}
+                     else "")
         return (war_id, direction, amount_raw, province_ids, beneficiary,
-                reparations_payer, reparations_claimant, term_mask)
+                reparations_payer, reparations_claimant,
+                trade_power_source, trade_power_beneficiary,
+                concede_defeat_country, concede_defeat_beneficiary,
+                annul_country, annul_partners, term_mask)
+
+    @staticmethod
+    def _peace_country_execution_fields(
+            parameters: object, actor: str, recipient: str) -> tuple[str, ...] | None:
+        """Return QUERY18/EXEC10's nine direction-bound country fields.
+
+        The legacy 14-field tuple deliberately remains stable.  Country
+        fields are derived independently so old receipt/result consumers do
+        not accidentally reinterpret a native field-22/field-30 value as a
+        public role.
+        """
+
+        if not isinstance(parameters, dict):
+            return None
+        context = parameters.get("peace_context")
+        if not isinstance(context, dict):
+            return None
+        terms = context.get("terms")
+        direction = context.get("direction", "demand")
+        try:
+            selected = extract_country_selection(terms, actor, recipient, direction)
+        except (TypeError, ValueError):
+            return None
+        return tuple(selected[key] for key in COUNTRY_SELECTION_KEYS)
+
+    @staticmethod
+    def _peace_subject_execution_fields(parameters: object) -> tuple[list[str] | None,
+                                                                    list[str] | None] | None:
+        """Return normalized release/transfer country lists without changing
+        the legacy 14-field peace tuple."""
+
+        if not isinstance(parameters, dict):
+            return None
+        context = parameters.get("peace_context")
+        terms = context.get("terms") if isinstance(context, dict) else None
+        if not isinstance(terms, list):
+            return None
+        result: dict[str, list[str] | None] = {
+            "release_subject": None, "transfer_subject": None}
+        for term in terms:
+            if not isinstance(term, dict):
+                return None
+            action = term.get("action_id")
+            if action not in result:
+                continue
+            if result[action] is not None:
+                return None
+            if set(term) == {"action_id", "country"}:
+                countries = [term.get("country")]
+            elif (set(term) == {"action_id", "countries"}
+                  and isinstance(term.get("countries"), list)):
+                countries = list(term.get("countries"))
+            else:
+                return None
+            if (not 1 <= len(countries) <= 16
+                    or len(set(countries)) != len(countries)
+                    or countries != sorted(countries)
+                    or any(not isinstance(country, str)
+                           or re.fullmatch(r"[A-Z0-9]{3}", country) is None
+                           for country in countries)):
+                return None
+            result[action] = countries
+        release = result["release_subject"]
+        transfer = result["transfer_subject"]
+        if release and transfer and set(release).intersection(transfer):
+            return None
+        return release, transfer
+
+    @staticmethod
+    def _peace_core_execution_fields(parameters: object) -> tuple | None:
+        """Return bounded EXEC8 core fields without changing the legacy tuple.
+
+        The wire carries both core slots so a mixed request has a stable
+        position for return and revoke selections.  ``None`` in a slot is
+        serialized as ``-``; selected slots carry the canonical province list
+        and one native candidate owner.
+        """
+
+        if not isinstance(parameters, dict):
+            return None
+        context = parameters.get("peace_context")
+        terms = context.get("terms") if isinstance(context, dict) else None
+        if not isinstance(terms, list):
+            return None
+        values: dict[str, tuple[list[int], str] | None] = {
+            "return_core": None, "revoke_core": None}
+        for term in terms:
+            if not isinstance(term, dict) or term.get("action_id") not in values:
+                continue
+            if values[term["action_id"]] is not None:
+                return None
+            ids = term.get("province_ids")
+            owner = term.get("core_owner")
+            if (not isinstance(ids, list) or not 1 <= len(ids) <= 16
+                    or any(isinstance(value, bool)
+                           or not isinstance(value, int)
+                           or value <= 0 or value > 0x7FFFFFFF
+                           for value in ids)
+                    or len(set(ids)) != len(ids)
+                    or not isinstance(owner, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", owner) is None):
+                return None
+            values[term["action_id"]] = (list(ids), owner)
+        return (values["return_core"], values["revoke_core"])
+
+    @staticmethod
+    def _valid_native_peace_core_fields(
+            event: object, parameters: object, term_mask: str) -> bool:
+        """Validate core receipt/result fields against this exact request."""
+
+        fields = ObserverSession._peace_core_execution_fields(parameters)
+        if fields is None:
+            return False
+        expected_return, expected_revoke = fields
+
+        def matches(prefix: str, expected: tuple[list[int], str] | None) -> bool:
+            ids_key = f"{prefix}_ids"
+            owner_key = f"{prefix}_owner"
+            requested = prefix == "return_core"
+            letter = "b" if requested else "v"
+            if letter not in term_mask:
+                # Old EXEC1-7 events must not gain unrequested core data.
+                return ids_key not in event and owner_key not in event
+            if expected is None:
+                return False
+            ids, owner = expected
+            actual_ids = event.get(ids_key)
+            actual_owner = event.get(owner_key)
+            # Native JSON uses bounded arrays for receipt/result metadata;
+            # accept the wire-shaped CSV only at the private submission edge
+            # if a test/native adapter exposes it there.
+            if isinstance(actual_ids, str):
+                if actual_ids == "-":
+                    return False
+                try:
+                    actual_ids = [int(value) for value in actual_ids.split(",")]
+                except (TypeError, ValueError):
+                    return False
+            if (actual_ids != ids or actual_owner != owner):
+                return False
+            return True
+
+        return matches("return_core", expected_return) and matches(
+            "revoke_core", expected_revoke)
 
     @classmethod
     def _valid_native_peace_submission_result(
@@ -1079,6 +1708,14 @@ class ObserverSession:
         expected = cls._peace_execution_fields(parameters)
         if expected is None:
             return False
+        subject_fields = cls._peace_subject_execution_fields(parameters)
+        if subject_fields is None:
+            return False
+        country_fields = cls._peace_country_execution_fields(
+            parameters, actor, recipient)
+        if country_fields is None:
+            return False
+        release_subject_countries, transfer_subject_countries = subject_fields
         for field, value in (
                 ("request_id", request_id), ("session_id", session_id),
                 ("action_id", action_id), ("actor", actor),
@@ -1090,16 +1727,64 @@ class ObserverSession:
         if wanted_date is None or actual_date != wanted_date:
             return False
         (war_id, direction, amount_raw, province_ids, beneficiary,
-         reparations_payer, reparations_claimant, term_mask) = expected
+         reparations_payer, reparations_claimant,
+         trade_power_source, trade_power_beneficiary,
+         concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = expected
         if (event.get("war_id") != war_id
                 or event.get("direction") != direction
                 or event.get("amount_raw") != amount_raw
                 or event.get("province_ids") != province_ids
                 or event.get("beneficiary") not in (beneficiary, "-" if beneficiary is None else beneficiary)):
             return False
-        if term_mask and event.get("term_mask") != term_mask:
-            return False
+        if term_mask:
+            if event.get("term_mask") != term_mask:
+                return False
+            if "r" in term_mask and (
+                    event.get("reparations_payer") != reparations_payer
+                    or event.get("reparations_claimant") != reparations_claimant):
+                return False
+            if "t" in term_mask and (
+                    event.get("trade_power_source") != trade_power_source
+                    or event.get("trade_power_beneficiary") != trade_power_beneficiary):
+                return False
+            if "c" in term_mask and (
+                    event.get("conceding_country") != concede_defeat_country
+                    or event.get("concede_beneficiary") != concede_defeat_beneficiary):
+                return False
+            if "a" in term_mask and (
+                    event.get("annul_country") != annul_country
+                    or event.get("annul_partners") != annul_partners):
+                return False
+            release_countries, transfer_countries = subject_fields
+            if ("l" in term_mask
+                    and event.get("release_subject_countries")
+                    != ",".join(release_countries or [])):
+                return False
+            if ("x" in term_mask
+                    and event.get("transfer_subject_countries")
+                    != ",".join(transfer_countries or [])):
+                return False
+            if "l" not in term_mask and "release_subject_countries" in event:
+                return False
+            if "x" not in term_mask and "transfer_subject_countries" in event:
+                return False
+            for key, value, bit in zip(
+                    COUNTRY_SELECTION_KEYS, country_fields,
+                    ("n", "n", "z", "u", "i", "e", "z", "u", "e")):
+                if bit in term_mask:
+                    if event.get(key) != value:
+                        return False
+                elif key in event:
+                    return False
+            if not cls._valid_native_peace_core_fields(
+                    event, parameters, term_mask):
+                return False
         if not term_mask and "term_mask" in event:
+            return False
+        if ("native_consequences" in event
+                and not validate_native_consequences(
+                    event.get("native_consequences"))):
             return False
         submitted = event.get("submitted")
         if not isinstance(submitted, bool):
@@ -1119,7 +1804,8 @@ class ObserverSession:
     def _public_native_peace_submission_receipt(
             cls, event: object, request_id: str, actor: str, recipient: str,
             phase: str, date_raw: object, action_id: str,
-            parameters: object) -> dict | None:
+            parameters: object, *,
+            text_codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict | None:
         if (not isinstance(event, dict) or event.get("submitted") is not True
                 or not cls._valid_native_peace_submission_result(
                     event, request_id, event.get("session_id", ""), actor,
@@ -1128,9 +1814,73 @@ class ObserverSession:
         fields = cls._peace_execution_fields(parameters)
         if fields is None:
             return None
+        core_fields = cls._peace_core_execution_fields(parameters)
+        if core_fields is None:
+            return None
+        subject_fields = cls._peace_subject_execution_fields(parameters)
+        if subject_fields is None:
+            return None
+        country_fields = cls._peace_country_execution_fields(
+            parameters, actor, recipient)
+        if country_fields is None:
+            return None
         (war_id, direction, amount_raw, province_ids, beneficiary,
-         reparations_payer, reparations_claimant, term_mask) = fields
-        return {
+         reparations_payer, reparations_claimant,
+         trade_power_source, trade_power_beneficiary,
+         concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = fields
+        special_terms = [
+            {"action_id": term.get("action_id"),
+             "country": term.get("country"),
+             "beneficiary": term.get("beneficiary")}
+            for term in parameters.get("peace_context", {}).get("terms", [])
+            if isinstance(term, dict) and term.get("action_id") in {
+                "humiliate_rival", "show_strength", "force_religion"}]
+        term_receipt: dict = {}
+        if term_mask:
+            term_receipt["term_mask"] = term_mask
+            if "r" in term_mask:
+                term_receipt.update({
+                    "reparations_payer": reparations_payer,
+                    "reparations_claimant": reparations_claimant})
+            if "t" in term_mask:
+                term_receipt.update({
+                    "trade_power_source": trade_power_source,
+                    "trade_power_beneficiary": trade_power_beneficiary})
+            if "c" in term_mask:
+                term_receipt.update({
+                    "conceding_country": concede_defeat_country,
+                    "concede_beneficiary": concede_defeat_beneficiary})
+            if "a" in term_mask:
+                term_receipt.update({
+                    "annul_country": annul_country,
+                    "annul_partners": list(annul_partners or [])})
+            if "b" in term_mask and core_fields[0]:
+                term_receipt.update({
+                    "return_ids": list(core_fields[0][0]),
+                    "return_core_owner": core_fields[0][1]})
+            if "v" in term_mask and core_fields[1]:
+                term_receipt.update({
+                    "revoke_ids": list(core_fields[1][0]),
+                    "revoke_core_owner": core_fields[1][1]})
+            if "l" in term_mask:
+                term_receipt["release_subject_countries"] = ",".join(
+                    subject_fields[0] or [])
+            if "x" in term_mask:
+                term_receipt["transfer_subject_countries"] = ",".join(
+                    subject_fields[1] or [])
+            if any(bit in term_mask for bit in "nzuie"):
+                term_receipt.update(dict(zip(COUNTRY_SELECTION_KEYS, country_fields)))
+            if special_terms:
+                term_receipt["special_terms"] = special_terms
+        special_terms = [
+            {"action_id": term.get("action_id"),
+             "country": term.get("country"),
+             "beneficiary": term.get("beneficiary")}
+            for term in parameters.get("peace_context", {}).get("terms", [])
+            if isinstance(term, dict) and term.get("action_id") in {
+                "humiliate_rival", "show_strength", "force_religion"}]
+        result = {
             "event": "native_peace_submission_result",
             "request_id": request_id,
             "action_id": action_id,
@@ -1144,14 +1894,48 @@ class ObserverSession:
             "amount_raw": amount_raw,
             "province_ids": list(province_ids),
             "beneficiary": beneficiary,
-            **({"term_mask": term_mask,
-                "reparations_payer": reparations_payer,
-                "reparations_claimant": reparations_claimant}
+             **({"term_mask": term_mask,
+                 **({"reparations_payer": reparations_payer,
+                     "reparations_claimant": reparations_claimant}
+                    if "r" in term_mask else {}),
+                 **({"trade_power_source": trade_power_source,
+                     "trade_power_beneficiary": trade_power_beneficiary}
+                    if "t" in term_mask else {}),
+                  **({"conceding_country": concede_defeat_country,
+                      "concede_beneficiary": concede_defeat_beneficiary}
+                     if "c" in term_mask else {}),
+                  **({"annul_country": annul_country,
+                      "annul_partners": list(annul_partners or [])}
+                     if "a" in term_mask else {}),
+                  **({"return_ids": list(core_fields[0][0]),
+                      "return_core_owner": core_fields[0][1]}
+                     if "b" in term_mask and core_fields[0] else {}),
+                  **({"revoke_ids": list(core_fields[1][0]),
+                      "revoke_core_owner": core_fields[1][1]}
+                     if "v" in term_mask and core_fields[1] else {}),
+                   **({"release_subject_countries": ",".join(subject_fields[0] or [])}
+                      if "l" in term_mask else {}),
+                   **({"transfer_subject_countries": ",".join(subject_fields[1] or [])}
+                      if "x" in term_mask else {}),
+                   **({key: value for key, value, bit in zip(
+                         COUNTRY_SELECTION_KEYS, country_fields,
+                         ("n", "n", "z", "u", "i", "e", "z", "u", "e"))
+                        if bit in term_mask}
+                      if any(bit in term_mask for bit in "nzuie") else {}),
+                  **({"special_terms": special_terms}
+                     if special_terms else {})}
                if term_mask else {}),
             "submitted": True,
             "transport_verified": True,
             "request_binding_verified": True,
         }
+        if "native_consequences" in event:
+            projected_consequences = project_event_consequences(
+                event, codec=text_codec)
+            if projected_consequences is None:
+                return None
+            result["peace_consequences"] = projected_consequences
+        return result
 
     @classmethod
     def _valid_native_peace_execution_result(
@@ -1171,6 +1955,14 @@ class ObserverSession:
         expected = cls._peace_execution_fields(parameters)
         if expected is None:
             return False
+        subject_fields = cls._peace_subject_execution_fields(parameters)
+        if subject_fields is None:
+            return False
+        country_fields = cls._peace_country_execution_fields(
+            parameters, actor, recipient)
+        if country_fields is None:
+            return False
+        release_subject_countries, transfer_subject_countries = subject_fields
         for field, value in (
                 ("request_id", request_id), ("session_id", session_id),
                 ("action_id", action_id), ("actor", actor),
@@ -1182,16 +1974,75 @@ class ObserverSession:
                 or cls._safe_submission_date(event.get("date_raw")) != wanted_date):
             return False
         (war_id, direction, amount_raw, province_ids, beneficiary,
-         reparations_payer, reparations_claimant, term_mask) = expected
+         reparations_payer, reparations_claimant,
+         trade_power_source, trade_power_beneficiary,
+         concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = expected
+        special_roles = {
+            action: (
+                next((term.get("country") for term in parameters.get(
+                    "peace_context", {}).get("terms", [])
+                      if isinstance(term, dict)
+                      and term.get("action_id") == action), None),
+                next((term.get("beneficiary") for term in parameters.get(
+                    "peace_context", {}).get("terms", [])
+                      if isinstance(term, dict)
+                      and term.get("action_id") == action), None))
+            for action in ("humiliate_rival", "show_strength", "force_religion")}
         if (event.get("war_id") != war_id
                 or event.get("direction") != direction
                 or event.get("amount_raw") != amount_raw
                 or event.get("province_ids") != province_ids
                 or event.get("beneficiary") not in (beneficiary, "-" if beneficiary is None else beneficiary)):
             return False
-        if term_mask and event.get("term_mask") != term_mask:
-            return False
+        if term_mask:
+            if event.get("term_mask") != term_mask:
+                return False
+            if "r" in term_mask and (
+                    event.get("reparations_payer") != reparations_payer
+                    or event.get("reparations_claimant") != reparations_claimant):
+                return False
+            if "t" in term_mask and (
+                    event.get("trade_power_source") != trade_power_source
+                    or event.get("trade_power_beneficiary") != trade_power_beneficiary):
+                return False
+            if "c" in term_mask and (
+                    event.get("conceding_country") != concede_defeat_country
+                    or event.get("concede_beneficiary") != concede_defeat_beneficiary):
+                return False
+            if "a" in term_mask and (
+                    event.get("annul_country") != annul_country
+                    or event.get("annul_partners") != annul_partners):
+                return False
+            release_countries, transfer_countries = subject_fields
+            if ("l" in term_mask
+                    and event.get("release_subject_countries")
+                    != ",".join(release_countries or [])):
+                return False
+            if ("x" in term_mask
+                    and event.get("transfer_subject_countries")
+                    != ",".join(transfer_countries or [])):
+                return False
+            if "l" not in term_mask and "release_subject_countries" in event:
+                return False
+            if "x" not in term_mask and "transfer_subject_countries" in event:
+                return False
+            for key, value, bit in zip(
+                    COUNTRY_SELECTION_KEYS, country_fields,
+                    ("n", "n", "z", "u", "i", "e", "z", "u", "e")):
+                if bit in term_mask:
+                    if event.get(key) != value:
+                        return False
+                elif key in event:
+                    return False
+            if not cls._valid_native_peace_core_fields(
+                    event, parameters, term_mask):
+                return False
         if not term_mask and "term_mask" in event:
+            return False
+        if ("native_consequences" in event
+                and not validate_native_consequences(
+                    event.get("native_consequences"))):
             return False
         outcome = event.get("outcome")
         if outcome not in ("executed", "accepted", "rejected", "unknown", "invalidated"):
@@ -1227,19 +2078,118 @@ class ObserverSession:
                 or event.get("war_before") is not True
                 or event.get("war_after") is not True):
             return False
+        core_fields = cls._peace_core_execution_fields(parameters)
+        if core_fields is None:
+            return False
         effects_present = "effects" in event
         if effects_present and not cls._valid_native_peace_effects(
                 event.get("effects"), direction, amount_raw, province_ids,
                 beneficiary, actor, recipient, expected_date,
-                event.get("terms_verified") is True):
+                event.get("terms_verified") is True,
+                reparations_payer=reparations_payer,
+                reparations_claimant=reparations_claimant,
+                reparations_requested="r" in term_mask,
+                trade_power_source=trade_power_source,
+                trade_power_beneficiary=trade_power_beneficiary,
+                 trade_power_requested="t" in term_mask,
+                 concede_defeat_country=concede_defeat_country,
+                 concede_defeat_beneficiary=concede_defeat_beneficiary,
+                 concede_defeat_requested="c" in term_mask,
+                 annul_country=annul_country,
+                 annul_partners=annul_partners,
+                  annul_treaties_requested="a" in term_mask,
+                  humiliate_rival_country=special_roles["humiliate_rival"][0],
+                  humiliate_rival_beneficiary=special_roles["humiliate_rival"][1],
+                  humiliate_rival_requested="h" in term_mask,
+                  show_strength_country=special_roles["show_strength"][0],
+                  show_strength_beneficiary=special_roles["show_strength"][1],
+                  show_strength_requested="s" in term_mask,
+                  force_religion_country=special_roles["force_religion"][0],
+                  force_religion_beneficiary=special_roles["force_religion"][1],
+                  force_religion_requested="f" in term_mask,
+                  return_core_ids=(core_fields[0][0]
+                                   if core_fields[0] else None),
+                  return_core_owner=(core_fields[0][1]
+                                     if core_fields[0] else None),
+                  return_core_requested="b" in term_mask,
+                  revoke_core_ids=(core_fields[1][0]
+                                   if core_fields[1] else None),
+                  revoke_core_owner=(core_fields[1][1]
+                                     if core_fields[1] else None),
+                   revoke_core_requested="v" in term_mask,
+                   release_subject_countries=release_subject_countries,
+                   release_subject_requested="l" in term_mask,
+                   transfer_subject_countries=transfer_subject_countries,
+                   transfer_subject_requested="x" in term_mask,
+                  release_nation_country=(country_fields[0]
+                                          if "n" in term_mask else None),
+                  release_nation_source=(country_fields[1]
+                                         if "n" in term_mask else None),
+                  release_nation_requested="n" in term_mask,
+                  force_vassalization_country=(country_fields[2]
+                                               if "z" in term_mask else None),
+                  force_vassalization_beneficiary=(country_fields[6]
+                                                   if "z" in term_mask else None),
+                  force_vassalization_requested="z" in term_mask,
+                  form_personal_union_country=(country_fields[3]
+                                               if "u" in term_mask else None),
+                  form_personal_union_beneficiary=(country_fields[7]
+                                                   if "u" in term_mask else None),
+                  form_personal_union_requested="u" in term_mask,
+                  grant_independence_country=(
+                      (recipient if direction == "offer" else actor)
+                      if "i" in term_mask else None),
+                  grant_independence_overlord=(country_fields[4]
+                                               if "i" in term_mask else None),
+                  grant_independence_requested="i" in term_mask,
+                  full_annexation_country=(country_fields[5]
+                                           if "e" in term_mask else None),
+                  full_annexation_beneficiary=(country_fields[8]
+                                               if "e" in term_mask else None),
+                  full_annexation_requested="e" in term_mask,
+                   settled=outcome in ("executed", "accepted")):
             return False
         if effects_present and outcome in ("rejected", "unknown", "invalidated"):
             effects = event["effects"]
             money = effects.get("money") if isinstance(effects, dict) else None
             provinces = effects.get("provinces", []) if isinstance(effects, dict) else []
-            if ((isinstance(money, dict) and money.get("verified") is True)
-                    or any(isinstance(row, dict) and row.get("verified") is True
-                           for row in provinces)):
+            special_verified = any(
+                isinstance(effects.get(name), dict)
+                and effects[name].get("verified") is True
+                for name in ("humiliate_rival", "show_strength", "force_religion"))
+            core_verified = any(
+                isinstance(effects.get(name), list)
+                and any(isinstance(row, dict)
+                        and row.get("verified") is True
+                        for row in effects[name])
+                for name in ("return_core", "revoke_core"))
+            subject_verified = any(
+                isinstance(effects.get(name), dict)
+                and effects[name].get("verified") is True
+                for name in ("release_subject", "transfer_subject"))
+            country_verified = any(
+                isinstance(effects.get("country_terms"), dict)
+                and isinstance(effects["country_terms"].get(name), dict)
+                and effects["country_terms"][name].get("verified") is True
+                for name in (
+                    "release_nation", "force_vassalization",
+                    "form_personal_union", "grant_independence",
+                    "full_annexation"))
+            if (isinstance(money, dict) and money.get("verified") is True) or \
+                    any(isinstance(row, dict) and row.get("verified") is True
+                        for row in provinces) or \
+                    (isinstance(effects.get("war_reparations"), dict)
+                     and effects["war_reparations"].get("verified") is True) or \
+                    (isinstance(effects.get("transfer_trade_power"), dict)
+                     and effects["transfer_trade_power"].get("verified") is True) or \
+                    (isinstance(effects.get("concede_defeat"), dict)
+                     and effects["concede_defeat"].get("verified") is True) or \
+                    (isinstance(effects.get("annul_treaties"), list)
+                     and any(isinstance(row, dict)
+                             and row.get("verified") is True
+                             for row in effects["annul_treaties"])) or \
+                     special_verified or core_verified or subject_verified or \
+                     country_verified:
                 return False
         # A non-white proposal may claim terms_verified only after every
         # selected money/province consequence has a verified effect.  Older
@@ -1249,6 +2199,11 @@ class ObserverSession:
                 and action_id != "white_peace"
                 and not effects_present):
             return False
+        # A refusal or an unknown/invalidated result cannot claim that the
+        # selected treaty terms were verified.
+        if (event.get("terms_verified") is True
+                and outcome in ("rejected", "unknown", "invalidated")):
+            return False
         return True
 
     @classmethod
@@ -1256,12 +2211,139 @@ class ObserverSession:
             cls, effects: object, direction: str, amount_raw: int,
             province_ids: list[int], beneficiary: str | None,
             actor: str, recipient: str, expected_date: object,
-            terms_verified: bool) -> bool:
+            terms_verified: bool, *, reparations_payer: str | None = None,
+            reparations_claimant: str | None = None,
+            reparations_requested: bool = False,
+            trade_power_source: str | None = None,
+            trade_power_beneficiary: str | None = None,
+             trade_power_requested: bool = False,
+             concede_defeat_country: str | None = None,
+             concede_defeat_beneficiary: str | None = None,
+             concede_defeat_requested: bool = False,
+             annul_country: str | None = None,
+             annul_partners: list[str] | None = None,
+              annul_treaties_requested: bool = False,
+              humiliate_rival_country: str | None = None,
+              humiliate_rival_beneficiary: str | None = None,
+              humiliate_rival_requested: bool = False,
+              show_strength_country: str | None = None,
+              show_strength_beneficiary: str | None = None,
+              show_strength_requested: bool = False,
+              force_religion_country: str | None = None,
+              force_religion_beneficiary: str | None = None,
+              force_religion_requested: bool = False,
+              return_core_ids: list[int] | None = None,
+              return_core_owner: str | None = None,
+              return_core_requested: bool = False,
+              revoke_core_ids: list[int] | None = None,
+              revoke_core_owner: str | None = None,
+               revoke_core_requested: bool = False,
+               release_subject_countries: list[str] | None = None,
+               release_subject_requested: bool = False,
+               transfer_subject_countries: list[str] | None = None,
+               transfer_subject_requested: bool = False,
+               release_nation_country: str | None = None,
+               release_nation_source: str | None = None,
+               release_nation_requested: bool = False,
+               force_vassalization_country: str | None = None,
+               force_vassalization_beneficiary: str | None = None,
+               force_vassalization_requested: bool = False,
+               form_personal_union_country: str | None = None,
+               form_personal_union_beneficiary: str | None = None,
+               form_personal_union_requested: bool = False,
+               grant_independence_country: str | None = None,
+               grant_independence_overlord: str | None = None,
+               grant_independence_requested: bool = False,
+               full_annexation_country: str | None = None,
+               full_annexation_beneficiary: str | None = None,
+               full_annexation_requested: bool = False,
+               settled: bool | None = None) -> bool:
         """Validate bounded, public-safe post-peace consequence evidence."""
 
-        if not isinstance(effects, dict) or set(effects) != {
-                "complete", "date_unchanged", "currency_scale", "money",
-                "provinces"}:
+        if not isinstance(effects, dict):
+            return False
+        base_effect_fields = {
+            "complete", "date_unchanged", "currency_scale", "money", "provinces"}
+        required_effect_fields = set(base_effect_fields)
+        optional_effect_names = {"war_reparations"}
+        if reparations_requested:
+            required_effect_fields.add("war_reparations")
+        if trade_power_requested:
+            required_effect_fields.add("transfer_trade_power")
+            optional_effect_names.add("transfer_trade_power")
+        if concede_defeat_requested:
+            required_effect_fields.add("concede_defeat")
+            optional_effect_names.add("concede_defeat")
+        if annul_treaties_requested:
+            required_effect_fields.add("annul_treaties")
+            optional_effect_names.add("annul_treaties")
+        if humiliate_rival_requested:
+            required_effect_fields.add("humiliate_rival")
+            optional_effect_names.add("humiliate_rival")
+        if show_strength_requested:
+            required_effect_fields.add("show_strength")
+            optional_effect_names.add("show_strength")
+        if force_religion_requested:
+            required_effect_fields.add("force_religion")
+            optional_effect_names.add("force_religion")
+        if return_core_requested:
+            required_effect_fields.add("return_core")
+            optional_effect_names.add("return_core")
+        if revoke_core_requested:
+            required_effect_fields.add("revoke_core")
+            optional_effect_names.add("revoke_core")
+        # Subject effects are emitted only for selected families.  Native may
+        # omit an unselected family or serialize it as null; accept that
+        # nullable compatibility form while requiring a complete object for a
+        # selected family.
+        for name, requested in (
+                ("release_subject", release_subject_requested),
+                ("transfer_subject", transfer_subject_requested)):
+            if requested:
+                required_effect_fields.add(name)
+                optional_effect_names.add(name)
+            elif name in effects:
+                if effects.get(name) is not None:
+                    return False
+
+        country_terms_requested = any((
+            release_nation_requested,
+            force_vassalization_requested,
+            form_personal_union_requested,
+            grant_independence_requested,
+            full_annexation_requested,
+        ))
+        if country_terms_requested:
+            required_effect_fields.add("country_terms")
+            optional_effect_names.add("country_terms")
+        elif "country_terms" in effects and effects.get("country_terms") is not None:
+            return False
+
+        effect_keys = set(effects)
+        for name, requested in (
+                ("release_subject", release_subject_requested),
+                ("transfer_subject", transfer_subject_requested)):
+            if not requested and effects.get(name) is None:
+                effect_keys.discard(name)
+        if not country_terms_requested and effects.get("country_terms") is None:
+            effect_keys.discard("country_terms")
+        # The native effect serializer always emits ``war_reparations`` as
+        # null, including for a T/C-only treaty.  R remains optional for
+        # legacy money/province events; selected T/C terms require their own
+        # object while preserving that nullable R compatibility shape.
+        allowed_effect_sets = set()
+        optional_effect_names = tuple(sorted(optional_effect_names))
+        for bits in range(1 << len(optional_effect_names)):
+            selected = {
+                optional_effect_names[index]
+                for index in range(len(optional_effect_names))
+                if bits & (1 << index)}
+            if required_effect_fields - base_effect_fields <= selected:
+                allowed_effect_sets.add(frozenset(base_effect_fields | selected))
+        if frozenset(effect_keys) not in allowed_effect_sets:
+            return False
+        if (trade_power_requested and "transfer_trade_power" not in effects) or (
+                reparations_requested and "war_reparations" not in effects):
             return False
         if (not isinstance(effects.get("complete"), bool)
                 or not isinstance(effects.get("date_unchanged"), bool)
@@ -1330,6 +2412,814 @@ class ObserverSession:
                     or paid_raw != amount_raw or credit_total != amount_raw):
                 return False
 
+        # Reparations are a relation transition rather than a currency or
+        # province effect.  R48 events must carry this object whenever the
+        # term was requested; legacy events may omit it for legacy terms.
+        reparations = effects.get("war_reparations")
+        if reparations_requested:
+            reparations_fields = {
+                "payer", "claimant", "active_before", "active_after", "verified"}
+            reparations_dates = {"start_date_raw", "end_date_raw"}
+            if (not isinstance(reparations, dict)
+                    or set(reparations) not in (
+                        reparations_fields, reparations_fields | reparations_dates)
+                    or reparations.get("payer") != reparations_payer
+                    or reparations.get("claimant") != reparations_claimant
+                    or not isinstance(reparations.get("active_before"), bool)
+                    or not isinstance(reparations.get("active_after"), bool)
+                    or not isinstance(reparations.get("verified"), bool)):
+                return False
+            if "start_date_raw" in reparations:
+                start_date = cls._safe_int(reparations["start_date_raw"], -2147483648, 2147483647)
+                end_date = cls._safe_int(reparations["end_date_raw"], -2147483648, 2147483647)
+                date = cls._safe_submission_date(expected_date)
+                if (start_date is None or end_date is None
+                        or (reparations["active_after"]
+                            and (date is None or not start_date <= date < end_date))):
+                    return False
+            if reparations.get("verified") is True and (
+                    reparations.get("active_before") is not False
+                    or reparations.get("active_after") is not True):
+                return False
+            if terms_verified and (
+                    reparations.get("verified") is not True
+                    or reparations.get("active_before") is not False
+                    or reparations.get("active_after") is not True):
+                return False
+        elif "war_reparations" in effects and reparations is not None:
+            return False
+
+        trade_power = effects.get("transfer_trade_power")
+        if trade_power_requested:
+            trade_power_fields = {
+                "source", "beneficiary", "present_before", "present_after",
+                "start_date_raw", "end_date_raw", "amount_raw", "amount_scale",
+                "peace_treaty", "verified",
+            }
+            if (not isinstance(trade_power, dict)
+                    or set(trade_power) != trade_power_fields
+                    or trade_power.get("source") != trade_power_source
+                    or trade_power.get("beneficiary") != trade_power_beneficiary
+                    or not isinstance(trade_power.get("present_before"), bool)
+                    or not isinstance(trade_power.get("present_after"), bool)
+                    or not isinstance(trade_power.get("peace_treaty"), bool)
+                    or not isinstance(trade_power.get("verified"), bool)):
+                return False
+            amount = cls._safe_int(trade_power.get("amount_raw"), 0, 0x7FFFFFFF)
+            scale = cls._safe_int(trade_power.get("amount_scale"), 0, 0x7FFFFFFF)
+            start = cls._safe_int(
+                trade_power.get("start_date_raw"), -0x80000000, 0x7FFFFFFF)
+            end = cls._safe_int(
+                trade_power.get("end_date_raw"), -0x80000000, 0x7FFFFFFF)
+            date = cls._safe_submission_date(expected_date)
+            if amount is None or scale is None or start is None or end is None:
+                return False
+            if trade_power.get("verified") is True:
+                if (amount <= 0 or not trade_power.get("peace_treaty")
+                        or not trade_power.get("present_after")
+                        or scale != 1000
+                        or date is None or start > date):
+                    return False
+                # A non-positive end is the native open-ended/no-fixed-end
+                # representation.  A positive end must remain ordered.
+                if (end > 0 and end != _PEACE_OPEN_END_DATE_RAW
+                        and end <= start):
+                    return False
+                if (end > 0 and end != _PEACE_OPEN_END_DATE_RAW
+                        and date >= end):
+                    return False
+            if terms_verified and (
+                    trade_power.get("verified") is not True
+                    or trade_power.get("peace_treaty") is not True
+                    or trade_power.get("present_after") is not True
+                    or amount <= 0
+                    or scale != 1000):
+                return False
+        elif "transfer_trade_power" in effects and trade_power is not None:
+            return False
+
+        concede_defeat = effects.get("concede_defeat")
+        if concede_defeat_requested:
+            concede_fields = {
+                "conceding_country", "beneficiary",
+                "conceding_prestige_before_raw", "conceding_prestige_after_raw",
+                "conceding_prestige_delta_raw", "beneficiary_prestige_before_raw",
+                "beneficiary_prestige_after_raw", "beneficiary_prestige_delta_raw",
+                "prestige_scale", "values_readable", "verified",
+            }
+            if (not isinstance(concede_defeat, dict)
+                    or set(concede_defeat) != concede_fields
+                    or concede_defeat.get("conceding_country") != concede_defeat_country
+                    or concede_defeat.get("beneficiary") != concede_defeat_beneficiary
+                    or concede_defeat.get("prestige_scale") != 1000
+                    or not isinstance(concede_defeat.get("values_readable"), bool)
+                    or not isinstance(concede_defeat.get("verified"), bool)):
+                return False
+            prestige_values = (
+                "conceding_prestige_before_raw", "conceding_prestige_after_raw",
+                "conceding_prestige_delta_raw", "beneficiary_prestige_before_raw",
+                "beneficiary_prestige_after_raw", "beneficiary_prestige_delta_raw")
+            if any(cls._safe_int(concede_defeat.get(field), -0x80000000,
+                                 0x7FFFFFFF) is None for field in prestige_values):
+                return False
+            if (concede_defeat["conceding_prestige_after_raw"]
+                    - concede_defeat["conceding_prestige_before_raw"]
+                    != concede_defeat["conceding_prestige_delta_raw"]
+                    or concede_defeat["beneficiary_prestige_after_raw"]
+                    - concede_defeat["beneficiary_prestige_before_raw"]
+                    != concede_defeat["beneficiary_prestige_delta_raw"]):
+                return False
+            if terms_verified and (
+                    concede_defeat.get("verified") is not True
+                    or concede_defeat.get("values_readable") is not True):
+                return False
+        elif "concede_defeat" in effects and concede_defeat is not None:
+            return False
+
+        annul_effect = effects.get("annul_treaties")
+        if annul_treaties_requested:
+            if (not isinstance(annul_effect, list)
+                    or len(annul_effect) != len(annul_partners or [])):
+                return False
+            expected_partners = set(annul_partners or [])
+            seen_annul: set[str] = set()
+            for row in annul_effect:
+                annul_fields = {
+                    "country", "partner", "present_before", "present_after",
+                    "start_date_raw", "end_date_raw", "alliance_before",
+                    "alliance_after", "values_readable", "verified",
+                }
+                if (not isinstance(row, dict)
+                        or set(row) != annul_fields
+                        or row.get("country") != annul_country
+                        or not isinstance(row.get("partner"), str)
+                        or row.get("partner") not in expected_partners
+                        or row.get("partner") in seen_annul
+                        or not isinstance(row.get("present_before"), bool)
+                        or not isinstance(row.get("present_after"), bool)
+                        or not isinstance(row.get("alliance_before"), bool)
+                        or not isinstance(row.get("alliance_after"), bool)
+                        or not isinstance(row.get("values_readable"), bool)
+                        or not isinstance(row.get("verified"), bool)):
+                    return False
+                start = cls._safe_int(
+                    row.get("start_date_raw"), -0x80000000, 0x7FFFFFFF)
+                end = cls._safe_int(
+                    row.get("end_date_raw"), -0x80000000, 0x7FFFFFFF)
+                if start is None or end is None:
+                    return False
+                date = cls._safe_submission_date(expected_date)
+                if row.get("verified") is True:
+                    if (not row.get("values_readable")
+                            or not row.get("present_after")
+                            or row.get("alliance_after")
+                            or date is None or start > date
+                            or (end > 0 and end != _PEACE_OPEN_END_DATE_RAW
+                                and end <= start)):
+                        return False
+                seen_annul.add(row["partner"])
+            if seen_annul != expected_partners:
+                return False
+            if terms_verified and any(
+                    row.get("verified") is not True for row in annul_effect):
+                return False
+        elif "annul_treaties" in effects and annul_effect is not None:
+            return False
+
+        def validate_core_effect(name: str, requested: bool,
+                                 expected_ids: list[int] | None,
+                                 expected_owner: str | None,
+                                 return_core: bool) -> bool:
+            effect = effects.get(name)
+            if not requested:
+                return effect is None
+            if (not isinstance(expected_ids, list)
+                    or not isinstance(expected_owner, str)
+                    or not isinstance(effect, list)
+                    or len(effect) != len(expected_ids)):
+                return False
+            seen: set[int] = set()
+            for index, row in enumerate(effect):
+                fields = {
+                    "province_id", "target_core_owner", "owner_before",
+                    "owner_after", "controller_before", "controller_after",
+                    "core_owner_present_before", "core_owner_present_after",
+                    "values_readable", "verified",
+                }
+                if (not isinstance(row, dict) or set(row) != fields
+                        or row.get("province_id") != expected_ids[index]
+                        or row.get("target_core_owner") != expected_owner
+                        or row.get("province_id") in seen
+                        or not isinstance(row.get("values_readable"), bool)
+                        or not isinstance(row.get("verified"), bool)
+                        or not isinstance(row.get("core_owner_present_before"), bool)
+                        or not isinstance(row.get("core_owner_present_after"), bool)
+                        or any(not isinstance(row.get(field), str)
+                               or re.fullmatch(r"[A-Z0-9]{3}", row[field]) is None
+                               for field in ("owner_before", "owner_after",
+                                             "controller_before", "controller_after"))):
+                    return False
+                seen.add(row["province_id"])
+                changed = (
+                    row["owner_before"] != row["owner_after"]
+                    or row["controller_before"] != row["controller_after"]
+                    or row["core_owner_present_before"]
+                    != row["core_owner_present_after"])
+                if row["verified"]:
+                    if (not row["values_readable"]
+                            or not row["core_owner_present_before"]
+                            or not changed):
+                        return False
+                    if return_core:
+                        if (row["owner_before"] == expected_owner
+                                or row["owner_after"] != expected_owner):
+                            return False
+                    elif row["core_owner_present_after"]:
+                        return False
+            if terms_verified and any(
+                    row.get("verified") is not True for row in effect):
+                return False
+            return True
+
+        if not validate_core_effect(
+                "return_core", return_core_requested, return_core_ids,
+                return_core_owner, True):
+            return False
+        if not validate_core_effect(
+                "revoke_core", revoke_core_requested, revoke_core_ids,
+                revoke_core_owner, False):
+            return False
+
+        def validate_special_effect(name: str, requested: bool,
+                                    expected_country: str | None,
+                                    expected_beneficiary: str | None,
+                                    *, with_powers: bool = False,
+                                    with_religion: bool = False) -> bool:
+            effect = effects.get(name)
+            if not requested:
+                return effect is None
+            if not isinstance(effect, dict):
+                return False
+            if with_religion:
+                fields = {
+                    "country", "beneficiary", "religion_before", "religion_after",
+                    "beneficiary_religion_before", "beneficiary_religion_after",
+                    "capital_religion_before", "capital_religion_after",
+                    "values_readable", "verified"}
+                if (set(effect) != fields
+                        or effect.get("country") != expected_country
+                        or effect.get("beneficiary") != expected_beneficiary
+                        or not isinstance(effect.get("values_readable"), bool)
+                        or not isinstance(effect.get("verified"), bool)):
+                    return False
+                religion_fields = (
+                    "religion_before", "religion_after",
+                    "beneficiary_religion_before", "beneficiary_religion_after",
+                    "capital_religion_before", "capital_religion_after")
+                # Religion identifiers are public save keys, not numeric
+                # enum values.  The native serializer exposes the canonical
+                # key (for example ``catholic`` or ``hussite``), so validate
+                # the bounded identifier grammar at this boundary instead of
+                # coercing it through the integer helper.  This keeps the
+                # post-peace result usable for every recipient tag while
+                # rejecting pointers, whitespace and unbounded text.
+                if any(not isinstance(effect.get(field), str)
+                       or re.fullmatch(r"[A-Za-z0-9_]{1,63}", effect[field]) is None
+                       for field in religion_fields):
+                    return False
+                if effect.get("verified") is True:
+                    if (not effect.get("values_readable")
+                            or effect.get("religion_after")
+                            != effect.get("beneficiary_religion_after")
+                            or effect.get("capital_religion_after")
+                            != effect.get("beneficiary_religion_after")):
+                        return False
+                if terms_verified and (effect.get("verified") is not True
+                                       or effect.get("values_readable") is not True
+                                       or effect.get("religion_after")
+                                       != effect.get("beneficiary_religion_after")
+                                       or effect.get("capital_religion_after")
+                                       != effect.get("beneficiary_religion_after")):
+                    return False
+                return True
+            fields = {
+                "country", "beneficiary", "humiliated_before", "humiliated_after",
+                "country_prestige_before_raw", "country_prestige_after_raw",
+                "country_prestige_delta_raw", "beneficiary_prestige_before_raw",
+                "beneficiary_prestige_after_raw", "beneficiary_prestige_delta_raw",
+                "prestige_scale", "values_readable", "verified"}
+            if with_powers:
+                fields |= {"powers_before", "powers_after", "powers_delta",
+                           "powers_requested"}
+            if (set(effect) != fields
+                    or effect.get("country") != expected_country
+                    or effect.get("beneficiary") != expected_beneficiary
+                    or not isinstance(effect.get("humiliated_before"), bool)
+                    or not isinstance(effect.get("humiliated_after"), bool)
+                    or effect.get("prestige_scale") != 1000
+                    or not isinstance(effect.get("values_readable"), bool)
+                    or not isinstance(effect.get("verified"), bool)):
+                return False
+            prestige_fields = (
+                "country_prestige_before_raw", "country_prestige_after_raw",
+                "country_prestige_delta_raw", "beneficiary_prestige_before_raw",
+                "beneficiary_prestige_after_raw", "beneficiary_prestige_delta_raw")
+            if any(cls._safe_int(effect.get(field), -0x80000000,
+                                 0x7FFFFFFF) is None for field in prestige_fields):
+                return False
+            if (effect["country_prestige_after_raw"]
+                    - effect["country_prestige_before_raw"]
+                    != effect["country_prestige_delta_raw"]
+                    or effect["beneficiary_prestige_after_raw"]
+                    - effect["beneficiary_prestige_before_raw"]
+                    != effect["beneficiary_prestige_delta_raw"]):
+                return False
+            if with_powers:
+                powers_requested = cls._safe_int(
+                    effect.get("powers_requested"), 0, 0x7FFFFFFF)
+                if powers_requested is None:
+                    return False
+                for field in ("powers_before", "powers_after", "powers_delta"):
+                    values = effect.get(field)
+                    if (not isinstance(values, list) or len(values) != 3
+                            or any(cls._safe_int(value, -0x80000000,
+                                                 0x7FFFFFFF) is None
+                                   for value in values)):
+                        return False
+                if any(after - before != delta
+                       for before, after, delta in zip(
+                           effect["powers_before"], effect["powers_after"],
+                           effect["powers_delta"])):
+                    return False
+            if effect.get("verified") is True and (
+                    not effect.get("values_readable")
+                    or not effect.get("humiliated_after")):
+                return False
+            if terms_verified and (effect.get("verified") is not True
+                                   or effect.get("values_readable") is not True
+                                   or effect.get("humiliated_after") is not True):
+                return False
+            return True
+
+        if not validate_special_effect(
+                "humiliate_rival", humiliate_rival_requested,
+                humiliate_rival_country, humiliate_rival_beneficiary):
+            return False
+        if not validate_special_effect(
+                "show_strength", show_strength_requested,
+                show_strength_country, show_strength_beneficiary,
+                with_powers=True):
+            return False
+        if not validate_special_effect(
+                "force_religion", force_religion_requested,
+                force_religion_country, force_religion_beneficiary,
+                with_religion=True):
+            return False
+
+        expected_subject_source = actor if direction == "offer" else recipient
+        expected_subject_beneficiary = recipient if direction == "offer" else actor
+
+        def subject_text(value: object) -> bool:
+            return (value is None or (isinstance(value, str)
+                    and re.fullmatch(r"[A-Za-z0-9_]{1,63}", value) is not None))
+
+        def validate_subject_effect(name: str, requested: bool,
+                                    expected_countries: list[str] | None,
+                                    transfer: bool) -> bool:
+            effect = effects.get(name)
+            if not requested:
+                return effect is None
+            if (not isinstance(expected_countries, list)
+                    or not 1 <= len(expected_countries) <= 16
+                    or not isinstance(effect, dict)):
+                return False
+            effect_fields = {
+                "requested", "count", "complete", "rows", "unchanged",
+                "verified"}
+            if (set(effect) != effect_fields
+                    or effect.get("requested") is not True
+                    or effect.get("count") != len(expected_countries)
+                    or not isinstance(effect.get("complete"), bool)
+                    or not isinstance(effect.get("rows"), list)
+                    or len(effect["rows"]) != len(expected_countries)
+                    or not isinstance(effect.get("unchanged"), bool)
+                    or not isinstance(effect.get("verified"), bool)):
+                return False
+            row_fields = {
+                "country", "source", "beneficiary",
+                "source_relation_active_before", "source_relation_active_after",
+                "source_is_overlord_before", "source_is_overlord_after",
+                "source_subject_type_before", "source_subject_type_after",
+                "beneficiary_relation_active_before",
+                "beneficiary_relation_active_after",
+                "beneficiary_is_overlord_before", "beneficiary_is_overlord_after",
+                "beneficiary_subject_type_before", "beneficiary_subject_type_after",
+                "source_relation_active", "source_is_overlord", "source_subject_type",
+                "beneficiary_relation_active", "beneficiary_is_overlord",
+                "beneficiary_subject_type", "complete", "values_readable", "verified",
+            }
+            rows_unchanged = True
+            rows_verified = True
+            for index, row in enumerate(effect["rows"]):
+                if (not isinstance(row, dict) or set(row) != row_fields
+                        or row.get("country") != expected_countries[index]
+                        or row.get("source") != expected_subject_source
+                        or row.get("beneficiary") != (
+                            expected_subject_beneficiary if transfer else None)):
+                    return False
+                bool_fields = [
+                    "source_relation_active_before", "source_relation_active_after",
+                    "source_is_overlord_before", "source_is_overlord_after",
+                    "source_relation_active", "source_is_overlord",
+                    "complete", "values_readable", "verified"]
+                if transfer:
+                    bool_fields.extend([
+                        "beneficiary_relation_active_before",
+                        "beneficiary_relation_active_after",
+                        "beneficiary_is_overlord_before",
+                        "beneficiary_is_overlord_after",
+                        "beneficiary_relation_active", "beneficiary_is_overlord"])
+                if any(not isinstance(row.get(field), bool) for field in bool_fields):
+                    return False
+                if any(not subject_text(row.get(field)) for field in (
+                        "source_subject_type_before", "source_subject_type_after",
+                        "source_subject_type", "beneficiary_subject_type_before",
+                        "beneficiary_subject_type_after", "beneficiary_subject_type")):
+                    return False
+                if not transfer and any(row.get(field) is not None for field in (
+                        "beneficiary_relation_active_before",
+                        "beneficiary_relation_active_after",
+                        "beneficiary_is_overlord_before",
+                        "beneficiary_is_overlord_after",
+                        "beneficiary_subject_type_before",
+                        "beneficiary_subject_type_after",
+                        "beneficiary_subject_type")):
+                    return False
+                if (row["source_relation_active"]
+                        != row["source_relation_active_after"]
+                        or row["source_is_overlord"]
+                        != row["source_is_overlord_after"]
+                        or row["source_subject_type"]
+                        != row["source_subject_type_after"]):
+                    return False
+                if transfer and (
+                        row["beneficiary_relation_active"]
+                        != row["beneficiary_relation_active_after"]
+                        or row["beneficiary_is_overlord"]
+                        != row["beneficiary_is_overlord_after"]
+                        or row["beneficiary_subject_type"]
+                        != row["beneficiary_subject_type_after"]):
+                    return False
+                before_values = tuple(row.get(field) for field in (
+                    "source_relation_active_before", "source_is_overlord_before",
+                    "source_subject_type_before", "beneficiary_relation_active_before",
+                    "beneficiary_is_overlord_before", "beneficiary_subject_type_before"))
+                after_values = tuple(row.get(field) for field in (
+                    "source_relation_active_after", "source_is_overlord_after",
+                    "source_subject_type_after", "beneficiary_relation_active_after",
+                    "beneficiary_is_overlord_after", "beneficiary_subject_type_after"))
+                row_unchanged = before_values == after_values
+                rows_unchanged = rows_unchanged and row_unchanged
+                rows_verified = rows_verified and row["verified"]
+                if row["verified"] and (
+                        not row["values_readable"] or not row["complete"]):
+                    return False
+            if effect["unchanged"] != rows_unchanged:
+                return False
+            if effect["verified"] and not rows_verified:
+                return False
+            if not effect["complete"] or any(
+                    row["complete"] is not True for row in effect["rows"]):
+                return False
+            if settled is True:
+                # Subject effect objects expose readability on each row and
+                # expose aggregate completion/verification at the outer
+                # level; there is no outer ``values_readable`` key in the
+                # native JSON contract.
+                if (not effect["complete"]
+                        or not effect["verified"]
+                        or effect["unchanged"]):
+                    return False
+                for row in effect["rows"]:
+                    if transfer:
+                        if (not row["source_relation_active_before"]
+                                or not row["source_is_overlord_before"]
+                                or row["beneficiary_relation_active_before"]
+                                or row["beneficiary_is_overlord_before"]
+                                or row["source_relation_active_after"]
+                                or row["source_is_overlord_after"]
+                                or not row["beneficiary_relation_active_after"]
+                                or not row["beneficiary_is_overlord_after"]):
+                            return False
+                    elif (not row["source_relation_active_before"]
+                          or not row["source_is_overlord_before"]
+                          or row["source_relation_active_after"]
+                          or row["source_is_overlord_after"]):
+                        return False
+            elif settled is False:
+                if effect["verified"] or not effect["unchanged"]:
+                    return False
+            return True
+
+        if not validate_subject_effect(
+                "release_subject", release_subject_requested,
+                release_subject_countries, False):
+            return False
+        if not validate_subject_effect(
+                "transfer_subject", transfer_subject_requested,
+                transfer_subject_countries, True):
+            return False
+
+        country_terms = effects.get("country_terms")
+        if country_terms_requested:
+            if (not isinstance(country_terms, dict)
+                    or set(country_terms) != {
+                        "release_nation", "force_vassalization",
+                        "form_personal_union", "grant_independence",
+                        "full_annexation"}):
+                return False
+        elif country_terms is not None:
+            return False
+
+        def country_tag_or_none(value: object) -> bool:
+            return (value is None or (
+                isinstance(value, str)
+                and re.fullmatch(r"[A-Z0-9]{3}", value) is not None))
+
+        def subject_type_or_none(value: object) -> bool:
+            return (value is None or (
+                isinstance(value, str)
+                and re.fullmatch(r"[A-Za-z0-9_]{1,63}", value) is not None))
+
+        def validate_territory_effect(
+                name: str, requested: bool, expected_country: str | None,
+                expected_other: str | None, *, full: bool) -> bool:
+            effect = country_terms.get(name) if isinstance(country_terms, dict) else None
+            if not requested:
+                return effect is None
+            other_key = "beneficiary" if full else "source"
+            count_before_key = (
+                "beneficiary_owned_count_before" if full
+                else "source_owned_count_before")
+            count_after_key = (
+                "beneficiary_owned_count_after" if full
+                else "source_owned_count_after")
+            fields = {
+                "country", other_key, "owned_count_before", "owned_count_after",
+                count_before_key, count_after_key, "province_rows", "complete",
+                "values_readable", "unchanged", "verified"}
+            if (not isinstance(effect, dict)
+                    or set(effect) != fields
+                    or effect.get("country") != expected_country
+                    or effect.get(other_key) != expected_other
+                    or not isinstance(expected_country, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", expected_country) is None
+                    or not isinstance(expected_other, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", expected_other) is None
+                    or expected_country == expected_other):
+                return False
+            integer_fields = (
+                "owned_count_before", "owned_count_after",
+                count_before_key, count_after_key)
+            if any(cls._safe_int(effect.get(field), 0, 512) is None
+                   for field in integer_fields):
+                return False
+            if (not isinstance(effect.get("province_rows"), list)
+                    or not 1 <= len(effect["province_rows"]) <= 512
+                    or not isinstance(effect.get("complete"), bool)
+                    or not isinstance(effect.get("values_readable"), bool)
+                    or not isinstance(effect.get("unchanged"), bool)
+                    or not isinstance(effect.get("verified"), bool)):
+                return False
+            rows_unchanged = True
+            rows_verified_readable = True
+            seen: set[int] = set()
+            for row in effect["province_rows"]:
+                row_fields = {
+                    "province_id", "owner_before", "owner_after",
+                    "controller_before", "controller_after", "complete"}
+                if (not isinstance(row, dict) or set(row) != row_fields):
+                    return False
+                province_id = cls._safe_int(
+                    row.get("province_id"), 1, 0x7FFFFFFF)
+                if (province_id is None or province_id in seen
+                        or not country_tag_or_none(row.get("owner_before"))
+                        or not country_tag_or_none(row.get("owner_after"))
+                        or not country_tag_or_none(row.get("controller_before"))
+                        or not country_tag_or_none(row.get("controller_after"))
+                        or not isinstance(row.get("complete"), bool)):
+                    return False
+                seen.add(province_id)
+                row_equal = (
+                    row.get("owner_before") == row.get("owner_after")
+                    and row.get("controller_before")
+                    == row.get("controller_after"))
+                rows_unchanged = rows_unchanged and row_equal
+                readable = all(isinstance(row.get(field), str)
+                               for field in ("owner_before", "owner_after",
+                                             "controller_before", "controller_after"))
+                rows_verified_readable = rows_verified_readable and readable and row[
+                    "complete"]
+            if effect["values_readable"] and not rows_verified_readable:
+                return False
+            counts_unchanged = (
+                effect["owned_count_before"] == effect["owned_count_after"]
+                and effect[count_before_key] == effect[count_after_key])
+            if effect["unchanged"] != (rows_unchanged and counts_unchanged):
+                return False
+            if effect["complete"] and not rows_verified_readable:
+                return False
+            if effect["verified"]:
+                if not effect["complete"] or not effect["values_readable"]:
+                    return False
+                transferred_rows = 0
+                for row in effect["province_rows"]:
+                    if full:
+                        if (row["owner_before"] != expected_country
+                                or row["owner_after"] != expected_other):
+                            return False
+                    else:
+                        # Release Nation may leave source-owned cores in place
+                        # when the native candidate filter excludes them.  A
+                        # valid accepted effect therefore contains a mix of
+                        # retained source rows and rows transferred to the
+                        # released country.  Every row must still start at
+                        # the source and end at either source or target; a
+                        # third owner or an all-retained capture is invalid.
+                        if (row["owner_before"] != expected_other
+                                or row["owner_after"] not in {
+                                    expected_other, expected_country}):
+                            return False
+                        if row["owner_after"] == expected_country:
+                            transferred_rows += 1
+                if full:
+                    if effect["owned_count_after"] != 0:
+                        return False
+                elif not (
+                        transferred_rows > 0
+                        and
+                        effect["owned_count_after"]
+                        > effect["owned_count_before"]
+                        and effect[count_after_key] < effect[count_before_key]):
+                    return False
+            if terms_verified:
+                if not effect["verified"]:
+                    return False
+                if full and effect["owned_count_after"] != 0:
+                    return False
+            if settled is False and effect["verified"]:
+                return False
+            return True
+
+        def validate_relation_effect(
+                name: str, requested: bool, expected_country: str | None,
+                expected_beneficiary: str | None, *, union: bool) -> bool:
+            effect = country_terms.get(name) if isinstance(country_terms, dict) else None
+            if not requested:
+                return effect is None
+            fields = {
+                "country", "beneficiary", "relation_active_before",
+                "relation_active_after", "is_overlord_before",
+                "is_overlord_after", "subject_type_before", "subject_type_after",
+                "complete", "values_readable", "unchanged", "verified"}
+            if (not isinstance(effect, dict) or set(effect) != fields
+                    or effect.get("country") != expected_country
+                    or effect.get("beneficiary") != expected_beneficiary
+                    or not isinstance(expected_country, str)
+                    or not isinstance(expected_beneficiary, str)
+                    or expected_country == expected_beneficiary
+                    or not all(isinstance(effect.get(field), bool) for field in (
+                        "relation_active_before", "relation_active_after",
+                        "is_overlord_before", "is_overlord_after", "complete",
+                        "values_readable", "unchanged", "verified"))
+                    or not subject_type_or_none(effect.get("subject_type_before"))
+                    or not subject_type_or_none(effect.get("subject_type_after"))):
+                return False
+            unchanged = (
+                effect["relation_active_before"] == effect["relation_active_after"]
+                and effect["is_overlord_before"] == effect["is_overlord_after"]
+                and effect["subject_type_before"] == effect["subject_type_after"])
+            if effect["unchanged"] != unchanged:
+                return False
+            if effect["complete"] and not effect["values_readable"]:
+                return False
+            if effect["verified"]:
+                if (not effect["complete"] or not effect["values_readable"]
+                        or not effect["relation_active_after"]
+                        or not effect["is_overlord_after"]
+                        or not isinstance(effect["subject_type_after"], str)
+                        or (union and effect["subject_type_after"]
+                            != "personal_union")):
+                    return False
+            if terms_verified and (
+                    not effect["verified"] or not effect["complete"]
+                    or not effect["values_readable"]):
+                return False
+            if settled is False and effect["verified"]:
+                return False
+            return True
+
+        def validate_grant_effect() -> bool:
+            effect = (country_terms.get("grant_independence")
+                      if isinstance(country_terms, dict) else None)
+            if not grant_independence_requested:
+                return effect is None
+            fields = {
+                "country", "overlord", "relation_active_before",
+                "relation_active_after", "is_overlord_before",
+                "is_overlord_after", "subject_type_before", "subject_type_after",
+                "overlord_count_before", "overlord_count_after",
+                "overlord_scan_complete_before", "overlord_scan_complete_after",
+                "no_other_overlords_before", "no_other_overlords_after",
+                "complete", "values_readable", "unchanged", "verified",
+                "reason_code"}
+            if (not isinstance(effect, dict) or set(effect) != fields
+                    or effect.get("country") != grant_independence_country
+                    or effect.get("overlord") != grant_independence_overlord
+                    or not isinstance(grant_independence_country, str)
+                    or not isinstance(grant_independence_overlord, str)
+                    or grant_independence_country == grant_independence_overlord
+                    or not all(isinstance(effect.get(field), bool) for field in (
+                        "relation_active_before", "relation_active_after",
+                        "is_overlord_before", "is_overlord_after",
+                        "overlord_scan_complete_before",
+                        "overlord_scan_complete_after",
+                        "no_other_overlords_before", "no_other_overlords_after",
+                        "complete", "values_readable", "unchanged", "verified"))
+                    or not subject_type_or_none(effect.get("subject_type_before"))
+                    or not subject_type_or_none(effect.get("subject_type_after"))):
+                return False
+            if (any(cls._safe_int(effect.get(field), 0, 256) is None
+                    for field in ("overlord_count_before", "overlord_count_after"))
+                    or not (effect.get("reason_code") is None or (
+                        isinstance(effect.get("reason_code"), str)
+                        and re.fullmatch(r"[A-Z0-9_]{1,96}",
+                                         effect["reason_code"]) is not None))):
+                return False
+            unchanged = (
+                effect["relation_active_before"] == effect["relation_active_after"]
+                and effect["is_overlord_before"] == effect["is_overlord_after"]
+                and effect["subject_type_before"] == effect["subject_type_after"]
+                and effect["overlord_count_before"]
+                == effect["overlord_count_after"]
+                and effect["overlord_scan_complete_before"]
+                == effect["overlord_scan_complete_after"]
+                and effect["no_other_overlords_before"]
+                == effect["no_other_overlords_after"])
+            # Older Grant snapshots compared unused scratch fields and could
+            # report false despite identical observed endpoints. A positive
+            # unchanged claim still requires all endpoint values to match.
+            if effect["unchanged"] and not unchanged:
+                return False
+            if effect["complete"] and not effect["values_readable"]:
+                return False
+            if effect["verified"]:
+                before_link = (effect["relation_active_before"]
+                               and effect["is_overlord_before"]
+                               and effect["overlord_count_before"] >= 1)
+                before_independent = (not effect["relation_active_before"]
+                                      and not effect["is_overlord_before"]
+                                      and effect["overlord_count_before"] == 0
+                                      and effect["no_other_overlords_before"])
+                if (not effect["complete"] or not effect["values_readable"]
+                        or not (before_link or before_independent)
+                        or effect["relation_active_after"]
+                        or effect["is_overlord_after"]
+                        or not effect["overlord_scan_complete_before"]
+                        or not effect["overlord_scan_complete_after"]
+                        or not effect["no_other_overlords_after"]
+                        or effect["overlord_count_after"] != 0):
+                    return False
+            if terms_verified and (
+                    not effect["verified"] or not effect["complete"]
+                    or not effect["values_readable"]):
+                return False
+            if settled is False and effect["verified"]:
+                return False
+            return True
+
+        if country_terms_requested:
+            if not validate_territory_effect(
+                    "release_nation", release_nation_requested,
+                    release_nation_country, release_nation_source, full=False):
+                return False
+            if not validate_relation_effect(
+                    "force_vassalization", force_vassalization_requested,
+                    force_vassalization_country, force_vassalization_beneficiary,
+                    union=False):
+                return False
+            if not validate_relation_effect(
+                    "form_personal_union", form_personal_union_requested,
+                    form_personal_union_country, form_personal_union_beneficiary,
+                    union=True):
+                return False
+            if not validate_grant_effect():
+                return False
+            if not validate_territory_effect(
+                    "full_annexation", full_annexation_requested,
+                    full_annexation_country, full_annexation_beneficiary, full=True):
+                return False
+
         seen_provinces: set[int] = set()
         for province in effects["provinces"]:
             if (not isinstance(province, dict)
@@ -1365,6 +3255,20 @@ class ObserverSession:
         return True
 
     @staticmethod
+    def _peace_effect_flag_corrections(effects: dict, public: dict) -> list[dict]:
+        raw_terms, public_terms = effects.get("country_terms"), public.get("country_terms")
+        raw = raw_terms.get("grant_independence") if isinstance(raw_terms, dict) else None
+        projected = (public_terms.get("grant_independence")
+                     if isinstance(public_terms, dict) else None)
+        if (isinstance(raw, dict) and isinstance(projected, dict)
+                and raw.get("unchanged") is False
+                and projected.get("unchanged") is True):
+            return [{"field": "effects.country_terms.grant_independence.unchanged",
+                     "native_value": False, "value": True,
+                     "source": "validated_native_effects"}]
+        return []
+
+    @staticmethod
     def _public_native_peace_effects(effects: dict) -> dict:
         """Return only the stable consequence fields exposed to the caller."""
 
@@ -1380,23 +3284,178 @@ class ObserverSession:
                     for row in money["credits"]],
                 "verified": money["verified"],
             }
-        return {
+        public = {
             "complete": effects["complete"],
             "date_unchanged": effects["date_unchanged"],
             "currency_scale": effects["currency_scale"],
             "money": public_money,
+            "war_reparations": (
+                {key: effects["war_reparations"][key] for key in (
+                    "payer", "claimant", "active_before", "active_after", "verified",
+                    "start_date_raw", "end_date_raw") if key in effects["war_reparations"]}
+                if isinstance(effects.get("war_reparations"), dict) else None),
+            "transfer_trade_power": (
+                {key: effects["transfer_trade_power"][key] for key in (
+                    "source", "beneficiary", "present_before", "present_after",
+                    "start_date_raw", "end_date_raw", "amount_raw", "amount_scale",
+                    "peace_treaty", "verified")
+                 if key in effects["transfer_trade_power"]}
+                if isinstance(effects.get("transfer_trade_power"), dict) else None),
             "provinces": [
                 {key: row[key] for key in (
                     "province_id", "beneficiary", "owner_before", "owner_after",
                     "controller_before", "controller_after", "verified")}
                 for row in effects["provinces"]],
         }
+        if isinstance(effects.get("concede_defeat"), dict):
+            public["concede_defeat"] = {
+                key: effects["concede_defeat"][key] for key in (
+                    "conceding_country", "beneficiary",
+                    "conceding_prestige_before_raw", "conceding_prestige_after_raw",
+                    "conceding_prestige_delta_raw", "beneficiary_prestige_before_raw",
+                    "beneficiary_prestige_after_raw", "beneficiary_prestige_delta_raw",
+                    "prestige_scale", "values_readable", "verified")
+                if key in effects["concede_defeat"]}
+        if isinstance(effects.get("annul_treaties"), list):
+            public["annul_treaties"] = [
+                {key: row[key] for key in (
+                    "country", "partner", "present_before", "present_after",
+                    "start_date_raw", "end_date_raw", "alliance_before",
+                    "alliance_after", "values_readable", "verified")
+                 if key in row}
+                for row in effects["annul_treaties"]
+                if isinstance(row, dict)]
+        for name in ("return_core", "revoke_core"):
+            if isinstance(effects.get(name), list):
+                public[name] = [
+                    {key: row[key] for key in (
+                        "province_id", "target_core_owner", "owner_before",
+                        "owner_after", "controller_before", "controller_after",
+                        "core_owner_present_before", "core_owner_present_after",
+                        "values_readable", "verified") if key in row}
+                    for row in effects[name] if isinstance(row, dict)]
+        for name, fields in (
+                ("humiliate_rival", (
+                    "country", "beneficiary", "humiliated_before",
+                    "humiliated_after", "country_prestige_before_raw",
+                    "country_prestige_after_raw", "country_prestige_delta_raw",
+                    "beneficiary_prestige_before_raw",
+                    "beneficiary_prestige_after_raw",
+                    "beneficiary_prestige_delta_raw", "prestige_scale",
+                    "values_readable", "verified")),
+                ("show_strength", (
+                    "country", "beneficiary", "humiliated_before",
+                    "humiliated_after", "country_prestige_before_raw",
+                    "country_prestige_after_raw", "country_prestige_delta_raw",
+                    "beneficiary_prestige_before_raw",
+                    "beneficiary_prestige_after_raw",
+                    "beneficiary_prestige_delta_raw", "prestige_scale",
+                    "values_readable", "verified", "powers_before",
+                    "powers_after", "powers_delta", "powers_requested")),
+                ("force_religion", (
+                    "country", "beneficiary", "religion_before", "religion_after",
+                    "beneficiary_religion_before", "beneficiary_religion_after",
+                    "capital_religion_before", "capital_religion_after",
+                    "values_readable", "verified"))):
+            if isinstance(effects.get(name), dict):
+                public[name] = {key: effects[name][key] for key in fields
+                                if key in effects[name]}
+        subject_row_fields = (
+            "country", "source", "beneficiary",
+            "source_relation_active_before", "source_relation_active_after",
+            "source_is_overlord_before", "source_is_overlord_after",
+            "source_subject_type_before", "source_subject_type_after",
+            "beneficiary_relation_active_before",
+            "beneficiary_relation_active_after",
+            "beneficiary_is_overlord_before", "beneficiary_is_overlord_after",
+            "beneficiary_subject_type_before", "beneficiary_subject_type_after",
+            "source_relation_active", "source_is_overlord", "source_subject_type",
+            "beneficiary_relation_active", "beneficiary_is_overlord",
+            "beneficiary_subject_type", "complete", "values_readable", "verified")
+        for name in ("release_subject", "transfer_subject"):
+            if isinstance(effects.get(name), dict):
+                subject = effects[name]
+                public[name] = {
+                    "requested": subject["requested"],
+                    "count": subject["count"],
+                    "complete": subject["complete"],
+                    "rows": [
+                        {key: row[key] for key in subject_row_fields}
+                        for row in subject["rows"]],
+                    "unchanged": subject["unchanged"],
+                    "verified": subject["verified"],
+                }
+        raw_country_terms = effects.get("country_terms")
+        if isinstance(raw_country_terms, dict):
+            country_public: dict[str, object] = {}
+            territory_row_fields = (
+                "province_id", "owner_before", "owner_after",
+                "controller_before", "controller_after", "complete")
+            for name in (
+                    "release_nation", "force_vassalization",
+                    "form_personal_union", "grant_independence",
+                    "full_annexation"):
+                raw = raw_country_terms.get(name)
+                if raw is None:
+                    country_public[name] = None
+                    continue
+                if not isinstance(raw, dict):
+                    continue
+                if name in {"release_nation", "full_annexation"}:
+                    other = "beneficiary" if name == "full_annexation" else "source"
+                    counts = (
+                        "owned_count_before", "owned_count_after",
+                        ("beneficiary_owned_count_before"
+                         if name == "full_annexation"
+                         else "source_owned_count_before"),
+                        ("beneficiary_owned_count_after"
+                         if name == "full_annexation"
+                         else "source_owned_count_after"))
+                    fields = ("country", other, *counts, "complete",
+                              "values_readable", "unchanged", "verified")
+                    projected = {key: raw[key] for key in fields if key in raw}
+                    rows = raw.get("province_rows")
+                    if isinstance(rows, list):
+                        projected["province_rows"] = [
+                            {key: row[key] for key in territory_row_fields
+                             if isinstance(row, dict) and key in row}
+                            for row in rows if isinstance(row, dict)]
+                    country_public[name] = projected
+                elif name in {"force_vassalization", "form_personal_union"}:
+                    fields = (
+                        "country", "beneficiary", "relation_active_before",
+                        "relation_active_after", "is_overlord_before",
+                        "is_overlord_after", "subject_type_before",
+                        "subject_type_after", "complete", "values_readable",
+                        "unchanged", "verified")
+                    country_public[name] = {
+                        key: raw[key] for key in fields if key in raw}
+                else:
+                    fields = (
+                        "country", "overlord", "relation_active_before",
+                        "relation_active_after", "is_overlord_before",
+                        "is_overlord_after", "subject_type_before",
+                        "subject_type_after", "overlord_count_before",
+                        "overlord_count_after", "overlord_scan_complete_before",
+                        "overlord_scan_complete_after", "no_other_overlords_before",
+                        "no_other_overlords_after", "complete", "values_readable",
+                        "unchanged", "verified", "reason_code")
+                    country_public[name] = {
+                        key: raw[key] for key in fields if key in raw}
+                    country_public[name]["unchanged"] = all(
+                        raw.get(key + "_before") == raw.get(key + "_after")
+                        for key in ("relation_active", "is_overlord", "subject_type",
+                                    "overlord_count", "overlord_scan_complete",
+                                    "no_other_overlords"))
+            public["country_terms"] = country_public
+        return public
 
     @classmethod
     def _public_native_peace_execution_result(
             cls, event: object, request_id: str, session_id: str,
             actor: str, recipient: str, phase: str, date_raw: object,
-            action_id: str, parameters: object) -> dict | None:
+            action_id: str, parameters: object, *,
+            text_codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict | None:
         if not cls._valid_native_peace_execution_result(
                 event, request_id, session_id, actor, recipient, phase,
                 date_raw, action_id, parameters):
@@ -1404,8 +3463,28 @@ class ObserverSession:
         fields = cls._peace_execution_fields(parameters)
         if fields is None:
             return None
+        core_fields = cls._peace_core_execution_fields(parameters)
+        if core_fields is None:
+            return None
+        subject_fields = cls._peace_subject_execution_fields(parameters)
+        if subject_fields is None:
+            return None
+        country_fields = cls._peace_country_execution_fields(
+            parameters, actor, recipient)
+        if country_fields is None:
+            return None
         (war_id, direction, amount_raw, province_ids, beneficiary,
-         reparations_payer, reparations_claimant, term_mask) = fields
+         reparations_payer, reparations_claimant,
+         trade_power_source, trade_power_beneficiary,
+         concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = fields
+        special_terms = [
+            {"action_id": term.get("action_id"),
+             "country": term.get("country"),
+             "beneficiary": term.get("beneficiary")}
+            for term in parameters.get("peace_context", {}).get("terms", [])
+            if isinstance(term, dict) and term.get("action_id") in {
+                "humiliate_rival", "show_strength", "force_religion"}]
         result = {
             "event": "native_peace_execution_result",
             "request_id": request_id,
@@ -1420,9 +3499,31 @@ class ObserverSession:
             "amount_raw": amount_raw,
             "province_ids": list(province_ids),
             "beneficiary": beneficiary,
-            **({"term_mask": term_mask,
-                "reparations_payer": reparations_payer,
-                "reparations_claimant": reparations_claimant}
+             **({"term_mask": term_mask,
+                 **({"reparations_payer": reparations_payer,
+                     "reparations_claimant": reparations_claimant}
+                    if "r" in term_mask else {}),
+                 **({"trade_power_source": trade_power_source,
+                     "trade_power_beneficiary": trade_power_beneficiary}
+                    if "t" in term_mask else {}),
+                  **({"conceding_country": concede_defeat_country,
+                      "concede_beneficiary": concede_defeat_beneficiary}
+                     if "c" in term_mask else {}),
+                  **({"annul_country": annul_country,
+                      "annul_partners": list(annul_partners or [])}
+                      if "a" in term_mask else {}),
+                   **({"return_ids": list(core_fields[0][0]),
+                       "return_core_owner": core_fields[0][1]}
+                      if "b" in term_mask and core_fields[0] else {}),
+                   **({"revoke_ids": list(core_fields[1][0]),
+                       "revoke_core_owner": core_fields[1][1]}
+                      if "v" in term_mask and core_fields[1] else {}),
+                   **({"release_subject_countries": ",".join(subject_fields[0] or [])}
+                      if "l" in term_mask else {}),
+                   **({"transfer_subject_countries": ",".join(subject_fields[1] or [])}
+                      if "x" in term_mask else {}),
+                   **({"special_terms": special_terms}
+                      if special_terms else {})}
                if term_mask else {}),
             "native_state": event["native_state"],
             "outcome": event["outcome"],
@@ -1434,8 +3535,24 @@ class ObserverSession:
             "war_after": event["war_after"],
             "native_outcome": event["outcome"],
         }
+        if any(bit in term_mask for bit in "nzuie"):
+            result.update({
+                key: value for key, value, bit in zip(
+                    COUNTRY_SELECTION_KEYS, country_fields,
+                    ("n", "n", "z", "u", "i", "e", "z", "u", "e"))
+                if bit in term_mask})
+        if "native_consequences" in event:
+            projected_consequences = project_event_consequences(
+                event, codec=text_codec)
+            if projected_consequences is None:
+                return None
+            result["peace_consequences"] = projected_consequences
         if "effects" in event:
             result["effects"] = cls._public_native_peace_effects(event["effects"])
+            corrections = cls._peace_effect_flag_corrections(
+                event["effects"], result["effects"])
+            if corrections:
+                result["effect_flag_corrections"] = corrections
         return result
 
     @classmethod
@@ -1480,6 +3597,214 @@ class ObserverSession:
             cls._safe_submission_date(date_raw), action_id)
         result["family"] = "vassalization"
         return result
+
+    @classmethod
+    def _public_native_curry_favors_submission_receipt(
+            cls, event: object, request_id: str, actor: str,
+            recipient: str, phase: str, date_raw: object,
+            action_id: str) -> dict | None:
+        """Reduce one verified Curry Favors receipt to safe journal fields."""
+
+        if (not isinstance(event, dict)
+                or not cls._valid_native_curry_favors_submission_result(
+                    event, request_id, event.get("session_id", ""), actor,
+                    recipient, phase, date_raw, action_id)
+                or event.get("submitted") is not True):
+            return None
+        result = cls._public_native_submission_receipt(
+            event, request_id, actor, recipient, phase,
+            cls._safe_submission_date(date_raw), action_id)
+        result["family"] = "curry_favors"
+        return result
+
+    @classmethod
+    def _public_native_favor_gold_result(
+            cls, event: object, request_id: str, session_id: str, actor: str,
+            recipient: str, phase: str, date_raw: object,
+            native_proposal_id: object = None) -> dict | None:
+        """Bind a favor exchange to its request and verify native settlement."""
+        inbound = phase in ("accept", "reject")
+        if (not isinstance(event, dict) or phase not in ("initiate", "accept", "reject")
+                or (recipient != "FRA" if inbound else actor != "FRA")
+                or actor == recipient):
+            return None
+        event_name = ("native_diplomacy_favor_trade_response_result" if inbound
+                      else "native_diplomacy_favor_trade_execution_result")
+        for key, expected in (("event", event_name), ("request_id", request_id),
+                ("session_id", session_id), ("action_id", _FAVOR_GOLD_ACTION),
+                ("family", "favor_trade"), ("actor", actor), ("recipient", recipient),
+                ("phase", phase)):
+            if event.get(key) != expected:
+                return None
+        wanted_date = cls._safe_submission_date(date_raw)
+        if (wanted_date is None or cls._safe_submission_date(event.get("date_raw")) != wanted_date
+                or any(type(event.get(key)) is not bool for key in (
+                    "execution_verified", "request_binding_verified", "pending_removed"))
+                or not validate_favor_result(event.get("favor_trade"), event.get("native_state"))):
+            return None
+        if inbound:
+            if cls._safe_native_proposal_id(native_proposal_id) is None:
+                return None
+            if ("native_proposal_id" in event and cls._safe_native_proposal_id(
+                    event["native_proposal_id"]) != native_proposal_id):
+                return None
+        verified = (event["execution_verified"] and event["request_binding_verified"]
+                    and event["favor_trade"]["verified"]
+                    and (not inbound or event["pending_removed"]))
+        state = event["native_state"]
+        outcome = "accepted" if verified and state == 2 else "rejected" if verified and state == 1 else "unknown"
+        if event.get("outcome") != outcome:
+            return None
+        if verified and inbound and state != (2 if phase == "accept" else 1):
+            return None
+        return {"event": event_name, "request_id": request_id,
+                "action_id": _FAVOR_GOLD_ACTION, "family": "favor_trade",
+                "actor": actor, "recipient": recipient, "phase": phase,
+                "date_raw": wanted_date, "native_state": state, "native_outcome": outcome,
+                "execution_verified": event["execution_verified"],
+                "response_verified": verified,
+                "request_binding_verified": event["request_binding_verified"],
+                "pending_removed": event["pending_removed"],
+                "favor_trade": project_favor_result(event["favor_trade"], actor, recipient)}
+
+    @classmethod
+    def _public_native_favor_resource_result(
+            cls, event: object, request_id: str, session_id: str, actor: str,
+            recipient: str, phase: str, date_raw: object,
+            action_id: str, native_proposal_id: object = None) -> dict | None:
+        """Bind and independently verify one trust/men settlement."""
+
+        kind = _favor_resource_kind(action_id)
+        inbound = phase in ("accept", "reject")
+        if (kind is None or not isinstance(event, dict)
+                or phase not in ("initiate", "accept", "reject")
+                or (recipient != "FRA" if inbound else actor != "FRA")
+                or actor == recipient):
+            return None
+        event_name = ("native_diplomacy_favor_trade_response_result" if inbound
+                      else "native_diplomacy_favor_trade_execution_result")
+        for key, expected in (
+                ("event", event_name), ("request_id", request_id),
+                ("session_id", session_id), ("action_id", action_id),
+                ("family", "favor_trade"), ("actor", actor),
+                ("recipient", recipient), ("phase", phase)):
+            if event.get(key) != expected:
+                return None
+        payload = event.get("favor_trade")
+        if (not isinstance(payload, dict) or payload.get("kind") != kind
+                or not validate_favor_resource_result(payload, event.get("native_state"))):
+            return None
+        wanted_date = cls._safe_submission_date(date_raw)
+        if (wanted_date is None
+                or cls._safe_submission_date(event.get("date_raw")) != wanted_date
+                or any(type(event.get(key)) is not bool for key in (
+                    "execution_verified", "request_binding_verified", "pending_removed"))):
+            return None
+        if inbound:
+            if cls._safe_native_proposal_id(native_proposal_id) is None:
+                return None
+            if ("native_proposal_id" in event
+                    and cls._safe_native_proposal_id(event["native_proposal_id"])
+                    != native_proposal_id):
+                return None
+        verified = (event["execution_verified"]
+                    and event["request_binding_verified"]
+                    and payload["verified"]
+                    and (not inbound or event["pending_removed"]))
+        state = event["native_state"]
+        outcome = ("accepted" if verified and state == 2
+                   else "rejected" if verified and state == 1 else "unknown")
+        event_outcome = event.get("outcome")
+        expected_event_outcomes = ({"executed", "accepted"}
+                                   if outcome == "executed" else {outcome})
+        if event_outcome not in expected_event_outcomes:
+            return None
+        if verified and inbound and state != (2 if phase == "accept" else 1):
+            return None
+        return {
+            "event": event_name, "request_id": request_id,
+            "action_id": action_id, "family": "favor_trade", "actor": actor,
+            "recipient": recipient, "phase": phase, "date_raw": wanted_date,
+            "native_state": state, "native_outcome": outcome,
+            "execution_verified": event["execution_verified"],
+            "response_verified": verified,
+            "request_binding_verified": event["request_binding_verified"],
+            "pending_removed": event["pending_removed"],
+            "favor_trade": project_favor_resource_result(
+                payload, actor, recipient, state),
+        }
+
+    @classmethod
+    def _public_native_gift_influence_result(
+            cls, event: object, request_id: str, session_id: str, actor: str,
+            recipient: str, phase: str, date_raw: object,
+            action_id: str, expected_ducats: int | None = None) -> dict | None:
+        """Bind and independently verify one R74 single-sided settlement."""
+
+        if (not isinstance(event, dict) or phase != "initiate"
+                or actor != "FRA" or actor == recipient
+                or recipient == "FRA"):
+            return None
+        family = ("gift" if action_id == _GIFT_ACTION
+                  else "influence" if action_id == _INFLUENCE_ACTION else None)
+        event_name = (_GIFT_EXECUTION_EVENT if action_id == _GIFT_ACTION
+                      else _INFLUENCE_EXECUTION_EVENT
+                      if action_id == _INFLUENCE_ACTION else None)
+        if family is None or event_name is None:
+            return None
+        for key, expected in (
+                ("event", event_name), ("request_id", request_id),
+                ("session_id", session_id), ("action_id", action_id),
+                ("family", family), ("actor", actor),
+                ("recipient", recipient), ("phase", phase)):
+            if event.get(key) != expected:
+                return None
+        wanted_date = cls._safe_submission_date(date_raw)
+        if (wanted_date is None
+                or cls._safe_submission_date(event.get("date_raw")) != wanted_date):
+            return None
+        for key in ("execution_verified", "request_binding_verified"):
+            if type(event.get(key)) is not bool:
+                return None
+        native_state = event.get("native_state")
+        payload = event.get(family)
+        valid = (_validate_gift_result(payload, native_state)
+                 if action_id == _GIFT_ACTION else
+                 _validate_influence_result(payload, native_state))
+        if not valid or not isinstance(payload, dict):
+            return None
+        if (action_id == _GIFT_ACTION
+                and (type(expected_ducats) is not int
+                     or payload.get("ducats") != expected_ducats
+                     or payload.get("amount_raw") != _gift_amount_raw(expected_ducats))):
+            return None
+        transport_verified = (
+            event.get("execution_verified") is True
+            and event.get("request_binding_verified") is True)
+        verified = transport_verified and payload.get("verified") is True
+        outcome = ("executed" if verified and native_state in (
+                        _GIFT_NATIVE_EXECUTED, _GIFT_NATIVE_ACCEPT)
+                   else "rejected" if verified and native_state == _GIFT_NATIVE_REJECT
+                   else "unknown")
+        event_outcome = event.get("outcome")
+        expected_event_outcomes = ({"executed", "accepted"}
+                                   if outcome == "executed" else {outcome})
+        if event_outcome not in expected_event_outcomes:
+            return None
+        projected = (_project_gift_result(payload, actor, recipient, native_state)
+                     if action_id == _GIFT_ACTION else
+                     _project_influence_result(payload, actor, recipient, native_state))
+        if projected is None:
+            return None
+        return {
+            "event": event_name, "request_id": request_id,
+            "action_id": action_id, "family": family, "actor": actor,
+            "recipient": recipient, "phase": phase, "date_raw": wanted_date,
+            "native_state": native_state, "native_outcome": outcome,
+            "execution_verified": event.get("execution_verified", True),
+            "request_binding_verified": event.get("request_binding_verified", True),
+            "result_verified": verified, family: projected,
+        }
 
     @classmethod
     def _public_native_response_result(cls, event: object, request_id: str,
@@ -1579,7 +3904,7 @@ class ObserverSession:
         Native pointers, handles, tokens and process diagnostics never belong
         in the public term context.  The native reader supplies semantic
         strings/integers/bools; this recursive check keeps an unexpected raw
-        field from crossing the public boundary while allowing the 19 term
+        field from crossing the public boundary while allowing the 20 term
         schemas to evolve independently.
         """
         if depth > 8:
@@ -1615,6 +3940,7 @@ class ObserverSession:
             "war_id", "direction", "terms", "complete", "costs",
             "original_actor", "original_recipient", "white_peace",
             "selected_terms_complete", "reason",
+            "full_annex_proof", "war_context",
         }
         if any(key not in allowed for key in value):
             return False
@@ -1650,7 +3976,499 @@ class ObserverSession:
             return False
         if "costs" in value and not cls._safe_public_peace_value(value["costs"]):
             return False
+        if "war_context" in value:
+            context = value.get("war_context")
+            if (not isinstance(context, dict)
+                    or set(context) != {"war_id", "war_score"}
+                    or context.get("war_id") != war_id
+                    or not cls._safe_public_peace_value(context.get("war_score"))):
+                return False
         return True
+
+    @classmethod
+    def _valid_full_annex_proof(cls, value: object) -> bool:
+        """Validate the optional native proof used to derive Full Annexation.
+
+        The proof is an inbound binding observation, not a legality result.
+        A live proof must cover the sealed snapshot, the complete selected
+        Cede set, the all-owned predicate, and the native check.  A preflight
+        proof may reuse the sealed request identity instead of rereading the
+        owned set, but still has to prove the same snapshot identity.
+        """
+
+        fields = {
+            "live_offer_present", "live_snapshot_complete",
+            "sealed_snapshot_equal", "selected_cede_complete",
+            "selected_cede_unique", "owner_owned_ids_complete",
+            "native_check_called", "native_check_result",
+            "preflight_proof_reused", "request_identity_matches", "derived",
+            "owner", "beneficiary", "selected_cede_count", "owned_count",
+            "reason",
+        }
+        if not isinstance(value, dict) or set(value) != fields:
+            return False
+        bool_fields = tuple(fields - {
+            "owner", "beneficiary", "selected_cede_count", "owned_count",
+            "reason"})
+        if any(not isinstance(value.get(field), bool) for field in bool_fields):
+            return False
+        for key in ("owner", "beneficiary"):
+            if (not isinstance(value.get(key), str)
+                    or (value[key] and re.fullmatch(r"[A-Z0-9]{3}", value[key]) is None)):
+                return False
+        if (cls._safe_int(value.get("selected_cede_count"), 0, 512) is None
+                or cls._safe_int(value.get("owned_count"), 0, 512) is None
+                or not isinstance(value.get("reason"), str)
+                or re.fullmatch(r"[A-Z0-9_]{1,96}", value["reason"]) is None):
+            return False
+        if value["derived"]:
+            common = (
+                value["selected_cede_complete"]
+                and value["selected_cede_unique"]
+                and bool(value["owner"])
+                and bool(value["beneficiary"])
+                and value["owner"] != value["beneficiary"]
+                and value["selected_cede_count"] > 0)
+            if not common:
+                return False
+            if value["preflight_proof_reused"]:
+                if (not value["request_identity_matches"]
+                        or value["reason"] != "PREFLIGHT_PROOF_REUSED"):
+                    return False
+            elif not (
+                    value["live_offer_present"]
+                    and value["live_snapshot_complete"]
+                    and value["sealed_snapshot_equal"]
+                    and value["owner_owned_ids_complete"]
+                    and value["native_check_called"]
+                    and value["native_check_result"]
+                    and value["owned_count"] == value["selected_cede_count"]
+                    and value["reason"] == "LIVE_NATIVE_FULL_ANNEX_PROVEN"):
+                return False
+        return True
+
+    @classmethod
+    def _inbound_peace_context_fields(
+            cls, value: object, original_actor: str,
+            original_recipient: str = "FRA") -> dict | None:
+        """Normalize the native inbound Peace term rows for response checks.
+
+        Inbound native observations are deliberately allowed to retain the
+        shape emitted by the game.  In particular, a province may be emitted
+        as one row (``province_id``/``beneficiary``) and several rows may have
+        different beneficiaries.  The public outbound context historically
+         used one grouped ``province_ids`` row, so this helper reduces both
+        forms while retaining an explicit ambiguity marker instead of
+        inventing a beneficiary for effects validation.
+        """
+
+        if (not cls._valid_public_peace_context(value)
+                or not isinstance(original_actor, str)
+                or re.fullmatch(r"[A-Z0-9]{3}", original_actor) is None
+                or original_actor == "FRA"
+                or not isinstance(original_recipient, str)
+                or re.fullmatch(r"[A-Z0-9]{3}", original_recipient) is None
+                or original_recipient == original_actor):
+            return None
+        context = value
+        if (context.get("original_actor") != original_actor
+                or context.get("original_recipient") != original_recipient):
+            return None
+        direction = context.get("direction")
+        expected_payer = (original_actor if direction == "offer"
+                          else original_recipient)
+        expected_claimant = (original_recipient if direction == "offer"
+                             else original_actor)
+        amount_raw = -1
+        money_seen = False
+        province_ids: list[int] = []
+        province_beneficiaries: list[str] = []
+        reparations_payer = None
+        reparations_claimant = None
+        reparations_seen = False
+        trade_power_source = None
+        trade_power_beneficiary = None
+        trade_power_seen = False
+        concede_defeat_country = None
+        concede_defeat_beneficiary = None
+        concede_defeat_seen = False
+        special_terms: list[dict] = []
+        special_seen: set[str] = set()
+
+        annul_country = None
+        annul_partners: list[str] = []
+        annul_seen = False
+        return_core_ids: list[int] = []
+        return_core_owner = None
+        return_core_seen = False
+        revoke_core_ids: list[int] = []
+        revoke_core_owner = None
+        revoke_core_seen = False
+        release_subject_countries: list[str] = []
+        transfer_subject_countries: list[str] = []
+        release_subject_seen = False
+        transfer_subject_seen = False
+
+        release_nation_country = None
+        release_nation_source = None
+        release_nation_seen = False
+        vassal_country = None
+        vassal_beneficiary = None
+        vassal_seen = False
+        union_country = None
+        union_beneficiary = None
+        union_seen = False
+        grant_independence_seen = False
+        annex_country = None
+        annex_beneficiary = None
+        annex_seen = False
+        full_annex_proof = context.get("full_annex_proof")
+        if (full_annex_proof is not None
+                and not cls._valid_full_annex_proof(full_annex_proof)):
+            return None
+
+        def country(value: object) -> bool:
+            return (isinstance(value, str)
+                    and re.fullmatch(r"[A-Z0-9]{3}", value) is not None)
+
+        def parse_amount(term: dict) -> int | None:
+            raw = term.get("amount_raw")
+            if raw is None and isinstance(term.get("amount"), str):
+                match = re.fullmatch(r"([0-9]+)\.([0-9])", term["amount"])
+                if match is not None:
+                    raw = (int(match.group(1)) * 10 + int(match.group(2))) * 100
+            if cls._safe_int(raw, 1, 2147483647) is None:
+                return None
+            scale = term.get("scale", 1000)
+            if cls._safe_int(scale, 1, 2147483647) != 1000:
+                return None
+            return raw
+
+        for term in context["terms"]:
+            action_id = term.get("action_id")
+            if action_id == "demand_ducats":
+                if money_seen:
+                    return None
+                parsed = parse_amount(term)
+                if parsed is None:
+                    return None
+                for role, expected in (("payer", expected_payer),
+                                       ("claimant", expected_claimant)):
+                    if role in term and term[role] != expected:
+                        return None
+                amount_raw = parsed
+                money_seen = True
+            elif action_id == "cede_province":
+                if "province_id" in term and "province_ids" in term:
+                    return None
+                if "province_id" in term:
+                    ids = [term.get("province_id")]
+                else:
+                    ids = term.get("province_ids")
+                if (not isinstance(ids, list) or not ids
+                        or len(ids) > 16):
+                    return None
+                checked_ids: list[int] = []
+                for province_id in ids:
+                    checked = cls._safe_int(province_id, 1, 2147483647)
+                    if checked is None or checked in province_ids or checked in checked_ids:
+                        return None
+                    checked_ids.append(checked)
+                beneficiary = term.get("beneficiary")
+                if not country(beneficiary):
+                    return None
+                province_ids.extend(checked_ids)
+                if beneficiary not in province_beneficiaries:
+                    province_beneficiaries.append(beneficiary)
+                if len(province_ids) > 16:
+                    return None
+            elif action_id == "war_reparations":
+                if reparations_seen:
+                    return None
+                payer = term.get("payer")
+                claimant = term.get("claimant")
+                if (not country(payer) or not country(claimant)
+                        or payer != expected_payer
+                        or claimant != expected_claimant):
+                    return None
+                reparations_payer = payer
+                reparations_claimant = claimant
+                reparations_seen = True
+            elif action_id == "transfer_trade_power":
+                if trade_power_seen:
+                    return None
+                source = term.get("source")
+                beneficiary = term.get("beneficiary")
+                expected_beneficiary = expected_claimant
+                if (not country(source) or not country(beneficiary)
+                        or source == beneficiary
+                        or beneficiary != expected_beneficiary):
+                    return None
+                trade_power_source = source
+                trade_power_beneficiary = beneficiary
+                trade_power_seen = True
+            elif action_id == "concede_defeat":
+                if concede_defeat_seen:
+                    return None
+                conceding_country = term.get("conceding_country")
+                beneficiary = term.get("beneficiary")
+                expected_conceding = (original_actor if direction == "offer"
+                                      else original_recipient)
+                expected_beneficiary = (original_recipient if direction == "offer"
+                                        else original_actor)
+                if (not country(conceding_country)
+                        or not country(beneficiary)
+                        or conceding_country != expected_conceding
+                        or beneficiary != expected_beneficiary):
+                    return None
+                concede_defeat_country = conceding_country
+                concede_defeat_beneficiary = beneficiary
+                concede_defeat_seen = True
+            elif action_id == "annul_treaties":
+                selected_country = term.get("country")
+                partners = term.get("treaty_partners")
+                if (annul_seen or not country(selected_country)
+                        or not isinstance(partners, list)
+                        or not 1 <= len(partners) <= 16
+                        or any(not country(partner) or partner == selected_country
+                               for partner in partners)
+                        or len(set(partners)) != len(partners)
+                        or partners != sorted(partners)):
+                    return None
+                annul_country = selected_country
+                annul_partners = list(partners)
+                annul_seen = True
+            elif action_id in {"return_core", "revoke_core"}:
+                # Native inbound context may expose one selected province as
+                # ``province_id`` while the public treaty contract groups the
+                # bounded selection under ``province_ids``.  Accept either at
+                # the trust boundary and retain the canonical grouped fields
+                # for downstream effects validation.
+                core_ids_value = term.get("province_ids")
+                if core_ids_value is None and "province_id" in term:
+                    core_ids_value = [term.get("province_id")]
+                if (not isinstance(core_ids_value, list)
+                        or not 1 <= len(core_ids_value) <= 16):
+                    return None
+                checked_core_ids: list[int] = []
+                for province_id in core_ids_value:
+                    checked = cls._safe_int(province_id, 1, 2147483647)
+                    if checked is None or checked in checked_core_ids:
+                        return None
+                    checked_core_ids.append(checked)
+                core_owner = term.get("core_owner")
+                if not country(core_owner):
+                    return None
+                if action_id == "return_core":
+                    if (return_core_seen and core_owner != return_core_owner
+                            or len(return_core_ids) + len(checked_core_ids) > 16
+                            or set(return_core_ids).intersection(checked_core_ids)):
+                        return None
+                    return_core_ids.extend(checked_core_ids)
+                    return_core_owner = core_owner
+                    return_core_seen = True
+                else:
+                    if (revoke_core_seen and core_owner != revoke_core_owner
+                            or len(revoke_core_ids) + len(checked_core_ids) > 16
+                            or set(revoke_core_ids).intersection(checked_core_ids)):
+                        return None
+                    revoke_core_ids.extend(checked_core_ids)
+                    revoke_core_owner = core_owner
+                    revoke_core_seen = True
+            elif action_id in {"humiliate_rival", "show_strength", "force_religion"}:
+                if action_id in special_seen:
+                    return None
+                selected_country = term.get("country")
+                selected_beneficiary = term.get("beneficiary")
+                expected_country = (original_actor if direction == "offer"
+                                    else original_recipient)
+                expected_beneficiary = (original_recipient if direction == "offer"
+                                        else original_actor)
+                if (not country(selected_country)
+                        or not country(selected_beneficiary)
+                        or selected_country != expected_country
+                        or selected_beneficiary != expected_beneficiary
+                        or selected_country == selected_beneficiary):
+                    return None
+                special_terms.append({
+                    "action_id": action_id,
+                    "country": selected_country,
+                    "beneficiary": selected_beneficiary,
+                })
+                special_seen.add(action_id)
+            elif action_id in _PEACE_SUBJECT_ACTIONS:
+                if set(term) == {"action_id", "country"}:
+                    selected_countries = [term.get("country")]
+                elif (set(term) == {"action_id", "countries"}
+                      and isinstance(term.get("countries"), list)):
+                    selected_countries = list(term.get("countries"))
+                else:
+                    return None
+                if (not 1 <= len(selected_countries) <= 16
+                        or selected_countries != sorted(selected_countries)
+                        or len(set(selected_countries)) != len(selected_countries)
+                        or any(not country(item) for item in selected_countries)):
+                    return None
+                target = (release_subject_countries
+                          if action_id == "release_subject"
+                          else transfer_subject_countries)
+                if (set(target).intersection(selected_countries)
+                        or (action_id == "release_subject"
+                            and set(transfer_subject_countries).intersection(selected_countries))
+                        or (action_id == "transfer_subject"
+                            and set(release_subject_countries).intersection(selected_countries))
+                        or len(target) + len(selected_countries) > 16):
+                    return None
+                target.extend(selected_countries)
+                if action_id == "release_subject":
+                    release_subject_seen = True
+                else:
+                    transfer_subject_seen = True
+            elif action_id in COUNTRY_TERM_ACTIONS:
+                if action_id == "grant_independence":
+                    if grant_independence_seen or set(term) != {"action_id"}:
+                        return None
+                    grant_independence_seen = True
+                    continue
+                selected_country = term.get("country")
+                if not country(selected_country):
+                    return None
+                if action_id == "release_nation":
+                    if release_nation_seen or set(term) not in (
+                            {"action_id", "country"},
+                            {"action_id", "country", "source"}):
+                        return None
+                    selected_source = term.get("source", expected_payer)
+                    if (not country(selected_source)
+                            or selected_country == selected_source):
+                        return None
+                    release_nation_country = selected_country
+                    release_nation_source = selected_source
+                    release_nation_seen = True
+                    continue
+                selected_beneficiary = term.get(
+                    "beneficiary", expected_claimant)
+                if (not country(selected_beneficiary)
+                        or selected_country == selected_beneficiary):
+                    return None
+                if action_id == "force_vassalization":
+                    if vassal_seen or set(term) not in (
+                            {"action_id", "country"},
+                            {"action_id", "country", "beneficiary"}):
+                        return None
+                    vassal_country = selected_country
+                    vassal_beneficiary = selected_beneficiary
+                    vassal_seen = True
+                    continue
+                if action_id == "form_personal_union":
+                    if union_seen or set(term) not in (
+                            {"action_id", "country"},
+                            {"action_id", "country", "beneficiary"}):
+                        return None
+                    union_country = selected_country
+                    union_beneficiary = selected_beneficiary
+                    union_seen = True
+                    continue
+                if action_id == "full_annexation":
+                    if annex_seen or set(term) not in (
+                            {"action_id", "country"},
+                            {"action_id", "country", "beneficiary"}):
+                        return None
+                    annex_country = selected_country
+                    annex_beneficiary = selected_beneficiary
+                    annex_seen = True
+                    continue
+                return None
+            elif action_id == "white_peace":
+                # The aggregate white-peace row carries no selected payload.
+                # Keep accepting it for legacy observations; a mixed white
+                # row is harmlessly represented by the other selected rows.
+                continue
+            else:
+                return None
+
+        if isinstance(full_annex_proof, dict):
+            if full_annex_proof["derived"]:
+                if (not annex_seen
+                        or full_annex_proof["owner"] != annex_country
+                        or full_annex_proof["beneficiary"] != annex_beneficiary):
+                    return None
+            elif annex_seen:
+                # A serializer must not claim a derived Full Annexation term
+                # while its live/preflight proof says it was not derived.
+                return None
+
+        return {
+            "war_id": context["war_id"],
+            "direction": direction,
+            "terms": context["terms"],
+            "complete": context["complete"],
+            "original_actor": original_actor,
+            "original_recipient": original_recipient,
+            "amount_raw": amount_raw,
+            "province_ids": province_ids,
+            "beneficiaries": province_beneficiaries,
+            "beneficiary": (province_beneficiaries[0]
+                            if len(province_beneficiaries) == 1 else None),
+            "reparations_requested": reparations_seen,
+            "reparations_payer": reparations_payer,
+            "reparations_claimant": reparations_claimant,
+            "trade_power_requested": trade_power_seen,
+            "trade_power_source": trade_power_source,
+            "trade_power_beneficiary": trade_power_beneficiary,
+            "concede_defeat_requested": concede_defeat_seen,
+            "concede_defeat_country": concede_defeat_country,
+            "concede_defeat_beneficiary": concede_defeat_beneficiary,
+            "annul_treaties_requested": annul_seen,
+            "annul_country": annul_country,
+            "annul_partners": annul_partners,
+            "return_core_requested": return_core_seen,
+            "return_core_ids": return_core_ids,
+            "return_core_owner": return_core_owner,
+            "revoke_core_requested": revoke_core_seen,
+            "revoke_core_ids": revoke_core_ids,
+            "revoke_core_owner": revoke_core_owner,
+            "release_subject_requested": release_subject_seen,
+            "release_subject_countries": release_subject_countries,
+            "transfer_subject_requested": transfer_subject_seen,
+            "transfer_subject_countries": transfer_subject_countries,
+            "release_nation_requested": release_nation_seen,
+            "release_nation_country": release_nation_country,
+            "release_nation_source": release_nation_source,
+            "force_vassalization_requested": vassal_seen,
+            "force_vassalization_country": vassal_country,
+            "force_vassalization_beneficiary": vassal_beneficiary,
+            "form_personal_union_requested": union_seen,
+            "form_personal_union_country": union_country,
+            "form_personal_union_beneficiary": union_beneficiary,
+            "grant_independence_requested": grant_independence_seen,
+            "grant_independence_country": expected_claimant,
+            "grant_independence_overlord": expected_payer,
+            "full_annexation_requested": annex_seen,
+            "full_annexation_country": annex_country,
+            "full_annexation_beneficiary": annex_beneficiary,
+            "full_annex_proof": full_annex_proof,
+            "full_annex_proof_verified": (
+                isinstance(full_annex_proof, dict)
+                and full_annex_proof.get("derived") is True),
+            "special_terms": special_terms,
+            "special_by_action": {
+                term["action_id"]: dict(term) for term in special_terms},
+            "special_terms_requested": bool(special_terms),
+            "humiliate_rival_requested": "humiliate_rival" in special_seen,
+            "show_strength_requested": "show_strength" in special_seen,
+            "force_religion_requested": "force_religion" in special_seen,
+            "beneficiary_ambiguous": len(province_beneficiaries) > 1,
+        }
+
+    @classmethod
+    def _valid_inbound_peace_context(
+            cls, value: object, original_actor: str,
+            original_recipient: str = "FRA") -> bool:
+        """Validate inbound Peace roles and native term row shapes."""
+
+        return cls._inbound_peace_context_fields(
+            value, original_actor, original_recipient) is not None
 
     @classmethod
     def _copy_public_peace_context(cls, value: object) -> dict | None:
@@ -1662,6 +4480,94 @@ class ObserverSession:
         except (TypeError, ValueError):
             return None
         return copied if isinstance(copied, dict) else None
+
+    @classmethod
+    def _canonicalize_inbound_peace_context(cls, value: object) -> dict | None:
+        """Project native inbound core rows onto the public grouped shape.
+
+        The native pending payload historically serializes a single selected
+        core province as ``province_id``.  Public Peace terms use the same
+        bounded grouped shape as outbound execution, ``province_ids``.  Keep
+        this conversion at the inbound public boundary so response binding
+        still validates the native rows and no private payload details leak.
+        """
+
+        copied = cls._copy_public_peace_context(value)
+        if copied is None:
+            return None
+        terms = copied.get("terms")
+        if not isinstance(terms, list):
+            return None
+        projected: list[dict] = []
+        core_groups: dict[str, dict] = {}
+        subject_groups: dict[str, list[str]] = {}
+        subject_group_terms: dict[str, dict] = {}
+        for raw_term in terms:
+            if not isinstance(raw_term, dict):
+                return None
+            action_id = raw_term.get("action_id")
+            if action_id in _PEACE_SUBJECT_ACTIONS:
+                if set(raw_term) == {"action_id", "country"}:
+                    countries = [raw_term.get("country")]
+                elif (set(raw_term) == {"action_id", "countries"}
+                      and isinstance(raw_term.get("countries"), list)):
+                    countries = list(raw_term.get("countries"))
+                else:
+                    return None
+                target = subject_groups.setdefault(action_id, [])
+                if (not countries or countries != sorted(countries)
+                        or len(set(countries)) != len(countries)
+                        or any(not isinstance(country, str)
+                               or re.fullmatch(r"[A-Z0-9]{3}", country) is None
+                               for country in countries)
+                        or set(target).intersection(countries)
+                        or len(target) + len(countries) > 16):
+                    return None
+                target.extend(countries)
+                if set(target).intersection(
+                        subject_groups.get(
+                            "transfer_subject" if action_id == "release_subject"
+                            else "release_subject", [])):
+                    return None
+                if action_id not in subject_group_terms:
+                    group = {"action_id": action_id, "country": countries[0]}
+                    subject_group_terms[action_id] = group
+                    projected.append(group)
+                continue
+            if action_id not in {"return_core", "revoke_core"}:
+                projected.append(raw_term)
+                continue
+            if "province_ids" in raw_term:
+                ids = raw_term.get("province_ids")
+                if not isinstance(ids, list):
+                    return None
+            elif "province_id" in raw_term:
+                ids = [raw_term.get("province_id")]
+            else:
+                return None
+            owner = raw_term.get("core_owner")
+            if (not isinstance(owner, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", owner) is None):
+                return None
+            if action_id not in core_groups:
+                group = {"action_id": action_id, "province_ids": [], "core_owner": owner}
+                core_groups[action_id] = group
+                projected.append(group)
+            group = core_groups[action_id]
+            if (group["core_owner"] != owner or len(group["province_ids"]) + len(ids) > 16
+                    or set(group["province_ids"]).intersection(ids)):
+                return None
+            group["province_ids"].extend(ids)
+        for action_id, countries in subject_groups.items():
+            group = subject_group_terms[action_id]
+            if len(countries) == 1:
+                group["country"] = countries[0]
+                group.pop("countries", None)
+            else:
+                group.pop("country", None)
+                group["countries"] = sorted(countries)
+        copied["terms"] = projected
+        return copied
 
     @classmethod
     def _valid_native_inbound_inspection(cls, event: object, query_id: str,
@@ -1726,7 +4632,7 @@ class ObserverSession:
             if not isinstance(current_war, bool):
                 return False
             context = event.get("peace_context")
-            if not cls._valid_public_peace_context(context):
+            if not cls._valid_inbound_peace_context(context, actor, "FRA"):
                 return False
             # The native field is the current-war *state*, not an identity
             # string.  The opaque war identity is carried by the validated
@@ -1734,7 +4640,8 @@ class ObserverSession:
             if (context.get("original_actor") != actor
                     or context.get("original_recipient") != "FRA"):
                 return False
-        elif action_id != "ask_military_access" and not isinstance(event.get(before_field), bool):
+        elif (action_id not in ("ask_military_access", *_FAVOR_ACTIONS)
+              and not isinstance(event.get(before_field), bool)):
             return False
         if action_id == "offer_royal_marriage":
             if (event.get("family") != family
@@ -1779,6 +4686,14 @@ class ObserverSession:
                     or event.get("native_current_vassalization")
                     != event.get("vassalization_before")):
                 return False
+        elif action_id in _FAVOR_ACTIONS:
+            if (event.get("family") != "favor_trade"
+                    or isinstance(event.get("extra60"), bool)
+                    or not isinstance(event.get("extra60"), int)
+                    or event.get("extra60") != 0
+                    or not _valid_favor_query_for_action(
+                        action_id, event.get("favor_trade"))):
+                return False
         elif action_id == "peace_offer":
             # The aggregate Peace inspection uses its own war/payload fields;
             # an alliance_before or relation-state field must not satisfy it.
@@ -1806,14 +4721,18 @@ class ObserverSession:
             else "military_access_before" if action_id == "ask_military_access"
             else "vassalization_before" if action_id == "offer_vassalization"
             else "alliance_before")
-        if action_id == "peace_offer":
+        if action_id in _FAVOR_ACTIONS:
+            before_value = None
+        elif action_id == "peace_offer":
             before_value = event["war_before"]
         else:
             before_value = (
                 event["military_access_active"]
                 if action_id == "ask_military_access" else event[before_field]
             )
-        public_before_field = "war_before" if action_id == "peace_offer" else before_field
+        public_before_field = (
+            None if action_id in _FAVOR_ACTIONS
+            else "war_before" if action_id == "peace_offer" else before_field)
         result = {
             "event": "native_alliance_inbound_inspection",
             "action_id": action_id,
@@ -1827,11 +4746,35 @@ class ObserverSession:
             "native_validity": event["native_validity"],
             "response_rules_complete": event["response_rules_complete"],
             "reason": event.get("reason", "none"),
-            public_before_field: before_value,
         }
-        if family in ("royal_marriage", "support_independence", "military_access", "vassalization"):
+        if public_before_field is not None:
+            result[public_before_field] = before_value
+        if family in ("royal_marriage", "support_independence", "military_access",
+                      "vassalization", "favor_trade"):
             result["family"] = family
+        if action_id in _FAVOR_ACTIONS:
+            projected = _project_favor_query_for_action(
+                action_id, event["favor_trade"], event["actor"], "FRA")
+            result["favor_trade"] = projected
+            favors = projected.get("favors", {}) if isinstance(projected, dict) else {}
+            result["costs"] = {
+                "status": "available" if favors.get("available") else "unknown",
+                "items": [{
+                    "resource": "favors",
+                    "amount": favors.get("cost"),
+                    "amount_raw": favors.get("cost_raw"),
+                    "scale": 1000,
+                    "unit": "favors",
+                    "country": event["actor"],
+                    "counterparty": "FRA",
+                    "source": "native_rule",
+                }],
+                "complete": favors.get("available") is True,
+            }
+            return result
         if family == "peace":
+            public_context = cls._canonicalize_inbound_peace_context(
+                event["peace_context"])
             result.update({
                 "family": "peace",
                 "war_before": event["war_before"],
@@ -1843,8 +4786,7 @@ class ObserverSession:
                 "selected_terms_complete": event["selected_terms_complete"],
                 "term_count": event["term_count"],
                 "selected_term_count": event["selected_term_count"],
-                "peace_context": cls._copy_public_peace_context(
-                    event["peace_context"]),
+                "peace_context": public_context,
             })
             if "costs" in event and cls._safe_public_peace_value(event["costs"]):
                 result["costs"] = json.loads(json.dumps(
@@ -1885,6 +4827,12 @@ class ObserverSession:
                 if action_id == "ask_military_access"
                 else "NATIVE_INBOUND_VASSALIZATION_RESPONSE_CAPABILITY_MISSING"
                 if action_id == "offer_vassalization"
+                else "NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_CAPABILITY_MISSING"
+                if action_id == _FAVOR_GOLD_ACTION
+                else "NATIVE_INBOUND_FAVOR_TRUST_RESPONSE_CAPABILITY_MISSING"
+                if action_id == _FAVOR_TRUST_ACTION
+                else "NATIVE_INBOUND_FAVOR_MEN_RESPONSE_CAPABILITY_MISSING"
+                if action_id == _FAVOR_MEN_ACTION
                 else "NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY_MISSING"
                 if action_id == "peace_offer"
                 else "NATIVE_INBOUND_RESPONSE_CAPABILITY_MISSING")}
@@ -1961,7 +4909,8 @@ class ObserverSession:
                                       recipient: str, phase: str,
                                       date_raw: object,
                                       action_id: str = "offer_alliance",
-                                      insult_id: int | None = None) -> dict | None:
+                                      insult_id: int | None = None,
+                                      gift_ducats: int | None = None) -> dict | None:
         """Read one bound native response from the installation log incrementally."""
 
         log = self.directory / "control-probe.jsonl"
@@ -1996,7 +4945,13 @@ class ObserverSession:
                         except (UnicodeDecodeError, ValueError):
                             continue
                         expected_event = (
-                            "native_diplomacy_relation_execution_result"
+                            _GIFT_EXECUTION_EVENT
+                            if action_id == _GIFT_ACTION
+                            else _INFLUENCE_EXECUTION_EVENT
+                            if action_id == _INFLUENCE_ACTION
+                            else "native_diplomacy_favor_trade_execution_result"
+                            if action_id in _FAVOR_ACTIONS
+                            else "native_diplomacy_relation_execution_result"
                             if action_id in ("proclaim_guarantee", "revoke_guarantee",
                                              "revoke_support_independence",
                                              "cancel_military_access")
@@ -2004,7 +4959,8 @@ class ObserverSession:
                             if action_id in ("support_independence", "ask_military_access")
                             else "native_diplomacy_task_execution_result"
                             if action_id in ("improve_relations", "stop_improving_relations",
-                                             "build_spy_network", "stop_building_spy_network")
+                                             "build_spy_network", "stop_building_spy_network",
+                                             "curry_favors", "stop_curry_favors")
                             else "native_alliance_execution_result"
                             if action_id in ("dissolve_alliance", "break_royal_ties")
                             else "native_diplomacy_insult_execution_result"
@@ -2020,7 +4976,18 @@ class ObserverSession:
                         if (event.get("request_id") != request_id
                                 or event.get("session_id") != self.session_id):
                             continue
-                        if action_id == "dissolve_alliance":
+                        if action_id == _FAVOR_GOLD_ACTION:
+                            result = self._public_native_favor_gold_result(
+                                event, request_id, self.session_id, actor, recipient, phase, date_raw)
+                        elif _is_favor_resource_action(action_id):
+                            result = self._public_native_favor_resource_result(
+                                event, request_id, self.session_id, actor, recipient,
+                                phase, date_raw, action_id)
+                        elif action_id in (_GIFT_ACTION, _INFLUENCE_ACTION):
+                            result = self._public_native_gift_influence_result(
+                                event, request_id, self.session_id, actor, recipient,
+                                phase, date_raw, action_id, gift_ducats)
+                        elif action_id == "dissolve_alliance":
                             result = self._public_native_dissolve_result(
                                 event, request_id, self.session_id, actor, recipient, phase, date_raw)
                         elif action_id == "break_royal_ties":
@@ -2032,6 +4999,10 @@ class ObserverSession:
                                 date_raw, action_id)
                         elif action_id in ("build_spy_network", "stop_building_spy_network"):
                             result = self._public_native_spy_network_execution_result(
+                                event, request_id, self.session_id, actor, recipient, phase,
+                                date_raw, action_id)
+                        elif action_id in ("curry_favors", "stop_curry_favors"):
+                            result = self._public_native_curry_favors_execution_result(
                                 event, request_id, self.session_id, actor, recipient, phase,
                                 date_raw, action_id)
                         elif action_id in ("proclaim_guarantee", "revoke_guarantee"):
@@ -2081,6 +5052,23 @@ class ObserverSession:
         except OSError:
             return None
         return None
+
+    def read_native_gift_execution(self, request_id: str, actor: str,
+                                   recipient: str, phase: str,
+                                   date_raw: object, ducats: int) -> dict | None:
+        """Read one bound Gift execution result."""
+
+        return self.read_native_alliance_response(
+            request_id, actor, recipient, phase, date_raw, _GIFT_ACTION,
+            gift_ducats=ducats)
+
+    def read_native_influence_execution(self, request_id: str, actor: str,
+                                        recipient: str, phase: str,
+                                        date_raw: object) -> dict | None:
+        """Read one bound Influence execution result."""
+
+        return self.read_native_alliance_response(
+            request_id, actor, recipient, phase, date_raw, _INFLUENCE_ACTION)
 
     def read_native_insult_execution(self, request_id: str, actor: str,
                                      recipient: str, phase: str, date_raw: object,
@@ -2132,6 +5120,17 @@ class ObserverSession:
         """Read one bound native Spy Network task consequence."""
 
         if action_id not in ("build_spy_network", "stop_building_spy_network"):
+            return {"status": "invalid", "reason_code": "NATIVE_RESPONSE_ACTION_INVALID"}
+        return self.read_native_alliance_response(
+            request_id, actor, recipient, phase, date_raw, action_id)
+
+    def read_native_curry_favors_execution(
+            self, request_id: str, actor: str, recipient: str,
+            phase: str, date_raw: object,
+            action_id: str = "curry_favors") -> dict | None:
+        """Read one bound native Curry Favors task consequence."""
+
+        if action_id not in ("curry_favors", "stop_curry_favors"):
             return {"status": "invalid", "reason_code": "NATIVE_RESPONSE_ACTION_INVALID"}
         return self.read_native_alliance_response(
             request_id, actor, recipient, phase, date_raw, action_id)
@@ -2191,6 +5190,23 @@ class ObserverSession:
             return {"status": "invalid", "reason_code": "NATIVE_RESPONSE_ACTION_INVALID"}
         return self.read_native_alliance_response(
             request_id, actor, recipient, phase, date_raw, "cancel_military_access")
+
+    def read_native_favor_gold_response(self, request_id: str, actor: str,
+                                        recipient: str, phase: str, date_raw: object) -> dict | None:
+        return self.read_native_alliance_response(
+            request_id, actor, recipient, phase, date_raw, _FAVOR_GOLD_ACTION)
+
+    def read_native_favor_trust_response(self, request_id: str, actor: str,
+                                         recipient: str, phase: str,
+                                         date_raw: object) -> dict | None:
+        return self.read_native_alliance_response(
+            request_id, actor, recipient, phase, date_raw, _FAVOR_TRUST_ACTION)
+
+    def read_native_favor_men_response(self, request_id: str, actor: str,
+                                       recipient: str, phase: str,
+                                       date_raw: object) -> dict | None:
+        return self.read_native_alliance_response(
+            request_id, actor, recipient, phase, date_raw, _FAVOR_MEN_ACTION)
 
     def read_native_vassalization_response(
             self, request_id: str, actor: str, recipient: str,
@@ -2279,7 +5295,8 @@ class ObserverSession:
         """Read one strictly bound Declare War consequence event."""
 
         try:
-            selected = self._normalize_declare_war_selection(parameters)
+            selected = self._normalize_declare_war_selection(
+                parameters, actor=actor, recipient=recipient)
         except (TypeError, ValueError):
             selected = None
         if (selected is None or actor != "FRA" or phase != "initiate"
@@ -2392,7 +5409,8 @@ class ObserverSession:
                             continue
                         result = self._public_native_peace_execution_result(
                             event, request_id, self.session_id, actor, recipient,
-                            phase, date_raw, action_id, normalized)
+                            phase, date_raw, action_id, normalized,
+                            text_codec=self.native_text_codec)
                         self._response_log_offsets[request_id] = consumed
                         if result is None:
                             return {"status": "invalid",
@@ -2534,13 +5552,17 @@ class ObserverSession:
                 or cls._safe_submission_date(event.get("date_raw")) != wanted_date):
             return None
         try:
-            selected = cls._normalize_declare_war_selection(parameters)
+            selected = cls._normalize_declare_war_selection(
+                parameters, actor=actor, recipient=recipient)
         except (TypeError, ValueError):
             selected = None
         if selected is None or (
                 event.get("casus_belli") != selected["casus_belli"]
                 or event.get("war_goal_province") != selected["province_id"]
                 or event.get("war_goal_beneficiary") != selected["beneficiary"]):
+            return None
+        if not cls._valid_declare_war_participant_echo(
+                event, selected, actor, recipient):
             return None
         outcome = event.get("outcome")
         if outcome not in ("executed", "unknown"):
@@ -2614,6 +5636,7 @@ class ObserverSession:
             "stability_after_raw": stability_after if stability_verified else None,
             "stability_verified": stability_verified,
             "native_outcome": outcome,
+            **cls._declare_war_participant_values(selected, actor, recipient),
         }
 
     @classmethod
@@ -2852,6 +5875,8 @@ class ObserverSession:
             "stop_improving_relations": "improve_relations",
             "build_spy_network": "spy_network",
             "stop_building_spy_network": "spy_network",
+            "curry_favors": "curry_favors",
+            "stop_curry_favors": "curry_favors",
         }
         if (not isinstance(event, dict)
                 or action_id not in family_by_action
@@ -2872,7 +5897,8 @@ class ObserverSession:
         date = cls._safe_submission_date(date_raw)
         if date is None or cls._safe_submission_date(event.get("date_raw")) != date:
             return None
-        expected_variant = (1 if action_id in ("improve_relations", "build_spy_network") else 0)
+        expected_variant = (1 if action_id in (
+            "improve_relations", "build_spy_network", "curry_favors") else 0)
         if (event.get("outcome") not in ("executed", "unknown")
                 or type(event.get("native_state")) is not int
                 or event.get("native_state") != 0
@@ -2883,7 +5909,19 @@ class ObserverSession:
                 or not isinstance(event.get("task_before"), bool)
                 or not isinstance(event.get("task_after"), bool)):
             return None
-        starts_task = action_id in ("improve_relations", "build_spy_network")
+        if family == "curry_favors":
+            if (not isinstance(event.get("before_active"), bool)
+                    or not isinstance(event.get("after_active"), bool)
+                    or event.get("before_active") != event.get("task_before")
+                    or event.get("after_active") != event.get("task_after")
+                    or event.get("diplomat_required") is not True
+                    or event.get("diplomat_context_verified") is not True
+                    or type(event.get("available_diplomat_count")) is not int
+                    or not 0 <= event.get("available_diplomat_count") <= 256
+                    or event.get("diplomat_assignment_verified") is not True):
+                return None
+        starts_task = action_id in (
+            "improve_relations", "build_spy_network", "curry_favors")
         expected_transition = (
             event["task_before"] is False and event["task_after"] is True
             if starts_task
@@ -2931,6 +5969,18 @@ class ObserverSession:
         """Compatibility wrapper for the Spy Network task contract."""
 
         if action_id not in ("build_spy_network", "stop_building_spy_network"):
+            return None
+        return cls._public_native_task_execution_result(
+            event, request_id, session_id, actor, recipient, phase, date_raw, action_id)
+
+    @classmethod
+    def _public_native_curry_favors_execution_result(
+            cls, event: object, request_id: str, session_id: str,
+            actor: str, recipient: str, phase: str, date_raw: object,
+            action_id: str) -> dict | None:
+        """Validate one Curry Favors start/stop task consequence."""
+
+        if action_id not in ("curry_favors", "stop_curry_favors"):
             return None
         return cls._public_native_task_execution_result(
             event, request_id, session_id, actor, recipient, phase, date_raw, action_id)
@@ -3407,6 +6457,22 @@ class ObserverSession:
         return self._submit_alliance_action("stop_building_spy_network", request_id, actor,
                                             recipient, phase, date_raw, timeout)
 
+    def submit_curry_favors(self, request_id: str, actor: str,
+                            recipient: str, phase: str, date_raw: int,
+                            timeout: float = _EXECUTE_WAIT_SECONDS) -> dict:
+        """Publish one native Curry Favors task start and await its receipt."""
+
+        return self._submit_alliance_action("curry_favors", request_id, actor,
+                                            recipient, phase, date_raw, timeout)
+
+    def submit_stop_curry_favors(self, request_id: str, actor: str,
+                                 recipient: str, phase: str, date_raw: int,
+                                 timeout: float = _EXECUTE_WAIT_SECONDS) -> dict:
+        """Publish one native Curry Favors task stop and await its receipt."""
+
+        return self._submit_alliance_action("stop_curry_favors", request_id, actor,
+                                            recipient, phase, date_raw, timeout)
+
     def submit_proclaim_guarantee(self, request_id: str, actor: str,
                                   recipient: str, phase: str, date_raw: int,
                                   timeout: float = _EXECUTE_WAIT_SECONDS) -> dict:
@@ -3523,7 +6589,8 @@ class ObserverSession:
 
         The native submission ACK is a separate capability.  This method only
         reports a verified transport hand-off; the journal consumes the later
-        ``native_peace_execution_result`` before exposing a business outcome.
+        `
+ative_peace_execution_result`` before exposing a business outcome.
         """
         if (actor != "FRA" or phase != "initiate"
                 or not isinstance(recipient, str)
@@ -3536,19 +6603,114 @@ class ObserverSession:
                 action_id, actor, recipient, phase, parameters)
         except (TypeError, ValueError):
             return {"status": "failed", "reason_code": "NATIVE_PEACE_PARAMETERS_INVALID"}
+        # A-primary empty terms are reserved for QUERY12 candidate discovery.
+        # Never serialize that query-only shape as a legacy execution wire.
+        if (action_id == "annul_treaties"
+                and normalized["peace_context"]["terms"] == []):
+            return {"status": "failed",
+                    "reason_code":
+                    "NATIVE_PEACE_ANNUL_TREATIES_SELECTION_REQUIRED"}
         fields = self._peace_execution_fields(normalized)
+        core_fields = self._peace_core_execution_fields(normalized)
+        subject_fields = self._peace_subject_execution_fields(normalized)
+        country_fields = self._peace_country_execution_fields(
+            normalized, actor, recipient)
         wanted_date = self._safe_submission_date(date_raw)
         creation_epoch = self.record.get("creation_filetime")
-        if (fields is None or wanted_date is None
+        if (fields is None or core_fields is None or subject_fields is None
+                or country_fields is None
+                or wanted_date is None
                 or isinstance(creation_epoch, bool)
                 or not isinstance(creation_epoch, int) or creation_epoch < 0
                 or not isinstance(request_id, str)
                 or re.fullmatch(r"[A-Za-z0-9_-]{1,64}", request_id) is None):
             return {"status": "failed", "reason_code": "NATIVE_PEACE_WIRE_INVALID"}
         (war_id, direction, amount_raw, province_ids, beneficiary,
-         reparations_payer, reparations_claimant, term_mask) = fields
+         reparations_payer, reparations_claimant,
+         trade_power_source, trade_power_beneficiary,
+         concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = fields
         capabilities = self.installation_capabilities()
-        if term_mask:
+        if any(bit in term_mask for bit in "nzuie"):
+            if _NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY not in capabilities:
+                return {"status": "unavailable", "reason_code":
+                        "NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY_MISSING"}
+            if _NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY not in capabilities:
+                return {"status": "unavailable", "reason_code":
+                        "NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY_MISSING"}
+            wire_prefix = "EU4PEACE_EXEC10"
+        elif any(bit in term_mask for bit in "lx"):
+            if _NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY not in capabilities:
+                return {"status": "unavailable", "reason_code":
+                        "NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_MISSING"}
+            wire_prefix = "EU4PEACE_EXEC9"
+        elif any(bit in term_mask for bit in "bv"):
+            if _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY_MISSING"}
+            if _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_MISSING"}
+            wire_prefix = "EU4PEACE_EXEC8"
+        elif any(bit in term_mask for bit in "hsf"):
+            if _NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY_MISSING"}
+            if _NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY_MISSING"}
+            wire_prefix = "EU4PEACE_EXEC7"
+        elif "a" in term_mask:
+            if _NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY_MISSING"}
+            if _NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY_MISSING"}
+            if not isinstance(annul_country, str) or not isinstance(annul_partners, list):
+                return {"status": "failed", "reason_code": "NATIVE_PEACE_WIRE_INVALID"}
+            wire_prefix = "EU4PEACE_EXEC6"
+        elif "c" in term_mask:
+            if _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY_MISSING"}
+            if _NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY_MISSING"}
+            if "t" in term_mask:
+                default_source = actor if direction == "offer" else recipient
+                sources_protocol = (
+                    _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY in capabilities)
+                if (trade_power_source != default_source and not sources_protocol):
+                    return {"status": "unavailable",
+                            "reason_code":
+                            "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_MISSING"}
+            wire_prefix = "EU4PEACE_EXEC5"
+        elif "t" in term_mask:
+            if _NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code": "NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY_MISSING"}
+            if _NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY not in capabilities:
+                return {"status": "unavailable",
+                        "reason_code": "NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY_MISSING"}
+            default_source = actor if direction == "offer" else recipient
+            sources_protocol = (
+                _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY in capabilities)
+            if trade_power_source != default_source and not sources_protocol:
+                return {"status": "unavailable",
+                        "reason_code":
+                        "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_MISSING"}
+            wire_prefix = ("EU4PEACE_EXEC4" if sources_protocol
+                           else "EU4PEACE_EXEC3")
+        elif "r" in term_mask:
             if _NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY not in capabilities:
                 return {"status": "unavailable",
                         "reason_code": "NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY_MISSING"}
@@ -3565,13 +6727,50 @@ class ObserverSession:
             max(0.0, min(float(timeout), _EXECUTE_WAIT_SECONDS)) * 1000)
         province_field = ",".join(str(value) for value in province_ids) or "-"
         beneficiary_field = beneficiary or "-"
+        source_field = trade_power_source if "t" in term_mask else "-"
+        source_suffix = (source_field if wire_prefix in
+                         ("EU4PEACE_EXEC4", "EU4PEACE_EXEC5", "EU4PEACE_EXEC6",
+                          "EU4PEACE_EXEC7", "EU4PEACE_EXEC8", "EU4PEACE_EXEC9",
+                          "EU4PEACE_EXEC10")
+                         else None)
+        annul_suffix = ((annul_country or "-", ",".join(annul_partners or []) or "-")
+                        if wire_prefix in ("EU4PEACE_EXEC6", "EU4PEACE_EXEC7",
+                                           "EU4PEACE_EXEC8", "EU4PEACE_EXEC9",
+                                           "EU4PEACE_EXEC10")
+                        else ())
+        core_suffix = ()
+        if wire_prefix in ("EU4PEACE_EXEC8", "EU4PEACE_EXEC9", "EU4PEACE_EXEC10"):
+            return_ids, return_owner = core_fields[0] or (None, None)
+            revoke_ids, revoke_owner = core_fields[1] or (None, None)
+            core_suffix = (
+                ",".join(str(value) for value in (return_ids or [])) or "-",
+                return_owner or "-",
+                ",".join(str(value) for value in (revoke_ids or [])) or "-",
+                revoke_owner or "-",
+            )
+        subject_suffix = ()
+        if wire_prefix in ("EU4PEACE_EXEC9", "EU4PEACE_EXEC10"):
+            release_countries, transfer_countries = subject_fields
+            subject_suffix = (
+                ",".join(release_countries or []) or "-",
+                ",".join(transfer_countries or []) or "-",
+            )
+        country_suffix = ()
+        if wire_prefix == "EU4PEACE_EXEC10":
+            country_suffix = tuple(value or "-" for value in country_fields)
         wire = " ".join((
             wire_prefix, str(creation_epoch), request_id, action_id,
             actor, recipient, str(wanted_date), str(expiry_epoch_ms), war_id,
             direction, str(amount_raw), province_field, beneficiary_field,
-            *( (term_mask,) if term_mask else ()))) + "\n"
+            *( (term_mask,) if term_mask else ()),
+             *((source_suffix,) if source_suffix is not None else ()),
+             *annul_suffix,
+             *core_suffix,
+             *subject_suffix,
+             *country_suffix)) + "\n"
         try:
-            if len(wire.encode("ascii")) > 512:
+            if len(wire.encode("ascii")) > (1024 if wire_prefix in {
+                    "EU4PEACE_EXEC9", "EU4PEACE_EXEC10"} else 512):
                 return {"status": "failed", "reason_code": "NATIVE_PEACE_WIRE_TOO_LARGE"}
         except UnicodeEncodeError:
             return {"status": "failed", "reason_code": "NATIVE_PEACE_WIRE_INVALID"}
@@ -3612,8 +6811,22 @@ class ObserverSession:
                     if (not isinstance(event, dict)
                             or event.get("request_id") != request_id
                             or event.get("session_id") != self.session_id
-                            or event.get("event") != "native_peace_submission_result"):
+                            or event.get("event") not in (
+                                "native_peace_submission_result", "native_peace_execution_rejected")):
                         continue
+                    if event["event"] == "native_peace_execution_rejected":
+                        if not validate_native_peace_rejection(
+                                event, request_id=request_id, session_id=self.session_id,
+                                action_id=action_id, actor=actor, recipient=recipient,
+                                phase=phase, date_raw=wanted_date, war_id=war_id,
+                                direction=direction):
+                            return {"status": "failed",
+                                    "reason_code": "NATIVE_PEACE_REJECTION_RESULT_INVALID"}
+                        rejection = project_native_peace_rejection(event, self.native_text_codec)
+                        if rejection is None:
+                            return {"status": "failed",
+                                    "reason_code": "NATIVE_PEACE_REJECTION_RESULT_INVALID"}
+                        return {"status": "failed", **rejection}
                     if not self._valid_native_peace_submission_result(
                             event, request_id, self.session_id, actor, recipient,
                             phase, wanted_date, action_id, normalized):
@@ -3625,7 +6838,8 @@ class ObserverSession:
                                 "reason_code", "NATIVE_PEACE_NOT_SUBMITTED"))}
                     receipt = self._public_native_peace_submission_receipt(
                         event, request_id, actor, recipient, phase, wanted_date,
-                        action_id, normalized)
+                        action_id, normalized,
+                        text_codec=self.native_text_codec)
                     if receipt is None:
                         return {"status": "failed",
                                 "reason_code": "NATIVE_PEACE_RECEIPT_INVALID"}
@@ -3646,11 +6860,20 @@ class ObserverSession:
             return {"status": "unavailable",
                     "reason_code": "NATIVE_DECLARE_WAR_SUBMISSION_SCOPE_UNSUPPORTED"}
         try:
-            selected = self._normalize_declare_war_selection(parameters)
+            selected = self._normalize_declare_war_selection(
+                parameters, actor=actor, recipient=recipient)
         except (TypeError, ValueError):
             selected = None
         if selected is None:
             return {"status": "failed", "reason_code": "NATIVE_DECLARE_WAR_PARAMETERS_INVALID"}
+        participant_requested = participant_selection_requested(
+            self._declare_war_participant_values(selected, actor, recipient))
+        if (participant_requested
+                and _NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY
+                not in self.installation_capabilities()):
+            return {"status": "unavailable",
+                    "reason_code":
+                    "NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY_MISSING"}
         if (not isinstance(request_id, str)
                 or re.fullmatch(r"[A-Za-z0-9_-]{1,64}", request_id) is None
                 or any(value in str(self.session_id) for value in ("|", "\n", "\r"))):
@@ -3667,12 +6890,19 @@ class ObserverSession:
             return {"status": "failed",
                     "reason_code": "NATIVE_DECLARE_WAR_SUBMISSION_LOG_UNAVAILABLE"}
         expiry = int(time.time_ns() // 100 + _FILETIME_EPOCH + 10 * 10_000_000)
-        wire = "|".join((
-            "EU4DIP_EXEC3", request_id, self.session_id, str(expiry),
+        values = self._declare_war_participant_values(
+            selected, actor, recipient)
+        wire_fields = [
+            "EU4DIP_EXEC4" if participant_requested else "EU4DIP_EXEC3",
+            request_id, self.session_id, str(expiry),
             str(wanted_date), "declare_war", "FRA", recipient, phase,
             selected["casus_belli"], str(selected["province_id"]),
-            selected["beneficiary"])) + "\n"
-        if len(wire.encode("ascii")) > 512:
+            selected["beneficiary"]]
+        if participant_requested:
+            wire_fields.extend(country_csv(values[field])
+                               for field in PARTICIPANT_FIELDS)
+        wire = "|".join(wire_fields) + "\n"
+        if len(wire.encode("ascii")) > (1024 if participant_requested else 512):
             return {"status": "failed", "reason_code": "NATIVE_DECLARE_WAR_WIRE_TOO_LARGE"}
         published = self._publish_atomic_request(wire, request_id, _EXECUTE_REQUEST_NAME)
         if published == "busy":
@@ -3701,6 +6931,12 @@ class ObserverSession:
                         event = json.loads(line.decode("utf-8"))
                     except (UnicodeDecodeError, ValueError):
                         continue
+                    if (isinstance(event, dict)
+                            and event.get("event") == "native_alliance_execution_rejected"
+                            and event.get("request_id") == request_id
+                            and event.get("session_id") == self.session_id):
+                        return self._public_native_preflight_rejection(
+                            event, request_id, actor, recipient, phase, wanted_date, "declare_war")
                     if (not isinstance(event, dict)
                             or event.get("request_id") != request_id
                             or event.get("session_id") != self.session_id
@@ -3805,6 +7041,39 @@ class ObserverSession:
             time.sleep(0.02)
         return {"status": "timeout", "reason_code": "NATIVE_RIVAL_SUBMISSION_TIMEOUT"}
 
+    def _public_native_preflight_rejection(
+            self, event: dict, request_id: str, actor: str, recipient: str,
+            phase: str, date_raw: int, action_id: str) -> dict:
+        if (event.get("event") != "native_alliance_execution_rejected"
+                or event.get("request_id") != request_id
+                or event.get("session_id") != self.session_id
+                or event.get("submitted") is not False):
+            return {"status": "failed", "reason_code": "NATIVE_REJECTION_BINDING_INVALID"}
+        context = {"actor": actor, "recipient": recipient, "phase": phase,
+                   "date_raw": date_raw, "action_id": action_id}
+        present = [key for key in context if key in event]
+        if present and (len(present) != len(context)
+                        or any(event.get(key) != value for key, value in context.items())
+                        or type(event.get("date_raw")) is not int):
+            return {"status": "failed", "reason_code": "NATIVE_REJECTION_BINDING_INVALID"}
+        bound = len(present) == len(context)
+        code = event.get("reason_code", event.get("reason"))
+        if not isinstance(code, str) or re.fullmatch(r"[A-Z0-9_]{1,96}", code) is None:
+            code = "NATIVE_EXECUTION_REJECTED"
+        messages = {
+            "NATIVE_DIPLOMAT_UNAVAILABLE": "此动作需要空闲外交官，但执行前复检时可用外交官数量为0。",
+            "NATIVE_DIPLOMAT_CONTEXT_UNAVAILABLE": "执行前无法读取外交官可用状态，本次操作未提交。",
+            "EXECUTION_NATIVE_PREFLIGHT_FAILED": "原生执行前复检未通过，本次操作未提交。",
+        }
+        source = event.get("reason_source") if bound else "runtime_error"
+        if source not in ("native_rule", "runtime_error", "bridge_policy"):
+            source = "runtime_error"
+        explanation = reason(code, messages.get(code, "原生执行已拒绝此请求：" + code + "。"), source)
+        return {"status": "failed", "submitted": False, "reason_code": code,
+                "reason": explanation, "binding_complete": bound,
+                "legality": {"status": "unavailable" if source == "native_rule" else "unknown",
+                             "complete": False}}
+
     def _submit_alliance_action(self, action_id: str, request_id: str, actor: str,
                                 recipient: str, phase: str, date_raw: int,
                                 timeout: float, insult_id: int | None = None) -> dict:
@@ -3823,6 +7092,8 @@ class ObserverSession:
             "stop_improving_relations": _NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY,
             "build_spy_network": _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY,
             "stop_building_spy_network": _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY,
+            "curry_favors": _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY,
+            "stop_curry_favors": _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY,
             "proclaim_guarantee": _NATIVE_GUARANTEE_SUBMISSION_CAPABILITY,
             "revoke_guarantee": _NATIVE_GUARANTEE_SUBMISSION_CAPABILITY,
             "support_independence": _NATIVE_SUPPORT_INDEPENDENCE_SUBMISSION_CAPABILITY,
@@ -3832,6 +7103,11 @@ class ObserverSession:
             "send_insult": _NATIVE_INSULT_SUBMISSION_CAPABILITY,
             "scornful_insult": _NATIVE_INSULT_SUBMISSION_CAPABILITY,
             "offer_vassalization": _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY,
+            _FAVOR_GOLD_ACTION: _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY,
+            _FAVOR_TRUST_ACTION: _NATIVE_FAVOR_TRUST_SUBMISSION_CAPABILITY,
+            _FAVOR_MEN_ACTION: _NATIVE_FAVOR_MEN_SUBMISSION_CAPABILITY,
+            _GIFT_ACTION: _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+            _INFLUENCE_ACTION: _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
             "cancel_vassalization": _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY,
         }.get(action_id)
         if capability is None:
@@ -3852,17 +7128,24 @@ class ObserverSession:
                                      if action_id in _INSULT_ACTIONS
                                      else "NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY_MISSING"
                                      if action_id in ("build_spy_network", "stop_building_spy_network")
+                                     else "NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY_MISSING"
+                                     if action_id in ("curry_favors", "stop_curry_favors")
                                      else "NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY_MISSING"
                                      if action_id in _VASSALIZATION_ACTIONS
+                                     else "NATIVE_FAVOR_TRUST_SUBMISSION_CAPABILITY_MISSING"
+                                     if action_id == _FAVOR_TRUST_ACTION
+                                     else "NATIVE_FAVOR_MEN_SUBMISSION_CAPABILITY_MISSING"
+                                     if action_id == _FAVOR_MEN_ACTION
                                      else "NATIVE_OFFER_SUBMISSION_CAPABILITY_MISSING")}
         if (actor != "FRA" or phase != "initiate"
                 or (action_id in ("improve_relations", "stop_improving_relations",
                                   "build_spy_network", "stop_building_spy_network",
+                                  "curry_favors", "stop_curry_favors",
                                   "proclaim_guarantee", "revoke_guarantee",
                                    "support_independence", "revoke_support_independence",
                                    "ask_military_access", "cancel_military_access",
                                    "send_insult", "scornful_insult",
-                                   "offer_vassalization", "cancel_vassalization")
+                                   "offer_vassalization", "cancel_vassalization", *_FAVOR_ACTIONS)
                     and recipient == "FRA")):
             return {"status": "unavailable",
                     "reason_code": ("NATIVE_ROYAL_MARRIAGE_SUBMISSION_SCOPE_UNSUPPORTED"
@@ -3871,6 +7154,8 @@ class ObserverSession:
                                      if action_id in ("improve_relations", "stop_improving_relations")
                                      else "NATIVE_SPY_NETWORK_SUBMISSION_SCOPE_UNSUPPORTED"
                                      if action_id in ("build_spy_network", "stop_building_spy_network")
+                                     else "NATIVE_CURRY_FAVORS_SUBMISSION_SCOPE_UNSUPPORTED"
+                                     if action_id in ("curry_favors", "stop_curry_favors")
                                      else "NATIVE_GUARANTEE_SUBMISSION_SCOPE_UNSUPPORTED"
                                      if action_id in ("proclaim_guarantee", "revoke_guarantee")
                                      else "NATIVE_SUPPORT_INDEPENDENCE_SUBMISSION_SCOPE_UNSUPPORTED"
@@ -3881,6 +7166,10 @@ class ObserverSession:
                                      if action_id in _INSULT_ACTIONS
                                      else "NATIVE_VASSALIZATION_SUBMISSION_SCOPE_UNSUPPORTED"
                                      if action_id in _VASSALIZATION_ACTIONS
+                                     else "NATIVE_FAVOR_TRUST_SUBMISSION_SCOPE_UNSUPPORTED"
+                                     if action_id == _FAVOR_TRUST_ACTION
+                                     else "NATIVE_FAVOR_MEN_SUBMISSION_SCOPE_UNSUPPORTED"
+                                     if action_id == _FAVOR_MEN_ACTION
                                      else "NATIVE_OFFER_SUBMISSION_SCOPE_UNSUPPORTED")}
         if action_id == "send_insult" and insult_id != -1:
             return {"status": "failed", "reason_code": "INSULT_PARAMETER_INVALID"}
@@ -3932,10 +7221,17 @@ class ObserverSession:
                         continue
                     if event.get("request_id") != request_id or event.get("session_id") != self.session_id:
                         continue
+                    if event.get("event") == "native_alliance_execution_rejected":
+                        return self._public_native_preflight_rejection(
+                            event, request_id, actor, recipient, phase, date_raw, action_id)
                     if event.get("event") != "native_alliance_submission_result":
                         continue
                     valid_submission = (
-                        self._valid_native_vassalization_submission_result(
+                        self._valid_native_curry_favors_submission_result(
+                            event, request_id, self.session_id, actor, recipient,
+                            phase, date_raw, action_id)
+                        if action_id in ("curry_favors", "stop_curry_favors")
+                        else self._valid_native_vassalization_submission_result(
                             event, request_id, self.session_id, actor, recipient,
                             phase, date_raw, action_id)
                         if action_id in _VASSALIZATION_ACTIONS else
@@ -3947,7 +7243,10 @@ class ObserverSession:
                     if event.get("submitted") is not True:
                         return {"status": "failed", "reason_code": "NATIVE_SUBMISSION_NOT_SUBMITTED"}
                     receipt = (
-                        self._public_native_vassalization_submission_receipt(
+                        self._public_native_curry_favors_submission_receipt(
+                            event, request_id, actor, recipient, phase, date_raw, action_id)
+                        if action_id in ("curry_favors", "stop_curry_favors")
+                        else self._public_native_vassalization_submission_receipt(
                             event, request_id, actor, recipient, phase, date_raw, action_id)
                         if action_id in _VASSALIZATION_ACTIONS else
                         self._public_native_submission_receipt(
@@ -3957,6 +7256,214 @@ class ObserverSession:
                     return {"status": "submitted", "receipt": receipt}
             time.sleep(0.02)
         return {"status": "timeout", "reason_code": "NATIVE_SUBMISSION_TIMEOUT"}
+
+    @staticmethod
+    def _public_gift_influence_submission_receipt(
+            receipt: object, request_id: str, actor: str, recipient: str,
+            phase: str, date_raw: object, action_id: str,
+            ducats: int | None = None) -> dict | None:
+        """Validate the R74 receipt and bind Gift's amount to the request."""
+
+        if action_id not in _GIFT_INFLUENCE_ACTIONS:
+            return None
+        family = "gift" if action_id == _GIFT_ACTION else "influence"
+        if (not isinstance(receipt, dict)
+                or receipt.get("event") != "native_alliance_submission_result"
+                or receipt.get("request_id") != request_id
+                or receipt.get("action_id") != action_id
+                or receipt.get("actor") != actor
+                or receipt.get("recipient") != recipient
+                or receipt.get("phase") != phase
+                or receipt.get("family") != family
+                or receipt.get("submitted") is not True
+                or receipt.get("native_queue_verified") is not True
+                or not ObserverSession._transport_receipt_present(receipt)):
+            return None
+        wanted_date = ObserverSession._safe_submission_date(date_raw)
+        actual_date = ObserverSession._safe_submission_date(receipt.get("date_raw"))
+        if wanted_date is None or actual_date != wanted_date:
+            return None
+        if (ObserverSession._safe_submission_sequence(receipt.get("native_sequence"))
+                is None
+                or ObserverSession._safe_submission_origin(receipt.get("native_origin"))
+                is None
+                or ObserverSession._safe_submission_flags(receipt.get("native_flags"))
+                is None):
+            return None
+        safe = ObserverSession._public_native_submission_receipt(
+            receipt, request_id, actor, recipient, phase, date_raw, action_id)
+        if safe is None:
+            return None
+        if action_id == _GIFT_ACTION:
+            if type(ducats) is not int:
+                return None
+            amount_raw = _gift_amount_raw(ducats)
+            if (receipt.get("ducats") != ducats
+                    or receipt.get("amount_raw") != amount_raw):
+                return None
+            safe.update({"family": family, "ducats": ducats,
+                         "amount_raw": amount_raw})
+        else:
+            safe["family"] = family
+        return safe
+
+    def _submit_gift_influence_action(
+            self, action_id: str, request_id: str, actor: str, recipient: str,
+            phase: str, date_raw: int, ducats: int | None = None,
+            timeout: float = 10) -> dict:
+        """Publish one R74 single-sided request and await its transport ACK."""
+
+        capability = (_NATIVE_GIFT_SUBMISSION_CAPABILITY
+                      if action_id == _GIFT_ACTION
+                      else _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY)
+        if capability not in self.installation_capabilities():
+            return {"status": "unavailable",
+                    "reason_code": "NATIVE_%s_SUBMISSION_CAPABILITY_MISSING" %
+                    ("GIFT" if action_id == _GIFT_ACTION else "INFLUENCE")}
+        if actor != "FRA" or phase != "initiate":
+            return {"status": "unavailable", "reason_code":
+                    "NATIVE_%s_SUBMISSION_SCOPE_UNSUPPORTED" %
+                    ("GIFT" if action_id == _GIFT_ACTION else "INFLUENCE")}
+        if action_id == _GIFT_ACTION:
+            try:
+                normalized = _normalize_gift_parameters({"ducats": ducats})
+                ducats = normalized["ducats"]
+                amount_raw = _gift_amount_raw(ducats)
+            except (TypeError, ValueError) as exc:
+                return {"status": "failed", "reason_code": str(exc)}
+        elif ducats is not None:
+            return {"status": "failed", "reason_code": "INFLUENCE_PARAMETERS_UNSUPPORTED"}
+        if (not isinstance(request_id, str)
+                or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", request_id)
+                or not isinstance(recipient, str)
+                or not re.fullmatch(r"[A-Z]{3}", recipient)
+                or "|" in self.session_id or "\n" in self.session_id
+                or "\r" in self.session_id
+                or self._safe_submission_date(date_raw) is None):
+            return {"status": "failed", "reason_code": "NATIVE_SUBMISSION_WIRE_INVALID"}
+        log = self.directory / "control-probe.jsonl"
+        try:
+            offset = log.stat().st_size
+        except OSError:
+            return {"status": "failed", "reason_code": "NATIVE_SUBMISSION_LOG_UNAVAILABLE"}
+        expiry = int(time.time_ns() // 100 + _FILETIME_EPOCH + 10 * 10_000_000)
+        if action_id == _GIFT_ACTION:
+            wire = (f"EU4DIP_EXECUTE_GIFT|v1|{request_id}|{self.session_id}|{expiry}|"
+                    f"{date_raw}|{action_id}|{actor}|{recipient}|{phase}|{ducats}|"
+                    f"{amount_raw}\n")
+        else:
+            wire = (f"EU4DIP_EXECUTE_INFLUENCE|v1|{request_id}|{self.session_id}|{expiry}|"
+                    f"{date_raw}|{action_id}|{actor}|{recipient}|{phase}\n")
+        published = self._publish_execute_request(wire, request_id)
+        if published == "busy":
+            return {"status": "busy", "reason_code": "EXECUTE_CHANNEL_BUSY"}
+        if published != "published":
+            return {"status": "failed", "reason_code": "EXECUTE_CHANNEL_WRITE_FAILED"}
+        deadline = time.monotonic() + max(0.0, min(float(timeout), _EXECUTE_WAIT_SECONDS))
+        while time.monotonic() < deadline:
+            try:
+                with log.open("rb") as stream:
+                    if log.stat().st_size < offset:
+                        return {"status": "failed", "reason_code": "EXECUTE_LOG_TRUNCATED"}
+                    stream.seek(offset)
+                    chunk = stream.read(65536)
+            except OSError:
+                return {"status": "failed", "reason_code": "EXECUTE_LOG_UNAVAILABLE"}
+            complete_end = chunk.rfind(b"\n")
+            if complete_end >= 0:
+                offset += complete_end + 1
+                for line in chunk[:complete_end + 1].splitlines():
+                    try:
+                        event = json.loads(line.decode("utf-8"))
+                    except (UnicodeDecodeError, ValueError):
+                        continue
+                    if (not isinstance(event, dict)
+                            or event.get("request_id") != request_id
+                            or event.get("session_id") != self.session_id):
+                        continue
+                    if event.get("event") == "native_alliance_execution_rejected":
+                        return self._public_native_preflight_rejection(
+                            event, request_id, actor, recipient, phase, date_raw, action_id)
+                    if event.get("event") != "native_alliance_submission_result":
+                        continue
+                    if not self._valid_native_submission_result(
+                            event, request_id, self.session_id, actor, recipient,
+                            phase, date_raw, action_id):
+                        return {"status": "failed", "reason_code":
+                                "NATIVE_SUBMISSION_RESULT_INVALID"}
+                    if event.get("submitted") is not True:
+                        return {"status": "failed", "reason_code": event.get(
+                            "reason_code", "NATIVE_SUBMISSION_NOT_SUBMITTED")}
+                    receipt = self._public_gift_influence_submission_receipt(
+                        event, request_id, actor, recipient, phase, date_raw,
+                        action_id, ducats)
+                    if receipt is None:
+                        return {"status": "failed", "reason_code":
+                                "NATIVE_SUBMISSION_RECEIPT_INVALID"}
+                    return {"status": "submitted", "receipt": receipt}
+            time.sleep(0.02)
+        return {"status": "timeout", "reason_code": "NATIVE_SUBMISSION_TIMEOUT"}
+
+    def submit_send_gift(self, request_id: str, actor: str, recipient: str,
+                         phase: str, date_raw: int, ducats: int,
+                         timeout: float = 10) -> dict:
+        return self._submit_gift_influence_action(
+            _GIFT_ACTION, request_id, actor, recipient, phase, date_raw,
+            ducats=ducats, timeout=timeout)
+
+    def submit_influence_nation(self, request_id: str, actor: str,
+                                recipient: str, phase: str, date_raw: int,
+                                timeout: float = 10) -> dict:
+        return self._submit_gift_influence_action(
+            _INFLUENCE_ACTION, request_id, actor, recipient, phase, date_raw,
+            timeout=timeout)
+
+    @staticmethod
+    def _valid_native_favor_gold_submission_payload(value: object) -> bool:
+        """Validate the bounded favor state carried by an inbound receipt."""
+
+        if (not isinstance(value, dict)
+                or set(value) != {"before", "after", "amount_raw", "complete", "verified"}
+                or type(value["complete"]) is not bool
+                or value["after"] is not None
+                or value["verified"] is not False
+                or isinstance(value["amount_raw"], bool)
+                or not isinstance(value["amount_raw"], int)
+                or not 0 <= value["amount_raw"] <= 2147483647):
+            return False
+        before = value["before"]
+        if (not isinstance(before, dict)
+                or set(before) != {"complete", "actor_treasury_raw",
+                                   "recipient_treasury_raw", "favors_raw", "cost_raw"}
+                or type(before["complete"]) is not bool):
+            return False
+        return all(
+            type(before[key]) is int and not isinstance(before[key], bool)
+            and -2147483648 <= before[key] <= 2147483647
+            for key in ("actor_treasury_raw", "recipient_treasury_raw",
+                        "favors_raw", "cost_raw")) and (
+            not value["complete"] or before["complete"])
+
+    @staticmethod
+    def _valid_native_favor_resource_submission_payload(
+            value: object, action_id: str) -> bool:
+        """Validate the trust/men preview carried by an inbound receipt."""
+
+        kind = _favor_resource_kind(action_id)
+        if (kind is None or not isinstance(value, dict)
+                or set(value) != {"kind", "before", "after", "amount_raw",
+                                  "complete", "verified"}
+                or value.get("kind") != kind
+                or type(value.get("complete")) is not bool
+                or value.get("after") is not None
+                or value.get("verified") is not False):
+            return False
+        if (isinstance(value.get("amount_raw"), bool)
+                or not isinstance(value.get("amount_raw"), int)):
+            return False
+        candidate = dict(value)
+        candidate["after"] = value.get("before")
+        return validate_favor_resource_result(candidate, 1)
 
     @classmethod
     def _valid_native_inbound_submission_result(cls, event: object, request_id: str,
@@ -4006,7 +7513,8 @@ class ObserverSession:
                 if field in event and validator(event.get(field)) is None:
                     return False
             context = event.get("peace_context")
-            if context is not None and not cls._valid_public_peace_context(context):
+            if context is not None and not cls._valid_inbound_peace_context(
+                    context, actor, "FRA"):
                 return False
             return True
         if not cls._valid_native_submission_result(
@@ -4023,7 +7531,17 @@ class ObserverSession:
         wanted_id = cls._safe_native_proposal_id(native_proposal_id)
         if wanted_id is None:
             return False
-        if action_id == "offer_royal_marriage":
+        if action_id == _FAVOR_GOLD_ACTION:
+            if (event.get("family") != "favor_trade"
+                    or not cls._valid_native_favor_gold_submission_payload(
+                        event.get("favor_trade"))):
+                return False
+        elif action_id in _FAVOR_RESOURCE_ACTIONS:
+            if (event.get("family") != "favor_trade"
+                    or not cls._valid_native_favor_resource_submission_payload(
+                        event.get("favor_trade"), action_id)):
+                return False
+        elif action_id == "offer_royal_marriage":
             # The native submission event predates the family discriminator.
             # The action id is already the binding for this transport record;
             # accept an omitted family field for observed r27 receipts while
@@ -4060,8 +7578,101 @@ class ObserverSession:
     def _public_native_inbound_submission_receipt(cls, event: dict, request_id: str,
                                                   actor: str, phase: str,
                                                   date_raw: int,
-                                                  action_id: str = "offer_alliance") -> dict:
+                                                  action_id: str = "offer_alliance") -> dict | None:
         """Copy an inbound transport receipt without the raw proposal id."""
+
+        if action_id == _FAVOR_GOLD_ACTION:
+            wanted_date = cls._safe_submission_date(date_raw)
+            actual_date = (cls._safe_submission_date(event.get("date_raw"))
+                           if isinstance(event, dict) else None)
+            if (not isinstance(event, dict)
+                    or event.get("event") != "native_alliance_submission_result"
+                    or event.get("request_id") != request_id
+                    or event.get("action_id") != action_id
+                    or event.get("family") != "favor_trade"
+                    or event.get("actor") != actor
+                    or event.get("recipient") != "FRA"
+                    or event.get("phase") != phase
+                    or phase not in ("accept", "reject")
+                    or wanted_date is None or actual_date != wanted_date
+                    or event.get("submitted") is not True
+                    or event.get("native_queue_verified") is not True
+                    or not cls._transport_receipt_present(event)):
+                return None
+            if any(validator(event.get(field)) is None for field, validator in (
+                    ("native_sequence", cls._safe_submission_sequence),
+                    ("native_origin", cls._safe_submission_origin),
+                    ("native_flags", cls._safe_submission_flags))):
+                return None
+            if ("favor_trade" in event
+                    and not cls._valid_native_favor_gold_submission_payload(
+                        event.get("favor_trade"))):
+                return None
+            return {
+                "event": "native_alliance_submission_result",
+                "request_id": request_id,
+                "action_id": action_id,
+                "family": "favor_trade",
+                "actor": actor,
+                "recipient": "FRA",
+                "phase": phase,
+                "date_raw": wanted_date,
+                "submitted": True,
+                "native_queue_verified": True,
+                "transport_ring": True,
+                "transport_ring_receipt": True,
+                "native_sequence": cls._safe_submission_sequence(
+                    event.get("native_sequence")),
+                "native_origin": cls._safe_submission_origin(event.get("native_origin")),
+                "native_flags": cls._safe_submission_flags(event.get("native_flags")),
+            }
+
+        if action_id in _FAVOR_RESOURCE_ACTIONS:
+            wanted_date = cls._safe_submission_date(date_raw)
+            actual_date = (cls._safe_submission_date(event.get("date_raw"))
+                           if isinstance(event, dict) else None)
+            if (not isinstance(event, dict)
+                    or event.get("event") != "native_alliance_submission_result"
+                    or event.get("request_id") != request_id
+                    or event.get("action_id") != action_id
+                    or event.get("family") != "favor_trade"
+                    or event.get("actor") != actor
+                    or event.get("recipient") != "FRA"
+                    or event.get("phase") != phase
+                    or phase not in ("accept", "reject")
+                    or wanted_date is None or actual_date != wanted_date
+                    or event.get("submitted") is not True
+                    or event.get("native_queue_verified") is not True
+                    or not cls._transport_receipt_present(event)):
+                return None
+            if any(validator(event.get(field)) is None for field, validator in (
+                    ("native_sequence", cls._safe_submission_sequence),
+                    ("native_origin", cls._safe_submission_origin),
+                    ("native_flags", cls._safe_submission_flags))):
+                return None
+            if ("favor_trade" in event
+                    and not cls._valid_native_favor_resource_submission_payload(
+                        event.get("favor_trade"), action_id)):
+                return None
+            return {
+                "event": "native_alliance_submission_result",
+                "request_id": request_id,
+                "action_id": action_id,
+                "family": "favor_trade",
+                "actor": actor,
+                "recipient": "FRA",
+                "phase": phase,
+                "date_raw": wanted_date,
+                "submitted": True,
+                "native_queue_verified": True,
+                "transport_ring": True,
+                "transport_ring_receipt": True,
+                "native_sequence": cls._safe_submission_sequence(
+                    event.get("native_sequence")),
+                "native_origin": cls._safe_submission_origin(
+                    event.get("native_origin")),
+                "native_flags": cls._safe_submission_flags(event.get("native_flags")),
+            }
 
         if action_id == "peace_offer":
             result = {
@@ -4119,6 +7730,14 @@ class ObserverSession:
         family = _inbound_family(action_id)
         if family is None:
             return None
+        if action_id == _FAVOR_GOLD_ACTION:
+            return cls._public_native_favor_gold_result(
+                event, request_id, session_id, actor, "FRA", phase,
+                date_raw, native_proposal_id)
+        if _is_favor_resource_action(action_id):
+            return cls._public_native_favor_resource_result(
+                event, request_id, session_id, actor, "FRA", phase,
+                date_raw, action_id, native_proposal_id)
         if action_id == "peace_offer":
             for field, expected in (
                     ("event", "native_peace_inbound_response_result"),
@@ -4158,7 +7777,9 @@ class ObserverSession:
                     or native_state not in (1, 2)):
                 return None
             context = event.get("peace_context")
-            if not cls._valid_public_peace_context(context):
+            context_fields = cls._inbound_peace_context_fields(
+                context, actor, "FRA")
+            if context_fields is None:
                 return None
             outcome = event.get("outcome")
             if outcome not in ("accepted", "rejected", "unknown"):
@@ -4173,7 +7794,208 @@ class ObserverSession:
                 derived = "rejected"
             else:
                 derived = "unknown"
-            if outcome != derived:
+            # A native state-2 response can be observed before the selected
+            # effects are proven.  Keep that response as ``unknown`` instead
+            # of promoting an unverified non-white treaty to accepted.
+            if outcome != derived and not (derived == "accepted"
+                                           and outcome == "unknown"):
+                return None
+            effects_present = "effects" in event
+            effects = event.get("effects")
+            effects_valid = False
+            terms_verified_derived = False
+            if effects_present:
+                if not isinstance(effects, dict):
+                    return None
+                validation_effects = effects
+                if context_fields["beneficiary_ambiguous"]:
+                    # The shared effects validator intentionally accepts one
+                    # beneficiary for the legacy grouped shape.  Validate the
+                    # rest of this multi-beneficiary observation by treating
+                    # province rows as unverified; it can then be exposed as
+                    # an unknown observation without fabricating one claimant.
+                    rows = effects.get("provinces")
+                    if (not isinstance(rows, list)
+                            or any(not isinstance(row, dict)
+                                   or not isinstance(row.get("verified"), bool)
+                                   for row in rows)):
+                        return None
+                    for row in rows:
+                        if (row.get("verified") is True
+                                and (row.get("owner_before") == row.get("beneficiary")
+                                     or row.get("owner_after") != row.get("beneficiary"))):
+                            return None
+                    validation_effects = dict(effects)
+                    validation_effects["provinces"] = [
+                        {**row, "verified": False} for row in rows]
+                def validate_effects(verify_terms: bool) -> bool:
+                    return cls._valid_native_peace_effects(
+                        validation_effects,
+                        context_fields["direction"],
+                        context_fields["amount_raw"],
+                        context_fields["province_ids"],
+                        context_fields["beneficiary"],
+                        context_fields["original_actor"],
+                        context_fields["original_recipient"],
+                        wanted_date,
+                        verify_terms
+                        and derived == "accepted"
+                        and not context_fields["beneficiary_ambiguous"],
+                        reparations_payer=context_fields["reparations_payer"],
+                        reparations_claimant=context_fields["reparations_claimant"],
+                        reparations_requested=context_fields["reparations_requested"],
+                        trade_power_source=context_fields["trade_power_source"],
+                        trade_power_beneficiary=context_fields["trade_power_beneficiary"],
+                        trade_power_requested=context_fields["trade_power_requested"],
+                        return_core_ids=context_fields["return_core_ids"],
+                        return_core_owner=context_fields["return_core_owner"],
+                        return_core_requested=context_fields["return_core_requested"],
+                        revoke_core_ids=context_fields["revoke_core_ids"],
+                        revoke_core_owner=context_fields["revoke_core_owner"],
+                        revoke_core_requested=context_fields["revoke_core_requested"],
+                        concede_defeat_country=context_fields[
+                            "concede_defeat_country"],
+                        concede_defeat_beneficiary=context_fields[
+                            "concede_defeat_beneficiary"],
+                        concede_defeat_requested=context_fields[
+                            "concede_defeat_requested"],
+                        annul_country=context_fields["annul_country"],
+                        annul_partners=context_fields["annul_partners"],
+                        annul_treaties_requested=context_fields[
+                             "annul_treaties_requested"],
+                         humiliate_rival_country=(context_fields.get(
+                             "special_by_action", {}).get("humiliate_rival", {})
+                             .get("country")),
+                         humiliate_rival_beneficiary=(context_fields.get(
+                             "special_by_action", {}).get("humiliate_rival", {})
+                             .get("beneficiary")),
+                         humiliate_rival_requested=context_fields.get(
+                             "humiliate_rival_requested", False),
+                         show_strength_country=(context_fields.get(
+                             "special_by_action", {}).get("show_strength", {})
+                             .get("country")),
+                         show_strength_beneficiary=(context_fields.get(
+                             "special_by_action", {}).get("show_strength", {})
+                             .get("beneficiary")),
+                         show_strength_requested=context_fields.get(
+                             "show_strength_requested", False),
+                         force_religion_country=(context_fields.get(
+                             "special_by_action", {}).get("force_religion", {})
+                             .get("country")),
+                         force_religion_beneficiary=(context_fields.get(
+                             "special_by_action", {}).get("force_religion", {})
+                             .get("beneficiary")),
+                         force_religion_requested=context_fields.get(
+                              "force_religion_requested", False),
+                          release_subject_countries=context_fields.get(
+                              "release_subject_countries"),
+                          release_subject_requested=context_fields.get(
+                              "release_subject_requested", False),
+                          transfer_subject_countries=context_fields.get(
+                              "transfer_subject_countries"),
+                          transfer_subject_requested=context_fields.get(
+                              "transfer_subject_requested", False),
+                          release_nation_country=context_fields.get(
+                              "release_nation_country"),
+                          release_nation_source=context_fields.get(
+                              "release_nation_source"),
+                          release_nation_requested=context_fields.get(
+                              "release_nation_requested", False),
+                          force_vassalization_country=context_fields.get(
+                              "force_vassalization_country"),
+                          force_vassalization_beneficiary=context_fields.get(
+                              "force_vassalization_beneficiary"),
+                          force_vassalization_requested=context_fields.get(
+                              "force_vassalization_requested", False),
+                          form_personal_union_country=context_fields.get(
+                              "form_personal_union_country"),
+                          form_personal_union_beneficiary=context_fields.get(
+                              "form_personal_union_beneficiary"),
+                          form_personal_union_requested=context_fields.get(
+                              "form_personal_union_requested", False),
+                          grant_independence_country=context_fields.get(
+                              "grant_independence_country"),
+                          grant_independence_overlord=context_fields.get(
+                              "grant_independence_overlord"),
+                          grant_independence_requested=context_fields.get(
+                              "grant_independence_requested", False),
+                          full_annexation_country=context_fields.get(
+                              "full_annexation_country"),
+                          full_annexation_beneficiary=context_fields.get(
+                              "full_annexation_beneficiary"),
+                          full_annexation_requested=context_fields.get(
+                              "full_annexation_requested", False),
+                          settled=derived == "accepted")
+                effects_valid = validate_effects(event["terms_verified"] is True)
+                # The initial subject producer serialized complete verified
+                # rows but accumulated its aggregate from false. Recompute
+                # this aggregate with the strict validator over every selected
+                # consequence; never alter the retained native flag or event.
+                terms_verified_derived = (
+                    effects_valid and derived == "accepted"
+                    and not context_fields["beneficiary_ambiguous"]
+                    and event["terms_verified"] is False
+                    and (context_fields.get("release_subject_requested", False)
+                         or context_fields.get("transfer_subject_requested", False))
+                    and validate_effects(True))
+                if not effects_valid:
+                    return None
+                if derived in ("rejected", "unknown"):
+                    money = effects.get("money")
+                    provinces = effects.get("provinces", [])
+                    reparations = effects.get("war_reparations")
+                    trade_power = effects.get("transfer_trade_power")
+                    special_verified = any(
+                        isinstance(effects.get(name), dict)
+                        and effects[name].get("verified") is True
+                        for name in ("humiliate_rival", "show_strength",
+                                     "force_religion"))
+                    subject_verified = any(
+                        isinstance(effects.get(name), dict)
+                        and effects[name].get("verified") is True
+                        for name in ("release_subject", "transfer_subject"))
+                    country_verified = any(
+                        isinstance(effects.get("country_terms"), dict)
+                        and isinstance(effects["country_terms"].get(name), dict)
+                        and effects["country_terms"][name].get("verified") is True
+                        for name in (
+                            "release_nation", "force_vassalization",
+                            "form_personal_union", "grant_independence",
+                            "full_annexation"))
+                    if (isinstance(money, dict)
+                            and money.get("verified") is True) or \
+                            any(isinstance(row, dict)
+                                and row.get("verified") is True
+                                for row in provinces) or \
+                            (isinstance(reparations, dict)
+                             and reparations.get("verified") is True) or \
+                            (isinstance(trade_power, dict)
+                             and trade_power.get("verified") is True) or \
+                            (isinstance(effects.get("concede_defeat"), dict)
+                             and effects["concede_defeat"].get(
+                                 "verified") is True) or \
+                            (isinstance(effects.get("annul_treaties"), list)
+                             and any(isinstance(row, dict)
+                                     and row.get("verified") is True
+                                     for row in effects["annul_treaties"])) or \
+                            any(isinstance(effects.get(name), list)
+                                and any(isinstance(row, dict)
+                                        and row.get("verified") is True
+                                        for row in effects[name])
+                                for name in ("return_core", "revoke_core")) or \
+                             special_verified or subject_verified or \
+                             country_verified:
+                        return None
+            nonwhite = bool(context_fields["terms"])
+            final_outcome = derived
+            terms_verified = event["terms_verified"] is True or terms_verified_derived
+            if derived == "accepted" and nonwhite:
+                if (not effects_present or not effects_valid
+                        or not terms_verified
+                        or context_fields["beneficiary_ambiguous"]):
+                    final_outcome = "unknown"
+                    terms_verified = False
+            if derived in ("rejected", "unknown") and terms_verified:
                 return None
             result = {
                 "event": "native_peace_inbound_response_result",
@@ -4186,16 +8008,25 @@ class ObserverSession:
                 "phase": phase,
                 "date_raw": wanted_date,
                 "native_state": native_state,
-                "native_outcome": outcome,
+                "native_outcome": final_outcome,
                 "response_verified": True,
                 "request_binding_verified": True,
                 "pending_removed": event["pending_removed"],
                 "war_before": event["war_before"],
                 "war_after": event["war_after"],
                 "war_state_verified": True,
-                "terms_verified": event["terms_verified"],
-                "peace_context": cls._copy_public_peace_context(context),
+                "terms_verified": terms_verified,
+                "peace_context": cls._canonicalize_inbound_peace_context(
+                    context),
             }
+            if terms_verified_derived:
+                result["native_terms_verified"] = False
+                result["terms_verification_source"] = "validated_native_effects"
+            if effects_valid:
+                result["effects"] = cls._public_native_peace_effects(effects)
+                corrections = cls._peace_effect_flag_corrections(effects, result["effects"])
+                if corrections:
+                    result["effect_flag_corrections"] = corrections
             return result
         support = action_id == "support_independence"
         military = action_id == "ask_military_access"
@@ -4346,6 +8177,12 @@ class ObserverSession:
                 if action_id == "ask_military_access"
                 else "NATIVE_INBOUND_VASSALIZATION_RESPONSE_CAPABILITY_MISSING"
                 if action_id == "offer_vassalization"
+                else "NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_CAPABILITY_MISSING"
+                if action_id == _FAVOR_GOLD_ACTION
+                else "NATIVE_INBOUND_FAVOR_TRUST_RESPONSE_CAPABILITY_MISSING"
+                if action_id == _FAVOR_TRUST_ACTION
+                else "NATIVE_INBOUND_FAVOR_MEN_RESPONSE_CAPABILITY_MISSING"
+                if action_id == _FAVOR_MEN_ACTION
                 else "NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY_MISSING"
                 if action_id == "peace_offer"
                 else "NATIVE_INBOUND_RESPONSE_CAPABILITY_MISSING")}
@@ -4460,6 +8297,8 @@ class ObserverSession:
                             "native_diplomacy_relation_response_result"
                             if action_id in ("support_independence", "ask_military_access",
                                              "offer_vassalization")
+                            else "native_diplomacy_favor_trade_response_result"
+                            if action_id in _FAVOR_ACTIONS
                             else "native_peace_inbound_response_result"
                             if action_id == "peace_offer"
                             else "native_alliance_response_result")
@@ -4528,6 +8367,33 @@ class ObserverSession:
             request_id, actor, recipient, phase, date_raw, native_proposal_id,
             "peace_offer")
 
+    def read_native_favor_gold_inbound_response(
+            self, request_id: str, actor: str, recipient: str, phase: str,
+            date_raw: object, native_proposal_id: object) -> dict | None:
+        """Read one bound native favor-for-gold inbound response result."""
+
+        return self.read_native_alliance_inbound_response(
+            request_id, actor, recipient, phase, date_raw, native_proposal_id,
+            _FAVOR_GOLD_ACTION)
+
+    def read_native_favor_trust_inbound_response(
+            self, request_id: str, actor: str, recipient: str, phase: str,
+            date_raw: object, native_proposal_id: object) -> dict | None:
+        """Read one bound native favor-for-trust inbound response result."""
+
+        return self.read_native_alliance_inbound_response(
+            request_id, actor, recipient, phase, date_raw, native_proposal_id,
+            _FAVOR_TRUST_ACTION)
+
+    def read_native_favor_men_inbound_response(
+            self, request_id: str, actor: str, recipient: str, phase: str,
+            date_raw: object, native_proposal_id: object) -> dict | None:
+        """Read one bound native favor-for-men inbound response result."""
+
+        return self.read_native_alliance_inbound_response(
+            request_id, actor, recipient, phase, date_raw, native_proposal_id,
+            _FAVOR_MEN_ACTION)
+
     # Explicit aliases make the adapter easy to patch in offline bridge tests.
     submit_native_offer = submit_offer_alliance
     submit_alliance = submit_offer_alliance
@@ -4548,20 +8414,26 @@ class ObserverSession:
         return value if isinstance(value, bool) else None
 
     @classmethod
-    def _normalize_declare_war_parameters(cls, parameters: object) -> dict | None:
+    def _normalize_declare_war_parameters(
+            cls, parameters: object, actor: str = "FRA",
+            recipient: str | None = None) -> dict | None:
         """Validate and normalize the bounded Declare War QUERY3 selection.
 
         An empty object deliberately selects the older QUERY1 default-payload
-        observation.  A non-empty object must identify the CB and war-goal
-        context completely; ally selection is reserved for a later adapter
-        and therefore only an empty list is accepted here.
+        observation. A non-empty object identifies the CB/war-goal context;
+        optional participant lists are normalized by the dedicated bounded
+        helper and remain subject to the native selection/legality result.
         """
 
         if parameters == {}:
             return None
         if not isinstance(parameters, dict):
             raise ValueError("DECLARE_WAR_PARAMETERS_MUST_BE_OBJECT")
-        if set(parameters) != {"casus_belli", "war_goal", "call_allies"}:
+        allowed = {"casus_belli", "war_goal", "call_allies",
+                   "promise_land_to", "co_belligerents"}
+        if (set(parameters) - allowed
+                or not {"casus_belli", "war_goal", "call_allies"}
+                <= set(parameters)):
             raise ValueError("DECLARE_WAR_PARAMETERS_REQUIRED")
         casus_belli = parameters.get("casus_belli")
         if (not isinstance(casus_belli, str)
@@ -4583,25 +8455,41 @@ class ObserverSession:
         call_allies = parameters.get("call_allies")
         if not isinstance(call_allies, list):
             raise ValueError("DECLARE_WAR_CALL_ALLIES_INVALID")
-        if call_allies:
-            raise ValueError("DECLARE_WAR_CALL_ALLIES_UNSUPPORTED")
+        # This helper validates all three lists, including duplicate/main-party
+        # checks and cross-list overlap. Authorization remains capability-gated
+        # at the QUERY19/EXEC4 boundary below.
+        participant_values = normalize_participant_selection(
+            parameters, actor=actor, recipient=recipient)
         if casus_belli == "no_casus_belli" and (
                 province_id != -1 or beneficiary != "FRA"):
             raise ValueError("DECLARE_WAR_NO_CB_CONTEXT_INVALID")
-        return {
+        normalized = {
             "casus_belli": casus_belli,
             "province_id": province_id,
             "beneficiary": beneficiary,
-            "call_allies": [],
+            "call_allies": participant_values["call_allies"],
         }
+        # Preserve the old four-field shape for empty/legacy callers. Once a
+        # new field is supplied, expose the complete canonical three-list set
+        # so every receipt and journal reopen has an unambiguous contract.
+        if ("promise_land_to" in parameters
+                or "co_belligerents" in parameters
+                or participant_selection_requested(participant_values)):
+            normalized.update(participant_values)
+        return normalized
 
     @classmethod
-    def _normalize_declare_war_selection(cls, parameters: object) -> dict | None:
+    def _normalize_declare_war_selection(
+            cls, parameters: object, actor: str = "FRA",
+            recipient: str | None = None) -> dict | None:
         """Accept the public QUERY3 shape or the internal normalized shape."""
 
         if (isinstance(parameters, dict)
-                and set(parameters) == {
-                    "casus_belli", "province_id", "beneficiary", "call_allies"}):
+                and {"casus_belli", "province_id", "beneficiary", "call_allies"}
+                <= set(parameters)
+                and not (set(parameters) - {
+                    "casus_belli", "province_id", "beneficiary", "call_allies",
+                    "promise_land_to", "co_belligerents"})):
             parameters = {
                 "casus_belli": parameters["casus_belli"],
                 "war_goal": {
@@ -4609,8 +8497,68 @@ class ObserverSession:
                     "beneficiary": parameters["beneficiary"],
                 },
                 "call_allies": parameters["call_allies"],
+                **{key: parameters[key] for key in
+                   ("promise_land_to", "co_belligerents") if key in parameters},
             }
-        return cls._normalize_declare_war_parameters(parameters)
+        return cls._normalize_declare_war_parameters(
+            parameters, actor=actor, recipient=recipient)
+
+    @classmethod
+    def _declare_war_participant_values(
+            cls, selected: dict, actor: str, recipient: str) -> dict:
+        """Return canonical public lists and native echo keys for a selection."""
+
+        values = normalize_participant_selection(
+            selected, actor=actor, recipient=recipient)
+        return {field: list(values[field]) for field in PARTICIPANT_FIELDS}
+
+    @staticmethod
+    def _ordered_declare_war_participant_events(
+            events: object) -> object:
+        """Order native participant rows by their stable enumeration index.
+
+        Native may emit defenders before attackers while retaining the original
+        enumeration indexes.  Validation and projection use canonical index
+        order; malformed rows remain present and are still rejected by the
+        participant validator.
+        """
+        if not isinstance(events, list):
+            return events
+
+        def sort_key(event: object) -> tuple[int, int]:
+            if (isinstance(event, dict)
+                    and isinstance(event.get("index"), int)
+                    and not isinstance(event.get("index"), bool)):
+                return (0, event["index"])
+            return (1, 0)
+
+        return sorted(events, key=sort_key)
+
+    @classmethod
+    def _valid_declare_war_participant_echo(
+            cls, event: object, selected: dict,
+            actor: str, recipient: str) -> bool:
+        """Bind optional participant CSV echoes without weakening old receipts."""
+
+        if not isinstance(event, dict):
+            return False
+        values = cls._declare_war_participant_values(selected, actor, recipient)
+        requested = participant_selection_requested(values)
+        public_fields_present = any(field in event for field in PARTICIPANT_FIELDS)
+        if public_fields_present:
+            if any(field not in event for field in PARTICIPANT_FIELDS):
+                return False
+            if any(event.get(field) != values[field]
+                   for field in PARTICIPANT_FIELDS):
+                return False
+        for field in PARTICIPANT_FIELDS:
+            key = f"{field}_csv"
+            expected = country_csv(values[field])
+            if requested and not public_fields_present and key not in event:
+                return False
+            if key in event and event.get(key) != expected:
+                return False
+        return True
 
     @staticmethod
     def _safe_native_text(event: dict, codec: str = DEFAULT_NATIVE_TEXT_CODEC,
@@ -4648,7 +8596,7 @@ class ObserverSession:
                                and event.get("identifier_verified") is True
                                and event.get("identity_source") == "native_localization_key"
                                and isinstance(identifier, str)
-                               and re.fullmatch(r"DIPLO_[A-Z0-9_]{1,41}", identifier) is not None)
+                               and re.fullmatch(r"(?:DIPLO_[A-Z0-9_]{1,41}|USING_FAVORS)", identifier) is not None)
         return {
             "name": name,
             "text_decoded": name is not None,
@@ -4729,6 +8677,17 @@ class ObserverSession:
             "full_rules_complete": cls._safe_bool(event.get("full_rules_complete")),
             "submitted": cls._safe_bool(event.get("submitted")),
         }
+        if event.get("action_id") in _FAVOR_ACTIONS:
+            result["favor_trade"] = _project_favor_query_for_action(
+                event.get("action_id"), event.get("native_favor_trade"),
+                event.get("actor"), event.get("recipient"))
+        if event.get("action_id") == _GIFT_ACTION:
+            result["gift"] = _project_gift_query(
+                event.get("native_gift"), event.get("actor"), event.get("recipient"))
+        if event.get("action_id") == _INFLUENCE_ACTION:
+            result["influence"] = _project_influence_query(
+                event.get("native_influence"), event.get("actor"),
+                event.get("recipient"))
         # Guarantee uses the established inspection event while adding a
         # family-specific relation-state proof.  Keep these fields absent for
         # older Alliance/Royal/Improve/Spy events so their public contracts
@@ -4771,6 +8730,18 @@ class ObserverSession:
             state_verified = event.get("military_access_state_verified") is True
             result["relationship_state"] = {
                 "military_access_active": active if active is not None else None,
+                "complete": active is not None and state_verified,
+            }
+        if "task_active" in event:
+            result["task_active"] = cls._safe_bool(event.get("task_active"))
+        if "task_state_verified" in event:
+            result["task_state_verified"] = cls._safe_bool(
+                event.get("task_state_verified"))
+        if event.get("family") == "curry_favors":
+            active = cls._safe_bool(event.get("task_active"))
+            state_verified = event.get("task_state_verified") is True
+            result["relationship_state"] = {
+                "task_active": active if active is not None else None,
                 "complete": active is not None and state_verified,
             }
         if event.get("family") == "vassalization":
@@ -4844,7 +8815,8 @@ class ObserverSession:
     @classmethod
     def _semantic_declare_war_inspection(
             cls, event: dict,
-            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC,
+            participant_events: list[dict] | None = None) -> dict:
         """Project the read-only default Declare War inspection.
 
         The generic UI/rule fields remain useful evidence.  The separate
@@ -4948,6 +8920,26 @@ class ObserverSession:
             result["candidates"] = projected_candidates
         if "native_costs" in event:
             result["costs"] = cls._public_declare_war_costs(event, codec)
+        if "native_details" in event:
+            result["declaration_details"] = project_declare_war_details(
+                event["native_details"], codec)
+        if "native_peace_options" in event:
+            result["peace_term_rules"] = project_native_peace_options(
+                event["native_peace_options"])
+        native_participants = event.get("native_participants")
+        if (isinstance(native_participants, dict)
+                and isinstance(participant_events, list)):
+            participants = project_participants(
+                native_participants,
+                cls._ordered_declare_war_participant_events(participant_events),
+                codec)
+            if participants is not None:
+                result["participants"] = participants
+        native_forces = event.get("native_forces")
+        if isinstance(native_forces, dict):
+            forces = project_declare_war_forces(native_forces)
+            if forces is not None:
+                result["forces"] = forces
         result["native_rule_components"] = {
             "ui_selection_checked": event.get("ui_selection_checked") is True,
             "native_visibility": cls._safe_bool(event.get("native_visibility")),
@@ -5324,6 +9316,655 @@ class ObserverSession:
                 event["native_war_context"])
         if isinstance(event.get("native_payload"), dict):
             result["native_payload"] = cls._semantic_peace_payload(event["native_payload"])
+        selected_rules = event.get("native_selected_rules")
+        if isinstance(selected_rules, dict):
+            # The validator has already checked the exact native schema.  Do
+            # a second bounded projection here so a semantic consumer never
+            # receives an opaque pointer or an unbounded diagnostic.
+            result["native_selected_rules"] = {
+                "checked": selected_rules.get("checked") is True,
+                "cost_checked": selected_rules.get("cost_checked") is True,
+                "available": selected_rules.get("available") is True,
+                "anchor_identity_verified": selected_rules.get(
+                    "anchor_identity_verified") is True,
+                "payload_unchanged": selected_rules.get(
+                    "payload_unchanged") is True,
+                "diagnostic_readable": selected_rules.get(
+                    "diagnostic_readable") is True,
+                "diagnostic_truncated": selected_rules.get(
+                    "diagnostic_truncated") is True,
+                "selected_term_count": cls._safe_int(
+                    selected_rules.get("selected_term_count"), 0, 512),
+                "checked_term_count": cls._safe_int(
+                    selected_rules.get("checked_term_count"), 0, 512),
+                "diagnostic_hex": selected_rules.get("diagnostic_hex"),
+                "complete": selected_rules.get("complete") is True,
+            }
+            rule_text = cls._safe_native_text({
+                "text_hex": selected_rules.get("diagnostic_hex"),
+                "text_readable": selected_rules.get(
+                    "diagnostic_readable") is True,
+            }, selected)
+            result.setdefault("diagnostics", {})["selected_term_gate"] = {
+                "text": rule_text,
+                "text_decoded": rule_text is not None,
+                "text_truncated": selected_rules.get(
+                    "diagnostic_truncated") is True,
+                "source": "native_rule",
+                "complete": selected_rules.get("complete") is True,
+            }
+
+        if "native_consequences" in event:
+            # The common semantic projector is shared by every peace family;
+            # keep this optional field in one place so older events remain
+            # unchanged while a malformed present record never becomes a
+            # partial public success.
+            result["peace_consequences"] = project_event_consequences(
+                event, codec=selected)
+        for field in ("diplomat_context_readable", "diplomat_required", "available_diplomat_count"):
+            if field in event:
+                result[field] = event[field]
+        return result
+
+    @classmethod
+    def _semantic_peace_core_offer_query(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project one complete QUERY14 core-term observation.
+
+        Candidate discovery is deliberately represented as an empty selected
+        term list and leaves legality unknown.  A selected request can expose
+        one core term only after the native request-copy and selection proof
+        in this same event has matched.
+        """
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_core_offer_query"
+        result["action_id"] = event.get("action_id")
+        native = event.get("native_core_terms") or {}
+        projected = project_native_core_terms(native, codec)
+        result["native_core_terms"] = projected
+        result["peace_context"]["direction"] = event.get(
+            "direction", "demand")
+        matched = projected.get("parameters_matched") is True
+        if (matched and projected.get("selected_term_count")
+                == len(projected.get("requested_province_ids", []))
+                and projected.get("selected_term_count", 0) > 0):
+            selected_ids = [row["province_id"] for row in projected.get(
+                "candidates", []) if row.get("selected") is True]
+            # Native's selected rows are the only authoritative province
+            # selection; request fields are retained only when rows prove it.
+            if selected_ids and isinstance(projected.get(
+                    "requested_core_owner"), str):
+                result["peace_context"]["terms"] = [{
+                    "action_id": event.get("action_id"),
+                    "province_ids": selected_ids,
+                    "core_owner": projected["requested_core_owner"],
+                }]
+            else:
+                matched = False
+        else:
+            result["peace_context"]["terms"] = []
+        result["parameters_matched"] = matched
+        result["parameters_complete"] = (
+            matched
+            and result.get("native_payload", {}).get(
+                "serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
+        # QUERY14's candidate discovery is not a legal selected treaty.  Keep
+        # the outer native gate/evaluation fields for evidence, while callers
+        # must keep public legality unknown until a concrete term is selected.
+        return result
+
+    @classmethod
+    def _semantic_peace_subject_offer_query(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project one complete QUERY16 subject-term observation.
+
+        QUERY16 has the same outer Peace constructor/evaluation contract as
+        QUERY14/15, but its selection is one subject-country row rather than
+        province/core records.  Empty discovery remains unselected and is
+        never projected as an executable peace term.
+        """
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_subject_offer_query"
+        result["action_id"] = event.get("action_id")
+        result["peace_context"]["direction"] = event.get(
+            "direction", "demand")
+        native = event.get("native_subject_terms") or {}
+        rows = []
+        for row in native.get("candidates", []):
+            if not isinstance(row, dict):
+                continue
+            rows.append({
+                "country": row.get("country"),
+                "selected": row.get("selected") is True,
+                "record_complete": row.get("record_complete") is True,
+            })
+        projected = {
+            "action_id": native.get("action_id"),
+            "candidate_count": native.get("candidate_count"),
+            "candidate_enumeration_complete": (
+                native.get("candidate_enumeration_complete") is True),
+            "candidates": rows,
+            "requested_country": native.get("requested_country"),
+            "selection_requested": native.get("selection_requested") is True,
+            "requested_candidate_found": (
+                native.get("requested_candidate_found") is True),
+            "selected_term_count": native.get("selected_term_count"),
+            "parameters_matched": native.get("parameters_matched") is True,
+            "selection_applied": native.get("selection_applied") is True,
+            "selection_records_complete": (
+                native.get("selection_records_complete") is True),
+            "action_copy_matched": native.get("action_copy_matched") is True,
+            "selection_delta_available": (
+                native.get("selection_delta_available") is True),
+            "selection_delta_raw": native.get("selection_delta_raw"),
+            "reason_code": native.get("reason_code"),
+        }
+        result["native_subject_terms"] = projected
+        matched = projected["parameters_matched"]
+        if (matched and projected.get("selected_term_count") == 1
+                and isinstance(projected.get("requested_country"), str)):
+            selected_rows = [row for row in rows if row["selected"]]
+            if len(selected_rows) == 1:
+                result["peace_context"]["terms"] = [{
+                    "action_id": event.get("action_id"),
+                    "country": selected_rows[0]["country"],
+                }]
+            else:
+                matched = False
+        else:
+            result["peace_context"]["terms"] = []
+        result["parameters_matched"] = matched
+        result["parameters_complete"] = (
+            matched
+            and result.get("native_payload", {}).get(
+                "serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
+        return result
+
+    @classmethod
+    def _semantic_peace_combined_country_offer_query(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project QUERY18 while keeping native identity fields private."""
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = event.get("direction", "demand")
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_combined_country_offer_query"
+        result["action_id"] = event.get("action_id")
+        result["term_mask"] = event.get("term_mask", "")
+        # Reuse the established family projectors for all pre-R61 terms.
+        family_projectors = (
+            ("m", cls._semantic_peace_money_offer_inspection, "native_money"),
+            ("p", cls._semantic_peace_province_offer_inspection, "native_provinces"),
+            ("r", cls._semantic_peace_reparations_offer_inspection, "native_reparations"),
+            ("t", cls._semantic_peace_trade_power_offer_inspection, "native_trade_power"),
+            ("c", cls._semantic_peace_concede_defeat_offer_inspection, "native_concede_defeat"),
+            ("a", cls._semantic_peace_annul_treaties_offer_inspection, "native_annul_treaties"),
+            ("h", cls._semantic_peace_special_offer_inspection, "native_humiliate_rival"),
+            ("s", cls._semantic_peace_special_offer_inspection, "native_show_strength"),
+            ("f", cls._semantic_peace_special_offer_inspection, "native_force_religion"),
+        )
+        for bit, projector, key in family_projectors:
+            if bit not in result["term_mask"]:
+                continue
+            view = projector(dict(event), codec)
+            for optional_key in (
+                    "native_money", "native_provinces", "native_reparations",
+                    "native_trade_power", "native_concede_defeat",
+                    "native_annul_treaties", "native_humiliate_rival",
+                    "native_show_strength", "native_force_religion"):
+                if optional_key in view:
+                    result[optional_key] = view[optional_key]
+
+        raw_country = event.get("native_country_terms")
+        projected: dict[str, dict | None] = {
+            "release_nation": None,
+            "force_vassalization": None,
+            "form_personal_union": None,
+            "grant_independence": None,
+        }
+        if isinstance(raw_country, dict):
+            for family in projected:
+                native = raw_country.get(family)
+                if not isinstance(native, dict):
+                    continue
+                rows = []
+                for row in native.get("candidates", []):
+                    if not isinstance(row, dict):
+                        continue
+                    # ``field22``, ``extra30``, descriptor and variant are
+                    # native identity evidence; public consumers only need
+                    # canonical country/source selection state.
+                    rows.append({
+                        "country": row.get("country"),
+                        "source": row.get("source"),
+                        "selected": row.get("selected") is True,
+                        "record_complete": row.get("record_complete") is True,
+                    })
+                projected[family] = {
+                    "action_id": native.get("action_id"),
+                    "candidate_count": native.get("candidate_count"),
+                    "candidate_enumeration_complete": native.get(
+                        "candidate_enumeration_complete") is True,
+                    "candidates": rows,
+                    "requested_country": native.get("requested_country"),
+                    "requested_source": native.get("requested_source"),
+                    "requested_country_is_payer": native.get(
+                        "requested_country_is_payer") is True,
+                    "requested_candidate_found": native.get(
+                        "requested_candidate_found") is True,
+                    "selected_term_count": native.get("selected_term_count"),
+                    "parameters_matched": native.get("parameters_matched") is True,
+                    "selection_requested": native.get("selection_requested") is True,
+                    "selection_applied": native.get("selection_applied") is True,
+                    "selection_records_complete": native.get(
+                        "selection_records_complete") is True,
+                    "action_copy_matched": native.get("action_copy_matched") is True,
+                    "selection_delta_available": native.get(
+                        "selection_delta_available") is True,
+                    "selection_delta_raw": native.get("selection_delta_raw"),
+                    "reason_code": native.get("reason_code"),
+                }
+        result["native_country_terms"] = projected
+
+        raw_annex = event.get("native_annexation")
+        if isinstance(raw_annex, dict):
+            annex_rows = []
+            raw_rows = raw_annex.get("candidates")
+            if isinstance(raw_rows, list):
+                for row in raw_rows[:512]:
+                    if (not isinstance(row, dict)
+                            or set(row) != {
+                                "province_id", "owner", "beneficiary",
+                                "owner_match", "selected", "readcomplete"}):
+                        continue
+                    province_id = cls._safe_int(
+                        row.get("province_id"), 1, 2147483647)
+                    owner = row.get("owner")
+                    beneficiary = row.get("beneficiary")
+                    if (province_id is None
+                            or not isinstance(owner, (str, type(None)))
+                            or not isinstance(beneficiary, (str, type(None)))
+                            or (isinstance(owner, str)
+                                and re.fullmatch(r"[A-Z0-9]{3}", owner) is None)
+                            or (isinstance(beneficiary, str)
+                                and re.fullmatch(r"[A-Z0-9]{3}", beneficiary) is None)
+                            or not isinstance(row.get("owner_match"), bool)
+                            or not isinstance(row.get("selected"), bool)
+                            or not isinstance(row.get("readcomplete"), bool)):
+                        continue
+                    annex_rows.append({
+                        "province_id": province_id,
+                        "owner": owner,
+                        "beneficiary": beneficiary,
+                        "owner_match": row.get("owner_match") is True,
+                        "selected": row.get("selected") is True,
+                        "readcomplete": row.get("readcomplete") is True,
+                    })
+            annex_public = {
+                "action_id": raw_annex.get("action_id"),
+                "country": raw_annex.get("country"),
+                "beneficiary": raw_annex.get("beneficiary"),
+                "selection_requested": raw_annex.get(
+                    "selection_requested") is True,
+                "candidates": annex_rows,
+                "candidate_count": cls._safe_int(
+                    raw_annex.get("candidate_count"), 0, 512),
+                "candidate_enumeration_complete": raw_annex.get(
+                    "candidate_enumeration_complete") is True,
+                "target_owned_count": cls._safe_int(
+                    raw_annex.get("target_owned_count"), 0, 512),
+                "owned_index_complete": raw_annex.get(
+                    "owned_index_complete") is True,
+                "candidate_match_count": cls._safe_int(
+                    raw_annex.get("candidate_match_count"), 0, 512),
+                "candidate_matches_complete": raw_annex.get(
+                    "candidate_matches_complete") is True,
+                "requested_candidates_found": raw_annex.get(
+                    "requested_candidates_found") is True,
+                "selection_applied": raw_annex.get(
+                    "selection_applied") is True,
+                "parameters_matched": (
+                    raw_annex.get("selection_requested") is True
+                    and raw_annex.get("requested_candidates_found") is True
+                    and raw_annex.get("selection_applied") is True
+                    and raw_annex.get("source_selection_complete") is True
+                    and raw_annex.get("action_copy_matched") is True
+                    and raw_annex.get("complete") is True
+                    and cls._safe_int(raw_annex.get(
+                        "candidate_match_count"), 1, 512) is not None),
+                "source_selection_complete": raw_annex.get(
+                    "source_selection_complete") is True,
+                "action_copy_checked": raw_annex.get(
+                    "action_copy_checked") is True,
+                "action_copy_matched": raw_annex.get(
+                    "action_copy_matched") is True,
+                "selection_delta_available": raw_annex.get(
+                    "selection_delta_available") is True,
+                "selection_delta_raw": cls._safe_int(
+                    raw_annex.get("selection_delta_raw"),
+                    -2147483648, 2147483647),
+                "native_annex_check_called": raw_annex.get(
+                    "native_annex_check_called") is True,
+                "native_annex_bool": (raw_annex.get("native_annex_bool")
+                                      if isinstance(raw_annex.get(
+                                          "native_annex_bool"), bool) else None),
+                "native_output_country": raw_annex.get(
+                    "native_output_country"),
+                "native_owned_count_called": raw_annex.get(
+                    "native_owned_count_called") is True,
+                "native_owned_count_raw": cls._safe_int(
+                    raw_annex.get("native_owned_count_raw"),
+                    -2147483648, 2147483647),
+                "native_owned_count_matches": raw_annex.get(
+                    "native_owned_count_matches") is True,
+                "capacity_exceeded": raw_annex.get(
+                    "capacity_exceeded") is True,
+                "complete": raw_annex.get("complete") is True,
+                "reason_code": raw_annex.get("reason_code"),
+            }
+            result["native_annexation"] = annex_public
+
+        matched = True
+        for bit, family in (("m", "native_money"), ("p", "native_provinces"),
+                            ("r", "native_reparations"), ("t", "native_trade_power"),
+                            ("c", "native_concede_defeat"), ("a", "native_annul_treaties"),
+                            ("h", "native_humiliate_rival"), ("s", "native_show_strength"),
+                            ("f", "native_force_religion")):
+            if bit in result["term_mask"]:
+                record = result.get(family)
+                matched = matched and isinstance(record, dict) and record.get(
+                    "parameters_matched") is True
+
+        selected_terms: list[dict] = []
+        selection_keys = {
+            "release_nation": ("n", "release_nation_country", "release_nation_source"),
+            "force_vassalization": ("z", "vassal_country", "vassal_beneficiary"),
+            "form_personal_union": ("u", "union_country", "union_beneficiary"),
+            "grant_independence": ("i", "independence_country", None),
+            "full_annexation": ("e", "annex_country", "annex_beneficiary"),
+        }
+        for family, (bit, country_key, secondary_key) in selection_keys.items():
+            if bit not in result["term_mask"]:
+                continue
+            record = projected.get(family)
+            if family == "full_annexation":
+                if not isinstance(result.get("native_annexation"), dict):
+                    matched = False
+                    continue
+                record = result["native_annexation"]
+                if record.get("parameters_matched") is not True:
+                    matched = False
+                    continue
+                country = record.get("country")
+                beneficiary = record.get("beneficiary")
+                if (not isinstance(country, str)
+                        or not isinstance(beneficiary, str)
+                        or country == "-" or beneficiary == "-"):
+                    matched = False
+                    continue
+                selected_terms.append({
+                    "action_id": family,
+                    "country": country,
+                    "beneficiary": beneficiary,
+                })
+                continue
+            if not isinstance(record, dict) or record.get("parameters_matched") is not True:
+                matched = False
+                continue
+            selected_rows = [row for row in record.get("candidates", [])
+                             if row.get("selected") is True]
+            if len(selected_rows) != 1:
+                matched = False
+                continue
+            row = selected_rows[0]
+            if family == "grant_independence":
+                selected_terms.append({"action_id": family})
+                continue
+            country = row.get("country")
+            if not isinstance(country, str):
+                matched = False
+                continue
+            term = {"action_id": family, "country": country}
+            if family == "release_nation":
+                source = row.get("source")
+                if isinstance(source, str):
+                    term["source"] = source
+                else:
+                    matched = False
+                    continue
+            elif secondary_key:
+                # Native candidate rows do not carry beneficiary semantics;
+                # use the direction-bound request when the adapter supplied
+                # it, falling back to the native claimant for the documented
+                # default beneficiary.
+                beneficiary = event.get(secondary_key)
+                if beneficiary in (None, "-"):
+                    beneficiary = record.get("claimant")
+                if isinstance(beneficiary, str) and beneficiary != "-":
+                    term["beneficiary"] = beneficiary
+            selected_terms.append(term)
+        result["peace_context"]["terms"] = selected_terms if matched else []
+        result["parameters_matched"] = matched
+        result["parameters_complete"] = matched and (
+            result.get("native_payload", {}).get("serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
+        return result
+
+    @classmethod
+    def _semantic_peace_combined_subject_offer_query(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project QUERY17's ordinary Peace families and subject rows."""
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = event.get("direction", "demand")
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_combined_subject_offer_query"
+        result["action_id"] = event.get("action_id")
+        result["term_mask"] = event.get("term_mask", "")
+        family_projectors = (
+            ("m", cls._semantic_peace_money_offer_inspection, "native_money"),
+            ("p", cls._semantic_peace_province_offer_inspection, "native_provinces"),
+            ("r", cls._semantic_peace_reparations_offer_inspection, "native_reparations"),
+            ("t", cls._semantic_peace_trade_power_offer_inspection, "native_trade_power"),
+            ("c", cls._semantic_peace_concede_defeat_offer_inspection, "native_concede_defeat"),
+            ("a", cls._semantic_peace_annul_treaties_offer_inspection, "native_annul_treaties"),
+            ("h", cls._semantic_peace_special_offer_inspection, "native_humiliate_rival"),
+            ("s", cls._semantic_peace_special_offer_inspection, "native_show_strength"),
+            ("f", cls._semantic_peace_special_offer_inspection, "native_force_religion"),
+        )
+        for bit, projector, key in family_projectors:
+            if bit not in result["term_mask"]:
+                continue
+            view = projector(dict(event), codec)
+            if key in view:
+                result[key] = view[key]
+            for optional_key in (
+                    "native_money", "native_provinces", "native_reparations",
+                    "native_trade_power", "native_concede_defeat",
+                    "native_annul_treaties", "native_humiliate_rival",
+                    "native_show_strength", "native_force_religion"):
+                if optional_key in view:
+                    result[optional_key] = view[optional_key]
+        raw_subject = event.get("native_subject_terms")
+        projected_subject = {"release_subject": None, "transfer_subject": None}
+        if isinstance(raw_subject, dict):
+            for subject_action in projected_subject:
+                native = raw_subject.get(subject_action)
+                if not isinstance(native, dict):
+                    continue
+                rows = []
+                for row in native.get("candidates", []):
+                    if isinstance(row, dict):
+                        rows.append({
+                            "country": row.get("country"),
+                            "selected": row.get("selected") is True,
+                            "record_complete": row.get("record_complete") is True,
+                        })
+                countries = native.get("requested_countries")
+                if not isinstance(countries, list):
+                    requested = native.get("requested_country")
+                    countries = [requested] if isinstance(requested, str) else []
+                projected_subject[subject_action] = {
+                    "action_id": native.get("action_id"),
+                    "candidate_count": native.get("candidate_count"),
+                    "candidate_enumeration_complete": (
+                        native.get("candidate_enumeration_complete") is True),
+                    "candidates": rows,
+                    "requested_country": native.get("requested_country"),
+                    "requested_countries": list(countries),
+                    "selection_requested": native.get("selection_requested") is True,
+                    "requested_candidate_found": (
+                        native.get("requested_candidate_found") is True),
+                    "selected_term_count": native.get("selected_term_count"),
+                    "parameters_matched": native.get("parameters_matched") is True,
+                    "selection_applied": native.get("selection_applied") is True,
+                    "selection_records_complete": (
+                        native.get("selection_records_complete") is True),
+                    "action_copy_matched": native.get("action_copy_matched") is True,
+                    "selection_delta_available": (
+                        native.get("selection_delta_available") is True),
+                    "selection_delta_raw": native.get("selection_delta_raw"),
+                    "reason_code": native.get("reason_code"),
+                }
+        result["native_subject_terms"] = projected_subject
+        matched = True
+        for bit, key in (
+                ("m", "native_money"), ("p", "native_provinces"),
+                ("r", "native_reparations"), ("t", "native_trade_power"),
+                ("c", "native_concede_defeat"), ("a", "native_annul_treaties"),
+                ("h", "native_humiliate_rival"), ("s", "native_show_strength"),
+                ("f", "native_force_religion")):
+            if bit in result["term_mask"]:
+                record = result.get(key)
+                matched = matched and isinstance(record, dict) \
+                    and record.get("parameters_matched") is True
+        selected_terms = []
+        for bit, action in (("l", "release_subject"), ("x", "transfer_subject")):
+            if bit not in result["term_mask"]:
+                continue
+            record = projected_subject.get(action)
+            if not isinstance(record, dict) or record.get("parameters_matched") is not True:
+                matched = False
+                continue
+            selected = [row["country"] for row in record["candidates"]
+                        if row.get("selected") is True]
+            if len(selected) == 1:
+                selected_terms.append({"action_id": action, "country": selected[0]})
+            elif selected:
+                selected_terms.append({"action_id": action, "countries": selected})
+            else:
+                matched = False
+        if matched:
+            result["peace_context"]["terms"] = selected_terms
+        else:
+            result["peace_context"]["terms"] = []
+        result["parameters_matched"] = matched
+        result["parameters_complete"] = matched and (
+            result.get("native_payload", {}).get("serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
+        return result
+
+    @classmethod
+    def _semantic_peace_combined_core_offer_query(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project QUERY15's shared Peace records and two core records."""
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = event.get("direction", "demand")
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_combined_core_offer_query"
+        result["action_id"] = event.get("action_id")
+        result["term_mask"] = event.get("term_mask", "")
+
+        family_projectors = (
+            ("m", cls._semantic_peace_money_offer_inspection, "native_money"),
+            ("p", cls._semantic_peace_province_offer_inspection, "native_provinces"),
+            ("r", cls._semantic_peace_reparations_offer_inspection,
+             "native_reparations"),
+            ("t", cls._semantic_peace_trade_power_offer_inspection,
+             "native_trade_power"),
+            ("c", cls._semantic_peace_concede_defeat_offer_inspection,
+             "native_concede_defeat"),
+            ("a", cls._semantic_peace_annul_treaties_offer_inspection,
+             "native_annul_treaties"),
+            ("h", cls._semantic_peace_special_offer_inspection,
+             "native_humiliate_rival"),
+            ("s", cls._semantic_peace_special_offer_inspection,
+             "native_show_strength"),
+            ("f", cls._semantic_peace_special_offer_inspection,
+             "native_force_religion"),
+        )
+        mask = result["term_mask"]
+        for bit, projector, key in family_projectors:
+            if bit not in mask:
+                continue
+            view = projector(dict(event), codec)
+            if key in view:
+                result[key] = view[key]
+            for optional_key in (
+                    "native_money", "native_provinces", "native_reparations",
+                    "native_trade_power", "native_concede_defeat",
+                    "native_annul_treaties", "native_humiliate_rival",
+                    "native_show_strength", "native_force_religion"):
+                if optional_key in view:
+                    result[optional_key] = view[optional_key]
+
+        raw_core = event.get("native_core_terms")
+        projected_core = {"return_core": None, "revoke_core": None}
+        if isinstance(raw_core, dict):
+            for core_action in projected_core:
+                nested = raw_core.get(core_action)
+                if isinstance(nested, dict):
+                    projected = project_native_core_terms(nested, codec)
+                    projected_core[core_action] = projected
+                    result["native_" + core_action] = projected
+        result["native_core_terms"] = projected_core
+
+        matched = True
+        for bit, key in (
+                ("m", "native_money"), ("p", "native_provinces"),
+                ("r", "native_reparations"), ("t", "native_trade_power"),
+                ("c", "native_concede_defeat"),
+                ("a", "native_annul_treaties"),
+                ("h", "native_humiliate_rival"),
+                ("s", "native_show_strength"),
+                ("f", "native_force_religion")):
+            if bit in mask:
+                record = result.get(key)
+                matched = matched and isinstance(record, dict) \
+                    and record.get("parameters_matched") is True
+        for bit, key in (("b", "native_return_core"),
+                         ("v", "native_revoke_core")):
+            if bit in mask:
+                record = result.get(key)
+                matched = matched and isinstance(record, dict) \
+                    and record.get("parameters_matched") is True
+        result["parameters_matched"] = matched
+        result["parameters_complete"] = matched and (
+            result.get("native_payload", {}).get(
+                "serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
         return result
 
     @classmethod
@@ -5520,6 +10161,946 @@ class ObserverSession:
             and provinces.get("parameters_matched") is True)
         result["parameters_complete"] = (
             result["parameters_matched"] and payload_complete)
+        return result
+
+    @classmethod
+    def _semantic_peace_reparations_offer_inspection(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project one QUERY8 reparations observation.
+
+        QUERY8 is an aggregate selection query.  Its reparations record is
+        always present; money and province records are copied from the same
+        native event only when their corresponding mask bits were selected.
+        The public context is rebuilt in the stable money, province,
+        reparations order and contains only terms whose native copy matched.
+        """
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = event.get("direction", "demand")
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_reparations_offer_inspection"
+        result["action_id"] = event.get("action_id", "war_reparations")
+
+        native_reparations = event.get("native_reparations") or {}
+        result["native_reparations"] = {
+            "requested": native_reparations.get("requested") is True,
+            "candidate_count": cls._safe_int(
+                native_reparations.get("candidate_count"), 0, 512),
+            "matching_candidate_count": cls._safe_int(
+                native_reparations.get("matching_candidate_count"), 0, 512),
+            "candidate_found": native_reparations.get("candidate_found") is True,
+            "selection_requested": (
+                native_reparations.get("selection_requested") is True),
+            "selection_available": (
+                native_reparations.get("selection_available") is True),
+            "selected": native_reparations.get("selected") is True,
+            "selected_term_count": cls._safe_int(
+                native_reparations.get("selected_term_count"), 0, 16),
+            "payer": native_reparations.get("payer"),
+            "claimant": native_reparations.get("claimant"),
+            "selection_copy_verified": (
+                native_reparations.get("selection_copy_verified") is True),
+            "parameters_matched": (
+                native_reparations.get("parameters_matched") is True),
+            "reason_code": native_reparations.get("reason_code"),
+            "rule_checked": native_reparations.get("rule_checked") is True,
+            "rule_available": native_reparations.get("rule_available") is True,
+            "rule_term_count": cls._safe_int(
+                native_reparations.get("rule_term_count"), 0, 512),
+            "rule_scope": ("selected_nonzero_terms" if native_reparations.get(
+                "rule_scope") == "selected_nonzero_terms" else None),
+            "rule_diagnostic_hex": native_reparations.get("rule_diagnostic_hex"),
+            "rule_diagnostic_readable": native_reparations.get(
+                "rule_diagnostic_readable") is True,
+            "rule_diagnostic_truncated": native_reparations.get(
+                "rule_diagnostic_truncated") is True,
+        }
+        rule_text = cls._safe_native_text({
+            "text_hex": native_reparations.get("rule_diagnostic_hex"),
+            "text_readable": native_reparations.get(
+                "rule_diagnostic_readable") is True,
+        }, codec)
+        result.setdefault("diagnostics", {})["selected_term_gate"] = {
+            "text": rule_text, "text_decoded": rule_text is not None,
+            "text_truncated": native_reparations.get(
+                "rule_diagnostic_truncated") is True,
+            "source": "native_rule", "complete": False,
+        }
+
+        mask = event.get("term_mask", "")
+        money_view = None
+        province_view = None
+        if "m" in mask and isinstance(event.get("native_money"), dict):
+            money_event = dict(event)
+            money_event["event"] = "native_peace_money_offer_inspection"
+            money_event["action_id"] = "demand_ducats"
+            money_view = cls._semantic_peace_money_offer_inspection(
+                money_event, codec)
+            result["native_money"] = money_view.get("native_money")
+        if "p" in mask and isinstance(event.get("native_provinces"), dict):
+            province_event = dict(event)
+            province_event["event"] = "native_peace_province_offer_inspection"
+            province_event["action_id"] = "cede_province"
+            province_view = cls._semantic_peace_province_offer_inspection(
+                province_event, codec)
+            result["native_provinces"] = province_view.get("native_provinces")
+
+        terms: list[dict] = []
+        money = (result.get("native_money") or {})
+        amount_raw = money.get("requested_amount_raw")
+        if ("m" in mask and money.get("parameters_matched") is True
+                and isinstance(amount_raw, int) and not isinstance(amount_raw, bool)
+                and amount_raw > 0 and amount_raw % 100 == 0):
+            terms.append({
+                "action_id": "demand_ducats",
+                "amount": f"{amount_raw // 1000}.{(amount_raw % 1000) // 100}",
+                "amount_raw": amount_raw,
+                "payer": money.get("payer"),
+                "claimant": money.get("claimant"),
+            })
+        provinces = (result.get("native_provinces") or {})
+        selected_ids = provinces.get("selected_province_ids", [])
+        selected_beneficiary = provinces.get("selected_beneficiary")
+        if ("p" in mask and provinces.get("parameters_matched") is True
+                and isinstance(selected_ids, list) and selected_ids
+                and isinstance(selected_beneficiary, str)):
+            terms.append({
+                "action_id": "cede_province",
+                "province_ids": list(selected_ids),
+                "beneficiary": selected_beneficiary,
+            })
+        reparations = result["native_reparations"]
+        if ("r" in mask and reparations["selected"] is True
+                and reparations["parameters_matched"] is True):
+            terms.append({
+                "action_id": "war_reparations",
+                "payer": reparations.get("payer"),
+                "claimant": reparations.get("claimant"),
+            })
+        result["peace_context"]["direction"] = event.get(
+            "direction", "demand")
+        result["peace_context"]["terms"] = terms
+        result["term_mask"] = mask
+        term_rule_state = cls._peace_selected_term_rule_state(result, terms)
+        result["native_term_gate_checked"] = term_rule_state in ("verified", "failed")
+        result["native_term_gate"] = (
+            term_rule_state == "verified"
+            if result["native_term_gate_checked"] else None)
+        result["full_rules_complete"] = (
+            result.get("full_rules_complete") is True
+            and result["native_term_gate_checked"])
+        result["parameters_matched"] = (
+            reparations.get("parameters_matched") is True
+            and ("m" not in mask or money.get("parameters_matched") is True)
+            and ("p" not in mask or provinces.get("parameters_matched") is True))
+        result["parameters_complete"] = result["parameters_matched"] and (
+            result.get("native_payload", {}).get("serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
+        return result
+
+    @classmethod
+    def _semantic_peace_trade_power_offer_inspection(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project one QUERY9 trade-power selection observation.
+
+        QUERY9 shares the money/province wire fields with QUERY8 but its
+        required base record is `
+ative_trade_power``.  A mixed ``rt`` or
+        ``mprt`` query also carries the optional R record, which is retained
+        under its existing public names.
+        """
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = event.get("direction", "demand")
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_trade_power_offer_inspection"
+        result["action_id"] = event.get("action_id", "transfer_trade_power")
+
+        def base_record(native: object, left: str, right: str) -> dict | None:
+            if not isinstance(native, dict):
+                return None
+            record = {
+                "requested": native.get("requested") is True,
+                "candidate_count": cls._safe_int(
+                    native.get("candidate_count"), 0, 512),
+                "matching_candidate_count": cls._safe_int(
+                    native.get("matching_candidate_count"), 0, 512),
+                "candidate_found": native.get("candidate_found") is True,
+                "selection_requested": native.get("selection_requested") is True,
+                "selection_available": native.get("selection_available") is True,
+                "selected": native.get("selected") is True,
+                "selected_term_count": cls._safe_int(
+                    native.get("selected_term_count"), 0, 16),
+                left: native.get(left),
+                right: native.get(right),
+                "selection_copy_verified": (
+                    native.get("selection_copy_verified") is True),
+                "parameters_matched": native.get("parameters_matched") is True,
+                "reason_code": native.get("reason_code"),
+                "rule_checked": native.get("rule_checked") is True,
+                "rule_available": native.get("rule_available") is True,
+                "rule_term_count": cls._safe_int(
+                    native.get("rule_term_count"), 0, 512),
+                "rule_scope": ("selected_nonzero_terms" if native.get(
+                    "rule_scope") == "selected_nonzero_terms" else None),
+                "rule_diagnostic_hex": native.get("rule_diagnostic_hex"),
+                "rule_diagnostic_readable": (
+                    native.get("rule_diagnostic_readable") is True),
+                "rule_diagnostic_truncated": (
+                    native.get("rule_diagnostic_truncated") is True),
+            }
+            # QUERY10's candidate rows are deliberately reduced to the four
+            # public fields.  Keep the keys absent for legacy QUERY9 events so
+            # their historical projection and completeness semantics remain
+            # stable.
+            candidate_keys = {
+                "candidates_available", "candidates_complete",
+                "candidates_truncated", "candidates"}
+            if candidate_keys.issubset(native):
+                rows = native.get("candidates")
+                if isinstance(rows, list):
+                    record.update({
+                        "candidates_available": (
+                            native.get("candidates_available") is True),
+                        "candidates_complete": (
+                            native.get("candidates_complete") is True),
+                        "candidates_truncated": (
+                            native.get("candidates_truncated") is True),
+                        "candidates": [
+                            {key: row[key] for key in (
+                                "source", "beneficiary", "selected", "complete")}
+                            for row in rows
+                            if isinstance(row, dict)
+                            and set(row) == {
+                                "source", "beneficiary", "selected", "complete"}
+                        ],
+                    })
+            return record
+
+        native_trade = base_record(
+            event.get("native_trade_power"), "source", "beneficiary")
+        result["native_trade_power"] = native_trade
+        native_reparations = base_record(
+            event.get("native_reparations"), "payer", "claimant")
+        result["native_reparations"] = native_reparations
+        gate_record = native_trade or native_reparations or {}
+        rule_text = cls._safe_native_text({
+            "text_hex": gate_record.get("rule_diagnostic_hex"),
+            "text_readable": gate_record.get("rule_diagnostic_readable") is True,
+        }, codec)
+        result.setdefault("diagnostics", {})["selected_term_gate"] = {
+            "text": rule_text, "text_decoded": rule_text is not None,
+            "text_truncated": gate_record.get("rule_diagnostic_truncated") is True,
+            "source": "native_rule", "complete": False,
+        }
+
+        mask = event.get("term_mask", "")
+        if "m" in mask and isinstance(event.get("native_money"), dict):
+            money_event = dict(event)
+            money_event["event"] = "native_peace_money_offer_inspection"
+            money_event["action_id"] = "demand_ducats"
+            money_view = cls._semantic_peace_money_offer_inspection(
+                money_event, codec)
+            result["native_money"] = money_view.get("native_money")
+        if "p" in mask and isinstance(event.get("native_provinces"), dict):
+            province_event = dict(event)
+            province_event["event"] = "native_peace_province_offer_inspection"
+            province_event["action_id"] = "cede_province"
+            province_view = cls._semantic_peace_province_offer_inspection(
+                province_event, codec)
+            result["native_provinces"] = province_view.get("native_provinces")
+
+        terms: list[dict] = []
+        money = result.get("native_money") or {}
+        amount_raw = money.get("requested_amount_raw")
+        if ("m" in mask and money.get("parameters_matched") is True
+                and isinstance(amount_raw, int)
+                and not isinstance(amount_raw, bool)
+                and amount_raw > 0 and amount_raw % 100 == 0):
+            terms.append({
+                "action_id": "demand_ducats",
+                "amount": f"{amount_raw // 1000}.{(amount_raw % 1000) // 100}",
+                "amount_raw": amount_raw,
+                "payer": money.get("payer"),
+                "claimant": money.get("claimant"),
+            })
+        provinces = result.get("native_provinces") or {}
+        selected_ids = provinces.get("selected_province_ids", [])
+        selected_beneficiary = provinces.get("selected_beneficiary")
+        if ("p" in mask and provinces.get("parameters_matched") is True
+                and isinstance(selected_ids, list) and selected_ids
+                and isinstance(selected_beneficiary, str)):
+            terms.append({
+                "action_id": "cede_province",
+                "province_ids": list(selected_ids),
+                "beneficiary": selected_beneficiary,
+            })
+        if ("r" in mask and isinstance(native_reparations, dict)
+                and native_reparations.get("selected") is True
+                and native_reparations.get("parameters_matched") is True):
+            terms.append({
+                "action_id": "war_reparations",
+                "payer": native_reparations.get("payer"),
+                "claimant": native_reparations.get("claimant"),
+            })
+        if ("t" in mask and isinstance(native_trade, dict)
+                and native_trade.get("selected") is True
+                and native_trade.get("parameters_matched") is True):
+            terms.append({
+                "action_id": "transfer_trade_power",
+                "source": native_trade.get("source"),
+                "beneficiary": native_trade.get("beneficiary"),
+            })
+        result["peace_context"]["direction"] = event.get(
+            "direction", "demand")
+        result["peace_context"]["terms"] = terms
+        result["term_mask"] = mask
+        term_rule_state = cls._peace_selected_term_rule_state(result, terms)
+        result["native_term_gate_checked"] = term_rule_state in (
+            "verified", "failed")
+        result["native_term_gate"] = (
+            term_rule_state == "verified"
+            if result["native_term_gate_checked"] else None)
+        result["full_rules_complete"] = (
+            result.get("full_rules_complete") is True
+            and result["native_term_gate_checked"])
+        result["parameters_matched"] = (
+            isinstance(native_trade, dict)
+            and native_trade.get("parameters_matched") is True
+            and ("r" not in mask or (
+                isinstance(native_reparations, dict)
+                and native_reparations.get("parameters_matched") is True))
+            and ("m" not in mask or
+                 (result.get("native_money") or {}).get(
+                     "parameters_matched") is True)
+            and ("p" not in mask or
+                 (result.get("native_provinces") or {}).get(
+                     "parameters_matched") is True))
+        result["parameters_complete"] = result["parameters_matched"] and (
+            result.get("native_payload", {}).get("serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
+        return result
+
+    @classmethod
+    def _semantic_peace_concede_defeat_offer_inspection(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project one QUERY11 concede-defeat selection observation."""
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = event.get("direction", "demand")
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_concede_defeat_offer_inspection"
+        result["action_id"] = event.get("action_id", "concede_defeat")
+
+        def base_record(native: object, left: str, right: str) -> dict | None:
+            if not isinstance(native, dict):
+                return None
+            return {
+                "requested": native.get("requested") is True,
+                "candidate_count": cls._safe_int(
+                    native.get("candidate_count"), 0, 512),
+                "matching_candidate_count": cls._safe_int(
+                    native.get("matching_candidate_count"), 0, 512),
+                "candidate_found": native.get("candidate_found") is True,
+                "selection_requested": native.get("selection_requested") is True,
+                "selection_available": native.get("selection_available") is True,
+                "selected": native.get("selected") is True,
+                "selected_term_count": cls._safe_int(
+                    native.get("selected_term_count"), 0, 16),
+                left: native.get(left),
+                right: native.get(right),
+                "selection_copy_verified": (
+                    native.get("selection_copy_verified") is True),
+                "parameters_matched": native.get("parameters_matched") is True,
+                "reason_code": native.get("reason_code"),
+                "rule_checked": native.get("rule_checked") is True,
+                "rule_available": native.get("rule_available") is True,
+                "rule_term_count": cls._safe_int(
+                    native.get("rule_term_count"), 0, 512),
+                "rule_scope": ("selected_nonzero_terms" if native.get(
+                    "rule_scope") == "selected_nonzero_terms" else None),
+                "rule_diagnostic_hex": native.get("rule_diagnostic_hex"),
+                "rule_diagnostic_readable": native.get(
+                    "rule_diagnostic_readable") is True,
+                "rule_diagnostic_truncated": native.get(
+                    "rule_diagnostic_truncated") is True,
+            }
+
+        native_c = base_record(
+            event.get("native_concede_defeat"),
+            "conceding_country", "beneficiary")
+        result["native_concede_defeat"] = native_c
+        if native_c is not None:
+            rule_text = cls._safe_native_text({
+                "text_hex": native_c.get("rule_diagnostic_hex"),
+                "text_readable": native_c.get(
+                    "rule_diagnostic_readable") is True,
+            }, codec)
+            result.setdefault("diagnostics", {})["selected_term_gate"] = {
+                "text": rule_text, "text_decoded": rule_text is not None,
+                "text_truncated": native_c.get(
+                    "rule_diagnostic_truncated") is True,
+                "source": "native_rule", "complete": False,
+            }
+
+        mask = event.get("term_mask", "")
+        if "m" in mask and isinstance(event.get("native_money"), dict):
+            money_event = dict(event)
+            money_event["event"] = "native_peace_money_offer_inspection"
+            money_event["action_id"] = "demand_ducats"
+            money_view = cls._semantic_peace_money_offer_inspection(
+                money_event, codec)
+            result["native_money"] = money_view.get("native_money")
+        if "p" in mask and isinstance(event.get("native_provinces"), dict):
+            province_event = dict(event)
+            province_event["event"] = "native_peace_province_offer_inspection"
+            province_event["action_id"] = "cede_province"
+            province_view = cls._semantic_peace_province_offer_inspection(
+                province_event, codec)
+            result["native_provinces"] = province_view.get("native_provinces")
+        if "r" in mask and isinstance(event.get("native_reparations"), dict):
+            reparations_event = dict(event)
+            reparations_event["event"] = "native_peace_reparations_offer_inspection"
+            reparations_event["action_id"] = "war_reparations"
+            reparations_event["term_mask"] = "".join(
+                letter for letter in mask if letter not in "tc")
+            reparations_view = cls._semantic_peace_reparations_offer_inspection(
+                reparations_event, codec)
+            result["native_reparations"] = reparations_view.get(
+                "native_reparations")
+        if "t" in mask and isinstance(event.get("native_trade_power"), dict):
+            trade_event = dict(event)
+            trade_event["event"] = "native_peace_trade_power_offer_inspection"
+            trade_event["action_id"] = "transfer_trade_power"
+            trade_event["term_mask"] = "".join(
+                letter for letter in mask if letter != "c")
+            trade_view = cls._semantic_peace_trade_power_offer_inspection(
+                trade_event, codec)
+            for key in ("native_trade_power", "native_money",
+                        "native_provinces", "native_reparations"):
+                if key in trade_view:
+                    result[key] = trade_view[key]
+
+        terms: list[dict] = []
+        money = result.get("native_money") or {}
+        amount_raw = money.get("requested_amount_raw")
+        if ("m" in mask and money.get("parameters_matched") is True
+                and isinstance(amount_raw, int)
+                and not isinstance(amount_raw, bool)
+                and amount_raw > 0 and amount_raw % 100 == 0):
+            terms.append({
+                "action_id": "demand_ducats",
+                "amount": f"{amount_raw // 1000}.{(amount_raw % 1000) // 100}",
+                "amount_raw": amount_raw,
+                "payer": money.get("payer"),
+                "claimant": money.get("claimant"),
+            })
+        provinces = result.get("native_provinces") or {}
+        selected_ids = provinces.get("selected_province_ids", [])
+        selected_beneficiary = provinces.get("selected_beneficiary")
+        if ("p" in mask and provinces.get("parameters_matched") is True
+                and isinstance(selected_ids, list) and selected_ids
+                and isinstance(selected_beneficiary, str)):
+            terms.append({
+                "action_id": "cede_province",
+                "province_ids": list(selected_ids),
+                "beneficiary": selected_beneficiary,
+            })
+        reparations = result.get("native_reparations") or {}
+        if ("r" in mask and reparations.get("selected") is True
+                and reparations.get("parameters_matched") is True):
+            terms.append({
+                "action_id": "war_reparations",
+                "payer": reparations.get("payer"),
+                "claimant": reparations.get("claimant"),
+            })
+        trade = result.get("native_trade_power") or {}
+        if ("t" in mask and trade.get("selected") is True
+                and trade.get("parameters_matched") is True):
+            terms.append({
+                "action_id": "transfer_trade_power",
+                "source": trade.get("source"),
+                "beneficiary": trade.get("beneficiary"),
+            })
+        if ("c" in mask and isinstance(native_c, dict)
+                and native_c.get("selected") is True
+                and native_c.get("parameters_matched") is True):
+            terms.append({
+                "action_id": "concede_defeat",
+                "conceding_country": native_c.get("conceding_country"),
+                "beneficiary": native_c.get("beneficiary"),
+            })
+        result["peace_context"]["direction"] = event.get(
+            "direction", "demand")
+        result["peace_context"]["terms"] = terms
+        result["term_mask"] = mask
+        term_rule_state = cls._peace_selected_term_rule_state(result, terms)
+        result["native_term_gate_checked"] = term_rule_state in (
+            "verified", "failed")
+        result["native_term_gate"] = (
+            term_rule_state == "verified"
+            if result["native_term_gate_checked"] else None)
+        result["full_rules_complete"] = (
+            result.get("full_rules_complete") is True
+            and result["native_term_gate_checked"])
+        result["parameters_matched"] = (
+            isinstance(native_c, dict)
+            and native_c.get("parameters_matched") is True
+            and ("m" not in mask or
+                 (result.get("native_money") or {}).get(
+                     "parameters_matched") is True)
+            and ("p" not in mask or
+                 (result.get("native_provinces") or {}).get(
+                     "parameters_matched") is True)
+            and ("r" not in mask or
+                 isinstance(reparations, dict)
+                 and reparations.get("parameters_matched") is True)
+            and ("t" not in mask or
+                 isinstance(trade, dict)
+                 and trade.get("parameters_matched") is True))
+        result["parameters_complete"] = result["parameters_matched"] and (
+            result.get("native_payload", {}).get("serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
+        return result
+
+    @classmethod
+    def _semantic_peace_annul_treaties_offer_inspection(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project one QUERY12 Annul Treaties observation.
+
+        The native A record is deliberately projected independently from the
+        R/T/C records.  A country is not inferred from the peace direction;
+        only the native selected copy can establish the public term.
+        """
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = event.get("direction", "demand")
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_annul_treaties_offer_inspection"
+        result["action_id"] = event.get("action_id", "annul_treaties")
+
+        native = event.get("native_annul_treaties")
+        if isinstance(native, dict):
+            candidates = []
+            raw_candidates = native.get("candidates")
+            if isinstance(raw_candidates, list):
+                for row in raw_candidates[:256]:
+                    if (not isinstance(row, dict)
+                            or set(row) != {"country", "partner", "selected", "complete"}
+                            or not isinstance(row.get("country"), str)
+                            or not isinstance(row.get("partner"), str)
+                            or not isinstance(row.get("selected"), bool)
+                            or not isinstance(row.get("complete"), bool)):
+                        continue
+                    candidates.append({key: row[key] for key in (
+                        "country", "partner", "selected", "complete")})
+            native_a = {
+                "requested": native.get("requested") is True,
+                "candidate_count": cls._safe_int(
+                    native.get("candidate_count"), 0, 512),
+                "matching_candidate_count": cls._safe_int(
+                    native.get("matching_candidate_count"), 0, 512),
+                "candidate_found": native.get("candidate_found") is True,
+                "selection_requested": native.get("selection_requested") is True,
+                "selection_available": native.get("selection_available") is True,
+                "selected": native.get("selected") is True,
+                "selected_term_count": cls._safe_int(
+                    native.get("selected_term_count"), 0, 16),
+                "country": native.get("country"),
+                "treaty_partners": list(native.get("treaty_partners", []))
+                if isinstance(native.get("treaty_partners"), list) else [],
+                "selection_copy_verified": (
+                    native.get("selection_copy_verified") is True),
+                "parameters_matched": native.get("parameters_matched") is True,
+                "candidates_available": native.get("candidates_available") is True,
+                "candidates_complete": native.get("candidates_complete") is True,
+                "candidates_truncated": native.get("candidates_truncated") is True,
+                "candidates": candidates,
+                "reason_code": native.get("reason_code"),
+                "rule_checked": native.get("rule_checked") is True,
+                "rule_available": native.get("rule_available") is True,
+                "rule_term_count": cls._safe_int(
+                    native.get("rule_term_count"), 0, 512),
+                "rule_scope": ("selected_nonzero_terms" if native.get(
+                    "rule_scope") == "selected_nonzero_terms" else None),
+                "rule_diagnostic_hex": native.get("rule_diagnostic_hex"),
+                "rule_diagnostic_readable": native.get(
+                    "rule_diagnostic_readable") is True,
+                "rule_diagnostic_truncated": native.get(
+                    "rule_diagnostic_truncated") is True,
+            }
+            result["native_annul_treaties"] = native_a
+            rule_text = cls._safe_native_text({
+                "text_hex": native_a.get("rule_diagnostic_hex"),
+                "text_readable": native_a.get("rule_diagnostic_readable") is True,
+            }, codec)
+            result.setdefault("diagnostics", {})["selected_term_gate"] = {
+                "text": rule_text, "text_decoded": rule_text is not None,
+                "text_truncated": native_a.get("rule_diagnostic_truncated") is True,
+                "source": "native_rule", "complete": False,
+            }
+
+        mask = event.get("term_mask", "")
+        # Reuse the established semantic projections for the shared nested
+        # records, while stripping A/C bits from their local masks.
+        for bit, native_key, event_name, action_name, helper in (
+                ("m", "native_money", "native_peace_money_offer_inspection",
+                 "demand_ducats", cls._semantic_peace_money_offer_inspection),
+                ("p", "native_provinces", "native_peace_province_offer_inspection",
+                 "cede_province", cls._semantic_peace_province_offer_inspection),
+                ("r", "native_reparations", "native_peace_reparations_offer_inspection",
+                 "war_reparations", cls._semantic_peace_reparations_offer_inspection),
+                ("t", "native_trade_power", "native_peace_trade_power_offer_inspection",
+                 "transfer_trade_power", cls._semantic_peace_trade_power_offer_inspection)):
+            if bit not in mask or not isinstance(event.get(native_key), dict):
+                continue
+            nested = dict(event)
+            nested["event"] = event_name
+            nested["action_id"] = action_name
+            nested["term_mask"] = "".join(
+                letter for letter in mask if letter not in "ca" if bit != "m" or letter == "m")
+            try:
+                view = helper(nested, codec)
+            except (TypeError, ValueError, KeyError):
+                continue
+            if native_key in view:
+                result[native_key] = view[native_key]
+
+        # C is another aggregate selection record in QUERY12.  Reuse its
+        # established reducer so mixed A+C (and full m,p,r,t,c,a) queries
+        # expose the same public nested records as QUERY11 while removing the
+        # A bit from the synthetic C view.
+        if "c" in mask and isinstance(event.get("native_concede_defeat"), dict):
+            concede_event = dict(event)
+            concede_event["event"] = (
+                "native_peace_concede_defeat_offer_inspection")
+            concede_event["action_id"] = "concede_defeat"
+            concede_event["term_mask"] = "".join(
+                letter for letter in mask if letter != "a")
+            try:
+                concede_view = cls._semantic_peace_concede_defeat_offer_inspection(
+                    concede_event, codec)
+            except (TypeError, ValueError, KeyError):
+                concede_view = {}
+            for key in ("native_concede_defeat", "native_money",
+                        "native_provinces", "native_reparations",
+                        "native_trade_power"):
+                if key in concede_view:
+                    result[key] = concede_view[key]
+
+        terms: list[dict] = []
+        money = result.get("native_money") or {}
+        amount_raw = money.get("requested_amount_raw")
+        if ("m" in mask and money.get("parameters_matched") is True
+                and isinstance(amount_raw, int)
+                and not isinstance(amount_raw, bool)
+                and amount_raw > 0 and amount_raw % 100 == 0):
+            terms.append({
+                "action_id": "demand_ducats",
+                "amount": f"{amount_raw // 1000}.{(amount_raw % 1000) // 100}",
+                "amount_raw": amount_raw,
+                "payer": money.get("payer"),
+                "claimant": money.get("claimant"),
+            })
+        provinces = result.get("native_provinces") or {}
+        selected_ids = provinces.get("selected_province_ids", [])
+        selected_beneficiary = provinces.get("selected_beneficiary")
+        if ("p" in mask and provinces.get("parameters_matched") is True
+                and isinstance(selected_ids, list) and selected_ids
+                and isinstance(selected_beneficiary, str)):
+            terms.append({
+                "action_id": "cede_province",
+                "province_ids": list(selected_ids),
+                "beneficiary": selected_beneficiary,
+            })
+        reparations = result.get("native_reparations") or {}
+        if ("r" in mask and reparations.get("selected") is True
+                and reparations.get("parameters_matched") is True):
+            terms.append({
+                "action_id": "war_reparations",
+                "payer": reparations.get("payer"),
+                "claimant": reparations.get("claimant"),
+            })
+        trade = result.get("native_trade_power") or {}
+        if ("t" in mask and trade.get("selected") is True
+                and trade.get("parameters_matched") is True):
+            terms.append({
+                "action_id": "transfer_trade_power",
+                "source": trade.get("source"),
+                "beneficiary": trade.get("beneficiary"),
+            })
+        native_c = result.get("native_concede_defeat") or {}
+        if ("c" in mask and native_c.get("selected") is True
+                and native_c.get("parameters_matched") is True):
+            terms.append({
+                "action_id": "concede_defeat",
+                "conceding_country": native_c.get("conceding_country"),
+                "beneficiary": native_c.get("beneficiary"),
+            })
+        native_a = result.get("native_annul_treaties") or {}
+        if ("a" in mask and native_a.get("selected") is True
+                and native_a.get("parameters_matched") is True
+                and isinstance(native_a.get("country"), str)
+                and isinstance(native_a.get("treaty_partners"), list)
+                and native_a.get("treaty_partners")):
+            terms.append({
+                "action_id": "annul_treaties",
+                "country": native_a["country"],
+                "treaty_partners": list(native_a["treaty_partners"]),
+            })
+        result["peace_context"]["direction"] = event.get(
+            "direction", "demand")
+        result["peace_context"]["terms"] = terms
+        result["term_mask"] = mask
+        result["native_term_gate_checked"] = False
+        result["native_term_gate"] = None
+        term_rule_state = cls._peace_selected_term_rule_state(result, terms)
+        if term_rule_state in ("verified", "failed"):
+            result["native_term_gate_checked"] = True
+            result["native_term_gate"] = term_rule_state == "verified"
+        result["full_rules_complete"] = (
+            result.get("full_rules_complete") is True
+            and result["native_term_gate_checked"])
+        result["parameters_matched"] = (
+            isinstance(native, dict)
+            and native.get("parameters_matched") is True
+            and ("m" not in mask or
+                 (result.get("native_money") or {}).get(
+                     "parameters_matched") is True)
+            and ("p" not in mask or
+                 (result.get("native_provinces") or {}).get(
+                     "parameters_matched") is True)
+            and ("r" not in mask or
+                 isinstance(reparations, dict)
+                 and reparations.get("parameters_matched") is True)
+            and ("t" not in mask or
+                 isinstance(trade, dict)
+                 and trade.get("parameters_matched") is True)
+            and ("c" not in mask or
+                 isinstance(native_c, dict)
+                 and native_c.get("parameters_matched") is True))
+        result["parameters_complete"] = result["parameters_matched"] and (
+            result.get("native_payload", {}).get("serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
+        return result
+
+    @classmethod
+    def _semantic_peace_special_offer_inspection(
+            cls, event: dict,
+            codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
+        """Project QUERY13's H/S/F aggregate peace observation.
+
+        The special terms share the aggregate QUERY11/12 selection contract.
+        Their native consequence records are intentionally kept as inspection
+        data; no prestige or religion effect is inferred until the native
+        effect schema is supplied by the execution adapter.
+        """
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = event.get("direction", "demand")
+        result = cls._semantic_peace_empty_offer_inspection(common, codec)
+        result["event"] = "native_peace_special_offer_inspection"
+        result["action_id"] = event.get("action_id")
+
+        mask = event.get("term_mask", "")
+        # Reuse the established semantic reducers for shared nested records.
+        for bit, native_key, event_name, action_name, helper in (
+                ("m", "native_money", "native_peace_money_offer_inspection",
+                 "demand_ducats", cls._semantic_peace_money_offer_inspection),
+                ("p", "native_provinces", "native_peace_province_offer_inspection",
+                 "cede_province", cls._semantic_peace_province_offer_inspection),
+                ("r", "native_reparations", "native_peace_reparations_offer_inspection",
+                 "war_reparations", cls._semantic_peace_reparations_offer_inspection),
+                ("t", "native_trade_power", "native_peace_trade_power_offer_inspection",
+                 "transfer_trade_power", cls._semantic_peace_trade_power_offer_inspection),
+                ("c", "native_concede_defeat", "native_peace_concede_defeat_offer_inspection",
+                 "concede_defeat", cls._semantic_peace_concede_defeat_offer_inspection),
+                ("a", "native_annul_treaties", "native_peace_annul_treaties_offer_inspection",
+                 "annul_treaties", cls._semantic_peace_annul_treaties_offer_inspection)):
+            if bit not in mask or not isinstance(event.get(native_key), dict):
+                continue
+            nested = dict(event)
+            nested["event"] = event_name
+            nested["action_id"] = action_name
+            nested["term_mask"] = "".join(
+                letter for letter in mask if letter in "mprtca")
+            try:
+                view = helper(nested, codec)
+            except (TypeError, ValueError, KeyError):
+                continue
+            if native_key in view:
+                result[native_key] = view[native_key]
+
+        special_terms: list[dict] = []
+        special_views: dict[str, dict] = {}
+        special_rule_diagnostic: dict | None = None
+        for action_id, native_key in (
+                ("humiliate_rival", "native_humiliate_rival"),
+                ("show_strength", "native_show_strength"),
+                ("force_religion", "native_force_religion")):
+            native = event.get(native_key)
+            if not isinstance(native, dict):
+                continue
+            view = {
+                "requested": native.get("requested") is True,
+                "candidate_count": cls._safe_int(
+                    native.get("candidate_count"), 0, 512),
+                "matching_candidate_count": cls._safe_int(
+                    native.get("matching_candidate_count"), 0, 512),
+                "candidate_found": native.get("candidate_found") is True,
+                "selection_requested": native.get("selection_requested") is True,
+                "selection_available": native.get("selection_available") is True,
+                "selected": native.get("selected") is True,
+                "selected_term_count": cls._safe_int(
+                    native.get("selected_term_count"), 0, 16),
+                "country": native.get("country"),
+                "beneficiary": native.get("beneficiary"),
+                "selection_copy_verified": (
+                    native.get("selection_copy_verified") is True),
+                "parameters_matched": native.get("parameters_matched") is True,
+                "reason_code": native.get("reason_code"),
+                "rule_checked": native.get("rule_checked") is True,
+                "rule_available": native.get("rule_available") is True,
+                "rule_term_count": cls._safe_int(
+                    native.get("rule_term_count"), 0, 512),
+                "rule_scope": ("selected_nonzero_terms" if native.get(
+                    "rule_scope") == "selected_nonzero_terms" else None),
+                "rule_diagnostic_hex": native.get("rule_diagnostic_hex"),
+                "rule_diagnostic_readable": native.get(
+                    "rule_diagnostic_readable") is True,
+                "rule_diagnostic_truncated": native.get(
+                    "rule_diagnostic_truncated") is True,
+            }
+            result[native_key] = view
+            special_views[action_id] = view
+            # Keep the bounded native diagnostic in the same public shape as
+            # the C/A selected-term projections.  The aggregate special
+            # event may contain more than one special record; expose the
+            # first decoded cause, while ``complete=False`` makes clear that
+            # it is not a claim that every native reason was captured.
+            diagnostic = {
+                "text": cls._safe_native_text({
+                    "text_hex": native.get("rule_diagnostic_hex"),
+                    "text_readable": native.get(
+                        "rule_diagnostic_readable") is True,
+                }, codec),
+                "text_decoded": False,
+                "text_truncated": native.get(
+                    "rule_diagnostic_truncated") is True,
+                "source": "native_rule",
+                "complete": False,
+            }
+            diagnostic["text_decoded"] = diagnostic["text"] is not None
+            if (special_rule_diagnostic is None
+                    or (special_rule_diagnostic["text"] is None
+                        and diagnostic["text"] is not None)):
+                special_rule_diagnostic = diagnostic
+
+        if special_rule_diagnostic is not None:
+            result.setdefault("diagnostics", {})[
+                "selected_term_gate"] = special_rule_diagnostic
+
+        result["native_cost_comparisons"] = [
+            comparison for action_id in special_views
+            if (comparison := project_special_cost_comparisons(
+                {**event, "action_id": action_id})) is not None]
+
+        # Rebuild the public selected context strictly from native matched
+        # copies.  The canonical order is m,p,r,t,c,a,h,s,f.
+        terms: list[dict] = []
+        money = result.get("native_money") or {}
+        amount_raw = money.get("requested_amount_raw")
+        if ("m" in mask and money.get("parameters_matched") is True
+                and isinstance(amount_raw, int) and not isinstance(amount_raw, bool)
+                and amount_raw > 0 and amount_raw % 100 == 0):
+            terms.append({"action_id": "demand_ducats",
+                          "amount": f"{amount_raw // 1000}.{(amount_raw % 1000) // 100}",
+                          "amount_raw": amount_raw, "payer": money.get("payer"),
+                          "claimant": money.get("claimant")})
+        provinces = result.get("native_provinces") or {}
+        ids = provinces.get("selected_province_ids", [])
+        if ("p" in mask and provinces.get("parameters_matched") is True
+                and isinstance(ids, list) and ids
+                and isinstance(provinces.get("selected_beneficiary"), str)):
+            terms.append({"action_id": "cede_province", "province_ids": list(ids),
+                          "beneficiary": provinces.get("selected_beneficiary")})
+        reparations = result.get("native_reparations") or {}
+        if ("r" in mask and reparations.get("selected") is True
+                and reparations.get("parameters_matched") is True):
+            terms.append({"action_id": "war_reparations",
+                          "payer": reparations.get("payer"),
+                          "claimant": reparations.get("claimant")})
+        trade = result.get("native_trade_power") or {}
+        if ("t" in mask and trade.get("selected") is True
+                and trade.get("parameters_matched") is True):
+            terms.append({"action_id": "transfer_trade_power",
+                          "source": trade.get("source"),
+                          "beneficiary": trade.get("beneficiary")})
+        concede = result.get("native_concede_defeat") or {}
+        if ("c" in mask and concede.get("selected") is True
+                and concede.get("parameters_matched") is True):
+            terms.append({"action_id": "concede_defeat",
+                          "conceding_country": concede.get("conceding_country"),
+                          "beneficiary": concede.get("beneficiary")})
+        annul = result.get("native_annul_treaties") or {}
+        if ("a" in mask and annul.get("selected") is True
+                and annul.get("parameters_matched") is True
+                and isinstance(annul.get("country"), str)
+                and isinstance(annul.get("treaty_partners"), list)
+                and annul.get("treaty_partners")):
+            terms.append({"action_id": "annul_treaties", "country": annul["country"],
+                          "treaty_partners": list(annul["treaty_partners"])})
+        for action_id, bit in (("humiliate_rival", "h"),
+                               ("show_strength", "s"),
+                               ("force_religion", "f")):
+            view = special_views.get(action_id) or {}
+            if (bit in mask and view.get("selected") is True
+                    and view.get("parameters_matched") is True
+                    and isinstance(view.get("country"), str)
+                    and isinstance(view.get("beneficiary"), str)):
+                terms.append({"action_id": action_id,
+                              "country": view["country"],
+                              "beneficiary": view["beneficiary"]})
+
+        result["peace_context"]["direction"] = event.get("direction", "demand")
+        result["peace_context"]["terms"] = terms
+        result["term_mask"] = mask
+        term_rule_state = cls._peace_selected_term_rule_state(result, terms)
+        result["native_term_gate_checked"] = term_rule_state in ("verified", "failed")
+        result["native_term_gate"] = (
+            term_rule_state == "verified"
+            if result["native_term_gate_checked"] else None)
+        result["full_rules_complete"] = (
+            result.get("full_rules_complete") is True
+            and result["native_term_gate_checked"])
+        result["parameters_matched"] = all(
+            bit not in mask or (
+                isinstance(result.get(native_key), dict)
+                and result[native_key].get("parameters_matched") is True)
+            for bit, native_key in (
+                ("m", "native_money"), ("p", "native_provinces"),
+                ("r", "native_reparations"), ("t", "native_trade_power"),
+                ("c", "native_concede_defeat"), ("a", "native_annul_treaties"),
+                ("h", "native_humiliate_rival"),
+                ("s", "native_show_strength"),
+                ("f", "native_force_religion")))
+        result["parameters_complete"] = result["parameters_matched"] and (
+            result.get("native_payload", {}).get("serialized_fields_complete") is True
+            if isinstance(result.get("native_payload"), dict) else False)
         return result
 
     @classmethod
@@ -5751,11 +11332,10 @@ class ObserverSession:
             codec: str = DEFAULT_NATIVE_TEXT_CODEC) -> dict:
         """Project the bounded default-payload Declare War cost observation.
 
-        The native helper reports display calculations before a CB, war goal,
-        or ally context is selected.  Only the stability-loss scale is
-        identified by the current evidence; the other integers remain named
-        raw components and are never presented as diplomatic power or a
-        complete fee.
+        The helper evaluates the current action payload. Stability loss and
+        war exhaustion use scale 1000; R61's real independence declaration
+        and saved WE difference confirm the latter scale. AE components
+        remain raw until their country-specific meanings are established.
         """
 
         native_costs = event.get("native_costs") if isinstance(event, dict) else None
@@ -5789,6 +11369,19 @@ class ObserverSession:
                 "unit": "stability_loss",
                 "unit_verified": True,
                 "scale": stability_scale,
+                "scale_verified": True,
+                "source": "native_rule",
+                "complete": True,
+            })
+        if warex_available and warex_raw is not None:
+            items.append({
+                "resource": "war_exhaustion",
+                "native_raw": warex_raw,
+                "amount_raw": warex_raw,
+                "amount": warex_raw / 1000,
+                "unit": "war_exhaustion",
+                "unit_verified": True,
+                "scale": 1000,
                 "scale_verified": True,
                 "source": "native_rule",
                 "complete": True,
@@ -5868,6 +11461,9 @@ class ObserverSession:
                                  recipient: str, phase: str, expected_date: object,
                                  expected_query_id: str | None = None,
                                  expected_session_id: str | None = None) -> bool:
+        if not validate_native_diplomat_context(event):
+            return False
+
         if action_id in PEACE_ACTION_IDS:
             return cls._valid_native_peace_context_inspection(
                 event, action_id, actor, recipient, phase, expected_date,
@@ -5917,6 +11513,19 @@ class ObserverSession:
                     and (not isinstance(subject_type, str)
                          or not subject_type or len(subject_type) > 64)):
                 return False
+        if action_id in _FAVOR_ACTIONS:
+            if (event.get("family") != "favor_trade"
+                    or not _valid_favor_query_for_action(
+                        action_id, event.get("native_favor_trade"))):
+                return False
+        if action_id == _GIFT_ACTION:
+            if (event.get("family") != "gift"
+                    or not _validate_gift_query(event.get("native_gift"))):
+                return False
+        if action_id == _INFLUENCE_ACTION:
+            if (event.get("family") != "influence"
+                    or not _validate_influence_query(event.get("native_influence"))):
+                return False
         score_available = event.get("score_available")
         if score_available is not None and not isinstance(score_available, bool):
             return False
@@ -5926,8 +11535,10 @@ class ObserverSession:
                 return False
         if action_id in ("improve_relations", "stop_improving_relations",
                          "build_spy_network", "stop_building_spy_network",
+                         "curry_favors", "stop_curry_favors",
                          "proclaim_guarantee", "revoke_guarantee",
-                         "cancel_vassalization"):
+                          "cancel_vassalization", _GIFT_ACTION,
+                          _INFLUENCE_ACTION):
             # ImproveRelations, Spy Network, and Guarantee are single-party
             # actions. Their native query records must not expose an
             # acceptance score or counterparty predicate, even if an unrelated
@@ -5936,6 +11547,11 @@ class ObserverSession:
                           "acceptance_predicate_available"):
                 if event.get(field) is not False:
                     return False
+        if action_id in ("curry_favors", "stop_curry_favors"):
+            if (event.get("family") != "curry_favors"
+                    or not isinstance(event.get("task_active"), bool)
+                    or event.get("task_state_verified") is not True):
+                return False
         if score_available is True:
             if (cls._safe_int(event.get("native_total_raw"), -2147483648, 2147483647) is None
                     or cls._safe_int(event.get("acceptance_threshold_raw"), -2147483648, 2147483647) is None):
@@ -6095,16 +11711,274 @@ class ObserverSession:
         return True
 
     @classmethod
+    def _peace_selected_term_rule_state(cls, event: object, terms: object) -> str:
+        """Require the native rule check to cover every selected nonzero term."""
+        if not isinstance(terms, list):
+            return "unknown"
+        required_kinds = {
+            kind for kind, action in (
+                ("reparations", "war_reparations"),
+                ("trade_power", "transfer_trade_power"),
+                ("concede_defeat", "concede_defeat"),
+                ("annul_treaties", "annul_treaties"),
+                ("humiliate_rival", "humiliate_rival"),
+                ("show_strength", "show_strength"),
+                ("force_religion", "force_religion"),
+                ("return_core", "return_core"),
+                ("revoke_core", "revoke_core"),
+                ("release_subject", "release_subject"),
+                ("transfer_subject", "transfer_subject"),)
+            if any(isinstance(term, dict) and term.get("action_id") == action
+                   for term in terms)
+        }
+        country_actions = {
+            "release_nation", "force_vassalization", "form_personal_union",
+            "grant_independence", "full_annexation",
+        }
+        country_term_count = sum(
+            1 for term in terms
+            if isinstance(term, dict)
+            and term.get("action_id") in country_actions)
+        if not isinstance(event, dict):
+            return "unknown"
+        if (not required_kinds and country_term_count == 0
+                and "native_selected_rules" not in event):
+            return "not_required"
+        # The native transaction checks the complete selected offer, including
+        # its cost. New producers also use it for province/core/subject terms.
+        # Candidate misses precede this transaction because no matching term
+        # exists to select. Older per-family records remain compatible.
+        country_rules = event.get("native_selected_rules")
+        if country_term_count and cls._peace_country_candidate_absent(event, terms):
+            return "failed"
+        if country_term_count or "native_selected_rules" in event:
+            if not cls._valid_native_selected_rules(
+                    country_rules, event.get("native_payload"),
+                    country_term_count):
+                return "unknown"
+            # A syntactically valid but incomplete selected-rules object is
+            # still only an observation gap.  Only a complete object can
+            # establish native acceptance or rejection for country terms.
+            if country_rules.get("complete") is not True:
+                return "unknown"
+            states = [country_rules.get("available") is True]
+        else:
+            states = []
+        # The legacy rule-term counter covers the ordinary numeric/province/
+        # relationship families.  QUERY17 reports release/transfer subjects
+        # in their own nested selection records, so those terms are verified
+        # below and are deliberately absent from the legacy counter.  Counting
+        # them here made a complete m+r+subject query look incomplete even
+        # though the native subject records had matched every requested row.
+        rule_count_terms = [
+            term for term in terms
+            if isinstance(term, dict)
+            and term.get("action_id") not in _PEACE_SUBJECT_ACTIONS
+            and term.get("action_id") not in country_actions]
+        expected_count = sum(
+            len(term.get("province_ids", [])) if term.get("action_id") in {
+                "cede_province", "return_core", "revoke_core"}
+            else len(term.get("treaty_partners", [])) if term.get("action_id") == "annul_treaties"
+            else 1 for term in rule_count_terms)
+        for kind in sorted(required_kinds):
+            if kind in {"release_subject", "transfer_subject"}:
+                nested = event.get("native_subject_terms")
+                native = (nested.get(kind) if isinstance(nested, dict) else None)
+                requested_count = sum(
+                    len(term.get("countries", [term.get("country")]))
+                    for term in terms if isinstance(term, dict)
+                    and term.get("action_id") == kind)
+                if (not isinstance(native, dict)
+                        or requested_count < 1
+                        or native.get("selection_requested") is not True
+                        or native.get("requested_candidate_found") is not True
+                        or native.get("parameters_matched") is not True
+                        or native.get("selection_applied") is not True
+                        or native.get("selection_records_complete") is not True
+                        or native.get("action_copy_matched") is not True
+                        or cls._safe_int(native.get("selected_term_count"), 1, 16)
+                        != requested_count):
+                    return "unknown"
+                states.append(True)
+                continue
+            native = event.get(
+                "native_reparations" if kind == "reparations"
+                else "native_trade_power" if kind == "trade_power"
+                else "native_concede_defeat" if kind == "concede_defeat"
+                else "native_annul_treaties" if kind == "annul_treaties"
+                else {"humiliate_rival": "native_humiliate_rival",
+                      "show_strength": "native_show_strength",
+                      "force_religion": "native_force_religion",
+                      "return_core": "native_return_core",
+                      "revoke_core": "native_revoke_core"}[kind])
+            if kind in {"return_core", "revoke_core"}:
+                # QUERY14/15 core records use the R57 selection contract.
+                # They deliberately have no per-term rule_available field:
+                # the native combined query reports the selected core
+                # records and the common full-rules proof at the outer level.
+                # Do not apply the older R/T/C rule-term contract to these
+                # nested records; doing so downgraded a complete QUERY15 to
+                # NATIVE_PEACE_EXECUTION_RULES_INCOMPLETE.
+                if native is None:
+                    nested = event.get("native_core_terms")
+                    if isinstance(nested, dict):
+                        candidate = nested.get(kind)
+                        if isinstance(candidate, dict):
+                            native = candidate
+                if not isinstance(native, dict):
+                    return "unknown"
+                requested_count = sum(
+                    len(term.get("province_ids", []))
+                    for term in terms
+                    if isinstance(term, dict)
+                    and term.get("action_id") == kind)
+                if (requested_count < 1
+                        or native.get("selection_requested") is not True
+                        or native.get("requested_candidates_found") is not True
+                        or native.get("parameters_matched") is not True
+                        or native.get("selection_applied") is not True
+                        or native.get("selection_records_complete") is not True
+                        or native.get("action_copy_matched") is not True
+                        or cls._safe_int(native.get("selected_term_count"), 1, 512)
+                        != requested_count):
+                    return "unknown"
+                states.append(True)
+                continue
+            if (not isinstance(native, dict)
+                    or native.get("rule_checked") is not True
+                    or native.get("rule_scope") != "selected_nonzero_terms"
+                    or cls._safe_int(native.get("rule_term_count"), 1, 512)
+                    != expected_count
+                    or not isinstance(native.get("rule_available"), bool)):
+                return "unknown"
+            states.append(native["rule_available"])
+        return "verified" if all(states) else "failed"
+
+    @classmethod
+    def _peace_country_candidate_absent(
+            cls, event: object, terms: object) -> bool:
+        """Recognize a complete QUERY18 country-candidate miss.
+
+        The native candidate query can establish an unavailable country term
+        before the selected-term rule transaction runs.  This is distinct
+        from an incomplete query: enumeration and the request copy must be
+        complete, and every selected country family must report the stable
+        ``CANDIDATE_ABSENT`` reason with no selected row.
+        """
+
+        if (not isinstance(event, dict)
+                or event.get("query_complete") is not True
+                or not isinstance(terms, list)):
+            return False
+        nested = event.get("native_country_terms")
+        for term in terms:
+            if (not isinstance(term, dict)
+                    or term.get("action_id") not in COUNTRY_TERM_ACTIONS):
+                continue
+            action_id = term["action_id"]
+            record = (event.get("native_annexation")
+                      if action_id == "full_annexation"
+                      else nested.get(action_id)
+                      if isinstance(nested, dict) else None)
+            if (not isinstance(record, dict)
+                    or record.get("action_id") != action_id
+                    or record.get("selection_requested") is not True
+                    or record.get("candidate_enumeration_complete") is not True
+                    or record.get("reason_code")
+                    != "NATIVE_PEACE_COUNTRY_CANDIDATE_ABSENT"
+                    or record.get("requested_candidate_found") is not False
+                    or record.get("parameters_matched") is not False
+                    or record.get("selection_applied") is not False
+                    or record.get("selection_records_complete") is not True
+                    or record.get("action_copy_matched") is not True):
+                return False
+            selected_count = cls._safe_int(
+                record.get("selected_term_count"), 0, 512)
+            if selected_count is None or selected_count != 0:
+                return False
+            candidates = record.get("candidates")
+            if not isinstance(candidates, list):
+                return False
+            if any(isinstance(row, dict) and row.get("selected") is True
+                   for row in candidates):
+                return False
+            return True
+        return False
+
+    @classmethod
+    def _valid_native_selected_rules(
+            cls, value: object, payload: object = None,
+            minimum_selected_terms: int = 0) -> bool:
+        """Validate QUERY18's complete selected-term rule transaction.
+
+        New producers also emit it for selected province, core and subject terms.
+        It is intentionally independent of the older per-family rule records:
+        ``complete`` describes whether the transaction was fully observed,
+        and ``available`` describes its result (including a complete native
+        rejection).  The raw diagnostic remains bounded evidence; it is never
+        interpreted as a legality result by itself.
+        """
+
+        required = {
+            "checked", "cost_checked", "available",
+            "anchor_identity_verified", "payload_unchanged",
+            "diagnostic_readable", "diagnostic_truncated",
+            "selected_term_count", "checked_term_count",
+            "diagnostic_hex", "complete",
+        }
+        if not isinstance(value, dict) or set(value) != required:
+            return False
+        for field in (
+                "checked", "cost_checked", "available",
+                "anchor_identity_verified", "payload_unchanged",
+                "diagnostic_readable", "diagnostic_truncated", "complete"):
+            if not isinstance(value.get(field), bool):
+                return False
+        # A Full Annexation transaction counts selected provinces, not just
+        # the five country families.  The native candidate cap is 256.
+        selected_count = cls._safe_int(value.get("selected_term_count"), 0, 512)
+        checked_count = cls._safe_int(value.get("checked_term_count"), 0, 512)
+        if (selected_count is None or checked_count is None
+                or checked_count > selected_count
+                or selected_count < minimum_selected_terms):
+            return False
+        encoded = value.get("diagnostic_hex")
+        if (not isinstance(encoded, str) or len(encoded) > 4096
+                or len(encoded) % 2
+                or re.fullmatch(r"[0-9a-fA-F]*", encoded) is None):
+            return False
+        if isinstance(payload, dict) and "selected_term_count" in payload:
+            payload_count = cls._safe_int(
+                payload.get("selected_term_count"), 0, 512)
+            if payload_count is None or payload_count != selected_count:
+                return False
+        if value.get("complete") is True:
+            # This mirrors PeaceSelectedRuleCapture.complete(): a complete
+            # observation has an anchor, successful copy restoration, and at
+            # least one checked non-zero term.  ``available`` may be false.
+            if (value.get("checked") is not True
+                    or value.get("cost_checked") is not True
+                    or value.get("anchor_identity_verified") is not True
+                    or value.get("payload_unchanged") is not True
+                    or checked_count <= 0):
+                return False
+        return True
+
+    @classmethod
     def _peace_wrapper_rule_state(cls, event: object) -> str:
         """Classify the optional four-proof wrapper-rule contract.
 
         Older B-build events do not contain these fields and remain a valid
         partial observation.  A producer that emits only part of the proof,
         or claims ``full_rules_complete`` without reporting all four proof
-        fields, is malformed rather than implicitly complete.  The completion
-        flag describes the completeness of the proof *observation*; it does
-        not describe the result of the wrapper gate.  Consequently a complete
-        observation may legitimately contain ``native_wrapper_gate=False``
+        fields, is malformed rather than implicitly complete.  A newer query
+        can report all four wrapper fields while another selected-term gate
+        remains unavailable; with ``full_rules_complete=false`` that is a
+        *partial* observation, not malformed input.  The completion flag
+        describes the completeness of the proof *observation*; it does not
+        describe the result of the wrapper gate.  Consequently a complete
+        observation may legitimately contain `
+ative_wrapper_gate=False``
         while the identity and payload checks are true.
         """
 
@@ -6121,7 +11995,7 @@ class ObserverSession:
                                    for field in fields):
             return "invalid"
         if event.get("full_rules_complete") is not True:
-            return "invalid"
+            return "partial"
         verified = all(event.get(field) is True for field in fields)
         return "verified" if verified else "failed"
 
@@ -6131,7 +12005,8 @@ class ObserverSession:
             phase: str, expected_date: object, expected_selection: dict,
             expected_query_id: str | None = None,
             expected_session_id: str | None = None,
-            *, require_wrapper_rule: bool = False) -> bool:
+            *, require_wrapper_rule: bool = False,
+            allow_unapplied_companion: bool = False) -> bool:
         """Validate a family-bound money inspection in either direction."""
 
         expected_direction = (expected_selection.get("direction", "demand")
@@ -6229,7 +12104,8 @@ class ObserverSession:
                     or evaluation.get("factor_native_count") != 0
                     or evaluation.get("items") != []):
                 return False
-        elif evaluation.get("called") is not True:
+        elif (evaluation.get("called") is not True
+              and not allow_unapplied_companion):
             return False
         return True
 
@@ -6242,6 +12118,9 @@ class ObserverSession:
             *, require_wrapper_rule: bool = False,
             expected_direction: str = "demand") -> bool:
         """Validate the read-only empty-offer inspection contract."""
+
+        if not validate_native_diplomat_context(event):
+            return False
 
         if (not isinstance(event, dict)
                 or action_id != "white_peace"
@@ -6326,6 +12205,884 @@ class ObserverSession:
         if ("native_payload" in event
                 and not cls._valid_native_peace_payload(event["native_payload"])):
             return False
+        if ("native_selected_rules" in event
+                and not cls._valid_native_selected_rules(
+                    event["native_selected_rules"], event.get("native_payload"))):
+            return False
+        if ("native_consequences" in event
+                and not validate_native_consequences(
+                    event["native_consequences"])):
+            return False
+        return True
+
+    @classmethod
+    def _valid_native_peace_core_offer_query(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate QUERY14 on one native event and one selected request."""
+
+        if not isinstance(expected_selection, dict):
+            return False
+
+        def common_validator(common: dict) -> bool:
+            return cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection.get("war_id"), expected_query_id,
+                expected_session_id,
+                require_wrapper_rule=require_wrapper_rule,
+                expected_direction=expected_selection.get(
+                    "direction", "demand"))
+
+        return validate_native_core_offer_query(
+            event, action_id, actor, recipient, phase, expected_date,
+            expected_selection, expected_query_id, expected_session_id,
+            common_validator=common_validator)
+
+    @classmethod
+    def _valid_native_peace_subject_offer_query(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate one QUERY16 subject candidate/selection event."""
+
+        if (not isinstance(expected_selection, dict)
+                or action_id not in _PEACE_SUBJECT_ACTIONS
+                or expected_selection.get("action_id") != action_id
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                expected_selection["war_id"]) is None):
+            return False
+        expected_country = expected_selection.get("country")
+        discovery = expected_selection.get("discovery") is True
+        if discovery:
+            if expected_country is not None:
+                return False
+        elif (not isinstance(expected_country, str)
+              or re.fullmatch(r"[A-Z0-9]{3}", expected_country) is None):
+            return False
+        if (not isinstance(event, dict)
+                or event.get("event") != "native_peace_subject_offer_query"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("direction") != expected_selection["direction"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("reasons_complete") is not False
+                or event.get("submitted") is not False):
+            return False
+        actual_date = cls._safe_int(event.get("date_raw"))
+        wanted_date = cls._safe_int(expected_date)
+        if actual_date is None or wanted_date is None or actual_date != wanted_date:
+            return False
+        for field, expected in (("query_id", expected_query_id),
+                                ("session_id", expected_session_id)):
+            value = event.get(field)
+            if (not isinstance(value, str) or not value or len(value) > 128
+                    or (expected is not None and value != expected)):
+                return False
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=expected_selection["direction"]):
+            return False
+        native = event.get("native_subject_terms")
+        required_fields = {
+            "action_id", "candidates", "candidate_count",
+            "candidate_enumeration_complete", "selection_requested",
+            "requested_country", "requested_candidate_found",
+            "selected_term_count", "parameters_matched", "selection_applied",
+            "selection_records_complete", "action_copy_matched",
+            "selection_delta_available", "selection_delta_raw", "reason_code",
+        }
+        if (not isinstance(native, dict)
+                or set(native) not in (required_fields,
+                                       required_fields | {"requested_countries"})
+                or native.get("action_id") != action_id):
+            return False
+        if ("requested_countries" in native
+                and native["requested_countries"] != (
+                    [] if expected_country is None else [expected_country])):
+            return False
+        for field in (
+                "candidate_enumeration_complete", "selection_requested",
+                "requested_candidate_found", "parameters_matched",
+                "selection_applied", "selection_records_complete",
+                "action_copy_matched", "selection_delta_available"):
+            if not isinstance(native.get(field), bool):
+                return False
+        candidate_count = native.get("candidate_count")
+        candidates = native.get("candidates")
+        if (not isinstance(candidate_count, int)
+                or isinstance(candidate_count, bool)
+                or not 0 <= candidate_count <= 256
+                or not isinstance(candidates, list)
+                or len(candidates) != candidate_count
+                or native.get("candidate_enumeration_complete") is not True):
+            return False
+        # Release Nation may enumerate the same country from several source
+        # countries.  Candidate identity is the (country, source) pair; a
+        # duplicate country alone is valid discovery evidence.
+        seen: set[tuple[str | None, str | None]] = set()
+        for row in candidates:
+            if (not isinstance(row, dict)
+                    or set(row) != {"country", "selected", "record_complete"}
+                    or not isinstance(row.get("country"), str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", row["country"]) is None
+                    or row["country"] in seen
+                    or not isinstance(row.get("selected"), bool)
+                    or not isinstance(row.get("record_complete"), bool)):
+                return False
+            seen.add(row["country"])
+        requested = native.get("requested_country")
+        if (requested is not None
+                and (not isinstance(requested, str)
+                     or re.fullmatch(r"[A-Z0-9]{3}", requested) is None)):
+            return False
+        if requested != expected_country:
+            return False
+        selected_count = native.get("selected_term_count")
+        if (not isinstance(selected_count, int)
+                or isinstance(selected_count, bool)
+                or not 0 <= selected_count <= 1):
+            return False
+        if not isinstance(native.get("reason_code"), (str, type(None))):
+            return False
+        if (isinstance(native.get("reason_code"), str)
+                and (not re.fullmatch(r"[A-Z0-9_]{1,96}", native["reason_code"]))):
+            return False
+        delta = native.get("selection_delta_raw")
+        if native.get("selection_delta_available"):
+            if discovery or not native.get("parameters_matched"):
+                return False
+            if cls._safe_int(delta, -2147483648, 2147483647) is None:
+                return False
+        elif delta is not None:
+            return False
+        selected_rows = [row for row in candidates if row["selected"]]
+        if discovery:
+            return (
+                native.get("selection_requested") is False
+                and native.get("requested_candidate_found") is False
+                and native.get("selected_term_count") == 0
+                and native.get("parameters_matched") is False
+                and native.get("selection_applied") is False
+                and native.get("selection_records_complete") is True
+                and native.get("action_copy_matched") is True
+                and requested is None
+                and not selected_rows)
+        if (native.get("selection_requested") is not True
+                or native.get("requested_candidate_found") is not
+                native.get("parameters_matched")
+                or native.get("action_copy_matched") is not True):
+            return False
+        if native.get("parameters_matched") is True:
+            return (
+                native.get("selected_term_count") == 1
+                and native.get("selection_applied") is True
+                and native.get("selection_records_complete") is True
+                and len(selected_rows) == 1
+                and selected_rows[0].get("country") == expected_country
+                and selected_rows[0].get("record_complete") is True)
+        return (
+            native.get("selected_term_count") == 0
+            and native.get("selection_applied") is False
+            and native.get("selection_records_complete") is True
+            and not selected_rows)
+
+    @classmethod
+    def _valid_native_subject_nested_record(
+            cls, native: object, action_id: str,
+            expected_countries: list[str]) -> bool:
+        """Validate one selected subject family inside QUERY17."""
+
+        required = {
+            "action_id", "candidates", "candidate_count",
+            "candidate_enumeration_complete", "selection_requested",
+            "requested_country", "requested_countries",
+            "requested_candidate_found", "selected_term_count",
+            "parameters_matched", "selection_applied",
+            "selection_records_complete", "action_copy_matched",
+            "selection_delta_available", "selection_delta_raw", "reason_code",
+        }
+        if not isinstance(native, dict) or set(native) != required \
+                or native.get("action_id") != action_id:
+            return False
+        for field in (
+                "candidate_enumeration_complete", "selection_requested",
+                "requested_candidate_found", "parameters_matched",
+                "selection_applied", "selection_records_complete",
+                "action_copy_matched", "selection_delta_available"):
+            if not isinstance(native.get(field), bool):
+                return False
+        candidates = native.get("candidates")
+        count = cls._safe_int(native.get("candidate_count"), 0, 256)
+        if (count is None or not isinstance(candidates, list)
+                or len(candidates) != count
+                or native.get("candidate_enumeration_complete") is not True):
+            return False
+        seen: set[str] = set()
+        for row in candidates:
+            if (not isinstance(row, dict)
+                    or set(row) != {"country", "selected", "record_complete"}
+                    or not isinstance(row.get("country"), str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", row["country"]) is None
+                    or row["country"] in seen
+                    or not isinstance(row.get("selected"), bool)
+                    or not isinstance(row.get("record_complete"), bool)):
+                return False
+            seen.add(row["country"])
+        requested_country = native.get("requested_country")
+        requested_countries = native.get("requested_countries")
+        if (not isinstance(requested_countries, list)
+                or requested_countries != expected_countries
+                or len(requested_countries) != len(set(requested_countries))
+                or any(not isinstance(value, str)
+                       or re.fullmatch(r"[A-Z0-9]{3}", value) is None
+                       for value in requested_countries)):
+            return False
+        if len(expected_countries) == 1:
+            if requested_country != expected_countries[0]:
+                return False
+        elif requested_country is not None:
+            return False
+        selected_rows = [row for row in candidates if row.get("selected") is True]
+        selected_count = cls._safe_int(native.get("selected_term_count"), 0, 16)
+        if selected_count is None or selected_count != len(selected_rows):
+            return False
+        reason_code = native.get("reason_code")
+        if (reason_code is not None
+                and (not isinstance(reason_code, str)
+                     or re.fullmatch(r"[A-Z0-9_]{1,96}", reason_code) is None)):
+            return False
+        delta = native.get("selection_delta_raw")
+        if native.get("selection_delta_available"):
+            if not native.get("parameters_matched") or cls._safe_int(
+                    delta, -2147483648, 2147483647) is None:
+                return False
+        elif delta is not None:
+            return False
+        if native.get("selection_requested") is not True \
+                or native.get("requested_candidate_found") is not native.get(
+                    "parameters_matched") \
+                or native.get("action_copy_matched") is not True:
+            return False
+        if native.get("parameters_matched"):
+            return (
+                native.get("selection_applied") is True
+                and native.get("selection_records_complete") is True
+                and set(row["country"] for row in selected_rows)
+                == set(expected_countries)
+                and all(row.get("record_complete") is True for row in selected_rows))
+        return (native.get("selection_applied") is False
+                and native.get("selection_records_complete") is True
+                and not selected_rows)
+
+    @classmethod
+    def _valid_native_peace_combined_subject_offer_query(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate QUERY17 and both subject-family nested records."""
+
+        if not isinstance(expected_selection, dict):
+            return False
+        mask = expected_selection.get("term_mask")
+        if (not isinstance(mask, str) or not mask
+                or any(bit not in "mprtcahsfbvlx" for bit in mask)
+                or mask != "".join(bit for bit in "mprtcahsfbvlx" if bit in mask)
+                or not any(bit in mask for bit in "lx")):
+            return False
+        if (not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                expected_selection["war_id"]) is None
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or expected_selection.get("action_id") != action_id):
+            return False
+        if (not isinstance(event, dict)
+                or event.get("event") != "native_peace_combined_subject_offer_query"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("direction") != expected_selection["direction"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("term_mask") != mask):
+            return False
+        actual_date = cls._safe_int(event.get("date_raw"))
+        wanted_date = cls._safe_int(expected_date)
+        if actual_date is None or wanted_date is None or actual_date != wanted_date:
+            return False
+        for field, expected in (("query_id", expected_query_id),
+                                ("session_id", expected_session_id)):
+            value = event.get(field)
+            if (not isinstance(value, str) or not value or len(value) > 128
+                    or (expected is not None and value != expected)):
+                return False
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=expected_selection["direction"]):
+            return False
+        nested = event.get("native_subject_terms")
+        if (not isinstance(nested, dict)
+                or set(nested) != {"release_subject", "transfer_subject"}):
+            return False
+        for subject_action, bit in (("release_subject", "l"),
+                                    ("transfer_subject", "x")):
+            countries = expected_selection.get(
+                "release_countries" if bit == "l" else "transfer_countries", [])
+            if not isinstance(countries, list):
+                return False
+            record = nested.get(subject_action)
+            if bit not in mask:
+                if record is not None:
+                    return False
+                continue
+            if not cls._valid_native_subject_nested_record(
+                    record, subject_action, list(countries)):
+                return False
+        return True
+
+    @classmethod
+    def _valid_native_country_nested_record(
+            cls, native: object, action_id: str,
+            expected_country: str | None, expected_source: str | None,
+            *, discovery: bool = False) -> bool:
+        """Validate one QUERY18 country-family record without exposing raw handles."""
+
+        required = {
+            "action_id", "candidates", "candidate_count",
+            "candidate_enumeration_complete", "selection_requested",
+            "requested_country", "requested_source",
+            "requested_country_is_payer", "payer", "claimant",
+            "requested_candidate_found", "selected_term_count",
+            "parameters_matched", "selection_applied",
+            "selection_records_complete", "action_copy_matched",
+            "selection_delta_available", "selection_delta_raw", "reason_code",
+        }
+        if (not isinstance(native, dict) or set(native) != required
+                or native.get("action_id") != action_id):
+            return False
+        for field in (
+                "candidate_enumeration_complete", "selection_requested",
+                "requested_country_is_payer", "requested_candidate_found",
+                "parameters_matched", "selection_applied",
+                "selection_records_complete", "action_copy_matched",
+                "selection_delta_available"):
+            if not isinstance(native.get(field), bool):
+                return False
+        count = cls._safe_int(native.get("candidate_count"), 0, 256)
+        candidates = native.get("candidates")
+        if (count is None or not isinstance(candidates, list)
+                or len(candidates) != count
+                or native.get("candidate_enumeration_complete") is not True):
+            return False
+        seen: set[str] = set()
+        for row in candidates:
+            if (not isinstance(row, dict)
+                    or set(row) != {"country", "source", "field22", "extra30",
+                                    "selected", "record_complete",
+                                    "typed_descriptor_valid", "variant"}
+                    or not isinstance(row.get("country"), (str, type(None)))
+                    or not isinstance(row.get("source"), (str, type(None)))
+                    or not isinstance(row.get("field22"), (str, type(None)))
+                    or not isinstance(row.get("extra30"), (str, type(None)))
+                    or not isinstance(row.get("selected"), bool)
+                    or not isinstance(row.get("record_complete"), bool)
+                    or not isinstance(row.get("typed_descriptor_valid"), bool)
+                    or cls._safe_int(row.get("variant"), 0, 16) is None):
+                return False
+            country = row.get("country")
+            if country is not None:
+                if re.fullmatch(r"[A-Z0-9]{3}", country) is None:
+                    return False
+            for field in ("source", "field22", "extra30"):
+                value = row.get(field)
+                if value is not None and re.fullmatch(r"[A-Z0-9]{3}", value) is None:
+                    return False
+            candidate_key = (country, row.get("source"))
+            if candidate_key in seen:
+                return False
+            seen.add(candidate_key)
+        requested_country = native.get("requested_country")
+        requested_source = native.get("requested_source")
+        for value in (requested_country, requested_source, native.get("payer"),
+                      native.get("claimant")):
+            if value is not None and re.fullmatch(r"[A-Z0-9]{3}", value) is None:
+                return False
+        if discovery:
+            if (native.get("selection_requested") is not False
+                    or requested_country is not None
+                    or requested_source is not None
+                    or native.get("requested_country_is_payer") is not False
+                    or native.get("requested_candidate_found") is not False
+                    or native.get("selected_term_count") != 0
+                    or native.get("parameters_matched") is not False
+                    or native.get("selection_applied") is not False
+                    or native.get("selection_records_complete") is not True
+                    or native.get("action_copy_matched") is not True):
+                return False
+        else:
+            if (native.get("selection_requested") is not True
+                    or (action_id == "grant_independence"
+                        and (requested_source is not None
+                             or (requested_country is not None
+                                 and requested_country != native.get("payer"))
+                             or (requested_country is not None
+                                 and native.get("requested_country_is_payer") is not False)
+                             or (requested_country is None
+                                 and native.get("requested_country_is_payer") is not True)))
+                    or (action_id != "grant_independence"
+                        and requested_country != expected_country)
+                    or (action_id == "release_nation"
+                        and requested_source != expected_source)
+                    or (action_id not in {"release_nation", "grant_independence"}
+                        and requested_source is not None)
+                    or (action_id == "grant_independence"
+                        and requested_source is not None)
+                    or (action_id not in {"release_nation", "grant_independence"}
+                        and expected_source is not None
+                        and native.get("claimant") != expected_source)
+                    or native.get("requested_candidate_found") is not
+                    native.get("parameters_matched")
+                    or native.get("action_copy_matched") is not True):
+                return False
+        selected_rows = [row for row in candidates if row.get("selected") is True]
+        selected_count = cls._safe_int(native.get("selected_term_count"), 0, 16)
+        if selected_count is None or selected_count != len(selected_rows):
+            return False
+        delta = native.get("selection_delta_raw")
+        if native.get("selection_delta_available"):
+            if (discovery or native.get("parameters_matched") is not True
+                    or cls._safe_int(delta, -2147483648, 2147483647) is None):
+                return False
+        elif delta is not None:
+            return False
+        if native.get("parameters_matched") is True:
+            if (native.get("selection_applied") is not True
+                    or native.get("selection_records_complete") is not True
+                    or len(selected_rows) != 1
+                    or selected_rows[0].get("record_complete") is not True):
+                return False
+            if action_id != "grant_independence":
+                if selected_rows[0].get("country") != expected_country:
+                    return False
+                if action_id == "release_nation" and selected_rows[0].get("source") != expected_source:
+                    return False
+            return True
+        return (native.get("selection_applied") is False
+                and native.get("selection_records_complete") is True
+                and not selected_rows)
+
+    @classmethod
+    def _valid_native_annexation_record(
+            cls, native: object, expected_country: str | None,
+            expected_beneficiary: str | None, *, discovery: bool = False) -> bool:
+        """Validate the bounded QUERY18 Full Annexation candidate record.
+
+        Full Annexation enumerates provinces rather than one country row, so
+        its selected count can exceed the ordinary country-term bound.  The
+        native record remains useful only when the candidate/ownership proof
+        is internally consistent; the semantic projector later removes the
+        native raw output-country handle.
+        """
+
+        required = {
+            "action_id", "country", "beneficiary", "selection_requested",
+            "candidates", "candidate_count", "candidate_enumeration_complete",
+            "target_owned_count", "owned_index_complete", "candidate_match_count",
+            "candidate_matches_complete", "requested_candidates_found",
+            "selection_applied", "source_selection_complete",
+            "action_copy_checked", "action_copy_matched",
+            "selection_delta_available", "selection_delta_raw",
+            "native_annex_check_called", "native_annex_bool",
+            "native_output_country", "native_output_country_raw",
+            "native_owned_count_called", "native_owned_count_raw",
+            "native_owned_count_matches", "capacity_exceeded", "complete",
+            "reason_code",
+        }
+        if (not isinstance(native, dict) or set(native) != required
+                or native.get("action_id") != "full_annexation"):
+            return False
+
+        def tag(value: object, *, nullable: bool = False) -> bool:
+            return ((nullable and value is None)
+                    or (isinstance(value, str)
+                        and re.fullmatch(r"[A-Z0-9]{3}", value) is not None))
+
+        if (not tag(native.get("country"))
+                or not tag(native.get("beneficiary"))
+                or (not tag(native.get("native_output_country"), nullable=True))
+                or (native.get("native_output_country_raw") is not None
+                    and (not isinstance(native.get("native_output_country_raw"), str)
+                         or len(native["native_output_country_raw"]) > 64))):
+            return False
+        for field in (
+                "selection_requested", "candidate_enumeration_complete",
+                "owned_index_complete", "candidate_matches_complete",
+                "requested_candidates_found", "selection_applied",
+                "source_selection_complete", "action_copy_checked",
+                "action_copy_matched", "selection_delta_available",
+                "native_annex_check_called", "native_owned_count_called",
+                "native_owned_count_matches", "capacity_exceeded", "complete"):
+            if not isinstance(native.get(field), bool):
+                return False
+        count = cls._safe_int(native.get("candidate_count"), 0, 512)
+        target_count = cls._safe_int(native.get("target_owned_count"), 0, 512)
+        match_count = cls._safe_int(native.get("candidate_match_count"), 0, 512)
+        raw_owned = cls._safe_int(native.get("native_owned_count_raw"),
+                                  -2147483648, 2147483647)
+        if (count is None or target_count is None or match_count is None
+                or raw_owned is None
+                or not isinstance(native.get("native_annex_bool"), bool)
+                or (native.get("selection_delta_available")
+                    and cls._safe_int(native.get("selection_delta_raw"),
+                                      -2147483648, 2147483647) is None)
+                or (not native.get("selection_delta_available")
+                    and native.get("selection_delta_raw") is not None)):
+            return False
+        rows = native.get("candidates")
+        if (not isinstance(rows, list) or len(rows) != count
+                or native.get("candidate_enumeration_complete") is not True):
+            return False
+        seen: set[int] = set()
+        owner_matches = 0
+        selected_rows = 0
+        for row in rows:
+            if (not isinstance(row, dict)
+                    or set(row) != {"province_id", "owner", "beneficiary",
+                                    "owner_match", "selected", "readcomplete"}):
+                return False
+            province_id = cls._safe_int(row.get("province_id"), 1, 2147483647)
+            if (province_id is None or province_id in seen
+                    or not tag(row.get("owner"), nullable=True)
+                    or not tag(row.get("beneficiary"), nullable=True)
+                    or not isinstance(row.get("owner_match"), bool)
+                    or not isinstance(row.get("selected"), bool)
+                    or not isinstance(row.get("readcomplete"), bool)):
+                return False
+            seen.add(province_id)
+            # ``owner_match`` binds the losing country; the native candidate
+            # count also applies the requested beneficiary constraint.
+            owner_matches += (
+                row["owner_match"] is True
+                and row.get("beneficiary") == native.get("beneficiary"))
+            selected_rows += row["selected"] is True
+            if row["selected"] and not row["owner_match"]:
+                return False
+        if (match_count != owner_matches or selected_rows > match_count
+                or (native.get("selection_requested")
+                    and native.get("selection_applied")
+                    and selected_rows != match_count)
+                or (not native.get("selection_requested") and selected_rows != 0)
+                or (native.get("requested_candidates_found")
+                    and match_count == 0)):
+            return False
+        if native.get("selection_requested"):
+            # A selected request can have only a partial beneficiary-matching
+            # candidate set. Retain that native rejection as a valid result.
+            if (native.get("selection_applied")
+                    and (not native.get("source_selection_complete")
+                         or not native.get("action_copy_matched"))):
+                return False
+            if (expected_country in (None, "-")
+                    or native.get("country") != expected_country
+                    or expected_beneficiary in (None, "-")
+                    or native.get("beneficiary") != expected_beneficiary):
+                return False
+        elif discovery:
+            if native.get("selection_applied") is not False:
+                return False
+        if native.get("complete"):
+            if (native.get("capacity_exceeded")
+                    or not native.get("owned_index_complete")
+                    or not native.get("candidate_matches_complete")
+                    or not native.get("source_selection_complete")
+                    or not native.get("action_copy_checked")
+                    or not native.get("action_copy_matched")
+                    or not native.get("native_annex_check_called")
+                    or not native.get("native_owned_count_called")
+                    or not native.get("native_owned_count_matches")
+                    or any(row.get("readcomplete") is not True for row in rows)):
+                return False
+        return True
+
+    @classmethod
+    def _valid_native_peace_combined_country_offer_query(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate QUERY18's common Peace payload and four country records."""
+
+        if not isinstance(expected_selection, dict):
+            return False
+        mask = expected_selection.get("term_mask")
+        if (not isinstance(mask, str) or not any(bit in mask for bit in "nzuie")
+                or any(bit not in "mprtcahsfbvlxnzuie" for bit in mask)
+                or mask != "".join(bit for bit in "mprtcahsfbvlxnzuie" if bit in mask)):
+            return False
+        if (not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN, expected_selection["war_id"]) is None
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or expected_selection.get("action_id") != action_id):
+            return False
+        if (not isinstance(event, dict)
+                or event.get("event") != "native_peace_combined_country_offer_query"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("direction") != expected_selection["direction"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("term_mask") != mask):
+            return False
+        actual_date = cls._safe_int(event.get("date_raw"))
+        wanted_date = cls._safe_int(expected_date)
+        if actual_date is None or wanted_date is None or actual_date != wanted_date:
+            return False
+        for field, expected in (("query_id", expected_query_id),
+                                ("session_id", expected_session_id)):
+            value = event.get(field)
+            if (not isinstance(value, str) or not value or len(value) > 128
+                    or (expected is not None and value != expected)):
+                return False
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=expected_selection["direction"]):
+            return False
+        if "m" in mask:
+            money_event = dict(event)
+            money_event["event"] = "native_peace_money_offer_inspection"
+            money_event["action_id"] = "demand_ducats"
+            demand = expected_selection["direction"] == "demand"
+            money_selection = dict(expected_selection)
+            money_selection.update(payer=recipient if demand else actor,
+                                   claimant=actor if demand else recipient)
+            companions = event.get("native_country_terms")
+            companion_records = (list(companions.values())
+                                 if isinstance(companions, dict) else [])
+            companion_records.append(event.get("native_annexation"))
+            unapplied_companion = any(
+                isinstance(record, dict)
+                and record.get("selection_requested") is True
+                and record.get("parameters_matched", record.get("selection_applied")) is False
+                for record in companion_records)
+            if not cls._valid_native_peace_money_offer_inspection(
+                    money_event, "demand_ducats", actor, recipient, phase,
+                    expected_date, money_selection, expected_query_id,
+                    expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                    allow_unapplied_companion=unapplied_companion):
+                return False
+        elif event.get("native_money") is not None:
+            return False
+        nested = event.get("native_country_terms")
+        required_actions = {
+            "release_nation", "force_vassalization", "form_personal_union",
+            "grant_independence"}
+        if not isinstance(nested, dict) or set(nested) != required_actions:
+            return False
+        selected_rules = event.get("native_selected_rules")
+        payload = event.get("native_payload")
+        selected_country_count = sum(
+            1 for key, bit in (
+                ("release_nation_country", "n"),
+                ("vassal_country", "z"),
+                ("union_country", "u"),
+                ("independence_country", "i"),
+                ("annex_country", "e"))
+            if bit in mask and expected_selection.get(key) not in (None, "-"))
+        if not cls._valid_native_selected_rules(
+                selected_rules, payload, selected_country_count):
+            return False
+        expected = {
+            "release_nation": ("release_nation_country", "release_nation_source", "n"),
+            "force_vassalization": ("vassal_country", "vassal_beneficiary", "z"),
+            "form_personal_union": ("union_country", "union_beneficiary", "u"),
+            # Grant has no public country input, but the EXEC/QUERY wire binds
+            # its native request to the direction-derived payer.  Keep that
+            # expected payer here so selected and discovery calls are
+            # distinguished without exposing the native field-22 identity.
+            "grant_independence": ("independence_country", None, "i"),
+            "full_annexation": ("annex_country", "annex_beneficiary", "e"),
+        }
+        for family, (country_key, secondary_key, bit) in expected.items():
+            if bit not in mask:
+                if family != "full_annexation" and nested.get(family) is not None:
+                    return False
+                if family == "full_annexation" and event.get("native_annexation") is not None:
+                    return False
+                continue
+            expected_country = expected_selection.get(country_key) if country_key else None
+            expected_secondary = expected_selection.get(secondary_key) if secondary_key else None
+            discovery = expected_country in (None, "-")
+            if family == "full_annexation":
+                if not cls._valid_native_annexation_record(
+                        event.get("native_annexation"),
+                        None if expected_country == "-" else expected_country,
+                        None if expected_secondary == "-" else expected_secondary,
+                        discovery=discovery):
+                    return False
+                continue
+            record = nested.get(family)
+            if not cls._valid_native_country_nested_record(
+                    record, family, None if expected_country == "-" else expected_country,
+                    None if expected_secondary == "-" else expected_secondary,
+                    discovery=discovery):
+                return False
+        if (selected_rules.get("complete") is True
+                and selected_rules.get("selected_term_count", 0)
+                < selected_country_count):
+            return False
+        return True
+
+    @classmethod
+    def _valid_native_peace_combined_core_offer_query(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate one QUERY15 event and both core nested records.
+
+        QUERY15 keeps the ordinary Peace constructor/evaluation contract in
+        the outer event and places the two independently queried core
+        records under ``native_core_terms``.  Each selected core record is
+        validated as a QUERY14 event on this same outer event; no record is
+        accepted from a second query.
+        """
+
+        if not isinstance(expected_selection, dict):
+            return False
+        mask = expected_selection.get("term_mask")
+        if (not isinstance(mask, str)
+                or not mask
+                or any(bit not in "mprtcahsfbv" for bit in mask)
+                or mask != "".join(bit for bit in "mprtcahsfbv" if bit in mask)
+                or not ("b" in mask or "v" in mask)):
+            return False
+        if (not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                expected_selection["war_id"]) is None
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or expected_selection.get("action_id") != action_id):
+            return False
+
+        def ids_and_owner(prefix: str) -> tuple[list[int], str | None] | None:
+            ids = expected_selection.get(prefix + "_ids", [])
+            owner = expected_selection.get(prefix + "_core_owner")
+            if (not isinstance(ids, list) or len(ids) > 16
+                    or any(cls._safe_int(value, 1, 2147483647) is None
+                           for value in ids)
+                    or len(set(ids)) != len(ids)):
+                return None
+            if ids and (not isinstance(owner, str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", owner) is None):
+                return None
+            if not ids and owner is not None:
+                return None
+            return list(ids), owner
+
+        expected_core = {
+            "return_core": ids_and_owner("return"),
+            "revoke_core": ids_and_owner("revoke"),
+        }
+        if any(value is None for value in expected_core.values()):
+            return False
+        for field in ("province_ids", "annul_partners"):
+            values = expected_selection.get(field, [])
+            if (not isinstance(values, list) or len(values) > 16
+                    or any(not isinstance(value, (int, str)) for value in values)):
+                return False
+        if (not isinstance(event, dict)
+                or event.get("event") != "native_peace_combined_core_offer_query"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("direction") != expected_selection["direction"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("term_mask") != mask):
+            return False
+        actual_date = cls._safe_int(event.get("date_raw"))
+        wanted_date = cls._safe_int(expected_date)
+        if actual_date is None or wanted_date is None or actual_date != wanted_date:
+            return False
+        for field, expected in (("query_id", expected_query_id),
+                                ("session_id", expected_session_id)):
+            value = event.get(field)
+            if (not isinstance(value, str) or not value or len(value) > 128
+                    or (expected is not None and value != expected)):
+                return False
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=expected_selection["direction"]):
+            return False
+        outer = event.get("native_core_terms")
+        if (not isinstance(outer, dict)
+                or set(outer) != {"return_core", "revoke_core"}):
+            return False
+        for core_action, pair in expected_core.items():
+            ids, owner = pair
+            nested = outer.get(core_action)
+            if not ids:
+                if nested is not None:
+                    return False
+                continue
+            if not isinstance(nested, dict):
+                return False
+            pseudo = dict(event)
+            pseudo["event"] = "native_peace_core_offer_query"
+            pseudo["action_id"] = core_action
+            pseudo["native_core_terms"] = nested
+            core_selection = {
+                "action_id": core_action,
+                "war_id": expected_selection["war_id"],
+                "direction": expected_selection["direction"],
+                "province_ids": ids,
+                "core_owner": owner,
+            }
+            if not cls._valid_native_peace_core_offer_query(
+                    pseudo, core_action, actor, recipient, phase, expected_date,
+                    core_selection, expected_query_id, expected_session_id,
+                    require_wrapper_rule=require_wrapper_rule):
+                return False
         return True
 
     @classmethod
@@ -6619,18 +13376,1404 @@ class ObserverSession:
         return True
 
     @classmethod
+    def _valid_native_peace_reparations_offer_inspection(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate one aggregate QUERY8 reparations selection observation."""
+
+        action_bits = {
+            "demand_ducats": "m",
+            "cede_province": "p",
+            "war_reparations": "r",
+        }
+        if (not isinstance(expected_selection, dict)
+                or action_id not in action_bits
+                or expected_selection.get("action_id") != action_id
+                or not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                expected_selection["war_id"]) is None
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or expected_selection.get("term_mask") not in (
+                    "r", "mr", "pr", "mpr")
+                or action_bits[action_id] not in expected_selection["term_mask"]):
+            return False
+
+        direction = expected_selection["direction"]
+        mask = expected_selection["term_mask"]
+        expected_payer = actor if direction == "offer" else recipient
+        expected_claimant = recipient if direction == "offer" else actor
+        if (expected_selection.get("payer") != expected_payer
+                or expected_selection.get("claimant") != expected_claimant):
+            return False
+
+        amount_raw = expected_selection.get("amount_raw", -1)
+        if "m" in mask:
+            if (cls._safe_int(amount_raw, 1, 2147483647) is None
+                    or amount_raw % 100 != 0):
+                return False
+        elif amount_raw != -1:
+            return False
+        province_ids = expected_selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(cls._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return False
+        beneficiary = expected_selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", beneficiary) is None):
+                return False
+        elif beneficiary not in (None, "-"):
+            return False
+
+        if (not isinstance(event, dict)
+                or event.get("event") != "native_peace_reparations_offer_inspection"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("direction") != direction
+                or event.get("term_mask") != mask
+                or not isinstance(event.get("full_rules_complete"), bool)
+                or event.get("reasons_complete") is not False
+                or event.get("submitted") is not False):
+            return False
+
+        # QUERY8 carries the same constructor/action proof as QUERY4/QUERY7.
+        # Validate it against the established common contract before checking
+        # the aggregate term records below.
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = direction
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=direction):
+            return False
+
+        # QUERY8's selected-term rule is the gate for the aggregate optional
+        # evaluator.  When that rule was checked but unavailable, the native
+        # producer deliberately leaves the evaluator uncalled.  The legacy
+        # money validator otherwise interprets its shared
+        # ``native_evaluation``
+        # object as a completed money inspection and rejects ``called=False``.
+        # Keep this override local to the synthetic money view; the aggregate
+        # event still has to pass the strict reparations rule fields below.
+        native_hint = event.get("native_reparations")
+        selected_rule_unavailable = (
+            isinstance(native_hint, dict)
+            and native_hint.get("rule_checked") is True
+            and native_hint.get("rule_available") is False
+            and native_hint.get("reason_code") in (
+                "NATIVE_PEACE_SELECTED_TERM_RULE_UNAVAILABLE",
+                "NATIVE_PEACE_REPARATIONS_RULE_UNAVAILABLE"))
+        selection_unavailable = (
+            isinstance(native_hint, dict)
+            and native_hint.get("parameters_matched") is False
+            and native_hint.get("selected") is False)
+
+        if "m" in mask:
+            money_event = dict(event)
+            money_event["event"] = "native_peace_money_offer_inspection"
+            money_event["action_id"] = "demand_ducats"
+            money_selection = {
+                "war_id": expected_selection["war_id"],
+                "direction": direction,
+                "amount_raw": amount_raw,
+                "payer": expected_payer,
+                "claimant": expected_claimant,
+            }
+            if "native_evaluation" not in money_event:
+                money_event["native_evaluation"] = {
+                    "called": False, "score_available": False,
+                    "aggregate_score_available": False,
+                    "factor_capture_truncated": False,
+                    "factors_available": False, "factors_complete": False,
+                    "complete": False,
+                    "score_representation": "signed_int32", "score_raw": 0,
+                    "aggregate_score_raw": 0, "factor_native_count": 0,
+                    "items": [],
+                }
+                # The shared transport strips the producer's optional
+                # evaluator object when its independent ACK is absent.  Keep
+                # the money validator's result in the unavailable branch
+                # rather than manufacturing an evaluator call.
+                money_event["native_validity"] = False
+            elif selected_rule_unavailable or selection_unavailable:
+                # The real QUERY8 negative-rule observation has a shared
+                # evaluator record with called=False.  A candidate miss has
+                # the same transport shape: the producer deliberately skips
+                # evaluation because no selected R term exists.  Mark the
+                # synthetic money view unavailable so the old validator
+                # checks the record's shape without requiring an evaluator
+                # call that the native producer intentionally skipped.
+                money_event["native_validity"] = False
+            if not cls._valid_native_peace_money_offer_inspection(
+                    money_event, "demand_ducats", actor, recipient, phase,
+                    expected_date, money_selection, expected_query_id,
+                    expected_session_id, require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif event.get("native_money") not in (None,):
+            return False
+
+        if "p" in mask:
+            province_event = dict(event)
+            province_event["event"] = "native_peace_province_offer_inspection"
+            province_event["action_id"] = "cede_province"
+            province_selection = {
+                "war_id": expected_selection["war_id"],
+                "direction": direction,
+                "province_ids": list(province_ids),
+                "beneficiary": beneficiary,
+            }
+            if not cls._valid_native_peace_province_offer_inspection(
+                    province_event, "cede_province", actor, recipient, phase,
+                    expected_date, province_selection, expected_query_id,
+                    expected_session_id, require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif event.get("native_provinces") not in (None,):
+            return False
+
+        native = event.get("native_reparations")
+        if not isinstance(native, dict):
+            return False
+        bool_fields = (
+            "requested", "candidate_found", "selection_requested",
+            "selection_available", "selected", "selection_copy_verified",
+            "parameters_matched")
+        if any(not isinstance(native.get(field), bool) for field in bool_fields):
+            return False
+        candidate_count = cls._safe_int(native.get("candidate_count"), 0, 512)
+        matching_count = cls._safe_int(
+            native.get("matching_candidate_count"), 0, 512)
+        selected_count = cls._safe_int(
+            native.get("selected_term_count"), 0, 16)
+        if (candidate_count is None or matching_count is None
+                or selected_count is None
+                or matching_count > candidate_count
+                or native.get("requested") is not True
+                or native.get("selection_requested") is not True
+                or native.get("candidate_found") != (matching_count == 1)
+                or native.get("payer") != expected_payer
+                or native.get("claimant") != expected_claimant
+                or native.get("selection_copy_verified") is not True):
+            return False
+        if matching_count == 1:
+            if (native.get("selection_available") is not True
+                    or native.get("selected") is not True
+                    or native.get("parameters_matched") is not True
+                    or selected_count <= 0):
+                return False
+        else:
+            if (native.get("selection_available") is not False
+                    or native.get("selected") is not False
+                    or native.get("parameters_matched") is not False
+                    or selected_count != 0):
+                return False
+        reason_code = native.get("reason_code")
+        if (reason_code not in (None,
+                "NATIVE_PEACE_REPARATIONS_CANDIDATE_AMBIGUOUS",
+                "NATIVE_PEACE_REPARATIONS_CANDIDATE_NOT_FOUND",
+                "NATIVE_PEACE_REPARATIONS_UNEXPECTED_PRESELECTION",
+                "NATIVE_PEACE_REPARATIONS_SELECTION_MISMATCH",
+                "NATIVE_PEACE_REPARATIONS_RULE_UNAVAILABLE",
+                "NATIVE_PEACE_SELECTED_TERM_RULE_UNAVAILABLE")):
+            return False
+
+        # The dedicated rule result is an optional legality observation.  A
+        # false result is valid and means the native rule was unavailable or
+        # rejected the constructed term; absent proof can never complete it.
+        rule_fields = (
+            "rule_checked", "rule_available", "rule_diagnostic_hex",
+            "rule_diagnostic_readable", "rule_diagnostic_truncated")
+        if any(field not in native for field in rule_fields):
+            if event.get("full_rules_complete") is True:
+                return False
+        else:
+            if (not isinstance(native.get("rule_checked"), bool)
+                    or not isinstance(native.get("rule_available"), bool)
+                    or not isinstance(native.get("rule_diagnostic_hex"), str)
+                    or len(native["rule_diagnostic_hex"]) > 4096
+                    or len(native["rule_diagnostic_hex"]) % 2
+                    or re.fullmatch(r"[0-9a-fA-F]*",
+                                    native["rule_diagnostic_hex"]) is None
+                    or not isinstance(native.get("rule_diagnostic_readable"), bool)
+                    or not isinstance(native.get("rule_diagnostic_truncated"), bool)):
+                return False
+            if native.get("rule_checked") is False:
+                if (native.get("rule_available") is not False
+                        or native.get("rule_diagnostic_hex") != ""
+                        or native.get("rule_diagnostic_readable") is not False
+                        or native.get("rule_diagnostic_truncated") is not False):
+                    return False
+            elif native.get("parameters_matched") is not True:
+                return False
+            if native.get("rule_checked") is True:
+                aggregate_mask = expected_selection.get(
+                    "_aggregate_term_mask", mask)
+                if not isinstance(aggregate_mask, str):
+                    return False
+                expected_rule_count = (
+                    1 + (1 if "m" in aggregate_mask else 0)
+                    + len(province_ids)
+                    + (1 if "t" in aggregate_mask else 0)
+                    + (1 if "c" in aggregate_mask else 0))
+                if (cls._safe_int(native.get("rule_term_count"), 1, 512)
+                        != expected_rule_count
+                        or native.get("rule_scope") != "selected_nonzero_terms"):
+                    return False
+
+        payload = event.get("native_payload")
+        if (not cls._valid_native_peace_payload(payload)
+                or payload.get("serialized_fields_complete") is not True
+                or payload.get("source_copy_equal") is not True
+                or payload.get("serialized_fields_unchanged") is not True
+                or payload.get("selected_term_count", 0) <= 0):
+            return False
+        return True
+
+    @classmethod
+    def _valid_native_peace_concede_defeat_offer_inspection(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate one aggregate QUERY11 concede-defeat observation.
+
+        QUERY11 has the complete shared term mask and a C selection record.
+        Nested R/T records are validated through their existing contracts with
+        the C bit removed from the public nested mask while retaining the full
+        mask for native selected-term rule-count checks.
+        """
+
+        action_bits = {
+            "demand_ducats": "m", "cede_province": "p",
+            "war_reparations": "r", "transfer_trade_power": "t",
+            "concede_defeat": "c",
+        }
+        valid_masks = tuple(
+            "".join(letter for index, letter in enumerate("mprtc")
+                    if bits & (1 << index))
+            for bits in range(1, 32) if bits & 16)
+        if (not isinstance(expected_selection, dict)
+                or action_id not in action_bits
+                or expected_selection.get("action_id") != action_id
+                or not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                expected_selection["war_id"]) is None
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or expected_selection.get("term_mask") not in valid_masks
+                or action_bits[action_id] not in expected_selection["term_mask"]
+                or "c" not in expected_selection["term_mask"]):
+            return False
+
+        direction = expected_selection["direction"]
+        mask = expected_selection["term_mask"]
+        expected_conceding = actor if direction == "offer" else recipient
+        expected_beneficiary = recipient if direction == "offer" else actor
+        if (expected_selection.get("conceding_country") != expected_conceding
+                or expected_selection.get("concede_beneficiary")
+                != expected_beneficiary):
+            return False
+        amount_raw = expected_selection.get("amount_raw", -1)
+        if "m" in mask:
+            if (cls._safe_int(amount_raw, 1, 2147483647) is None
+                    or amount_raw % 100 != 0):
+                return False
+        elif amount_raw != -1:
+            return False
+        province_ids = expected_selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(cls._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return False
+        province_beneficiary = expected_selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(province_beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", province_beneficiary) is None):
+                return False
+        elif province_beneficiary not in (None, "-"):
+            return False
+        source = expected_selection.get("source")
+        trade_beneficiary = expected_selection.get("trade_power_beneficiary")
+        if "t" in mask:
+            if (not isinstance(source, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", source) is None
+                    or source == expected_beneficiary
+                    or trade_beneficiary != expected_beneficiary):
+                return False
+        elif source not in (None, "-"):
+            return False
+
+        if (not isinstance(event, dict)
+                or event.get("event")
+                != "native_peace_concede_defeat_offer_inspection"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("direction") != direction
+                or event.get("term_mask") != mask
+                or not isinstance(event.get("full_rules_complete"), bool)
+                or event.get("reasons_complete") is not False
+                or event.get("submitted") is not False):
+            return False
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = direction
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=direction):
+            return False
+
+        # A selected C term can make the aggregate native rule unavailable
+        # while the shared money evaluator is deliberately left uncalled.
+        native_c_hint = event.get("native_concede_defeat")
+        selected_c_rule_unavailable = (
+            isinstance(native_c_hint, dict)
+            and native_c_hint.get("rule_checked") is True
+            and native_c_hint.get("rule_available") is False
+            and native_c_hint.get("reason_code") in (
+                "NATIVE_PEACE_CONCEDE_DEFEAT_RULE_UNAVAILABLE",
+                "NATIVE_PEACE_SELECTED_TERM_RULE_UNAVAILABLE"))
+        c_selection_unavailable = (
+            isinstance(native_c_hint, dict)
+            and native_c_hint.get("parameters_matched") is False
+            and native_c_hint.get("selected") is False)
+
+        # Shared money/province constructors retain their established strict
+        # validators.  A C-only native result may omit both nested records.
+        if "m" in mask:
+            money_event = dict(event)
+            money_event["event"] = "native_peace_money_offer_inspection"
+            money_event["action_id"] = "demand_ducats"
+            money_event["native_evaluation"] = money_event.get(
+                "native_evaluation", {
+                    "called": False, "score_available": False,
+                    "aggregate_score_available": False,
+                    "factor_capture_truncated": False, "factors_available": False,
+                    "factors_complete": False, "complete": False,
+                    "score_representation": "signed_int32", "score_raw": 0,
+                    "aggregate_score_raw": 0, "factor_native_count": 0,
+                    "items": [],
+                })
+            if selected_c_rule_unavailable or c_selection_unavailable:
+                money_event["native_validity"] = False
+            if not cls._valid_native_peace_money_offer_inspection(
+                    money_event, "demand_ducats", actor, recipient, phase,
+                    expected_date, {
+                        "war_id": expected_selection["war_id"],
+                        "direction": direction, "amount_raw": amount_raw,
+                        "payer": expected_conceding,
+                        "claimant": expected_beneficiary,
+                    }, expected_query_id, expected_session_id,
+                    require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif event.get("native_money") not in (None,):
+            return False
+        if "p" in mask:
+            province_event = dict(event)
+            province_event["event"] = "native_peace_province_offer_inspection"
+            province_event["action_id"] = "cede_province"
+            if not cls._valid_native_peace_province_offer_inspection(
+                    province_event, "cede_province", actor, recipient, phase,
+                    expected_date, {
+                        "war_id": expected_selection["war_id"],
+                        "direction": direction, "province_ids": list(province_ids),
+                        "beneficiary": province_beneficiary,
+                    }, expected_query_id, expected_session_id,
+                    require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif event.get("native_provinces") not in (None,):
+            return False
+
+        native_reparations = event.get("native_reparations")
+        if "r" in mask:
+            if not isinstance(native_reparations, dict):
+                return False
+            reparations_event = dict(event)
+            reparations_event["event"] = "native_peace_reparations_offer_inspection"
+            reparations_event["action_id"] = "war_reparations"
+            reparations_mask = "".join(letter for letter in mask
+                                        if letter not in "tc")
+            reparations_event["term_mask"] = reparations_mask
+            reparations_selection = {
+                "action_id": "war_reparations",
+                "war_id": expected_selection["war_id"],
+                "direction": direction,
+                "amount_raw": amount_raw if "m" in mask else -1,
+                "province_ids": list(province_ids) if "p" in mask else [],
+                "beneficiary": province_beneficiary if "p" in mask else None,
+                "payer": expected_conceding, "claimant": expected_beneficiary,
+                "term_mask": reparations_mask,
+                "_aggregate_term_mask": mask,
+            }
+            if not cls._valid_native_peace_reparations_offer_inspection(
+                    reparations_event, "war_reparations", actor, recipient, phase,
+                    expected_date, reparations_selection, expected_query_id,
+                    expected_session_id, require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif native_reparations is not None:
+            return False
+
+        native_trade = event.get("native_trade_power")
+        if "t" in mask:
+            if not isinstance(native_trade, dict):
+                return False
+            trade_event = dict(event)
+            trade_event["event"] = "native_peace_trade_power_offer_inspection"
+            trade_event["action_id"] = "transfer_trade_power"
+            trade_mask = "".join(letter for letter in mask if letter != "c")
+            trade_event["term_mask"] = trade_mask
+            trade_selection = {
+                "action_id": "transfer_trade_power",
+                "war_id": expected_selection["war_id"],
+                "direction": direction,
+                "amount_raw": amount_raw if "m" in mask else -1,
+                "province_ids": list(province_ids) if "p" in mask else [],
+                "beneficiary": province_beneficiary if "p" in mask else None,
+                "source": source, "trade_power_beneficiary": trade_beneficiary,
+                "payer": expected_conceding, "claimant": expected_beneficiary,
+                "term_mask": trade_mask,
+                 "_aggregate_term_mask": mask,
+                "_sources_protocol": True,
+            }
+            if not cls._valid_native_peace_trade_power_offer_inspection(
+                    trade_event, "transfer_trade_power", actor, recipient, phase,
+                    expected_date, trade_selection, expected_query_id,
+                    expected_session_id, require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif native_trade is not None:
+            return False
+
+        native = event.get("native_concede_defeat")
+        if not isinstance(native, dict):
+            return False
+        bool_fields = (
+            "requested", "candidate_found", "selection_requested",
+            "selection_available", "selected", "selection_copy_verified",
+            "parameters_matched")
+        if any(not isinstance(native.get(field), bool) for field in bool_fields):
+            return False
+        candidate_count = cls._safe_int(native.get("candidate_count"), 0, 512)
+        matching_count = cls._safe_int(
+            native.get("matching_candidate_count"), 0, 512)
+        selected_count = cls._safe_int(
+            native.get("selected_term_count"), 0, 16)
+        if (candidate_count is None or matching_count is None
+                or selected_count is None or matching_count > candidate_count
+                or native.get("requested") is not True
+                or native.get("selection_requested") is not True
+                or native.get("candidate_found") != (matching_count == 1)
+                or native.get("conceding_country") != expected_conceding
+                or native.get("beneficiary") != expected_beneficiary
+                or native.get("selection_copy_verified") is not True):
+            return False
+        if matching_count == 1:
+            if (native.get("selection_available") is not True
+                    or native.get("selected") is not True
+                    or native.get("parameters_matched") is not True
+                    or selected_count <= 0):
+                return False
+        else:
+            if (native.get("selection_available") is not False
+                    or native.get("selected") is not False
+                    or native.get("parameters_matched") is not False
+                    or selected_count != 0):
+                return False
+        reason_code = native.get("reason_code")
+        if (reason_code not in (None,
+                "NATIVE_PEACE_CONCEDE_DEFEAT_CANDIDATE_AMBIGUOUS",
+                "NATIVE_PEACE_CONCEDE_DEFEAT_CANDIDATE_NOT_FOUND",
+                "NATIVE_PEACE_CONCEDE_DEFEAT_UNEXPECTED_PRESELECTION",
+                "NATIVE_PEACE_CONCEDE_DEFEAT_SELECTION_MISMATCH",
+                "NATIVE_PEACE_CONCEDE_DEFEAT_RULE_UNAVAILABLE",
+                "NATIVE_PEACE_SELECTED_TERM_RULE_UNAVAILABLE")):
+            return False
+        rule_fields = (
+            "rule_checked", "rule_available", "rule_diagnostic_hex",
+            "rule_diagnostic_readable", "rule_diagnostic_truncated")
+        if any(field not in native for field in rule_fields):
+            if event.get("full_rules_complete") is True:
+                return False
+        else:
+            if (not isinstance(native.get("rule_checked"), bool)
+                    or not isinstance(native.get("rule_available"), bool)
+                    or not isinstance(native.get("rule_diagnostic_hex"), str)
+                    or len(native["rule_diagnostic_hex"]) > 4096
+                    or len(native["rule_diagnostic_hex"]) % 2
+                    or re.fullmatch(r"[0-9a-fA-F]*",
+                                    native["rule_diagnostic_hex"]) is None
+                    or not isinstance(native.get("rule_diagnostic_readable"), bool)
+                    or not isinstance(native.get("rule_diagnostic_truncated"), bool)):
+                return False
+            if native.get("rule_checked") is False:
+                if (native.get("rule_available") is not False
+                        or native.get("rule_diagnostic_hex") != ""
+                        or native.get("rule_diagnostic_readable") is not False
+                        or native.get("rule_diagnostic_truncated") is not False):
+                    return False
+            elif (native.get("parameters_matched") is not True
+                  and not (matching_count == 0
+                           and native.get("rule_available") is False)):
+                return False
+            if native.get("rule_checked") is True:
+                expected_rule_count = (
+                    1 + (1 if "m" in mask else 0) + len(province_ids)
+                    + (1 if "r" in mask else 0)
+                    + (1 if "t" in mask else 0))
+                if (cls._safe_int(native.get("rule_term_count"), 1, 512)
+                        != expected_rule_count
+                        or native.get("rule_scope")
+                        != "selected_nonzero_terms"):
+                    return False
+
+        payload = event.get("native_payload")
+        if matching_count == 1:
+            if (not cls._valid_native_peace_payload(payload)
+                    or payload.get("serialized_fields_complete") is not True
+                    or payload.get("source_copy_equal") is not True
+                    or payload.get("serialized_fields_unchanged") is not True
+                    or payload.get("selected_term_count", 0) <= 0):
+                return False
+        elif payload is not None and not cls._valid_native_peace_payload(payload):
+            return False
+        return True
+
+    @classmethod
+    def _valid_native_peace_special_offer_inspection(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate the QUERY13 aggregate H/S/F inspection.
+
+        QUERY13 deliberately keeps the existing 17-field wire.  This validator
+        therefore validates special roles from the nested native records and
+        delegates war/date/transport proof to the established common contract;
+        it does not invent a consequence/effect schema.
+        """
+
+        action_bits = {
+            "demand_ducats": "m", "cede_province": "p",
+            "war_reparations": "r", "transfer_trade_power": "t",
+            "concede_defeat": "c", "annul_treaties": "a",
+            "humiliate_rival": "h", "show_strength": "s",
+            "force_religion": "f",
+        }
+        valid_masks = tuple(
+            "".join(letter for index, letter in enumerate("mprtcahsf")
+                    if bits & (1 << index))
+            for bits in range(1, 512) if bits & (0x40 | 0x80 | 0x100))
+        if (not isinstance(expected_selection, dict)
+                or action_id not in action_bits
+                or expected_selection.get("action_id") != action_id
+                or not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                expected_selection["war_id"]) is None
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or expected_selection.get("term_mask") not in valid_masks
+                or action_bits[action_id] not in expected_selection["term_mask"]):
+            return False
+        direction = expected_selection["direction"]
+        mask = expected_selection["term_mask"]
+        expected_country = actor if direction == "offer" else recipient
+        expected_beneficiary = recipient if direction == "offer" else actor
+
+        amount_raw = expected_selection.get("amount_raw", -1)
+        if ("m" in mask and (cls._safe_int(amount_raw, 1, 2147483647) is None
+                              or amount_raw % 100 != 0)) or (
+                "m" not in mask and amount_raw != -1):
+            return False
+        province_ids = expected_selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(cls._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return False
+        if "p" in mask:
+            beneficiary = expected_selection.get("beneficiary")
+            if (not isinstance(beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", beneficiary) is None):
+                return False
+        elif expected_selection.get("beneficiary") not in (None, "-"):
+            return False
+        if "t" in mask:
+            source = expected_selection.get("source")
+            if (not isinstance(source, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", source) is None
+                    or source == expected_beneficiary
+                    or expected_selection.get("trade_power_beneficiary")
+                    != expected_beneficiary):
+                return False
+        elif expected_selection.get("source") not in (None, "-"):
+            return False
+        if "r" in mask:
+            if (expected_selection.get("payer") != expected_country
+                    or expected_selection.get("claimant") != expected_beneficiary):
+                return False
+        if "c" in mask:
+            if (expected_selection.get("conceding_country") != expected_country
+                    or expected_selection.get("concede_beneficiary")
+                    != expected_beneficiary):
+                return False
+        if "a" in mask:
+            annul_country = expected_selection.get("annul_country")
+            annul_partners = expected_selection.get("annul_partners")
+            if (not isinstance(annul_country, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", annul_country) is None
+                    or not isinstance(annul_partners, list)
+                    or not 1 <= len(annul_partners) <= 16
+                    or any(not isinstance(partner, str)
+                           or re.fullmatch(r"[A-Z0-9]{3}", partner) is None
+                           or partner == annul_country for partner in annul_partners)
+                    or len(set(annul_partners)) != len(annul_partners)
+                    or annul_partners != sorted(annul_partners)):
+                return False
+        elif (expected_selection.get("annul_country") not in (None, "-")
+              or expected_selection.get("annul_partners") not in (None, [], "-")):
+            return False
+
+        if (not isinstance(event, dict)
+                or event.get("event") != "native_peace_special_offer_inspection"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("direction") != direction
+                or event.get("term_mask") != mask
+                or not isinstance(event.get("full_rules_complete"), bool)
+                or event.get("reasons_complete") is not False
+                or event.get("submitted") is not False):
+            return False
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=direction):
+            return False
+
+        special_terms = expected_selection.get("special_terms")
+        if not isinstance(special_terms, list):
+            return False
+        selected_special = {
+            term.get("action_id"): term for term in special_terms
+            if isinstance(term, dict)
+        }
+        if set(selected_special) != {
+                action for action, bit in action_bits.items() if bit in mask and bit in "hsf"}:
+            return False
+        expected_rule_count = (
+            (1 if "m" in mask else 0)
+            + (len(province_ids) if "p" in mask else 0)
+            + (1 if "r" in mask else 0)
+            + (1 if "t" in mask else 0)
+            + (1 if "c" in mask else 0)
+            + (len(expected_selection.get("annul_partners", []))
+               if "a" in mask else 0)
+            + sum(1 for bit in "hsf" if bit in mask))
+
+        for special_action, bit in (("humiliate_rival", "h"),
+                                    ("show_strength", "s"),
+                                    ("force_religion", "f")):
+            native = event.get({
+                "humiliate_rival": "native_humiliate_rival",
+                "show_strength": "native_show_strength",
+                "force_religion": "native_force_religion",
+            }[special_action])
+            if bit not in mask:
+                if native is not None:
+                    return False
+                continue
+            selected = selected_special.get(special_action)
+            if (not isinstance(selected, dict)
+                    or set(selected) != {"action_id", "country", "beneficiary"}
+                    or selected.get("country") != expected_country
+                    or selected.get("beneficiary") != expected_beneficiary):
+                return False
+            if not isinstance(native, dict):
+                return False
+            bool_fields = (
+                "requested", "candidate_found", "selection_requested",
+                "selection_available", "selected", "selection_copy_verified",
+                "parameters_matched", "rule_checked", "rule_available",
+                "rule_diagnostic_readable", "rule_diagnostic_truncated")
+            if any(not isinstance(native.get(field), bool) for field in bool_fields):
+                return False
+            counts = {
+                field: cls._safe_int(native.get(field), 0, maximum)
+                for field, maximum in (("candidate_count", 512),
+                                       ("matching_candidate_count", 512),
+                                       ("selected_term_count", 16),
+                                       ("rule_term_count", 512))}
+            if any(value is None for value in counts.values()):
+                return False
+            if (native.get("requested") is not True
+                    or native.get("selection_requested") is not True
+                    or native.get("country") != expected_country
+                    or native.get("beneficiary") != expected_beneficiary
+                    or counts["matching_candidate_count"] > counts["candidate_count"]
+                    or native.get("candidate_found") !=
+                    (counts["matching_candidate_count"] == 1)
+                    or native.get("selection_copy_verified") is not True):
+                return False
+            if counts["matching_candidate_count"] == 1:
+                if (native.get("selection_available") is not True
+                        or native.get("selected") is not True
+                        or native.get("parameters_matched") is not True
+                        or counts["selected_term_count"] <= 0):
+                    return False
+            elif (native.get("selection_available") is not False
+                  or native.get("selected") is not False
+                  or native.get("parameters_matched") is not False
+                  or counts["selected_term_count"] != 0):
+                return False
+            reason_code = native.get("reason_code")
+            if (reason_code is not None and
+                    (not isinstance(reason_code, str)
+                     or re.fullmatch(r"[A-Z0-9_]{1,128}", reason_code) is None)):
+                return False
+            diagnostic_hex = native.get("rule_diagnostic_hex")
+            if (not isinstance(diagnostic_hex, str) or len(diagnostic_hex) > 4096
+                    or len(diagnostic_hex) % 2
+                    or re.fullmatch(r"[0-9a-fA-F]*", diagnostic_hex) is None):
+                return False
+            if native.get("rule_checked") is False:
+                if (native.get("rule_available") is not False
+                        or diagnostic_hex != ""
+                        or native.get("rule_diagnostic_readable") is not False
+                        or native.get("rule_diagnostic_truncated") is not False):
+                    return False
+            elif (native.get("rule_scope") != "selected_nonzero_terms"
+                  or counts["rule_term_count"] != expected_rule_count):
+                return False
+
+        payload = event.get("native_payload")
+        selected_any = any(bit in mask for bit in "hsf")
+        if selected_any:
+            if (not cls._valid_native_peace_payload(payload)
+                    or payload.get("serialized_fields_complete") is not True
+                    or payload.get("source_copy_equal") is not True
+                    or payload.get("serialized_fields_unchanged") is not True
+                    or payload.get("selected_term_count", 0) <= 0):
+                return False
+        elif payload is not None and not cls._valid_native_peace_payload(payload):
+            return False
+        return True
+
+    @classmethod
+    def _valid_native_peace_annul_treaties_offer_inspection(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate one aggregate QUERY12 Annul Treaties observation."""
+
+        action_bits = {
+            "demand_ducats": "m", "cede_province": "p",
+            "war_reparations": "r", "transfer_trade_power": "t",
+            "concede_defeat": "c", "annul_treaties": "a",
+        }
+        valid_masks = tuple(
+            "".join(letter for index, letter in enumerate("mprtca")
+                    if bits & (1 << index))
+            for bits in range(1, 64) if bits & 32)
+        if (not isinstance(expected_selection, dict)
+                or action_id not in action_bits
+                or expected_selection.get("action_id") != action_id
+                or not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                expected_selection["war_id"]) is None
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or expected_selection.get("term_mask") not in valid_masks
+                or action_bits[action_id] not in expected_selection["term_mask"]
+                or "a" not in expected_selection["term_mask"]):
+            return False
+        if (not isinstance(event, dict)
+                or event.get("event")
+                != "native_peace_annul_treaties_offer_inspection"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("direction") != expected_selection["direction"]
+                or event.get("term_mask") != expected_selection["term_mask"]
+                or not isinstance(event.get("full_rules_complete"), bool)
+                or event.get("reasons_complete") is not False
+                or event.get("submitted") is not False):
+            return False
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=expected_selection["direction"]):
+            return False
+
+        mask = expected_selection["term_mask"]
+        amount_raw = expected_selection.get("amount_raw", -1)
+        if ("m" in mask and (
+                cls._safe_int(amount_raw, 1, 2147483647) is None
+                or amount_raw % 100 != 0)) or (
+                "m" not in mask and amount_raw != -1):
+            return False
+        province_ids = expected_selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(cls._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return False
+        beneficiary = expected_selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", beneficiary) is None):
+                return False
+        elif beneficiary not in (None, "-"):
+            return False
+
+        discovery = (expected_selection.get("annul_country") == "-"
+                     and expected_selection.get("annul_partners") == [])
+        country = expected_selection.get("annul_country")
+        partners = expected_selection.get("annul_partners")
+        if discovery:
+            if action_id != "annul_treaties" or mask != "a":
+                return False
+        else:
+            if (not isinstance(country, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", country) is None
+                    or not isinstance(partners, list)
+                    or not 1 <= len(partners) <= 16
+                    or any(not isinstance(partner, str)
+                           or re.fullmatch(r"[A-Z0-9]{3}", partner) is None
+                           or partner == country for partner in partners)
+                    or len(set(partners)) != len(partners)
+                    or partners != sorted(partners)):
+                return False
+
+        native = event.get("native_annul_treaties")
+        if not isinstance(native, dict):
+            return False
+        bool_fields = (
+            "requested", "candidate_found", "selection_requested",
+            "selection_available", "selected", "selection_copy_verified",
+            "parameters_matched", "candidates_available", "candidates_complete",
+            "candidates_truncated", "rule_checked", "rule_available",
+            "rule_diagnostic_readable", "rule_diagnostic_truncated")
+        if any(not isinstance(native.get(field), bool) for field in bool_fields):
+            return False
+        counts = {}
+        for field, maximum in (("candidate_count", 512),
+                               ("matching_candidate_count", 512),
+                               ("selected_term_count", 16),
+                               ("rule_term_count", 512)):
+            count = cls._safe_int(native.get(field), 0, maximum)
+            if count is None:
+                return False
+            counts[field] = count
+        if counts["matching_candidate_count"] > counts["candidate_count"]:
+            return False
+        if discovery:
+            if (native.get("requested") is not True
+                    or native.get("selection_requested") is not False
+                    or native.get("selected") is not False
+                    or native.get("selection_available") is not False
+                    or native.get("parameters_matched") is not False
+                    or native.get("candidate_found") is not False
+                    or counts["matching_candidate_count"] != 0
+                    or native.get("country") is not None
+                    or native.get("treaty_partners") != []):
+                return False
+        else:
+            if (native.get("requested") is not True
+                    or native.get("selection_requested") is not True
+                    or native.get("country") != country
+                    or native.get("treaty_partners") != partners
+                    or native.get("candidate_found")
+                    != (counts["matching_candidate_count"] == len(partners))
+                    or native.get("selection_copy_verified") is not True):
+                return False
+            if counts["matching_candidate_count"] == len(partners):
+                if (native.get("selection_available") is not True
+                        or native.get("selected") is not True
+                        or native.get("parameters_matched") is not True
+                        or counts["selected_term_count"] <= 0):
+                    return False
+            elif (native.get("selection_available") is not False
+                  or native.get("selected") is not False
+                  or native.get("parameters_matched") is not False):
+                return False
+        candidates = native.get("candidates")
+        if not isinstance(candidates, list) or len(candidates) > 256:
+            return False
+        seen_candidates: set[tuple[str, str]] = set()
+        selected_candidates = 0
+        for row in candidates:
+            if (not isinstance(row, dict)
+                    or set(row) != {"country", "partner", "selected", "complete"}
+                    or not isinstance(row.get("country"), str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", row["country"]) is None
+                    or not isinstance(row.get("partner"), str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", row["partner"]) is None
+                    or not isinstance(row.get("selected"), bool)
+                    or not isinstance(row.get("complete"), bool)):
+                return False
+            pair = (row["country"], row["partner"])
+            if pair in seen_candidates or row["country"] == row["partner"]:
+                return False
+            seen_candidates.add(pair)
+            if row["selected"]:
+                selected_candidates += 1
+                if (discovery or row["country"] != country
+                        or row["partner"] not in partners):
+                    return False
+        if (native.get("candidate_count") < len(candidates)
+                or (native.get("candidates_complete") is True
+                    and (native.get("candidates_truncated") is True
+                         or native.get("candidate_count") != len(candidates)))
+                or (native.get("candidates_truncated") is True
+                    and native.get("candidate_count") <= len(candidates))):
+            return False
+        if (native.get("candidates_complete") is True
+                and selected_candidates != counts["selected_term_count"]):
+            return False
+        reason_code = native.get("reason_code")
+        if reason_code is not None and (
+                not isinstance(reason_code, str)
+                or re.fullmatch(r"[A-Z0-9_]{1,96}", reason_code) is None):
+            return False
+        diagnostic_hex = native.get("rule_diagnostic_hex")
+        if (not isinstance(diagnostic_hex, str)
+                or len(diagnostic_hex) > 4096 or len(diagnostic_hex) % 2
+                or re.fullmatch(r"[0-9a-fA-F]*", diagnostic_hex) is None):
+            return False
+        if native.get("rule_checked") is False:
+            if (native.get("rule_available") is not False
+                    or diagnostic_hex != ""
+                    or native.get("rule_diagnostic_readable") is not False
+                    or native.get("rule_diagnostic_truncated") is not False):
+                return False
+        elif native.get("rule_term_count") != counts["rule_term_count"]:
+            return False
+        if native.get("rule_checked") is True and native.get(
+                "rule_scope") != "selected_nonzero_terms":
+            return False
+        if not discovery:
+            payload = event.get("native_payload")
+            if (not cls._valid_native_peace_payload(payload)
+                    or payload.get("serialized_fields_complete") is not True
+                    or payload.get("source_copy_equal") is not True
+                    or payload.get("serialized_fields_unchanged") is not True
+                    or payload.get("selected_term_count", 0) <= 0):
+                return False
+        elif event.get("native_payload") is not None and not cls._valid_native_peace_payload(
+                event.get("native_payload")):
+            return False
+        return True
+
+    @classmethod
+    def _valid_native_peace_trade_power_offer_inspection(
+            cls, event: object, action_id: str, actor: str, recipient: str,
+            phase: str, expected_date: object, expected_selection: dict,
+            expected_query_id: str | None = None,
+            expected_session_id: str | None = None,
+            *, require_wrapper_rule: bool = False) -> bool:
+        """Validate one aggregate QUERY9/QUERY10 trade-power observation.
+
+        QUERY10 adds an explicit source selector and a bounded candidate list.
+        The old bilateral QUERY9 contract remains valid when the source is the
+        direction-bound default.  Candidate discovery is deliberately a
+        selection-free ``T`` query and therefore stays an unknown legality
+        observation rather than being promoted to a selected treaty term.
+        """
+
+        action_bits = {
+            "demand_ducats": "m",
+            "cede_province": "p",
+            "war_reparations": "r",
+            "transfer_trade_power": "t",
+        }
+        valid_masks = ("t", "mt", "pt", "rt", "mpt", "mrt", "prt", "mprt")
+        if (not isinstance(expected_selection, dict)
+                or action_id not in action_bits
+                or expected_selection.get("action_id") != action_id
+                or not isinstance(expected_selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                expected_selection["war_id"]) is None
+                or expected_selection.get("direction") not in ("demand", "offer")
+                or expected_selection.get("term_mask") not in valid_masks
+                or action_bits[action_id] not in expected_selection["term_mask"]):
+            return False
+
+        direction = expected_selection["direction"]
+        mask = expected_selection["term_mask"]
+        expected_source = actor if direction == "offer" else recipient
+        expected_trade_beneficiary = recipient if direction == "offer" else actor
+        source = expected_selection.get("source")
+        trade_beneficiary = expected_selection.get("trade_power_beneficiary")
+        if trade_beneficiary is None and "p" not in mask:
+            # Standalone T callers may use the public beneficiary name.  Mixed
+            # province+T selections must use the disambiguated internal key.
+            trade_beneficiary = expected_selection.get("beneficiary")
+        discovery = source == "-"
+        source_protocol = (
+            expected_selection.get("_sources_protocol") is True
+            or discovery
+            or (isinstance(source, str) and source != expected_source))
+        if (not isinstance(source, str)
+                or (not discovery and re.fullmatch(r"[A-Z0-9]{3}", source) is None)
+                or (discovery and source != "-")
+                or trade_beneficiary != expected_trade_beneficiary
+                or (not discovery and source == expected_trade_beneficiary)):
+            return False
+        if discovery and (not source_protocol or action_id != "transfer_trade_power"
+                          or mask != "t"):
+            return False
+
+        amount_raw = expected_selection.get("amount_raw", -1)
+        if "m" in mask:
+            if (cls._safe_int(amount_raw, 1, 2147483647) is None
+                    or amount_raw % 100 != 0):
+                return False
+        elif amount_raw != -1:
+            return False
+        province_ids = expected_selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(cls._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return False
+        province_beneficiary = expected_selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(province_beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", province_beneficiary) is None):
+                return False
+        elif province_beneficiary not in (None, "-", trade_beneficiary):
+            return False
+
+        if (not isinstance(event, dict)
+                or event.get("event") != "native_peace_trade_power_offer_inspection"
+                or event.get("family") != "peace"
+                or event.get("action_id") != action_id
+                or event.get("actor") != actor
+                or event.get("recipient") != recipient
+                or event.get("phase") != phase
+                or event.get("war_id") != expected_selection["war_id"]
+                or event.get("identity_scope") != "observer_session"
+                or event.get("direction") != direction
+                or event.get("term_mask") != mask
+                or not isinstance(event.get("full_rules_complete"), bool)
+                or event.get("reasons_complete") is not False
+                or event.get("submitted") is not False):
+            return False
+
+        common = dict(event)
+        common["event"] = "native_peace_empty_offer_inspection"
+        common["action_id"] = "white_peace"
+        common["direction"] = direction
+        if not cls._valid_native_peace_empty_offer_inspection(
+                common, "white_peace", actor, recipient, phase, expected_date,
+                expected_selection["war_id"], expected_query_id,
+                expected_session_id, require_wrapper_rule=require_wrapper_rule,
+                expected_direction=direction):
+            return False
+
+        if "m" in mask:
+            money_event = dict(event)
+            money_event["event"] = "native_peace_money_offer_inspection"
+            money_event["action_id"] = "demand_ducats"
+            money_selection = {
+                "war_id": expected_selection["war_id"],
+                "direction": direction,
+                "amount_raw": amount_raw,
+                "payer": expected_source,
+                "claimant": expected_trade_beneficiary,
+            }
+            if not cls._valid_native_peace_money_offer_inspection(
+                    money_event, "demand_ducats", actor, recipient, phase,
+                    expected_date, money_selection, expected_query_id,
+                    expected_session_id, require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif event.get("native_money") not in (None,):
+            return False
+
+        if "p" in mask:
+            province_event = dict(event)
+            province_event["event"] = "native_peace_province_offer_inspection"
+            province_event["action_id"] = "cede_province"
+            province_selection = {
+                "war_id": expected_selection["war_id"],
+                "direction": direction,
+                "province_ids": list(province_ids),
+                "beneficiary": province_beneficiary,
+            }
+            if not cls._valid_native_peace_province_offer_inspection(
+                    province_event, "cede_province", actor, recipient, phase,
+                    expected_date, province_selection, expected_query_id,
+                    expected_session_id, require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif event.get("native_provinces") not in (None,):
+            return False
+
+        native_reparations = event.get("native_reparations")
+        if "r" in mask:
+            if not isinstance(native_reparations, dict):
+                return False
+            reparations_event = dict(event)
+            reparations_event["event"] = "native_peace_reparations_offer_inspection"
+            reparations_event["action_id"] = "war_reparations"
+            # QUERY9 carries the aggregate mask including ``t``.  The
+            # established QUERY8 validator receives a synthetic R-only view,
+            # so its event-level mask must match the R selection contract too.
+            reparations_event["term_mask"] = mask.replace("t", "")
+            reparations_selection = {
+                "action_id": "war_reparations",
+                "war_id": expected_selection["war_id"],
+                "direction": direction,
+                "amount_raw": amount_raw if "m" in mask else -1,
+                "province_ids": list(province_ids) if "p" in mask else [],
+                "beneficiary": province_beneficiary if "p" in mask else None,
+                "payer": expected_source,
+                "claimant": expected_trade_beneficiary,
+                "term_mask": mask.replace("t", ""),
+                # QUERY9's R record reports the selected-term rule count for
+                # the whole aggregate mask, including T.  Keep the synthetic
+                # R mask public-contract-compatible while retaining that
+                # private count context for the strict R validator.
+                "_aggregate_term_mask": mask,
+            }
+            if not cls._valid_native_peace_reparations_offer_inspection(
+                    reparations_event, "war_reparations", actor, recipient, phase,
+                    expected_date, reparations_selection, expected_query_id,
+                    expected_session_id, require_wrapper_rule=require_wrapper_rule):
+                return False
+        elif native_reparations is not None:
+            return False
+
+        native = event.get("native_trade_power")
+        if not isinstance(native, dict):
+            return False
+        bool_fields = (
+            "requested", "candidate_found", "selection_requested",
+            "selection_available", "selected", "selection_copy_verified",
+            "parameters_matched")
+        if any(not isinstance(native.get(field), bool) for field in bool_fields):
+            return False
+        candidate_count = cls._safe_int(native.get("candidate_count"), 0, 512)
+        matching_count = cls._safe_int(
+            native.get("matching_candidate_count"), 0, 512)
+        selected_count = cls._safe_int(
+            native.get("selected_term_count"), 0, 16)
+        if (candidate_count is None or matching_count is None
+                or selected_count is None
+                or matching_count > candidate_count
+                or native.get("requested") is not True
+                or native.get("candidate_found") != (matching_count == 1)
+                or native.get("beneficiary") != expected_trade_beneficiary):
+            return False
+        if discovery:
+            if (native.get("selection_requested") is not False
+                    or native.get("source") is not None
+                    or native.get("candidate_found") is not False
+                    or matching_count != 0
+                    or native.get("selected") is not False
+                    or native.get("selection_available") is not False
+                    or native.get("parameters_matched") is not False
+                    or selected_count != 0):
+                return False
+            # No native term was selected, so a producer may report either a
+            # copy proof or an explicitly inapplicable copy field.
+            if not isinstance(native.get("selection_copy_verified"), bool):
+                return False
+        else:
+            if (native.get("selection_requested") is not True
+                    or native.get("source") != source
+                    or not isinstance(native.get("selection_copy_verified"), bool)
+                    or native.get("selection_copy_verified") is not True):
+                return False
+        if not discovery and matching_count == 1:
+            if (native.get("selection_available") is not True
+                    or native.get("selected") is not True
+                    or native.get("parameters_matched") is not True
+                    or selected_count <= 0):
+                return False
+        elif not discovery:
+            if (native.get("selection_available") is not False
+                    or native.get("selected") is not False
+                    or native.get("parameters_matched") is not False
+                    or selected_count != 0):
+                return False
+        reason_code = native.get("reason_code")
+        if (reason_code not in (None,
+                "NATIVE_PEACE_TRADE_POWER_CANDIDATE_AMBIGUOUS",
+                "NATIVE_PEACE_TRADE_POWER_CANDIDATE_NOT_FOUND",
+                "NATIVE_PEACE_TRADE_POWER_UNEXPECTED_PRESELECTION",
+                "NATIVE_PEACE_TRADE_POWER_SELECTION_MISMATCH",
+                "NATIVE_PEACE_TRADE_POWER_RULE_UNAVAILABLE",
+                "NATIVE_PEACE_SELECTED_TERM_RULE_UNAVAILABLE")):
+            return False
+
+        rule_fields = (
+            "rule_checked", "rule_available", "rule_diagnostic_hex",
+            "rule_diagnostic_readable", "rule_diagnostic_truncated")
+        if any(field not in native for field in rule_fields):
+            if event.get("full_rules_complete") is True and not discovery:
+                return False
+        else:
+            if (not isinstance(native.get("rule_checked"), bool)
+                    or not isinstance(native.get("rule_available"), bool)
+                    or not isinstance(native.get("rule_diagnostic_hex"), str)
+                    or len(native["rule_diagnostic_hex"]) > 4096
+                    or len(native["rule_diagnostic_hex"]) % 2
+                    or re.fullmatch(r"[0-9a-fA-F]*",
+                                    native["rule_diagnostic_hex"]) is None
+                    or not isinstance(native.get("rule_diagnostic_readable"), bool)
+                    or not isinstance(native.get("rule_diagnostic_truncated"), bool)):
+                return False
+            if native.get("rule_checked") is False:
+                if (native.get("rule_available") is not False
+                        or native.get("rule_diagnostic_hex") != ""
+                        or native.get("rule_diagnostic_readable") is not False
+                        or native.get("rule_diagnostic_truncated") is not False):
+                    return False
+            elif native.get("parameters_matched") is not True and not discovery:
+                return False
+            if native.get("rule_checked") is True:
+                aggregate_mask = expected_selection.get(
+                    "_aggregate_term_mask", mask)
+                if not isinstance(aggregate_mask, str):
+                    return False
+                expected_rule_count = (1 + (1 if "m" in aggregate_mask else 0)
+                                       + len(province_ids)
+                                       + (1 if "r" in aggregate_mask else 0)
+                                       + (1 if "c" in aggregate_mask else 0))
+                if (cls._safe_int(native.get("rule_term_count"), 1, 512)
+                        != expected_rule_count
+                        or native.get("rule_scope") != "selected_nonzero_terms"):
+                    return False
+
+        # QUERY10's candidate-discovery form has no selected term and may
+        # therefore carry an absent/partial payload.  A selected query keeps
+        # the established serialized-field proof requirement.
+        payload = event.get("native_payload")
+        if discovery:
+            if payload is not None and not cls._valid_native_peace_payload(payload):
+                return False
+        elif (not cls._valid_native_peace_payload(payload)
+              or payload.get("serialized_fields_complete") is not True
+              or payload.get("source_copy_equal") is not True
+              or payload.get("serialized_fields_unchanged") is not True
+              or payload.get("selected_term_count", 0) <= 0):
+            return False
+
+        # QUERY10 carries a bounded candidate summary.  Old native events do
+        # not have these keys and retain the QUERY9 completeness semantics.
+        candidate_fields = {
+            "candidates_available", "candidates_complete",
+            "candidates_truncated", "candidates"}
+        present_candidate_fields = candidate_fields.intersection(native)
+        if present_candidate_fields:
+            if present_candidate_fields != candidate_fields:
+                return False
+            if any(not isinstance(native.get(field), bool)
+                   for field in ("candidates_available", "candidates_complete",
+                                 "candidates_truncated")):
+                return False
+            candidates = native.get("candidates")
+            if not isinstance(candidates, list) or len(candidates) > 32:
+                return False
+            seen_candidates: set[tuple[str, str]] = set()
+            selected_candidates = 0
+            for candidate in candidates:
+                if not isinstance(candidate, dict) or set(candidate) != {
+                        "source", "beneficiary", "selected", "complete"}:
+                    return False
+                candidate_source = candidate.get("source")
+                candidate_beneficiary = candidate.get("beneficiary")
+                if (not isinstance(candidate_source, str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", candidate_source) is None
+                        or not isinstance(candidate_beneficiary, str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", candidate_beneficiary) is None
+                        or candidate_source == candidate_beneficiary
+                        or not isinstance(candidate.get("selected"), bool)
+                        or not isinstance(candidate.get("complete"), bool)):
+                    return False
+                pair = (candidate_source, candidate_beneficiary)
+                if pair in seen_candidates:
+                    return False
+                seen_candidates.add(pair)
+                if candidate.get("selected") is True:
+                    selected_candidates += 1
+                    if discovery or candidate_source != source:
+                        return False
+            if selected_candidates > 1:
+                return False
+            if (native.get("candidate_count") < len(candidates)
+                    or (native.get("candidates_complete") is True
+                        and (native.get("candidates_truncated") is True
+                             or native.get("candidate_count") != len(candidates)))):
+                return False
+            if (native.get("candidates_truncated") is True
+                    and native.get("candidate_count") <= len(candidates)):
+                return False
+        return True
+
+    @classmethod
     def _valid_native_declare_war_inspection(
             cls, event: object, action_id: str, actor: str, recipient: str,
             phase: str, expected_date: object,
             expected_query_id: str | None = None,
             expected_session_id: str | None = None,
-            expected_selection: dict | None = None) -> bool:
+            expected_selection: dict | None = None,
+            participant_events: list[dict] | None = None) -> bool:
         """Validate the default or selected Declare War query contract.
 
         QUERY1 reports only the default action object.  QUERY3 adds a
         family-bound CB/province/beneficiary selection and must echo every
         requested parameter before its rule booleans can be consumed.
         """
+
+        if not validate_native_diplomat_context(event):
+            return False
 
         if (not isinstance(event, dict)
                 or event.get("event") != "native_declare_war_inspection"
@@ -6748,6 +14891,25 @@ class ObserverSession:
                     or len(cost_text) % 2
                     or re.fullmatch(r"[0-9a-fA-F]*", cost_text) is None):
                 return False
+        if ("native_details" in event
+                and not valid_declare_war_details(event["native_details"])):
+            return False
+        if ("native_peace_options" in event
+                and not validate_native_peace_options(event["native_peace_options"])):
+            return False
+        native_forces = event.get("native_forces")
+        if native_forces is not None:
+            if not valid_declare_war_forces(native_forces):
+                return False
+            assert isinstance(native_forces, dict)
+            attackers = native_forces["attackers"]
+            defenders = native_forces["defenders"]
+            assert isinstance(attackers, dict) and isinstance(defenders, dict)
+            if (attackers["countries"] and actor not in attackers["countries"]):
+                return False
+            if (defenders["scope_complete"] and defenders["countries"]
+                    and recipient not in defenders["countries"]):
+                return False
         candidates = event.get("candidates")
         enumeration_fields = (
             "candidate_enumeration_called", "candidate_enumeration_complete",
@@ -6768,6 +14930,7 @@ class ObserverSession:
             return False
         seen_indexes: set[int] = set()
         candidate_matches_selection = False
+        candidate_matches_no_target_sentinel = False
         for candidate in candidates:
             if not isinstance(candidate, dict):
                 return False
@@ -6806,6 +14969,18 @@ class ObserverSession:
                 candidate_cb = candidate.get("casus_belli_key")
                 target_province = candidate.get("target_province_id")
                 candidate_beneficiary = candidate.get("beneficiary_tag")
+                province_identifier_valid = (
+                    (target_province == -1
+                     and isinstance(candidate.get("province_identifier_verified"), bool))
+                    or (isinstance(target_province, int)
+                        and target_province > 0
+                        and candidate.get("province_identifier_verified") is True))
+                beneficiary_identifier_valid = (
+                    (candidate_beneficiary == "---"
+                     and isinstance(candidate.get("beneficiary_identifier_verified"), bool))
+                    or (isinstance(candidate_beneficiary, str)
+                        and candidate_beneficiary != "---"
+                        and candidate.get("beneficiary_identifier_verified") is True))
                 if (not isinstance(candidate_cb, str)
                         or re.fullmatch(r"[A-Za-z0-9_]{1,128}", candidate_cb) is None
                         or candidate.get("casus_belli_key_verified") is not True
@@ -6813,11 +14988,11 @@ class ObserverSession:
                         or not isinstance(target_province, int)
                         or not (-1 == target_province
                                  or 1 <= target_province <= 2147483647)
-                        or candidate.get("province_identifier_verified") is not True
+                        or not province_identifier_valid
                         or not isinstance(candidate_beneficiary, str)
                         or (candidate_beneficiary != "---"
                             and re.fullmatch(r"[A-Z]{3}", candidate_beneficiary) is None)
-                        or candidate.get("beneficiary_identifier_verified") is not True):
+                        or not beneficiary_identifier_valid):
                     return False
                 # The native enumeration uses ``---`` for the actor's own
                 # beneficiary (for example requested beneficiary FRA in an
@@ -6830,16 +15005,54 @@ class ObserverSession:
                     else {expected_selection["beneficiary"]})
                 if (candidate_cb == expected_selection["casus_belli"]
                         and target_province == expected_selection["province_id"]
-                        and candidate_beneficiary in expected_candidate_beneficiaries):
+                        and candidate_beneficiary in expected_candidate_beneficiaries
+                        and (not matched or (
+                            candidate.get("province_identifier_verified") is True
+                            and candidate.get("beneficiary_identifier_verified") is True))):
                     candidate_matches_selection = True
-        if selection_requested and matched and not candidates:
+                    if (target_province == -1
+                            and candidate_beneficiary == "---"
+                            and candidate.get("province_identifier_verified") is False
+                            and candidate.get("beneficiary_identifier_verified") is False):
+                        candidate_matches_no_target_sentinel = True
+        # ``no_casus_belli`` is a native default payload: the selected rule
+        # can be complete without a candidate clone.  Other selected CBs
+        # still require an enumerated candidate row.
+        if (selection_requested and matched and not candidates
+                and expected_selection["casus_belli"] != "no_casus_belli"):
             return False
         if (selection_requested
                 and expected_selection["casus_belli"] != "no_casus_belli"
                 and matched and not candidate_matches_selection):
             return False
         if selection_requested and not matched and candidate_matches_selection:
-            return False
+            # A no-province CB uses the native ``-1``/``---`` sentinel pair.
+            # Native candidate enumeration can expose that legal candidate
+            # while the selected clone remains unbound; preserve the native
+            # not-selected/rule state instead of treating the sentinel row as
+            # a malformed event.  Other unselected rows still require a
+            # complete request/candidate mismatch.
+            if not candidate_matches_no_target_sentinel:
+                return False
+        participant_requested = False
+        if expected_selection is not None:
+            try:
+                participant_requested = participant_selection_requested(
+                    cls._declare_war_participant_values(
+                        expected_selection, actor, recipient))
+            except (TypeError, ValueError):
+                return False
+        if participant_requested:
+            if not isinstance(participant_events, list):
+                return False
+            native_participants = event.get("native_participants")
+            if not validate_participants(
+                    native_participants,
+                    cls._ordered_declare_war_participant_events(
+                        participant_events),
+                    event.get("query_id"), event.get("session_id"),
+                    actor, recipient, actual_date, expected_selection):
+                return False
         return True
 
     @classmethod
@@ -6949,6 +15162,8 @@ class ObserverSession:
                                         expected_insult_id: int) -> bool:
         """Validate the family-specific query2 result for an insult action."""
 
+        if not validate_native_diplomat_context(event):
+            return False
         if (not isinstance(event, dict)
                 or action_id not in _INSULT_ACTIONS
                 or event.get("event") != "native_alliance_inspection"
@@ -7035,7 +15250,18 @@ class ObserverSession:
                          peace_direction: str = "demand",
                          peace_money_offer: dict | None = None,
                          peace_province_offer: dict | None = None,
-                         peace_combined_offer: dict | None = None) -> dict | None:
+                         peace_combined_offer: dict | None = None,
+                          peace_reparations_offer: dict | None = None,
+                          peace_trade_power_offer: dict | None = None,
+                          peace_concede_defeat_offer: dict | None = None,
+                           peace_annul_treaties_offer: dict | None = None,
+                           peace_special_offer: dict | None = None,
+                          peace_core_offer: dict | None = None,
+                          peace_execution_offer: dict | None = None,
+                           peace_subject_offer: dict | None = None,
+                           peace_combined_subject_offer: dict | None = None,
+                            peace_combined_country_offer: dict | None = None,
+                            gift_ducats: int | None = None) -> dict | None:
         if phase != "initiate":
             return None
         controlled = self.record.get("controlled_countries", ["FRA"])
@@ -7045,18 +15271,259 @@ class ObserverSession:
         # than inferred from the shared DLL filename or a version number.
         log = self.directory / "control-probe.jsonl"
         required = _NATIVE_QUERY_CAPS if required_capabilities is None else required_capabilities
-        if not (self.installation_capabilities() & required):
+        capabilities = self.installation_capabilities()
+        participant_requested = False
+        participant_values: dict[str, list[str]] = {
+            field: [] for field in PARTICIPANT_FIELDS}
+        if declare_war_selection is not None:
+            participant_values = self._declare_war_participant_values(
+                declare_war_selection, actor, recipient)
+            participant_requested = participant_selection_requested(
+                participant_values)
+            if (participant_requested
+                    and _NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY
+                    not in capabilities):
+                return None
+        if (peace_reparations_offer is not None
+                and _NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY not in capabilities):
+            return None
+        if (peace_trade_power_offer is not None
+                and _NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY not in capabilities):
+            return None
+        if (peace_trade_power_offer is not None
+                and peace_trade_power_offer.get("_sources_protocol") is True
+                and _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY not in capabilities):
+            return None
+        if (peace_concede_defeat_offer is not None
+                and _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY not in capabilities):
+            return None
+        if (peace_annul_treaties_offer is not None
+                and _NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY not in capabilities):
+            return None
+        if (peace_special_offer is not None
+                and _NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY not in capabilities):
+            return None
+        if (peace_core_offer is not None
+                and _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY not in capabilities):
+            return None
+        if (peace_subject_offer is not None
+                and _NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY not in capabilities):
+            return None
+        if (peace_combined_subject_offer is not None
+                and _NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY not in capabilities):
+            return None
+        if (peace_combined_country_offer is not None
+                and _NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY not in capabilities):
+            return None
+        if (peace_execution_offer is not None
+                and _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY not in capabilities):
+            return None
+        if not (capabilities & required):
             return None
         peace_evaluation_enabled = (
             _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in required)
         peace_wrapper_rule_enabled = (
             _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in required)
+        selected_war_ids = {
+            candidate.get("war_id")
+            for candidate in (
+                {"war_id": peace_war_id}, peace_money_offer,
+                peace_province_offer, peace_combined_offer,
+                peace_reparations_offer, peace_trade_power_offer,
+                peace_concede_defeat_offer, peace_annul_treaties_offer,
+                peace_special_offer, peace_core_offer, peace_execution_offer,
+                peace_subject_offer, peace_combined_subject_offer,
+                peace_combined_country_offer)
+            if isinstance(candidate, dict)
+            and isinstance(candidate.get("war_id"), str)
+        }
+        if len(selected_war_ids) > 1:
+            return {"error_code": "QUERY_PEACE_WAR_ID_CONFLICT"}
+        selected_war_id = next(iter(selected_war_ids), None)
+        # The live score is an optional read-only companion to a selected
+        # peace query.  It never becomes a required capability for the parent
+        # peace inspection, so older DLLs keep their established behavior.
+        live_war_score_enabled = (
+            selected_war_id is not None
+            and _NATIVE_LIVE_WAR_SCORE_QUERY_CAPABILITY in capabilities)
         health = self.health()
         if health["status"] != "ready":
             return {"error_code": "QUERY_SESSION_UNREADY"}
         query_id = "inspect_" + uuid.uuid4().hex
         expiry = time.time_ns() // 100 + 116444736000000000 + 30 * 10000000
-        if peace_combined_offer is not None:
+        if peace_combined_country_offer is not None:
+            selection = peace_combined_country_offer
+            term_mask = selection.get("term_mask")
+            if (not isinstance(term_mask, str)
+                    or not any(bit in term_mask for bit in "nzuie")
+                    or any(bit not in "mprtcahsfbvlxnzuie" for bit in term_mask)):
+                return {"error_code": "QUERY_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            # R70 adds country+money without widening older installations.
+            if (any(bit not in "mnzuie" for bit in term_mask)
+                    or ("m" in term_mask and _NATIVE_PEACE_COUNTRY_MONEY_QUERY_CAPABILITY
+                        not in self.installation_capabilities())):
+                return {"error_code":
+                        "NATIVE_PEACE_EXECUTION_MIXED_INSPECTION_UNAVAILABLE"}
+            csv = lambda values: ",".join(str(value) for value in values) or "-"
+            country_fields = tuple(selection.get(key) or "-"
+                                   for key in COUNTRY_SELECTION_KEYS)
+            wire = (f"EU4DIP_QUERY18 {self.record['creation_filetime']:x} {query_id} "
+                    f"{selection.get('action_id', action_id)} {actor} {recipient} "
+                    f"{health['date_raw']} {expiry} {selection['war_id']} "
+                    f"{selection.get('direction', 'demand')} {selection.get('amount_raw', -1)} "
+                    f"{csv(selection.get('province_ids', []))} "
+                    f"{selection.get('beneficiary') or '-'} {term_mask} "
+                    f"{selection.get('source') or '-'} "
+                    f"{selection.get('annul_country') or '-'} "
+                    f"{csv(selection.get('annul_partners', []))} "
+                    f"{csv(selection.get('return_ids', []))} "
+                    f"{selection.get('return_core_owner') or '-'} "
+                    f"{csv(selection.get('revoke_ids', []))} "
+                    f"{selection.get('revoke_core_owner') or '-'} "
+                    f"{csv(selection.get('release_countries', []))} "
+                    f"{csv(selection.get('transfer_countries', []))} "
+                    f"{' '.join(country_fields)}\n")
+        elif peace_combined_subject_offer is not None:
+            selection = peace_combined_subject_offer
+            term_mask = selection.get("term_mask")
+            if not isinstance(term_mask, str):
+                return {"error_code": "QUERY_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            amount_raw = selection.get("amount_raw", -1)
+            province_ids = selection.get("province_ids", [])
+            annul_partners = selection.get("annul_partners", [])
+            return_ids = selection.get("return_ids", [])
+            revoke_ids = selection.get("revoke_ids", [])
+            csv = lambda values: ",".join(str(value) for value in values) or "-"
+            wire = (f"EU4DIP_QUERY17 {self.record['creation_filetime']:x} {query_id} "
+                    f"{selection.get('action_id', action_id)} {actor} {recipient} "
+                    f"{health['date_raw']} {expiry} {selection['war_id']} "
+                    f"{selection.get('direction', 'demand')} {amount_raw} "
+                    f"{csv(province_ids)} {selection.get('beneficiary') or '-'} "
+                    f"{term_mask} {selection.get('source') or '-'} "
+                    f"{selection.get('annul_country') or '-'} {csv(annul_partners)} "
+                    f"{csv(return_ids)} {selection.get('return_core_owner') or '-'} "
+                    f"{csv(revoke_ids)} {selection.get('revoke_core_owner') or '-'} "
+                    f"{csv(selection.get('release_countries', []))} "
+                    f"{csv(selection.get('transfer_countries', []))}\n")
+        elif peace_execution_offer is not None:
+            selection = peace_execution_offer
+            term_mask = selection.get("term_mask")
+            if not isinstance(term_mask, str):
+                return {"error_code": "QUERY_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            amount_raw = selection.get("amount_raw", -1)
+            province_ids = selection.get("province_ids", [])
+            annul_partners = selection.get("annul_partners", [])
+            return_ids = selection.get("return_ids", [])
+            revoke_ids = selection.get("revoke_ids", [])
+            csv = lambda values: ",".join(str(value) for value in values) or "-"
+            wire = (f"EU4DIP_QUERY15 {self.record['creation_filetime']:x} {query_id} "
+                    f"{selection.get('action_id', action_id)} {actor} {recipient} "
+                    f"{health['date_raw']} {expiry} {selection['war_id']} "
+                    f"{selection.get('direction', 'demand')} {amount_raw} "
+                    f"{csv(province_ids)} {selection.get('beneficiary') or '-'} "
+                    f"{term_mask} {selection.get('source') or '-'} "
+                    f"{selection.get('annul_country') or '-'} {csv(annul_partners)} "
+                    f"{csv(return_ids)} {selection.get('return_core_owner') or '-'} "
+                    f"{csv(revoke_ids)} {selection.get('revoke_core_owner') or '-'}\n")
+        elif peace_subject_offer is not None:
+            target = peace_subject_offer.get("country") or "-"
+            wire = (f"EU4DIP_QUERY16 {self.record['creation_filetime']:x} {query_id} "
+                    f"{peace_subject_offer.get('action_id', action_id)} {actor} {recipient} "
+                    f"{health['date_raw']} {expiry} {peace_subject_offer['war_id']} "
+                    f"{peace_subject_offer.get('direction', 'demand')} {target}\n")
+        elif peace_core_offer is not None:
+            core_ids = peace_core_offer.get("province_ids", [])
+            core_owner = peace_core_offer.get("core_owner")
+            wire = build_query14_wire(
+                self.record["creation_filetime"], query_id, actor, recipient,
+                health["date_raw"], expiry, {
+                    "action_id": peace_core_offer.get("action_id", action_id),
+                    "war_id": peace_core_offer["war_id"],
+                    "direction": peace_core_offer.get("direction", "demand"),
+                    "province_ids": list(core_ids),
+                    "core_owner": core_owner,
+                })
+        elif peace_special_offer is not None:
+            province_ids = peace_special_offer.get("province_ids", [])
+            csv_ids = ",".join(str(value) for value in province_ids) or "-"
+            beneficiary = peace_special_offer.get("beneficiary") or "-"
+            direction = peace_special_offer.get("direction", "demand")
+            amount_raw = peace_special_offer.get("amount_raw", -1)
+            primary_action = peace_special_offer.get("action_id", action_id)
+            term_mask = peace_special_offer.get("term_mask") or "-"
+            source_field = (peace_special_offer.get("source")
+                            if "t" in term_mask else "-")
+            annul_country = peace_special_offer.get("annul_country") or "-"
+            partners = peace_special_offer.get("annul_partners")
+            partner_field = (",".join(partners)
+                             if isinstance(partners, list) and partners else "-")
+            wire = (f"EU4DIP_QUERY13 {self.record['creation_filetime']:x} {query_id} "
+                    f"{primary_action} {actor} {recipient} {health['date_raw']} {expiry} "
+                    f"{peace_special_offer['war_id']} {direction} {amount_raw} "
+                    f"{csv_ids} {beneficiary} {term_mask} {source_field} "
+                    f"{annul_country} {partner_field}\n")
+        elif peace_annul_treaties_offer is not None:
+            province_ids = peace_annul_treaties_offer.get("province_ids", [])
+            csv_ids = ",".join(str(value) for value in province_ids) or "-"
+            beneficiary = peace_annul_treaties_offer.get("beneficiary") or "-"
+            direction = peace_annul_treaties_offer.get("direction", "demand")
+            amount_raw = peace_annul_treaties_offer.get("amount_raw", -1)
+            primary_action = peace_annul_treaties_offer.get("action_id", action_id)
+            term_mask = peace_annul_treaties_offer.get("term_mask")
+            source_field = (peace_annul_treaties_offer.get("source")
+                            if "t" in (term_mask or "") else "-")
+            annul_country = peace_annul_treaties_offer.get("annul_country") or "-"
+            partners = peace_annul_treaties_offer.get("annul_partners")
+            partner_field = ",".join(partners) if isinstance(partners, list) and partners else "-"
+            wire = (f"EU4DIP_QUERY12 {self.record['creation_filetime']:x} {query_id} "
+                    f"{primary_action} {actor} {recipient} {health['date_raw']} {expiry} "
+                    f"{peace_annul_treaties_offer['war_id']} {direction} {amount_raw} "
+                    f"{csv_ids} {beneficiary} {term_mask} {source_field} "
+                    f"{annul_country} {partner_field}\n")
+        elif peace_concede_defeat_offer is not None:
+            province_ids = peace_concede_defeat_offer.get("province_ids", [])
+            csv_ids = ",".join(str(value) for value in province_ids) or "-"
+            beneficiary = peace_concede_defeat_offer.get("beneficiary") or "-"
+            direction = peace_concede_defeat_offer.get("direction", "demand")
+            amount_raw = peace_concede_defeat_offer.get("amount_raw", -1)
+            primary_action = peace_concede_defeat_offer.get("action_id", action_id)
+            term_mask = peace_concede_defeat_offer.get("term_mask")
+            source_field = (peace_concede_defeat_offer.get("source")
+                            if "t" in (term_mask or "") else "-")
+            wire = (f"EU4DIP_QUERY11 {self.record['creation_filetime']:x} {query_id} "
+                    f"{primary_action} {actor} {recipient} {health['date_raw']} {expiry} "
+                    f"{peace_concede_defeat_offer['war_id']} {direction} {amount_raw} "
+                    f"{csv_ids} {beneficiary} {term_mask} {source_field}\n")
+        elif peace_trade_power_offer is not None:
+            province_ids = peace_trade_power_offer.get("province_ids", [])
+            csv_ids = ",".join(str(value) for value in province_ids) or "-"
+            beneficiary = peace_trade_power_offer.get("beneficiary") or "-"
+            direction = peace_trade_power_offer.get("direction", "demand")
+            amount_raw = peace_trade_power_offer.get("amount_raw", -1)
+            primary_action = peace_trade_power_offer.get("action_id", action_id)
+            term_mask = peace_trade_power_offer.get("term_mask")
+            query_name = ("EU4DIP_QUERY10"
+                          if peace_trade_power_offer.get("_sources_protocol") is True
+                          else "EU4DIP_QUERY9")
+            source_field = peace_trade_power_offer.get("source") or "-"
+            source_suffix = f" {source_field}" if query_name == "EU4DIP_QUERY10" else ""
+            wire = (f"{query_name} {self.record['creation_filetime']:x} {query_id} "
+                    f"{primary_action} {actor} {recipient} {health['date_raw']} {expiry} "
+                    f"{peace_trade_power_offer['war_id']} {direction} {amount_raw} "
+                    f"{csv_ids} {beneficiary} {term_mask}{source_suffix}\n")
+        elif peace_reparations_offer is not None:
+            province_ids = peace_reparations_offer.get("province_ids", [])
+            csv_ids = ",".join(str(value) for value in province_ids) or "-"
+            beneficiary = peace_reparations_offer.get("beneficiary") or "-"
+            direction = peace_reparations_offer.get("direction", "demand")
+            amount_raw = peace_reparations_offer.get("amount_raw", -1)
+            primary_action = peace_reparations_offer.get("action_id", action_id)
+            term_mask = peace_reparations_offer.get("term_mask")
+            wire = (f"EU4DIP_QUERY8 {self.record['creation_filetime']:x} {query_id} "
+                    f"{primary_action} {actor} {recipient} {health['date_raw']} {expiry} "
+                    f"{peace_reparations_offer['war_id']} {direction} {amount_raw} "
+                    f"{csv_ids} {beneficiary} {term_mask}\n")
+        elif peace_combined_offer is not None:
             province_ids = peace_combined_offer.get("province_ids", [])
             csv_ids = ",".join(str(value) for value in province_ids) or "-"
             beneficiary = peace_combined_offer.get("beneficiary") or "-"
@@ -7098,15 +15565,39 @@ class ObserverSession:
                 wire = (f"EU4DIP_QUERY4 {self.record['creation_filetime']:x} {query_id} "
                         f"{action_id} {actor} {recipient} {health['date_raw']} {expiry} "
                         f"{peace_war_id}\n")
+        elif gift_ducats is not None or action_id in (_GIFT_ACTION, _INFLUENCE_ACTION):
+            if action_id == _GIFT_ACTION:
+                if (type(gift_ducats) is not int or gift_ducats < 25
+                        or gift_ducats > 2147475 or gift_ducats % 25):
+                    return {"error_code": "GIFT_DUCATS_INVALID"}
+                wire = (f"EU4DIP_QUERY20 {self.record['creation_filetime']:x} {query_id} "
+                        f"{action_id} {actor} {recipient} {health['date_raw']} {expiry} "
+                        f"{gift_ducats} {_gift_amount_raw(gift_ducats)}\n")
+            elif action_id == _INFLUENCE_ACTION:
+                wire = (f"EU4DIP_QUERY21 {self.record['creation_filetime']:x} {query_id} "
+                        f"{action_id} {actor} {recipient} {health['date_raw']} {expiry}\n")
+            else:
+                return {"error_code": "QUERY_ACTION_UNSUPPORTED"}
         elif declare_war_selection is None:
             wire = (f"EU4DIP_QUERY1 {self.record['creation_filetime']:x} {query_id} {action_id} "
                     f"{actor} {recipient} {health['date_raw']} {expiry}\n")
         else:
-            wire = (f"EU4DIP_QUERY3 {self.record['creation_filetime']:x} {query_id} {action_id} "
-                    f"{actor} {recipient} {health['date_raw']} {expiry} "
-                    f"{declare_war_selection['casus_belli']} "
-                    f"{declare_war_selection['province_id']} "
-                    f"{declare_war_selection['beneficiary']}\n")
+            if participant_requested:
+                participant_csv = [country_csv(participant_values[field])
+                                   for field in PARTICIPANT_FIELDS]
+                wire = (f"EU4DIP_QUERY19 {self.record['creation_filetime']:x} "
+                        f"{query_id} {action_id} {actor} {recipient} "
+                        f"{health['date_raw']} {expiry} "
+                        f"{declare_war_selection['casus_belli']} "
+                        f"{declare_war_selection['province_id']} "
+                        f"{declare_war_selection['beneficiary']} "
+                        f"{' '.join(participant_csv)}\n")
+            else:
+                wire = (f"EU4DIP_QUERY3 {self.record['creation_filetime']:x} {query_id} {action_id} "
+                        f"{actor} {recipient} {health['date_raw']} {expiry} "
+                        f"{declare_war_selection['casus_belli']} "
+                        f"{declare_war_selection['province_id']} "
+                        f"{declare_war_selection['beneficiary']}\n")
         offset = log.stat().st_size
         request = self.directory / "diplomacy-query.request"
         pending = self.directory / f"{query_id}.pending"
@@ -7129,13 +15620,27 @@ class ObserverSession:
             if pending_owned and pending.exists():
                 pending.unlink()
         reason_events: dict[int, dict] = {}
+        participant_events: list[dict] = []
+        live_war_score_event: dict | None = None
+
+        def attach_live_score(value: object) -> object:
+            return _attach_live_war_score(
+                value, live_war_score_event, enabled=live_war_score_enabled,
+                query_id=query_id, session_id=self.session_id,
+                action_id=action_id, actor=actor, recipient=recipient,
+                phase=phase, date_raw=health.get("date_raw"),
+                war_id=selected_war_id or "", codec=self.native_text_codec)
+
         deadline = time.monotonic() + 10
         while time.monotonic() < deadline:
             with log.open("rb") as stream:
                 if log.stat().st_size < offset:
                     return {"error_code": "QUERY_LOG_TRUNCATED"}
                 stream.seek(offset)
-                chunk = stream.read(65536)
+                # QUERY19 final/participant evidence is bounded at the native
+                # 180 KiB/46 KiB record limits; one bounded read must be able
+                # to contain a complete line without scanning the whole log.
+                chunk = stream.read(262144)
             complete_end = chunk.rfind(b"\n")
             if complete_end >= 0:
                 offset += complete_end + 1
@@ -7148,6 +15653,21 @@ class ObserverSession:
                         continue
                     if event.get("query_id") != query_id or event.get("session_id") != self.session_id:
                         continue
+                    if (live_war_score_enabled
+                            and event.get("event") in (
+                                _NATIVE_LIVE_WAR_SCORE_EVENT,
+                                *_NATIVE_LIVE_WAR_SCORE_FAILED_EVENTS)):
+                        if _validate_live_war_score_event(
+                                event, query_id=query_id,
+                                session_id=self.session_id, action_id=action_id,
+                                actor=actor, recipient=recipient, phase=phase,
+                                date_raw=health.get("date_raw"),
+                                war_id=selected_war_id):
+                            live_war_score_event = dict(event)
+                        # The auxiliary record is never a parent inspection;
+                        # consume it and continue waiting for the selected
+                        # peace event with the same query identity.
+                        continue
                     if event.get("event") in {
                             "native_alliance_inspection_failed",
                             "native_rival_inspection_failed",
@@ -7156,19 +15676,43 @@ class ObserverSession:
                             "native_peace_empty_offer_inspection_failed",
                             "native_peace_money_offer_inspection_failed",
                              "native_peace_province_offer_inspection_failed",
-                             "native_peace_combined_offer_inspection_failed"}:
+                             "native_peace_combined_offer_inspection_failed",
+                             "native_peace_reparations_offer_inspection_failed",
+                             "native_peace_trade_power_offer_inspection_failed",
+                             "native_peace_concede_defeat_offer_inspection_failed",
+                              "native_peace_annul_treaties_offer_inspection_failed",
+                              "native_peace_special_offer_inspection_failed",
+                              "native_peace_subject_offer_query_failed",
+                               "native_peace_combined_subject_offer_query_failed",
+                              "native_peace_combined_country_offer_query_failed",
+                              "native_peace_combined_core_offer_query_failed",
+                              "native_peace_core_offer_query_failed",
+                              "native_peace_core_offer_inspection_failed"}:
                         return {"error_code": event["reason_code"]}
                     if event.get("event") == "native_alliance_reason_item":
                         index = self._safe_int(event.get("index"), 0, _MAX_REASON_ITEMS - 1)
                         if index is not None and index not in reason_events:
                             reason_events[index] = event
                         continue
+                    if (event.get("event") == "native_declare_war_participant"
+                            and inspection_event == "native_declare_war_inspection"):
+                        participant_events.append(event)
+                        continue
                     if event.get("event") == inspection_event:
                         event_for_validation = event
                         if (inspection_event in {
                                 "native_peace_empty_offer_inspection",
                                 "native_peace_province_offer_inspection",
-                                "native_peace_combined_offer_inspection"}
+                                 "native_peace_combined_offer_inspection",
+                                 "native_peace_reparations_offer_inspection",
+                                 "native_peace_trade_power_offer_inspection",
+                                 "native_peace_concede_defeat_offer_inspection",
+                                  "native_peace_annul_treaties_offer_inspection",
+                                  "native_peace_special_offer_inspection",
+                                  "native_peace_subject_offer_query",
+                                  "native_peace_combined_country_offer_query",
+                                  "native_peace_combined_core_offer_query",
+                                  "native_peace_core_offer_query"}
                                 and not peace_evaluation_enabled
                                 and "native_evaluation" in event):
                             # A producer-side optional field cannot activate
@@ -7184,7 +15728,7 @@ class ObserverSession:
                             self._valid_native_declare_war_inspection(
                                 event_for_validation, action_id, actor, recipient, phase,
                                 health.get("date_raw"), query_id, self.session_id,
-                                declare_war_selection)
+                                declare_war_selection, participant_events)
                             if inspection_event == "native_declare_war_inspection" else
                             self._valid_native_peace_empty_offer_inspection(
                                 event_for_validation, action_id, actor, recipient, phase,
@@ -7211,6 +15755,66 @@ class ObserverSession:
                                  query_id, self.session_id,
                                  require_wrapper_rule=peace_wrapper_rule_enabled)
                              if inspection_event == "native_peace_combined_offer_inspection" else
+                             self._valid_native_peace_reparations_offer_inspection(
+                                 event_for_validation, action_id, actor, recipient, phase,
+                                 health.get("date_raw"), peace_reparations_offer,
+                                 query_id, self.session_id,
+                                 require_wrapper_rule=peace_wrapper_rule_enabled)
+                             if inspection_event == "native_peace_reparations_offer_inspection" else
+                              self._valid_native_peace_trade_power_offer_inspection(
+                                  event_for_validation, action_id, actor, recipient, phase,
+                                  health.get("date_raw"), peace_trade_power_offer,
+                                  query_id, self.session_id,
+                                  require_wrapper_rule=peace_wrapper_rule_enabled)
+                              if inspection_event == "native_peace_trade_power_offer_inspection" else
+                               self._valid_native_peace_concede_defeat_offer_inspection(
+                                   event_for_validation, action_id, actor, recipient, phase,
+                                   health.get("date_raw"), peace_concede_defeat_offer,
+                                   query_id, self.session_id,
+                                   require_wrapper_rule=peace_wrapper_rule_enabled)
+                               if inspection_event == "native_peace_concede_defeat_offer_inspection" else
+                               self._valid_native_peace_annul_treaties_offer_inspection(
+                                   event_for_validation, action_id, actor, recipient, phase,
+                                   health.get("date_raw"), peace_annul_treaties_offer,
+                                   query_id, self.session_id,
+                                   require_wrapper_rule=peace_wrapper_rule_enabled)
+                               if inspection_event == "native_peace_annul_treaties_offer_inspection" else
+                                self._valid_native_peace_special_offer_inspection(
+                                    event_for_validation, action_id, actor, recipient, phase,
+                                    health.get("date_raw"), peace_special_offer,
+                                    query_id, self.session_id,
+                                    require_wrapper_rule=peace_wrapper_rule_enabled)
+                                if inspection_event == "native_peace_special_offer_inspection" else
+                                self._valid_native_peace_subject_offer_query(
+                                    event_for_validation, action_id, actor, recipient, phase,
+                                    health.get("date_raw"), peace_subject_offer,
+                                    query_id, self.session_id,
+                                    require_wrapper_rule=peace_wrapper_rule_enabled)
+                                if inspection_event == "native_peace_subject_offer_query" else
+                                 self._valid_native_peace_combined_subject_offer_query(
+                                     event_for_validation, action_id, actor, recipient, phase,
+                                     health.get("date_raw"), peace_combined_subject_offer,
+                                     query_id, self.session_id,
+                                     require_wrapper_rule=peace_wrapper_rule_enabled)
+                                 if inspection_event == "native_peace_combined_subject_offer_query" else
+                             self._valid_native_peace_combined_country_offer_query(
+                                 event_for_validation, action_id, actor, recipient, phase,
+                                 health.get("date_raw"), peace_combined_country_offer,
+                                 query_id, self.session_id,
+                                 require_wrapper_rule=peace_wrapper_rule_enabled)
+                             if inspection_event == "native_peace_combined_country_offer_query" else
+                            self._valid_native_peace_combined_core_offer_query(
+                                event_for_validation, action_id, actor, recipient, phase,
+                                health.get("date_raw"), peace_execution_offer,
+                                query_id, self.session_id,
+                                require_wrapper_rule=peace_wrapper_rule_enabled)
+                            if inspection_event == "native_peace_combined_core_offer_query" else
+                            self._valid_native_peace_core_offer_query(
+                                event_for_validation, action_id, actor, recipient, phase,
+                                health.get("date_raw"), peace_core_offer,
+                                query_id, self.session_id,
+                                require_wrapper_rule=peace_wrapper_rule_enabled)
+                            if inspection_event == "native_peace_core_offer_query" else
                             self._valid_native_peace_context_inspection(
                                 event_for_validation, action_id, actor, recipient, phase,
                                 health.get("date_raw"), query_id, self.session_id)
@@ -7228,24 +15832,81 @@ class ObserverSession:
                                 event, self.native_text_codec)
                         if inspection_event == "native_declare_war_inspection":
                             return self._semantic_declare_war_inspection(
-                                event, self.native_text_codec)
+                                event, self.native_text_codec,
+                                participant_events)
                         if inspection_event == "native_peace_context_inspection":
                             return self._semantic_peace_context_inspection(event)
                         if inspection_event == "native_peace_empty_offer_inspection":
-                            return self._semantic_peace_empty_offer_inspection(
-                                event_for_validation, self.native_text_codec)
+                            return attach_live_score(
+                                self._semantic_peace_empty_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
                         if inspection_event == "native_peace_money_offer_inspection":
-                            return self._semantic_peace_money_offer_inspection(
-                                event_for_validation, self.native_text_codec)
+                            return attach_live_score(
+                                self._semantic_peace_money_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
                         if inspection_event == "native_peace_province_offer_inspection":
-                            return self._semantic_peace_province_offer_inspection(
-                                event_for_validation, self.native_text_codec)
+                            return attach_live_score(
+                                self._semantic_peace_province_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
                         if inspection_event == "native_peace_combined_offer_inspection":
-                            return self._semantic_peace_combined_offer_inspection(
-                                event_for_validation, self.native_text_codec)
-                        return self._semantic_inspection(
+                            return attach_live_score(
+                                self._semantic_peace_combined_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_reparations_offer_inspection":
+                            return attach_live_score(
+                                self._semantic_peace_reparations_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_trade_power_offer_inspection":
+                            return attach_live_score(
+                                self._semantic_peace_trade_power_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_concede_defeat_offer_inspection":
+                            return attach_live_score(
+                                self._semantic_peace_concede_defeat_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_annul_treaties_offer_inspection":
+                            return attach_live_score(
+                                self._semantic_peace_annul_treaties_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_special_offer_inspection":
+                            return attach_live_score(
+                                self._semantic_peace_special_offer_inspection(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_subject_offer_query":
+                            return attach_live_score(
+                                self._semantic_peace_subject_offer_query(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_combined_subject_offer_query":
+                            return attach_live_score(
+                                self._semantic_peace_combined_subject_offer_query(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_combined_country_offer_query":
+                            # Native QUERY18 does not repeat the nine wire
+                            # selection fields in its outer event.  They are
+                            # already validated against the request object;
+                            # pass the canonical public values to the
+                            # projector solely to preserve explicit
+                            # beneficiary/source choices in peace_context.
+                            semantic_event = dict(event_for_validation)
+                            if isinstance(peace_combined_country_offer, dict):
+                                for key in COUNTRY_SELECTION_KEYS:
+                                    if key in peace_combined_country_offer:
+                                        semantic_event[key] = (
+                                            peace_combined_country_offer.get(key))
+                            return attach_live_score(
+                                self._semantic_peace_combined_country_offer_query(
+                                    semantic_event, self.native_text_codec))
+                        if inspection_event == "native_peace_core_offer_query":
+                            return attach_live_score(
+                                self._semantic_peace_core_offer_query(
+                                    event_for_validation, self.native_text_codec))
+                        if inspection_event == "native_peace_combined_core_offer_query":
+                            return attach_live_score(
+                                self._semantic_peace_combined_core_offer_query(
+                                    event_for_validation, self.native_text_codec))
+                        return attach_live_score(self._semantic_inspection(
                             event, reason_events, self.native_text_codec,
-                            _NATIVE_REASON_METADATA_CAPABILITY in self.installation_capabilities())
+                            _NATIVE_REASON_METADATA_CAPABILITY in self.installation_capabilities()))
             time.sleep(0.02)
         # Timeout is an unobserved query, not a rule prohibition or rejection.
         return {"error_code": "QUERY_OBSERVATION_TIMEOUT"}
@@ -7262,7 +15923,8 @@ class ObserverSession:
                                   recipient: str, phase: str) -> dict | None:
         """Read a bounded native ImproveRelations UI inspection.
 
-        The native producer uses the existing ``native_alliance_inspection``
+        The native producer uses the existing `
+ative_alliance_inspection``
         event and query wire.  The dedicated ACK is required so an Alliance
         or Royal installation cannot be treated as an ImproveRelations build.
         """
@@ -7290,11 +15952,23 @@ class ObserverSession:
             action_id, actor, recipient, phase,
             frozenset({_NATIVE_SPY_NETWORK_QUERY_CAPABILITY}))
 
+    def inspect_curry_favors(self, action_id: str, actor: str,
+                             recipient: str, phase: str) -> dict | None:
+        """Read a bounded native Curry Favors task inspection."""
+
+        if action_id not in ("curry_favors", "stop_curry_favors") \
+                or phase != "initiate":
+            return None
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase,
+            frozenset({_NATIVE_CURRY_FAVORS_QUERY_CAPABILITY}))
+
     def inspect_guarantee(self, action_id: str, actor: str,
                           recipient: str, phase: str) -> dict | None:
         """Read a bounded native Guarantee relation inspection.
 
-        Guarantee keeps the existing ``native_alliance_inspection`` wire and
+        Guarantee keeps the existing `
+ative_alliance_inspection`` wire and
         event name, but requires its own ACK and validates the
         ``family=guarantee`` relation-state fields.
         """
@@ -7359,13 +16033,56 @@ class ObserverSession:
             frozenset({_NATIVE_RIVAL_QUERY_CAPABILITY}),
             inspection_event="native_rival_inspection")
 
+    def inspect_send_gift(self, action_id: str, actor: str, recipient: str,
+                          phase: str, ducats: int) -> dict | None:
+        """Read the R74 Gift object/rule query with the requested amount bound."""
+
+        if action_id != _GIFT_ACTION or actor != "FRA" or phase != "initiate":
+            return {"error_code": "QUERY_INFORMATION_SCOPE_UNAVAILABLE"}
+        try:
+            normalized = _normalize_gift_parameters({"ducats": ducats})
+        except (TypeError, ValueError) as exc:
+            return {"error_code": str(exc)}
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase,
+            frozenset({_NATIVE_GIFT_QUERY_CAPABILITY}),
+            gift_ducats=normalized["ducats"])
+
+    def inspect_influence_nation(self, action_id: str, actor: str,
+                                 recipient: str, phase: str) -> dict | None:
+        """Read the R74 Influence config/rule query; native picks its cost."""
+
+        if action_id != _INFLUENCE_ACTION or actor != "FRA" or phase != "initiate":
+            return {"error_code": "QUERY_INFORMATION_SCOPE_UNAVAILABLE"}
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase,
+            frozenset({_NATIVE_INFLUENCE_QUERY_CAPABILITY}))
+
+    def submit_trade_favors_for_gold(self, request_id: str, actor: str, recipient: str,
+                                    phase: str, date_raw: int, timeout: float = 10) -> dict:
+        return self._submit_alliance_action(
+            _FAVOR_GOLD_ACTION, request_id, actor, recipient, phase, date_raw, timeout)
+
+    def submit_trade_favors_for_trust(self, request_id: str, actor: str,
+                                      recipient: str, phase: str, date_raw: int,
+                                      timeout: float = 10) -> dict:
+        return self._submit_alliance_action(
+            _FAVOR_TRUST_ACTION, request_id, actor, recipient, phase, date_raw, timeout)
+
+    def submit_trade_favors_for_men(self, request_id: str, actor: str,
+                                    recipient: str, phase: str, date_raw: int,
+                                    timeout: float = 10) -> dict:
+        return self._submit_alliance_action(
+            _FAVOR_MEN_ACTION, request_id, actor, recipient, phase, date_raw, timeout)
+
     def inspect_vassalization(self, action_id: str, actor: str,
                                recipient: str, phase: str) -> dict | None:
         """Read the dedicated R35 Vassalization inspection contract.
 
         Query support is gated by the exact vassalization ACK.  Submission is
         intentionally absent from this method and remains unimplemented until
-        a separate ``native_vassalization_submission`` ACK is issued.
+        a separate `
+ative_vassalization_submission`` ACK is issued.
         """
 
         if (action_id not in _VASSALIZATION_ACTIONS
@@ -7381,7 +16098,7 @@ class ObserverSession:
     def inspect_declare_war(self, action_id: str, actor: str,
                             recipient: str, phase: str,
                             parameters: dict | None = None) -> dict | None:
-        """Read the default QUERY1 object or a bounded QUERY3 selection."""
+        """Read QUERY1/QUERY3, or QUERY19 for participant selection."""
 
         if (action_id != "declare_war" or actor != "FRA"
                 or phase != "initiate"
@@ -7391,9 +16108,18 @@ class ObserverSession:
             return {"error_code": "QUERY_INFORMATION_SCOPE_UNAVAILABLE"}
         try:
             selection = self._normalize_declare_war_parameters(
-                {} if parameters is None else parameters)
+                {} if parameters is None else parameters,
+                actor=actor, recipient=recipient)
         except ValueError as exc:
             return {"error_code": str(exc)}
+        if (selection is not None
+                and participant_selection_requested(
+                    self._declare_war_participant_values(
+                        selection, actor, recipient))
+                and _NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY
+                not in self.installation_capabilities()):
+            return {"error_code":
+                    "NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY_MISSING"}
         return self.inspect_alliance(
             action_id, actor, recipient, phase,
             frozenset({_NATIVE_DECLARE_WAR_QUERY_CAPABILITY}),
@@ -7564,6 +16290,629 @@ class ObserverSession:
             inspection_event="native_peace_combined_offer_inspection",
             peace_combined_offer=selection)
 
+    def inspect_peace_reparations_offer(self, action_id: str, actor: str,
+                                        recipient: str, phase: str,
+                                        selection: dict) -> dict | None:
+        """Inspect a reparations selection through the aggregate QUERY8 wire."""
+
+        action_bit = {"demand_ducats": "m", "cede_province": "p",
+                      "war_reparations": "r"}.get(action_id)
+        if (action_bit is None
+                or actor != "FRA" or phase != "initiate"
+                or not isinstance(recipient, str)
+                or re.fullmatch(r"[A-Z0-9]{3}", recipient) is None
+                or recipient == actor
+                or not isinstance(selection, dict)
+                or selection.get("action_id") != action_id
+                or not isinstance(selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                selection["war_id"]) is None
+                or selection.get("direction") not in ("demand", "offer")
+                or selection.get("term_mask") not in ("r", "mr", "pr", "mpr")
+                or action_bit not in selection["term_mask"]):
+            return {"error_code": "QUERY_PEACE_REPARATIONS_PARAMETERS_INVALID"}
+
+        mask = selection["term_mask"]
+        amount_raw = selection.get("amount_raw", -1)
+        if "m" in mask:
+            if (self._safe_int(amount_raw, 1, 2147483647) is None
+                    or amount_raw % 100 != 0):
+                return {"error_code": "QUERY_PEACE_REPARATIONS_PARAMETERS_INVALID"}
+        elif amount_raw != -1:
+            return {"error_code": "QUERY_PEACE_REPARATIONS_PARAMETERS_INVALID"}
+
+        province_ids = selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(self._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return {"error_code": "QUERY_PEACE_REPARATIONS_PARAMETERS_INVALID"}
+        beneficiary = selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", beneficiary) is None):
+                return {"error_code": "QUERY_PEACE_REPARATIONS_PARAMETERS_INVALID"}
+        elif beneficiary not in (None, "-"):
+            return {"error_code": "QUERY_PEACE_REPARATIONS_PARAMETERS_INVALID"}
+
+        direction = selection["direction"]
+        expected_payer = actor if direction == "offer" else recipient
+        expected_claimant = recipient if direction == "offer" else actor
+        if (selection.get("payer") != expected_payer
+                or selection.get("claimant") != expected_claimant):
+            return {"error_code": "QUERY_PEACE_REPARATIONS_PARAMETERS_INVALID"}
+
+        required = {_NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY}
+        capabilities = self.installation_capabilities()
+        if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+        if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase,
+            frozenset(required),
+            inspection_event="native_peace_reparations_offer_inspection",
+            peace_reparations_offer=selection)
+
+    def inspect_peace_trade_power_offer(self, action_id: str, actor: str,
+                                        recipient: str, phase: str,
+                                        selection: dict) -> dict | None:
+        """Inspect trade-power selection through QUERY9 or source-aware QUERY10.
+
+        A ``source`` of ``-`` is the explicit QUERY10 candidate-discovery
+        form.  It is only valid for a primary T action with an otherwise empty
+        term mask; it never becomes a selected treaty term.
+        """
+
+        action_bit = {
+            "demand_ducats": "m",
+            "cede_province": "p",
+            "war_reparations": "r",
+            "transfer_trade_power": "t",
+        }.get(action_id)
+        valid_masks = ("t", "mt", "pt", "rt", "mpt", "mrt", "prt", "mprt")
+        if (action_bit is None
+                or actor != "FRA" or phase != "initiate"
+                or not isinstance(recipient, str)
+                or re.fullmatch(r"[A-Z0-9]{3}", recipient) is None
+                or recipient == actor
+                or not isinstance(selection, dict)
+                or selection.get("action_id") != action_id
+                or not isinstance(selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                selection["war_id"]) is None
+                or selection.get("direction") not in ("demand", "offer")
+                or selection.get("term_mask") not in valid_masks
+                or action_bit not in selection["term_mask"]
+                or "t" not in selection["term_mask"]):
+            return {"error_code": "QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID"}
+
+        mask = selection["term_mask"]
+        amount_raw = selection.get("amount_raw", -1)
+        if (("m" in mask and (
+                self._safe_int(amount_raw, 1, 2147483647) is None
+                or amount_raw % 100 != 0))
+                or ("m" not in mask and amount_raw != -1)):
+            return {"error_code": "QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID"}
+        province_ids = selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(self._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return {"error_code": "QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID"}
+        beneficiary = selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", beneficiary) is None):
+                return {"error_code": "QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID"}
+        elif beneficiary not in (None, "-", selection.get("trade_power_beneficiary")):
+            return {"error_code": "QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID"}
+
+        direction = selection["direction"]
+        expected_source = actor if direction == "offer" else recipient
+        expected_trade_beneficiary = recipient if direction == "offer" else actor
+        source = selection.get("source")
+        discovery = source == "-"
+        trade_beneficiary = selection.get("trade_power_beneficiary")
+        if trade_beneficiary is None and "p" not in mask:
+            trade_beneficiary = selection.get("beneficiary")
+        if (discovery and (action_id != "transfer_trade_power" or mask != "t"
+                           or amount_raw != -1 or province_ids
+                           or selection.get("beneficiary") not in (None, "-"))):
+            return {"error_code": "QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID"}
+        if (not isinstance(source, str)
+                or (not discovery and re.fullmatch(r"[A-Z0-9]{3}", source) is None)
+                or (not discovery and source == expected_trade_beneficiary)
+                or trade_beneficiary != expected_trade_beneficiary):
+            return {"error_code": "QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID"}
+        if "r" in mask:
+            expected_payer = expected_source
+            expected_claimant = expected_trade_beneficiary
+            if (selection.get("payer") not in (None, expected_payer)
+                    or selection.get("claimant") not in (None, expected_claimant)):
+                return {"error_code": "QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID"}
+
+        required = {_NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY}
+        capabilities = self.installation_capabilities()
+        sources_protocol = (
+            _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY in capabilities)
+        if discovery and not sources_protocol:
+            return {"error_code":
+                    "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_MISSING"}
+        if (not discovery and source != expected_source and not sources_protocol):
+            return {"error_code":
+                    "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_MISSING"}
+        if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+        if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        wire_selection = dict(selection)
+        wire_selection["trade_power_beneficiary"] = trade_beneficiary
+        wire_selection["_sources_protocol"] = sources_protocol
+        if "p" not in mask:
+            wire_selection["beneficiary"] = None
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase,
+            frozenset(required),
+            inspection_event="native_peace_trade_power_offer_inspection",
+            peace_trade_power_offer=wire_selection)
+
+    def inspect_peace_concede_defeat_offer(self, action_id: str, actor: str,
+                                           recipient: str, phase: str,
+                                           selection: dict) -> dict | None:
+        """Inspect a C-containing selection through QUERY11.
+
+        QUERY11 carries the same shared money/province fields as QUERY10 and
+        appends the trade source field.  The C term itself has no numeric
+        input; its two public role fields are carried in the selection object
+        so a mixed query can keep province and trade beneficiaries distinct.
+        """
+
+        action_bits = {
+            "demand_ducats": "m", "cede_province": "p",
+            "war_reparations": "r", "transfer_trade_power": "t",
+            "concede_defeat": "c",
+        }
+        valid_masks = tuple(
+            "".join(letter for index, letter in enumerate("mprtc")
+                    if bits & (1 << index))
+            for bits in range(1, 32) if bits & 16)
+        if (action_id not in action_bits or actor != "FRA"
+                or phase != "initiate"
+                or not isinstance(recipient, str)
+                or re.fullmatch(r"[A-Z0-9]{3}", recipient) is None
+                or recipient == actor
+                or not isinstance(selection, dict)
+                or selection.get("action_id") != action_id
+                or not isinstance(selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                selection["war_id"]) is None
+                or selection.get("direction") not in ("demand", "offer")
+                or selection.get("term_mask") not in valid_masks
+                or action_bits[action_id] not in selection["term_mask"]
+                or "c" not in selection["term_mask"]):
+            return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+
+        mask = selection["term_mask"]
+        amount_raw = selection.get("amount_raw", -1)
+        if (("m" in mask and (
+                self._safe_int(amount_raw, 1, 2147483647) is None
+                or amount_raw % 100 != 0))
+                or ("m" not in mask and amount_raw != -1)):
+            return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+        province_ids = selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(self._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+        province_beneficiary = selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(province_beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", province_beneficiary) is None):
+                return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+        elif province_beneficiary not in (None, "-"):
+            return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+
+        direction = selection["direction"]
+        expected_conceding = actor if direction == "offer" else recipient
+        expected_beneficiary = recipient if direction == "offer" else actor
+        if (selection.get("conceding_country") != expected_conceding
+                or selection.get("concede_beneficiary") != expected_beneficiary):
+            return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+
+        trade_source = selection.get("source")
+        expected_trade_beneficiary = expected_beneficiary
+        sources_protocol = (_NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY
+                            in self.installation_capabilities())
+        if "t" in mask:
+            if (not isinstance(trade_source, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", trade_source) is None
+                    or trade_source == expected_trade_beneficiary
+                    or selection.get("trade_power_beneficiary")
+                    != expected_trade_beneficiary):
+                return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+            if trade_source != (actor if direction == "offer" else recipient) \
+                    and not sources_protocol:
+                return {"error_code":
+                        "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_MISSING"}
+        elif trade_source not in (None, "-"):
+            return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+
+        if "r" in mask:
+            expected_payer = actor if direction == "offer" else recipient
+            expected_claimant = recipient if direction == "offer" else actor
+            if (selection.get("payer") not in (None, expected_payer)
+                    or selection.get("claimant") not in (None, expected_claimant)):
+                return {"error_code": "QUERY_PEACE_CONCEDE_DEFEAT_PARAMETERS_INVALID"}
+
+        capabilities = self.installation_capabilities()
+        required = {_NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY}
+        if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+        if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        wire_selection = dict(selection)
+        wire_selection["_sources_protocol"] = sources_protocol
+        if "p" not in mask:
+            wire_selection["beneficiary"] = None
+        if "t" not in mask:
+            wire_selection["source"] = "-"
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase,
+            frozenset(required),
+            inspection_event="native_peace_concede_defeat_offer_inspection",
+            peace_concede_defeat_offer=wire_selection)
+
+    def inspect_peace_annul_treaties_offer(self, action_id: str, actor: str,
+                                            recipient: str, phase: str,
+                                            selection: dict) -> dict | None:
+        """Inspect an A-containing selection through the QUERY12 wire.
+
+        A has no direction-bound country role.  The bridge validates only the
+        explicit canonical country/partner shape; native candidate matching
+        decides whether that relation is legal for the current war.
+        ``country='-'`` with an empty partner list is the A-primary candidate
+        discovery form and is never projected as a selected treaty term.
+        """
+
+        action_bits = {
+            "demand_ducats": "m", "cede_province": "p",
+            "war_reparations": "r", "transfer_trade_power": "t",
+            "concede_defeat": "c", "annul_treaties": "a",
+        }
+        valid_masks = tuple(
+            "".join(letter for index, letter in enumerate("mprtca")
+                    if bits & (1 << index))
+            for bits in range(1, 64) if bits & 32)
+        if (action_id not in action_bits or actor != "FRA"
+                or phase != "initiate"
+                or not isinstance(recipient, str)
+                or re.fullmatch(r"[A-Z0-9]{3}", recipient) is None
+                or recipient == actor
+                or not isinstance(selection, dict)
+                or selection.get("action_id") != action_id
+                or not isinstance(selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                selection["war_id"]) is None
+                or selection.get("direction") not in ("demand", "offer")
+                or selection.get("term_mask") not in valid_masks
+                or action_bits[action_id] not in selection["term_mask"]
+                or "a" not in selection["term_mask"]):
+            return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+
+        mask = selection["term_mask"]
+        amount_raw = selection.get("amount_raw", -1)
+        if (("m" in mask and (
+                self._safe_int(amount_raw, 1, 2147483647) is None
+                or amount_raw % 100 != 0))
+                or ("m" not in mask and amount_raw != -1)):
+            return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+        province_ids = selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(self._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+        beneficiary = selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", beneficiary) is None):
+                return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+        elif beneficiary not in (None, "-"):
+            return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+
+        direction = selection["direction"]
+        expected_beneficiary = recipient if direction == "offer" else actor
+        source = selection.get("source")
+        if "t" in mask:
+            if (not isinstance(source, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", source) is None
+                    or source == expected_beneficiary
+                    or selection.get("trade_power_beneficiary")
+                    != expected_beneficiary):
+                return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+            default_source = actor if direction == "offer" else recipient
+            if (source != default_source
+                    and _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY
+                    not in self.installation_capabilities()):
+                return {"error_code":
+                        "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_MISSING"}
+        elif source not in (None, "-"):
+            return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+
+        if "c" in mask:
+            expected_conceding = actor if direction == "offer" else recipient
+            if (selection.get("conceding_country") != expected_conceding
+                    or selection.get("concede_beneficiary") != expected_beneficiary):
+                return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+        elif selection.get("conceding_country") not in (None, "-"):
+            return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+
+        if "r" in mask:
+            expected_payer = actor if direction == "offer" else recipient
+            if (selection.get("payer") != expected_payer
+                    or selection.get("claimant") != expected_beneficiary):
+                return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+
+        country = selection.get("annul_country")
+        partners = selection.get("annul_partners")
+        discovery = country == "-" and partners == []
+        if discovery:
+            if (action_id != "annul_treaties" or mask != "a"
+                    or amount_raw != -1 or province_ids
+                    or beneficiary not in (None, "-")):
+                return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+        else:
+            if (not isinstance(country, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", country) is None
+                    or not isinstance(partners, list)
+                    or not 1 <= len(partners) <= 16
+                    or any(not isinstance(partner, str)
+                           or re.fullmatch(r"[A-Z0-9]{3}", partner) is None
+                           or partner == country for partner in partners)
+                    or len(set(partners)) != len(partners)
+                    or partners != sorted(partners)):
+                return {"error_code": "QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID"}
+
+        capabilities = self.installation_capabilities()
+        required = {_NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY}
+        if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+        if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        wire_selection = dict(selection)
+        wire_selection["_annul_discovery"] = discovery
+        if "p" not in mask:
+            wire_selection["beneficiary"] = None
+        if "t" not in mask:
+            wire_selection["source"] = "-"
+        if discovery:
+            wire_selection["annul_country"] = "-"
+            wire_selection["annul_partners"] = []
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase,
+            frozenset(required),
+            inspection_event="native_peace_annul_treaties_offer_inspection",
+            peace_annul_treaties_offer=wire_selection)
+
+    def inspect_peace_special_offer(self, action_id: str, actor: str,
+                                    recipient: str, phase: str,
+                                    selection: dict) -> dict | None:
+        """Inspect any selection containing H/S/F through QUERY13."""
+
+        action_bits = {
+            "demand_ducats": "m", "cede_province": "p",
+            "war_reparations": "r", "transfer_trade_power": "t",
+            "concede_defeat": "c", "annul_treaties": "a",
+            "humiliate_rival": "h", "show_strength": "s",
+            "force_religion": "f",
+        }
+        valid_masks = tuple(
+            "".join(letter for letter_index, letter in enumerate("mprtcahsf")
+                    if bits & (1 << letter_index))
+            for bits in range(1, 512) if bits & (0x40 | 0x80 | 0x100))
+        if (action_id not in action_bits or actor != "FRA"
+                or phase != "initiate"
+                or not isinstance(recipient, str)
+                or re.fullmatch(r"[A-Z0-9]{3}", recipient) is None
+                or recipient == actor
+                or not isinstance(selection, dict)
+                or selection.get("action_id") != action_id
+                or not isinstance(selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                selection["war_id"]) is None
+                or selection.get("direction") not in ("demand", "offer")
+                or selection.get("term_mask") not in valid_masks
+                or action_bits[action_id] not in selection["term_mask"]):
+            return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        mask = selection["term_mask"]
+        direction = selection["direction"]
+        expected_country = actor if direction == "offer" else recipient
+        expected_beneficiary = recipient if direction == "offer" else actor
+        amount_raw = selection.get("amount_raw", -1)
+        if (("m" in mask and (self._safe_int(amount_raw, 1, 2147483647) is None
+                               or amount_raw % 100 != 0))
+                or ("m" not in mask and amount_raw != -1)):
+            return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        province_ids = selection.get("province_ids", [])
+        if (not isinstance(province_ids, list)
+                or ("p" in mask and not 1 <= len(province_ids) <= 16)
+                or ("p" not in mask and province_ids)
+                or any(self._safe_int(value, 1, 2147483647) is None
+                       for value in province_ids)
+                or len(set(province_ids)) != len(province_ids)):
+            return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        beneficiary = selection.get("beneficiary")
+        if "p" in mask:
+            if (not isinstance(beneficiary, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", beneficiary) is None):
+                return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        elif beneficiary not in (None, "-"):
+            return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        if "t" in mask:
+            source = selection.get("source")
+            if (not isinstance(source, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", source) is None
+                    or source == expected_beneficiary
+                    or selection.get("trade_power_beneficiary")
+                    != expected_beneficiary):
+                return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+            if (source != (actor if direction == "offer" else recipient)
+                    and _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY
+                    not in self.installation_capabilities()):
+                return {"error_code":
+                        "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_MISSING"}
+        elif selection.get("source") not in (None, "-"):
+            return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        if "r" in mask:
+            if (selection.get("payer") != expected_country
+                    or selection.get("claimant") != expected_beneficiary):
+                return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        if "c" in mask:
+            if (selection.get("conceding_country") != expected_country
+                    or selection.get("concede_beneficiary")
+                    != expected_beneficiary):
+                return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        if "a" in mask:
+            country = selection.get("annul_country")
+            partners = selection.get("annul_partners")
+            if (not isinstance(country, str)
+                    or re.fullmatch(r"[A-Z0-9]{3}", country) is None
+                    or not isinstance(partners, list)
+                    or not 1 <= len(partners) <= 16
+                    or any(not isinstance(partner, str)
+                           or re.fullmatch(r"[A-Z0-9]{3}", partner) is None
+                           or partner == country for partner in partners)
+                    or len(set(partners)) != len(partners)
+                    or partners != sorted(partners)):
+                return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        elif selection.get("annul_country") not in (None, "-") or \
+                selection.get("annul_partners") not in (None, [], "-"):
+            return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+
+        special_terms = selection.get("special_terms")
+        if special_terms is None:
+            # A direct single-term caller may provide the roles at top-level.
+            if action_id not in {"humiliate_rival", "show_strength", "force_religion"}:
+                return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+            special_terms = [{"action_id": action_id,
+                              "country": selection.get("country", expected_country),
+                              "beneficiary": selection.get(
+                                  "special_beneficiary",
+                                  selection.get("beneficiary", expected_beneficiary))}]
+        if (not isinstance(special_terms, list)
+                or len(special_terms) != sum(bit in mask for bit in "hsf")):
+            return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARAMETERS_INVALID"}
+        special_actions: set[str] = set()
+        for term in special_terms:
+            if (not isinstance(term, dict)
+                    or set(term) != {"action_id", "country", "beneficiary"}
+                    or term.get("action_id") not in {
+                        "humiliate_rival", "show_strength", "force_religion"}
+                    or action_bits[term["action_id"]] not in mask
+                    or term["action_id"] in special_actions
+                    or term.get("country") != expected_country
+                    or term.get("beneficiary") != expected_beneficiary
+                    or term.get("country") == term.get("beneficiary")):
+                return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARTIES_INVALID"}
+            if (not re.fullmatch(r"[A-Z0-9]{3}", term["country"])
+                    or not re.fullmatch(r"[A-Z0-9]{3}", term["beneficiary"])):
+                return {"error_code": "QUERY_PEACE_SPECIAL_TERMS_PARTIES_INVALID"}
+            special_actions.add(term["action_id"])
+        wire_selection = dict(selection)
+        wire_selection["special_terms"] = [dict(term) for term in special_terms]
+        wire_selection["_sources_protocol"] = (
+            _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY
+            in self.installation_capabilities())
+        if "a" not in mask:
+            wire_selection["annul_country"] = "-"
+            wire_selection["annul_partners"] = []
+        if "t" not in mask:
+            wire_selection["source"] = "-"
+        required = {_NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY}
+        capabilities = self.installation_capabilities()
+        if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+        if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase, frozenset(required),
+            inspection_event="native_peace_special_offer_inspection",
+            peace_special_offer=wire_selection)
+
+    def inspect_peace_core_offer(self, action_id: str, actor: str,
+                                 recipient: str, phase: str,
+                                 selection: dict) -> dict | None:
+        """Inspect one QUERY14 return/revoke-core selection or discovery."""
+
+        try:
+            normalized = dict(selection)
+            if normalized.get("action_id") != action_id:
+                return {"error_code": "QUERY_PEACE_CORE_PARAMETERS_INVALID"}
+            if (not isinstance(normalized.get("province_ids"), list)
+                    or (normalized.get("province_ids")
+                        and not isinstance(normalized.get("core_owner"), str))
+                    or (not normalized.get("province_ids")
+                        and normalized.get("core_owner") is not None)):
+                return {"error_code": "QUERY_PEACE_CORE_PARAMETERS_INVALID"}
+        except (AttributeError, TypeError):
+            return {"error_code": "QUERY_PEACE_CORE_PARAMETERS_INVALID"}
+        capabilities = self.installation_capabilities()
+        required = {_NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY}
+        if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+        if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase, frozenset(required),
+            inspection_event="native_peace_core_offer_query",
+            peace_core_offer=normalized)
+
+    def inspect_peace_subject_offer(self, action_id: str, actor: str,
+                                    recipient: str, phase: str,
+                                    selection: dict) -> dict | None:
+        """Inspect one QUERY16 subject-country selection or discovery."""
+
+        if (not isinstance(selection, dict)
+                or action_id not in _PEACE_SUBJECT_ACTIONS
+                or selection.get("action_id") != action_id
+                or selection.get("direction") not in ("demand", "offer")
+                or not isinstance(selection.get("war_id"), str)
+                or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                selection["war_id"]) is None):
+            return {"error_code": "QUERY_PEACE_SUBJECT_PARAMETERS_INVALID"}
+        country = selection.get("country")
+        if (country is not None
+                and (not isinstance(country, str)
+                     or re.fullmatch(r"[A-Z0-9]{3}", country) is None)):
+            return {"error_code": "QUERY_PEACE_SUBJECT_PARAMETERS_INVALID"}
+        normalized = {
+            "action_id": action_id,
+            "war_id": selection["war_id"],
+            "direction": selection.get("direction", "demand"),
+            "country": country,
+            "discovery": country is None,
+        }
+        capabilities = self.installation_capabilities()
+        required = {_NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY}
+        if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+        if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+            required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+        return self.inspect_alliance(
+            action_id, actor, recipient, phase, frozenset(required),
+            inspection_event="native_peace_subject_offer_query",
+            peace_subject_offer=normalized)
+
     def inspect_peace_execution(self, action_id: str, actor: str,
                                 recipient: str, phase: str,
                                 parameters: object) -> dict | None:
@@ -7575,6 +16924,297 @@ class ObserverSession:
         except (TypeError, ValueError):
             return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
         terms = normalized["peace_context"]["terms"]
+        country_terms_requested = (
+            any(isinstance(term, dict)
+                and term.get("action_id") in COUNTRY_TERM_ACTIONS
+                for term in terms)
+            or (action_id in COUNTRY_TERM_ACTIONS and not terms))
+        if country_terms_requested:
+            fields = self._peace_execution_fields(normalized)
+            country_fields = self._peace_country_execution_fields(
+                normalized, actor, recipient)
+            if fields is None or country_fields is None:
+                return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            (war_id, direction, amount_raw, province_ids, beneficiary,
+             reparations_payer, reparations_claimant, trade_power_source,
+             trade_power_beneficiary, concede_defeat_country,
+             concede_defeat_beneficiary, annul_country, annul_partners,
+             term_mask) = fields
+            if not term_mask:
+                try:
+                    term_mask = country_mask_for_terms(
+                        terms, primary_action=action_id)
+                except (TypeError, ValueError):
+                    return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            # Country+money requires an explicit new-producer acknowledgement.
+            if (any(bit not in "mnzuie" for bit in term_mask)
+                    or ("m" in term_mask and _NATIVE_PEACE_COUNTRY_MONEY_QUERY_CAPABILITY
+                        not in self.installation_capabilities())):
+                return {"error_code":
+                        "NATIVE_PEACE_EXECUTION_MIXED_INSPECTION_UNAVAILABLE"}
+            capabilities = self.installation_capabilities()
+            if _NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY not in capabilities:
+                return {"error_code":
+                        "NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY_MISSING"}
+            required = {_NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY}
+            if "m" in term_mask:
+                required.add(_NATIVE_PEACE_COUNTRY_MONEY_QUERY_CAPABILITY)
+            if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+                required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+            if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+                required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+            return self.inspect_alliance(
+                action_id, actor, recipient, phase, frozenset(required),
+                inspection_event="native_peace_combined_country_offer_query",
+                peace_combined_country_offer={
+                    "action_id": action_id,
+                    "war_id": war_id,
+                    "direction": direction,
+                    "amount_raw": amount_raw,
+                    "province_ids": list(province_ids),
+                    "beneficiary": beneficiary,
+                    "source": trade_power_source if "t" in term_mask else "-",
+                    "payer": reparations_payer,
+                    "claimant": reparations_claimant,
+                    "conceding_country": concede_defeat_country,
+                    "concede_beneficiary": concede_defeat_beneficiary,
+                    "annul_country": annul_country or "-",
+                    "annul_partners": list(annul_partners or []),
+                    "term_mask": term_mask,
+                    "return_ids": [], "return_core_owner": None,
+                    "revoke_ids": [], "revoke_core_owner": None,
+                    "release_countries": [], "transfer_countries": [],
+                    **dict(zip(COUNTRY_SELECTION_KEYS, country_fields)),
+                })
+        subject_terms = {
+            term.get("action_id"): term for term in terms
+            if isinstance(term, dict)
+            and term.get("action_id") in _PEACE_SUBJECT_ACTIONS}
+        if subject_terms:
+            fields = self._peace_execution_fields(normalized)
+            subject_fields = self._peace_subject_execution_fields(normalized)
+            core_fields = self._peace_core_execution_fields(normalized)
+            if fields is None or subject_fields is None or core_fields is None:
+                return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            (war_id, direction, amount_raw, province_ids, beneficiary,
+             reparations_payer, reparations_claimant, trade_power_source,
+             trade_power_beneficiary, concede_defeat_country,
+             concede_defeat_beneficiary, annul_country, annul_partners,
+             term_mask) = fields
+            return_fields, revoke_fields = core_fields
+            release_countries, transfer_countries = subject_fields
+            capabilities = self.installation_capabilities()
+            if (_NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY
+                    not in capabilities):
+                return {"error_code":
+                        "NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_MISSING"}
+            required = {_NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY}
+            if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+                required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+            if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+                required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+            return self.inspect_alliance(
+                action_id, actor, recipient, phase, frozenset(required),
+                inspection_event="native_peace_combined_subject_offer_query",
+                peace_combined_subject_offer={
+                    "action_id": action_id,
+                    "war_id": war_id,
+                    "direction": direction,
+                    "amount_raw": amount_raw,
+                    "province_ids": list(province_ids),
+                    "beneficiary": beneficiary,
+                    "source": trade_power_source if "t" in term_mask else "-",
+                    "payer": reparations_payer,
+                    "claimant": reparations_claimant,
+                    "conceding_country": concede_defeat_country,
+                    "concede_beneficiary": concede_defeat_beneficiary,
+                    "annul_country": annul_country or "-",
+                    "annul_partners": list(annul_partners or []),
+                    "term_mask": term_mask,
+                     "return_ids": (list(return_fields[0])
+                                    if return_fields else []),
+                     "return_core_owner": (return_fields[1]
+                                           if return_fields else None),
+                     "revoke_ids": (list(revoke_fields[0])
+                                    if revoke_fields else []),
+                     "revoke_core_owner": (revoke_fields[1]
+                                            if revoke_fields else None),
+                    "release_countries": list(release_countries or []),
+                    "transfer_countries": list(transfer_countries or []),
+                })
+        if any(term.get("action_id") in {"return_core", "revoke_core"}
+               for term in terms):
+            fields = self._peace_execution_fields(normalized)
+            core_fields = self._peace_core_execution_fields(normalized)
+            if fields is None or core_fields is None:
+                return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            (war_id, direction, amount_raw, province_ids, beneficiary,
+             reparations_payer, reparations_claimant, trade_power_source,
+             trade_power_beneficiary, concede_defeat_country,
+             concede_defeat_beneficiary, annul_country, annul_partners,
+             term_mask) = fields
+            return_fields, revoke_fields = core_fields
+            capabilities = self.installation_capabilities()
+            required = {_NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY}
+            if _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY in capabilities:
+                required.add(_NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY)
+            if _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY in capabilities:
+                required.add(_NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY)
+            return self.inspect_alliance(
+                action_id, actor, recipient, phase, frozenset(required),
+                inspection_event="native_peace_combined_core_offer_query",
+                peace_execution_offer={
+                    "action_id": action_id,
+                    "war_id": war_id,
+                    "direction": direction,
+                    "amount_raw": amount_raw,
+                    "province_ids": list(province_ids),
+                    "beneficiary": beneficiary,
+                    "source": trade_power_source if "t" in term_mask else "-",
+                    "payer": reparations_payer,
+                    "claimant": reparations_claimant,
+                    "conceding_country": concede_defeat_country,
+                    "concede_beneficiary": concede_defeat_beneficiary,
+                    "annul_country": annul_country or "-",
+                    "annul_partners": list(annul_partners or []),
+                    "term_mask": term_mask,
+                    "return_ids": list(return_fields[0]) if return_fields else [],
+                    "return_core_owner": return_fields[1] if return_fields else None,
+                    "revoke_ids": list(revoke_fields[0]) if revoke_fields else [],
+                    "revoke_core_owner": revoke_fields[1] if revoke_fields else None,
+                })
+        if any(term.get("action_id") in {
+                "humiliate_rival", "show_strength", "force_religion"}
+               for term in terms):
+            fields = self._peace_execution_fields(normalized)
+            if fields is None:
+                return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            (war_id, direction, amount_raw, province_ids, beneficiary,
+             reparations_payer, reparations_claimant,
+             trade_power_source, trade_power_beneficiary,
+             concede_defeat_country, concede_defeat_beneficiary,
+             annul_country, annul_partners, term_mask) = fields
+            special_terms = [
+                {"action_id": term["action_id"], "country": term["country"],
+                 "beneficiary": term["beneficiary"]}
+                for term in terms if term.get("action_id") in {
+                    "humiliate_rival", "show_strength", "force_religion"}
+            ]
+            return self.inspect_peace_special_offer(
+                action_id, actor, recipient, phase, {
+                    "action_id": action_id,
+                    "war_id": war_id,
+                    "direction": direction,
+                    "amount_raw": amount_raw,
+                    "province_ids": list(province_ids),
+                    "beneficiary": beneficiary,
+                    "source": trade_power_source if "t" in term_mask else "-",
+                    "trade_power_beneficiary": trade_power_beneficiary,
+                    "payer": reparations_payer,
+                    "claimant": reparations_claimant,
+                    "conceding_country": concede_defeat_country,
+                    "concede_beneficiary": concede_defeat_beneficiary,
+                    "annul_country": annul_country or "-",
+                    "annul_partners": list(annul_partners or []),
+                    "term_mask": term_mask,
+                    "special_terms": special_terms,
+                })
+        if any(term.get("action_id") == "annul_treaties" for term in terms):
+            fields = self._peace_execution_fields(normalized)
+            if fields is None:
+                return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            (war_id, direction, amount_raw, province_ids, beneficiary,
+             reparations_payer, reparations_claimant,
+             trade_power_source, trade_power_beneficiary,
+             concede_defeat_country, concede_defeat_beneficiary,
+             annul_country, annul_partners, term_mask) = fields
+            return self.inspect_peace_annul_treaties_offer(
+                action_id, actor, recipient, phase, {
+                    "action_id": action_id,
+                    "war_id": war_id,
+                    "direction": direction,
+                    "amount_raw": amount_raw,
+                    "province_ids": list(province_ids),
+                    "beneficiary": beneficiary,
+                    "source": trade_power_source if "t" in term_mask else "-",
+                    "trade_power_beneficiary": trade_power_beneficiary,
+                    "payer": reparations_payer,
+                    "claimant": reparations_claimant,
+                    "conceding_country": concede_defeat_country,
+                    "concede_beneficiary": concede_defeat_beneficiary,
+                    "annul_country": annul_country,
+                    "annul_partners": list(annul_partners or []),
+                    "term_mask": term_mask,
+                })
+        if any(term.get("action_id") == "concede_defeat" for term in terms):
+            fields = self._peace_execution_fields(normalized)
+            if fields is None:
+                return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            (war_id, direction, amount_raw, province_ids, beneficiary,
+             reparations_payer, reparations_claimant,
+             trade_power_source, trade_power_beneficiary,
+             concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = fields
+            return self.inspect_peace_concede_defeat_offer(
+                action_id, actor, recipient, phase, {
+                    "action_id": action_id,
+                    "war_id": war_id,
+                    "direction": direction,
+                    "amount_raw": amount_raw,
+                    "province_ids": list(province_ids),
+                    "beneficiary": beneficiary,
+                    "source": trade_power_source if "t" in term_mask else "-",
+                    "trade_power_beneficiary": trade_power_beneficiary,
+                    "payer": reparations_payer,
+                    "claimant": reparations_claimant,
+                    "conceding_country": concede_defeat_country,
+                    "concede_beneficiary": concede_defeat_beneficiary,
+                    "term_mask": term_mask,
+                })
+        if any(term.get("action_id") == "transfer_trade_power" for term in terms):
+            fields = self._peace_execution_fields(normalized)
+            if fields is None:
+                return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            (war_id, direction, amount_raw, province_ids, beneficiary,
+             reparations_payer, reparations_claimant,
+             trade_power_source, trade_power_beneficiary,
+             concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = fields
+            return self.inspect_peace_trade_power_offer(
+                action_id, actor, recipient, phase, {
+                    "action_id": action_id,
+                    "war_id": war_id,
+                    "direction": direction,
+                    "amount_raw": amount_raw,
+                    "province_ids": list(province_ids),
+                    "beneficiary": beneficiary,
+                    "source": trade_power_source,
+                    "trade_power_beneficiary": trade_power_beneficiary,
+                    "payer": reparations_payer,
+                    "claimant": reparations_claimant,
+                    "term_mask": term_mask,
+                })
+        if any(term.get("action_id") == "war_reparations" for term in terms):
+            fields = self._peace_execution_fields(normalized)
+            if fields is None:
+                return {"error_code": "NATIVE_PEACE_EXECUTION_PARAMETERS_INVALID"}
+            (war_id, direction, amount_raw, province_ids, beneficiary,
+             reparations_payer, reparations_claimant,
+             trade_power_source, trade_power_beneficiary,
+             concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = fields
+            return self.inspect_peace_reparations_offer(
+                action_id, actor, recipient, phase, {
+                    "action_id": action_id,
+                    "war_id": war_id,
+                    "direction": direction,
+                    "amount_raw": amount_raw,
+                    "province_ids": list(province_ids),
+                    "beneficiary": beneficiary,
+                    "payer": reparations_payer,
+                    "claimant": reparations_claimant,
+                    "term_mask": term_mask,
+                })
         if len(terms) > 1:
             if _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY not in self.installation_capabilities():
                 return {"error_code": "NATIVE_PEACE_EXECUTION_MIXED_INSPECTION_UNAVAILABLE"}
@@ -7835,6 +17475,14 @@ class DiplomacyTools:
                                               _NATIVE_MILITARY_ACCESS_SUBMISSION_CAPABILITY,
                                              _NATIVE_INSULT_QUERY_CAPABILITY,
                                              _NATIVE_INSULT_SUBMISSION_CAPABILITY,
+                                                        _NATIVE_GIFT_QUERY_CAPABILITY,
+                                                        _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+                                                        _NATIVE_INFLUENCE_QUERY_CAPABILITY,
+                                                        _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
+                                              _NATIVE_GIFT_QUERY_CAPABILITY,
+                                              _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+                                              _NATIVE_INFLUENCE_QUERY_CAPABILITY,
+                                              _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
                                              _NATIVE_RIVAL_QUERY_CAPABILITY,
                                              _NATIVE_RIVAL_SUBMISSION_CAPABILITY,
                                              _NATIVE_DECLARE_WAR_QUERY_CAPABILITY,
@@ -7844,7 +17492,15 @@ class DiplomacyTools:
                                              _NATIVE_PEACE_MONEY_OFFER_QUERY_CAPABILITY,
                                              _NATIVE_PEACE_PROVINCE_OFFER_QUERY_CAPABILITY,
                                               _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY,
+                                              _NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY,
+                                              _NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY,
+                                             _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY,
+                                             _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY,
+                                             _NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY,
+                                              _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY,
+                                              _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY,
                                               _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY,
+                                             _NATIVE_LIVE_WAR_SCORE_QUERY_CAPABILITY,
                                              _NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY,
                                              _NATIVE_INBOUND_SUPPORT_RESPONSE_CAPABILITY,
                                               _NATIVE_INBOUND_MILITARY_ACCESS_RESPONSE_CAPABILITY,
@@ -7872,6 +17528,14 @@ class DiplomacyTools:
                                                 _NATIVE_MILITARY_ACCESS_SUBMISSION_CAPABILITY,
                                                _NATIVE_INSULT_QUERY_CAPABILITY,
                                                _NATIVE_INSULT_SUBMISSION_CAPABILITY,
+                                                        _NATIVE_GIFT_QUERY_CAPABILITY,
+                                                        _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+                                                        _NATIVE_INFLUENCE_QUERY_CAPABILITY,
+                                                        _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
+                                                _NATIVE_GIFT_QUERY_CAPABILITY,
+                                                _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+                                                _NATIVE_INFLUENCE_QUERY_CAPABILITY,
+                                                _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
                                                _NATIVE_RIVAL_QUERY_CAPABILITY,
                                                _NATIVE_RIVAL_SUBMISSION_CAPABILITY,
                                                _NATIVE_DECLARE_WAR_QUERY_CAPABILITY,
@@ -7881,7 +17545,15 @@ class DiplomacyTools:
                                                _NATIVE_PEACE_MONEY_OFFER_QUERY_CAPABILITY,
                                                _NATIVE_PEACE_PROVINCE_OFFER_QUERY_CAPABILITY,
                                                 _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY,
+                                                _NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY,
+                                                _NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY,
+                                                _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY,
+                                                _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY,
+                                                _NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY,
+                                                _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY,
+                                                _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY,
                                                 _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY,
+                                               _NATIVE_LIVE_WAR_SCORE_QUERY_CAPABILITY,
                                                _NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY,
                                                _NATIVE_INBOUND_SUPPORT_RESPONSE_CAPABILITY,
                                                 _NATIVE_INBOUND_MILITARY_ACCESS_RESPONSE_CAPABILITY,
@@ -7956,6 +17628,41 @@ class DiplomacyTools:
             if safe is None or safe["proposal_id"] in seen:
                 continue
             seen.add(safe["proposal_id"])
+            if (safe.get("family") == "peace"
+                    and safe.get("action_id") == "peace_offer"
+                    and _NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY
+                    in self._installation_capabilities()):
+                # The pending-offer event intentionally carries only a
+                # bounded summary.  A list consumer that needs the complete
+                # treaty must receive the same fresh response inspection used
+                # by the accept/reject path; never reconstruct terms from the
+                # summary or mark a partial payload complete.
+                private = self._private_inbound_context(
+                    health, safe["proposal_id"], "peace_offer")
+                date_raw = health.get("date_raw")
+                inspector = getattr(
+                    self.session, "inspect_native_inbound_response", None)
+                if (private is not None and callable(inspector)
+                        and ObserverSession._safe_submission_date(date_raw) is not None):
+                    try:
+                        inbound = inspector(
+                            "inbound_list_" + uuid.uuid4().hex,
+                            private["actor"], "accept", date_raw,
+                            private["native_proposal_id"],
+                            action_id="peace_offer")
+                    except (OSError, TypeError, ValueError, RuntimeError):
+                        inbound = None
+                    context = (inbound.get("peace_context")
+                               if isinstance(inbound, dict) else None)
+                    fields = ObserverSession._inbound_peace_context_fields(
+                        context, private["actor"], "FRA")
+                    public_context = ObserverSession._canonicalize_inbound_peace_context(
+                        context)
+                    if (fields is not None and public_context is not None
+                            and public_context.get("complete") is True
+                            and (public_context.get("selected_terms_complete")
+                                 in (None, True))):
+                        safe["peace_context"] = public_context
             capability = _inbound_response_capability(safe["action_id"])
             if capability in self._installation_capabilities():
                 safe["execute"] = {"accept": "native_inbound_response",
@@ -8025,6 +17732,11 @@ class DiplomacyTools:
     @staticmethod
     def _native_spy_network_scope(action_id: str, actor: str, phase: str) -> bool:
         return (action_id in ("build_spy_network", "stop_building_spy_network")
+                and actor == "FRA" and phase == "initiate")
+
+    @staticmethod
+    def _native_curry_favors_scope(action_id: str, actor: str, phase: str) -> bool:
+        return (action_id in ("curry_favors", "stop_curry_favors")
                 and actor == "FRA" and phase == "initiate")
 
     @staticmethod
@@ -8121,6 +17833,23 @@ class DiplomacyTools:
         return safe
 
     @staticmethod
+    def _public_curry_favors_submission_receipt(
+            receipt: object, request_id: str, actor: str,
+            recipient: str, phase: str, date_raw: object,
+            action_id: str) -> dict | None:
+        """Validate and retain the Curry Favors family discriminator."""
+
+        if (not isinstance(receipt, dict)
+                or receipt.get("family") != "curry_favors"
+                or action_id not in ("curry_favors", "stop_curry_favors")):
+            return None
+        safe = DiplomacyTools._public_submission_receipt(
+            receipt, request_id, actor, recipient, phase, date_raw, action_id)
+        if safe is not None:
+            safe["family"] = "curry_favors"
+        return safe
+
+    @staticmethod
     def _public_vassalization_inbound_submission_receipt(
             receipt: object, request_id: str, actor: str,
             recipient: str, phase: str, date_raw: object,
@@ -8179,7 +17908,8 @@ class DiplomacyTools:
 
         wanted_date = ObserverSession._safe_submission_date(date_raw)
         try:
-            selected = ObserverSession._normalize_declare_war_selection(parameters)
+            selected = ObserverSession._normalize_declare_war_selection(
+                parameters, actor=actor, recipient=recipient)
         except (TypeError, ValueError):
             selected = None
         if (selected is None or not isinstance(receipt, dict)
@@ -8202,6 +17932,9 @@ class DiplomacyTools:
                 or receipt.get("transport_verified") is not True
                 or receipt.get("request_binding_verified") is not True):
             return None
+        if not ObserverSession._valid_declare_war_participant_echo(
+                receipt, selected, actor, recipient):
+            return None
         return {
             "event": "native_declare_war_submission_result",
             "request_id": request_id,
@@ -8217,6 +17950,8 @@ class DiplomacyTools:
             "submitted": True,
             "transport_verified": True,
             "request_binding_verified": True,
+            **ObserverSession._declare_war_participant_values(
+                selected, actor, recipient),
         }
 
     @staticmethod
@@ -8228,7 +17963,13 @@ class DiplomacyTools:
 
         wanted_date = ObserverSession._safe_submission_date(date_raw)
         fields = ObserverSession._peace_execution_fields(parameters)
-        if (fields is None or not isinstance(receipt, dict)
+        core_fields = ObserverSession._peace_core_execution_fields(parameters)
+        subject_fields = ObserverSession._peace_subject_execution_fields(parameters)
+        country_fields = ObserverSession._peace_country_execution_fields(
+            parameters, actor, recipient)
+        if (fields is None or core_fields is None or subject_fields is None
+                or country_fields is None
+                or not isinstance(receipt, dict)
                 or action_id not in _PEACE_EXECUTION_ACTIONS
                 or actor != "FRA" or phase != "initiate"
                 or not isinstance(recipient, str)
@@ -8237,7 +17978,10 @@ class DiplomacyTools:
                 or ObserverSession._safe_submission_date(receipt.get("date_raw")) != wanted_date):
             return None
         (war_id, direction, amount_raw, province_ids, beneficiary,
-         reparations_payer, reparations_claimant, term_mask) = fields
+         reparations_payer, reparations_claimant,
+         trade_power_source, trade_power_beneficiary,
+         concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = fields
         if (receipt.get("event") != "native_peace_submission_result"
                 or receipt.get("request_id") != request_id
                 or receipt.get("action_id") != action_id
@@ -8249,13 +17993,93 @@ class DiplomacyTools:
                 or receipt.get("direction") != direction
                 or receipt.get("amount_raw") != amount_raw
                 or receipt.get("province_ids") != province_ids
-                or receipt.get("beneficiary") != beneficiary
+                # Native submission receipts serialize an absent public
+                # beneficiary as the wire sentinel ``-``.  The normalized
+                # peace tuple intentionally keeps that value as ``None``;
+                # accept the sentinel at this public boundary while retaining
+                # the exact role check for selected province beneficiaries.
+                or receipt.get("beneficiary") not in (
+                    beneficiary, "-" if beneficiary is None else beneficiary)
                 or (term_mask and receipt.get("term_mask") != term_mask)
+                or ("r" in term_mask and (
+                    receipt.get("reparations_payer") != reparations_payer
+                    or receipt.get("reparations_claimant") != reparations_claimant))
+                or ("t" in term_mask and (
+                    receipt.get("trade_power_source") != trade_power_source
+                    or receipt.get("trade_power_beneficiary") != trade_power_beneficiary))
+                 or ("c" in term_mask and (
+                     receipt.get("conceding_country") != concede_defeat_country
+                     or receipt.get("concede_beneficiary")
+                     != concede_defeat_beneficiary))
+                or ("a" in term_mask and (
+                    receipt.get("annul_country") != annul_country
+                    or receipt.get("annul_partners") != annul_partners))
+                or ("b" in term_mask and (
+                    receipt.get("return_ids") != core_fields[0][0]
+                    or receipt.get("return_core_owner") != core_fields[0][1]))
+                or ("v" in term_mask and (
+                    receipt.get("revoke_ids") != core_fields[1][0]
+                    or receipt.get("revoke_core_owner") != core_fields[1][1]))
+                or ("l" in term_mask and receipt.get("release_subject_countries")
+                    != ",".join(subject_fields[0] or []))
+                or ("x" in term_mask and receipt.get("transfer_subject_countries")
+                    != ",".join(subject_fields[1] or []))
+                 or ("l" not in term_mask
+                     and "release_subject_countries" in receipt
+                     and receipt.get("release_subject_countries") != "-")
+                 or ("x" not in term_mask
+                     and "transfer_subject_countries" in receipt
+                     and receipt.get("transfer_subject_countries") != "-")
+                 or any((bit in term_mask and receipt.get(key) != value)
+                        or (bit not in term_mask and key in receipt
+                            and receipt.get(key) != "-")
+                        for key, value, bit in zip(
+                            COUNTRY_SELECTION_KEYS, country_fields,
+                            ("n", "n", "z", "u", "i", "e", "z", "u", "e")))
                 or (not term_mask and receipt.get("term_mask") not in (None, ""))
                 or receipt.get("submitted") is not True
                 or receipt.get("transport_verified") is not True
                 or receipt.get("request_binding_verified") is not True):
             return None
+        term_receipt: dict = {}
+        if term_mask:
+            term_receipt["term_mask"] = term_mask
+            if "r" in term_mask:
+                term_receipt.update({
+                    "reparations_payer": reparations_payer,
+                    "reparations_claimant": reparations_claimant})
+            if "t" in term_mask:
+                term_receipt.update({
+                    "trade_power_source": trade_power_source,
+                    "trade_power_beneficiary": trade_power_beneficiary})
+            if "c" in term_mask:
+                term_receipt.update({
+                    "conceding_country": concede_defeat_country,
+                    "concede_beneficiary": concede_defeat_beneficiary})
+            if "a" in term_mask:
+                term_receipt.update({
+                    "annul_country": annul_country,
+                    "annul_partners": list(annul_partners or [])})
+            if "b" in term_mask and core_fields[0]:
+                term_receipt.update({
+                    "return_ids": list(core_fields[0][0]),
+                    "return_core_owner": core_fields[0][1]})
+            if "v" in term_mask and core_fields[1]:
+                term_receipt.update({
+                    "revoke_ids": list(core_fields[1][0]),
+                    "revoke_core_owner": core_fields[1][1]})
+            if "l" in term_mask:
+                term_receipt["release_subject_countries"] = ",".join(
+                    subject_fields[0] or [])
+            if "x" in term_mask:
+                term_receipt["transfer_subject_countries"] = ",".join(
+                    subject_fields[1] or [])
+            if any(bit in term_mask for bit in "nzuie"):
+                term_receipt.update({
+                    key: value for key, value, bit in zip(
+                        COUNTRY_SELECTION_KEYS, country_fields,
+                        ("n", "n", "z", "u", "i", "e", "z", "u", "e"))
+                    if bit in term_mask})
         return {
             "event": "native_peace_submission_result",
             "request_id": request_id, "action_id": action_id, "family": "peace",
@@ -8263,10 +18087,7 @@ class DiplomacyTools:
             "date_raw": wanted_date, "war_id": war_id,
             "direction": direction, "amount_raw": amount_raw,
             "province_ids": list(province_ids), "beneficiary": beneficiary,
-            **({"term_mask": term_mask,
-                "reparations_payer": reparations_payer,
-                "reparations_claimant": reparations_claimant}
-               if term_mask else {}),
+             **term_receipt,
             "submitted": True, "transport_verified": True,
             "request_binding_verified": True,
         }
@@ -8284,15 +18105,32 @@ class DiplomacyTools:
                                                      "offer_royal_marriage", "break_royal_ties",
                                                      "improve_relations", "stop_improving_relations",
                                                      "build_spy_network", "stop_building_spy_network",
+                                                     "curry_favors", "stop_curry_favors",
                                                      "proclaim_guarantee", "revoke_guarantee",
                                                       "support_independence", "revoke_support_independence",
                                                       "ask_military_access", "cancel_military_access",
                                                       "send_insult", "scornful_insult",
                                                       "set_rival", "remove_rival",
-                                                       "offer_vassalization", "cancel_vassalization",
+                                                        "offer_vassalization", "cancel_vassalization", *_FAVOR_ACTIONS,
+                                                         _GIFT_ACTION, _INFLUENCE_ACTION,
                                                         "declare_war",
                                                         "white_peace", "demand_ducats",
-                                                        "cede_province", "war_reparations")
+                                                         "cede_province", "war_reparations",
+                                                          "transfer_trade_power",
+                                                          "concede_defeat",
+                                                          "annul_treaties",
+                                                          "humiliate_rival",
+                                                          "show_strength",
+                                                          "force_religion",
+                                                          "return_core",
+                                                          "revoke_core",
+                                                          "release_subject",
+                                                          "transfer_subject",
+                                                          "release_nation",
+                                                          "force_vassalization",
+                                                          "form_personal_union",
+                                                          "grant_independence",
+                                                          "full_annexation")
                 or payload.get("actor") != "FRA" or payload.get("phase") != "initiate"
                 or not isinstance(request_id, str) or not isinstance(session_id, str)
                 or not isinstance(receipt, dict)):
@@ -8325,7 +18163,9 @@ class DiplomacyTools:
             return actor, recipient, phase, date_raw
         if action_id == "declare_war":
             try:
-                selected = ObserverSession._normalize_declare_war_selection(parameters)
+                selected = ObserverSession._normalize_declare_war_selection(
+                    parameters, actor=payload.get("actor"),
+                    recipient=payload.get("recipient"))
             except (TypeError, ValueError):
                 selected = None
             if selected is None:
@@ -8347,16 +18187,23 @@ class DiplomacyTools:
             except (TypeError, ValueError):
                 return None
             fields = ObserverSession._peace_execution_fields(normalized)
+            core_fields = ObserverSession._peace_core_execution_fields(normalized)
+            country_fields = ObserverSession._peace_country_execution_fields(
+                normalized, payload.get("actor"), payload.get("recipient"))
             actor = payload.get("actor")
             recipient = payload.get("recipient")
             phase = payload.get("phase")
             date_raw = ObserverSession._safe_submission_date(receipt.get("date_raw"))
-            if (fields is None or not isinstance(actor, str)
+            if (fields is None or core_fields is None or country_fields is None
+                    or not isinstance(actor, str)
                     or not isinstance(recipient, str) or not isinstance(phase, str)
                     or date_raw is None):
                 return None
             (war_id, direction, amount_raw, province_ids, beneficiary,
-             reparations_payer, reparations_claimant, term_mask) = fields
+             reparations_payer, reparations_claimant,
+             trade_power_source, trade_power_beneficiary,
+             concede_defeat_country, concede_defeat_beneficiary,
+         annul_country, annul_partners, term_mask) = fields
             if (receipt.get("event") != "native_peace_submission_result"
                     or receipt.get("family") != "peace"
                     or receipt.get("request_id") != request_id
@@ -8369,14 +18216,75 @@ class DiplomacyTools:
                     or receipt.get("request_binding_verified") is not True
                     or receipt.get("war_id") != war_id
                     or receipt.get("direction") != direction
-                    or receipt.get("amount_raw") != amount_raw
-                    or receipt.get("province_ids") != province_ids
-                    or receipt.get("beneficiary") != beneficiary):
+                     or receipt.get("amount_raw") != amount_raw
+                     or receipt.get("province_ids") != province_ids
+                     or receipt.get("beneficiary") not in (
+                         beneficiary, "-" if beneficiary is None else beneficiary)):
                 return None
             if ((term_mask and receipt.get("term_mask") != term_mask)
                     or (not term_mask and receipt.get("term_mask") not in (None, ""))):
                 return None
+            if ("r" in term_mask and (
+                    receipt.get("reparations_payer") != reparations_payer
+                    or receipt.get("reparations_claimant") != reparations_claimant)
+                    or "t" in term_mask and (
+                    receipt.get("trade_power_source") != trade_power_source
+                    or receipt.get("trade_power_beneficiary") != trade_power_beneficiary)
+                    or "c" in term_mask and (
+                    receipt.get("conceding_country") != concede_defeat_country
+                    or receipt.get("concede_beneficiary")
+                    != concede_defeat_beneficiary)
+                    or "a" in term_mask and (
+                    receipt.get("annul_country") != annul_country
+                    or receipt.get("annul_partners") != annul_partners)
+                    or "b" in term_mask and (
+                    receipt.get("return_ids") != core_fields[0][0]
+                    or receipt.get("return_core_owner") != core_fields[0][1])
+                    or "v" in term_mask and (
+                    receipt.get("revoke_ids") != core_fields[1][0]
+                     or receipt.get("revoke_core_owner") != core_fields[1][1])
+                     or any((bit in term_mask and receipt.get(key) != value)
+                            or (bit not in term_mask and key in receipt
+                                and receipt.get(key) != "-")
+                            for key, value, bit in zip(
+                                COUNTRY_SELECTION_KEYS, country_fields,
+                                ("n", "n", "z", "u", "i", "e", "z", "u", "e")))):
+                return None
+            if DiplomacyTools._public_peace_submission_receipt(
+                    receipt, request_id, actor, recipient, phase, date_raw,
+                    action_id, normalized) is None:
+                return None
             return actor, recipient, phase, date_raw, normalized
+        if action_id in (_GIFT_ACTION, _INFLUENCE_ACTION):
+            if payload.get("phase") != "initiate" or not isinstance(parameters, dict):
+                return None
+            if action_id == _GIFT_ACTION:
+                try:
+                    normalized = _normalize_gift_parameters(parameters)
+                except (TypeError, ValueError):
+                    return None
+                ducats = normalized["ducats"]
+            else:
+                try:
+                    _normalize_influence_parameters(parameters)
+                except (TypeError, ValueError):
+                    return None
+                ducats = None
+            actor = payload.get("actor")
+            recipient = payload.get("recipient")
+            phase = payload.get("phase")
+            date_raw = ObserverSession._safe_submission_date(receipt.get("date_raw"))
+            if (not isinstance(actor, str) or not isinstance(recipient, str)
+                    or not isinstance(phase, str) or date_raw is None):
+                return None
+            safe_receipt = ObserverSession._public_gift_influence_submission_receipt(
+                receipt, request_id, actor, recipient, phase, date_raw,
+                action_id, ducats)
+            if safe_receipt is None:
+                return None
+            return ((actor, recipient, phase, date_raw, ducats)
+                    if action_id == _GIFT_ACTION
+                    else (actor, recipient, phase, date_raw))
         if action_id == "send_insult":
             if parameters != {}:
                 return None
@@ -8409,6 +18317,11 @@ class DiplomacyTools:
                 or ObserverSession._safe_submission_sequence(receipt.get("native_sequence")) is None
                 or ObserverSession._safe_submission_origin(receipt.get("native_origin")) is None
                 or ObserverSession._safe_submission_flags(receipt.get("native_flags")) is None):
+            return None
+        if action_id in ("curry_favors", "stop_curry_favors") and (
+                receipt.get("family") != "curry_favors" or recipient == "FRA"):
+            return None
+        if action_id in _FAVOR_RESOURCE_ACTIONS and receipt.get("family") != "favor_trade":
             return None
         if action_id in _INSULT_ACTIONS:
             return actor, recipient, phase, date_raw, insult_id
@@ -8487,6 +18400,8 @@ class DiplomacyTools:
             return None
         if action_id == "offer_vassalization" and receipt.get("family") != "vassalization":
             return None
+        if action_id in _FAVOR_ACTIONS and receipt.get("family") != "favor_trade":
+            return None
         if peace and receipt.get("family") != "peace":
             return None
         return actor, "FRA", phase, date_raw, native_proposal_id
@@ -8520,6 +18435,8 @@ class DiplomacyTools:
                 reader_name = "read_native_improve_relations_execution"
             elif action_id in ("build_spy_network", "stop_building_spy_network"):
                 reader_name = "read_native_spy_network_execution"
+            elif action_id in ("curry_favors", "stop_curry_favors"):
+                reader_name = "read_native_curry_favors_execution"
             elif action_id in ("proclaim_guarantee", "revoke_guarantee"):
                 reader_name = "read_native_guarantee_execution"
             elif action_id == "support_independence":
@@ -8532,6 +18449,16 @@ class DiplomacyTools:
                 reader_name = "read_native_military_access_execution"
             elif action_id in _INSULT_ACTIONS:
                 reader_name = "read_native_insult_execution"
+            elif action_id == _FAVOR_GOLD_ACTION:
+                reader_name = "read_native_favor_gold_response"
+            elif action_id == _FAVOR_TRUST_ACTION:
+                reader_name = "read_native_favor_trust_response"
+            elif action_id == _FAVOR_MEN_ACTION:
+                reader_name = "read_native_favor_men_response"
+            elif action_id == _GIFT_ACTION:
+                reader_name = "read_native_gift_execution"
+            elif action_id == _INFLUENCE_ACTION:
+                reader_name = "read_native_influence_execution"
             elif action_id == "offer_vassalization":
                 reader_name = "read_native_vassalization_response"
             elif action_id == "cancel_vassalization":
@@ -8555,6 +18482,12 @@ class DiplomacyTools:
                 if action_id == "support_independence"
                 else "read_native_military_access_inbound_response"
                 if action_id == "ask_military_access"
+                else "read_native_favor_gold_inbound_response"
+                if action_id == _FAVOR_GOLD_ACTION
+                else "read_native_favor_trust_inbound_response"
+                if action_id == _FAVOR_TRUST_ACTION
+                else "read_native_favor_men_inbound_response"
+                if action_id == _FAVOR_MEN_ACTION
                 else "read_native_vassalization_inbound_response"
                 if action_id == "offer_vassalization"
                 else "read_native_peace_inbound_response"
@@ -8573,12 +18506,15 @@ class DiplomacyTools:
             response = reader(getattr(record, "request_id"), *context[:4], action_id, context[4])
         elif action_id in ("improve_relations", "stop_improving_relations",
                          "build_spy_network", "stop_building_spy_network",
+                         "curry_favors", "stop_curry_favors",
                          "proclaim_guarantee", "revoke_guarantee",
                          "support_independence", "revoke_support_independence",
                          "ask_military_access", "cancel_military_access",
                          "set_rival", "remove_rival"):
             response = reader(getattr(record, "request_id"), *context, action_id)
         elif action_id == "declare_war":
+            response = reader(getattr(record, "request_id"), *context[:4], context[4])
+        elif action_id == _GIFT_ACTION:
             response = reader(getattr(record, "request_id"), *context[:4], context[4])
         elif action_id in _PEACE_EXECUTION_ACTIONS:
             response = reader(getattr(record, "request_id"), *context[:4], action_id, context[4])
@@ -8793,7 +18729,7 @@ class DiplomacyTools:
         try:
             if action_id in ("offer_royal_marriage", "support_independence",
                              "ask_military_access", "offer_vassalization",
-                             "peace_offer"):
+                             *_FAVOR_ACTIONS, "peace_offer"):
                 native = submitter(request_id, actor, recipient, phase, date_raw,
                                    context["native_proposal_id"], action_id=action_id)
             else:
@@ -8832,7 +18768,7 @@ class DiplomacyTools:
                     if action_id == "offer_vassalization" else
                     ObserverSession._public_native_inbound_submission_receipt(
                         raw_receipt, request_id, actor, phase, date_raw, action_id)
-                    if action_id == "peace_offer" else
+                    if action_id in ("peace_offer", *_FAVOR_ACTIONS) else
                     self._public_submission_receipt(
                         raw_receipt, request_id, actor, recipient, phase,
                         date_raw, action_id))
@@ -8874,15 +18810,34 @@ class DiplomacyTools:
                 request_id, self._execution_result(
                     inspection, "NATIVE_PEACE_SUBMISSION_SCOPE_INVALID",
                     "当前议和提交的参数、法国决策方、阶段或日期绑定无效，未向游戏提交。"))
+        has_core_terms = any(
+            isinstance(term, dict)
+            and term.get("action_id") in {"return_core", "revoke_core"}
+            for term in normalized.get("peace_context", {}).get("terms", []))
+        has_subject_terms = any(
+            isinstance(term, dict)
+            and term.get("action_id") in _PEACE_SUBJECT_ACTIONS
+            for term in normalized.get("peace_context", {}).get("terms", []))
         inspection["interface_support"] = {
             **inspection.get("interface_support", {}),
-            "execute": "native_peace_submission",
+            "execute": ("native_peace_subject_terms_execution"
+                        if has_subject_terms else
+                        "native_peace_core_terms_execution"
+                        if has_core_terms else "native_peace_submission"),
         }
         inspection["authorization"] = {
             "status": "available", "complete": True,
             "reasons": [reason(
-                "NATIVE_PEACE_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
-                "安装确认允许桥接提交法国发起的议和操作；原生规则复查已单独完成。",
+                ("NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                 if has_subject_terms else
+                 "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                 if has_core_terms else
+                 "NATIVE_PEACE_SUBMISSION_CAPABILITY_ACKNOWLEDGED"),
+                ("安装确认允许桥接提交含附属国条款的法国议和操作；原生规则复查已单独完成。"
+                 if has_subject_terms else
+                 "安装确认允许桥接提交含核心条款的法国议和操作；原生规则复查已单独完成。"
+                 if has_core_terms else
+                 "安装确认允许桥接提交法国发起的议和操作；原生规则复查已单独完成。"),
                 "installation_capability", True)],
         }
         result = {
@@ -8942,6 +18897,25 @@ class DiplomacyTools:
                     inspection, code,
                     "议和原生提交等待超时，是否到达游戏未知，未自动重试。"),
                 timeout=True)
+        native_reason = native.get("reason")
+        if (native.get("submitted") is False
+                and isinstance(native_reason, dict)
+                and native_reason.get("code") == code
+                and native_reason.get("source") in (
+                    "native_rule", "runtime_error", "bridge_policy")
+                and isinstance(native_reason.get("text"), str)):
+            rejection = {key: native[key] for key in (
+                "reason", "reason_code", "diagnostic", "legality", "binding_complete")
+                if key in native}
+            fresh_legality = native.get("legality")
+            if isinstance(fresh_legality, dict):
+                inspection["legality"] = {
+                    **fresh_legality, "reasons": [native_reason], "complete": False}
+            return self._persist_unsubmitted(request_id, {
+                "submitted": False, "game_outcome": "unknown",
+                "inspection": inspection, "reason": native_reason,
+                "native_rejection": rejection,
+            })
         return self._persist_unsubmitted(
             request_id, self._execution_result(
                 inspection, code,
@@ -8954,7 +18928,8 @@ class DiplomacyTools:
         date_raw = inspection.get("session", {}).get("date_raw")
         requested = inspection.get("parameters", {}).get("requested")
         try:
-            selected = ObserverSession._normalize_declare_war_selection(requested)
+            selected = ObserverSession._normalize_declare_war_selection(
+                requested, actor=actor, recipient=recipient)
         except (TypeError, ValueError):
             selected = None
         if (selected is None or actor != "FRA" or phase != "initiate"
@@ -9035,6 +19010,19 @@ class DiplomacyTools:
         code = native.get("reason_code")
         if not isinstance(code, str) or re.fullmatch(r"[A-Z0-9_]{1,96}", code) is None:
             code = "NATIVE_DECLARE_WAR_SUBMISSION_FAILED"
+        native_reason = native.get("reason")
+        if (native.get("submitted") is False and isinstance(native_reason, dict)
+                and native_reason.get("code") == code
+                and native_reason.get("source") in ("native_rule", "runtime_error", "bridge_policy")
+                and isinstance(native_reason.get("text"), str)):
+            if isinstance(native.get("legality"), dict):
+                inspection["legality"] = {**native["legality"], "reasons": [native_reason]}
+            return self._persist_unsubmitted(request_id, {
+                "submitted": False, "game_outcome": "unknown", "inspection": inspection,
+                "reason": native_reason,
+                "native_rejection": {key: native[key] for key in (
+                    "reason", "reason_code", "legality", "binding_complete") if key in native},
+            })
         if native_status == "timeout":
             return self._persist_unsubmitted(
                 request_id,
@@ -9160,6 +19148,8 @@ class DiplomacyTools:
             "stop_improving_relations": _NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY,
             "build_spy_network": _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY,
             "stop_building_spy_network": _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY,
+            "curry_favors": _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY,
+            "stop_curry_favors": _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY,
             "proclaim_guarantee": _NATIVE_GUARANTEE_SUBMISSION_CAPABILITY,
             "revoke_guarantee": _NATIVE_GUARANTEE_SUBMISSION_CAPABILITY,
             "support_independence": _NATIVE_SUPPORT_INDEPENDENCE_SUBMISSION_CAPABILITY,
@@ -9169,6 +19159,11 @@ class DiplomacyTools:
             "send_insult": _NATIVE_INSULT_SUBMISSION_CAPABILITY,
             "scornful_insult": _NATIVE_INSULT_SUBMISSION_CAPABILITY,
             "offer_vassalization": _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY,
+            _FAVOR_GOLD_ACTION: _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY,
+            _FAVOR_TRUST_ACTION: _NATIVE_FAVOR_TRUST_SUBMISSION_CAPABILITY,
+            _FAVOR_MEN_ACTION: _NATIVE_FAVOR_MEN_SUBMISSION_CAPABILITY,
+            _GIFT_ACTION: _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+            _INFLUENCE_ACTION: _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
             "cancel_vassalization": _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY,
         }.get(action_id)
         if capability is None:
@@ -9184,6 +19179,8 @@ class DiplomacyTools:
             "stop_improving_relations": "法国停止改善与目标国家的关系",
             "build_spy_network": "法国开始向目标国家建立间谍网",
             "stop_building_spy_network": "法国停止向目标国家建立间谍网",
+            "curry_favors": "法国开始向目标国家获取人情",
+            "stop_curry_favors": "法国停止向目标国家获取人情",
             "proclaim_guarantee": "法国向目标国家保证独立",
             "revoke_guarantee": "法国撤销对目标国家的独立保证",
             "support_independence": "法国支持目标国家独立",
@@ -9193,6 +19190,11 @@ class DiplomacyTools:
             "send_insult": "法国向目标国家发起普通侮辱",
             "scornful_insult": "法国向目标国家发起指定轻蔑侮辱",
             "offer_vassalization": "法国向目标国家提议建立附庸关系",
+            _FAVOR_GOLD_ACTION: "法国用人情向目标国家换取金币",
+            _FAVOR_TRUST_ACTION: "法国用人情提升目标国家对法国的信任",
+            _FAVOR_MEN_ACTION: "法国用人情向目标国家换取人力",
+            _GIFT_ACTION: "法国向目标国家赠送金币",
+            _INFLUENCE_ACTION: "法国影响目标国家",
             "cancel_vassalization": "法国取消与目标国家的附庸关系",
         }.get(action_id, "法国发起联盟提议")
         insult_id = None
@@ -9206,6 +19208,19 @@ class DiplomacyTools:
                 failed = self._execution_result(
                     inspection, "INSULT_PARAMETER_NOT_SELECTED",
                     "轻蔑侮辱尚未选择并复查原生候选编号，未向游戏提交。")
+                return self._persist_unsubmitted(request_id, failed)
+        gift_ducats = None
+        if action_id == _GIFT_ACTION:
+            actual_parameters = inspection.get("parameters", {})
+            actual = (actual_parameters.get("actual")
+                      if isinstance(actual_parameters, dict) else None)
+            gift_ducats = actual.get("ducats") if isinstance(actual, dict) else None
+            try:
+                gift_ducats = _normalize_gift_parameters({"ducats": gift_ducats})["ducats"]
+            except (TypeError, ValueError):
+                failed = self._execution_result(
+                    inspection, "GIFT_PARAMETERS_UNAVAILABLE",
+                    "赠款金额未在执行前原生查询中绑定，未向游戏提交。")
                 return self._persist_unsubmitted(request_id, failed)
         inspection["interface_support"] = {**inspection.get("interface_support", {}),
                                             "execute": capability}
@@ -9245,6 +19260,9 @@ class DiplomacyTools:
             elif action_id == "scornful_insult":
                 native = submitter(request_id, actor, recipient, phase, date_raw,
                                    insult_id=insult_id)
+            elif action_id == _GIFT_ACTION:
+                native = submitter(request_id, actor, recipient, phase, date_raw,
+                                   ducats=gift_ducats)
             else:
                 native = submitter(request_id, actor, recipient, phase, date_raw)
         except Exception:
@@ -9264,9 +19282,19 @@ class DiplomacyTools:
                     native.get("receipt", native), request_id, actor, recipient,
                     phase, date_raw, action_id)
                 if action_id in _VASSALIZATION_ACTIONS else
+                self._public_curry_favors_submission_receipt(
+                    native.get("receipt", native), request_id, actor, recipient,
+                    phase, date_raw, action_id)
+                if action_id in ("curry_favors", "stop_curry_favors") else
+                ObserverSession._public_gift_influence_submission_receipt(
+                    native.get("receipt", native), request_id, actor, recipient,
+                    phase, date_raw, action_id, gift_ducats)
+                if action_id in (_GIFT_ACTION, _INFLUENCE_ACTION) else
                 self._public_submission_receipt(
                     native.get("receipt", native), request_id, actor, recipient,
                     phase, date_raw, action_id))
+            if action_id in _FAVOR_RESOURCE_ACTIONS and isinstance(receipt, dict):
+                receipt["family"] = "favor_trade"
             if receipt is None:
                 failed = self._execution_result(inspection, "NATIVE_SUBMISSION_RECEIPT_INVALID",
                                                 "原生提交未提供完整 transport 回执，未标记为已提交。")
@@ -9276,6 +19304,19 @@ class DiplomacyTools:
         code = native.get("reason_code")
         if not isinstance(code, str) or not re.fullmatch(r"[A-Z0-9_]{1,80}", code):
             code = "NATIVE_SUBMISSION_FAILED"
+        native_reason = native.get("reason")
+        if (native.get("submitted") is False and isinstance(native_reason, dict)
+                and native_reason.get("code") == code
+                and native_reason.get("source") in ("native_rule", "runtime_error", "bridge_policy")
+                and isinstance(native_reason.get("text"), str)):
+            if isinstance(native.get("legality"), dict):
+                inspection["legality"] = {**native["legality"], "reasons": [native_reason]}
+            return self._persist_unsubmitted(request_id, {
+                "submitted": False, "game_outcome": "unknown", "inspection": inspection,
+                "reason": native_reason,
+                "native_rejection": {key: native[key] for key in (
+                    "reason", "reason_code", "legality", "binding_complete") if key in native},
+            })
         if native_status == "timeout":
             unknown = self._execution_result(inspection, code,
                                              "原生提交等待超时，是否到达游戏未知，未自动重试。")
@@ -9307,7 +19348,7 @@ class DiplomacyTools:
             identifier_verified = (value_verified and raw.get("identifier_verified") is True
                                    and raw.get("identity_source") == "native_localization_key"
                                    and isinstance(identifier, str)
-                                   and re.fullmatch(r"DIPLO_[A-Z0-9_]{1,41}", identifier) is not None)
+                                   and re.fullmatch(r"(?:DIPLO_[A-Z0-9_]{1,41}|USING_FAVORS)", identifier) is not None)
             items.append({
                 "name": name,
                 "text_decoded": raw.get("text_decoded") is True,
@@ -9525,7 +19566,8 @@ class DiplomacyTools:
         if action_id == "declare_war":
             if phase != "initiate":
                 raise ValueError("DECLARE_WAR_INITIATE_ONLY")
-            ObserverSession._normalize_declare_war_parameters(parameters)
+            ObserverSession._normalize_declare_war_parameters(
+                parameters, actor=actor, recipient=recipient)
         if action_id in ("offer_alliance", "dissolve_alliance") and phase == "initiate" and parameters:
             raise ValueError("OFFER_ALLIANCE_PARAMETERS_UNSUPPORTED")
         if action_id in ("offer_royal_marriage", "break_royal_ties") \
@@ -9543,6 +19585,12 @@ class DiplomacyTools:
         if action_id in ("build_spy_network", "stop_building_spy_network") \
                 and phase == "initiate" and parameters:
             raise ValueError("SPY_NETWORK_PARAMETERS_UNSUPPORTED")
+        if action_id in ("curry_favors", "stop_curry_favors") \
+                and phase != "initiate":
+            raise ValueError("CURRY_FAVORS_INITIATE_ONLY")
+        if action_id in ("curry_favors", "stop_curry_favors") \
+                and phase == "initiate" and parameters:
+            raise ValueError("CURRY_FAVORS_PARAMETERS_UNSUPPORTED")
         if action_id in ("proclaim_guarantee", "revoke_guarantee") \
                 and phase != "initiate":
             raise ValueError("GUARANTEE_INITIATE_ONLY")
@@ -9556,6 +19604,34 @@ class DiplomacyTools:
             raise ValueError("RIVAL_PARAMETERS_UNSUPPORTED")
         if action_id == "cancel_vassalization" and phase != "initiate":
             raise ValueError("VASSALIZATION_INITIATE_ONLY")
+        if action_id == _FAVOR_GOLD_ACTION:
+            if phase not in ("initiate", "accept", "reject"):
+                raise ValueError("FAVOR_TRADE_PHASE_UNSUPPORTED")
+            if phase == "initiate" and parameters:
+                raise ValueError("FAVOR_TRADE_PARAMETERS_UNSUPPORTED")
+            if phase in ("accept", "reject") and (
+                    set(parameters) != {"proposal_id"}
+                    or not isinstance(parameters.get("proposal_id"), str)
+                    or re.fullmatch(r"[0-9a-f]{32}", parameters["proposal_id"]) is None):
+                raise ValueError("INBOUND_RESPONSE_PARAMETERS_UNSUPPORTED")
+        if action_id in _FAVOR_RESOURCE_ACTIONS:
+            if phase not in ("initiate", "accept", "reject"):
+                raise ValueError("FAVOR_TRADE_PHASE_UNSUPPORTED")
+            if phase == "initiate" and parameters:
+                raise ValueError("FAVOR_TRADE_PARAMETERS_UNSUPPORTED")
+            if phase in ("accept", "reject") and (
+                    set(parameters) != {"proposal_id"}
+                    or not isinstance(parameters.get("proposal_id"), str)
+                    or re.fullmatch(r"[0-9a-f]{32}", parameters["proposal_id"]) is None):
+                raise ValueError("INBOUND_RESPONSE_PARAMETERS_UNSUPPORTED")
+        if action_id == _GIFT_ACTION:
+            if phase != "initiate":
+                raise ValueError("GIFT_INITIATE_ONLY")
+            _normalize_gift_parameters(parameters)
+        if action_id == _INFLUENCE_ACTION:
+            if phase != "initiate":
+                raise ValueError("INFLUENCE_INITIATE_ONLY")
+            _normalize_influence_parameters(parameters)
         if action_id == "offer_vassalization" and phase not in ("initiate", "accept", "reject"):
             raise ValueError("VASSALIZATION_PHASE_UNSUPPORTED")
         if action_id in _VASSALIZATION_ACTIONS \
@@ -9611,6 +19687,10 @@ class DiplomacyTools:
 
     def list_diplomatic_actions(self, actor: str | None = None, recipient: str | None = None,
                                category: str | None = None) -> dict:
+        # ``peace`` is an additive public alias used by the operational query
+        # runner; retain ``peace_term`` as the catalog's canonical category.
+        if category == "peace":
+            category = "peace_term"
         if category not in (None, "diplomatic_action", "peace_term"):
             raise ValueError("UNKNOWN_ACTION_CATEGORY")
         actions = [action.describe() for action in ACTIONS.values() if category is None or action.category == category]
@@ -9631,6 +19711,8 @@ class DiplomacyTools:
                                                       _NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY,
                                                       _NATIVE_SPY_NETWORK_QUERY_CAPABILITY,
                                                       _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY,
+                                                      _NATIVE_CURRY_FAVORS_QUERY_CAPABILITY,
+                                                      _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY,
                                                       _NATIVE_GUARANTEE_QUERY_CAPABILITY,
                                                       _NATIVE_GUARANTEE_SUBMISSION_CAPABILITY,
                                                       _NATIVE_SUPPORT_INDEPENDENCE_QUERY_CAPABILITY,
@@ -9639,10 +19721,18 @@ class DiplomacyTools:
                                                        _NATIVE_MILITARY_ACCESS_SUBMISSION_CAPABILITY,
                                                        _NATIVE_INSULT_QUERY_CAPABILITY,
                                                        _NATIVE_INSULT_SUBMISSION_CAPABILITY,
+                                                        _NATIVE_GIFT_QUERY_CAPABILITY,
+                                                        _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+                                                        _NATIVE_INFLUENCE_QUERY_CAPABILITY,
+                                                        _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
                                                        _NATIVE_RIVAL_QUERY_CAPABILITY,
                                                        _NATIVE_RIVAL_SUBMISSION_CAPABILITY,
                                                        _NATIVE_DECLARE_WAR_QUERY_CAPABILITY,
                                                        _NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY,
+                                                       _NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY,
+                                                       _NATIVE_DECLARE_WAR_FORCES_CAPABILITY,
+                                                       _NATIVE_DECLARE_WAR_PEACE_OPTIONS_CAPABILITY,
+                                                       _NATIVE_PEACE_CONSEQUENCES_CAPABILITY,
                                                        _NATIVE_VASSALIZATION_QUERY_CAPABILITY,
                                                        _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY,
                                                        _NATIVE_PEACE_CONTEXT_QUERY_CAPABILITY,
@@ -9650,8 +19740,16 @@ class DiplomacyTools:
                                                        _NATIVE_PEACE_MONEY_OFFER_QUERY_CAPABILITY,
                                                        _NATIVE_PEACE_PROVINCE_OFFER_QUERY_CAPABILITY,
                                                        _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY,
+                                                       _NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY,
+                                                       _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY,
+                                                       _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY,
+                                                       _NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY,
+                                                        _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY,
+                                                        _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY,
                                                        _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY,
                                                        _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY,
+                                                        _NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY,
+                                                        _NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY,
                                                        _NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY,
                                                        _NATIVE_INBOUND_VASSAL_RESPONSE_CAPABILITY,
                                                        _NATIVE_INBOUND_SUPPORT_RESPONSE_CAPABILITY,
@@ -9668,6 +19766,8 @@ class DiplomacyTools:
                                                       _NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY,
                                                       _NATIVE_SPY_NETWORK_QUERY_CAPABILITY,
                                                       _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY,
+                                                      _NATIVE_CURRY_FAVORS_QUERY_CAPABILITY,
+                                                      _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY,
                                                       _NATIVE_GUARANTEE_QUERY_CAPABILITY,
                                                       _NATIVE_GUARANTEE_SUBMISSION_CAPABILITY,
                                                       _NATIVE_SUPPORT_INDEPENDENCE_QUERY_CAPABILITY,
@@ -9676,10 +19776,19 @@ class DiplomacyTools:
                                                        _NATIVE_MILITARY_ACCESS_SUBMISSION_CAPABILITY,
                                                        _NATIVE_INSULT_QUERY_CAPABILITY,
                                                        _NATIVE_INSULT_SUBMISSION_CAPABILITY,
+                                                       _NATIVE_GIFT_QUERY_CAPABILITY,
+                                                       _NATIVE_GIFT_SUBMISSION_CAPABILITY,
+                                                       _NATIVE_INFLUENCE_QUERY_CAPABILITY,
+                                                       _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY,
                                                       _NATIVE_RIVAL_QUERY_CAPABILITY,
                                                       _NATIVE_RIVAL_SUBMISSION_CAPABILITY,
                                                       _NATIVE_DECLARE_WAR_QUERY_CAPABILITY,
                                                        _NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY,
+                                                        _NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY,
+                                                        _NATIVE_DECLARE_WAR_FORCES_CAPABILITY,
+                                                        _NATIVE_DECLARE_WAR_PEACE_OPTIONS_CAPABILITY,
+                                                        _NATIVE_PEACE_CONSEQUENCES_CAPABILITY,
+                                                       _NATIVE_PEACE_CONSEQUENCES_CAPABILITY,
                                                        _NATIVE_VASSALIZATION_QUERY_CAPABILITY,
                                                        _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY,
                                                        _NATIVE_PEACE_CONTEXT_QUERY_CAPABILITY,
@@ -9687,8 +19796,16 @@ class DiplomacyTools:
                                                         _NATIVE_PEACE_MONEY_OFFER_QUERY_CAPABILITY,
                                                         _NATIVE_PEACE_PROVINCE_OFFER_QUERY_CAPABILITY,
                                                          _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY,
+                                                         _NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY,
+                                                         _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY,
+                                                         _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY,
+                                                         _NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY,
+                                                          _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY,
+                                                          _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY,
                                                         _NATIVE_PEACE_OFFER_EVALUATION_QUERY_CAPABILITY,
                                                        _NATIVE_PEACE_WRAPPER_RULE_QUERY_CAPABILITY,
+                                                        _NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY,
+                                                        _NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY,
                                                        _NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY,
                                                        _NATIVE_INBOUND_VASSAL_RESPONSE_CAPABILITY,
                                                        _NATIVE_INBOUND_SUPPORT_RESPONSE_CAPABILITY,
@@ -9720,6 +19837,10 @@ class DiplomacyTools:
             _NATIVE_SPY_NETWORK_QUERY_CAPABILITY in query_capabilities)
         native_spy_network_submission_acknowledged = (
             _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY in query_capabilities)
+        native_curry_favors_query_acknowledged = (
+            _NATIVE_CURRY_FAVORS_QUERY_CAPABILITY in query_capabilities)
+        native_curry_favors_submission_acknowledged = (
+            _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY in query_capabilities)
         native_guarantee_query_acknowledged = (
             _NATIVE_GUARANTEE_QUERY_CAPABILITY in query_capabilities)
         native_guarantee_submission_acknowledged = (
@@ -9740,6 +19861,14 @@ class DiplomacyTools:
             _NATIVE_INSULT_QUERY_CAPABILITY in query_capabilities)
         native_insult_submission_acknowledged = (
             _NATIVE_INSULT_SUBMISSION_CAPABILITY in query_capabilities)
+        native_gift_query_acknowledged = (
+            _NATIVE_GIFT_QUERY_CAPABILITY in query_capabilities)
+        native_gift_submission_acknowledged = (
+            _NATIVE_GIFT_SUBMISSION_CAPABILITY in query_capabilities)
+        native_influence_query_acknowledged = (
+            _NATIVE_INFLUENCE_QUERY_CAPABILITY in query_capabilities)
+        native_influence_submission_acknowledged = (
+            _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY in query_capabilities)
         native_rival_query_acknowledged = (
             _NATIVE_RIVAL_QUERY_CAPABILITY in query_capabilities)
         native_rival_submission_acknowledged = (
@@ -9752,8 +19881,16 @@ class DiplomacyTools:
             _NATIVE_DECLARE_WAR_QUERY_CAPABILITY in query_capabilities)
         native_declare_war_submission_acknowledged = (
             _NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY in query_capabilities)
+        native_declare_war_participants_acknowledged = (
+            _NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY in query_capabilities)
+        native_declare_war_forces_acknowledged = (
+            _NATIVE_DECLARE_WAR_FORCES_CAPABILITY in query_capabilities)
+        native_declare_war_peace_options_acknowledged = (
+            _NATIVE_DECLARE_WAR_PEACE_OPTIONS_CAPABILITY in query_capabilities)
         native_peace_context_query_acknowledged = (
             _NATIVE_PEACE_CONTEXT_QUERY_CAPABILITY in query_capabilities)
+        native_peace_consequences_acknowledged = (
+            _NATIVE_PEACE_CONSEQUENCES_CAPABILITY in query_capabilities)
         native_peace_empty_offer_query_acknowledged = (
             _NATIVE_PEACE_EMPTY_OFFER_QUERY_CAPABILITY in query_capabilities)
         native_peace_money_offer_query_acknowledged = (
@@ -9762,8 +19899,50 @@ class DiplomacyTools:
             _NATIVE_PEACE_PROVINCE_OFFER_QUERY_CAPABILITY in query_capabilities)
         native_peace_combined_query_acknowledged = (
             _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY in query_capabilities)
+        native_peace_reparations_query_acknowledged = (
+            _NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY in query_capabilities)
+        native_peace_trade_power_query_acknowledged = (
+            _NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY in query_capabilities)
+        native_peace_concede_defeat_query_acknowledged = (
+            _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY in query_capabilities)
+        native_peace_special_terms_query_acknowledged = (
+            _NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY in query_capabilities)
+        native_peace_core_terms_query_acknowledged = (
+            _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY in query_capabilities)
+        native_peace_subject_terms_query_acknowledged = (
+            _NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY in query_capabilities)
+        native_peace_country_terms_query_acknowledged = (
+            _NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY in query_capabilities)
         native_peace_submission_acknowledged = (
             _NATIVE_PEACE_SUBMISSION_CAPABILITY in safe_installation_capabilities)
+        native_peace_reparations_execution_acknowledged = (
+            _NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY
+            in safe_installation_capabilities)
+        native_peace_trade_power_execution_acknowledged = (
+            _NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY
+            in safe_installation_capabilities)
+        native_peace_trade_power_sources_acknowledged = (
+            _NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY
+            in safe_installation_capabilities)
+        native_peace_concede_defeat_query_acknowledged = (
+            native_peace_concede_defeat_query_acknowledged
+            or _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY
+            in safe_installation_capabilities)
+        native_peace_concede_defeat_execution_acknowledged = (
+            _NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY
+            in safe_installation_capabilities)
+        native_peace_special_terms_execution_acknowledged = (
+            _NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY
+            in safe_installation_capabilities)
+        native_peace_core_terms_execution_acknowledged = (
+            _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY
+            in safe_installation_capabilities)
+        native_peace_subject_terms_execution_acknowledged = (
+            _NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY
+            in safe_installation_capabilities)
+        native_peace_country_terms_execution_acknowledged = (
+            _NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY
+            in safe_installation_capabilities)
         native_inbound_vassal_response_acknowledged = (
             _NATIVE_INBOUND_VASSAL_RESPONSE_CAPABILITY in query_capabilities)
         native_inbound_military_access_response_acknowledged = (
@@ -9803,6 +19982,21 @@ class DiplomacyTools:
                         initiate["query"] = "native_declare_war_inspection"
                         initiate["reason_code"] = (
                             "NATIVE_DECLARE_WAR_QUERY_ACKNOWLEDGED")
+                        if native_declare_war_participants_acknowledged:
+                            initiate["query_participants"] = (
+                                "native_declare_war_participants")
+                            initiate["query_participants_reason_code"] = (
+                                "NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY_ACKNOWLEDGED")
+                        if native_declare_war_forces_acknowledged:
+                            initiate["query_forces"] = (
+                                "native_declare_war_forces")
+                            initiate["query_forces_reason_code"] = (
+                                "NATIVE_DECLARE_WAR_FORCES_CAPABILITY_ACKNOWLEDGED")
+                        if native_declare_war_peace_options_acknowledged:
+                            initiate["query_peace_term_rules"] = (
+                                "native_declare_war_peace_options")
+                            initiate["query_peace_term_rules_reason_code"] = (
+                                "NATIVE_DECLARE_WAR_PEACE_OPTIONS_CAPABILITY_ACKNOWLEDGED")
                 if (self.session is not None and health["status"] == "ready"
                         and native_declare_war_submission_acknowledged):
                     initiate = action["phases"].get("initiate")
@@ -9810,6 +20004,11 @@ class DiplomacyTools:
                         initiate["execute"] = "native_declare_war_submission"
                         initiate["execute_reason_code"] = (
                             "NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY_ACKNOWLEDGED")
+                        if native_declare_war_participants_acknowledged:
+                            initiate["execute_participants"] = (
+                                "native_declare_war_participants")
+                            initiate["execute_participants_reason_code"] = (
+                                "NATIVE_DECLARE_WAR_PARTICIPANTS_CAPABILITY_ACKNOWLEDGED")
             elif action["category"] == "peace_term":
                 action["identification_status"] = "static_native_action_family"
                 if (self.session is not None and health["status"] == "ready"
@@ -9819,6 +20018,11 @@ class DiplomacyTools:
                         initiate["query"] = "native_peace_context_inspection"
                         initiate["reason_code"] = (
                             "NATIVE_PEACE_CONTEXT_QUERY_ACKNOWLEDGED")
+                        if (native_peace_consequences_acknowledged
+                                and action["action_id"] in _PEACE_EXECUTION_ACTIONS):
+                            initiate["query_consequences"] = "native_peace_consequences"
+                            initiate["query_consequences_reason_code"] = (
+                                "NATIVE_PEACE_CONSEQUENCES_CAPABILITY_ACKNOWLEDGED")
                         if (action["action_id"] == "white_peace"
                                 and native_peace_empty_offer_query_acknowledged):
                             initiate["selected_query"] = (
@@ -9837,6 +20041,86 @@ class DiplomacyTools:
                                 "native_peace_province_offer_inspection")
                             initiate["selected_query_reason_code"] = (
                                 "NATIVE_PEACE_PROVINCE_OFFER_QUERY_ACKNOWLEDGED")
+                        if (action["action_id"] == "war_reparations"
+                                and native_peace_reparations_query_acknowledged):
+                            initiate["selected_query"] = (
+                                "native_peace_reparations_offer_inspection")
+                            initiate["selected_query_reason_code"] = (
+                                "NATIVE_PEACE_REPARATIONS_QUERY_ACKNOWLEDGED")
+                        if (action["action_id"] == "transfer_trade_power"
+                                and native_peace_trade_power_query_acknowledged):
+                            initiate["selected_query"] = (
+                                "native_peace_trade_power_offer_inspection")
+                            initiate["selected_query_reason_code"] = (
+                                "NATIVE_PEACE_TRADE_POWER_QUERY_ACKNOWLEDGED")
+                            if native_peace_trade_power_sources_acknowledged:
+                                initiate["selected_query_protocol"] = "QUERY10"
+                                initiate["selected_query_protocol_reason_code"] = (
+                                    "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_ACKNOWLEDGED")
+                        if (action["action_id"] == "concede_defeat"
+                                and native_peace_concede_defeat_query_acknowledged):
+                            initiate["selected_query"] = (
+                                "native_peace_concede_defeat_offer_inspection")
+                            initiate["selected_query_reason_code"] = (
+                                "NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_ACKNOWLEDGED")
+                            initiate["selected_query_protocol"] = "QUERY11"
+                            initiate["selected_query_protocol_reason_code"] = (
+                                "NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_ACKNOWLEDGED")
+                        if (action["action_id"] in {
+                                "humiliate_rival", "show_strength", "force_religion"}
+                                and native_peace_special_terms_query_acknowledged):
+                            initiate["selected_query"] = (
+                                "native_peace_special_offer_inspection")
+                            initiate["selected_query_reason_code"] = (
+                                "NATIVE_PEACE_SPECIAL_TERMS_QUERY_ACKNOWLEDGED")
+                            initiate["selected_query_protocol"] = "QUERY13"
+                            initiate["selected_query_protocol_reason_code"] = (
+                                "NATIVE_PEACE_SPECIAL_TERMS_QUERY_ACKNOWLEDGED")
+                        if (action["action_id"] in _PEACE_SUBJECT_ACTIONS
+                                and (native_peace_subject_terms_execution_acknowledged
+                                     or native_peace_subject_terms_query_acknowledged)):
+                            if native_peace_subject_terms_execution_acknowledged:
+                                initiate["selected_query"] = (
+                                    "native_peace_execution_inspection")
+                                initiate["selected_query_reason_code"] = (
+                                    "NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                                initiate["selected_query_protocol"] = "QUERY17"
+                                initiate["selected_query_protocol_reason_code"] = (
+                                    "NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                            else:
+                                initiate["selected_query"] = (
+                                    "native_peace_subject_offer_query")
+                                initiate["selected_query_reason_code"] = (
+                                    "NATIVE_PEACE_SUBJECT_TERMS_QUERY_ACKNOWLEDGED")
+                                initiate["selected_query_protocol"] = "QUERY16"
+                                initiate["selected_query_protocol_reason_code"] = (
+                                    "NATIVE_PEACE_SUBJECT_TERMS_QUERY_ACKNOWLEDGED")
+                        if (action["action_id"] in COUNTRY_TERM_ACTIONS
+                                and native_peace_country_terms_query_acknowledged):
+                            initiate["selected_query"] = (
+                                "native_peace_combined_country_offer_query")
+                            initiate["selected_query_reason_code"] = (
+                                "NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY_ACKNOWLEDGED")
+                            initiate["selected_query_protocol"] = "QUERY18"
+                            initiate["selected_query_protocol_reason_code"] = (
+                                "NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY_ACKNOWLEDGED")
+                        if (action["action_id"] in CORE_ACTION_IDS
+                                and native_peace_core_terms_query_acknowledged):
+                            initiate["selected_query"] = (
+                                "native_peace_execution_inspection"
+                                if native_peace_core_terms_execution_acknowledged
+                                else "native_peace_core_offer_query")
+                            initiate["selected_query_reason_code"] = (
+                                "NATIVE_PEACE_CORE_TERMS_EXECUTION_INSPECTION_ACKNOWLEDGED"
+                                if native_peace_core_terms_execution_acknowledged
+                                else "NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY_ACKNOWLEDGED")
+                            initiate["selected_query_protocol"] = (
+                                "EXEC8" if native_peace_core_terms_execution_acknowledged
+                                else "QUERY14")
+                            initiate["selected_query_protocol_reason_code"] = (
+                                "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                                if native_peace_core_terms_execution_acknowledged
+                                else "NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY_ACKNOWLEDGED")
                         if (action["action_id"] in ("demand_ducats", "cede_province")
                                 and native_peace_combined_query_acknowledged):
                             initiate["combined_query"] = (
@@ -9870,6 +20154,95 @@ class DiplomacyTools:
                             "native_peace_province_offer_inspection")
                         initiate["selected_query_reason_code"] = (
                             "NATIVE_PEACE_PROVINCE_OFFER_QUERY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] == "war_reparations"
+                      and native_peace_reparations_query_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["selected_query"] = (
+                            "native_peace_reparations_offer_inspection")
+                        initiate["selected_query_reason_code"] = (
+                            "NATIVE_PEACE_REPARATIONS_QUERY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] == "transfer_trade_power"
+                      and native_peace_trade_power_query_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["selected_query"] = (
+                            "native_peace_trade_power_offer_inspection")
+                        initiate["selected_query_reason_code"] = (
+                            "NATIVE_PEACE_TRADE_POWER_QUERY_ACKNOWLEDGED")
+                        if native_peace_trade_power_sources_acknowledged:
+                            initiate["selected_query_protocol"] = "QUERY10"
+                            initiate["selected_query_protocol_reason_code"] = (
+                                "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] == "concede_defeat"
+                      and native_peace_concede_defeat_query_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["selected_query"] = (
+                            "native_peace_concede_defeat_offer_inspection")
+                        initiate["selected_query_reason_code"] = (
+                            "NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_ACKNOWLEDGED")
+                        initiate["selected_query_protocol"] = "QUERY11"
+                        initiate["selected_query_protocol_reason_code"] = (
+                            "NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] in {
+                          "humiliate_rival", "show_strength", "force_religion"}
+                      and native_peace_special_terms_query_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["selected_query"] = (
+                            "native_peace_special_offer_inspection")
+                        initiate["selected_query_reason_code"] = (
+                            "NATIVE_PEACE_SPECIAL_TERMS_QUERY_ACKNOWLEDGED")
+                        initiate["selected_query_protocol"] = "QUERY13"
+                        initiate["selected_query_protocol_reason_code"] = (
+                            "NATIVE_PEACE_SPECIAL_TERMS_QUERY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] in _PEACE_SUBJECT_ACTIONS
+                      and (native_peace_subject_terms_execution_acknowledged
+                           or native_peace_subject_terms_query_acknowledged)):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        if native_peace_subject_terms_execution_acknowledged:
+                            initiate["selected_query"] = (
+                                "native_peace_execution_inspection")
+                            initiate["selected_query_reason_code"] = (
+                                "NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                            initiate["selected_query_protocol"] = "QUERY17"
+                            initiate["selected_query_protocol_reason_code"] = (
+                                "NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        else:
+                            initiate["selected_query"] = (
+                                "native_peace_subject_offer_query")
+                            initiate["selected_query_reason_code"] = (
+                                "NATIVE_PEACE_SUBJECT_TERMS_QUERY_ACKNOWLEDGED")
+                            initiate["selected_query_protocol"] = "QUERY16"
+                            initiate["selected_query_protocol_reason_code"] = (
+                                "NATIVE_PEACE_SUBJECT_TERMS_QUERY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] in CORE_ACTION_IDS
+                      and native_peace_core_terms_query_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["selected_query"] = (
+                            "native_peace_execution_inspection"
+                            if native_peace_core_terms_execution_acknowledged
+                            else "native_peace_core_offer_query")
+                        initiate["selected_query_reason_code"] = (
+                            "NATIVE_PEACE_CORE_TERMS_EXECUTION_INSPECTION_ACKNOWLEDGED"
+                            if native_peace_core_terms_execution_acknowledged
+                            else "NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY_ACKNOWLEDGED")
+                        initiate["selected_query_protocol"] = (
+                            "EXEC8" if native_peace_core_terms_execution_acknowledged
+                            else "QUERY14")
+                        initiate["selected_query_protocol_reason_code"] = (
+                            "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                            if native_peace_core_terms_execution_acknowledged
+                            else "NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY_ACKNOWLEDGED")
                 if (self.session is not None and health["status"] == "ready"
                         and action["action_id"] in ("demand_ducats", "cede_province")
                         and native_peace_combined_query_acknowledged):
@@ -9880,12 +20253,125 @@ class DiplomacyTools:
                         initiate["combined_query_reason_code"] = (
                             "NATIVE_PEACE_COMBINED_QUERY_ACKNOWLEDGED")
                 if (self.session is not None and health["status"] == "ready"
-                        and native_peace_submission_acknowledged):
+                        and (native_peace_submission_acknowledged
+                             or native_peace_concede_defeat_execution_acknowledged
+                             or native_peace_special_terms_execution_acknowledged
+                             or native_peace_core_terms_execution_acknowledged
+                              or native_peace_subject_terms_execution_acknowledged
+                              or native_peace_country_terms_execution_acknowledged)):
                     initiate = action["phases"].get("initiate")
                     if initiate is not None:
-                        initiate["execute"] = "native_peace_submission"
+                        if (action["action_id"] in CORE_ACTION_IDS
+                                and native_peace_core_terms_execution_acknowledged):
+                            initiate["execute"] = (
+                                "native_peace_core_terms_execution")
+                            initiate["execute_reason_code"] = (
+                                "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                            initiate["execute_protocol"] = "EXEC8"
+                            initiate["execute_protocol_reason_code"] = (
+                                "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        elif (action["action_id"] in {
+                                "humiliate_rival", "show_strength", "force_religion"}
+                                and native_peace_special_terms_execution_acknowledged):
+                            initiate["execute"] = (
+                                "native_peace_special_terms_execution")
+                            initiate["execute_reason_code"] = (
+                                "NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                            initiate["execute_protocol"] = "EXEC7"
+                            initiate["execute_protocol_reason_code"] = (
+                                "NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        elif (action["action_id"] == "concede_defeat"
+                                and native_peace_concede_defeat_execution_acknowledged):
+                            initiate["execute"] = (
+                                "native_peace_concede_defeat_execution")
+                            initiate["execute_reason_code"] = (
+                                "NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                            initiate["execute_protocol"] = "EXEC5"
+                            initiate["execute_protocol_reason_code"] = (
+                                "NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        elif (action["action_id"] in _PEACE_SUBJECT_ACTIONS
+                                and native_peace_subject_terms_execution_acknowledged):
+                            initiate["execute"] = (
+                                "native_peace_subject_terms_execution")
+                            initiate["execute_reason_code"] = (
+                                "NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                            initiate["execute_protocol"] = "EXEC9"
+                            initiate["execute_protocol_reason_code"] = (
+                                "NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        elif (action["action_id"] in COUNTRY_TERM_ACTIONS
+                              and native_peace_country_terms_execution_acknowledged):
+                            initiate["execute"] = "native_peace_submission"
+                            initiate["execute_reason_code"] = (
+                                "NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                            initiate["execute_protocol"] = "EXEC10"
+                            initiate["execute_protocol_reason_code"] = (
+                                "NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        elif (action["action_id"] == "war_reparations"
+                                and native_peace_reparations_execution_acknowledged):
+                            initiate["execute"] = (
+                                "native_peace_reparations_execution")
+                            initiate["execute_reason_code"] = (
+                                "NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        elif (action["action_id"] == "transfer_trade_power"
+                              and native_peace_trade_power_execution_acknowledged):
+                            initiate["execute"] = (
+                                "native_peace_trade_power_execution")
+                            initiate["execute_reason_code"] = (
+                                "NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                            if native_peace_trade_power_sources_acknowledged:
+                                initiate["execute_protocol"] = "EXEC4"
+                                initiate["execute_protocol_reason_code"] = (
+                                    "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_ACKNOWLEDGED")
+                        elif action["action_id"] not in (
+                                "war_reparations", "transfer_trade_power",
+                                "concede_defeat", "return_core", "revoke_core",
+                                "release_subject", "transfer_subject"):
+                            initiate["execute"] = "native_peace_submission"
+                            initiate["execute_reason_code"] = (
+                                "NATIVE_PEACE_SUBMISSION_CAPABILITY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] in CORE_ACTION_IDS
+                      and native_peace_core_terms_execution_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["execute"] = "native_peace_core_terms_execution"
                         initiate["execute_reason_code"] = (
-                            "NATIVE_PEACE_SUBMISSION_CAPABILITY_ACKNOWLEDGED")
+                            "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        initiate["execute_protocol"] = "EXEC8"
+                        initiate["execute_protocol_reason_code"] = (
+                            "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] == "war_reparations"
+                      and native_peace_reparations_execution_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["execute"] = "native_peace_reparations_execution"
+                        initiate["execute_reason_code"] = (
+                            "NATIVE_PEACE_REPARATIONS_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] == "transfer_trade_power"
+                      and native_peace_trade_power_execution_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["execute"] = "native_peace_trade_power_execution"
+                        initiate["execute_reason_code"] = (
+                            "NATIVE_PEACE_TRADE_POWER_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        if native_peace_trade_power_sources_acknowledged:
+                            initiate["execute_protocol"] = "EXEC4"
+                            initiate["execute_protocol_reason_code"] = (
+                                "NATIVE_PEACE_TRADE_POWER_SOURCES_CAPABILITY_ACKNOWLEDGED")
+                elif (self.session is not None and health["status"] == "ready"
+                      and action["action_id"] == "concede_defeat"
+                      and native_peace_concede_defeat_execution_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["execute"] = (
+                            "native_peace_concede_defeat_execution")
+                        initiate["execute_reason_code"] = (
+                            "NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                        initiate["execute_protocol"] = "EXEC5"
+                        initiate["execute_protocol_reason_code"] = (
+                            "NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY_ACKNOWLEDGED")
             elif action["action_id"] in ("offer_royal_marriage", "break_royal_ties"):
                 action["identification_status"] = "static_native_action_family"
                 if (self.session is not None and health["status"] == "ready"
@@ -9944,6 +20430,21 @@ class DiplomacyTools:
                         initiate["execute"] = "native_spy_network_submission"
                         initiate["execute_reason_code"] = (
                             "NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY_ACKNOWLEDGED")
+            elif action["action_id"] in ("curry_favors", "stop_curry_favors"):
+                action["identification_status"] = "static_native_action_family"
+                if (self.session is not None and health["status"] == "ready"
+                        and native_curry_favors_query_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["query"] = "partial_native_rules"
+                        initiate["reason_code"] = "NATIVE_CURRY_FAVORS_QUERY_ACKNOWLEDGED"
+                if (self.session is not None and health["status"] == "ready"
+                        and native_curry_favors_submission_acknowledged):
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None:
+                        initiate["execute"] = "native_curry_favors_submission"
+                        initiate["execute_reason_code"] = (
+                            "NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY_ACKNOWLEDGED")
             elif action["action_id"] in ("proclaim_guarantee", "revoke_guarantee"):
                 action["identification_status"] = "static_native_action_family"
                 if (self.session is not None and health["status"] == "ready"
@@ -10045,6 +20546,78 @@ class DiplomacyTools:
                         initiate["execute"] = "native_rival_submission"
                         initiate["execute_reason_code"] = (
                             "NATIVE_RIVAL_SUBMISSION_CAPABILITY_ACKNOWLEDGED")
+            elif action["action_id"] == _FAVOR_GOLD_ACTION:
+                action["identification_status"] = "static_native_action_family"
+                caps = self._installation_capabilities()
+                if self.session is not None and health["status"] == "ready":
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None and _NATIVE_FAVOR_GOLD_QUERY_CAPABILITY in caps:
+                        initiate.update(query="native_favor_gold_query",
+                                        reason_code="NATIVE_FAVOR_GOLD_QUERY_ACKNOWLEDGED")
+                    if initiate is not None and _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY in caps:
+                        initiate.update(execute="native_favor_gold_submission",
+                                        execute_reason_code="NATIVE_FAVOR_GOLD_SUBMISSION_ACKNOWLEDGED")
+                    if _NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_CAPABILITY in caps:
+                        for name in ("accept", "reject"):
+                            response_phase = action["phases"].get(name)
+                            if response_phase is not None:
+                                response_phase.update(query="native_inbound_response_inspection",
+                                    execute="native_inbound_response",
+                                    reason_code="NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_ACKNOWLEDGED",
+                                    execute_reason_code="NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_ACKNOWLEDGED")
+            elif action["action_id"] in _FAVOR_RESOURCE_ACTIONS:
+                action["identification_status"] = "static_native_action_family"
+                query_capability, submission_capability, response_capability = (
+                    _FAVOR_RESOURCE_CAPABILITIES[action["action_id"]])
+                kind_name = ("TRUST" if action["action_id"] == _FAVOR_TRUST_ACTION
+                             else "MEN")
+                caps = self._installation_capabilities()
+                if self.session is not None and health["status"] == "ready":
+                    initiate = action["phases"].get("initiate")
+                    if initiate is not None and query_capability in caps:
+                        initiate.update(
+                            query="native_favor_%s_query" % kind_name.lower(),
+                            reason_code="NATIVE_FAVOR_%s_QUERY_ACKNOWLEDGED" % kind_name)
+                    if initiate is not None and submission_capability in caps:
+                        initiate.update(
+                            execute="native_favor_%s_submission" % kind_name.lower(),
+                            execute_reason_code=(
+                                "NATIVE_FAVOR_%s_SUBMISSION_ACKNOWLEDGED" % kind_name))
+                    if response_capability in caps:
+                        for name in ("accept", "reject"):
+                            response_phase = action["phases"].get(name)
+                            if response_phase is not None:
+                                response_phase.update(
+                                    query="native_inbound_response_inspection",
+                                    execute="native_inbound_response",
+                                    reason_code=(
+                                        "NATIVE_INBOUND_FAVOR_%s_RESPONSE_ACKNOWLEDGED"
+                                        % kind_name),
+                                    execute_reason_code=(
+                                        "NATIVE_INBOUND_FAVOR_%s_RESPONSE_ACKNOWLEDGED"
+                                        % kind_name))
+            elif action["action_id"] in _GIFT_INFLUENCE_ACTIONS:
+                action["identification_status"] = "static_native_action_family"
+                is_gift = action["action_id"] == _GIFT_ACTION
+                query_ack = (native_gift_query_acknowledged if is_gift
+                             else native_influence_query_acknowledged)
+                submission_ack = (native_gift_submission_acknowledged if is_gift
+                                  else native_influence_submission_acknowledged)
+                query_name = ("native_gift_query" if is_gift
+                              else "native_influence_query")
+                submission_name = ("native_gift_submission" if is_gift
+                                   else "native_influence_submission")
+                query_code = ("NATIVE_GIFT_QUERY_ACKNOWLEDGED" if is_gift
+                              else "NATIVE_INFLUENCE_QUERY_ACKNOWLEDGED")
+                submission_code = ("NATIVE_GIFT_SUBMISSION_ACKNOWLEDGED" if is_gift
+                                   else "NATIVE_INFLUENCE_SUBMISSION_ACKNOWLEDGED")
+                initiate = action["phases"].get("initiate")
+                if self.session is not None and health["status"] == "ready" and initiate is not None:
+                    if query_ack:
+                        initiate.update(query=query_name, reason_code=query_code)
+                    if submission_ack:
+                        initiate.update(execute=submission_name,
+                                        execute_reason_code=submission_code)
             elif action["action_id"] in _VASSALIZATION_ACTIONS:
                 action["identification_status"] = "static_native_action_family"
                 if (self.session is not None and health["status"] == "ready"
@@ -10074,6 +20647,38 @@ class DiplomacyTools:
                         response_phase["execute"] = "native_inbound_response"
                         response_phase["execute_reason_code"] = (
                             "NATIVE_INBOUND_VASSALIZATION_RESPONSE_CAPABILITY_ACKNOWLEDGED")
+        # Annul Treaties uses its own QUERY12/EXEC6 ACKs.  Keep this narrow
+        # post-pass separate from legacy Peace branches so an older ACK can
+        # never silently authorize the new term.
+        if self.session is not None and health["status"] == "ready":
+            annul_query_ack = (
+                _NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY
+                in safe_installation_capabilities)
+            annul_execution_ack = (
+                _NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY
+                in safe_installation_capabilities)
+            for action in actions:
+                if action.get("action_id") != "annul_treaties":
+                    continue
+                initiate = action["phases"].get("initiate")
+                if initiate is None:
+                    continue
+                if annul_query_ack:
+                    initiate["selected_query"] = (
+                        "native_peace_annul_treaties_offer_inspection")
+                    initiate["selected_query_reason_code"] = (
+                        "NATIVE_PEACE_ANNUL_TREATIES_QUERY_ACKNOWLEDGED")
+                    initiate["selected_query_protocol"] = "QUERY12"
+                    initiate["selected_query_protocol_reason_code"] = (
+                        "NATIVE_PEACE_ANNUL_TREATIES_QUERY_ACKNOWLEDGED")
+                if annul_execution_ack:
+                    initiate["execute"] = (
+                        "native_peace_annul_treaties_execution")
+                    initiate["execute_reason_code"] = (
+                        "NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY_ACKNOWLEDGED")
+                    initiate["execute_protocol"] = "EXEC6"
+                    initiate["execute_protocol_reason_code"] = (
+                        "NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY_ACKNOWLEDGED")
         incoming_proposals = self._read_inbound_proposals(health, recipient=recipient)
         for proposal in incoming_proposals:
             response_capability = _inbound_response_capability(proposal.get("action_id"))
@@ -10103,18 +20708,44 @@ class DiplomacyTools:
                 "incoming_action_definitions": incoming_action_definitions,
                 "incoming_proposals": incoming_proposals,
                 "incoming_proposals_complete": False,
-                "priority_scope": "19常用外交操作、19常用议和条款及独立的支持独立标识"}
+                "priority_scope": "19常用外交操作、20常用议和条款及独立的支持独立标识"}
 
     @staticmethod
-    def _peace_execution_capability_for(parameters: object, action_id: str) -> str | None:
+    def _peace_execution_capability_for(parameters: object, action_id: str,
+                                        recipient: str = "ENG") -> str | None:
         """Return the read capability needed for the selected Peace term."""
 
         try:
             normalized = normalize_peace_execution_parameters(
-                action_id, "FRA", "ENG", "initiate", parameters)
+                action_id, "FRA", recipient, "initiate", parameters)
         except (TypeError, ValueError):
             return None
         terms = normalized["peace_context"]["terms"]
+        if (action_id in COUNTRY_TERM_ACTIONS
+                or any(term.get("action_id") in COUNTRY_TERM_ACTIONS
+                       for term in terms)):
+            return _NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY
+        if any(term["action_id"] in _PEACE_SUBJECT_ACTIONS for term in terms):
+            return _NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY
+        if any(term["action_id"] in {"return_core", "revoke_core"}
+               for term in terms):
+            # QUERY15 arrived with EXEC8. QUERY14-only installations retain
+            # their selected single-core query path below.
+            return _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY
+        if any(term["action_id"] in {
+                "humiliate_rival", "show_strength", "force_religion"}
+               for term in terms):
+            return _NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY
+        if action_id == "annul_treaties":
+            return _NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY
+        if any(term["action_id"] == "annul_treaties" for term in terms):
+            return _NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY
+        if any(term["action_id"] == "concede_defeat" for term in terms):
+            return _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY
+        if any(term["action_id"] == "transfer_trade_power" for term in terms):
+            return _NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY
+        if any(term["action_id"] == "war_reparations" for term in terms):
+            return _NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY
         if not terms:
             return _NATIVE_PEACE_EMPTY_OFFER_QUERY_CAPABILITY
         required = set()
@@ -10126,6 +20757,342 @@ class DiplomacyTools:
         if len(required) > 1:
             return _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY
         return next(iter(required)) if len(required) == 1 else None
+
+    @staticmethod
+    def _apply_peace_query_evaluation(inspection: dict, native: dict) -> None:
+        """Expose the evaluation captured with this same selected offer."""
+        evaluation = native.get("native_evaluation")
+        if not isinstance(evaluation, dict):
+            return
+        score_available = evaluation.get("score_available") is True
+        aggregate_available = evaluation.get("aggregate_score_available") is True
+        inspection["acceptance"].update({
+            "prediction_available": False,
+            "native_total": evaluation.get("score_raw") if score_available else None,
+            "unit": "unknown", "scale_verified": False,
+            "predicted_response": "unknown", "details_available": bool(
+                evaluation.get("items")),
+            "details_complete": evaluation.get("factors_complete") is True,
+            "items": list(evaluation.get("items", [])), "complete": False})
+        inspection["costs"]["native_evaluation"] = {
+            "aggregate_score_raw": evaluation.get("aggregate_score_raw")
+            if aggregate_available else None,
+            "aggregate_score_available": aggregate_available,
+            "unit": "unknown", "scale_verified": False, "complete": False}
+
+    @classmethod
+    def _apply_peace_core_query(
+            cls, inspection: dict, native: object, parameters: dict,
+            selection: dict) -> dict:
+        """Project QUERY14 without granting a core execution adapter."""
+
+        inspection["family"] = "peace"
+        inspection["interface_support"]["query"] = (
+            "native_peace_core_offer_query")
+        inspection["interface_support"]["execute"] = "unimplemented"
+        if not isinstance(native, dict):
+            native = {"error_code": "QUERY_NATIVE_RESULT_INVALID"}
+        if "error_code" in native:
+            code = native.get("error_code")
+            if not isinstance(code, str) or not re.fullmatch(
+                    r"[A-Z0-9_]{1,96}", code):
+                code = "QUERY_NATIVE_RESULT_INVALID"
+            inspection["legality"] = {
+                "status": "unknown", "reasons": [reason(
+                    code, "QUERY14 核心条款检查没有取得可验证结果。",
+                    "runtime_error")], "complete": False}
+            inspection["parameters"] = {
+                "requested": parameters, "actual": None,
+                "candidates": None, "complete": False}
+            return inspection
+
+        safe_keys = (
+            "selected_war_id", "identity_scope", "peace_context",
+            "query_complete", "native_offer_inspected", "pair_at_war",
+            "unique_shared_war", "offer_constructed", "action_constructed",
+            "participant_copy_verified", "offer_identity_verified",
+            "object_unchanged", "cleanup_verified", "validity_called",
+            "native_validity", "common_gate_checked", "common_action_gate",
+            "initiation_gate_checked", "initiation_gate",
+            "native_wrapper_gate_checked", "native_wrapper_gate",
+            "wrapper_identity_verified", "wrapper_payload_unchanged",
+            "native_diagnostic_text", "native_diagnostic_text_decoded",
+            "native_diagnostic_truncated", "diagnostics", "native_evaluation",
+            "native_war_context", "native_payload", "peace_consequences",
+            "full_rules_complete", "reasons_complete", "submitted",
+            "native_core_terms")
+        for key in safe_keys:
+            if key in native:
+                inspection[key] = native[key]
+        core = native.get("native_core_terms")
+        if not isinstance(core, dict):
+            inspection["legality"] = {
+                "status": "unknown", "reasons": [reason(
+                    "QUERY_NATIVE_RESULT_INVALID",
+                    "QUERY14 返回缺少核心条款记录。", "runtime_error")],
+                "complete": False}
+            return inspection
+        matched = core.get("parameters_matched") is True
+        actual_context = native.get("peace_context")
+        if not isinstance(actual_context, dict):
+            actual_context = {
+                "war_id": native.get("selected_war_id"),
+                "direction": selection.get("direction", "demand"),
+                "terms": [],
+            }
+        else:
+            actual_context = dict(actual_context)
+            actual_context["terms"] = list(actual_context.get("terms", []))
+        candidates = list(core.get("candidates", []))
+        inspection["parameters"] = {
+            "requested": parameters,
+            "actual": {"peace_context": actual_context},
+            "candidates": candidates,
+            "complete": matched,
+        }
+        public_context = {
+            "war_id": actual_context.get("war_id"),
+            "direction": actual_context.get("direction"),
+            "terms": list(actual_context.get("terms", [])),
+            "complete": matched,
+        }
+        if isinstance(actual_context.get("war_context"), dict):
+            public_context["war_context"] = actual_context["war_context"]
+        if ObserverSession._valid_public_peace_context(public_context):
+            inspection["peace_context"] = public_context
+        if core.get("selection_delta_available") is True:
+            delta = core.get("selection_delta_raw")
+            inspection["costs"]["native_core"] = {
+                "status": "available" if isinstance(delta, int) else "unknown",
+                "items": [{
+                    "amount_raw": delta,
+                    "unit": "native_war_score_raw",
+                    "source": "native_rule",
+                    "scale_verified": False,
+                }] if isinstance(delta, int) else [],
+                "complete": isinstance(delta, int),
+            }
+        discovery = selection.get("discovery") is True
+        failures = []
+        if not discovery and not matched:
+            failures.append(reason(
+                "NATIVE_PEACE_CORE_CANDIDATE_NOT_FOUND",
+                "原生没有找到与请求匹配的核心省份候选。", "native_rule", True))
+        for field, code, text, diagnostic_key in (
+                ("native_validity", "NATIVE_PEACE_CORE_VALIDITY_FALSE",
+                 "核心条款的原生合法性检查返回false。", "validity"),
+                ("common_action_gate", "NATIVE_PEACE_CORE_COMMON_GATE_FALSE",
+                 "核心条款的原生通用动作条件返回false。", "common_action_gate"),
+                ("initiation_gate", "NATIVE_PEACE_CORE_INITIATION_GATE_FALSE",
+                 "核心条款的原生发起条件返回false。", "initiation_gate")):
+            if native.get(field) is False:
+                item = reason(code, text, "native_rule")
+                diagnostic = native.get("diagnostics", {}).get(diagnostic_key)
+                if isinstance(diagnostic, dict) and isinstance(
+                        diagnostic.get("text"), str):
+                    item["text"] = diagnostic["text"]
+                failures.append(item)
+        wrapper_state = ObserverSession._peace_wrapper_rule_state(native)
+        if wrapper_state == "failed":
+            failures.append(reason(
+                "NATIVE_PEACE_WRAPPER_GATE_FALSE",
+                "原生议和wrapper规则检查返回false。", "native_rule", True))
+        if discovery:
+            inspection["legality"] = {
+                "status": "unknown", "reasons": [reason(
+                    "NATIVE_PEACE_CORE_SELECTION_REQUIRED",
+                    "核心候选发现没有选定具体省份和core_owner，不能推定条款可用。",
+                    "native_rule")], "complete": False}
+        elif failures:
+            inspection["legality"] = {
+                "status": "unavailable", "reasons": failures,
+                "complete": any(item.get("code") ==
+                                 "NATIVE_PEACE_CORE_CANDIDATE_NOT_FOUND"
+                                 for item in failures)}
+        elif (wrapper_state == "verified"
+              and native.get("full_rules_complete") is True
+              and native.get("native_validity") is True
+              and native.get("common_action_gate") is True
+              and native.get("initiation_gate") is True
+              and matched):
+            inspection["legality"] = {
+                "status": "available", "reasons": [reason(
+                    "NATIVE_PEACE_CORE_QUERY_RULES_TRUE",
+                    "核心条款请求复制、候选选择和原生条件均已通过。",
+                    "native_rule", True)], "complete": True}
+        else:
+            inspection["legality"] = {
+                "status": "unknown", "reasons": [reason(
+                    "NATIVE_PEACE_CORE_RULES_INCOMPLETE",
+                    "核心条款查询已返回候选，但完整原生条件尚未核验。",
+                    "native_rule")], "complete": False}
+        inspection["authorization"] = {
+            "status": "unavailable", "reasons": [reason(
+                "PEACE_CORE_EXECUTION_UNIMPLEMENTED",
+                "return_core/revoke_core 当前只有 QUERY14 只读查询，执行适配尚未实现。",
+                "bridge_policy", True)], "complete": True}
+        if matched and not discovery:
+            cls._apply_peace_query_evaluation(inspection, native)
+        if isinstance(native, dict) and native.get("date_raw") is not None:
+            inspection["session"]["date_raw"] = native.get("date_raw")
+        return inspection
+
+    @classmethod
+    def _apply_peace_subject_query(
+            cls, inspection: dict, native: object, parameters: dict,
+            selection: dict) -> dict:
+        """Project QUERY16 while keeping execution explicitly unavailable."""
+
+        inspection["family"] = "peace"
+        inspection["interface_support"]["query"] = (
+            "native_peace_subject_offer_query")
+        inspection["interface_support"]["execute"] = "unimplemented"
+        if not isinstance(native, dict):
+            native = {"error_code": "QUERY_NATIVE_RESULT_INVALID"}
+        if "error_code" in native:
+            code = native.get("error_code")
+            if not isinstance(code, str) or not re.fullmatch(
+                    r"[A-Z0-9_]{1,96}", code):
+                code = "QUERY_NATIVE_RESULT_INVALID"
+            inspection["legality"] = {
+                "status": "unknown", "reasons": [reason(
+                    code, "QUERY16 附属国条款检查没有取得可验证结果。",
+                    "runtime_error")], "complete": False}
+            inspection["parameters"] = {
+                "requested": parameters, "actual": None,
+                "candidates": None, "complete": False}
+            return inspection
+
+        safe_keys = (
+            "selected_war_id", "identity_scope", "peace_context",
+            "query_complete", "native_offer_inspected", "pair_at_war",
+            "unique_shared_war", "offer_constructed", "action_constructed",
+            "participant_copy_verified", "offer_identity_verified",
+            "object_unchanged", "cleanup_verified", "validity_called",
+            "native_validity", "common_gate_checked", "common_action_gate",
+            "initiation_gate_checked", "initiation_gate",
+            "native_wrapper_gate_checked", "native_wrapper_gate",
+            "wrapper_identity_verified", "wrapper_payload_unchanged",
+            "native_diagnostic_text", "native_diagnostic_text_decoded",
+            "native_diagnostic_truncated", "diagnostics", "native_evaluation",
+            "native_war_context", "native_payload", "peace_consequences",
+            "full_rules_complete", "reasons_complete", "submitted",
+            "native_subject_terms")
+        for key in safe_keys:
+            if key in native:
+                inspection[key] = native[key]
+        subject = native.get("native_subject_terms")
+        if not isinstance(subject, dict):
+            inspection["legality"] = {
+                "status": "unknown", "reasons": [reason(
+                    "QUERY_NATIVE_RESULT_INVALID",
+                    "QUERY16 返回缺少附属国条款记录。", "runtime_error")],
+                "complete": False}
+            return inspection
+        matched = subject.get("parameters_matched") is True
+        actual_context = native.get("peace_context")
+        if not isinstance(actual_context, dict):
+            actual_context = {
+                "war_id": native.get("selected_war_id"),
+                "direction": selection.get("direction", "demand"),
+                "terms": [],
+            }
+        else:
+            actual_context = dict(actual_context)
+            actual_context["terms"] = list(actual_context.get("terms", []))
+        candidates = list(subject.get("candidates", []))
+        inspection["parameters"] = {
+            "requested": parameters,
+            "actual": {"peace_context": actual_context},
+            "candidates": candidates,
+            "complete": matched,
+        }
+        public_context = {
+            "war_id": actual_context.get("war_id"),
+            "direction": actual_context.get("direction"),
+            "terms": list(actual_context.get("terms", [])),
+            "complete": matched,
+        }
+        if isinstance(actual_context.get("war_context"), dict):
+            public_context["war_context"] = actual_context["war_context"]
+        if ObserverSession._valid_public_peace_context(public_context):
+            inspection["peace_context"] = public_context
+        if subject.get("selection_delta_available") is True:
+            delta = subject.get("selection_delta_raw")
+            inspection["costs"]["native_subject"] = {
+                "status": "available" if isinstance(delta, int) else "unknown",
+                "items": [{
+                    "amount_raw": delta,
+                    "unit": "native_war_score_raw",
+                    "source": "native_rule",
+                    "scale_verified": False,
+                }] if isinstance(delta, int) else [],
+                "complete": isinstance(delta, int),
+            }
+        discovery = selection.get("discovery") is True
+        failures = []
+        if not discovery and not matched:
+            failures.append(reason(
+                "NATIVE_PEACE_SUBJECT_CANDIDATE_NOT_FOUND",
+                "原生没有找到与请求匹配的附属国候选。", "native_rule", True))
+        for field, code, text, diagnostic_key in (
+                ("native_validity", "NATIVE_PEACE_SUBJECT_VALIDITY_FALSE",
+                 "附属国条款的原生合法性检查返回false。", "validity"),
+                ("common_action_gate", "NATIVE_PEACE_SUBJECT_COMMON_GATE_FALSE",
+                 "附属国条款的原生通用动作条件返回false。", "common_action_gate"),
+                ("initiation_gate", "NATIVE_PEACE_SUBJECT_INITIATION_GATE_FALSE",
+                 "附属国条款的原生发起条件返回false。", "initiation_gate")):
+            if native.get(field) is False:
+                item = reason(code, text, "native_rule")
+                diagnostic = native.get("diagnostics", {}).get(diagnostic_key)
+                if isinstance(diagnostic, dict) and isinstance(
+                        diagnostic.get("text"), str):
+                    item["text"] = diagnostic["text"]
+                failures.append(item)
+        wrapper_state = ObserverSession._peace_wrapper_rule_state(native)
+        if wrapper_state == "failed":
+            failures.append(reason(
+                "NATIVE_PEACE_WRAPPER_GATE_FALSE",
+                "原生议和wrapper规则检查返回false。", "native_rule", True))
+        if discovery:
+            inspection["legality"] = {
+                "status": "unknown", "reasons": [reason(
+                    "NATIVE_PEACE_SUBJECT_SELECTION_REQUIRED",
+                    "附属国候选发现没有选定具体国家，不能推定条款可用。",
+                    "native_rule")], "complete": False}
+        elif failures:
+            inspection["legality"] = {
+                "status": "unavailable", "reasons": failures,
+                "complete": any(item.get("code") ==
+                                 "NATIVE_PEACE_SUBJECT_CANDIDATE_NOT_FOUND"
+                                 for item in failures)}
+        elif (wrapper_state == "verified"
+              and native.get("full_rules_complete") is True
+              and native.get("native_validity") is True
+              and native.get("common_action_gate") is True
+              and native.get("initiation_gate") is True
+              and matched):
+            inspection["legality"] = {
+                "status": "available", "reasons": [reason(
+                    "NATIVE_PEACE_SUBJECT_QUERY_RULES_TRUE",
+                    "附属国条款请求复制、候选选择和原生条件均已通过。",
+                    "native_rule", True)], "complete": True}
+        else:
+            inspection["legality"] = {
+                "status": "unknown", "reasons": [reason(
+                    "NATIVE_PEACE_SUBJECT_RULES_INCOMPLETE",
+                    "附属国条款查询已返回候选，但完整原生条件尚未核验。",
+                    "native_rule")], "complete": False}
+        inspection["authorization"] = {
+            "status": "unavailable", "reasons": [reason(
+                "PEACE_SUBJECT_EXECUTION_UNIMPLEMENTED",
+                "release_subject/transfer_subject 当前只有 QUERY16 只读查询，执行适配尚未实现。",
+                "bridge_policy", True)], "complete": True}
+        if matched and not discovery:
+            cls._apply_peace_query_evaluation(inspection, native)
+        if isinstance(native, dict) and native.get("date_raw") is not None:
+            inspection["session"]["date_raw"] = native.get("date_raw")
+        return inspection
 
     @classmethod
     def _apply_peace_execution_inspection(
@@ -10159,26 +21126,530 @@ class DiplomacyTools:
             "native_validity", "common_gate_checked", "common_action_gate",
             "initiation_gate_checked", "initiation_gate",
             "native_wrapper_gate_checked", "native_wrapper_gate",
+            "native_term_gate_checked", "native_term_gate",
             "wrapper_identity_verified", "wrapper_payload_unchanged",
             "native_diagnostic_text", "native_diagnostic_text_decoded",
             "native_diagnostic_truncated", "diagnostics", "native_evaluation",
-            "native_money", "native_provinces", "native_war_context",
-            "native_payload", "full_rules_complete", "reasons_complete",
-            "parameters_matched", "submitted")
+             "native_money", "native_provinces", "native_reparations",
+             "native_trade_power", "native_concede_defeat", "term_mask", "native_war_context",
+              "native_annul_treaties", "native_humiliate_rival",
+              "native_show_strength", "native_force_religion",
+              "native_core_terms", "native_return_core", "native_revoke_core",
+             "native_subject_terms",
+             "native_country_terms",
+             "native_annexation",
+             "native_selected_rules",
+            "native_payload", "peace_consequences", "full_rules_complete",
+            "reasons_complete", "parameters_matched", "submitted")
         for key in safe_keys:
             if key in native:
                 inspection[key] = native[key]
         wrapper_state = ObserverSession._peace_wrapper_rule_state(native)
+        requested_terms = parameters.get("peace_context", {}).get("terms", [])
+        term_rule_state = ObserverSession._peace_selected_term_rule_state(
+            native, requested_terms)
+        term_rules_verified = term_rule_state in ("not_required", "verified")
         requested = parameters
         matched = native.get("parameters_matched")
         if not isinstance(matched, bool):
             matched = native.get("query_complete") is True
+        consequence_view = inspection.get("peace_consequences")
+        if isinstance(consequence_view, dict):
+            # A candidate miss may still carry a valid zero-valued preview;
+            # it must not become the requested actual context.
+            if consequence_view.get("requested_terms_applied") is not True:
+                matched = False
+        native_provinces = native.get("native_provinces")
+        native_trade = native.get("native_trade_power")
+        native_concede = native.get("native_concede_defeat")
+        native_annul = native.get("native_annul_treaties")
+        native_special = {
+            action_id: native.get(native_key)
+            for action_id, native_key in (
+                ("humiliate_rival", "native_humiliate_rival"),
+                ("show_strength", "native_show_strength"),
+                ("force_religion", "native_force_religion"))}
+        candidates = None
+        if isinstance(native_provinces, dict):
+            raw_candidates = native_provinces.get("candidates")
+            public_candidates = []
+            if isinstance(raw_candidates, list):
+                for row in raw_candidates[:512]:
+                    if not isinstance(row, dict):
+                        continue
+                    public_candidates.append({key: row[key] for key in (
+                        "province_id", "beneficiary", "selected", "name",
+                        "name_readable", "name_truncated",
+                        "native_selectability_checked", "native_selectable")
+                        if key in row})
+            candidates = {
+                "candidates_available": (
+                    native_provinces.get("candidate_enumeration_complete")
+                    if isinstance(native_provinces.get(
+                        "candidate_enumeration_complete"), bool) else None),
+                "candidates_complete": (
+                    native_provinces.get("candidate_enumeration_complete")
+                    if isinstance(native_provinces.get(
+                        "candidate_enumeration_complete"), bool) else None),
+                "candidates_truncated": None,
+                "candidate_count": native_provinces.get("candidate_count"),
+                "matching_candidate_count": sum(
+                    1 for row in public_candidates
+                    if row.get("selected") is True),
+                "selection_requested": native_provinces.get(
+                    "selection_requested")
+                if isinstance(native_provinces.get(
+                    "selection_requested"), bool) else None,
+                "parameters_matched": native_provinces.get(
+                    "parameters_matched")
+                if isinstance(native_provinces.get(
+                    "parameters_matched"), bool) else None,
+                "reason_code": native_provinces.get("reason_code"),
+                "candidates": public_candidates,
+            }
+        elif isinstance(native_trade, dict):
+            raw_candidates = native_trade.get("candidates")
+            public_candidates = []
+            if isinstance(raw_candidates, list):
+                public_candidates = [
+                    {key: row[key] for key in (
+                        "source", "beneficiary", "selected", "complete")}
+                    for row in raw_candidates
+                    if isinstance(row, dict)
+                    and set(row) == {
+                        "source", "beneficiary", "selected", "complete"}
+                ]
+            candidates = {
+                "candidates_available": (
+                    native_trade.get("candidates_available")
+                    if isinstance(native_trade.get("candidates_available"), bool)
+                    else None),
+                "candidates_complete": (
+                    native_trade.get("candidates_complete")
+                    if isinstance(native_trade.get("candidates_complete"), bool)
+                    else None),
+                "candidates_truncated": (
+                    native_trade.get("candidates_truncated")
+                    if isinstance(native_trade.get("candidates_truncated"), bool)
+                    else None),
+                "candidate_count": native_trade.get("candidate_count"),
+                "matching_candidate_count": native_trade.get(
+                    "matching_candidate_count"),
+                "candidates": public_candidates,
+            }
+        elif isinstance(native_concede, dict):
+            # C shares the selected-term candidate counters with R but does
+            # not expose a third-country candidate list.  Keep one stable
+            # candidate projection shape and leave the list empty.
+            candidates = {
+                "candidates_available": None,
+                "candidates_complete": None,
+                "candidates_truncated": None,
+                "candidate_count": native_concede.get("candidate_count"),
+                "matching_candidate_count": native_concede.get(
+                    "matching_candidate_count"),
+                "candidates": [],
+            }
+        elif isinstance(native_annul, dict):
+            raw_candidates = native_annul.get("candidates")
+            public_candidates = []
+            if isinstance(raw_candidates, list):
+                public_candidates = [
+                    {key: row[key] for key in (
+                        "country", "partner", "selected", "complete")}
+                    for row in raw_candidates[:256]
+                    if isinstance(row, dict)
+                    and set(row) == {
+                        "country", "partner", "selected", "complete"}
+                ]
+            candidates = {
+                "candidates_available": native_annul.get(
+                    "candidates_available")
+                if isinstance(native_annul.get("candidates_available"), bool)
+                else None,
+                "candidates_complete": native_annul.get(
+                    "candidates_complete")
+                if isinstance(native_annul.get("candidates_complete"), bool)
+                else None,
+                "candidates_truncated": native_annul.get(
+                    "candidates_truncated")
+                if isinstance(native_annul.get("candidates_truncated"), bool)
+                else None,
+                "candidate_count": native_annul.get("candidate_count"),
+                "matching_candidate_count": native_annul.get(
+                    "matching_candidate_count"),
+                "candidates": public_candidates,
+            }
+        native_core = native.get("native_core_terms")
+        core_records = {
+            action: native.get("native_" + action)
+            for action in ("return_core", "revoke_core")
+            if isinstance(native.get("native_" + action), dict)
+        }
+        if not core_records and isinstance(native_core, dict):
+            if set(native_core) == {"return_core", "revoke_core"}:
+                core_records = {
+                    action: native_core[action]
+                    for action in ("return_core", "revoke_core")
+                    if isinstance(native_core.get(action), dict)
+                }
+            elif isinstance(native_core.get("candidates"), list):
+                core_records = {"core": native_core}
+        if core_records:
+            def core_candidates(record: dict) -> dict:
+                raw_candidates = record.get("candidates")
+                public_candidates = []
+                if isinstance(raw_candidates, list):
+                    for row in raw_candidates[:512]:
+                        if (isinstance(row, dict)
+                                and set(row) == {
+                                    "province_id", "name", "name_readable",
+                                    "core_owner", "province_owner", "selected",
+                                    "record_complete"}):
+                            public_candidates.append({
+                                key: row[key] for key in (
+                                    "province_id", "name_readable", "core_owner",
+                                    "province_owner", "selected", "record_complete")})
+                return {
+                    "candidates_available": (
+                        record.get("candidate_enumeration_complete")
+                        if isinstance(record.get(
+                            "candidate_enumeration_complete"), bool) else None),
+                    "candidates_complete": (
+                        record.get("candidate_enumeration_complete")
+                        if isinstance(record.get(
+                            "candidate_enumeration_complete"), bool) else None),
+                    "candidates_truncated": None,
+                    "candidate_count": record.get("candidate_count"),
+                    "matching_candidate_count": record.get("selected_term_count"),
+                    "candidates": public_candidates,
+                }
+            if set(core_records) == {"core"}:
+                candidates = core_candidates(core_records["core"])
+            else:
+                candidates = {
+                    action: core_candidates(record)
+                    for action, record in core_records.items()
+                }
+        if isinstance(native_annul, dict):
+            # A is the candidate-bearing family whenever present, including
+            # mixed A+T/A+C selections.  Do not let a nested T/C record hide
+            # the A candidate projection.
+            raw_candidates = native_annul.get("candidates")
+            public_candidates = [
+                {key: row[key] for key in (
+                    "country", "partner", "selected", "complete")}
+                for row in raw_candidates[:256]
+                if isinstance(raw_candidates, list)
+                and isinstance(row, dict)
+                and set(row) == {
+                    "country", "partner", "selected", "complete"}
+            ] if isinstance(raw_candidates, list) else []
+            candidates = {
+                "candidates_available": native_annul.get("candidates_available")
+                if isinstance(native_annul.get("candidates_available"), bool)
+                else None,
+                "candidates_complete": native_annul.get("candidates_complete")
+                if isinstance(native_annul.get("candidates_complete"), bool)
+                else None,
+                "candidates_truncated": native_annul.get("candidates_truncated")
+                if isinstance(native_annul.get("candidates_truncated"), bool)
+                else None,
+                "candidate_count": native_annul.get("candidate_count"),
+                "matching_candidate_count": native_annul.get(
+                    "matching_candidate_count"),
+                "candidates": public_candidates,
+            }
+        native_subject_terms = native.get("native_subject_terms")
+        if isinstance(native_subject_terms, dict):
+            subject_candidates = {}
+            subject_cost_items = []
+            subject_cost_complete = True
+            subject_cost_requested = False
+            for subject_action in ("release_subject", "transfer_subject"):
+                record = native_subject_terms.get(subject_action)
+                if not isinstance(record, dict):
+                    continue
+                subject_cost_requested = True
+                if record.get("selection_delta_available") is True:
+                    delta = record.get("selection_delta_raw")
+                    if (isinstance(delta, int) and not isinstance(delta, bool)):
+                        subject_cost_items.append({
+                            "action_id": subject_action,
+                            "amount_raw": delta,
+                            "unit": "native_war_score_raw",
+                            "source": "native_rule",
+                            "scale_verified": False,
+                        })
+                    else:
+                        subject_cost_complete = False
+                else:
+                    subject_cost_complete = False
+                rows = record.get("candidates")
+                subject_candidates[subject_action] = {
+                    "candidates_available": record.get(
+                        "candidate_enumeration_complete")
+                    if isinstance(record.get("candidate_enumeration_complete"), bool)
+                    else None,
+                    "candidates_complete": record.get(
+                        "candidate_enumeration_complete")
+                    if isinstance(record.get("candidate_enumeration_complete"), bool)
+                    else None,
+                    "candidates_truncated": None,
+                    "candidate_count": record.get("candidate_count"),
+                    "matching_candidate_count": record.get("selected_term_count"),
+                    "candidates": [
+                        {key: row[key] for key in (
+                            "country", "selected", "record_complete")}
+                        for row in (rows[:256] if isinstance(rows, list) else [])
+                        if isinstance(row, dict)
+                        and set(row) == {"country", "selected", "record_complete"}],
+                }
+            if subject_candidates:
+                candidates = subject_candidates
+            if subject_cost_requested:
+                inspection["costs"]["native_subject"] = {
+                    "status": ("available" if subject_cost_complete
+                                else "unknown"),
+                    "items": subject_cost_items,
+                    "complete": subject_cost_complete,
+                }
+        actual_parameters = requested if matched else None
+        # The source in a QUERY10 selection is the native canonical source.
+        # Preserve the requested object for old/default events, but expose the
+        # verified source in ``parameters.actual`` when the native event does.
+        if matched and isinstance(native_trade, dict):
+            actual_source = native_trade.get("source")
+            actual_beneficiary = native_trade.get("beneficiary")
+            if (isinstance(actual_source, str)
+                    and re.fullmatch(r"[A-Z0-9]{3}", actual_source)
+                    and isinstance(requested, dict)
+                    and isinstance(requested.get("peace_context"), dict)):
+                actual_context = dict(requested["peace_context"])
+                actual_terms = []
+                for term in actual_context.get("terms", []):
+                    current = dict(term) if isinstance(term, dict) else term
+                    if (isinstance(current, dict)
+                            and current.get("action_id") == "transfer_trade_power"):
+                        current["source"] = actual_source
+                        if isinstance(actual_beneficiary, str):
+                            current["beneficiary"] = actual_beneficiary
+                    actual_terms.append(current)
+                actual_context["terms"] = actual_terms
+                actual_parameters = {"peace_context": actual_context}
+        if matched and isinstance(native_concede, dict):
+            actual_conceding = native_concede.get("conceding_country")
+            actual_beneficiary = native_concede.get("beneficiary")
+            if (isinstance(actual_conceding, str)
+                    and re.fullmatch(r"[A-Z0-9]{3}", actual_conceding)
+                    and isinstance(actual_beneficiary, str)
+                    and re.fullmatch(r"[A-Z0-9]{3}", actual_beneficiary)
+                    and isinstance(actual_parameters, dict)
+                    and isinstance(actual_parameters.get("peace_context"), dict)):
+                actual_context = dict(actual_parameters["peace_context"])
+                actual_terms = []
+                for term in actual_context.get("terms", []):
+                    current = dict(term) if isinstance(term, dict) else term
+                    if (isinstance(current, dict)
+                            and current.get("action_id") == "concede_defeat"):
+                        current["conceding_country"] = actual_conceding
+                        current["beneficiary"] = actual_beneficiary
+                    actual_terms.append(current)
+                actual_context["terms"] = actual_terms
+                actual_parameters = {"peace_context": actual_context}
+        if matched and isinstance(native_annul, dict):
+            actual_country = native_annul.get("country")
+            actual_partners = native_annul.get("treaty_partners")
+            if (isinstance(actual_country, str)
+                    and re.fullmatch(r"[A-Z0-9]{3}", actual_country)
+                    and isinstance(actual_partners, list)
+                    and isinstance(actual_parameters, dict)
+                    and isinstance(actual_parameters.get("peace_context"), dict)):
+                actual_context = dict(actual_parameters["peace_context"])
+                actual_terms = []
+                for term in actual_context.get("terms", []):
+                    current = dict(term) if isinstance(term, dict) else term
+                    if (isinstance(current, dict)
+                            and current.get("action_id") == "annul_treaties"):
+                        current["country"] = actual_country
+                        current["treaty_partners"] = list(actual_partners)
+                    actual_terms.append(current)
+                actual_context["terms"] = actual_terms
+                actual_parameters = {"peace_context": actual_context}
+        if matched and core_records and isinstance(actual_parameters, dict):
+            actual_context = actual_parameters.get("peace_context")
+            if isinstance(actual_context, dict):
+                actual_context = dict(actual_context)
+                actual_terms = []
+                for term in actual_context.get("terms", []):
+                    current = dict(term) if isinstance(term, dict) else term
+                    if isinstance(current, dict) and current.get("action_id") in {
+                            "return_core", "revoke_core"}:
+                        record = core_records.get(current["action_id"])
+                        actual_owner = (record.get("requested_core_owner")
+                                        if isinstance(record, dict) else None)
+                        actual_ids = (record.get("requested_province_ids")
+                                      if isinstance(record, dict) else None)
+                        if (isinstance(actual_owner, str)
+                                and re.fullmatch(r"[A-Z0-9]{3}", actual_owner)
+                                and isinstance(actual_ids, list)):
+                            current["province_ids"] = list(actual_ids)
+                            current["core_owner"] = actual_owner
+                    actual_terms.append(current)
+                actual_context["terms"] = actual_terms
+                actual_parameters = {"peace_context": actual_context}
+        if matched and isinstance(actual_parameters, dict):
+            for special_action, native_special_record in native_special.items():
+                if not isinstance(native_special_record, dict):
+                    continue
+                actual_country = native_special_record.get("country")
+                actual_beneficiary = native_special_record.get("beneficiary")
+                if (not isinstance(actual_country, str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", actual_country) is None
+                        or not isinstance(actual_beneficiary, str)
+                        or re.fullmatch(r"[A-Z0-9]{3}", actual_beneficiary) is None
+                        or not isinstance(actual_parameters.get("peace_context"), dict)):
+                    continue
+                actual_context = dict(actual_parameters["peace_context"])
+                actual_terms = []
+                for term in actual_context.get("terms", []):
+                    current = dict(term) if isinstance(term, dict) else term
+                    if (isinstance(current, dict)
+                            and current.get("action_id") == special_action):
+                        current["country"] = actual_country
+                        current["beneficiary"] = actual_beneficiary
+                    actual_terms.append(current)
+                actual_context["terms"] = actual_terms
+                actual_parameters = {"peace_context": actual_context}
+        if (matched and isinstance(native_subject_terms, dict)
+                and isinstance(actual_parameters, dict)):
+            actual_context = actual_parameters.get("peace_context")
+            if isinstance(actual_context, dict):
+                actual_context = dict(actual_context)
+                actual_terms = []
+                for term in actual_context.get("terms", []):
+                    current = dict(term) if isinstance(term, dict) else term
+                    if (isinstance(current, dict)
+                            and current.get("action_id") in _PEACE_SUBJECT_ACTIONS):
+                        record = native_subject_terms.get(current["action_id"])
+                        selected_rows = (
+                            [row for row in record.get("candidates", [])
+                             if isinstance(row, dict)
+                             and row.get("selected") is True]
+                            if isinstance(record, dict) else [])
+                        selected_countries = [row.get("country")
+                                              for row in selected_rows]
+                        if len(selected_countries) == 1:
+                            current.pop("countries", None)
+                            current["country"] = selected_countries[0]
+                        elif selected_countries:
+                            current.pop("country", None)
+                            current["countries"] = selected_countries
+                    actual_terms.append(current)
+                actual_context["terms"] = actual_terms
+                actual_parameters = {"peace_context": actual_context}
+        native_country_terms = native.get("native_country_terms")
+        if isinstance(native_country_terms, dict):
+            country_candidates = {}
+            country_cost_items = []
+            country_cost_complete = True
+            for country_action in (
+                    "release_nation", "force_vassalization",
+                    "form_personal_union", "grant_independence"):
+                record = native_country_terms.get(country_action)
+                if not isinstance(record, dict):
+                    continue
+                raw_rows = record.get("candidates")
+                public_rows = []
+                if isinstance(raw_rows, list):
+                    for row in raw_rows[:256]:
+                        if (isinstance(row, dict)
+                                and set(row) == {
+                                    "country", "source", "selected",
+                                    "record_complete"}):
+                            public_rows.append({key: row[key] for key in (
+                                "country", "source", "selected", "record_complete")})
+                country_candidates[country_action] = {
+                    "candidates_available": record.get(
+                        "candidate_enumeration_complete")
+                    if isinstance(record.get(
+                        "candidate_enumeration_complete"), bool) else None,
+                    "candidates_complete": record.get(
+                        "candidate_enumeration_complete")
+                    if isinstance(record.get(
+                        "candidate_enumeration_complete"), bool) else None,
+                    "candidates_truncated": None,
+                    "candidate_count": record.get("candidate_count"),
+                    "matching_candidate_count": record.get(
+                        "selected_term_count"),
+                    "candidates": public_rows,
+                }
+                if record.get("selection_delta_available") is True:
+                    delta = record.get("selection_delta_raw")
+                    if isinstance(delta, int) and not isinstance(delta, bool):
+                        country_cost_items.append({
+                            "action_id": country_action,
+                            "amount_raw": delta,
+                            "unit": "native_war_score_raw",
+                            "source": "native_rule",
+                            "scale_verified": False,
+                        })
+                    else:
+                        country_cost_complete = False
+                elif record.get("selection_requested") is True:
+                    country_cost_complete = False
+            if country_candidates:
+                candidates = country_candidates
+            if country_cost_items or any(
+                    isinstance(native_country_terms.get(action), dict)
+                    and native_country_terms[action].get(
+                        "selection_requested") is True
+                    for action in native_country_terms):
+                inspection["costs"]["native_country"] = {
+                    "status": ("available" if country_cost_complete
+                               else "unknown"),
+                    "items": country_cost_items,
+                    "complete": country_cost_complete,
+                }
+        if (matched and isinstance(native_country_terms, dict)
+                and isinstance(actual_parameters, dict)):
+            actual_context = actual_parameters.get("peace_context")
+            if isinstance(actual_context, dict):
+                actual_context = dict(actual_context)
+                actual_terms = []
+                for term in actual_context.get("terms", []):
+                    current = dict(term) if isinstance(term, dict) else term
+                    if (isinstance(current, dict)
+                            and current.get("action_id") in COUNTRY_TERM_ACTIONS):
+                        country_action = current["action_id"]
+                        record = native_country_terms.get(country_action)
+                        selected_rows = (
+                            [row for row in record.get("candidates", [])
+                             if isinstance(row, dict)
+                             and row.get("selected") is True]
+                            if isinstance(record, dict) else [])
+                        if country_action == "grant_independence":
+                            pass
+                        elif len(selected_rows) == 1:
+                            row = selected_rows[0]
+                            if isinstance(row.get("country"), str):
+                                current["country"] = row["country"]
+                            if country_action == "release_nation":
+                                if isinstance(row.get("source"), str):
+                                    current["source"] = row["source"]
+                            elif (isinstance(record.get("claimant"), str)
+                                  and current.get("beneficiary") in (None, "-")):
+                                current["beneficiary"] = record["claimant"]
+                    actual_terms.append(current)
+                actual_context["terms"] = actual_terms
+                actual_parameters = {"peace_context": actual_context}
         inspection["parameters"] = {
             "requested": requested,
-            "actual": requested if matched else None,
-            "candidates": None,
+            "actual": actual_parameters,
+            "candidates": candidates,
             "complete": (matched is True
                          and native.get("full_rules_complete") is True
+                          and term_rules_verified
                          and wrapper_state == "verified"),
         }
         execution_parameters_complete = inspection["parameters"]["complete"] is True
@@ -10205,6 +21676,10 @@ class DiplomacyTools:
                 "terms": execution_context["terms"],
                 "complete": execution_parameters_complete,
             }
+            native_context = native.get("peace_context")
+            if (isinstance(native_context, dict)
+                    and isinstance(native_context.get("war_context"), dict)):
+                public_context["war_context"] = native_context["war_context"]
             if ObserverSession._valid_public_peace_context(public_context):
                 # A selected, normalized context is the contract consumed by
                 # execute. Keep native_war_context.context_complete separate
@@ -10229,10 +21704,31 @@ class DiplomacyTools:
                 "NATIVE_PEACE_WRAPPER_GATE_FALSE",
                 "原生议和wrapper规则检查返回false。",
                 "native_rule", True))
+        country_candidate_absent = ObserverSession._peace_country_candidate_absent(
+            native, requested_terms)
+        if term_rule_state == "failed":
+            item = reason(
+                "NATIVE_PEACE_COUNTRY_CANDIDATE_ABSENT"
+                if country_candidate_absent
+                else "NATIVE_PEACE_SELECTED_TERM_RULE_UNAVAILABLE",
+                "原生候选枚举已完成，但没有找到与请求匹配的国家条款候选。"
+                if country_candidate_absent
+                else "原生条款规则拒绝了当前选中的议和条款组合。",
+                "native_rule", country_candidate_absent)
+            diagnostic = native.get("diagnostics", {}).get("selected_term_gate")
+            if isinstance(diagnostic, dict) and diagnostic.get("text"):
+                item["text"] = diagnostic["text"]
+            failures.append(item)
         if failures:
             inspection["legality"] = {
-                "status": "unavailable", "reasons": failures, "complete": False}
+                "status": "unavailable", "reasons": failures,
+                "complete": any(
+                    item.get("code") ==
+                    "NATIVE_PEACE_COUNTRY_CANDIDATE_ABSENT"
+                    for item in failures),
+            }
         elif (wrapper_state == "verified"
+              and term_rules_verified
               and native.get("full_rules_complete") is True
               and native.get("native_validity") is True
               and native.get("common_action_gate") is True
@@ -10264,26 +21760,24 @@ class DiplomacyTools:
                 "wrapper_identity_verified"),
             "wrapper_payload_unchanged": native.get(
                 "wrapper_payload_unchanged"),
+            "native_term_gate_checked": term_rule_state in ("verified", "failed"),
+            "native_term_gate": (term_rule_state == "verified"
+                                 if term_rule_state in ("verified", "failed") else None),
+            "selected_rules_complete": (
+                native.get("native_selected_rules", {}).get("complete")
+                if isinstance(native.get("native_selected_rules"), dict)
+                else None),
+            "selected_rules_available": (
+                native.get("native_selected_rules", {}).get("available")
+                if isinstance(native.get("native_selected_rules"), dict)
+                else None),
             "full_rules_complete": native.get("full_rules_complete"),
-            "complete": wrapper_state == "verified",
+            "complete": wrapper_state == "verified" and term_rules_verified,
         }
-        evaluation = native.get("native_evaluation")
-        if isinstance(evaluation, dict):
-            score_available = evaluation.get("score_available") is True
-            aggregate_available = evaluation.get("aggregate_score_available") is True
-            inspection["acceptance"].update({
-                "prediction_available": False,
-                "native_total": evaluation.get("score_raw") if score_available else None,
-                "unit": "unknown", "scale_verified": False,
-                "predicted_response": "unknown", "details_available": bool(
-                    evaluation.get("items")),
-                "details_complete": evaluation.get("factors_complete") is True,
-                "items": list(evaluation.get("items", [])), "complete": False})
-            inspection["costs"]["native_evaluation"] = {
-                "aggregate_score_raw": evaluation.get("aggregate_score_raw")
-                if aggregate_available else None,
-                "aggregate_score_available": aggregate_available,
-                "unit": "unknown", "scale_verified": False, "complete": False}
+        cls._apply_peace_query_evaluation(inspection, native)
+        comparisons = native.get("native_cost_comparisons")
+        if isinstance(comparisons, list) and comparisons:
+            inspection["costs"]["native_rule_comparisons"] = comparisons
         if isinstance(native.get("date_raw"), int) and not isinstance(native.get("date_raw"), bool):
             inspection["session"]["date_raw"] = native["date_raw"]
         return inspection
@@ -10291,17 +21785,393 @@ class DiplomacyTools:
     def inspect_diplomatic_action(self, action_id: str, actor: str, recipient: str,
                                   phase: str = "initiate", parameters: dict | None = None,
                                   *, _execution_request: bool = False) -> dict:
+        inspection = self._inspect_diplomatic_action(
+            action_id, actor, recipient, phase, parameters,
+            _execution_request=_execution_request)
+        public = apply_diplomat_legality(inspection)
+        # Selected peace projections carry the optional score beneath their
+        # existing peace_context.  Mirror that bounded object at the public
+        # war_context path used by inspection consumers.
+        context = public.get("peace_context") if isinstance(public, dict) else None
+        if isinstance(context, dict) and isinstance(context.get("war_context"), dict):
+            public["war_context"] = context["war_context"]
+        return public
+
+    def _inspect_gift_influence(self, action_id: str, actor: str,
+                                recipient: str, phase: str,
+                                parameters: object) -> dict:
+        """Build the R74 single-sided inspection without a negotiated score."""
+
+        self._validate(action_id, actor, recipient, phase, parameters)
+        if action_id == _GIFT_ACTION:
+            normalized = _normalize_gift_parameters(parameters)
+            query_capability = _NATIVE_GIFT_QUERY_CAPABILITY
+            submission_capability = _NATIVE_GIFT_SUBMISSION_CAPABILITY
+            family = "gift"
+            label = "赠款"
+        else:
+            normalized = _normalize_influence_parameters(parameters)
+            query_capability = _NATIVE_INFLUENCE_QUERY_CAPABILITY
+            submission_capability = _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY
+            family = "influence"
+            label = "影响国家"
+        action = ACTIONS[action_id]
+        health = self._health()
+        inspection = {
+            "contract_version": 1, "action_id": action_id,
+            "native_identifier": action.native_identifier,
+            "actor": actor, "recipient": recipient, "phase": phase,
+            "decision_country": None, "decision_country_verified": False,
+            "requested_decision_country": actor,
+            "interface_support": {
+                "query": "catalog_only", "execute": "unimplemented",
+                "complete": False,
+            },
+            "session": health,
+            "visibility": {"status": "unknown", "complete": False},
+            "legality": {"status": "unknown", "reasons": [reason(
+                "NATIVE_RULE_QUERY_UNIMPLEMENTED",
+                f"{label}的原生显示与合法性查询尚未完成。", "runtime_error")],
+                "complete": False},
+            "authorization": {"status": "unavailable", "reasons": [reason(
+                "EXECUTION_ADAPTER_UNIMPLEMENTED",
+                f"当前会话尚未确认{label}原生提交适配。", "bridge_policy", True)],
+                "complete": True},
+            "parameters": {"requested": parameters, "actual": normalized,
+                           "candidates": None, "complete": True},
+            "costs": {"status": "unknown", "items": [], "complete": False},
+            "acceptance": {"applicability": "not_applicable",
+                            "prediction_available": False, "native_total": None,
+                            "unit": None, "scale_verified": False,
+                            "predicted_response": "not_applicable",
+                            "details_available": False, "items": [],
+                            "complete": True},
+            "family": family,
+        }
+        if self.session is None or health.get("status") != "ready":
+            return inspection
+        capabilities = self._installation_capabilities()
+        # Query and submission are separate authority proofs.  A submission
+        # ACK never manufactures a query result and a query never authorizes
+        # execution by itself.
+        query_ack = query_capability in capabilities
+        submit_ack = (actor == "FRA" and phase == "initiate"
+                      and submission_capability in capabilities)
+        if submit_ack:
+            inspection["interface_support"]["execute"] = submission_capability
+            inspection["authorization"] = {
+                "status": "available", "complete": True,
+                "reasons": [reason(
+                    submission_capability.upper() + "_ACKNOWLEDGED",
+                    f"安装确认允许桥接提交法国发起的{label}操作；本次原生合法性仍由查询单独决定。",
+                    "installation_capability", True)],
+            }
+        elif actor == "FRA" and phase == "initiate":
+            inspection["authorization"] = {
+                "status": "unavailable", "complete": True,
+                "reasons": [reason(
+                    submission_capability.upper() + "_MISSING",
+                    f"安装没有确认{label}原生提交适配。", "installation_capability", True)],
+            }
+        if not query_ack:
+            inspection["interface_support"]["reason_code"] = (
+                query_capability.upper() + "_MISSING")
+            return inspection
+        inspector_name = ("inspect_send_gift" if action_id == _GIFT_ACTION
+                          else "inspect_influence_nation")
+        inspector = getattr(self.session, inspector_name, None)
+        if not callable(inspector):
+            inspection["interface_support"]["query"] = "unimplemented"
+            inspection["interface_support"]["reason_code"] = (
+                query_capability.upper() + "_ADAPTER_UNAVAILABLE")
+            inspection["legality"] = {
+                "status": "unknown", "complete": False,
+                "reasons": [reason(
+                    query_capability.upper() + "_ADAPTER_UNAVAILABLE",
+                    f"安装确认了{label}查询能力，但Python会话没有对应查询方法。",
+                    "runtime_error")],
+            }
+            return inspection
+        try:
+            native = (inspector(action_id, actor, recipient, phase,
+                                normalized["ducats"])
+                      if action_id == _GIFT_ACTION
+                      else inspector(action_id, actor, recipient, phase))
+        except Exception:
+            native = {"error_code": "QUERY_NATIVE_%s_CALL_UNKNOWN" % family.upper()}
+        inspection["interface_support"]["query"] = (
+            "native_gift_rules" if action_id == _GIFT_ACTION
+            else "native_influence_rules")
+        if not isinstance(native, dict):
+            native = {"error_code": "QUERY_NATIVE_RESULT_INVALID"}
+        if "error_code" in native:
+            code = native.get("error_code")
+            if not isinstance(code, str) or not re.fullmatch(r"[A-Z0-9_]{1,96}", code):
+                code = "QUERY_NATIVE_RESULT_INVALID"
+            inspection["legality"] = {
+                "status": "unknown", "complete": False,
+                "reasons": [reason(code, f"{label}原生查询没有返回可验证结果。", "runtime_error")],
+            }
+            return inspection
+        expected_date = health.get("date_raw")
+        raw_payload = native.get("native_gift" if action_id == _GIFT_ACTION
+                                 else "native_influence")
+        semantic_payload = native.get(family)
+        semantic_result = (isinstance(semantic_payload, dict)
+                           and semantic_payload.get("kind") == family)
+        event_valid = (semantic_result if raw_payload is None else
+                       ObserverSession._valid_native_inspection(
+                           native, action_id, actor, recipient, phase, expected_date))
+        if not event_valid:
+            inspection["legality"] = {
+                "status": "unknown", "complete": False,
+                "reasons": [reason(
+                    "QUERY_NATIVE_RESULT_INVALID",
+                    f"{label}原生查询字段或身份绑定不完整，不能推定当前可用。",
+                    "runtime_error")],
+            }
+            return inspection
+        projected = (semantic_payload if semantic_result else
+                     _project_gift_query(raw_payload, actor, recipient)
+                     if action_id == _GIFT_ACTION else
+                     _project_influence_query(raw_payload, actor, recipient))
+        if projected is None:
+            inspection["legality"] = {
+                "status": "unknown", "complete": False,
+                "reasons": [reason(
+                    "QUERY_NATIVE_RESULT_INVALID",
+                    f"{label}原生资源字段未通过独立校验。", "runtime_error")],
+            }
+            return inspection
+        inspection[family] = projected
+        if (native.get("ui_selection_checked") is True
+                and type(native.get("native_visibility")) is bool):
+            inspection["visibility"] = {
+                "status": "visible" if native["native_visibility"] else "hidden",
+                "complete": True,
+            }
+        inspection["native_rule_components"] = {
+            key: native.get(key) for key in (
+                "ui_selection_checked", "native_visibility", "ui_enabled_gate_checked",
+                "common_action_gate", "initiation_gate", "validity_called",
+                "native_validity", "full_rules_complete", "diplomat_required",
+                "diplomat_context_readable", "available_diplomat_count",
+            ) if key in native}
+        for key in ("native_diagnostic_text", "native_diagnostic_text_decoded",
+                    "diagnostic_readable", "native_description"):
+            if key in native:
+                inspection[key] = native[key]
+        native_validity = native.get("native_validity")
+        common_gate = native.get("common_action_gate")
+        initiation_gate = native.get("initiation_gate")
+        full_rules = native.get("full_rules_complete")
+        failures = []
+        if native_validity is False:
+            failures.append(reason(
+                "NATIVE_VALIDITY_FALSE", f"原生{label}合法性检查返回false。", "native_rule"))
+        if common_gate is False:
+            failures.append(reason(
+                "NATIVE_COMMON_ACTION_GATE_FALSE", f"原生{label}通用动作条件返回false。", "native_rule"))
+        if initiation_gate is False:
+            failures.append(reason(
+                "NATIVE_INITIATION_GATE_FALSE", f"原生{label}发起条件返回false。", "native_rule"))
+        diagnostic = native.get("native_diagnostic_text")
+        if isinstance(diagnostic, str) and diagnostic:
+            for item in failures:
+                item["text"] = diagnostic
+        if failures:
+            inspection["legality"] = {"status": "unavailable", "reasons": failures,
+                                       "complete": False}
+        elif (native_validity is True and common_gate is True
+              and initiation_gate is True and full_rules is True
+              and projected.get("complete") is True):
+            inspection["legality"] = {
+                "status": "available", "complete": True,
+                "reasons": [reason(
+                    "NATIVE_%s_RULES_TRUE" % family.upper(),
+                    f"原生{label}对象、费用/参数和发起条件均已验证通过。",
+                    "native_rule", True)],
+            }
+        else:
+            inspection["legality"] = {
+                "status": "unknown", "complete": False,
+                "reasons": [reason(
+                    "NATIVE_%s_RULES_INCOMPLETE" % family.upper(),
+                    f"原生{label}查询已返回对象，但完整UI条件或规则证明尚未完成。",
+                    "native_rule")],
+            }
+        if action_id == _INFLUENCE_ACTION:
+            cost_payload = raw_payload if isinstance(raw_payload, dict) else projected.get("native", {})
+            native_costs = cost_payload.get("native_costs", cost_payload.get("costs"))
+            if native_costs is None and type(cost_payload.get("cost_raw")) is int:
+                native_costs = {
+                    "resource": "treasury", "amount_raw": cost_payload["cost_raw"],
+                    "amount": cost_payload["cost_raw"] / 1000,
+                    "unit": "ducats", "scale": 1000, "country": actor,
+                    "source": "native_rule",
+                }
+            if native_costs is not None:
+                inspection["costs"] = {
+                    "status": "available", "items": [native_costs],
+                    "complete": True, "source": "native_rule",
+                }
+        else:
+            inspection["costs"] = {
+                "status": "available", "items": [{
+                    "resource": "treasury", "amount": normalized["ducats"],
+                    "amount_raw": normalized["ducats"] * 1000,
+                    "unit": "ducats", "scale": 1000, "country": actor,
+                    "source": "request",
+                }], "complete": True,
+            }
+        if isinstance(native.get("date_raw"), int) and not isinstance(native.get("date_raw"), bool):
+            inspection["session"]["date_raw"] = native["date_raw"]
+        return inspection
+
+    def _inspect_diplomatic_action(self, action_id: str, actor: str, recipient: str,
+                                   phase: str = "initiate", parameters: dict | None = None,
+                                   *, _execution_request: bool = False) -> dict:
         parameters = {} if parameters is None else parameters
+        if action_id in _GIFT_INFLUENCE_ACTIONS:
+            return self._inspect_gift_influence(
+                action_id, actor, recipient, phase, parameters)
         peace_execution_parameters = None
+        peace_core_selection = None
+        peace_subject_selection = None
+        peace_core_parameters_requested = (
+            action_id in CORE_ACTION_IDS and parameters != {}
+            and isinstance(parameters, dict)
+            and isinstance(parameters.get("peace_context"), dict)
+            and (parameters["peace_context"].get("terms") == []
+                 or (not _execution_request
+                     and _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY
+                     not in self._installation_capabilities()
+                     and isinstance(parameters["peace_context"].get("terms"), list)
+                     and len(parameters["peace_context"]["terms"]) == 1
+                     and isinstance(parameters["peace_context"]["terms"][0], dict)
+                     and parameters["peace_context"]["terms"][0].get("action_id") == action_id)))
+        peace_trade_power_source_discovery = False
+        peace_trade_power_source_discovery_selection = None
+        peace_annul_treaties_discovery = False
+        peace_annul_treaties_discovery_selection = None
+        peace_country_terms_discovery = False
+        if peace_core_parameters_requested:
+            try:
+                peace_core_selection = normalize_core_query_parameters(
+                    action_id, actor, recipient, phase, parameters)
+            except (TypeError, ValueError) as exc:
+                # Preserve the stable adapter error instead of allowing the
+                # generic peace execution normalizer to reinterpret a core
+                # term as an unsupported execution action.
+                raise ValueError("QUERY_PEACE_CORE_PARAMETERS_INVALID") from exc
+        subject_execution_acknowledged = (
+            _NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY
+            in self._installation_capabilities())
+        subject_context_terms = (
+            parameters.get("peace_context", {}).get("terms")
+            if isinstance(parameters, dict)
+            and isinstance(parameters.get("peace_context"), dict) else None)
+        if (action_id in _PEACE_SUBJECT_ACTIONS and parameters != {}
+                and not (subject_execution_acknowledged
+                         and isinstance(subject_context_terms, list)
+                         and subject_context_terms)):
+            try:
+                peace_subject_selection = _normalize_peace_subject_query_parameters(
+                    action_id, actor, recipient, phase, parameters)
+            except (TypeError, ValueError) as exc:
+                raise ValueError("QUERY_PEACE_SUBJECT_PARAMETERS_INVALID") from exc
         if action_id in _PEACE_EXECUTION_ACTIONS:
             native_peace_combined_query_acknowledged = (
                 _NATIVE_PEACE_COMBINED_QUERY_CAPABILITY
                 in self._installation_capabilities())
+            native_peace_reparations_query_acknowledged = (
+                _NATIVE_PEACE_REPARATIONS_QUERY_CAPABILITY
+                in self._installation_capabilities())
+            native_peace_trade_power_query_acknowledged = (
+                _NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY
+                in self._installation_capabilities())
+            native_peace_concede_defeat_query_acknowledged = (
+                _NATIVE_PEACE_CONCEDE_DEFEAT_QUERY_CAPABILITY
+                in self._installation_capabilities())
+            native_peace_annul_treaties_query_acknowledged = (
+                _NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY
+                in self._installation_capabilities())
+            native_peace_special_terms_query_acknowledged = (
+                _NATIVE_PEACE_SPECIAL_TERMS_QUERY_CAPABILITY
+                in self._installation_capabilities())
+            requested_terms = (
+                parameters.get("peace_context", {}).get("terms")
+                if isinstance(parameters, dict)
+                and isinstance(parameters.get("peace_context"), dict)
+                else None)
+            requested_action_ids = {
+                term.get("action_id") for term in requested_terms
+                if isinstance(term, dict)
+                and isinstance(term.get("action_id"), str)
+            } if isinstance(requested_terms, list) else set()
             mixed_parameters_requested = (
                 isinstance(parameters, dict)
                 and isinstance(parameters.get("peace_context"), dict)
                 and isinstance(parameters["peace_context"].get("terms"), list)
-                and len(parameters["peace_context"]["terms"]) == 2)
+                and len(parameters["peace_context"]["terms"]) > 1
+                and requested_action_ids <= {"demand_ducats", "cede_province"})
+            reparations_parameters_requested = (
+                "war_reparations" in requested_action_ids)
+            trade_power_parameters_requested = (
+                "transfer_trade_power" in requested_action_ids)
+            concede_defeat_parameters_requested = (
+                "concede_defeat" in requested_action_ids)
+            annul_treaties_parameters_requested = (
+                "annul_treaties" in requested_action_ids)
+            special_terms_parameters_requested = bool(
+                requested_action_ids & {
+                    "humiliate_rival", "show_strength", "force_religion"})
+            core_terms_parameters_requested = bool(
+                requested_action_ids & {"return_core", "revoke_core"})
+            subject_terms_parameters_requested = bool(
+                requested_action_ids & _PEACE_SUBJECT_ACTIONS)
+            country_terms_parameters_requested = bool(
+                requested_action_ids & COUNTRY_TERM_ACTIONS)
+            combined_subject_parameters_requested = (
+                subject_terms_parameters_requested
+                and isinstance(requested_terms, list)
+                and len(requested_terms) > 0)
+            native_peace_core_terms_query_acknowledged = (
+                _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY
+                in self._installation_capabilities())
+            native_peace_subject_terms_query_acknowledged = (
+                _NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY
+                in self._installation_capabilities())
+            native_peace_subject_terms_execution_acknowledged = (
+                _NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY
+                in self._installation_capabilities())
+            native_peace_country_terms_query_acknowledged = (
+                _NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY
+                in self._installation_capabilities())
+            native_peace_country_terms_execution_acknowledged = (
+                _NATIVE_PEACE_COUNTRY_TERMS_EXECUTION_CAPABILITY
+                in self._installation_capabilities())
+            # QUERY10 candidate discovery is a T-primary query whose public
+            # context intentionally has no selected terms.  Keep it distinct
+            # from white peace and from the complete execution normalizer.
+            peace_trade_power_source_discovery = (
+                action_id == "transfer_trade_power"
+                and phase == "initiate"
+                and isinstance(parameters, dict)
+                and isinstance(parameters.get("peace_context"), dict)
+                and parameters["peace_context"].get("terms") == [])
+            peace_annul_treaties_discovery = (
+                action_id == "annul_treaties"
+                and phase == "initiate"
+                and isinstance(parameters, dict)
+                and isinstance(parameters.get("peace_context"), dict)
+                and parameters["peace_context"].get("terms") == [])
+            peace_country_terms_discovery = (
+                action_id in COUNTRY_TERM_ACTIONS
+                and phase == "initiate"
+                and isinstance(parameters, dict)
+                and isinstance(parameters.get("peace_context"), dict)
+                and parameters["peace_context"].get("terms") == [])
             # A complete public Peace inspection must use the same normalized
             # parameter object and native preflight as execute.  Legacy
             # discovery/candidate queries remain on their old paths when the
@@ -10314,8 +22184,29 @@ class DiplomacyTools:
                 and (_NATIVE_PEACE_SUBMISSION_CAPABILITY
                      in self._installation_capabilities()
                      or (native_peace_combined_query_acknowledged
-                         and mixed_parameters_requested)))
-            if _execution_request or public_execution_scope:
+                         and mixed_parameters_requested)
+                     or (native_peace_reparations_query_acknowledged
+                         and reparations_parameters_requested)
+                     or (native_peace_trade_power_query_acknowledged
+                          and trade_power_parameters_requested)
+                      or (native_peace_concede_defeat_query_acknowledged
+                          and concede_defeat_parameters_requested)
+                     or (native_peace_annul_treaties_query_acknowledged
+                         and (annul_treaties_parameters_requested
+                               or peace_annul_treaties_discovery))
+                      or (native_peace_special_terms_query_acknowledged
+                          and special_terms_parameters_requested)
+                     or (native_peace_core_terms_query_acknowledged
+                         and core_terms_parameters_requested)
+                      or (native_peace_subject_terms_execution_acknowledged
+                          and combined_subject_parameters_requested)
+                      or (native_peace_country_terms_query_acknowledged
+                          and (country_terms_parameters_requested
+                               or peace_country_terms_discovery))))
+            if _execution_request or (public_execution_scope
+                                      and not peace_trade_power_source_discovery
+                                      and not peace_annul_treaties_discovery
+                                      and not peace_core_parameters_requested):
                 try:
                     peace_execution_parameters = normalize_peace_execution_parameters(
                         action_id, actor, recipient, phase, parameters)
@@ -10346,12 +22237,70 @@ class DiplomacyTools:
             and self.session is not None
             and _NATIVE_PEACE_PROVINCE_OFFER_QUERY_CAPABILITY
             in self._installation_capabilities())
-        if peace_execution_parameters is None:
+        if (peace_execution_parameters is None
+                and peace_core_selection is None
+                and peace_subject_selection is None
+                and not peace_trade_power_source_discovery
+                and not peace_annul_treaties_discovery
+                and not peace_country_terms_discovery):
             self._validate(action_id, actor, recipient, phase, parameters,
                            allow_peace_discovery=allow_peace_discovery,
                            allow_peace_empty_offer=allow_peace_empty_offer,
                            allow_peace_money_offer=allow_peace_money_offer,
                            allow_peace_province_offer=allow_peace_province_offer)
+        if peace_trade_power_source_discovery:
+            context = parameters.get("peace_context")
+            if (not isinstance(context, dict)
+                    or set(context) not in ({"war_id", "direction", "terms"},
+                                            {"war_id", "terms"})
+                    or context.get("direction", "demand") not in ("demand", "offer")
+                    or not isinstance(context.get("war_id"), str)
+                    or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                    context["war_id"]) is None):
+                raise ValueError("QUERY_PEACE_TRADE_POWER_PARAMETERS_INVALID")
+            discovery_direction = context.get("direction", "demand")
+            discovery_beneficiary = (
+                actor if discovery_direction == "demand" else recipient)
+            peace_trade_power_source_discovery_selection = {
+                "action_id": "transfer_trade_power",
+                "war_id": context["war_id"],
+                "direction": discovery_direction,
+                "amount_raw": -1,
+                "province_ids": [],
+                "beneficiary": None,
+                "source": "-",
+                "trade_power_beneficiary": discovery_beneficiary,
+                "term_mask": "t",
+                "_sources_protocol": True,
+            }
+        if peace_annul_treaties_discovery:
+            context = parameters.get("peace_context")
+            if (not isinstance(context, dict)
+                    or set(context) not in ({"war_id", "direction", "terms"},
+                                            {"war_id", "terms"})
+                    or context.get("direction", "demand") not in ("demand", "offer")
+                    or not isinstance(context.get("war_id"), str)
+                    or re.fullmatch(_PEACE_WAR_ID_PATTERN,
+                                    context["war_id"]) is None):
+                raise ValueError("QUERY_PEACE_ANNUL_TREATIES_PARAMETERS_INVALID")
+            discovery_direction = context.get("direction", "demand")
+            peace_annul_treaties_discovery_selection = {
+                "action_id": "annul_treaties",
+                "war_id": context["war_id"],
+                "direction": discovery_direction,
+                "amount_raw": -1,
+                "province_ids": [],
+                "beneficiary": None,
+                "source": "-",
+                "trade_power_beneficiary": None,
+                "payer": None,
+                "claimant": None,
+                "conceding_country": None,
+                "concede_beneficiary": None,
+                "annul_country": "-",
+                "annul_partners": [],
+                "term_mask": "a",
+            }
         peace_money_selection = (
             self._normalize_peace_money_offer_parameters(
                 parameters, actor, recipient)
@@ -10437,7 +22386,8 @@ class DiplomacyTools:
             })
         inbound_response_phase = (
             action_id in ("offer_alliance", "offer_royal_marriage", "support_independence",
-                          "ask_military_access", "offer_vassalization", "peace_offer")
+                          "ask_military_access", "offer_vassalization", *_FAVOR_ACTIONS,
+                          "peace_offer")
             and phase in ("accept", "reject"))
         if inbound_response_phase:
             # A proposal id is a public opaque reference.  r21 only observes
@@ -10467,6 +22417,9 @@ class DiplomacyTools:
                     else "支持独立" if action_id == "support_independence"
                     else "军事通行权" if action_id == "ask_military_access"
                     else "附庸关系" if action_id == "offer_vassalization"
+                    else "人情换金币" if action_id == _FAVOR_GOLD_ACTION
+                    else "人情换信任" if action_id == _FAVOR_TRUST_ACTION
+                    else "人情换人力" if action_id == _FAVOR_MEN_ACTION
                     else "议和提议" if action_id == "peace_offer"
                     else "联盟")
                 inspection["legality"]["reasons"] = [reason(
@@ -10494,6 +22447,12 @@ class DiplomacyTools:
                         if action_id == "ask_military_access"
                         else "NATIVE_INBOUND_VASSALIZATION_RESPONSE_CAPABILITY_ACKNOWLEDGED"
                         if action_id == "offer_vassalization"
+                        else "NATIVE_INBOUND_FAVOR_GOLD_RESPONSE_ACKNOWLEDGED"
+                        if action_id == _FAVOR_GOLD_ACTION
+                        else "NATIVE_INBOUND_FAVOR_TRUST_RESPONSE_ACKNOWLEDGED"
+                        if action_id == _FAVOR_TRUST_ACTION
+                        else "NATIVE_INBOUND_FAVOR_MEN_RESPONSE_ACKNOWLEDGED"
+                        if action_id == _FAVOR_MEN_ACTION
                         else "NATIVE_INBOUND_PEACE_RESPONSE_CAPABILITY_ACKNOWLEDGED"
                         if action_id == "peace_offer"
                         else "NATIVE_INBOUND_RESPONSE_CAPABILITY_ACKNOWLEDGED")
@@ -10502,6 +22461,9 @@ class DiplomacyTools:
                         else "支持独立" if action_id == "support_independence"
                         else "军事通行权" if action_id == "ask_military_access"
                         else "附庸关系" if action_id == "offer_vassalization"
+                        else "人情换金币" if action_id == _FAVOR_GOLD_ACTION
+                        else "人情换信任" if action_id == _FAVOR_TRUST_ACTION
+                        else "人情换人力" if action_id == _FAVOR_MEN_ACTION
                         else "议和提议" if action_id == "peace_offer"
                         else "联盟")
                     inspection["interface_support"]["execute"] = "native_inbound_response"
@@ -10521,7 +22483,7 @@ class DiplomacyTools:
                             query_id = "inbound_inspect_" + uuid.uuid4().hex
                             if action_id in ("offer_royal_marriage", "support_independence",
                                              "ask_military_access", "offer_vassalization",
-                                             "peace_offer"):
+                                             *_FAVOR_ACTIONS, "peace_offer"):
                                 native = inspector(
                                     query_id, private_context["actor"], phase, date_raw,
                                     private_context["native_proposal_id"], action_id=action_id)
@@ -10559,6 +22521,7 @@ class DiplomacyTools:
                                  "war_active", "war_readable", "peace_payload_complete",
                                  "selected_terms_complete", "term_count", "selected_term_count",
                                  "peace_context", "costs",
+                                 "favor_trade",
                                  before_field, "native_current_support_independence",
                                  "native_current_support_independence_readable",
                                  "military_access_active",
@@ -10583,7 +22546,7 @@ class DiplomacyTools:
                                     "selected_term_count"):
                                 if key in native:
                                     inspection[key] = native[key]
-                            context = ObserverSession._copy_public_peace_context(
+                            context = ObserverSession._canonicalize_inbound_peace_context(
                                 native.get("peace_context"))
                             nested_costs = inspection["native_inbound_inspection"].get("costs")
                             if nested_costs is not None and not ObserverSession._safe_public_peace_value(
@@ -10598,12 +22561,52 @@ class DiplomacyTools:
                                     "peace_context": context,
                                 }
                             inspection["family"] = "peace"
+                        if action_id in _FAVOR_ACTIONS:
+                            inspection["family"] = "favor_trade"
+                            inspection["favor_trade"] = native.get("favor_trade")
+                            if isinstance(native.get("costs"), dict):
+                                inspection["costs"] = dict(native["costs"])
                         pending_active = native.get("pending_active") is True
                         observed["currently_pending"] = pending_active
                         decision_verified = native.get("decision_country_verified") is True
                         native_validity = native.get("native_validity") is True
                         rules_complete = native.get("response_rules_complete") is True
                         inspection["decision_country_verified"] = decision_verified
+                        if action_id == "peace_offer":
+                            # ``parameters.complete`` describes the bound
+                            # response envelope.  For Peace, the public
+                            # request only carries the opaque proposal id;
+                            # once the fresh pending inspection binds that id
+                            # to both original parties and returns a complete
+                            # selected treaty context, the envelope is
+                            # complete even though legality remains a separate
+                            # result below.
+                            actual_parameters = inspection["parameters"].get(
+                                "actual")
+                            actual_context = (
+                                actual_parameters.get("peace_context")
+                                if isinstance(actual_parameters, dict) else None)
+                            inspection["parameters"]["complete"] = (
+                                isinstance(actual_parameters, dict)
+                                and actual_parameters.get("proposal_id") ==
+                                parameters.get("proposal_id")
+                                and actual_parameters.get("original_actor") ==
+                                observed.get("actor")
+                                and actual_parameters.get("original_recipient") ==
+                                observed.get("recipient")
+                                and inspection.get("decision_country") == "FRA"
+                                and decision_verified
+                                and pending_active
+                                and native.get("peace_payload_complete") is True
+                                and native.get("selected_terms_complete") is True
+                                and isinstance(actual_context, dict)
+                                and actual_context.get("original_actor") ==
+                                observed.get("actor")
+                                and actual_context.get("original_recipient") ==
+                                observed.get("recipient")
+                                and actual_context.get("complete") is True
+                                and actual_context.get(
+                                    "selected_terms_complete") is True)
                         raw_native_reason = native.get("reason")
                         if raw_native_reason is None:
                             native_reason = "none"
@@ -10659,6 +22662,13 @@ class DiplomacyTools:
                             inspection["legality"]["reasons"] = [reason(
                                 "NATIVE_INBOUND_VALIDITY_FALSE",
                                 "原生入站响应合法性检查返回false。", "native_rule")]
+                        elif (action_id in _FAVOR_ACTIONS
+                              and (not isinstance(native.get("favor_trade"), dict)
+                                   or native["favor_trade"].get("complete") is not True)):
+                            inspection["legality"]["reasons"] = [reason(
+                                "NATIVE_FAVOR_TRADE_CONTEXT_INCOMPLETE",
+                                "原生人情换金币上下文未完整读取，不能执行接受或拒绝。",
+                                "native_rule")]
                         elif not rules_complete:
                             inspection["legality"]["reasons"] = [reason(
                                 "NATIVE_INBOUND_RESPONSE_RULES_INCOMPLETE",
@@ -10678,6 +22688,9 @@ class DiplomacyTools:
                     else "支持独立" if action_id == "support_independence"
                     else "军事通行权" if action_id == "ask_military_access"
                     else "附庸关系" if action_id == "offer_vassalization"
+                    else "人情换金币" if action_id == _FAVOR_GOLD_ACTION
+                    else "人情换信任" if action_id == _FAVOR_TRUST_ACTION
+                    else "人情换人力" if action_id == _FAVOR_MEN_ACTION
                     else "议和提议" if action_id == "peace_offer"
                     else "联盟")
                 inspection["legality"]["reasons"] = [reason(
@@ -10751,6 +22764,19 @@ class DiplomacyTools:
                 "reasons": [reason(
                     "NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
                     "安装确认允许桥接提交法国对目标国家的间谍网任务。",
+                    "installation_capability", True)]}
+        native_curry_favors_submission_acknowledged = (
+            inspection["session"]["status"] == "ready"
+            and self._native_curry_favors_scope(action_id, actor, phase)
+            and _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY
+            in self._installation_capabilities())
+        if native_curry_favors_submission_acknowledged:
+            inspection["interface_support"]["execute"] = "native_curry_favors_submission"
+            inspection["authorization"] = {
+                "status": "available", "complete": True,
+                "reasons": [reason(
+                    "NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                    "安装确认允许桥接提交法国对目标国家的获取人情任务。",
                     "installation_capability", True)]}
         native_guarantee_submission_acknowledged = (
             inspection["session"]["status"] == "ready"
@@ -10836,6 +22862,33 @@ class DiplomacyTools:
                     "NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
                     "安装确认允许桥接提交法国发起的附庸关系操作；本次目标是否合法由原生查询单独决定。",
                     "installation_capability", True)]}
+        if (action_id == _FAVOR_GOLD_ACTION and actor == "FRA" and phase == "initiate"
+                and inspection["session"]["status"] == "ready"
+                and _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY in self._installation_capabilities()):
+            inspection["interface_support"]["execute"] = _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY
+            inspection["authorization"] = {
+                "status": "available", "complete": True,
+                "reasons": [reason("NATIVE_FAVOR_GOLD_SUBMISSION_ACKNOWLEDGED",
+                    "安装确认允许桥接提交法国的人情换金币提议，实际合法性由原生规则复查。",
+                    "installation_capability", True)]}
+        favor_resource_submission_capability = (
+            action_id in _FAVOR_RESOURCE_ACTIONS and actor == "FRA"
+            and phase == "initiate"
+            and inspection["session"]["status"] == "ready"
+            and _FAVOR_RESOURCE_CAPABILITIES[action_id][1]
+            in self._installation_capabilities())
+        if favor_resource_submission_capability:
+            resource_kind = ("trust" if action_id == _FAVOR_TRUST_ACTION
+                             else "men")
+            resource_label = "信任" if resource_kind == "trust" else "人力"
+            capability = _FAVOR_RESOURCE_CAPABILITIES[action_id][1]
+            inspection["interface_support"]["execute"] = capability
+            inspection["authorization"] = {
+                "status": "available", "complete": True,
+                "reasons": [reason(
+                    f"NATIVE_FAVOR_{resource_kind.upper()}_SUBMISSION_ACKNOWLEDGED",
+                    f"安装确认允许桥接提交法国的人情换{resource_label}提议，实际合法性由原生规则复查。",
+                    "installation_capability", True)]}
         native_declare_war_submission_acknowledged = (
             inspection["session"]["status"] == "ready"
             and self._native_declare_war_scope(action_id, actor, phase)
@@ -10857,11 +22910,52 @@ class DiplomacyTools:
                     action_id, actor, recipient, phase, parameters)
             except (TypeError, ValueError):
                 peace_submission_parameters = None
+        peace_has_concede_defeat = (
+            isinstance(peace_submission_parameters, dict)
+            and any(isinstance(term, dict)
+                    and term.get("action_id") == "concede_defeat"
+                    for term in peace_submission_parameters.get(
+                        "peace_context", {}).get("terms", [])))
+        peace_has_annul_treaties = (
+            isinstance(peace_submission_parameters, dict)
+            and any(isinstance(term, dict)
+                    and term.get("action_id") == "annul_treaties"
+                    for term in peace_submission_parameters.get(
+                        "peace_context", {}).get("terms", [])))
+        peace_has_special_terms = (
+            isinstance(peace_submission_parameters, dict)
+            and any(isinstance(term, dict)
+                    and term.get("action_id") in {
+                        "humiliate_rival", "show_strength", "force_religion"}
+                    for term in peace_submission_parameters.get(
+                        "peace_context", {}).get("terms", [])))
+        peace_has_core_terms = (
+            isinstance(peace_submission_parameters, dict)
+            and any(isinstance(term, dict)
+                    and term.get("action_id") in {"return_core", "revoke_core"}
+                    for term in peace_submission_parameters.get(
+                        "peace_context", {}).get("terms", [])))
+        peace_has_subject_terms = (
+            isinstance(peace_submission_parameters, dict)
+            and any(isinstance(term, dict)
+                    and term.get("action_id") in _PEACE_SUBJECT_ACTIONS
+                    for term in peace_submission_parameters.get(
+                        "peace_context", {}).get("terms", [])))
         native_peace_submission_acknowledged = (
             peace_submission_parameters is not None
             and inspection["session"]["status"] == "ready"
-            and _NATIVE_PEACE_SUBMISSION_CAPABILITY
-            in self._installation_capabilities())
+            and ((_NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY
+                  if peace_has_subject_terms else
+                  _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY
+                  if peace_has_core_terms else
+                  _NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY
+                  if peace_has_special_terms else
+                  _NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY
+                  if peace_has_annul_treaties else
+                  _NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY
+                  if peace_has_concede_defeat else
+                  _NATIVE_PEACE_SUBMISSION_CAPABILITY)
+                 in self._installation_capabilities()))
         if native_peace_submission_acknowledged:
             inspection["interface_support"] = {
                 **inspection["interface_support"],
@@ -10871,8 +22965,28 @@ class DiplomacyTools:
             inspection["authorization"] = {
                 "status": "available", "complete": True,
                 "reasons": [reason(
-                    "NATIVE_PEACE_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
-                    "安装确认允许桥接提交法国发起的议和操作；本次原生合法性由最新议和检查单独决定。",
+                     ("NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                      if peace_has_subject_terms else
+                      "NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                      if peace_has_core_terms else
+                      "NATIVE_PEACE_SPECIAL_TERMS_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                      if peace_has_special_terms else
+                      "NATIVE_PEACE_ANNUL_TREATIES_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                     if peace_has_annul_treaties else
+                     "NATIVE_PEACE_CONCEDE_DEFEAT_EXECUTION_CAPABILITY_ACKNOWLEDGED"
+                     if peace_has_concede_defeat else
+                     "NATIVE_PEACE_SUBMISSION_CAPABILITY_ACKNOWLEDGED"),
+                     ("安装确认允许桥接提交含附属国条款的法国议和操作；本次原生合法性由最新议和检查单独决定。"
+                      if peace_has_subject_terms else
+                      "安装确认允许桥接提交含核心条款的法国议和操作；本次原生合法性由最新议和检查单独决定。"
+                      if peace_has_core_terms else
+                      "安装确认允许桥接提交含特殊条款的法国议和操作；本次原生合法性由最新议和检查单独决定。"
+                      if peace_has_special_terms else
+                      "安装确认允许桥接提交含取消条约条款的法国议和操作；本次原生合法性由最新议和检查单独决定。"
+                     if peace_has_annul_treaties else
+                     "安装确认允许桥接提交含承认战败条款的法国议和操作；本次原生合法性由最新议和检查单独决定。"
+                     if peace_has_concede_defeat else
+                     "安装确认允许桥接提交法国发起的议和操作；本次原生合法性由最新议和检查单独决定。"),
                     "installation_capability", True)]}
         alliance_query_scope = (
             action_id in ("offer_alliance", "dissolve_alliance")
@@ -10889,6 +23003,11 @@ class DiplomacyTools:
             action_id in ("build_spy_network", "stop_building_spy_network")
             and phase == "initiate"
             and _NATIVE_SPY_NETWORK_QUERY_CAPABILITY in self._installation_capabilities())
+        curry_favors_query_scope = (
+            action_id in ("curry_favors", "stop_curry_favors")
+            and actor == "FRA" and phase == "initiate"
+            and _NATIVE_CURRY_FAVORS_QUERY_CAPABILITY
+            in self._installation_capabilities())
         guarantee_query_scope = (
             action_id in ("proclaim_guarantee", "revoke_guarantee")
             and phase == "initiate"
@@ -10911,6 +23030,15 @@ class DiplomacyTools:
             action_id in ("set_rival", "remove_rival")
             and phase == "initiate"
             and _NATIVE_RIVAL_QUERY_CAPABILITY in self._installation_capabilities())
+        favor_gold_query_scope = (
+            action_id == _FAVOR_GOLD_ACTION and actor == "FRA" and phase == "initiate"
+            and self.session is not None
+            and _NATIVE_FAVOR_GOLD_QUERY_CAPABILITY in self._installation_capabilities())
+        favor_resource_query_scope = (
+            action_id in _FAVOR_RESOURCE_ACTIONS and actor == "FRA"
+            and phase == "initiate" and self.session is not None
+            and _FAVOR_RESOURCE_CAPABILITIES[action_id][0]
+            in self._installation_capabilities())
         vassalization_query_scope = (
             action_id in _VASSALIZATION_ACTIONS
             and phase == "initiate"
@@ -10944,9 +23072,31 @@ class DiplomacyTools:
             and peace_province_selection is not None
             and _NATIVE_PEACE_PROVINCE_OFFER_QUERY_CAPABILITY
             in self._installation_capabilities())
+        peace_trade_power_source_discovery_query_scope = (
+            peace_trade_power_source_discovery
+            and peace_trade_power_source_discovery_selection is not None
+            and self.session is not None
+            and _NATIVE_PEACE_TRADE_POWER_QUERY_CAPABILITY
+            in self._installation_capabilities())
+        peace_annul_treaties_discovery_query_scope = (
+            peace_annul_treaties_discovery
+            and peace_annul_treaties_discovery_selection is not None
+            and self.session is not None
+            and _NATIVE_PEACE_ANNUL_TREATIES_QUERY_CAPABILITY
+            in self._installation_capabilities())
+        peace_core_query_scope = (
+            peace_core_selection is not None
+            and self.session is not None
+            and _NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY
+            in self._installation_capabilities())
+        peace_subject_query_scope = (
+            peace_subject_selection is not None
+            and self.session is not None
+            and _NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY
+            in self._installation_capabilities())
         peace_execution_query_capability = (
             self._peace_execution_capability_for(
-                peace_execution_parameters, action_id)
+                peace_execution_parameters, action_id, recipient)
             if peace_execution_parameters is not None else None)
         peace_execution_query_scope = (
             peace_execution_parameters is not None
@@ -10967,25 +23117,87 @@ class DiplomacyTools:
             and parameters == {}
             and _NATIVE_PEACE_CONTEXT_QUERY_CAPABILITY
             in self._installation_capabilities())
+        if (peace_core_selection is not None
+                and not peace_core_query_scope):
+            inspection["interface_support"]["query"] = "unimplemented"
+            inspection["interface_support"]["reason_code"] = (
+                "NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY_MISSING")
+            inspection["legality"] = {
+                "status": "unknown",
+                "reasons": [reason(
+                    "NATIVE_PEACE_CORE_TERMS_QUERY_CAPABILITY_MISSING",
+                    "当前安装没有确认 QUERY14 核心条款查询能力。",
+                    "installation_capability")],
+                "complete": False,
+            }
+        if (peace_subject_selection is not None
+                and not peace_subject_query_scope):
+            inspection["interface_support"]["query"] = "unimplemented"
+            inspection["interface_support"]["reason_code"] = (
+                "NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY_MISSING")
+            inspection["legality"] = {
+                "status": "unknown",
+                "reasons": [reason(
+                    "NATIVE_PEACE_SUBJECT_TERMS_QUERY_CAPABILITY_MISSING",
+                    "当前安装没有确认 QUERY16 附属国条款查询能力。",
+                    "installation_capability")],
+                "complete": False,
+            }
+        country_selection_requested = (
+            peace_execution_parameters is not None
+            and (action_id in COUNTRY_TERM_ACTIONS
+                 or any(isinstance(term, dict)
+                        and term.get("action_id") in COUNTRY_TERM_ACTIONS
+                        for term in peace_execution_parameters.get(
+                            "peace_context", {}).get("terms", []))))
+        if (country_selection_requested
+                and not peace_execution_query_scope):
+            inspection["interface_support"]["query"] = "unimplemented"
+            inspection["interface_support"]["reason_code"] = (
+                "NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY_MISSING")
+            inspection["legality"] = {
+                "status": "unknown",
+                "reasons": [reason(
+                    "NATIVE_PEACE_COUNTRY_TERMS_QUERY_CAPABILITY_MISSING",
+                    "当前安装没有确认 QUERY18 国家条款查询能力。",
+                    "installation_capability")],
+                "complete": False,
+            }
         if ((alliance_query_scope or royal_query_scope or improve_query_scope
-             or spy_network_query_scope or guarantee_query_scope
+             or spy_network_query_scope or curry_favors_query_scope
+             or guarantee_query_scope
              or support_independence_query_scope or military_access_query_scope
              or insult_query_scope or rival_query_scope or vassalization_query_scope
+             or favor_gold_query_scope or favor_resource_query_scope
              or declare_war_query_scope or peace_context_query_scope
              or peace_empty_offer_query_scope or peace_money_offer_query_scope
-             or peace_province_offer_query_scope or peace_execution_query_scope)
+             or peace_province_offer_query_scope
+             or peace_trade_power_source_discovery_query_scope
+             or peace_annul_treaties_discovery_query_scope
+             or peace_core_query_scope
+             or peace_subject_query_scope
+             or (country_selection_requested and peace_execution_query_scope)
+             or peace_execution_query_scope)
                 and self.session is not None and inspection["session"]["status"] == "ready"):
             if alliance_query_scope:
                 inspection["observed_native_objects"] = self.session.alliance_objects(actor, recipient)
             inspection["interface_support"]["query"] = (
                 "partial_native_rules" if (improve_query_scope or spy_network_query_scope
+                                             or curry_favors_query_scope
                                              or support_independence_query_scope
                                              or military_access_query_scope or insult_query_scope
                                              or rival_query_scope or vassalization_query_scope
+                                             or favor_gold_query_scope or favor_resource_query_scope
                                               or declare_war_query_scope
                                               or peace_execution_query_scope
                                              or peace_money_offer_query_scope
-                                             or peace_province_offer_query_scope)
+                                             or peace_province_offer_query_scope
+                                             or peace_trade_power_source_discovery_query_scope
+                                              or peace_annul_treaties_discovery_query_scope
+                                              or peace_core_query_scope
+                                              or peace_subject_query_scope
+                                              or (country_selection_requested
+                                                  and peace_execution_query_scope))
                 else "partial_native_queue_read")
             if royal_query_scope:
                 inspector = getattr(self.session, "inspect_royal_marriage", None)
@@ -11014,6 +23226,15 @@ class DiplomacyTools:
                         native = {"error_code": "QUERY_NATIVE_SPY_NETWORK_CALL_UNKNOWN"}
                 else:
                     native = {"error_code": "NATIVE_SPY_NETWORK_QUERY_ADAPTER_UNAVAILABLE"}
+            elif curry_favors_query_scope:
+                inspector = getattr(self.session, "inspect_curry_favors", None)
+                if callable(inspector):
+                    try:
+                        native = inspector(action_id, actor, recipient, phase)
+                    except Exception:
+                        native = {"error_code": "QUERY_NATIVE_CURRY_FAVORS_CALL_UNKNOWN"}
+                else:
+                    native = {"error_code": "NATIVE_CURRY_FAVORS_QUERY_ADAPTER_UNAVAILABLE"}
             elif guarantee_query_scope:
                 inspector = getattr(self.session, "inspect_guarantee", None)
                 if callable(inspector):
@@ -11063,6 +23284,14 @@ class DiplomacyTools:
                         native = {"error_code": "QUERY_NATIVE_RIVAL_CALL_UNKNOWN"}
                 else:
                     native = {"error_code": "NATIVE_RIVAL_QUERY_ADAPTER_UNAVAILABLE"}
+            elif favor_gold_query_scope:
+                native = self.session.inspect_alliance(
+                    action_id, actor, recipient, phase,
+                    frozenset({_NATIVE_FAVOR_GOLD_QUERY_CAPABILITY}))
+            elif favor_resource_query_scope:
+                native = self.session.inspect_alliance(
+                    action_id, actor, recipient, phase,
+                    frozenset({_FAVOR_RESOURCE_CAPABILITIES[action_id][0]}))
             elif vassalization_query_scope:
                 inspector = getattr(self.session, "inspect_vassalization", None)
                 if callable(inspector):
@@ -11082,6 +23311,58 @@ class DiplomacyTools:
                         native = {"error_code": "QUERY_NATIVE_DECLARE_WAR_CALL_UNKNOWN"}
                 else:
                     native = {"error_code": "NATIVE_DECLARE_WAR_QUERY_ADAPTER_UNAVAILABLE"}
+            elif peace_subject_query_scope:
+                inspector = getattr(self.session, "inspect_peace_subject_offer", None)
+                if callable(inspector):
+                    try:
+                        native = inspector(
+                            action_id, actor, recipient, phase,
+                            peace_subject_selection)
+                    except Exception:
+                        native = {"error_code":
+                                  "QUERY_NATIVE_PEACE_SUBJECT_CALL_UNKNOWN"}
+                else:
+                    native = {"error_code":
+                              "NATIVE_PEACE_SUBJECT_QUERY_ADAPTER_UNAVAILABLE"}
+            elif peace_core_query_scope:
+                inspector = getattr(self.session, "inspect_peace_core_offer", None)
+                if callable(inspector):
+                    try:
+                        native = inspector(
+                            action_id, actor, recipient, phase,
+                            peace_core_selection)
+                    except Exception:
+                        native = {"error_code":
+                                  "QUERY_NATIVE_PEACE_CORE_CALL_UNKNOWN"}
+                else:
+                    native = {"error_code":
+                              "NATIVE_PEACE_CORE_QUERY_ADAPTER_UNAVAILABLE"}
+            elif peace_trade_power_source_discovery_query_scope:
+                inspector = getattr(self.session, "inspect_peace_trade_power_offer", None)
+                if callable(inspector):
+                    try:
+                        native = inspector(
+                            action_id, actor, recipient, phase,
+                            peace_trade_power_source_discovery_selection)
+                    except Exception:
+                        native = {"error_code":
+                                  "QUERY_NATIVE_PEACE_TRADE_POWER_CALL_UNKNOWN"}
+                else:
+                    native = {"error_code":
+                              "NATIVE_PEACE_TRADE_POWER_QUERY_ADAPTER_UNAVAILABLE"}
+            elif peace_annul_treaties_discovery_query_scope:
+                inspector = getattr(self.session, "inspect_peace_annul_treaties_offer", None)
+                if callable(inspector):
+                    try:
+                        native = inspector(
+                            action_id, actor, recipient, phase,
+                            peace_annul_treaties_discovery_selection)
+                    except Exception:
+                        native = {"error_code":
+                                  "QUERY_NATIVE_PEACE_ANNUL_TREATIES_CALL_UNKNOWN"}
+                else:
+                    native = {"error_code":
+                              "NATIVE_PEACE_ANNUL_TREATIES_QUERY_ADAPTER_UNAVAILABLE"}
             elif peace_execution_query_scope:
                 inspector = getattr(self.session, "inspect_peace_execution", None)
                 if callable(inspector):
@@ -11139,9 +23420,53 @@ class DiplomacyTools:
             else:
                 native = self.session.inspect_alliance(action_id, actor, recipient, phase)
             if native is not None:
+                if isinstance(native, dict) and any(native.get(field) is not None for field in (
+                        "diplomat_context_readable", "diplomat_required", "available_diplomat_count")):
+                    try:
+                        diplomats = project_native_diplomat_context(native)
+                    except ValueError:
+                        inspection["legality"] = {"status": "unknown", "complete": False,
+                            "reasons": [reason("NATIVE_DIPLOMAT_CONTEXT_INVALID",
+                                "原生外交官需求或可用数量格式无效。", "runtime_error")]}
+                        return inspection
+                    if diplomats is not None:
+                        inspection.setdefault("resources", {})["diplomats"] = diplomats
+                # Every peace inspection path consumes the same semantic
+                # result from the session.  Attach the optional consequence
+                # preview once here instead of duplicating it in the 19
+                # family-specific projection branches below.
+                if (isinstance(native, dict)
+                        and "peace_consequences" in native):
+                    if not isinstance(native["peace_consequences"], dict):
+                        inspection["legality"] = {
+                            "status": "unknown", "reasons": [reason(
+                                "NATIVE_PEACE_CONSEQUENCES_INVALID",
+                                "原生议和后果预览不完整，不能安全公开。",
+                                "runtime_error")], "complete": False}
+                        return inspection
+                    inspection["peace_consequences"] = native[
+                        "peace_consequences"]
                 if peace_execution_query_scope:
                     return self._apply_peace_execution_inspection(
                         inspection, native, peace_execution_parameters)
+                if peace_subject_query_scope:
+                    return self._apply_peace_subject_query(
+                        inspection, native, parameters, peace_subject_selection)
+                if peace_core_query_scope:
+                    return self._apply_peace_core_query(
+                        inspection, native, parameters, peace_core_selection)
+                if peace_trade_power_source_discovery_query_scope:
+                    result = self._apply_peace_execution_inspection(
+                        inspection, native, parameters)
+                    result["interface_support"]["query"] = (
+                        "native_peace_trade_power_offer_inspection")
+                    return result
+                if peace_annul_treaties_discovery_query_scope:
+                    result = self._apply_peace_execution_inspection(
+                        inspection, native, parameters)
+                    result["interface_support"]["query"] = (
+                        "native_peace_annul_treaties_offer_inspection")
+                    return result
                 if peace_context_query_scope:
                     inspection["interface_support"]["query"] = (
                         "native_peace_context_inspection")
@@ -11797,6 +24122,34 @@ class DiplomacyTools:
                             "text_decoded": native.get("native_diagnostic_text_decoded") is True,
                             "text_encoding_verified": False,
                             "truncated": native.get("diagnostic_truncated") is True}
+                        if (action_id in (*_FAVOR_ACTIONS,
+                                          "curry_favors", "stop_curry_favors")
+                                and inspection["legality"]["status"] == "unavailable"
+                                and native["native_diagnostic_text"].strip()):
+                            preferred_codes = (
+                                "NATIVE_VALIDITY_FALSE",
+                                "NATIVE_COMMON_ACTION_GATE_FALSE",
+                                "NATIVE_INITIATION_GATE_FALSE",
+                            )
+                            reason_codes = {
+                                item.get("code") for item in
+                                inspection["legality"]["reasons"]
+                                if isinstance(item, dict)}
+                            preferred_code = next(
+                                (code for code in preferred_codes
+                                 if code in reason_codes), None)
+                            if preferred_code is not None:
+                                rewritten = False
+                                inspection["legality"]["reasons"] = [
+                                    ({**item, "text": native["native_diagnostic_text"]}
+                                     if (not rewritten
+                                         and item.get("code") == preferred_code
+                                         and (rewritten := True)) else item)
+                                    for item in inspection["legality"]["reasons"]]
+                                if preferred_code == "NATIVE_VALIDITY_FALSE":
+                                    inspection["legality"]["reasons"].sort(
+                                        key=lambda item: item.get("code")
+                                        != "NATIVE_VALIDITY_FALSE")
                     controlled = getattr(self.session, "record", {}).get("controlled_countries", ["FRA"])
                     if (native.get("diplomat_context_readable") is True
                             and isinstance(native.get("diplomat_required"), bool)
@@ -11878,6 +24231,44 @@ class DiplomacyTools:
                                 "guarantee_active": None,
                                 "complete": False,
                             }
+                    if curry_favors_query_scope:
+                        inspection["family"] = "curry_favors"
+                        active = native.get("task_active")
+                        verified = native.get("task_state_verified") is True
+                        if isinstance(active, bool) and verified:
+                            inspection["task_active"] = active
+                            inspection["task_state_verified"] = True
+                            inspection["relationship_state"] = {
+                                "task_active": active,
+                                "complete": True,
+                            }
+                            if (native.get("native_validity") is False
+                                    and active == (action_id == "curry_favors")):
+                                starts = action_id == "curry_favors"
+                                inspection["legality"]["reasons"].insert(0, reason(
+                                    "NATIVE_CURRY_TASK_ALREADY_ACTIVE" if starts
+                                    else "NATIVE_CURRY_TASK_NOT_ACTIVE",
+                                    f"{actor}正在向{recipient}获取人情，无法再次开始。" if starts
+                                    else f"{actor}当前没有向{recipient}获取人情的任务，无法停止。",
+                                    "native_rule", True))
+                        else:
+                            inspection["task_active"] = None
+                            inspection["task_state_verified"] = False
+                            inspection["relationship_state"] = {
+                                "task_active": None,
+                                "complete": False,
+                            }
+                        inspection["acceptance"] = {
+                            "applicability": "not_applicable",
+                            "prediction_available": False,
+                            "native_total": None,
+                            "unit": None,
+                            "scale_verified": False,
+                            "predicted_response": "not_applicable",
+                            "details_available": False,
+                            "items": [],
+                            "complete": True,
+                        }
                     if support_independence_query_scope:
                         relationship_state = native.get("relationship_state")
                         if (isinstance(relationship_state, dict)
@@ -11910,6 +24301,31 @@ class DiplomacyTools:
                                 "military_access_active": None,
                                 "complete": False,
                             }
+                    if favor_gold_query_scope:
+                        inspection["favor_trade"] = native.get("favor_trade")
+                        trade = native.get("favor_trade") or {}
+                        favors = trade.get("favors") or {}
+                        inspection["costs"] = {
+                            "status": "available" if favors.get("available") else "unknown",
+                            "items": [{"resource": "favors", "amount": favors.get("cost"),
+                                       "amount_raw": favors.get("cost_raw"), "scale": 1000,
+                                       "unit": "favors", "country": actor, "counterparty": recipient,
+                                       "source": "native_rule"}],
+                            "complete": favors.get("available") is True}
+                    if favor_resource_query_scope:
+                        inspection["favor_trade"] = native.get("favor_trade")
+                        trade = native.get("favor_trade") or {}
+                        favors = trade.get("favors") or {}
+                        inspection["costs"] = {
+                            "status": "available" if favors.get("available") else "unknown",
+                            "items": [{
+                                "resource": "favors", "amount": favors.get("cost"),
+                                "amount_raw": favors.get("cost_raw"), "scale": 1000,
+                                "unit": "favors", "country": actor,
+                                "counterparty": recipient, "source": "native_rule",
+                            }],
+                            "complete": favors.get("available") is True,
+                        }
                     if vassalization_query_scope:
                         for key in (
                                 "family", "vassal_active", "vassal_state_verified",
@@ -11964,13 +24380,22 @@ class DiplomacyTools:
                                 "full_rules_complete", "submitted",
                                 "selection_requested", "selection_matched",
                                 "selection_match_count", "requested_casus_belli",
-                                "requested_province_id", "requested_beneficiary"):
+                                "requested_province_id", "requested_beneficiary",
+                                "participants", "forces", "peace_term_rules"):
                             if key in native:
                                 inspection[key] = native[key]
                         selected_parameters = bool(parameters)
                         selection_matched = (
                             selected_parameters
                             and native.get("selection_matched") is True)
+                        if isinstance(native.get("declaration_details"), dict):
+                            inspection["declaration_details"] = {
+                                **native["declaration_details"],
+                                "context": ("selected_parameters" if selection_matched
+                                            else "requested_selection_unavailable"
+                                            if selected_parameters
+                                            else "default_parameters_unselected"),
+                            }
                         actual_parameters = None
                         if selection_matched:
                             actual_parameters = {
@@ -11981,6 +24406,14 @@ class DiplomacyTools:
                                 },
                                 "call_allies": [],
                             }
+                            public_participants = native.get("participants")
+                            if isinstance(public_participants, dict):
+                                public_selection = public_participants.get("selection")
+                                if isinstance(public_selection, dict):
+                                    for field in PARTICIPANT_FIELDS:
+                                        value = public_selection.get(field)
+                                        if isinstance(value, list):
+                                            actual_parameters[field] = list(value)
                         inspection["parameters"] = {
                             "requested": parameters,
                             "actual": actual_parameters,
@@ -12074,15 +24507,27 @@ class DiplomacyTools:
                                     "parameter_context_complete",
                                     "candidate_context_complete",
                                     "full_rules_complete"))
+                            participant_allowed = True
+                            if isinstance(public_participants, dict):
+                                public_selection = public_participants.get("selection")
+                                if (isinstance(public_selection, dict)
+                                        and any(public_selection.get(field)
+                                                for field in PARTICIPANT_FIELDS)):
+                                    participant_allowed = (
+                                        public_selection.get("allowed") is True)
+                            selected_rules = selected_rules and participant_allowed
                             inspection["legality"] = {
                                 "status": "available" if selected_rules else "unavailable",
                                 "reasons": [reason(
                                     "NATIVE_DECLARE_WAR_SELECTED_RULES_TRUE"
                                     if selected_rules
-                                    else "NATIVE_DECLARE_WAR_SELECTED_RULE_FALSE",
+                                    else "NATIVE_DECLARE_WAR_PARTICIPANT_SELECTION_FALSE"
+                                    if not participant_allowed else
+                                    "NATIVE_DECLARE_WAR_SELECTED_RULE_FALSE",
                                     "原生查询已按请求参数匹配宣战候选，并完成当前选定对象的规则检查。"
                                     if selected_rules else
-                                    "原生查询已匹配请求参数，但当前选定宣战对象的一个或多个原生规则检查返回false。",
+                                    (native.get("native_diagnostic_text") or
+                                     "原生查询已匹配请求参数，但当前选定宣战对象的一个或多个原生规则检查返回false。"),
                                     "native_rule", selected_rules)],
                                 "complete": selected_rules,
                             }
@@ -12432,6 +24877,7 @@ class DiplomacyTools:
         royal_native_capability = _NATIVE_ROYAL_MARRIAGE_SUBMISSION_CAPABILITY in native_capabilities
         improve_native_capability = _NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY in native_capabilities
         spy_network_native_capability = _NATIVE_SPY_NETWORK_SUBMISSION_CAPABILITY in native_capabilities
+        curry_favors_native_capability = _NATIVE_CURRY_FAVORS_SUBMISSION_CAPABILITY in native_capabilities
         guarantee_native_capability = _NATIVE_GUARANTEE_SUBMISSION_CAPABILITY in native_capabilities
         support_independence_native_capability = (
             _NATIVE_SUPPORT_INDEPENDENCE_SUBMISSION_CAPABILITY in native_capabilities)
@@ -12443,15 +24889,39 @@ class DiplomacyTools:
             _NATIVE_RIVAL_SUBMISSION_CAPABILITY in native_capabilities)
         vassalization_native_capability = (
             _NATIVE_VASSALIZATION_SUBMISSION_CAPABILITY in native_capabilities)
+        gift_native_capability = (
+            _NATIVE_GIFT_SUBMISSION_CAPABILITY in native_capabilities)
+        influence_native_capability = (
+            _NATIVE_INFLUENCE_SUBMISSION_CAPABILITY in native_capabilities)
         declare_war_native_capability = (
             _NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY in native_capabilities)
+        normalized_peace_terms = (
+            parameters.get("peace_context", {}).get("terms", [])
+            if isinstance(parameters, dict)
+            and isinstance(parameters.get("peace_context"), dict)
+            else [])
+        peace_has_core_terms = any(
+            isinstance(term, dict)
+            and term.get("action_id") in {"return_core", "revoke_core"}
+            for term in normalized_peace_terms)
+        peace_has_subject_terms = any(
+            isinstance(term, dict)
+            and term.get("action_id") in _PEACE_SUBJECT_ACTIONS
+            for term in normalized_peace_terms)
         peace_native_capability = (
-            _NATIVE_PEACE_SUBMISSION_CAPABILITY in native_capabilities)
+            _NATIVE_PEACE_SUBMISSION_CAPABILITY in native_capabilities
+            or (peace_has_core_terms
+                and _NATIVE_PEACE_CORE_TERMS_EXECUTION_CAPABILITY
+                in native_capabilities)
+            or (peace_has_subject_terms
+                and _NATIVE_PEACE_SUBJECT_TERMS_EXECUTION_CAPABILITY
+                in native_capabilities))
         inbound_response_capability_name = _inbound_response_capability(action_id)
         inbound_response_capability = inbound_response_capability_name in native_capabilities
         inbound_response_phase = (
             action_id in ("offer_alliance", "offer_royal_marriage", "support_independence",
-                          "ask_military_access", "offer_vassalization", "peace_offer")
+                          "ask_military_access", "offer_vassalization", *_FAVOR_ACTIONS,
+                          "peace_offer")
             and phase in ("accept", "reject"))
         if inbound_response_phase and inbound_response_capability:
             session_info = inspection.get("session", {}) if isinstance(inspection, dict) else {}
@@ -12485,6 +24955,9 @@ class DiplomacyTools:
         improve_scope = self._native_improve_scope(action_id, actor, phase) and improve_native_capability
         spy_network_scope = (self._native_spy_network_scope(action_id, actor, phase)
                              and spy_network_native_capability)
+        curry_favors_scope = (
+            self._native_curry_favors_scope(action_id, actor, phase)
+            and curry_favors_native_capability)
         guarantee_scope = (self._native_guarantee_scope(action_id, actor, phase)
                            and guarantee_native_capability)
         support_independence_scope = (
@@ -12499,6 +24972,18 @@ class DiplomacyTools:
         rival_scope = (
             self._native_rival_scope(action_id, actor, phase)
             and rival_native_capability)
+        favor_gold_scope = (action_id == _FAVOR_GOLD_ACTION and actor == "FRA"
+            and phase == "initiate" and _NATIVE_FAVOR_GOLD_SUBMISSION_CAPABILITY in native_capabilities)
+        favor_resource_scope = (
+            action_id in _FAVOR_RESOURCE_ACTIONS and actor == "FRA"
+            and phase == "initiate"
+            and _FAVOR_RESOURCE_CAPABILITIES[action_id][1] in native_capabilities)
+        gift_scope = (
+            action_id == _GIFT_ACTION and actor == "FRA"
+            and phase == "initiate" and gift_native_capability)
+        influence_scope = (
+            action_id == _INFLUENCE_ACTION and actor == "FRA"
+            and phase == "initiate" and influence_native_capability)
         vassalization_scope = (
             self._native_vassalization_scope(action_id, actor, phase)
             and vassalization_native_capability)
@@ -12510,8 +24995,11 @@ class DiplomacyTools:
             and phase == "initiate" and peace_native_capability)
         if ((self._native_offer_scope(action_id, actor, phase) and native_capability)
                 or dissolve_scope or royal_scope or improve_scope or spy_network_scope
+                or curry_favors_scope
                 or guarantee_scope or support_independence_scope or military_access_scope
                 or insult_scope or rival_scope or vassalization_scope
+                or favor_gold_scope or favor_resource_scope
+                or gift_scope or influence_scope
                 or declare_war_scope or peace_scope):
             session_info = inspection.get("session", {}) if isinstance(inspection, dict) else {}
             legality = inspection.get("legality", {}) if isinstance(inspection, dict) else {}
@@ -12528,6 +25016,18 @@ class DiplomacyTools:
                 result = self._execution_result(
                     inspection, "NATIVE_LEGALITY_UNAVAILABLE",
                     "执行前最新原生合法性不是available，未向游戏提交。")
+                result["legality_reasons"] = [dict(item) for item in
+                    legality.get("reasons", []) if isinstance(item, dict)]
+                diplomat_reason = next((item for item in result["legality_reasons"]
+                    if item.get("code") in ("NATIVE_DIPLOMAT_UNAVAILABLE",
+                                            "NATIVE_DIPLOMAT_CONTEXT_UNAVAILABLE")), None)
+                native_text = next((item.get("text") for item in
+                    result["legality_reasons"] if item.get("source") == "native_rule"
+                    and isinstance(item.get("text"), str) and item["text"]), None)
+                if native_text:
+                    result["reason"]["text"] = "游戏规则禁止本次操作：" + native_text
+                if diplomat_reason is not None:
+                    result["reason"] = dict(diplomat_reason)
                 self.journal.mark_invalidated(request_id, result,
                                               event_id="bridge-execution-legality-unavailable")
                 return self.get_diplomatic_result(request_id)

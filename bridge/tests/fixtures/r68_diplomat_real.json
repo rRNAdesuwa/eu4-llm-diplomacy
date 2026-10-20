@@ -1,0 +1,5181 @@
+{
+  "schema": "r68_diplomat_real_v1",
+  "capture": {
+    "status": "passed",
+    "runs": {
+      "occupy": {
+        "status": "passed",
+        "mlo_before": 1,
+        "mlo_after": 0
+      },
+      "zero": {
+        "status": "passed",
+        "available": 0,
+        "actions": 19,
+        "peace_queries": 2
+      },
+      "recall": {
+        "status": "passed",
+        "available": 0,
+        "stop_mlo": "executed"
+      }
+    },
+    "business_submission": true,
+    "real_game_replayed_by_tests": false
+  },
+  "expected": {
+    "date_raw": 56552592,
+    "actor": "FRA",
+    "mlo": {
+      "recipient": "MLO",
+      "available": 1,
+      "required": true,
+      "legality": "available"
+    },
+    "mor": {
+      "recipient": "MOR",
+      "available": 0,
+      "required": true,
+      "legality": "unavailable",
+      "reason_codes": [
+        "NATIVE_COMMON_ACTION_GATE_FALSE",
+        "NATIVE_INITIATION_GATE_FALSE",
+        "NATIVE_DIPLOMAT_UNAVAILABLE"
+      ]
+    },
+    "insult": {
+      "recipient": "MOR",
+      "insult_id": -1,
+      "raw_valid": true,
+      "available": 0,
+      "required": true,
+      "legality": "unavailable"
+    },
+    "declare": {
+      "recipient": "MOR",
+      "raw_valid": true,
+      "available": 0,
+      "required": true,
+      "selection": {
+        "casus_belli": "no_casus_belli",
+        "province_id": -1,
+        "beneficiary": "FRA"
+      },
+      "legality": "unavailable"
+    },
+    "peace": {
+      "recipient": "BUR",
+      "war_id": "war_629a4e22e454f188_00000001",
+      "direction": "demand",
+      "raw_context_valid": true,
+      "raw_selected_valid": true,
+      "available": 0,
+      "required": true,
+      "legality": "unavailable",
+      "evaluation_score_raw": -46
+    },
+    "recall": {
+      "recipient": "MLO",
+      "available": 0,
+      "required": false,
+      "legality": "available"
+    }
+  },
+  "sources": {
+    "diplomats_occupy": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-001/occupy/diplomats.json",
+      "bytes": 5022,
+      "sha256": "eaea104d59b0f34e2a3d076629a4933272d3fb82824bd0f23869cfec19f42c97",
+      "record_sha256": "d376c9ce31ded041b10542c37331fb0572b767fdc7842308004e8d04c35ab539"
+    },
+    "mlo_inspection": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-001/occupy/improve_MLO_before-inspection.json",
+      "bytes": 2817,
+      "sha256": "066a569aa5629718ea03279efb2648fc98441694bafca50f9d7c1fe4addc7708",
+      "record_sha256": "cc14181967bf9f1c766f9965c49b8599dea32c80559dde96e365ad44c57fb8d3"
+    },
+    "mlo_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-001/occupy/improve_MLO_before-native.jsonl",
+      "bytes": 1149,
+      "sha256": "a1d052a8fcfcdfc5ea1ea73a9636bb938cc492c8cf47e0fe1640933b6b6ff256",
+      "line": 1,
+      "line_bytes": 1148,
+      "line_sha256": "725d13e6ee5ca12a457384328fd580a849c709248cffa7dc38e919537d3dcb20",
+      "record_sha256": "da9bf3c8bff111d42c8de847e7e16c18268f312295d2e99f9b141fb1c0f54c5b"
+    },
+    "mor_inspection": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-001/occupy/improve_MOR_after-inspection.json",
+      "bytes": 3291,
+      "sha256": "a6a8a87c6787a2f039e63d132dedda237087680f011cc03b2ae8ae6fb1224e34",
+      "record_sha256": "6785b7856ecc3e7446e94fd2bf11cc175edaf9be836f31bc39ee19cfd430abbf"
+    },
+    "mor_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-001/occupy/improve_MOR_after-native.jsonl",
+      "bytes": 1235,
+      "sha256": "8c0bcb28846de66573552b71693311a2a1764ac11b21cf6849a68f40dfbd6316",
+      "line": 1,
+      "line_bytes": 1234,
+      "line_sha256": "64de2e996dd698cdeaaa4e8067f030b72e72cfa73f69a991a8847a9e4ba9dbdc",
+      "record_sha256": "dd51dfdff4f811441a318574f46fc129ac18b0bb03d06009543787bc8c94bdeb"
+    },
+    "mlo_result": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-001/occupy/start_improve_MLO-result.json",
+      "bytes": 1154,
+      "sha256": "ad5da260b8f7557ae8296950729fb3f0a25e2ff7e256fc05aab24dd264ec2760",
+      "record_sha256": "c57defd8711e8c3241d93fcfbb6b494ecb2ec99b25b11cd143512ed91d1279ba"
+    },
+    "insult_inspection": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/send_insult-inspection.json",
+      "bytes": 3878,
+      "sha256": "7483b5cf1fdf477587a836d978d3799df4fef6ad5d06ae1f63ccf8bd80c5f029",
+      "record_sha256": "0e0e69b765a4520025dc07af49580fde54b92712fa99d1f7fd1bec2180f8471c"
+    },
+    "insult_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/send_insult-native.jsonl",
+      "bytes": 1246,
+      "sha256": "a9de3295d845a03fe521a570cb9e3f43fffd6775a14e4e3a82e0499444b6ad2a",
+      "line": 1,
+      "line_bytes": 1245,
+      "line_sha256": "f8e0239f4f2ec784269e7d8639eb227815e9eccd686991df3e036991a39750c9",
+      "record_sha256": "7cdf66ac4a7b3b838a731d7c2782620a87161215359d338db4fb2e97d7cd5c8b"
+    },
+    "declare_inspection": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/declare_war-inspection.json",
+      "bytes": 24636,
+      "sha256": "9da5ab43b56d7a5ca555c8efc98a7154c2f7631a5b81b803ed5672068fb3aefe",
+      "record_sha256": "52d81009c255c03909ee809107ba2875b90055661fcc8664505abde76960e6ff"
+    },
+    "declare_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/declare_war-native.jsonl",
+      "bytes": 19546,
+      "sha256": "f68bcc417d735b6b2fd0bebc4f5b57023aa36317c0d131b04459874e30dd7054",
+      "line": 12,
+      "line_bytes": 6564,
+      "line_sha256": "91d5fdb7d476a3e4dc5e0f088d0aa0bb0ff783b6a21329a8d75e46275e5e17f1",
+      "record_sha256": "55b323ce4bb5c263e75d221464f4ede93aa6538f5d8bd16448c095de28c89290"
+    },
+    "peace_discovery_inspection": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/peace_discovery-inspection.json",
+      "bytes": 3009,
+      "sha256": "9aa3c5a1eb7f12fa67658bc6d5e4218d14eeceefd18d3f8743e1abf69b637667",
+      "record_sha256": "ece73d3dfa6043d08734bc5ea5bc668a65f53039ce1ceaebe82885efa7646636"
+    },
+    "peace_discovery_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/peace_discovery-native.jsonl",
+      "bytes": 1018,
+      "sha256": "d234ece067e76afb97b64b49c3e5ae98d5eb27391c2185497bcfe6796e22c89e",
+      "line": 2,
+      "line_bytes": 730,
+      "line_sha256": "3be6fb49d57c4497eab063a7a88e00409783d98d6ea9c6b51610cc0583d834e8",
+      "record_sha256": "bf791ae133a4b5bdf6eeb43f3c2283af86944633322eef213f1ea95b91827586"
+    },
+    "peace_selected_inspection": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/peace_selected-inspection.json",
+      "bytes": 17072,
+      "sha256": "d10d4b412abed2d2eff67e01dc6bcea4dbb8afe60112dc80ba71519c49223626",
+      "record_sha256": "3794404e937659680f52d4788a314133cd14f8d6b99e9cf8fd9ed03cb4095a11"
+    },
+    "peace_selected_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/peace_selected-native.jsonl",
+      "bytes": 91662,
+      "sha256": "99cf69b65f6fec886daa83c401953ba67ed0dfb2c6eb04c6dd5c92813d1f3d6a",
+      "line": 178,
+      "line_bytes": 6283,
+      "line_sha256": "1bbc650db083767fcc91374395ec6c76ab986a7d7ae761528a45f1b44fb25a16",
+      "record_sha256": "48042ddbd4808a57a3ce005a6e674918f35996fa112b9718e34de63ee984a174"
+    },
+    "blocked_insult_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_insult-fresh-native.jsonl",
+      "bytes": 413,
+      "sha256": "673fca4d618b06c84bedb9ad770f9aba203ab785b9f4b2f0a96c3eaa528a6a38",
+      "line": 1,
+      "line_bytes": 412,
+      "line_sha256": "b33517bd9445232c2a2b0dc578f4851423ea4ddfdaa5ce88fc1f4ca72ff8d0b8",
+      "record_sha256": "7b7390c0a385a7503f7633f04d861ec89f9e33395367036ba70e9386c5d09abd"
+    },
+    "blocked_insult_public": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_insult-fresh-native.json",
+      "bytes": 422,
+      "sha256": "de5b23a427b3931ee0d6e01ccdb3e70d3f1b870fdad24187f501e06dc74fdc7b",
+      "record_sha256": "52e8139a54df6e8af82621c66bc43f3d954b9891bdde6f13dcc418865780dc1c"
+    },
+    "blocked_insult_result": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_insult-result.json",
+      "bytes": 5882,
+      "sha256": "45cbf38c5df5e047b349d23ac1fc32704a9b3ce021cbea86151d4a0d49effbc5",
+      "record_sha256": "29ab83f904b4bfae99afc5b1ebff182b53f0e09eede9347b82bcc046e1297fcc"
+    },
+    "blocked_declare_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_declare-fresh-native.jsonl",
+      "bytes": 2650,
+      "sha256": "c4f17665649b15312d1684f518992126919c34e3f65945019025d393c966aa2a",
+      "line": 2,
+      "line_bytes": 413,
+      "line_sha256": "d91d5bbf709ff109768ac73d99caba506dcafe3dbdad3c52fb3e5e4d689115fe",
+      "record_sha256": "00b59ef03c25e8618fb73e40917b2ec6df4ab9d6fb38a701fdc289a0e094942c"
+    },
+    "blocked_declare_public": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_declare-fresh-native.json",
+      "bytes": 422,
+      "sha256": "de5b23a427b3931ee0d6e01ccdb3e70d3f1b870fdad24187f501e06dc74fdc7b",
+      "record_sha256": "52e8139a54df6e8af82621c66bc43f3d954b9891bdde6f13dcc418865780dc1c"
+    },
+    "blocked_declare_result": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_declare-result.json",
+      "bytes": 29458,
+      "sha256": "816290dc67c1007c8f4f0dbcf7e19ae9014a01465d039a356254301a26599246",
+      "record_sha256": "5d0e082d12cc533619ec6bba9e80592e76707933b3293266f782fd943d436025"
+    },
+    "blocked_peace_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_peace-fresh-native.jsonl",
+      "bytes": 605,
+      "sha256": "6f9223cef67564d3afb6e8cf91b0409a9d818a74d9a80abc03b8509c6dc8339a",
+      "line": 1,
+      "line_bytes": 604,
+      "line_sha256": "c35f6ea601409d50dffdf5a99e7e592d5a59f4219408849a8e5926ef32aab8bc",
+      "record_sha256": "508c8b97ad6fbf9d7fa21a23cbd7444af07534d889a3c5150c53afaeddfb8160"
+    },
+    "blocked_peace_public": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_peace-fresh-native.json",
+      "bytes": 611,
+      "sha256": "92eda230ba32506267955066d987251d1c1534039791650d2f5d5857c1f5d701",
+      "record_sha256": "09d724b9cab82867f34b78a747136cd7bcc8277d06fa10004eb9f37eefddb3aa"
+    },
+    "blocked_peace_result": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/zero/blocked_peace-result.json",
+      "bytes": 21083,
+      "sha256": "1a3f795976b288da9d8bc8e5a96315a66c1998ba93381a60e9789eec4477d837",
+      "record_sha256": "a4ad9e8d86d77dd90785a386bc614157f4310fae8033286546e2661f34fa14e4"
+    },
+    "diplomats_recall": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/recall/diplomats.json",
+      "bytes": 5022,
+      "sha256": "edf605888ac083a3093207a83f532b5fae147cb8ba5910d8a9bcdd9c3bbd1675",
+      "record_sha256": "8481423aaf72642973a3b7167b4f2b3a43732b94af9f8a462692f50e88ad997a"
+    },
+    "stop_inspection": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/recall/stop_MLO_before-inspection.json",
+      "bytes": 3145,
+      "sha256": "cb2da9930bca0dc20c438923a3a541792d7a7c0871c1a6161745d1fa092e910f",
+      "record_sha256": "d2564f61d4ee548bcb26ce160d9140768b234e760dc66d01835b4dcca9ee1536"
+    },
+    "stop_native": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/recall/stop_MLO_before-native.jsonl",
+      "bytes": 1960,
+      "sha256": "6d0a97fc8730d0d357588fda9d8947cd14babf628ce1b4ca67cefb58d998b55d",
+      "line": 1,
+      "line_bytes": 1726,
+      "line_sha256": "fc3c940e08d27e3593ed34b4ba1ebc0fe803ba8dde117ab3630c390668a49f67",
+      "record_sha256": "749459fc16b45eb99bd2908316bebb24e8d50be07a1c71e1db9cd7e0148286dc"
+    },
+    "stop_result": {
+      "path": "work/runtime/r68-diplomat-batch-20261019-002/recall/stop_improve_MLO-result.json",
+      "bytes": 1166,
+      "sha256": "532eab94420cca63accff6b1efe808b6dab4ca6414561959920ac949afc15b4e",
+      "record_sha256": "9000a3a82b66e2683faf85af689751d4090cf35d99851cea16275bc2784e125d"
+    }
+  },
+  "records": {
+    "diplomats_occupy": {
+      "pid": 30164,
+      "read_only": true,
+      "player_slot": 189,
+      "current_raw_date": 56552592,
+      "countries": [
+        {
+          "slot": 122,
+          "tag": "FRA",
+          "handle": "0x100007a00415246",
+          "last_sent_raw": 56552592,
+          "ai_queue_count_raw": 0,
+          "ai_queue": [],
+          "diplomacy_entries": [
+            {
+              "pointer": "0x1f7cc560460",
+              "raw_id_44": 0,
+              "active_raw_18": 2,
+              "record": "0x1f7bce6b780",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100007a00415246",
+              "raw_recipient_88": "0x100007500525542",
+              "raw_action_type_a8": 13176,
+              "raw_20": 56459016,
+              "raw_24": 56459064,
+              "raw_2c": 2
+            },
+            {
+              "pointer": "0x1f7cc560780",
+              "raw_id_44": 1,
+              "active_raw_18": 2,
+              "record": "0x1f7bce6b580",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100007a00415246",
+              "raw_recipient_88": "0x100007e004c524f",
+              "raw_action_type_a8": 10559,
+              "raw_20": 56539128,
+              "raw_24": 56539152,
+              "raw_2c": 1
+            },
+            {
+              "pointer": "0x1f7cc561090",
+              "raw_id_44": 2,
+              "active_raw_18": 1,
+              "record": "0x1f7bce68180",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100007a00415246",
+              "raw_recipient_88": "0x100007500525542",
+              "raw_action_type_a8": 10556,
+              "raw_20": 56552592,
+              "raw_24": 56552640,
+              "raw_2c": 2
+            },
+            {
+              "pointer": "0x1f7cc5612c0",
+              "raw_id_44": 3,
+              "active_raw_18": 2,
+              "record": "0x1f82b729fb0",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100007a00415246",
+              "raw_recipient_88": "0x10000cb004f4c4d",
+              "raw_action_type_a8": 11739,
+              "raw_20": 56552592,
+              "raw_24": 56552736,
+              "raw_2c": 6
+            }
+          ],
+          "ai_queue_truncated": false,
+          "diplomacy_control_raw_14": 3,
+          "available_diplomat_count": 0
+        },
+        {
+          "slot": 46,
+          "tag": "ENG",
+          "handle": "0x100002e00474e45",
+          "last_sent_raw": 56551344,
+          "ai_queue_count_raw": 0,
+          "ai_queue": [],
+          "diplomacy_entries": [
+            {
+              "pointer": "0x1f7cc56dcf0",
+              "raw_id_44": 0,
+              "active_raw_18": 2,
+              "record": "0x1f7bce75f80",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100002e00474e45",
+              "raw_recipient_88": "0x10000c8004e4547",
+              "raw_action_type_a8": 11739,
+              "raw_20": 56551944,
+              "raw_24": 56552184,
+              "raw_2c": 10
+            },
+            {
+              "pointer": "0x1f7cc56cd00",
+              "raw_id_44": 1,
+              "active_raw_18": 0,
+              "record": "0x0"
+            },
+            {
+              "pointer": "0x1f7cc56d7a0",
+              "raw_id_44": 2,
+              "active_raw_18": 2,
+              "record": "0x1f7bce71980",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100002e00474e45",
+              "raw_recipient_88": "0x100000400455753",
+              "raw_action_type_a8": 11739,
+              "raw_20": 56550864,
+              "raw_24": 56551248,
+              "raw_2c": 16
+            },
+            {
+              "pointer": "0x1f7cc56d020",
+              "raw_id_44": 3,
+              "active_raw_18": 0,
+              "record": "0x0"
+            }
+          ],
+          "ai_queue_truncated": false,
+          "diplomacy_control_raw_14": 3,
+          "available_diplomat_count": 2
+        },
+        {
+          "slot": 189,
+          "tag": "POR",
+          "handle": "0x10000bd00524f50",
+          "last_sent_raw": 43808760,
+          "ai_queue_count_raw": 0,
+          "ai_queue": [],
+          "diplomacy_entries": [
+            {
+              "pointer": "0x1f7cc9eb1d0",
+              "raw_id_44": 0,
+              "active_raw_18": 2,
+              "record": "0x1f7bcb80580",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x10000bd00524f50",
+              "raw_recipient_88": "0x100013000524f4d",
+              "raw_action_type_a8": 13176,
+              "raw_20": 56457024,
+              "raw_24": 56457144,
+              "raw_2c": 5
+            },
+            {
+              "pointer": "0x1f7cc9eb2c0",
+              "raw_id_44": 1,
+              "active_raw_18": 0,
+              "record": "0x0"
+            },
+            {
+              "pointer": "0x1f7cc9eab90",
+              "raw_id_44": 2,
+              "active_raw_18": 2,
+              "record": "0x1f7bf878670",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x10000bd00524f50",
+              "raw_recipient_88": "0x10000b900534143",
+              "raw_action_type_a8": 11739,
+              "raw_20": 56461080,
+              "raw_24": 56461176,
+              "raw_2c": 4
+            }
+          ],
+          "ai_queue_truncated": false,
+          "diplomacy_control_raw_14": 3,
+          "available_diplomat_count": 1
+        }
+      ],
+      "native_methods_invoked": false
+    },
+    "mlo_inspection": {
+      "acceptance": {
+        "applicability": "not_applicable",
+        "complete": true,
+        "details_available": false,
+        "items": [],
+        "native_total": null,
+        "predicted_response": "not_applicable",
+        "prediction_available": false,
+        "scale_verified": false,
+        "unit": null
+      },
+      "action_id": "improve_relations",
+      "actor": "FRA",
+      "authorization": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+            "complete": true,
+            "source": "installation_capability",
+            "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+          }
+        ],
+        "status": "available"
+      },
+      "contract_version": 1,
+      "costs": {
+        "complete": false,
+        "items": [],
+        "status": "unknown"
+      },
+      "decision_country": null,
+      "decision_country_verified": false,
+      "interface_support": {
+        "complete": false,
+        "execute": "native_improve_relations_submission",
+        "query": "partial_native_rules"
+      },
+      "legality": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_INITIATION_RULES_TRUE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "原生外交列表选择、按钮发起条件及执行有效性检查均通过。"
+          }
+        ],
+        "status": "available"
+      },
+      "native_diagnostic": {
+        "complete": false,
+        "source": "native_rule",
+        "text": "改善你与这个国家的关系。",
+        "text_decoded": true,
+        "text_encoding_verified": false,
+        "truncated": false
+      },
+      "native_identifier": "improve_relations",
+      "native_rule_components": {
+        "common_action_gate": true,
+        "complete": true,
+        "executor_validity": true,
+        "full_rules_complete": true,
+        "initiation_gate": true,
+        "native_visibility": true,
+        "specific_validity_query_called": true,
+        "tooltip_gate": true,
+        "ui_action_selection": true,
+        "ui_enabled_gate_checked": true,
+        "ui_enabled_gate_verified": true,
+        "ui_selection_checked": true
+      },
+      "parameters": {
+        "actual": null,
+        "candidates": null,
+        "complete": false,
+        "requested": {}
+      },
+      "phase": "initiate",
+      "recipient": "MLO",
+      "requested_decision_country": "FRA",
+      "resources": {
+        "diplomats": {
+          "allocation_verified": false,
+          "availability_verified": true,
+          "available_count": 1,
+          "complete": false,
+          "native_requirement": true,
+          "source": "native_rule"
+        }
+      },
+      "session": {
+        "complete": true,
+        "date_raw": 56552592,
+        "reasons": [],
+        "state_id": "52cb1f2e5e397e72497f1be8e491eec6d3ce6708973528aa3c990eb7f7d91f72",
+        "status": "ready"
+      },
+      "visibility": {
+        "complete": true,
+        "status": "visible"
+      }
+    },
+    "mlo_native": {
+      "event": "native_alliance_inspection",
+      "session_id": "30164-1dd5fd60fd78212",
+      "query_id": "inspect_8bdda9dc51724ac786dec4ba258ee4fc",
+      "action_id": "improve_relations",
+      "family": "improve_relations",
+      "actor": "FRA",
+      "recipient": "MLO",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "ui_selection_checked": true,
+      "native_visibility": true,
+      "ui_enabled_gate_checked": true,
+      "common_action_gate": true,
+      "display_predicate": true,
+      "initiation_gate": true,
+      "tooltip_gate": true,
+      "validity_called": true,
+      "native_validity": true,
+      "native_diagnostic_hex": "10396510845510604f100e4e10d98f102a4e10fd5612b65210847610735110fb7c100230",
+      "diagnostic_readable": true,
+      "diagnostic_truncated": false,
+      "diplomat_context_readable": true,
+      "diplomat_required": true,
+      "available_diplomat_count": 1,
+      "diplomat_assignment_verified": false,
+      "task_active": false,
+      "task_state_verified": true,
+      "score_applicable": false,
+      "score_available": false,
+      "acceptance_predicate_available": false,
+      "native_would_accept": false,
+      "native_total_raw": 0,
+      "acceptance_threshold_raw": 1,
+      "reason_container_readable": false,
+      "reason_count": 0,
+      "reason_items_decoded": false,
+      "full_rules_complete": true,
+      "reasons_complete": false,
+      "submitted": false,
+      "frame_thread": 14856
+    },
+    "mor_inspection": {
+      "acceptance": {
+        "applicability": "not_applicable",
+        "complete": true,
+        "details_available": false,
+        "items": [],
+        "native_total": null,
+        "predicted_response": "not_applicable",
+        "prediction_available": false,
+        "scale_verified": false,
+        "unit": null
+      },
+      "action_id": "improve_relations",
+      "actor": "FRA",
+      "authorization": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+            "complete": true,
+            "source": "installation_capability",
+            "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+          }
+        ],
+        "status": "available"
+      },
+      "contract_version": 1,
+      "costs": {
+        "complete": false,
+        "items": [],
+        "status": "unknown"
+      },
+      "decision_country": null,
+      "decision_country_verified": false,
+      "interface_support": {
+        "complete": false,
+        "execute": "native_improve_relations_submission",
+        "query": "partial_native_rules"
+      },
+      "legality": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+          },
+          {
+            "code": "NATIVE_INITIATION_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "原生发起时序或待处理请求检查返回false。"
+          },
+          {
+            "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+          }
+        ],
+        "status": "unavailable"
+      },
+      "native_diagnostic": {
+        "complete": false,
+        "source": "native_rule",
+        "text": "§R- 你没有外交官可供派遣。§!\n\n改善你与这个国家的关系。",
+        "text_decoded": true,
+        "text_encoding_verified": false,
+        "truncated": false
+      },
+      "native_identifier": "improve_relations",
+      "native_rule_components": {
+        "common_action_gate": false,
+        "complete": true,
+        "executor_validity": true,
+        "full_rules_complete": true,
+        "initiation_gate": false,
+        "native_visibility": true,
+        "specific_validity_query_called": true,
+        "tooltip_gate": false,
+        "ui_action_selection": true,
+        "ui_enabled_gate_checked": true,
+        "ui_enabled_gate_verified": true,
+        "ui_selection_checked": true
+      },
+      "parameters": {
+        "actual": null,
+        "candidates": null,
+        "complete": false,
+        "requested": {}
+      },
+      "phase": "initiate",
+      "recipient": "MOR",
+      "requested_decision_country": "FRA",
+      "resources": {
+        "diplomats": {
+          "allocation_verified": false,
+          "availability_verified": true,
+          "available_count": 0,
+          "complete": false,
+          "native_requirement": true,
+          "source": "native_rule"
+        }
+      },
+      "session": {
+        "complete": true,
+        "date_raw": 56552592,
+        "reasons": [],
+        "state_id": "52cb1f2e5e397e72497f1be8e491eec6d3ce6708973528aa3c990eb7f7d91f72",
+        "status": "ready"
+      },
+      "visibility": {
+        "complete": true,
+        "status": "visible"
+      }
+    },
+    "mor_native": {
+      "event": "native_alliance_inspection",
+      "session_id": "30164-1dd5fd60fd78212",
+      "query_id": "inspect_3f1e002b93c143fc9eb36b3384bafd21",
+      "action_id": "improve_relations",
+      "family": "improve_relations",
+      "actor": "FRA",
+      "recipient": "MOR",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "ui_selection_checked": true,
+      "native_visibility": true,
+      "ui_enabled_gate_checked": true,
+      "common_action_gate": false,
+      "display_predicate": false,
+      "initiation_gate": false,
+      "tooltip_gate": false,
+      "validity_called": true,
+      "native_validity": true,
+      "native_diagnostic_hex": "a7522d2010604f10a16c10096710165911b24e12985210ef53109b4f103e6d106390100230a7210a0a10396510845510604f100e4e10d98f102a4e10fd5612b65210847610735110fb7c100230",
+      "diagnostic_readable": true,
+      "diagnostic_truncated": false,
+      "diplomat_context_readable": true,
+      "diplomat_required": true,
+      "available_diplomat_count": 0,
+      "diplomat_assignment_verified": false,
+      "task_active": false,
+      "task_state_verified": true,
+      "score_applicable": false,
+      "score_available": false,
+      "acceptance_predicate_available": false,
+      "native_would_accept": false,
+      "native_total_raw": 0,
+      "acceptance_threshold_raw": 1,
+      "reason_container_readable": false,
+      "reason_count": 0,
+      "reason_items_decoded": false,
+      "full_rules_complete": true,
+      "reasons_complete": false,
+      "submitted": false,
+      "frame_thread": 14856
+    },
+    "mlo_result": {
+      "action_id": "improve_relations",
+      "contract_version": 1,
+      "evidence": [
+        {
+          "layer": "native_submit",
+          "sha256": "e990194c6cc2e74d0313b8c0f9f76ed1fb05505ecbeac7d6f7ce8d29bd2cadcf",
+          "type": "native_submission"
+        },
+        {
+          "layer": "native_consequence",
+          "sha256": "0a0f917e996654252174a719f5df519df53aebc061e1a636ef495b0f89e46b50",
+          "type": "native_execution_consequence"
+        }
+      ],
+      "game_outcome": "executed",
+      "request_id": "r68_start_improve_MLO_001",
+      "result": {
+        "action_id": "improve_relations",
+        "actor": "FRA",
+        "date_raw": 56552592,
+        "event": "native_diplomacy_task_execution_result",
+        "execution_verified": true,
+        "family": "improve_relations",
+        "native_outcome": "executed",
+        "native_state": 0,
+        "native_variant": 1,
+        "outcome": "executed",
+        "phase": "initiate",
+        "recipient": "MLO",
+        "request_binding_verified": true,
+        "request_id": "r68_start_improve_MLO_001",
+        "task_after": true,
+        "task_before": false
+      },
+      "status": "executed",
+      "submitted": true,
+      "updated_at": "2026-10-19T14:33:19.749601+00:00"
+    },
+    "insult_inspection": {
+      "acceptance": {
+        "applicability": "not_applicable",
+        "complete": true,
+        "details_available": false,
+        "items": [],
+        "native_total": null,
+        "predicted_response": "not_applicable",
+        "prediction_available": false,
+        "scale_verified": false,
+        "unit": null
+      },
+      "action_id": "send_insult",
+      "actor": "FRA",
+      "actor_prestige_raw": -11892,
+      "authorization": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_INSULT_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+            "complete": true,
+            "source": "installation_capability",
+            "text": "安装确认允许桥接提交法国发起的侮辱操作。"
+          }
+        ],
+        "status": "available"
+      },
+      "candidate_count": 0,
+      "candidates_available": false,
+      "candidates_complete": false,
+      "contract_version": 1,
+      "costs": {
+        "complete": false,
+        "coverage": {
+          "additional_costs": "unknown",
+          "complete": false,
+          "known_items": 1,
+          "source": "native_rule_and_save_effect",
+          "status": "partial"
+        },
+        "items": [
+          {
+            "amount": 0,
+            "amount_raw": 0,
+            "complete": true,
+            "resource": "prestige",
+            "scale": 1000,
+            "scale_verified": true,
+            "source": "native_rule_and_save_effect",
+            "unit": "prestige",
+            "unit_verified": true
+          }
+        ],
+        "status": "available"
+      },
+      "decision_country": null,
+      "decision_country_verified": false,
+      "family": "insult",
+      "insult_active": false,
+      "insult_id": -1,
+      "insult_parameter_selected": true,
+      "insult_state_verified": true,
+      "interface_support": {
+        "complete": false,
+        "execute": "native_insult_submission",
+        "query": "partial_native_rules"
+      },
+      "legality": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+          },
+          {
+            "code": "NATIVE_INITIATION_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "原生发起时序或待处理请求检查返回false。"
+          },
+          {
+            "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+          }
+        ],
+        "status": "unavailable"
+      },
+      "native_identifier": "insult",
+      "native_rule_components": {
+        "common_action_gate": false,
+        "complete": true,
+        "executor_validity": true,
+        "full_rules_complete": true,
+        "initiation_gate": false,
+        "native_visibility": true,
+        "specific_validity_query_called": true,
+        "tooltip_gate": null,
+        "ui_action_selection": true,
+        "ui_enabled_gate_checked": true,
+        "ui_enabled_gate_verified": true,
+        "ui_selection_checked": true
+      },
+      "opinion_modifier_raw": 0,
+      "parameters": {
+        "actual": {
+          "insult_id": -1
+        },
+        "candidates": {
+          "complete": false,
+          "insult_id": [],
+          "items": []
+        },
+        "complete": true,
+        "requested": {}
+      },
+      "phase": "initiate",
+      "prestige_cost_raw": 0,
+      "recipient": "MOR",
+      "requested_decision_country": "FRA",
+      "resources": {
+        "diplomats": {
+          "allocation_verified": false,
+          "availability_verified": true,
+          "available_count": 0,
+          "complete": false,
+          "native_requirement": true,
+          "source": "native_rule"
+        }
+      },
+      "session": {
+        "complete": true,
+        "date_raw": 56552592,
+        "reasons": [],
+        "state_id": "349623bba460d5c43ee03f0461c9ae05cb98791bbd2c1e28f4ea7459f805f288",
+        "status": "ready"
+      },
+      "visibility": {
+        "complete": true,
+        "status": "visible"
+      }
+    },
+    "insult_native": {
+      "event": "native_alliance_inspection",
+      "session_id": "16300-1dd5fd738460ece",
+      "query_id": "inspect_9174609d36f64152bd17c705ee357db4",
+      "action_id": "send_insult",
+      "family": "insult",
+      "actor": "FRA",
+      "recipient": "MOR",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "insult_id": -1,
+      "insult_parameter_selected": true,
+      "ui_selection_checked": true,
+      "native_visibility": true,
+      "ui_enabled_gate_checked": true,
+      "common_action_gate": false,
+      "display_predicate": false,
+      "initiation_gate": false,
+      "validity_called": true,
+      "native_validity": true,
+      "native_diagnostic_hex": "",
+      "diagnostic_readable": true,
+      "diagnostic_truncated": false,
+      "diplomat_context_readable": true,
+      "diplomat_required": true,
+      "available_diplomat_count": 0,
+      "diplomat_assignment_verified": false,
+      "insult_state_verified": true,
+      "insult_active": false,
+      "opinion_modifier_raw": 0,
+      "actor_prestige_raw": -11892,
+      "prestige_cost_raw": 0,
+      "candidates_available": false,
+      "candidate_count": 0,
+      "candidates_complete": false,
+      "score_applicable": false,
+      "score_available": false,
+      "acceptance_predicate_available": false,
+      "native_would_accept": false,
+      "native_total_raw": 0,
+      "acceptance_threshold_raw": 1,
+      "reason_container_readable": false,
+      "reason_count": 0,
+      "reason_items_decoded": false,
+      "full_rules_complete": true,
+      "reasons_complete": false,
+      "submitted": false,
+      "frame_thread": 9680
+    },
+    "declare_inspection": {
+      "acceptance": {
+        "applicability": "not_applicable",
+        "complete": true,
+        "details_available": false,
+        "items": [],
+        "native_total": null,
+        "predicted_response": "not_applicable",
+        "prediction_available": false,
+        "scale_verified": false,
+        "unit": null
+      },
+      "action_id": "declare_war",
+      "actor": "FRA",
+      "authorization": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+            "complete": true,
+            "source": "installation_capability",
+            "text": "安装确认允许桥接提交法国发起的宣战操作；本次参数和原生合法性仍需单独决定。"
+          }
+        ],
+        "status": "available"
+      },
+      "candidate_capture_truncated": false,
+      "candidate_cleanup_verified": true,
+      "candidate_context_complete": true,
+      "candidate_enumeration": {
+        "called": true,
+        "capture_truncated": false,
+        "captured_count": 0,
+        "cleanup_verified": true,
+        "complete": true,
+        "native_count": 0,
+        "query_complete": true
+      },
+      "candidate_enumeration_called": true,
+      "candidate_enumeration_complete": true,
+      "candidate_native_count": 0,
+      "candidates": [],
+      "contract_version": 1,
+      "costs": {
+        "complete": false,
+        "context": "selected_parameters",
+        "coverage": {
+          "additional_costs": "unknown",
+          "complete": false,
+          "known_items": 2,
+          "source": "native_rule",
+          "status": "partial"
+        },
+        "items": [
+          {
+            "amount": 2.0,
+            "amount_raw": 2000,
+            "complete": true,
+            "native_raw": 2000,
+            "resource": "stability_loss",
+            "scale": 1000,
+            "scale_verified": true,
+            "source": "native_rule",
+            "unit": "stability_loss",
+            "unit_verified": true
+          },
+          {
+            "amount": 2.0,
+            "amount_raw": 2000,
+            "complete": true,
+            "native_raw": 2000,
+            "resource": "war_exhaustion",
+            "scale": 1000,
+            "scale_verified": true,
+            "source": "native_rule",
+            "unit": "war_exhaustion",
+            "unit_verified": true
+          }
+        ],
+        "native_text": "§R-2: §!无宣战理由\n\n厌战度：+§R2§!\n这将导致§Y法兰西§!受到总计§Y167§!个国家的§R0§! ~ §R21§!点侵略扩张关系惩罚。",
+        "native_text_decoded": true,
+        "native_text_truncated": false,
+        "raw_components": {
+          "native_text": "§R-2: §!无宣战理由\n\n厌战度：+§R2§!\n这将导致§Y法兰西§!受到总计§Y167§!个国家的§R0§! ~ §R21§!点侵略扩张关系惩罚。",
+          "primary_available": true,
+          "primary_raw": 20000,
+          "secondary_available": true,
+          "secondary_raw": 21550,
+          "stability_available": true,
+          "stability_hit_raw": 2000,
+          "stability_scale": 1000,
+          "text_decoded": true,
+          "text_readable": true,
+          "text_truncated": false,
+          "warex_available": true,
+          "warex_display_raw": 2000
+        },
+        "status": "partial"
+      },
+      "decision_country": null,
+      "decision_country_verified": false,
+      "declaration_details": {
+        "casus_belli": {
+          "complete": true,
+          "description": "我们没有合法的战争理由。",
+          "name": "无宣战理由"
+        },
+        "complete": true,
+        "context": "selected_parameters",
+        "description": "§Y你有海军未归港§!\n\n宣战理由: §Y无宣战理由§W\n我们没有合法的战争理由。\n\n§Y对稳定的影响：§!\n§R-2: §!无宣战理由\n\n\n厌战度：+§R2§!\n@MOR 摩洛哥和 @TUN 突尼斯结盟。 @MOR 摩洛哥统治着@TFL 塔菲拉勒特, @SOS 苏斯与@MRK 马拉喀什，该国将会援助他们。 \n\n",
+        "description_complete": true,
+        "peace_conditions": {
+          "complete": true,
+          "disabled_terms_description": ""
+        },
+        "source": "native_declare_war_dialog",
+        "war_goal": {
+          "applicable": false,
+          "complete": true,
+          "description": null,
+          "name": null
+        }
+      },
+      "family": "declare_war",
+      "forces": {
+        "attackers": {
+          "countries": [
+            "AMG",
+            "AUV",
+            "BOU",
+            "FOI",
+            "FRA",
+            "ORL"
+          ],
+          "deployed": {
+            "artillery": 0,
+            "cavalry": 14212,
+            "complete": true,
+            "infantry": 45308,
+            "total": 59520,
+            "unit": "men"
+          },
+          "reserve_manpower": {
+            "amount": 128194,
+            "complete": true,
+            "unit": "men"
+          },
+          "scope_complete": true
+        },
+        "complete": true,
+        "defenders": {
+          "countries": [
+            "GHD",
+            "MOR",
+            "MRK",
+            "SOS",
+            "TFL",
+            "TUN"
+          ],
+          "deployed": {
+            "artillery": 0,
+            "cavalry": 10364,
+            "complete": true,
+            "infantry": 49854,
+            "total": 60218,
+            "unit": "men"
+          },
+          "reserve_manpower": {
+            "amount": 114380,
+            "complete": true,
+            "unit": "men"
+          },
+          "scope_complete": true
+        },
+        "source": "native_declare_war_dialog"
+      },
+      "full_rules_complete": true,
+      "initiation_gate_checked": true,
+      "interface_support": {
+        "complete": false,
+        "execute": "native_declare_war_submission",
+        "query": "partial_native_rules"
+      },
+      "legality": {
+        "complete": false,
+        "reasons": [
+          {
+            "code": "NATIVE_DECLARE_WAR_SELECTED_RULE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "§R- 你没有外交官可供派遣。§!\n\n与一个国家开战时你可以移动你的部队进入其领土，通过占领对方的省份，提出苛刻的和平协议以获取敌人的省份。但除非你拥有宣战理由，否则无故宣战将极大地降低你的稳定度。"
+          },
+          {
+            "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+          }
+        ],
+        "status": "unavailable"
+      },
+      "native_default_payload": true,
+      "native_diagnostic": {
+        "complete": false,
+        "source": "native_rule",
+        "text": "§R- 你没有外交官可供派遣。§!\n\n与一个国家开战时你可以移动你的部队进入其领土，通过占领对方的省份，提出苛刻的和平协议以获取敌人的省份。但除非你拥有宣战理由，否则无故宣战将极大地降低你的稳定度。",
+        "text_decoded": true,
+        "text_encoding_verified": false,
+        "truncated": false
+      },
+      "native_identifier": "declare_war",
+      "native_rule_components": {
+        "candidate_capture_truncated": false,
+        "candidate_cleanup_verified": true,
+        "candidate_context_complete": true,
+        "candidate_enumeration_called": true,
+        "candidate_enumeration_complete": true,
+        "candidate_native_count": 0,
+        "common_action_gate": false,
+        "complete": false,
+        "full_rules_complete": true,
+        "initiation_gate": true,
+        "initiation_gate_checked": true,
+        "native_default_payload": true,
+        "native_validity": true,
+        "native_visibility": true,
+        "parameter_context_complete": true,
+        "selection_match_count": 1,
+        "selection_matched": true,
+        "selection_requested": true,
+        "ui_enabled_gate_checked": true,
+        "ui_selection_checked": true,
+        "validity_called": true
+      },
+      "parameter_context_complete": true,
+      "parameters": {
+        "actual": {
+          "call_allies": [],
+          "casus_belli": "no_casus_belli",
+          "co_belligerents": [],
+          "promise_land_to": [],
+          "war_goal": {
+            "beneficiary": "FRA",
+            "province_id": -1
+          }
+        },
+        "candidates": [],
+        "complete": true,
+        "requested": {
+          "call_allies": [],
+          "casus_belli": "no_casus_belli",
+          "co_belligerents": [],
+          "promise_land_to": [],
+          "war_goal": {
+            "beneficiary": "FRA",
+            "province_id": -1
+          }
+        }
+      },
+      "participants": {
+        "action_unchanged": true,
+        "called": true,
+        "candidate_count": 11,
+        "candidates": [
+          {
+            "automatic": true,
+            "complete": true,
+            "context_complete": true,
+            "country": "AMG",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 0,
+            "join_reason_raw": 7,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "FRA",
+            "selected": false,
+            "side": "attacker",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": 1000,
+              "reason_count": 0,
+              "reasons": [],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": true,
+            "complete": true,
+            "context_complete": true,
+            "country": "AUV",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 1,
+            "join_reason_raw": 7,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "FRA",
+            "selected": false,
+            "side": "attacker",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": 1000,
+              "reason_count": 0,
+              "reasons": [],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": true,
+            "complete": true,
+            "context_complete": true,
+            "country": "BOU",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 2,
+            "join_reason_raw": 7,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "FRA",
+            "selected": false,
+            "side": "attacker",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": 1000,
+              "reason_count": 0,
+              "reasons": [],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": true,
+            "complete": true,
+            "context_complete": true,
+            "country": "FOI",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 3,
+            "join_reason_raw": 7,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "FRA",
+            "selected": false,
+            "side": "attacker",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": 1000,
+              "reason_count": 0,
+              "reasons": [],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": true,
+            "complete": true,
+            "context_complete": true,
+            "country": "ORL",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 4,
+            "join_reason_raw": 7,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "FRA",
+            "selected": false,
+            "side": "attacker",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": 1000,
+              "reason_count": 0,
+              "reasons": [],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": false,
+            "complete": true,
+            "context_complete": true,
+            "country": "SCO",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 5,
+            "join_reason_raw": 1,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": true,
+            "promise_land": false,
+            "related_country": "FRA",
+            "selected": false,
+            "side": "attacker",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": -1296,
+              "reason_count": 5,
+              "reasons": [
+                {
+                  "complete": true,
+                  "index": 0,
+                  "readable": true,
+                  "text": "苏格兰的统治者拥有残暴特质：",
+                  "truncated": false,
+                  "value": -20
+                },
+                {
+                  "complete": true,
+                  "index": 1,
+                  "readable": true,
+                  "text": "苏格兰没有欠法兰西至少10点人情：",
+                  "truncated": false,
+                  "value": -1000
+                },
+                {
+                  "complete": true,
+                  "index": 2,
+                  "readable": true,
+                  "text": "距离遥远的战争：",
+                  "truncated": false,
+                  "value": -290
+                },
+                {
+                  "complete": true,
+                  "index": 3,
+                  "readable": true,
+                  "text": "法兰西的外交声誉：",
+                  "truncated": false,
+                  "value": 15
+                },
+                {
+                  "complete": true,
+                  "index": 4,
+                  "readable": true,
+                  "text": "苏格兰陆军实力：",
+                  "truncated": false,
+                  "value": -1
+                }
+              ],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": false,
+            "complete": true,
+            "context_complete": true,
+            "country": "SAV",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 6,
+            "join_reason_raw": 1,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": true,
+            "promise_land": false,
+            "related_country": "FRA",
+            "selected": false,
+            "side": "attacker",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": -1122,
+              "reason_count": 3,
+              "reasons": [
+                {
+                  "complete": true,
+                  "index": 0,
+                  "readable": true,
+                  "text": "距离遥远的战争：",
+                  "truncated": false,
+                  "value": -137
+                },
+                {
+                  "complete": true,
+                  "index": 1,
+                  "readable": true,
+                  "text": "正在打另一场战争：",
+                  "truncated": false,
+                  "value": -1000
+                },
+                {
+                  "complete": true,
+                  "index": 2,
+                  "readable": true,
+                  "text": "法兰西的外交声誉：",
+                  "truncated": false,
+                  "value": 15
+                }
+              ],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": true,
+            "complete": true,
+            "context_complete": true,
+            "country": "TFL",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 7,
+            "join_reason_raw": 20,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "MOR",
+            "selected": false,
+            "side": "defender",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": 15,
+              "reason_count": 3,
+              "reasons": [
+                {
+                  "complete": true,
+                  "index": 0,
+                  "readable": true,
+                  "text": "防御性质的战争：",
+                  "truncated": false,
+                  "value": 30
+                },
+                {
+                  "complete": true,
+                  "index": 1,
+                  "readable": true,
+                  "text": "对摩洛哥的态度是不忠：",
+                  "truncated": false,
+                  "value": -20
+                },
+                {
+                  "complete": true,
+                  "index": 2,
+                  "readable": true,
+                  "text": "摩洛哥的外交声誉：",
+                  "truncated": false,
+                  "value": 5
+                }
+              ],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": true,
+            "complete": true,
+            "context_complete": true,
+            "country": "SOS",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 8,
+            "join_reason_raw": 20,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "MOR",
+            "selected": false,
+            "side": "defender",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": 13,
+              "reason_count": 4,
+              "reasons": [
+                {
+                  "complete": true,
+                  "index": 0,
+                  "readable": true,
+                  "text": "防御性质的战争：",
+                  "truncated": false,
+                  "value": 30
+                },
+                {
+                  "complete": true,
+                  "index": 1,
+                  "readable": true,
+                  "text": "对摩洛哥的态度是不忠：",
+                  "truncated": false,
+                  "value": -20
+                },
+                {
+                  "complete": true,
+                  "index": 2,
+                  "readable": true,
+                  "text": "摩洛哥的外交声誉：",
+                  "truncated": false,
+                  "value": 5
+                },
+                {
+                  "complete": true,
+                  "index": 3,
+                  "readable": true,
+                  "text": "厌战度：",
+                  "truncated": false,
+                  "value": -2
+                }
+              ],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": true,
+            "complete": true,
+            "context_complete": true,
+            "country": "MRK",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 9,
+            "join_reason_raw": 20,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "MOR",
+            "selected": false,
+            "side": "defender",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": -4,
+              "reason_count": 4,
+              "reasons": [
+                {
+                  "complete": true,
+                  "index": 0,
+                  "readable": true,
+                  "text": "防御性质的战争：",
+                  "truncated": false,
+                  "value": 30
+                },
+                {
+                  "complete": true,
+                  "index": 1,
+                  "readable": true,
+                  "text": "对摩洛哥的态度是不忠：",
+                  "truncated": false,
+                  "value": -20
+                },
+                {
+                  "complete": true,
+                  "index": 2,
+                  "readable": true,
+                  "text": "摩洛哥的外交声誉：",
+                  "truncated": false,
+                  "value": 5
+                },
+                {
+                  "complete": true,
+                  "index": 3,
+                  "readable": true,
+                  "text": "马拉喀什负债40¤：",
+                  "truncated": false,
+                  "value": -19
+                }
+              ],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          },
+          {
+            "automatic": false,
+            "complete": true,
+            "context_complete": true,
+            "country": "TUN",
+            "diagnostic": {
+              "complete": true,
+              "readable": true,
+              "text": "",
+              "truncated": false
+            },
+            "index": 10,
+            "join_reason_raw": 1,
+            "legality_checked": true,
+            "native_legality": true,
+            "promise_available": false,
+            "promise_land": false,
+            "related_country": "MOR",
+            "selected": false,
+            "side": "defender",
+            "willingness": {
+              "acceptance_threshold_raw": 1,
+              "complete": true,
+              "native_total_raw": 35,
+              "reason_count": 2,
+              "reasons": [
+                {
+                  "complete": true,
+                  "index": 0,
+                  "readable": true,
+                  "text": "防御性质的战争：",
+                  "truncated": false,
+                  "value": 30
+                },
+                {
+                  "complete": true,
+                  "index": 1,
+                  "readable": true,
+                  "text": "摩洛哥的外交声誉：",
+                  "truncated": false,
+                  "value": 5
+                }
+              ],
+              "reasons_complete": true,
+              "score_available": true
+            }
+          }
+        ],
+        "complete": true,
+        "enumeration_complete": true,
+        "legality_complete": true,
+        "selection": {
+          "allowed": true,
+          "applied": true,
+          "call_allies": [],
+          "co_belligerents": [],
+          "promise_land_to": []
+        },
+        "source": "native_declare_war_participants"
+      },
+      "peace_term_rules": {
+        "action_unchanged": true,
+        "attacker_declared": {
+          "available": true,
+          "complete": true,
+          "declared_justified_actions": [],
+          "records": [],
+          "target_conditions_evaluated": false,
+          "target_evaluation_required": false,
+          "unmapped": []
+        },
+        "called": true,
+        "complete": true,
+        "defender_declared": {
+          "available": true,
+          "complete": true,
+          "declared_justified_actions": [],
+          "records": [],
+          "target_conditions_evaluated": false,
+          "target_evaluation_required": false,
+          "unmapped": []
+        },
+        "disabled": {
+          "available": true,
+          "complete": true,
+          "disabled_actions": [],
+          "records": [],
+          "target_conditions_evaluated": false,
+          "target_evaluation_required": false,
+          "unmapped": []
+        },
+        "selection_rules_evaluated": false,
+        "source": "native_declare_war_peace_options"
+      },
+      "phase": "initiate",
+      "recipient": "MOR",
+      "requested_beneficiary": "FRA",
+      "requested_casus_belli": "no_casus_belli",
+      "requested_decision_country": "FRA",
+      "requested_province_id": -1,
+      "resources": {
+        "diplomats": {
+          "allocation_verified": false,
+          "availability_verified": true,
+          "available_count": 0,
+          "complete": false,
+          "native_requirement": true,
+          "source": "native_rule"
+        }
+      },
+      "selection_match_count": 1,
+      "selection_matched": true,
+      "selection_requested": true,
+      "session": {
+        "complete": true,
+        "date_raw": 56552592,
+        "reasons": [],
+        "state_id": "754f7055af7d274bb092ee4595b94647e8fa51e04b685d9bf67d6ca386ca342e",
+        "status": "ready"
+      },
+      "submitted": false,
+      "visibility": {
+        "complete": true,
+        "status": "visible"
+      }
+    },
+    "declare_native": {
+      "event": "native_declare_war_inspection",
+      "session_id": "16300-1dd5fd738460ece",
+      "query_id": "inspect_f727ee7864b24d17a4515aea462d2b80",
+      "action_id": "declare_war",
+      "family": "declare_war",
+      "actor": "FRA",
+      "recipient": "MOR",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "ui_selection_checked": true,
+      "native_visibility": true,
+      "ui_enabled_gate_checked": true,
+      "common_action_gate": false,
+      "validity_called": true,
+      "native_validity": true,
+      "initiation_gate_checked": true,
+      "initiation_gate": true,
+      "diplomat_context_readable": true,
+      "diplomat_required": true,
+      "available_diplomat_count": 0,
+      "diplomat_assignment_verified": false,
+      "native_diagnostic_hex": "a7522d2010604f10a16c10096710165911b24e12985210ef53109b4f103e6d106390100230a7210a0a100e4e110e4e102a4e10fd5612b652130e5610186210f66510604f10ef5310e54e10fb7910a85210604f10847610e890101f9610db8f106551107651108698101f57100cff101a9010c78f10605310869812f95210b96510847610017710fd4e100cff10d06310fa5110db82114952108476108c5410735e104f5310ae8b10e54e10b78310d653104c6510ba4e10847610017710fd4e10023010464f106496105e9710604f10e56210096713b152101862100674103175100cff10265410195210e06510456513b152101862120653108167102759103057104d96104e4f10604f10847610337a129a5210a65e100230",
+      "diagnostic_readable": true,
+      "diagnostic_truncated": false,
+      "common_diagnostic_hex": "a7522d2010604f10a16c10096710165911b24e12985210ef53109b4f103e6d106390100230a7210a0a100e4e110e4e102a4e10fd5612b652130e5610186210f66510604f10ef5310e54e10fb7910a85210604f10847610e890101f9610db8f106551107651108698101f57100cff101a9010c78f10605310869812f95210b96510847610017710fd4e100cff10d06310fa5110db82114952108476108c5410735e104f5310ae8b10e54e10b78310d653104c6510ba4e10847610017710fd4e10023010464f106496105e9710604f10e56210096713b152101862100674103175100cff10265410195210e06510456513b152101862120653108167102759103057104d96104e4f10604f10847610337a129a5210a65e100230",
+      "common_diagnostic_readable": true,
+      "common_diagnostic_truncated": false,
+      "send_diagnostic_hex": "100e4e110e4e102a4e10fd5612b652130e5610186210f66510604f10ef5310e54e10fb7910a85210604f10847610e890101f9610db8f106551107651108698101f57100cff101a9010c78f10605310869812f95210b96510847610017710fd4e100cff10d06310fa5110db82114952108476108c5410735e104f5310ae8b10e54e10b78310d653104c6510ba4e10847610017710fd4e10023010464f106496105e9710604f10e56210096713b152101862100674103175100cff10265410195210e06510456513b152101862120653108167102759103057104d96104e4f10604f10847610337a129a5210a65e100230",
+      "send_diagnostic_readable": true,
+      "send_diagnostic_truncated": false,
+      "native_default_payload": true,
+      "owned_payload_present": false,
+      "owned_payload_source_kind": "canonical_empty_sentinel",
+      "owned_payload_identity_verified": true,
+      "object_unchanged": true,
+      "parameter_context_complete": true,
+      "candidate_context_complete": true,
+      "selection_requested": true,
+      "selection_matched": true,
+      "selection_match_count": 1,
+      "requested_casus_belli": "no_casus_belli",
+      "requested_province_id": -1,
+      "requested_beneficiary": "FRA",
+      "candidate_enumeration_called": true,
+      "candidate_enumeration_complete": true,
+      "candidate_native_count": 0,
+      "candidate_capture_truncated": false,
+      "candidate_cleanup_verified": true,
+      "candidates": [],
+      "native_costs": {
+        "called": true,
+        "action_unchanged": true,
+        "stability_available": true,
+        "stability_hit_raw": 2000,
+        "stability_scale": 1000,
+        "warex_available": true,
+        "warex_display_raw": 2000,
+        "primary_available": true,
+        "primary_raw": 20000,
+        "secondary_available": true,
+        "secondary_raw": 21550,
+        "native_text_hex": "a7522d323a20a72110e06513b1521018621006741031750a0a108c5310186210a65e101aff2ba75232a7210a10d98f12065312fc5210f481a75910d56c107051107f89a72110d75310305211496010a18ba759313637a721102a4e10fd5612b652108476a75230a721207e20a7523231a72110b97010b54f106575106962132e5610735110fb7c10e960105a7f100230",
+        "text_readable": true,
+        "text_truncated": false,
+        "complete": false
+      },
+      "score_applicable": false,
+      "full_rules_complete": true,
+      "reasons_complete": false,
+      "submitted": false,
+      "frame_thread": 9680,
+      "native_details": {
+        "called": true,
+        "action_unchanged": true,
+        "complete": true,
+        "casus_belli_name": {
+          "applicable": true,
+          "called": true,
+          "return_verified": true,
+          "text_hex": "10e06513b152101862100674103175",
+          "readable": true,
+          "truncated": false
+        },
+        "casus_belli_description": {
+          "applicable": true,
+          "called": true,
+          "return_verified": true,
+          "text_hex": "10116210ec4e10a16c10096710085410d56c10847610186210894e100674103175100230",
+          "readable": true,
+          "truncated": false
+        },
+        "war_goal_name": {
+          "applicable": false,
+          "called": false,
+          "return_verified": false,
+          "text_hex": "",
+          "readable": false,
+          "truncated": false
+        },
+        "war_goal_description": {
+          "applicable": false,
+          "called": false,
+          "return_verified": false,
+          "text_hex": "",
+          "readable": false,
+          "truncated": false
+        },
+        "disabled_peace_terms_description": {
+          "applicable": true,
+          "called": true,
+          "return_verified": true,
+          "text_hex": "",
+          "readable": true,
+          "truncated": false
+        },
+        "declaration_description": {
+          "applicable": true,
+          "called": true,
+          "return_verified": true,
+          "text_hex": "a75910604f10096710776d109b51102a67125256113d6ea7210a0a13b1521018621006741031753a20a75910e06513b152101862100674103175a7570a10116210ec4e10a16c10096710085410d56c10847610186210894e1006741031751002300a0aa75912f95210337a129a5210847612715610cd54101affa7210aa7522d323a20a72110e06513b1521018621006741031750a0a0a108c5310186210a65e101aff2ba75232a7210a404d4f5220106964101b6d10e554108c54204054554e2010817a123c5310af6512d37510df7610023020404d4f5220106964101b6d10e55412df7510bb6c114e774054464c2010545810f28310c96210d2521079722c2040534f532010cf8210af65100e4e404d524b20106c9a10c962118e5510c04e100cff10e58b10fd56120653101a4f10f46310a95210d64e10ec4e100230200a0a",
+          "readable": true,
+          "truncated": false
+        }
+      },
+      "native_forces": {
+        "called": true,
+        "action_unchanged": true,
+        "unit": "men",
+        "units_verified": true,
+        "complete": true,
+        "attackers": {
+          "countries": [
+            "FRA",
+            "AMG",
+            "AUV",
+            "BOU",
+            "FOI",
+            "ORL"
+          ],
+          "infantry_raw": 45308,
+          "cavalry_raw": 14212,
+          "artillery_raw": 0,
+          "deployed_total_raw": 59520,
+          "reserve_manpower_raw": 128194,
+          "deployed_complete": true,
+          "reserve_complete": true,
+          "scope_complete": true
+        },
+        "defenders": {
+          "countries": [
+            "MOR",
+            "TFL",
+            "SOS",
+            "MRK",
+            "TUN",
+            "GHD"
+          ],
+          "infantry_raw": 49854,
+          "cavalry_raw": 10364,
+          "artillery_raw": 0,
+          "deployed_total_raw": 60218,
+          "reserve_manpower_raw": 114380,
+          "deployed_complete": true,
+          "reserve_complete": true,
+          "scope_complete": true
+        }
+      },
+      "native_peace_options": {
+        "called": true,
+        "action_unchanged": true,
+        "complete": true,
+        "disabled": {
+          "available": true,
+          "complete": true,
+          "records": []
+        },
+        "attacker_declared": {
+          "available": true,
+          "complete": true,
+          "records": []
+        },
+        "defender_declared": {
+          "available": true,
+          "complete": true,
+          "records": []
+        }
+      },
+      "native_participants": {
+        "called": true,
+        "complete": true,
+        "selection_applied": true,
+        "selection_allowed": true,
+        "action_unchanged": true,
+        "candidate_count": 11,
+        "requested_call_allies_csv": "-",
+        "requested_promise_land_to_csv": "-",
+        "requested_co_belligerents_csv": "-"
+      }
+    },
+    "peace_discovery_inspection": {
+      "acceptance": {
+        "applicability": "applicable",
+        "complete": false,
+        "details_available": false,
+        "items": [],
+        "native_total": null,
+        "predicted_response": "unknown",
+        "prediction_available": false,
+        "scale_verified": false,
+        "unit": "unknown"
+      },
+      "action_id": "white_peace",
+      "actor": "FRA",
+      "authorization": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "PEACE_OFFER_CONTEXT_REQUIRED",
+            "complete": true,
+            "source": "bridge_policy",
+            "text": "当前查询只发现战争上下文；完整peace_context和议和条款仍需提供，执行适配尚未开放。"
+          }
+        ],
+        "status": "unavailable"
+      },
+      "context_discovery": true,
+      "contract_version": 1,
+      "costs": {
+        "complete": false,
+        "items": [],
+        "status": "unknown"
+      },
+      "decision_country": null,
+      "decision_country_verified": false,
+      "family": "peace",
+      "full_rules_complete": false,
+      "interface_support": {
+        "complete": false,
+        "execute": "unimplemented",
+        "query": "native_peace_context_inspection"
+      },
+      "legality": {
+        "complete": false,
+        "reasons": [
+          {
+            "code": "NATIVE_PEACE_CONTEXT_ONLY",
+            "complete": false,
+            "source": "native_rule",
+            "text": "原生查询只枚举当前战争上下文，尚未检查选定议和条款的合法性。"
+          }
+        ],
+        "status": "unknown"
+      },
+      "native_identifier": "peace",
+      "native_offer_inspected": false,
+      "parameters": {
+        "actual": null,
+        "candidates": [
+          {
+            "actor": "FRA",
+            "actor_is_war_leader": null,
+            "actor_war_role": null,
+            "context_complete": false,
+            "identity_scope": "observer_session",
+            "leaders_verified": false,
+            "pair_at_war": true,
+            "recipient": "BUR",
+            "recipient_is_war_leader": null,
+            "recipient_war_role": null,
+            "roles_verified": false,
+            "war_id": "war_629a4e22e454f188_00000001"
+          }
+        ],
+        "complete": false,
+        "requested": {}
+      },
+      "phase": "initiate",
+      "query_complete": true,
+      "recipient": "BUR",
+      "requested_decision_country": "FRA",
+      "session": {
+        "complete": true,
+        "date_raw": 56552592,
+        "reasons": [],
+        "state_id": "754f7055af7d274bb092ee4595b94647e8fa51e04b685d9bf67d6ca386ca342e",
+        "status": "ready"
+      },
+      "submitted": false,
+      "visibility": {
+        "complete": false,
+        "status": "unknown"
+      },
+      "war_context_enumeration_complete": true,
+      "war_contexts": [
+        {
+          "actor": "FRA",
+          "actor_is_war_leader": null,
+          "actor_war_role": null,
+          "context_complete": false,
+          "identity_scope": "observer_session",
+          "leaders_verified": false,
+          "pair_at_war": true,
+          "recipient": "BUR",
+          "recipient_is_war_leader": null,
+          "recipient_war_role": null,
+          "roles_verified": false,
+          "war_id": "war_629a4e22e454f188_00000001"
+        }
+      ]
+    },
+    "peace_discovery_native": {
+      "event": "native_peace_context_inspection",
+      "family": "peace",
+      "session_id": "16300-1dd5fd738460ece",
+      "query_id": "inspect_3d003032e5e842a898d33419a3965401",
+      "action_id": "white_peace",
+      "actor": "FRA",
+      "recipient": "BUR",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "discovery": true,
+      "query_complete": true,
+      "enumeration_complete": true,
+      "native_offer_inspected": false,
+      "full_rules_complete": false,
+      "wars": [
+        {
+          "war_id": "war_629a4e22e454f188_00000001",
+          "identity_scope": "observer_session",
+          "actor": "FRA",
+          "recipient": "BUR",
+          "pair_at_war": true,
+          "actor_war_role": null,
+          "recipient_war_role": null,
+          "roles_verified": false,
+          "actor_is_war_leader": null,
+          "recipient_is_war_leader": null,
+          "leaders_verified": false,
+          "context_complete": false
+        }
+      ],
+      "submitted": false,
+      "frame_thread": 9680
+    },
+    "peace_selected_inspection": {
+      "acceptance": {
+        "applicability": "applicable",
+        "complete": false,
+        "details_available": true,
+        "details_complete": false,
+        "items": [
+          {
+            "complete": false,
+            "identifier_verified": false,
+            "native_flag": true,
+            "native_flag_verified": true,
+            "native_identifier": null,
+            "native_value": 2,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "勃艮第的厌战度：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": true,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_WAR_DESPERATION",
+            "native_value": 11,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "被占领和被围攻的省份：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": false,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_HOLD_CAPITAL",
+            "native_value": -5,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "勃艮第控制着首都第戎：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": false,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_WAR_TIME_PASSED",
+            "native_value": -44,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "战争持续时间：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": false,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_MILITARY_STRENGTH",
+            "native_value": -8,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "勃艮第的军事实力：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": false,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+            "native_value": -2,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "盟友的相对实力：",
+            "text_decoded": true,
+            "text_truncated": false
+          }
+        ],
+        "native_total": -46,
+        "predicted_response": "unknown",
+        "prediction_available": false,
+        "scale_verified": false,
+        "unit": "unknown"
+      },
+      "action_constructed": true,
+      "action_id": "white_peace",
+      "actor": "FRA",
+      "authorization": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_PEACE_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+            "complete": true,
+            "source": "installation_capability",
+            "text": "安装确认允许桥接提交法国发起的议和操作；本次原生合法性由最新议和检查单独决定。"
+          }
+        ],
+        "status": "available"
+      },
+      "cleanup_verified": true,
+      "common_action_gate": false,
+      "common_gate_checked": true,
+      "contract_version": 1,
+      "costs": {
+        "complete": false,
+        "items": [],
+        "native_evaluation": {
+          "aggregate_score_available": true,
+          "aggregate_score_raw": 0,
+          "complete": false,
+          "scale_verified": false,
+          "unit": "unknown"
+        },
+        "status": "unknown"
+      },
+      "decision_country": null,
+      "decision_country_verified": false,
+      "diagnostics": {
+        "common_action_gate": {
+          "complete": false,
+          "source": "native_rule",
+          "text": "§R- 最近已经派遣过外交官，所以直到§Y1455年11月12日§!我们才能再次派遣。§!\n§R- 你没有外交官可供派遣。§!\n选择此项向敌人递交一份和平协议",
+          "text_decoded": true,
+          "truncated": false
+        },
+        "initiation_gate": {
+          "complete": false,
+          "source": "native_rule",
+          "text": "§R- 你必须等待一天才可以提出另一个和平提议。§!\n",
+          "text_decoded": true,
+          "truncated": false
+        },
+        "validity": {
+          "complete": false,
+          "source": "native_rule",
+          "text": null,
+          "text_decoded": false,
+          "truncated": false
+        }
+      },
+      "execution_context": {
+        "complete": false,
+        "direction": "demand",
+        "terms": [],
+        "war_context_complete": false,
+        "war_id": "war_629a4e22e454f188_00000001"
+      },
+      "family": "peace",
+      "full_rules_complete": true,
+      "identity_scope": "observer_session",
+      "initiation_gate": false,
+      "initiation_gate_checked": true,
+      "interface_support": {
+        "complete": true,
+        "execute": "native_peace_submission",
+        "query": "native_peace_execution_inspection"
+      },
+      "legality": {
+        "complete": false,
+        "reasons": [
+          {
+            "code": "NATIVE_PEACE_COMMON_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "§R- 最近已经派遣过外交官，所以直到§Y1455年11月12日§!我们才能再次派遣。§!\n§R- 你没有外交官可供派遣。§!\n选择此项向敌人递交一份和平协议"
+          },
+          {
+            "code": "NATIVE_PEACE_INITIATION_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "§R- 你必须等待一天才可以提出另一个和平提议。§!\n"
+          },
+          {
+            "code": "NATIVE_PEACE_WRAPPER_GATE_FALSE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "原生议和wrapper规则检查返回false。"
+          },
+          {
+            "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+          }
+        ],
+        "status": "unavailable"
+      },
+      "native_diagnostic_text": null,
+      "native_diagnostic_text_decoded": false,
+      "native_diagnostic_truncated": false,
+      "native_evaluation": {
+        "aggregate_score_available": true,
+        "aggregate_score_raw": 0,
+        "called": true,
+        "complete": false,
+        "factor_capture_truncated": false,
+        "factor_native_count": 6,
+        "factors_available": true,
+        "factors_complete": false,
+        "items": [
+          {
+            "complete": false,
+            "identifier_verified": false,
+            "native_flag": true,
+            "native_flag_verified": true,
+            "native_identifier": null,
+            "native_value": 2,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "勃艮第的厌战度：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": true,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_WAR_DESPERATION",
+            "native_value": 11,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "被占领和被围攻的省份：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": false,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_HOLD_CAPITAL",
+            "native_value": -5,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "勃艮第控制着首都第戎：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": false,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_WAR_TIME_PASSED",
+            "native_value": -44,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "战争持续时间：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": false,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_MILITARY_STRENGTH",
+            "native_value": -8,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "勃艮第的军事实力：",
+            "text_decoded": true,
+            "text_truncated": false
+          },
+          {
+            "complete": true,
+            "identifier_verified": true,
+            "native_flag": false,
+            "native_flag_verified": true,
+            "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+            "native_value": -2,
+            "native_value_verified": true,
+            "row_binding_verified": true,
+            "source": "native_rule",
+            "text": "盟友的相对实力：",
+            "text_decoded": true,
+            "text_truncated": false
+          }
+        ],
+        "native_total": -46,
+        "score_available": true,
+        "score_raw": -46,
+        "score_representation": "signed_int32"
+      },
+      "native_identifier": "peace",
+      "native_offer_inspected": true,
+      "native_payload": {
+        "action_owner_verified": true,
+        "authority_bound": false,
+        "capture_available": true,
+        "schema": "native_peace_serialized_fields_v1",
+        "selected_index_complete": true,
+        "selected_term_count": 1,
+        "serialized_fields_complete": true,
+        "serialized_fields_unchanged": true,
+        "source_copy_equal": true,
+        "source_owner_verified": true,
+        "term_count": 67,
+        "unsupported_term_count": 0
+      },
+      "native_rule_components": {
+        "common_action_gate": false,
+        "common_gate_checked": true,
+        "complete": false,
+        "full_rules_complete": true,
+        "initiation_gate": false,
+        "initiation_gate_checked": true,
+        "native_term_gate": null,
+        "native_term_gate_checked": false,
+        "native_validity": true,
+        "native_wrapper_gate": false,
+        "native_wrapper_gate_checked": true,
+        "selected_rules_available": null,
+        "selected_rules_complete": null,
+        "validity_called": true,
+        "wrapper_identity_verified": true,
+        "wrapper_payload_unchanged": true
+      },
+      "native_validity": true,
+      "native_war_context": {
+        "actor_recipient_opposite": true,
+        "actor_side": "side_a",
+        "actor_side_verified": true,
+        "context_complete": false,
+        "derived_offer_mapping_verified": true,
+        "leaders_verified": false,
+        "offer_identity_verified": true,
+        "offer_vector_mapping_verified": true,
+        "offer_vectors_readable": true,
+        "participant_lists_complete": true,
+        "primary_offer_mapping_verified": true,
+        "recipient_side": "side_b",
+        "recipient_side_verified": true,
+        "roles_verified": false,
+        "selected_side": "side_a",
+        "side_a_count": 8,
+        "side_a_members": [
+          "FRA",
+          "AMG",
+          "AUV",
+          "BOU",
+          "FOI",
+          "ORL",
+          "SAV",
+          "GNV"
+        ],
+        "side_b_count": 10,
+        "side_b_members": [
+          "BUR",
+          "HSA",
+          "NEV",
+          "BRB",
+          "FLA",
+          "HOL",
+          "LAN",
+          "RIG",
+          "BRE",
+          "HAM"
+        ],
+        "war_context_resolved": true
+      },
+      "native_wrapper_gate": false,
+      "native_wrapper_gate_checked": true,
+      "object_unchanged": true,
+      "offer_constructed": true,
+      "offer_identity_verified": true,
+      "pair_at_war": true,
+      "parameters": {
+        "actual": {
+          "peace_context": {
+            "direction": "demand",
+            "terms": [],
+            "war_id": "war_629a4e22e454f188_00000001"
+          }
+        },
+        "candidates": null,
+        "complete": false,
+        "requested": {
+          "peace_context": {
+            "direction": "demand",
+            "terms": [],
+            "war_id": "war_629a4e22e454f188_00000001"
+          }
+        }
+      },
+      "participant_copy_verified": true,
+      "peace_consequences": {
+        "aggressive_expansion": {
+          "available": true,
+          "coalition_possible": false,
+          "maximum": 0.0,
+          "maximum_raw": 0,
+          "scale": 1000,
+          "text": "",
+          "text_readable": true,
+          "text_truncated": false
+        },
+        "coalition": {
+          "available": true,
+          "complete": true,
+          "countries": [],
+          "current_value_semantics_verified": true,
+          "native_count": 0
+        },
+        "complete": true,
+        "diplomatic_power": {
+          "available": true,
+          "country": "FRA",
+          "unit": "power_points",
+          "value": 0
+        },
+        "overextension": {
+          "available": true,
+          "complete": true,
+          "countries": [
+            {
+              "available": true,
+              "cache_matches_recomputed": true,
+              "complete": true,
+              "country": "BUR",
+              "current_fraction": 0.12,
+              "current_percentage_points": 12.0,
+              "current_raw": 120,
+              "current_recomputed_raw": 120,
+              "delta_fraction": 0.0,
+              "delta_percentage_points": 0.0,
+              "delta_raw": 0,
+              "gained_fraction": 0.0,
+              "gained_percentage_points": 0.0,
+              "gained_province_ids": [],
+              "gained_raw": 0,
+              "lost_fraction": 0.0,
+              "lost_percentage_points": 0.0,
+              "lost_province_ids": [],
+              "lost_raw": 0,
+              "projected_fraction": 0.12,
+              "projected_percentage_points": 12.0,
+              "projected_raw": 120,
+              "scale": 1000,
+              "unit": "fraction"
+            },
+            {
+              "available": true,
+              "cache_matches_recomputed": true,
+              "complete": true,
+              "country": "FRA",
+              "current_fraction": 0.0,
+              "current_percentage_points": 0.0,
+              "current_raw": 0,
+              "current_recomputed_raw": 0,
+              "delta_fraction": 0.0,
+              "delta_percentage_points": 0.0,
+              "delta_raw": 0,
+              "gained_fraction": 0.0,
+              "gained_percentage_points": 0.0,
+              "gained_province_ids": [],
+              "gained_raw": 0,
+              "lost_fraction": 0.0,
+              "lost_percentage_points": 0.0,
+              "lost_province_ids": [],
+              "lost_raw": 0,
+              "projected_fraction": 0.0,
+              "projected_percentage_points": 0.0,
+              "projected_raw": 0,
+              "scale": 1000,
+              "unit": "fraction"
+            }
+          ],
+          "scope": "selected_territorial_preview",
+          "source": "native_peace_overextension",
+          "unsupported_territorial_terms": false
+        },
+        "reason_code": null,
+        "requested_terms_applied": true,
+        "scope": "constructed_offer",
+        "source": "native_peace_consequences",
+        "territorial": [
+          {
+            "administrative_power": 0,
+            "called": true,
+            "complete": true,
+            "country": "FRA",
+            "overextension_added_fraction": 0.0,
+            "overextension_added_percentage_points": 0.0,
+            "overextension_added_raw": 0,
+            "overextension_unit": "fraction",
+            "provinces": [],
+            "scale": 1000,
+            "truncated": false
+          },
+          {
+            "administrative_power": 0,
+            "called": true,
+            "complete": true,
+            "country": "BUR",
+            "overextension_added_fraction": 0.0,
+            "overextension_added_percentage_points": 0.0,
+            "overextension_added_raw": 0,
+            "overextension_unit": "fraction",
+            "provinces": [],
+            "scale": 1000,
+            "truncated": false
+          }
+        ]
+      },
+      "peace_context": {
+        "complete": false,
+        "direction": "demand",
+        "terms": [],
+        "war_id": "war_629a4e22e454f188_00000001"
+      },
+      "phase": "initiate",
+      "query_complete": true,
+      "reasons_complete": false,
+      "recipient": "BUR",
+      "requested_decision_country": "FRA",
+      "resources": {
+        "diplomats": {
+          "allocation_verified": false,
+          "availability_verified": true,
+          "available_count": 0,
+          "complete": true,
+          "native_requirement": true,
+          "source": "native_rule"
+        }
+      },
+      "selected_war_id": "war_629a4e22e454f188_00000001",
+      "session": {
+        "complete": true,
+        "date_raw": 56552592,
+        "reasons": [],
+        "state_id": "754f7055af7d274bb092ee4595b94647e8fa51e04b685d9bf67d6ca386ca342e",
+        "status": "ready"
+      },
+      "submitted": false,
+      "unique_shared_war": true,
+      "validity_called": true,
+      "visibility": {
+        "complete": false,
+        "status": "unknown"
+      },
+      "wrapper_identity_verified": true,
+      "wrapper_payload_unchanged": true
+    },
+    "peace_selected_native": {
+      "event": "native_peace_empty_offer_inspection",
+      "family": "peace",
+      "session_id": "16300-1dd5fd738460ece",
+      "query_id": "inspect_45a25b6674f44bb19f4be20ae72bfb0c",
+      "action_id": "white_peace",
+      "actor": "FRA",
+      "recipient": "BUR",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "war_id": "war_629a4e22e454f188_00000001",
+      "direction": "demand",
+      "direction_raw": 1,
+      "direction_semantics_verified": false,
+      "identity_scope": "observer_session",
+      "query_complete": true,
+      "native_offer_inspected": true,
+      "pair_at_war": true,
+      "unique_shared_war": true,
+      "offer_constructed": true,
+      "action_constructed": true,
+      "offer_identity_verified": true,
+      "participant_copy_verified": true,
+      "object_unchanged": true,
+      "cleanup_verified": true,
+      "validity_called": true,
+      "native_validity": true,
+      "common_gate_checked": true,
+      "common_action_gate": false,
+      "initiation_gate_checked": true,
+      "initiation_gate": false,
+      "diplomat_context_readable": true,
+      "diplomat_required": true,
+      "available_diplomat_count": 0,
+      "diplomat_assignment_verified": false,
+      "native_diagnostic_hex": "",
+      "diagnostic_readable": true,
+      "diagnostic_truncated": false,
+      "common_diagnostic_hex": "a7522d20110e6710d18f12f25412cf75103e6d10639010c78f10165911b24e129852100cff114e6210e54e10f476103052a7593134353510745e3131100867313210e565a72110116210ec4e104d6212fd77108d5110216b103e6d106390100230a7210aa7522d2010604f10a16c10096710165911b24e12985210ef53109b4f103e6d106390100230a7210a10099010e96210646b107998101154104c6510ba4e10129011b24e110e4e10fd4e108c5410735e104f5310ae8b",
+      "common_diagnostic_readable": true,
+      "common_diagnostic_truncated": false,
+      "send_diagnostic_hex": "a7522d2010604f12c556118998124972128556110e4e102959104d6210ef5310e54e10d06310fa5110e653110e4e102a4e108c5410735e10d06310ae8b100230a7210a",
+      "send_diagnostic_readable": true,
+      "send_diagnostic_truncated": false,
+      "native_wrapper_gate_checked": true,
+      "native_wrapper_gate": false,
+      "wrapper_identity_verified": true,
+      "wrapper_payload_unchanged": true,
+      "full_rules_complete": true,
+      "reasons_complete": false,
+      "submitted": false,
+      "native_evaluation": {
+        "called": true,
+        "score_available": true,
+        "score_raw": -46,
+        "score_representation": "signed_int32",
+        "factor_native_count": 6,
+        "factor_capture_truncated": false,
+        "factors_available": true,
+        "factors_complete": false,
+        "items": [
+          {
+            "native_identifier": null,
+            "identifier_verified": false,
+            "native_value": 2,
+            "native_flag": true,
+            "text_hex": "10c352106e82122c72108476108c5310186210a65e101aff",
+            "text_readable": true,
+            "text_truncated": false,
+            "row_binding_verified": true
+          },
+          {
+            "native_identifier": "DIPLO_WAR_DESPERATION",
+            "identifier_verified": true,
+            "native_value": 11,
+            "native_flag": true,
+            "text_hex": "10ab88106053108698108c5410ab8810f45611496510847610017710fd4e101aff",
+            "text_readable": true,
+            "text_truncated": false,
+            "row_binding_verified": true
+          },
+          {
+            "native_identifier": "DIPLO_HOLD_CAPITAL",
+            "identifier_verified": true,
+            "native_value": -5,
+            "native_flag": false,
+            "text_hex": "10c352106e82122c7211b563103652114e7710969910fd90122c72100e62101aff",
+            "text_readable": true,
+            "text_truncated": false,
+            "row_binding_verified": true
+          },
+          {
+            "native_identifier": "DIPLO_WAR_TIME_PASSED",
+            "identifier_verified": true,
+            "native_value": -44,
+            "native_flag": false,
+            "text_hex": "10186210894e10016312ed7510f66510f495101aff",
+            "text_readable": true,
+            "text_truncated": false,
+            "row_binding_verified": true
+          },
+          {
+            "native_identifier": "DIPLO_MILITARY_STRENGTH",
+            "identifier_verified": true,
+            "native_value": -8,
+            "native_flag": false,
+            "text_hex": "10c352106e82122c72108476109b51108b4e129e52109b52101aff",
+            "text_readable": true,
+            "text_truncated": false,
+            "row_binding_verified": true
+          },
+          {
+            "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+            "identifier_verified": true,
+            "native_value": -2,
+            "native_flag": false,
+            "text_hex": "10df7610cb5310847610f87612f952129e52109b52101aff",
+            "text_readable": true,
+            "text_truncated": false,
+            "row_binding_verified": true
+          }
+        ],
+        "aggregate_score_available": true,
+        "aggregate_score_raw": 0,
+        "complete": false
+      },
+      "native_money": null,
+      "native_war_context": {
+        "war_context_resolved": true,
+        "side_a_count": 8,
+        "side_b_count": 10,
+        "side_a_members": [
+          "FRA",
+          "AMG",
+          "AUV",
+          "BOU",
+          "FOI",
+          "ORL",
+          "SAV",
+          "GNV"
+        ],
+        "side_b_members": [
+          "BUR",
+          "HSA",
+          "NEV",
+          "BRB",
+          "FLA",
+          "HOL",
+          "LAN",
+          "RIG",
+          "BRE",
+          "HAM"
+        ],
+        "participant_lists_complete": true,
+        "members_capture_complete": true,
+        "selected_side": "side_a",
+        "actor_side": "side_a",
+        "recipient_side": "side_b",
+        "claimant_side": "side_a",
+        "payer_side": "side_b",
+        "actor_side_verified": true,
+        "recipient_side_verified": true,
+        "actor_recipient_opposite": true,
+        "offer_identity_verified": true,
+        "offer_vectors_readable": true,
+        "primary_offer_mapping_verified": true,
+        "derived_offer_mapping_verified": true,
+        "offer_vector_mapping_verified": true,
+        "roles_verified": false,
+        "leaders_verified": false,
+        "context_complete": false
+      },
+      "native_payload": {
+        "schema": "native_peace_serialized_fields_v1",
+        "capture_available": true,
+        "serialized_fields_complete": true,
+        "source_copy_equal": true,
+        "serialized_fields_unchanged": true,
+        "source_owner_verified": true,
+        "action_owner_verified": true,
+        "term_count": 67,
+        "selected_term_count": 1,
+        "unsupported_term_count": 0,
+        "selected_index_complete": true,
+        "authority_bound": false
+      },
+      "native_provinces": null,
+      "native_core_terms": null,
+      "native_consequences": {
+        "called": true,
+        "offer_identity_verified": true,
+        "complete": true,
+        "diplomatic_power": {
+          "country": "FRA",
+          "available": true,
+          "value": 0,
+          "unit": "power_points"
+        },
+        "aggressive_expansion": {
+          "available": true,
+          "maximum_raw": 0,
+          "scale": 1000,
+          "native_text_hex": "",
+          "text_readable": true,
+          "text_truncated": false,
+          "coalition_possible": false
+        },
+        "coalition": {
+          "available": true,
+          "complete": true,
+          "native_count": 0,
+          "current_value_semantics_verified": true,
+          "countries": []
+        },
+        "territorial": [
+          {
+            "country": "FRA",
+            "called": true,
+            "complete": true,
+            "truncated": false,
+            "administrative_power": 0,
+            "overextension_added_raw": 0,
+            "scale": 1000,
+            "provinces": []
+          },
+          {
+            "country": "BUR",
+            "called": true,
+            "complete": true,
+            "truncated": false,
+            "administrative_power": 0,
+            "overextension_added_raw": 0,
+            "scale": 1000,
+            "provinces": []
+          }
+        ],
+        "overextension": {
+          "called": true,
+          "complete": true,
+          "scope": "selected_territorial_preview",
+          "unsupported_territorial_terms": false,
+          "countries": [
+            {
+              "country": "BUR",
+              "complete": true,
+              "current_raw": 120,
+              "current_recomputed_raw": 120,
+              "cache_matches_recomputed": true,
+              "gained_raw": 0,
+              "lost_raw": 0,
+              "delta_raw": 0,
+              "projected_raw": 120,
+              "scale": 1000,
+              "gained_province_ids": [],
+              "lost_province_ids": []
+            },
+            {
+              "country": "FRA",
+              "complete": true,
+              "current_raw": 0,
+              "current_recomputed_raw": 0,
+              "cache_matches_recomputed": true,
+              "gained_raw": 0,
+              "lost_raw": 0,
+              "delta_raw": 0,
+              "projected_raw": 0,
+              "scale": 1000,
+              "gained_province_ids": [],
+              "lost_province_ids": []
+            }
+          ]
+        }
+      },
+      "frame_thread": 9680
+    },
+    "blocked_insult_native": {
+      "event": "native_alliance_execution_rejected",
+      "session_id": "16300-1dd5fd738460ece",
+      "request_id": "r68_native_blocked_insult_002",
+      "action_id": "send_insult",
+      "actor": "FRA",
+      "recipient": "MOR",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "reason": "NATIVE_DIPLOMAT_UNAVAILABLE",
+      "reason_code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+      "reason_source": "native_rule",
+      "reason_stage": "diplomat_availability",
+      "submitted": false,
+      "complete": false
+    },
+    "blocked_insult_public": {
+      "binding_complete": true,
+      "legality": {
+        "complete": false,
+        "status": "unavailable"
+      },
+      "reason": {
+        "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+        "complete": false,
+        "source": "native_rule",
+        "text": "此动作需要空闲外交官，但执行前复检时可用外交官数量为0。"
+      },
+      "reason_code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+      "status": "failed",
+      "submitted": false
+    },
+    "blocked_insult_result": {
+      "action_id": "send_insult",
+      "contract_version": 1,
+      "evidence": [
+        {
+          "layer": "bridge_validation",
+          "sha256": "ac47abec8d60539ce85950e8e63b44a22a2ef5fb3fd61f5113563a993199f5b2",
+          "type": "invalidation"
+        }
+      ],
+      "game_outcome": "unknown",
+      "request_id": "r68_blocked_insult_002",
+      "result": {
+        "game_outcome": "unknown",
+        "inspection": {
+          "acceptance": {
+            "applicability": "not_applicable",
+            "complete": true,
+            "details_available": false,
+            "items": [],
+            "native_total": null,
+            "predicted_response": "not_applicable",
+            "prediction_available": false,
+            "scale_verified": false,
+            "unit": null
+          },
+          "action_id": "send_insult",
+          "actor": "FRA",
+          "actor_prestige_raw": -11892,
+          "authorization": {
+            "complete": true,
+            "reasons": [
+              {
+                "code": "NATIVE_INSULT_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                "complete": true,
+                "source": "installation_capability",
+                "text": "安装确认允许桥接提交法国发起的侮辱操作。"
+              }
+            ],
+            "status": "available"
+          },
+          "candidate_count": 0,
+          "candidates_available": false,
+          "candidates_complete": false,
+          "contract_version": 1,
+          "costs": {
+            "complete": false,
+            "coverage": {
+              "additional_costs": "unknown",
+              "complete": false,
+              "known_items": 1,
+              "source": "native_rule_and_save_effect",
+              "status": "partial"
+            },
+            "items": [
+              {
+                "amount": 0,
+                "amount_raw": 0,
+                "complete": true,
+                "resource": "prestige",
+                "scale": 1000,
+                "scale_verified": true,
+                "source": "native_rule_and_save_effect",
+                "unit": "prestige",
+                "unit_verified": true
+              }
+            ],
+            "status": "available"
+          },
+          "decision_country": null,
+          "decision_country_verified": false,
+          "family": "insult",
+          "insult_active": false,
+          "insult_id": -1,
+          "insult_parameter_selected": true,
+          "insult_state_verified": true,
+          "interface_support": {
+            "complete": false,
+            "execute": "native_insult_submission",
+            "query": "partial_native_rules"
+          },
+          "legality": {
+            "complete": true,
+            "reasons": [
+              {
+                "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+                "complete": false,
+                "source": "native_rule",
+                "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+              },
+              {
+                "code": "NATIVE_INITIATION_GATE_FALSE",
+                "complete": false,
+                "source": "native_rule",
+                "text": "原生发起时序或待处理请求检查返回false。"
+              },
+              {
+                "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+                "complete": true,
+                "source": "native_rule",
+                "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+              }
+            ],
+            "status": "unavailable"
+          },
+          "native_identifier": "insult",
+          "native_rule_components": {
+            "common_action_gate": false,
+            "complete": true,
+            "executor_validity": true,
+            "full_rules_complete": true,
+            "initiation_gate": false,
+            "native_visibility": true,
+            "specific_validity_query_called": true,
+            "tooltip_gate": null,
+            "ui_action_selection": true,
+            "ui_enabled_gate_checked": true,
+            "ui_enabled_gate_verified": true,
+            "ui_selection_checked": true
+          },
+          "opinion_modifier_raw": 0,
+          "parameters": {
+            "actual": {
+              "insult_id": -1
+            },
+            "candidates": {
+              "complete": false,
+              "insult_id": [],
+              "items": []
+            },
+            "complete": true,
+            "requested": {}
+          },
+          "phase": "initiate",
+          "prestige_cost_raw": 0,
+          "recipient": "MOR",
+          "requested_decision_country": "FRA",
+          "resources": {
+            "diplomats": {
+              "allocation_verified": false,
+              "availability_verified": true,
+              "available_count": 0,
+              "complete": false,
+              "native_requirement": true,
+              "source": "native_rule"
+            }
+          },
+          "session": {
+            "complete": true,
+            "date_raw": 56552592,
+            "reasons": [],
+            "state_id": "d22c8df3eea6c2dfbc49d5786373a8536e04136c805e9ea520ceb139a9b06061",
+            "status": "ready"
+          },
+          "visibility": {
+            "complete": true,
+            "status": "visible"
+          }
+        },
+        "legality_reasons": [
+          {
+            "code": "NATIVE_COMMON_ACTION_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "原生通用动作条件检查返回false，尚未恢复具体失败条件。"
+          },
+          {
+            "code": "NATIVE_INITIATION_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "原生发起时序或待处理请求检查返回false。"
+          },
+          {
+            "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+          }
+        ],
+        "reason": {
+          "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+          "complete": true,
+          "source": "native_rule",
+          "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+        },
+        "submitted": false
+      },
+      "status": "invalidated",
+      "submitted": false,
+      "updated_at": "2026-10-19T14:37:39.277069+00:00"
+    },
+    "blocked_declare_native": {
+      "event": "native_alliance_execution_rejected",
+      "session_id": "16300-1dd5fd738460ece",
+      "request_id": "r68_native_blocked_declare_002",
+      "action_id": "declare_war",
+      "actor": "FRA",
+      "recipient": "MOR",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "reason": "NATIVE_DIPLOMAT_UNAVAILABLE",
+      "reason_code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+      "reason_source": "native_rule",
+      "reason_stage": "diplomat_availability",
+      "submitted": false,
+      "complete": false
+    },
+    "blocked_declare_public": {
+      "binding_complete": true,
+      "legality": {
+        "complete": false,
+        "status": "unavailable"
+      },
+      "reason": {
+        "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+        "complete": false,
+        "source": "native_rule",
+        "text": "此动作需要空闲外交官，但执行前复检时可用外交官数量为0。"
+      },
+      "reason_code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+      "status": "failed",
+      "submitted": false
+    },
+    "blocked_declare_result": {
+      "action_id": "declare_war",
+      "contract_version": 1,
+      "evidence": [
+        {
+          "layer": "bridge_validation",
+          "sha256": "0b41250c53d450312c35f15a755c6e6a273e92fa2038fe951ea20ac5ad00df07",
+          "type": "invalidation"
+        }
+      ],
+      "game_outcome": "unknown",
+      "request_id": "r68_blocked_declare_002",
+      "result": {
+        "game_outcome": "unknown",
+        "inspection": {
+          "acceptance": {
+            "applicability": "not_applicable",
+            "complete": true,
+            "details_available": false,
+            "items": [],
+            "native_total": null,
+            "predicted_response": "not_applicable",
+            "prediction_available": false,
+            "scale_verified": false,
+            "unit": null
+          },
+          "action_id": "declare_war",
+          "actor": "FRA",
+          "authorization": {
+            "complete": true,
+            "reasons": [
+              {
+                "code": "NATIVE_DECLARE_WAR_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                "complete": true,
+                "source": "installation_capability",
+                "text": "安装确认允许桥接提交法国发起的宣战操作；本次参数和原生合法性仍需单独决定。"
+              }
+            ],
+            "status": "available"
+          },
+          "candidate_capture_truncated": false,
+          "candidate_cleanup_verified": true,
+          "candidate_context_complete": true,
+          "candidate_enumeration": {
+            "called": true,
+            "capture_truncated": false,
+            "captured_count": 0,
+            "cleanup_verified": true,
+            "complete": true,
+            "native_count": 0,
+            "query_complete": true
+          },
+          "candidate_enumeration_called": true,
+          "candidate_enumeration_complete": true,
+          "candidate_native_count": 0,
+          "candidates": [],
+          "contract_version": 1,
+          "costs": {
+            "complete": false,
+            "context": "selected_parameters",
+            "coverage": {
+              "additional_costs": "unknown",
+              "complete": false,
+              "known_items": 2,
+              "source": "native_rule",
+              "status": "partial"
+            },
+            "items": [
+              {
+                "amount": 2.0,
+                "amount_raw": 2000,
+                "complete": true,
+                "native_raw": 2000,
+                "resource": "stability_loss",
+                "scale": 1000,
+                "scale_verified": true,
+                "source": "native_rule",
+                "unit": "stability_loss",
+                "unit_verified": true
+              },
+              {
+                "amount": 2.0,
+                "amount_raw": 2000,
+                "complete": true,
+                "native_raw": 2000,
+                "resource": "war_exhaustion",
+                "scale": 1000,
+                "scale_verified": true,
+                "source": "native_rule",
+                "unit": "war_exhaustion",
+                "unit_verified": true
+              }
+            ],
+            "native_text": "§R-2: §!无宣战理由\n\n厌战度：+§R2§!\n这将导致§Y法兰西§!受到总计§Y167§!个国家的§R0§! ~ §R21§!点侵略扩张关系惩罚。",
+            "native_text_decoded": true,
+            "native_text_truncated": false,
+            "raw_components": {
+              "native_text": "§R-2: §!无宣战理由\n\n厌战度：+§R2§!\n这将导致§Y法兰西§!受到总计§Y167§!个国家的§R0§! ~ §R21§!点侵略扩张关系惩罚。",
+              "primary_available": true,
+              "primary_raw": 20000,
+              "secondary_available": true,
+              "secondary_raw": 21550,
+              "stability_available": true,
+              "stability_hit_raw": 2000,
+              "stability_scale": 1000,
+              "text_decoded": true,
+              "text_readable": true,
+              "text_truncated": false,
+              "warex_available": true,
+              "warex_display_raw": 2000
+            },
+            "status": "partial"
+          },
+          "decision_country": null,
+          "decision_country_verified": false,
+          "declaration_details": {
+            "casus_belli": {
+              "complete": true,
+              "description": "我们没有合法的战争理由。",
+              "name": "无宣战理由"
+            },
+            "complete": true,
+            "context": "selected_parameters",
+            "description": "§Y你有海军未归港§!\n\n宣战理由: §Y无宣战理由§W\n我们没有合法的战争理由。\n\n§Y对稳定的影响：§!\n§R-2: §!无宣战理由\n\n\n厌战度：+§R2§!\n@MOR 摩洛哥和 @TUN 突尼斯结盟。 @MOR 摩洛哥统治着@TFL 塔菲拉勒特, @SOS 苏斯与@MRK 马拉喀什，该国将会援助他们。 \n\n",
+            "description_complete": true,
+            "peace_conditions": {
+              "complete": true,
+              "disabled_terms_description": ""
+            },
+            "source": "native_declare_war_dialog",
+            "war_goal": {
+              "applicable": false,
+              "complete": true,
+              "description": null,
+              "name": null
+            }
+          },
+          "family": "declare_war",
+          "forces": {
+            "attackers": {
+              "countries": [
+                "AMG",
+                "AUV",
+                "BOU",
+                "FOI",
+                "FRA",
+                "ORL"
+              ],
+              "deployed": {
+                "artillery": 0,
+                "cavalry": 14212,
+                "complete": true,
+                "infantry": 45308,
+                "total": 59520,
+                "unit": "men"
+              },
+              "reserve_manpower": {
+                "amount": 128194,
+                "complete": true,
+                "unit": "men"
+              },
+              "scope_complete": true
+            },
+            "complete": true,
+            "defenders": {
+              "countries": [
+                "GHD",
+                "MOR",
+                "MRK",
+                "SOS",
+                "TFL",
+                "TUN"
+              ],
+              "deployed": {
+                "artillery": 0,
+                "cavalry": 10364,
+                "complete": true,
+                "infantry": 49854,
+                "total": 60218,
+                "unit": "men"
+              },
+              "reserve_manpower": {
+                "amount": 114380,
+                "complete": true,
+                "unit": "men"
+              },
+              "scope_complete": true
+            },
+            "source": "native_declare_war_dialog"
+          },
+          "full_rules_complete": true,
+          "initiation_gate_checked": true,
+          "interface_support": {
+            "complete": false,
+            "execute": "native_declare_war_submission",
+            "query": "partial_native_rules"
+          },
+          "legality": {
+            "complete": false,
+            "reasons": [
+              {
+                "code": "NATIVE_DECLARE_WAR_SELECTED_RULE_FALSE",
+                "complete": false,
+                "source": "native_rule",
+                "text": "§R- 你没有外交官可供派遣。§!\n\n与一个国家开战时你可以移动你的部队进入其领土，通过占领对方的省份，提出苛刻的和平协议以获取敌人的省份。但除非你拥有宣战理由，否则无故宣战将极大地降低你的稳定度。"
+              },
+              {
+                "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+                "complete": true,
+                "source": "native_rule",
+                "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+              }
+            ],
+            "status": "unavailable"
+          },
+          "native_default_payload": true,
+          "native_diagnostic": {
+            "complete": false,
+            "source": "native_rule",
+            "text": "§R- 你没有外交官可供派遣。§!\n\n与一个国家开战时你可以移动你的部队进入其领土，通过占领对方的省份，提出苛刻的和平协议以获取敌人的省份。但除非你拥有宣战理由，否则无故宣战将极大地降低你的稳定度。",
+            "text_decoded": true,
+            "text_encoding_verified": false,
+            "truncated": false
+          },
+          "native_identifier": "declare_war",
+          "native_rule_components": {
+            "candidate_capture_truncated": false,
+            "candidate_cleanup_verified": true,
+            "candidate_context_complete": true,
+            "candidate_enumeration_called": true,
+            "candidate_enumeration_complete": true,
+            "candidate_native_count": 0,
+            "common_action_gate": false,
+            "complete": false,
+            "full_rules_complete": true,
+            "initiation_gate": true,
+            "initiation_gate_checked": true,
+            "native_default_payload": true,
+            "native_validity": true,
+            "native_visibility": true,
+            "parameter_context_complete": true,
+            "selection_match_count": 1,
+            "selection_matched": true,
+            "selection_requested": true,
+            "ui_enabled_gate_checked": true,
+            "ui_selection_checked": true,
+            "validity_called": true
+          },
+          "parameter_context_complete": true,
+          "parameters": {
+            "actual": {
+              "call_allies": [],
+              "casus_belli": "no_casus_belli",
+              "co_belligerents": [],
+              "promise_land_to": [],
+              "war_goal": {
+                "beneficiary": "FRA",
+                "province_id": -1
+              }
+            },
+            "candidates": [],
+            "complete": true,
+            "requested": {
+              "call_allies": [],
+              "casus_belli": "no_casus_belli",
+              "co_belligerents": [],
+              "promise_land_to": [],
+              "war_goal": {
+                "beneficiary": "FRA",
+                "province_id": -1
+              }
+            }
+          },
+          "participants": {
+            "action_unchanged": true,
+            "called": true,
+            "candidate_count": 11,
+            "candidates": [
+              {
+                "automatic": true,
+                "complete": true,
+                "context_complete": true,
+                "country": "AMG",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 0,
+                "join_reason_raw": 7,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "FRA",
+                "selected": false,
+                "side": "attacker",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": 1000,
+                  "reason_count": 0,
+                  "reasons": [],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": true,
+                "complete": true,
+                "context_complete": true,
+                "country": "AUV",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 1,
+                "join_reason_raw": 7,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "FRA",
+                "selected": false,
+                "side": "attacker",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": 1000,
+                  "reason_count": 0,
+                  "reasons": [],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": true,
+                "complete": true,
+                "context_complete": true,
+                "country": "BOU",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 2,
+                "join_reason_raw": 7,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "FRA",
+                "selected": false,
+                "side": "attacker",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": 1000,
+                  "reason_count": 0,
+                  "reasons": [],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": true,
+                "complete": true,
+                "context_complete": true,
+                "country": "FOI",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 3,
+                "join_reason_raw": 7,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "FRA",
+                "selected": false,
+                "side": "attacker",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": 1000,
+                  "reason_count": 0,
+                  "reasons": [],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": true,
+                "complete": true,
+                "context_complete": true,
+                "country": "ORL",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 4,
+                "join_reason_raw": 7,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "FRA",
+                "selected": false,
+                "side": "attacker",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": 1000,
+                  "reason_count": 0,
+                  "reasons": [],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": false,
+                "complete": true,
+                "context_complete": true,
+                "country": "SCO",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 5,
+                "join_reason_raw": 1,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": true,
+                "promise_land": false,
+                "related_country": "FRA",
+                "selected": false,
+                "side": "attacker",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": -1296,
+                  "reason_count": 5,
+                  "reasons": [
+                    {
+                      "complete": true,
+                      "index": 0,
+                      "readable": true,
+                      "text": "苏格兰的统治者拥有残暴特质：",
+                      "truncated": false,
+                      "value": -20
+                    },
+                    {
+                      "complete": true,
+                      "index": 1,
+                      "readable": true,
+                      "text": "苏格兰没有欠法兰西至少10点人情：",
+                      "truncated": false,
+                      "value": -1000
+                    },
+                    {
+                      "complete": true,
+                      "index": 2,
+                      "readable": true,
+                      "text": "距离遥远的战争：",
+                      "truncated": false,
+                      "value": -290
+                    },
+                    {
+                      "complete": true,
+                      "index": 3,
+                      "readable": true,
+                      "text": "法兰西的外交声誉：",
+                      "truncated": false,
+                      "value": 15
+                    },
+                    {
+                      "complete": true,
+                      "index": 4,
+                      "readable": true,
+                      "text": "苏格兰陆军实力：",
+                      "truncated": false,
+                      "value": -1
+                    }
+                  ],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": false,
+                "complete": true,
+                "context_complete": true,
+                "country": "SAV",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 6,
+                "join_reason_raw": 1,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": true,
+                "promise_land": false,
+                "related_country": "FRA",
+                "selected": false,
+                "side": "attacker",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": -1122,
+                  "reason_count": 3,
+                  "reasons": [
+                    {
+                      "complete": true,
+                      "index": 0,
+                      "readable": true,
+                      "text": "距离遥远的战争：",
+                      "truncated": false,
+                      "value": -137
+                    },
+                    {
+                      "complete": true,
+                      "index": 1,
+                      "readable": true,
+                      "text": "正在打另一场战争：",
+                      "truncated": false,
+                      "value": -1000
+                    },
+                    {
+                      "complete": true,
+                      "index": 2,
+                      "readable": true,
+                      "text": "法兰西的外交声誉：",
+                      "truncated": false,
+                      "value": 15
+                    }
+                  ],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": true,
+                "complete": true,
+                "context_complete": true,
+                "country": "TFL",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 7,
+                "join_reason_raw": 20,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "MOR",
+                "selected": false,
+                "side": "defender",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": 15,
+                  "reason_count": 3,
+                  "reasons": [
+                    {
+                      "complete": true,
+                      "index": 0,
+                      "readable": true,
+                      "text": "防御性质的战争：",
+                      "truncated": false,
+                      "value": 30
+                    },
+                    {
+                      "complete": true,
+                      "index": 1,
+                      "readable": true,
+                      "text": "对摩洛哥的态度是不忠：",
+                      "truncated": false,
+                      "value": -20
+                    },
+                    {
+                      "complete": true,
+                      "index": 2,
+                      "readable": true,
+                      "text": "摩洛哥的外交声誉：",
+                      "truncated": false,
+                      "value": 5
+                    }
+                  ],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": true,
+                "complete": true,
+                "context_complete": true,
+                "country": "SOS",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 8,
+                "join_reason_raw": 20,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "MOR",
+                "selected": false,
+                "side": "defender",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": 13,
+                  "reason_count": 4,
+                  "reasons": [
+                    {
+                      "complete": true,
+                      "index": 0,
+                      "readable": true,
+                      "text": "防御性质的战争：",
+                      "truncated": false,
+                      "value": 30
+                    },
+                    {
+                      "complete": true,
+                      "index": 1,
+                      "readable": true,
+                      "text": "对摩洛哥的态度是不忠：",
+                      "truncated": false,
+                      "value": -20
+                    },
+                    {
+                      "complete": true,
+                      "index": 2,
+                      "readable": true,
+                      "text": "摩洛哥的外交声誉：",
+                      "truncated": false,
+                      "value": 5
+                    },
+                    {
+                      "complete": true,
+                      "index": 3,
+                      "readable": true,
+                      "text": "厌战度：",
+                      "truncated": false,
+                      "value": -2
+                    }
+                  ],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": true,
+                "complete": true,
+                "context_complete": true,
+                "country": "MRK",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 9,
+                "join_reason_raw": 20,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "MOR",
+                "selected": false,
+                "side": "defender",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": -4,
+                  "reason_count": 4,
+                  "reasons": [
+                    {
+                      "complete": true,
+                      "index": 0,
+                      "readable": true,
+                      "text": "防御性质的战争：",
+                      "truncated": false,
+                      "value": 30
+                    },
+                    {
+                      "complete": true,
+                      "index": 1,
+                      "readable": true,
+                      "text": "对摩洛哥的态度是不忠：",
+                      "truncated": false,
+                      "value": -20
+                    },
+                    {
+                      "complete": true,
+                      "index": 2,
+                      "readable": true,
+                      "text": "摩洛哥的外交声誉：",
+                      "truncated": false,
+                      "value": 5
+                    },
+                    {
+                      "complete": true,
+                      "index": 3,
+                      "readable": true,
+                      "text": "马拉喀什负债40¤：",
+                      "truncated": false,
+                      "value": -19
+                    }
+                  ],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              },
+              {
+                "automatic": false,
+                "complete": true,
+                "context_complete": true,
+                "country": "TUN",
+                "diagnostic": {
+                  "complete": true,
+                  "readable": true,
+                  "text": "",
+                  "truncated": false
+                },
+                "index": 10,
+                "join_reason_raw": 1,
+                "legality_checked": true,
+                "native_legality": true,
+                "promise_available": false,
+                "promise_land": false,
+                "related_country": "MOR",
+                "selected": false,
+                "side": "defender",
+                "willingness": {
+                  "acceptance_threshold_raw": 1,
+                  "complete": true,
+                  "native_total_raw": 35,
+                  "reason_count": 2,
+                  "reasons": [
+                    {
+                      "complete": true,
+                      "index": 0,
+                      "readable": true,
+                      "text": "防御性质的战争：",
+                      "truncated": false,
+                      "value": 30
+                    },
+                    {
+                      "complete": true,
+                      "index": 1,
+                      "readable": true,
+                      "text": "摩洛哥的外交声誉：",
+                      "truncated": false,
+                      "value": 5
+                    }
+                  ],
+                  "reasons_complete": true,
+                  "score_available": true
+                }
+              }
+            ],
+            "complete": true,
+            "enumeration_complete": true,
+            "legality_complete": true,
+            "selection": {
+              "allowed": true,
+              "applied": true,
+              "call_allies": [],
+              "co_belligerents": [],
+              "promise_land_to": []
+            },
+            "source": "native_declare_war_participants"
+          },
+          "peace_term_rules": {
+            "action_unchanged": true,
+            "attacker_declared": {
+              "available": true,
+              "complete": true,
+              "declared_justified_actions": [],
+              "records": [],
+              "target_conditions_evaluated": false,
+              "target_evaluation_required": false,
+              "unmapped": []
+            },
+            "called": true,
+            "complete": true,
+            "defender_declared": {
+              "available": true,
+              "complete": true,
+              "declared_justified_actions": [],
+              "records": [],
+              "target_conditions_evaluated": false,
+              "target_evaluation_required": false,
+              "unmapped": []
+            },
+            "disabled": {
+              "available": true,
+              "complete": true,
+              "disabled_actions": [],
+              "records": [],
+              "target_conditions_evaluated": false,
+              "target_evaluation_required": false,
+              "unmapped": []
+            },
+            "selection_rules_evaluated": false,
+            "source": "native_declare_war_peace_options"
+          },
+          "phase": "initiate",
+          "recipient": "MOR",
+          "requested_beneficiary": "FRA",
+          "requested_casus_belli": "no_casus_belli",
+          "requested_decision_country": "FRA",
+          "requested_province_id": -1,
+          "resources": {
+            "diplomats": {
+              "allocation_verified": false,
+              "availability_verified": true,
+              "available_count": 0,
+              "complete": false,
+              "native_requirement": true,
+              "source": "native_rule"
+            }
+          },
+          "selection_match_count": 1,
+          "selection_matched": true,
+          "selection_requested": true,
+          "session": {
+            "complete": true,
+            "date_raw": 56552592,
+            "reasons": [],
+            "state_id": "d22c8df3eea6c2dfbc49d5786373a8536e04136c805e9ea520ceb139a9b06061",
+            "status": "ready"
+          },
+          "submitted": false,
+          "visibility": {
+            "complete": true,
+            "status": "visible"
+          }
+        },
+        "legality_reasons": [
+          {
+            "code": "NATIVE_DECLARE_WAR_SELECTED_RULE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "§R- 你没有外交官可供派遣。§!\n\n与一个国家开战时你可以移动你的部队进入其领土，通过占领对方的省份，提出苛刻的和平协议以获取敌人的省份。但除非你拥有宣战理由，否则无故宣战将极大地降低你的稳定度。"
+          },
+          {
+            "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+          }
+        ],
+        "reason": {
+          "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+          "complete": true,
+          "source": "native_rule",
+          "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+        },
+        "submitted": false
+      },
+      "status": "invalidated",
+      "submitted": false,
+      "updated_at": "2026-10-19T14:37:39.434610+00:00"
+    },
+    "blocked_peace_native": {
+      "event": "native_peace_execution_rejected",
+      "family": "peace",
+      "session_id": "16300-1dd5fd738460ece",
+      "request_id": "r68_native_blocked_peace_002",
+      "action_id": "white_peace",
+      "actor": "FRA",
+      "recipient": "BUR",
+      "phase": "initiate",
+      "direction": "demand",
+      "date_raw": 56552592,
+      "war_id": "war_629a4e22e454f188_00000001",
+      "submitted": false,
+      "reason_code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+      "reason_stage": "diplomat_availability",
+      "reason_source": "native_rule",
+      "native_diagnostic_hex": "",
+      "native_diagnostic_readable": false,
+      "native_diagnostic_truncated": false,
+      "native_diagnostic_complete": false,
+      "failure_complete": true,
+      "complete": true
+    },
+    "blocked_peace_public": {
+      "binding_complete": true,
+      "diagnostic": {
+        "complete": false,
+        "readable": false,
+        "text": null,
+        "text_decoded": false,
+        "truncated": false
+      },
+      "legality": {
+        "complete": false,
+        "status": "unavailable"
+      },
+      "reason": {
+        "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+        "complete": false,
+        "source": "native_rule",
+        "stage": "diplomat_availability",
+        "text": "此议和操作需要空闲外交官，但执行前复检时可用外交官数量为0。"
+      },
+      "reason_code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+      "status": "failed",
+      "submitted": false
+    },
+    "blocked_peace_result": {
+      "action_id": "white_peace",
+      "contract_version": 1,
+      "evidence": [
+        {
+          "layer": "bridge_validation",
+          "sha256": "f60200ca0c9bfb7b270b00e1de1376b68e30ed71876d957a8e9c0b564a445e43",
+          "type": "invalidation"
+        }
+      ],
+      "game_outcome": "unknown",
+      "request_id": "r68_blocked_peace_002",
+      "result": {
+        "game_outcome": "unknown",
+        "inspection": {
+          "acceptance": {
+            "applicability": "applicable",
+            "complete": false,
+            "details_available": true,
+            "details_complete": false,
+            "items": [
+              {
+                "complete": false,
+                "identifier_verified": false,
+                "native_flag": true,
+                "native_flag_verified": true,
+                "native_identifier": null,
+                "native_value": 2,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "勃艮第的厌战度：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": true,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_WAR_DESPERATION",
+                "native_value": 11,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "被占领和被围攻的省份：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": false,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_HOLD_CAPITAL",
+                "native_value": -5,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "勃艮第控制着首都第戎：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": false,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_WAR_TIME_PASSED",
+                "native_value": -44,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "战争持续时间：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": false,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_MILITARY_STRENGTH",
+                "native_value": -8,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "勃艮第的军事实力：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": false,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+                "native_value": -2,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "盟友的相对实力：",
+                "text_decoded": true,
+                "text_truncated": false
+              }
+            ],
+            "native_total": -46,
+            "predicted_response": "unknown",
+            "prediction_available": false,
+            "scale_verified": false,
+            "unit": "unknown"
+          },
+          "action_constructed": true,
+          "action_id": "white_peace",
+          "actor": "FRA",
+          "authorization": {
+            "complete": true,
+            "reasons": [
+              {
+                "code": "NATIVE_PEACE_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+                "complete": true,
+                "source": "installation_capability",
+                "text": "安装确认允许桥接提交法国发起的议和操作；本次原生合法性由最新议和检查单独决定。"
+              }
+            ],
+            "status": "available"
+          },
+          "cleanup_verified": true,
+          "common_action_gate": false,
+          "common_gate_checked": true,
+          "contract_version": 1,
+          "costs": {
+            "complete": false,
+            "items": [],
+            "native_evaluation": {
+              "aggregate_score_available": true,
+              "aggregate_score_raw": 0,
+              "complete": false,
+              "scale_verified": false,
+              "unit": "unknown"
+            },
+            "status": "unknown"
+          },
+          "decision_country": null,
+          "decision_country_verified": false,
+          "diagnostics": {
+            "common_action_gate": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§R- 最近已经派遣过外交官，所以直到§Y1455年11月12日§!我们才能再次派遣。§!\n§R- 你没有外交官可供派遣。§!\n选择此项向敌人递交一份和平协议",
+              "text_decoded": true,
+              "truncated": false
+            },
+            "initiation_gate": {
+              "complete": false,
+              "source": "native_rule",
+              "text": "§R- 你必须等待一天才可以提出另一个和平提议。§!\n",
+              "text_decoded": true,
+              "truncated": false
+            },
+            "validity": {
+              "complete": false,
+              "source": "native_rule",
+              "text": null,
+              "text_decoded": false,
+              "truncated": false
+            }
+          },
+          "execution_context": {
+            "complete": false,
+            "direction": "demand",
+            "terms": [],
+            "war_context_complete": false,
+            "war_id": "war_629a4e22e454f188_00000001"
+          },
+          "family": "peace",
+          "full_rules_complete": true,
+          "identity_scope": "observer_session",
+          "initiation_gate": false,
+          "initiation_gate_checked": true,
+          "interface_support": {
+            "complete": true,
+            "execute": "native_peace_submission",
+            "query": "native_peace_execution_inspection"
+          },
+          "legality": {
+            "complete": false,
+            "reasons": [
+              {
+                "code": "NATIVE_PEACE_COMMON_GATE_FALSE",
+                "complete": false,
+                "source": "native_rule",
+                "text": "§R- 最近已经派遣过外交官，所以直到§Y1455年11月12日§!我们才能再次派遣。§!\n§R- 你没有外交官可供派遣。§!\n选择此项向敌人递交一份和平协议"
+              },
+              {
+                "code": "NATIVE_PEACE_INITIATION_GATE_FALSE",
+                "complete": false,
+                "source": "native_rule",
+                "text": "§R- 你必须等待一天才可以提出另一个和平提议。§!\n"
+              },
+              {
+                "code": "NATIVE_PEACE_WRAPPER_GATE_FALSE",
+                "complete": true,
+                "source": "native_rule",
+                "text": "原生议和wrapper规则检查返回false。"
+              },
+              {
+                "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+                "complete": true,
+                "source": "native_rule",
+                "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+              }
+            ],
+            "status": "unavailable"
+          },
+          "native_diagnostic_text": null,
+          "native_diagnostic_text_decoded": false,
+          "native_diagnostic_truncated": false,
+          "native_evaluation": {
+            "aggregate_score_available": true,
+            "aggregate_score_raw": 0,
+            "called": true,
+            "complete": false,
+            "factor_capture_truncated": false,
+            "factor_native_count": 6,
+            "factors_available": true,
+            "factors_complete": false,
+            "items": [
+              {
+                "complete": false,
+                "identifier_verified": false,
+                "native_flag": true,
+                "native_flag_verified": true,
+                "native_identifier": null,
+                "native_value": 2,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "勃艮第的厌战度：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": true,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_WAR_DESPERATION",
+                "native_value": 11,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "被占领和被围攻的省份：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": false,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_HOLD_CAPITAL",
+                "native_value": -5,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "勃艮第控制着首都第戎：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": false,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_WAR_TIME_PASSED",
+                "native_value": -44,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "战争持续时间：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": false,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_MILITARY_STRENGTH",
+                "native_value": -8,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "勃艮第的军事实力：",
+                "text_decoded": true,
+                "text_truncated": false
+              },
+              {
+                "complete": true,
+                "identifier_verified": true,
+                "native_flag": false,
+                "native_flag_verified": true,
+                "native_identifier": "DIPLO_WAR_FORCE_BALANCE",
+                "native_value": -2,
+                "native_value_verified": true,
+                "row_binding_verified": true,
+                "source": "native_rule",
+                "text": "盟友的相对实力：",
+                "text_decoded": true,
+                "text_truncated": false
+              }
+            ],
+            "native_total": -46,
+            "score_available": true,
+            "score_raw": -46,
+            "score_representation": "signed_int32"
+          },
+          "native_identifier": "peace",
+          "native_offer_inspected": true,
+          "native_payload": {
+            "action_owner_verified": true,
+            "authority_bound": false,
+            "capture_available": true,
+            "schema": "native_peace_serialized_fields_v1",
+            "selected_index_complete": true,
+            "selected_term_count": 1,
+            "serialized_fields_complete": true,
+            "serialized_fields_unchanged": true,
+            "source_copy_equal": true,
+            "source_owner_verified": true,
+            "term_count": 67,
+            "unsupported_term_count": 0
+          },
+          "native_rule_components": {
+            "common_action_gate": false,
+            "common_gate_checked": true,
+            "complete": false,
+            "full_rules_complete": true,
+            "initiation_gate": false,
+            "initiation_gate_checked": true,
+            "native_term_gate": null,
+            "native_term_gate_checked": false,
+            "native_validity": true,
+            "native_wrapper_gate": false,
+            "native_wrapper_gate_checked": true,
+            "selected_rules_available": null,
+            "selected_rules_complete": null,
+            "validity_called": true,
+            "wrapper_identity_verified": true,
+            "wrapper_payload_unchanged": true
+          },
+          "native_validity": true,
+          "native_war_context": {
+            "actor_recipient_opposite": true,
+            "actor_side": "side_a",
+            "actor_side_verified": true,
+            "context_complete": false,
+            "derived_offer_mapping_verified": true,
+            "leaders_verified": false,
+            "offer_identity_verified": true,
+            "offer_vector_mapping_verified": true,
+            "offer_vectors_readable": true,
+            "participant_lists_complete": true,
+            "primary_offer_mapping_verified": true,
+            "recipient_side": "side_b",
+            "recipient_side_verified": true,
+            "roles_verified": false,
+            "selected_side": "side_a",
+            "side_a_count": 8,
+            "side_a_members": [
+              "FRA",
+              "AMG",
+              "AUV",
+              "BOU",
+              "FOI",
+              "ORL",
+              "SAV",
+              "GNV"
+            ],
+            "side_b_count": 10,
+            "side_b_members": [
+              "BUR",
+              "HSA",
+              "NEV",
+              "BRB",
+              "FLA",
+              "HOL",
+              "LAN",
+              "RIG",
+              "BRE",
+              "HAM"
+            ],
+            "war_context_resolved": true
+          },
+          "native_wrapper_gate": false,
+          "native_wrapper_gate_checked": true,
+          "object_unchanged": true,
+          "offer_constructed": true,
+          "offer_identity_verified": true,
+          "pair_at_war": true,
+          "parameters": {
+            "actual": {
+              "peace_context": {
+                "direction": "demand",
+                "terms": [],
+                "war_id": "war_629a4e22e454f188_00000001"
+              }
+            },
+            "candidates": null,
+            "complete": false,
+            "requested": {
+              "peace_context": {
+                "direction": "demand",
+                "terms": [],
+                "war_id": "war_629a4e22e454f188_00000001"
+              }
+            }
+          },
+          "participant_copy_verified": true,
+          "peace_consequences": {
+            "aggressive_expansion": {
+              "available": true,
+              "coalition_possible": false,
+              "maximum": 0.0,
+              "maximum_raw": 0,
+              "scale": 1000,
+              "text": "",
+              "text_readable": true,
+              "text_truncated": false
+            },
+            "coalition": {
+              "available": true,
+              "complete": true,
+              "countries": [],
+              "current_value_semantics_verified": true,
+              "native_count": 0
+            },
+            "complete": true,
+            "diplomatic_power": {
+              "available": true,
+              "country": "FRA",
+              "unit": "power_points",
+              "value": 0
+            },
+            "overextension": {
+              "available": true,
+              "complete": true,
+              "countries": [
+                {
+                  "available": true,
+                  "cache_matches_recomputed": true,
+                  "complete": true,
+                  "country": "BUR",
+                  "current_fraction": 0.12,
+                  "current_percentage_points": 12.0,
+                  "current_raw": 120,
+                  "current_recomputed_raw": 120,
+                  "delta_fraction": 0.0,
+                  "delta_percentage_points": 0.0,
+                  "delta_raw": 0,
+                  "gained_fraction": 0.0,
+                  "gained_percentage_points": 0.0,
+                  "gained_province_ids": [],
+                  "gained_raw": 0,
+                  "lost_fraction": 0.0,
+                  "lost_percentage_points": 0.0,
+                  "lost_province_ids": [],
+                  "lost_raw": 0,
+                  "projected_fraction": 0.12,
+                  "projected_percentage_points": 12.0,
+                  "projected_raw": 120,
+                  "scale": 1000,
+                  "unit": "fraction"
+                },
+                {
+                  "available": true,
+                  "cache_matches_recomputed": true,
+                  "complete": true,
+                  "country": "FRA",
+                  "current_fraction": 0.0,
+                  "current_percentage_points": 0.0,
+                  "current_raw": 0,
+                  "current_recomputed_raw": 0,
+                  "delta_fraction": 0.0,
+                  "delta_percentage_points": 0.0,
+                  "delta_raw": 0,
+                  "gained_fraction": 0.0,
+                  "gained_percentage_points": 0.0,
+                  "gained_province_ids": [],
+                  "gained_raw": 0,
+                  "lost_fraction": 0.0,
+                  "lost_percentage_points": 0.0,
+                  "lost_province_ids": [],
+                  "lost_raw": 0,
+                  "projected_fraction": 0.0,
+                  "projected_percentage_points": 0.0,
+                  "projected_raw": 0,
+                  "scale": 1000,
+                  "unit": "fraction"
+                }
+              ],
+              "scope": "selected_territorial_preview",
+              "source": "native_peace_overextension",
+              "unsupported_territorial_terms": false
+            },
+            "reason_code": null,
+            "requested_terms_applied": true,
+            "scope": "constructed_offer",
+            "source": "native_peace_consequences",
+            "territorial": [
+              {
+                "administrative_power": 0,
+                "called": true,
+                "complete": true,
+                "country": "FRA",
+                "overextension_added_fraction": 0.0,
+                "overextension_added_percentage_points": 0.0,
+                "overextension_added_raw": 0,
+                "overextension_unit": "fraction",
+                "provinces": [],
+                "scale": 1000,
+                "truncated": false
+              },
+              {
+                "administrative_power": 0,
+                "called": true,
+                "complete": true,
+                "country": "BUR",
+                "overextension_added_fraction": 0.0,
+                "overextension_added_percentage_points": 0.0,
+                "overextension_added_raw": 0,
+                "overextension_unit": "fraction",
+                "provinces": [],
+                "scale": 1000,
+                "truncated": false
+              }
+            ]
+          },
+          "peace_context": {
+            "complete": false,
+            "direction": "demand",
+            "terms": [],
+            "war_id": "war_629a4e22e454f188_00000001"
+          },
+          "phase": "initiate",
+          "query_complete": true,
+          "reasons_complete": false,
+          "recipient": "BUR",
+          "requested_decision_country": "FRA",
+          "resources": {
+            "diplomats": {
+              "allocation_verified": false,
+              "availability_verified": true,
+              "available_count": 0,
+              "complete": true,
+              "native_requirement": true,
+              "source": "native_rule"
+            }
+          },
+          "selected_war_id": "war_629a4e22e454f188_00000001",
+          "session": {
+            "complete": true,
+            "date_raw": 56552592,
+            "reasons": [],
+            "state_id": "d22c8df3eea6c2dfbc49d5786373a8536e04136c805e9ea520ceb139a9b06061",
+            "status": "ready"
+          },
+          "submitted": false,
+          "unique_shared_war": true,
+          "validity_called": true,
+          "visibility": {
+            "complete": false,
+            "status": "unknown"
+          },
+          "wrapper_identity_verified": true,
+          "wrapper_payload_unchanged": true
+        },
+        "legality_reasons": [
+          {
+            "code": "NATIVE_PEACE_COMMON_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "§R- 最近已经派遣过外交官，所以直到§Y1455年11月12日§!我们才能再次派遣。§!\n§R- 你没有外交官可供派遣。§!\n选择此项向敌人递交一份和平协议"
+          },
+          {
+            "code": "NATIVE_PEACE_INITIATION_GATE_FALSE",
+            "complete": false,
+            "source": "native_rule",
+            "text": "§R- 你必须等待一天才可以提出另一个和平提议。§!\n"
+          },
+          {
+            "code": "NATIVE_PEACE_WRAPPER_GATE_FALSE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "原生议和wrapper规则检查返回false。"
+          },
+          {
+            "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+          }
+        ],
+        "reason": {
+          "code": "NATIVE_DIPLOMAT_UNAVAILABLE",
+          "complete": true,
+          "source": "native_rule",
+          "text": "此动作需要空闲外交官，但当前可用外交官数量为0。"
+        },
+        "submitted": false
+      },
+      "status": "invalidated",
+      "submitted": false,
+      "updated_at": "2026-10-19T14:37:39.707918+00:00"
+    },
+    "diplomats_recall": {
+      "pid": 16300,
+      "read_only": true,
+      "player_slot": 189,
+      "current_raw_date": 56552592,
+      "countries": [
+        {
+          "slot": 122,
+          "tag": "FRA",
+          "handle": "0x100007a00415246",
+          "last_sent_raw": 56552592,
+          "ai_queue_count_raw": 0,
+          "ai_queue": [],
+          "diplomacy_entries": [
+            {
+              "pointer": "0x2e15ca6b860",
+              "raw_id_44": 0,
+              "active_raw_18": 2,
+              "record": "0x2e14b26ff90",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100007a00415246",
+              "raw_recipient_88": "0x100007500525542",
+              "raw_action_type_a8": 13176,
+              "raw_20": 56459016,
+              "raw_24": 56459064,
+              "raw_2c": 2
+            },
+            {
+              "pointer": "0x2e15ca6aff0",
+              "raw_id_44": 1,
+              "active_raw_18": 2,
+              "record": "0x2e14b271290",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100007a00415246",
+              "raw_recipient_88": "0x100007e004c524f",
+              "raw_action_type_a8": 10559,
+              "raw_20": 56539128,
+              "raw_24": 56539152,
+              "raw_2c": 1
+            },
+            {
+              "pointer": "0x2e15ca6bf40",
+              "raw_id_44": 2,
+              "active_raw_18": 1,
+              "record": "0x2e14b26f290",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100007a00415246",
+              "raw_recipient_88": "0x100007500525542",
+              "raw_action_type_a8": 10556,
+              "raw_20": 56552592,
+              "raw_24": 56552640,
+              "raw_2c": 2
+            },
+            {
+              "pointer": "0x2e15ca6bd10",
+              "raw_id_44": 3,
+              "active_raw_18": 1,
+              "record": "0x2e14b26c790",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100007a00415246",
+              "raw_recipient_88": "0x10000cb004f4c4d",
+              "raw_action_type_a8": 11739,
+              "raw_20": 56552592,
+              "raw_24": 56552736,
+              "raw_2c": 6
+            }
+          ],
+          "ai_queue_truncated": false,
+          "diplomacy_control_raw_14": 3,
+          "available_diplomat_count": 0
+        },
+        {
+          "slot": 46,
+          "tag": "ENG",
+          "handle": "0x100002e00474e45",
+          "last_sent_raw": 56551344,
+          "ai_queue_count_raw": 0,
+          "ai_queue": [],
+          "diplomacy_entries": [
+            {
+              "pointer": "0x2e15c6a15e0",
+              "raw_id_44": 0,
+              "active_raw_18": 2,
+              "record": "0x2e14b267d90",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100002e00474e45",
+              "raw_recipient_88": "0x10000c8004e4547",
+              "raw_action_type_a8": 11739,
+              "raw_20": 56551944,
+              "raw_24": 56552184,
+              "raw_2c": 10
+            },
+            {
+              "pointer": "0x2e15c6a2760",
+              "raw_id_44": 1,
+              "active_raw_18": 0,
+              "record": "0x0"
+            },
+            {
+              "pointer": "0x2e15c6a1cc0",
+              "raw_id_44": 2,
+              "active_raw_18": 2,
+              "record": "0x2e14b262990",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x100002e00474e45",
+              "raw_recipient_88": "0x100000400455753",
+              "raw_action_type_a8": 11739,
+              "raw_20": 56550864,
+              "raw_24": 56551248,
+              "raw_2c": 16
+            },
+            {
+              "pointer": "0x2e15c6a19f0",
+              "raw_id_44": 3,
+              "active_raw_18": 0,
+              "record": "0x0"
+            }
+          ],
+          "ai_queue_truncated": false,
+          "diplomacy_control_raw_14": 3,
+          "available_diplomat_count": 2
+        },
+        {
+          "slot": 189,
+          "tag": "POR",
+          "handle": "0x10000bd00524f50",
+          "last_sent_raw": 43808760,
+          "ai_queue_count_raw": 0,
+          "ai_queue": [],
+          "diplomacy_entries": [
+            {
+              "pointer": "0x2e15c78b980",
+              "raw_id_44": 0,
+              "active_raw_18": 2,
+              "record": "0x2e14f642680",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x10000bd00524f50",
+              "raw_recipient_88": "0x100013000524f4d",
+              "raw_action_type_a8": 13176,
+              "raw_20": 56457024,
+              "raw_24": 56457144,
+              "raw_2c": 5
+            },
+            {
+              "pointer": "0x2e15c78aad0",
+              "raw_id_44": 1,
+              "active_raw_18": 0,
+              "record": "0x0"
+            },
+            {
+              "pointer": "0x2e15c78acb0",
+              "raw_id_44": 2,
+              "active_raw_18": 2,
+              "record": "0x2e14b271690",
+              "record_vtable_rva": "0x1c4b2b8",
+              "raw_actor_80": "0x10000bd00524f50",
+              "raw_recipient_88": "0x10000b900534143",
+              "raw_action_type_a8": 11739,
+              "raw_20": 56461080,
+              "raw_24": 56461176,
+              "raw_2c": 4
+            }
+          ],
+          "ai_queue_truncated": false,
+          "diplomacy_control_raw_14": 3,
+          "available_diplomat_count": 1
+        }
+      ],
+      "native_methods_invoked": false
+    },
+    "stop_inspection": {
+      "acceptance": {
+        "applicability": "not_applicable",
+        "complete": true,
+        "details_available": false,
+        "items": [],
+        "native_total": null,
+        "predicted_response": "not_applicable",
+        "prediction_available": false,
+        "scale_verified": false,
+        "unit": null
+      },
+      "action_id": "stop_improving_relations",
+      "actor": "FRA",
+      "authorization": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_IMPROVE_RELATIONS_SUBMISSION_CAPABILITY_ACKNOWLEDGED",
+            "complete": true,
+            "source": "installation_capability",
+            "text": "安装确认允许桥接提交法国对目标国家的改善关系任务。"
+          }
+        ],
+        "status": "available"
+      },
+      "contract_version": 1,
+      "costs": {
+        "complete": false,
+        "items": [],
+        "status": "unknown"
+      },
+      "decision_country": null,
+      "decision_country_verified": false,
+      "interface_support": {
+        "complete": false,
+        "execute": "native_improve_relations_submission",
+        "query": "partial_native_rules"
+      },
+      "legality": {
+        "complete": true,
+        "reasons": [
+          {
+            "code": "NATIVE_INITIATION_RULES_TRUE",
+            "complete": true,
+            "source": "native_rule",
+            "text": "原生外交列表选择、按钮发起条件及执行有效性检查均通过。"
+          }
+        ],
+        "status": "available"
+      },
+      "native_diagnostic": {
+        "complete": false,
+        "source": "native_rule",
+        "text": "§Y法兰西§W正在提高§Y米兰§W对他们的好感度（每月§Y5.38§W）。\n好感度越接近§Y0§!，效率越高。\n运气: §G+25.0%§!\n王室联姻数量: §G+2.0%§!\n威望: §R-5.9%§!\nAI（极难）: §G+50.0%§!\n\n这段关系能够再提升§G94§!，预计于§Y1457\u000f3月§!完成。\n\n停止改善关系并召回外交官",
+        "text_decoded": true,
+        "text_encoding_verified": false,
+        "truncated": false
+      },
+      "native_identifier": "improve_relations",
+      "native_rule_components": {
+        "common_action_gate": true,
+        "complete": true,
+        "executor_validity": true,
+        "full_rules_complete": true,
+        "initiation_gate": true,
+        "native_visibility": true,
+        "specific_validity_query_called": true,
+        "tooltip_gate": true,
+        "ui_action_selection": true,
+        "ui_enabled_gate_checked": true,
+        "ui_enabled_gate_verified": true,
+        "ui_selection_checked": true
+      },
+      "parameters": {
+        "actual": null,
+        "candidates": null,
+        "complete": false,
+        "requested": {}
+      },
+      "phase": "initiate",
+      "recipient": "MLO",
+      "requested_decision_country": "FRA",
+      "resources": {
+        "diplomats": {
+          "allocation_verified": false,
+          "availability_verified": true,
+          "available_count": 0,
+          "complete": false,
+          "native_requirement": false,
+          "source": "native_rule"
+        }
+      },
+      "session": {
+        "complete": true,
+        "date_raw": 56552592,
+        "reasons": [],
+        "state_id": "9fcdcc40f0fdf16fb0a74a0b6f906f5c9fbbffb3cbd9f5b40ffc9e46cfc76370",
+        "status": "ready"
+      },
+      "visibility": {
+        "complete": true,
+        "status": "visible"
+      }
+    },
+    "stop_native": {
+      "event": "native_alliance_inspection",
+      "session_id": "16300-1dd5fd738460ece",
+      "query_id": "inspect_4082ba02cb7f41d09d1b72a46bd8fa4e",
+      "action_id": "stop_improving_relations",
+      "family": "improve_relations",
+      "actor": "FRA",
+      "recipient": "MLO",
+      "phase": "initiate",
+      "date_raw": 56552592,
+      "ui_selection_checked": true,
+      "native_visibility": true,
+      "ui_enabled_gate_checked": true,
+      "common_action_gate": true,
+      "display_predicate": true,
+      "initiation_gate": true,
+      "tooltip_gate": true,
+      "validity_called": true,
+      "native_validity": true,
+      "native_diagnostic_hex": "a75910d56c107051107f89a75710636b10285710d06310d89aa75910737c107051a75712f95210d64e10ec4e108476118b59101f6110a65e1008ff10cf6b100867a759352e3338a7571009ff1002300a118b59101f6110a65e108a8d10a56310d18fa75930a721100cff104865108773108a8d10d89a1002300a10d08f10146c3a20a7472b32352e3025a7210a108b7313b25212547710fb5910706510cf913a20a7472b322e3025a7210a10015a101b673a20a7522d352e3925a7210a41491008ff10816710be961009ff3a20a7472b35302e3025a7210a0a10d98f10b56b10735110fb7c12fd77101f59108d5110d063104753a7473934a721100cff10849810a18b108e4ea759313435370f33100867a721128c521010621002300a0a116a5010626b10396510845510735110fb7c10765e10ec5310de5610165911b24e129852",
+      "diagnostic_readable": true,
+      "diagnostic_truncated": false,
+      "diplomat_context_readable": true,
+      "diplomat_required": false,
+      "available_diplomat_count": 0,
+      "diplomat_assignment_verified": false,
+      "task_active": true,
+      "task_state_verified": true,
+      "score_applicable": false,
+      "score_available": false,
+      "acceptance_predicate_available": false,
+      "native_would_accept": false,
+      "native_total_raw": 0,
+      "acceptance_threshold_raw": 1,
+      "reason_container_readable": false,
+      "reason_count": 0,
+      "reason_items_decoded": false,
+      "full_rules_complete": true,
+      "reasons_complete": false,
+      "submitted": false,
+      "frame_thread": 9680
+    },
+    "stop_result": {
+      "action_id": "stop_improving_relations",
+      "contract_version": 1,
+      "evidence": [
+        {
+          "layer": "native_submit",
+          "sha256": "7a272cb21183251fb4e24b13061552958e8317f379245e7c46c1c2518a1c4b43",
+          "type": "native_submission"
+        },
+        {
+          "layer": "native_consequence",
+          "sha256": "b4c57d672a7a2bc8223f62daee646fa30ca8f006b856cbee9f5b00cec0cd696a",
+          "type": "native_execution_consequence"
+        }
+      ],
+      "game_outcome": "executed",
+      "request_id": "r68_stop_improve_MLO_002",
+      "result": {
+        "action_id": "stop_improving_relations",
+        "actor": "FRA",
+        "date_raw": 56552592,
+        "event": "native_diplomacy_task_execution_result",
+        "execution_verified": true,
+        "family": "improve_relations",
+        "native_outcome": "executed",
+        "native_state": 0,
+        "native_variant": 0,
+        "outcome": "executed",
+        "phase": "initiate",
+        "recipient": "MLO",
+        "request_binding_verified": true,
+        "request_id": "r68_stop_improve_MLO_002",
+        "task_after": false,
+        "task_before": true
+      },
+      "status": "executed",
+      "submitted": true,
+      "updated_at": "2026-10-19T14:37:51.280835+00:00"
+    }
+  }
+}

@@ -294,3 +294,80 @@ static bool peace_war_offer_context_private_json(
             "true":"false");
     return written>=0 && static_cast<size_t>(written)<capacity;
 }
+
+// The live-score query is included here, after the war registry and side
+// helpers it reuses.  Keeping the include in this common context file makes
+// the query available to the existing peace observer without introducing a
+// new action or transport wire.
+#include "live-war-score-query.inc"
+
+// Build the same observer-session-bound request used by the selected peace
+// query.  The native result remains private; callers may pass it to the
+// pointer-free member formatter below and to the private inspection event.
+static bool peace_war_score_capture_for_offer(
+    const PeaceWarOfferContextCapture& capture,const char* war_id,
+    bridge::live_war_score_query::Request& request,
+    bridge::live_war_score_query::Result& result) noexcept {
+    request={};
+    result={};
+    request.war_id=war_id;
+    request.actor=capture.actor;
+    request.recipient=capture.recipient;
+    request.perspective=capture.actor;
+    request.mode=static_cast<std::uint8_t>(
+        bridge::live_war_score_query::Mode::whole_war);
+    if (!capture.war_context_resolved || !capture.offer_identity_verified
+        || !capture.actor_recipient_opposite || !war_id || !war_id[0]) {
+        bridge::live_war_score_query::set_error(result,
+            "WAR_PEACE_CONTEXT_INCOMPLETE");
+        return false;
+    }
+    const bool query_ok=live_war_score_query_run(request,result);
+    if (result.context.native_war
+        && result.context.native_war!=capture.native_war_context) {
+        bridge::live_war_score_query::set_error(result,
+            "WAR_CONTEXT_IDENTITY_MISMATCH");
+        result.complete=false;
+        result.verified=false;
+        return false;
+    }
+    return query_ok;
+}
+
+// Private event hook for the existing peace query.  It carries the parent
+// session/query/date identity and both public country tags, while the public
+// war_context uses live_war_score_war_context_member_json below and therefore
+// never receives the bounded native tooltip bytes.
+[[maybe_unused]] static bool peace_war_score_private_event_json(
+    const PeaceWarOfferContextCapture& capture,const char* war_id,
+    const char* session_id,const char* query_id,const char* action_id,
+    const char* actor_tag,const char* recipient_tag,int date_raw,
+    char* output,size_t capacity) noexcept {
+    bridge::live_war_score_query::Request request{};
+    bridge::live_war_score_query::Result result{};
+    peace_war_score_capture_for_offer(capture,war_id,request,result);
+    return live_war_score_private_event_json(session_id,query_id,action_id,
+        actor_tag,recipient_tag,date_raw,request,result,output,capacity);
+}
+
+// Convenience formatter for the public peace projection.  It appends the
+// compact war-score member to the already validated pointer-free context and
+// leaves the existing context keys byte-for-byte intact.
+[[maybe_unused]] static bool peace_war_offer_context_public_json_with_score(
+    const PeaceWarOfferContextCapture& capture,
+    const bridge::live_war_score_query::Request& request,
+    const bridge::live_war_score_query::Result& result,
+    char* output,size_t capacity) noexcept {
+    if (!output || !capacity) return false;
+    char context_json[8192]{};
+    if (!peace_war_offer_context_public_json(capture,context_json,
+            sizeof(context_json))) return false;
+    char score_member[8192]{};
+    if (!live_war_score_war_context_member_json(request,result,score_member,
+            sizeof(score_member))) return false;
+    const size_t context_length=std::strlen(context_json);
+    if (context_length<2 || context_json[context_length-1]!='}') return false;
+    const int written=std::snprintf(output,capacity,"%.*s,%s}",
+        static_cast<int>(context_length-1),context_json,score_member);
+    return written>=0 && static_cast<size_t>(written)<capacity;
+}

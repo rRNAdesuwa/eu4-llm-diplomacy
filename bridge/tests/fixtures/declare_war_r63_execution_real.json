@@ -1,0 +1,100 @@
+{
+  "schema": "declare_war_r63_execution_real_v1",
+  "source": {
+    "report_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\r63-participants-execution-20261019-001\\report.json",
+    "slice_path": "C:\\Users\\wangyufei\\Documents\\ChatGPT\\欧陆风云4\\work\\runtime\\r63-participants-execution-20261019-001\\native-events-slice.jsonl",
+    "sha256": "4a2874fb05dca91766e0681bcb3ee09e53240545180f4f40da90c32fe281358f",
+    "lines": {
+      "submission": 111,
+      "execution": 112
+    }
+  },
+  "request_id": "r63_declare_BUR_SAV_HSA_001",
+  "session_id": "40828-1dd5fa887f32179",
+  "actor": "FRA",
+  "recipient": "BUR",
+  "phase": "initiate",
+  "date_raw": 56551848,
+  "parameters": {
+    "casus_belli": "cb_conquest",
+    "war_goal": {
+      "province_id": 88,
+      "beneficiary": "ORL"
+    },
+    "call_allies": [
+      "SAV"
+    ],
+    "promise_land_to": [
+      "SAV"
+    ],
+    "co_belligerents": [
+      "HSA"
+    ]
+  },
+  "submission": {
+    "event": "native_declare_war_submission_result",
+    "family": "declare_war",
+    "request_id": "r63_declare_BUR_SAV_HSA_001",
+    "session_id": "40828-1dd5fa887f32179",
+    "action_id": "declare_war",
+    "actor": "FRA",
+    "recipient": "BUR",
+    "phase": "initiate",
+    "date_raw": 56551848,
+    "casus_belli": "cb_conquest",
+    "war_goal_province": 88,
+    "war_goal_beneficiary": "ORL",
+    "call_allies_csv": "SAV",
+    "promise_land_to_csv": "SAV",
+    "co_belligerents_csv": "HSA",
+    "submitted": true,
+    "transport_verified": true,
+    "request_binding_verified": true,
+    "native_origin": 65535,
+    "native_flags": 0,
+    "native_sequence": 1126
+  },
+  "execution": {
+    "event": "native_declare_war_execution_result",
+    "request_id": "r63_declare_BUR_SAV_HSA_001",
+    "session_id": "40828-1dd5fa887f32179",
+    "action_id": "declare_war",
+    "actor": "FRA",
+    "recipient": "BUR",
+    "phase": "initiate",
+    "date_raw": 56551848,
+    "casus_belli": "cb_conquest",
+    "war_goal_province": 88,
+    "war_goal_beneficiary": "ORL",
+    "call_allies_csv": "SAV",
+    "promise_land_to_csv": "SAV",
+    "co_belligerents_csv": "HSA",
+    "outcome": "executed",
+    "native_state": 0,
+    "family": "declare_war",
+    "war_before": false,
+    "war_after": true,
+    "war_id": null,
+    "stability_before_raw": null,
+    "stability_after_raw": null,
+    "war_identity_verified": false,
+    "stability_verified": false,
+    "execution_verified": true,
+    "request_binding_verified": true
+  },
+  "expected": {
+    "status": "passed",
+    "execute_call_count": 1,
+    "war_before": false,
+    "war_after": true,
+    "call_allies": [
+      "SAV"
+    ],
+    "promise_land_to": [
+      "SAV"
+    ],
+    "co_belligerents": [
+      "HSA"
+    ]
+  }
+}

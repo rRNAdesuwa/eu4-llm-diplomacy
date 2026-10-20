@@ -1,0 +1,67 @@
+{
+  "fixture_version": 1,
+  "description": "R53 D001 real Peace inbound inspection with annul_treaties context",
+  "source": {
+    "path": "work\\runtime\\diplomacy-query-20261018-r53-peace-d-inbound-reject\\inbound-reject-001\\report-evidence\\native-events-slice.jsonl",
+    "line": 10,
+    "bytes": 8146,
+    "sha256": "1ef3e93280d4fd26129bf7f08416a5f70e9582f6b0dd174d4c13598cecb1efe7",
+    "event_sha256": "4035c18857c59518231e65c704f08067c7a887197336ff6b8be986940488671d"
+  },
+  "event": {
+    "event": "native_alliance_inbound_inspection",
+    "query_id": "inbound_inspect_21f98dd26b4c4ba1971e5ebfe52975e6",
+    "session_id": "23952-1dd5ee8335d9e0c",
+    "action_id": "peace_offer",
+    "family": "peace",
+    "extra60": 0,
+    "actor": "ENG",
+    "mirror": "ENG",
+    "recipient": "FRA",
+    "phase": "reject",
+    "native_proposal_id": 1,
+    "date_raw": 56549088,
+    "pending_active": true,
+    "decision_country": "FRA",
+    "decision_country_verified": true,
+    "native_validity": true,
+    "response_rules_complete": true,
+    "war_active": true,
+    "war_readable": true,
+    "war_before": true,
+    "native_current_war": true,
+    "native_current_war_readable": true,
+    "peace_payload_complete": true,
+    "selected_terms_complete": true,
+    "term_count": 84,
+    "selected_term_count": 3,
+    "peace_context": {
+      "war_id": "war_bf308160954276f6_00000001",
+      "direction": "demand",
+      "original_actor": "ENG",
+      "original_recipient": "FRA",
+      "terms": [
+        {
+          "action_id": "annul_treaties",
+          "country": "FRA",
+          "treaty_partners": [
+            "GEN",
+            "PAP"
+          ]
+        }
+      ],
+      "white_peace": false,
+      "complete": true,
+      "selected_terms_complete": true,
+      "reason": "none"
+    },
+    "date28": 56549064,
+    "date2c": 56549064,
+    "envoy30": 3,
+    "state34": 0,
+    "variant38": 1,
+    "token3c": 206,
+    "requested_decision": "reject",
+    "reason": "none"
+  }
+}

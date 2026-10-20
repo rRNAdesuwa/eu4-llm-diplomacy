@@ -438,13 +438,15 @@ class DiplomacyToolsTests(unittest.TestCase):
             for private in ("native_proposal_id", "session_id", "pid", "token3c", "RVA", "rva"):
                 self.assertNotIn(private, serialized)
 
-    def test_priority_catalog_has_40_entries_and_separate_support_independence(self):
+    def test_priority_catalog_includes_favor_trades_and_separate_support_independence(self):
         entries = self.api.list_diplomatic_actions()["actions"]
-        # The priority catalog contains 19 common diplomatic actions and 19
-        # common peace terms.  Support Independence is a separate response
-        # family with a matching single-party revoke action.
-        self.assertEqual(40, len(entries))
-        self.assertEqual(21, sum(entry["category"] == "diplomatic_action" for entry in entries))
+        # Common actions, Support Independence, Curry Favors, and the three
+        # favor exchanges share this catalog; peace terms remain separate.
+        self.assertEqual(47, len(entries))
+        self.assertEqual(28, sum(entry["category"] == "diplomatic_action" for entry in entries))
+        for resource in ("gold", "trust", "men"):
+            self.assertEqual(1, sum(entry["action_id"] == f"trade_favors_for_{resource}"
+                                    for entry in entries))
         self.assertEqual(19, sum(entry["category"] == "peace_term" for entry in entries))
         by_id = {entry["action_id"]: entry for entry in entries}
         self.assertEqual({"support_independence", "revoke_support_independence"},
@@ -456,6 +458,10 @@ class DiplomacyToolsTests(unittest.TestCase):
         self.assertEqual("military_access", by_id["cancel_military_access"]["native_identifier"])
         self.assertEqual({}, by_id["ask_military_access"]["parameter_definitions"])
         self.assertEqual({}, by_id["cancel_military_access"]["parameter_definitions"])
+        self.assertEqual("curry_favors", by_id["curry_favors"]["native_identifier"])
+        self.assertEqual("curry_favors", by_id["stop_curry_favors"]["native_identifier"])
+        self.assertEqual({}, by_id["curry_favors"]["parameter_definitions"])
+        self.assertEqual({}, by_id["stop_curry_favors"]["parameter_definitions"])
         self.assertEqual("applicable",
                          self.api.inspect_diplomatic_action(
                              "support_independence", "FRA", "SAV")["acceptance"]["applicability"])

@@ -32,7 +32,8 @@ enum class Phase : std::uint8_t {
 
 // The native action layout is shared by alliance, royal-marriage,
 // improve-relations, spy-network, guarantee, support-independence,
-// military-access, insult, and vassalization actions.
+// military-access, insult, vassalization, favor-for-gold, favor-for-trust,
+// favor-for-men, curry-favors, send-gift, and influence-nation actions.
 // The family is part of the authority identity so a receipt issued for one
 // action family cannot authorize another family.
 enum class ActionFamily : std::uint8_t {
@@ -46,7 +47,23 @@ enum class ActionFamily : std::uint8_t {
     insult=7,
     vassalization=8,
     declare_war=9,
-    peace=10
+    peace=10,
+    // Native selector 0x3bce / public action trade_favors_for_gold.
+    favor_gold=11,
+    // Native selector 0x3acc / public actions curry_favors and
+    // stop_curry_favors.  Start/stop is carried by variant38 and the ledger
+    // phase, just like the existing one-sided task families.
+    curry_favors=12,
+    // Native selectors 0x3bd3 / 0x3bcf.  Both are one-shot negotiated
+    // proposals with initiate/accept/reject phases.
+    favor_trust=13,
+    favor_men=14,
+    // Native selector 0x2948 / public send_gift.  The signed +0x40 raw
+    // amount is bound through AlliancePayload::parameter40.
+    gift=15,
+    // Native selector 0x346e / public influence_nation.  This is an empty
+    // parameter, initiate-only action whose native config supplies cost.
+    influence=16
 };
 
 enum class SourceKind : std::uint8_t {
@@ -120,10 +137,12 @@ struct AlliancePayload {
     // explicitly.
     ActionFamily family=ActionFamily::alliance;
     std::uint64_t extra60=0;
-    // Native offset +0x40 is a signed int32.  It is meaningful only for the
-    // insult family: -1 is an ordinary insult and nonnegative values select
-    // a scornful insult.
+    // Native offset +0x40 is a signed int32.  It is meaningful for the
+    // insult family, for trade_favors_for_trust (favor cost), and for gift
+    // (raw ducat amount).  The trust increment is carried separately at +0x44.
     std::int32_t parameter40=0;
+    std::int32_t favor_cost40=0;
+    std::int32_t favor_amount44=0;
     // Declare War additionally owns a selected goal and three logical
     // vectors. Every proof stage compares their complete values.
     bridge::declarewar_payload::WarPayloadExtension war{};
@@ -139,6 +158,8 @@ struct AlliancePayload {
             && state34==other.state34 && variant38==other.variant38
             && proposal3c==other.proposal3c && family==other.family
             && extra60==other.extra60 && parameter40==other.parameter40
+            && favor_cost40==other.favor_cost40
+            && favor_amount44==other.favor_amount44
             && war==other.war && peace==other.peace;
     }
     bool operator!=(const AlliancePayload& other) const noexcept {
@@ -890,6 +911,59 @@ private:
                 return false;
             break;
         }
+        case ActionFamily::favor_gold:
+            // Favors-for-gold is a response-capable negotiated action.  Its
+            // native phase field is 0=request, 2=accepted, 1=rejected; there
+            // is no dissolve/cancel transition for this one-shot action.
+            if (payload.extra60!=0 || payload.parameter40!=0
+                || phase==Phase::dissolve || payload.variant38!=1)
+                return false;
+            break;
+        case ActionFamily::favor_trust:
+            // Trust carries the native factory payload at +0x40/+0x44.  The
+            // bridge binds those words exactly so a response cannot change
+            // either cost or increment in transit.
+            if (payload.extra60!=0 || payload.parameter40!=0
+                || payload.favor_cost40<0 || payload.favor_amount44<0
+                || phase==Phase::dissolve || payload.variant38!=1)
+                return false;
+            break;
+        case ActionFamily::favor_men:
+            // Men amount is computed by the native helper; there is no
+            // action-local amount slot to accept from the wire.
+            if (payload.extra60!=0 || payload.parameter40!=0
+                || payload.favor_cost40!=0 || payload.favor_amount44!=0
+                || phase==Phase::dissolve || payload.variant38!=1)
+                return false;
+            break;
+        case ActionFamily::gift:
+            // Gift is an immediate actor->recipient effect.  The public
+            // ducat value is checked again at the execution wire; the native
+            // action carries only the signed raw amount at +0x40 here.
+            if (payload.extra60!=0 || payload.favor_cost40!=0
+                || payload.favor_amount44!=0 || phase!=Phase::initiate
+                || payload.state34!=0 || payload.variant38!=1
+                || payload.parameter40<25000
+                || payload.parameter40>2147475000
+                || payload.parameter40%25000!=0)
+                return false;
+            break;
+        case ActionFamily::influence:
+            // Influence is immediate and has no bridge-supplied amount or
+            // proposal state; cost/configuration stay native-owned.
+            if (payload.extra60!=0 || payload.parameter40!=0
+                || payload.favor_cost40!=0 || payload.favor_amount44!=0
+                || phase!=Phase::initiate || payload.state34!=0
+                || payload.variant38!=1)
+                return false;
+            break;
+        case ActionFamily::curry_favors:
+            // Curry is a continuous one-sided task.  Its native effect uses
+            // state34==0 for both start and stop; the stop transition is
+            // represented by the dissolve phase and variant38==0.
+            if (payload.extra60!=0 || payload.parameter40!=0
+                || payload.state34!=0) return false;
+            break;
         default:
             return false;
         }
@@ -902,12 +976,17 @@ private:
         // family: initiate/accept/reject use variant 1 with states 0/2/1,
         // while its internal revoke transition uses dissolve (variant/state 0).
         if (payload.family==ActionFamily::spy_network
-            || payload.family==ActionFamily::guarantee) {
+            || payload.family==ActionFamily::guarantee
+            || payload.family==ActionFamily::curry_favors) {
             if (phase==Phase::dissolve)
                 return payload.variant38==0 && payload.state34==0;
             return phase==Phase::initiate
                 && payload.variant38==1 && payload.state34==0;
         }
+        if (payload.family==ActionFamily::gift
+            || payload.family==ActionFamily::influence)
+            return phase==Phase::initiate
+                && payload.variant38==1 && payload.state34==0;
         if (phase==Phase::dissolve)
             return payload.variant38==0 && payload.state34==0;
         if (payload.variant38!=1) return false;

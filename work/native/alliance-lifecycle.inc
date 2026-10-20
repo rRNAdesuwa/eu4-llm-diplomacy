@@ -44,12 +44,20 @@ struct LifecycleActionShape {
     bool support_independence=false;
     bool military_access=false;
     bool vassalization=false;
+    bool favor_gold=false;
+    bool favor_trust=false;
+    bool favor_men=false;
+    bool curry_favors=false;
+    bool gift=false;
+    bool influence=false;
     bool insult=false;
     bool declare_war=false;
     bridge::declarewar_payload::WarPayloadExtension war{};
     bool peace_offer=false;
     bridge::peace_payload::PeaceActionPayload peace{};
     int32_t parameter40=0;
+    int32_t favor_cost40=0;
+    int32_t favor_amount44=0;
     unsigned char extra60=0;
     bool readable;
     bool handles_canonical;
@@ -141,6 +149,12 @@ static volatile LONG lifecycle_guarantee_install_state=0;
 static volatile LONG lifecycle_support_install_state=0;
 static volatile LONG lifecycle_military_access_install_state=0;
 static volatile LONG lifecycle_vassalization_install_state=0;
+static volatile LONG lifecycle_favor_gold_install_state=0;
+static volatile LONG lifecycle_favor_trust_install_state=0;
+static volatile LONG lifecycle_favor_men_install_state=0;
+static volatile LONG lifecycle_curry_favors_install_state=0;
+static volatile LONG lifecycle_gift_install_state=0;
+static volatile LONG lifecycle_influence_install_state=0;
 static volatile LONG lifecycle_vassalization_field_reader_install_state=0;
 static volatile LONG lifecycle_insult_install_state=0;
 static volatile LONG lifecycle_royal_field_reader_install_state=0;
@@ -163,10 +177,18 @@ static LifecycleCloneMethod lifecycle_guarantee_clone_original=nullptr;
 static LifecycleCloneMethod lifecycle_support_clone_original=nullptr;
 static LifecycleCloneMethod lifecycle_military_access_clone_original=nullptr;
 static LifecycleCloneMethod lifecycle_vassalization_clone_original=nullptr;
+static LifecycleCloneMethod lifecycle_favor_gold_clone_original=nullptr;
+static LifecycleCloneMethod lifecycle_favor_trust_clone_original=nullptr;
+static LifecycleCloneMethod lifecycle_favor_men_clone_original=nullptr;
+static LifecycleCloneMethod lifecycle_curry_favors_clone_original=nullptr;
+static LifecycleCloneMethod lifecycle_gift_clone_original=nullptr;
+static LifecycleCloneMethod lifecycle_influence_clone_original=nullptr;
 static LifecycleCloneMethod lifecycle_insult_clone_original=nullptr;
 static LifecycleCloneMethod lifecycle_declarewar_clone_original=nullptr;
 static LifecycleCloneMethod lifecycle_peace_clone_original=nullptr;
 static LifecycleDestructorMethod lifecycle_insult_destructor_original=nullptr;
+static LifecycleDestructorMethod lifecycle_favor_trust_destructor_original=nullptr;
+static LifecycleDestructorMethod lifecycle_gift_destructor_original=nullptr;
 static LifecycleDestructorMethod lifecycle_royal_destructor_original=nullptr;
 static LifecycleDestructorMethod lifecycle_declarewar_destructor_original=nullptr;
 static LifecycleDestructorMethod lifecycle_peace_destructor_original=nullptr;
@@ -179,6 +201,12 @@ static const uintptr_t lifecycle_guarantee_vtable_rva=0x1c7fe50;
 static const uintptr_t lifecycle_support_vtable_rva=0x1c805f0;
 static const uintptr_t lifecycle_military_access_vtable_rva=0x1c7fb70;
 static const uintptr_t lifecycle_vassalization_vtable_rva=0x1c7fd20;
+static const uintptr_t lifecycle_favor_gold_vtable_rva=0x1c80980;
+static const uintptr_t lifecycle_favor_trust_vtable_rva=0x1c80c60;
+static const uintptr_t lifecycle_favor_men_vtable_rva=0x1c80ff0;
+static const uintptr_t lifecycle_curry_favors_vtable_rva=0x1c7aef8;
+static const uintptr_t lifecycle_gift_vtable_rva=0x1c7f450;
+static const uintptr_t lifecycle_influence_vtable_rva=0x1cb3cf8;
 static const uintptr_t lifecycle_insult_vtable_rva=0x1c7f6b0;
 static const uintptr_t lifecycle_declarewar_vtable_rva=0x1c80d90;
 static const uintptr_t lifecycle_peace_vtable_rva=0x1c7b840;
@@ -192,6 +220,12 @@ static const uintptr_t lifecycle_guarantee_clone_rva=0x5224f0;
 static const uintptr_t lifecycle_support_clone_rva=0x50f0c0;
 static const uintptr_t lifecycle_military_access_clone_rva=0x525da0;
 static const uintptr_t lifecycle_vassalization_clone_rva=0x51fa30;
+static const uintptr_t lifecycle_favor_gold_clone_rva=0x4f5c00;
+static const uintptr_t lifecycle_favor_trust_clone_rva=0x4fe770;
+static const uintptr_t lifecycle_favor_men_clone_rva=0x4f8420;
+static const uintptr_t lifecycle_curry_favors_clone_rva=0x5ae2e0;
+static const uintptr_t lifecycle_gift_clone_rva=0x53b0c0;
+static const uintptr_t lifecycle_influence_clone_rva=0x7c4d10;
 static const uintptr_t lifecycle_wrapper_rva=0x4e9960;
 static const uintptr_t lifecycle_destructor_rva=0x129450;
 static const uintptr_t lifecycle_royal_destructor_rva=0x4ed5e0;
@@ -258,11 +292,19 @@ static LifecycleActionShape lifecycle_capture_shape(void* object) {
     bool support=shape.vtable==base+lifecycle_support_vtable_rva;
     bool military=shape.vtable==base+lifecycle_military_access_vtable_rva;
     bool vassalization=shape.vtable==base+lifecycle_vassalization_vtable_rva;
+    bool favor_gold=shape.vtable==base+lifecycle_favor_gold_vtable_rva;
+    bool favor_trust=shape.vtable==base+lifecycle_favor_trust_vtable_rva;
+    bool favor_men=shape.vtable==base+lifecycle_favor_men_vtable_rva;
+    bool curry_favors=shape.vtable==base+lifecycle_curry_favors_vtable_rva;
+    bool gift=shape.vtable==base+lifecycle_gift_vtable_rva;
+    bool influence=shape.vtable==base+lifecycle_influence_vtable_rva;
     bool insult=shape.vtable==base+lifecycle_insult_vtable_rva;
     bool declare_war=shape.vtable==base+lifecycle_declarewar_vtable_rva;
     bool peace=shape.vtable==base+lifecycle_peace_vtable_rva;
     if (!alliance && !royal && !improve && !spy && !guarantee && !support
-        && !military && !vassalization && !insult && !declare_war && !peace) return shape;
+        && !military && !vassalization && !favor_gold && !favor_trust
+        && !favor_men && !curry_favors && !gift && !influence
+        && !insult && !declare_war && !peace) return shape;
     shape.royal_marriage=royal;
     shape.improve_relations=improve;
     shape.spy_network=spy;
@@ -270,10 +312,21 @@ static LifecycleActionShape lifecycle_capture_shape(void* object) {
     shape.support_independence=support;
     shape.military_access=military;
     shape.vassalization=vassalization;
+    shape.favor_gold=favor_gold;
+    shape.favor_trust=favor_trust;
+    shape.favor_men=favor_men;
+    shape.curry_favors=curry_favors;
+    shape.gift=gift;
+    shape.influence=influence;
     shape.insult=insult;
     shape.declare_war=declare_war;
     shape.peace_offer=peace;
-    if (insult && !read(shape.address+0x40,shape.parameter40)) {
+    if ((insult || gift) && !read(shape.address+0x40,shape.parameter40)) {
+        shape.readable=false; return shape;
+    }
+    if (favor_trust
+        && (!read(shape.address+0x40,shape.favor_cost40)
+            || !read(shape.address+0x44,shape.favor_amount44))) {
         shape.readable=false; return shape;
     }
     if (royal) {
@@ -346,7 +399,13 @@ static void* lifecycle_clone_observe(void* source) {
         ? lifecycle_guarantee_clone_original : class_vtable==base+lifecycle_support_vtable_rva
         ? lifecycle_support_clone_original : class_vtable==base+lifecycle_military_access_vtable_rva
         ? lifecycle_military_access_clone_original : class_vtable==base+lifecycle_vassalization_vtable_rva
-        ? lifecycle_vassalization_clone_original : class_vtable==base+lifecycle_insult_vtable_rva
+        ? lifecycle_vassalization_clone_original : class_vtable==base+lifecycle_favor_gold_vtable_rva
+        ? lifecycle_favor_gold_clone_original : class_vtable==base+lifecycle_favor_trust_vtable_rva
+        ? lifecycle_favor_trust_clone_original : class_vtable==base+lifecycle_favor_men_vtable_rva
+        ? lifecycle_favor_men_clone_original : class_vtable==base+lifecycle_curry_favors_vtable_rva
+        ? lifecycle_curry_favors_clone_original : class_vtable==base+lifecycle_gift_vtable_rva
+        ? lifecycle_gift_clone_original : class_vtable==base+lifecycle_influence_vtable_rva
+        ? lifecycle_influence_clone_original : class_vtable==base+lifecycle_insult_vtable_rva
         ? lifecycle_insult_clone_original : lifecycle_clone_original;
     // Installation cannot publish this hook without an original.  Keeping a
     // null guard prevents an accidental manual call from inventing a native
@@ -416,7 +475,9 @@ static void* lifecycle_destructor_observe(void* source,unsigned flags) {
         ? lifecycle_peace_destructor_original : class_vtable==base+lifecycle_declarewar_vtable_rva
         ? lifecycle_declarewar_destructor_original : class_vtable==base+lifecycle_royal_vtable_rva
         ? lifecycle_royal_destructor_original : class_vtable==base+lifecycle_insult_vtable_rva
-        ? lifecycle_insult_destructor_original : lifecycle_destructor_original;
+        ? lifecycle_insult_destructor_original : class_vtable==base+lifecycle_favor_trust_vtable_rva
+        ? lifecycle_favor_trust_destructor_original : class_vtable==base+lifecycle_gift_vtable_rva
+        ? lifecycle_gift_destructor_original : lifecycle_destructor_original;
     if (!original) return nullptr;
     if (before.tracked)
         execution_lifecycle_source_destroyed(source,before,flags);
@@ -519,6 +580,10 @@ static void lifecycle_shape_json(char* output,size_t capacity,const LifecycleAct
         : shape.support_independence ? "support_independence"
         : shape.military_access ? "military_access"
         : shape.vassalization ? "vassalization"
+        : (shape.favor_gold || shape.favor_trust || shape.favor_men) ? "favor_trade"
+        : shape.curry_favors ? "curry_favors"
+        : shape.gift ? "gift"
+        : shape.influence ? "influence"
         : shape.insult ? "insult"
         : (shape.vtable==base+lifecycle_alliance_vtable_rva ? "alliance" : "unknown");
     char war_json[1200]{};
@@ -532,11 +597,12 @@ static void lifecycle_shape_json(char* output,size_t capacity,const LifecycleAct
     if (shape.peace_offer) lifecycle_peace_payload_json(peace_json,sizeof(peace_json),shape.peace);
     else strcpy(peace_json,"null");
     snprintf(output,capacity,
-        "{\"addr\":\"0x%llx\",\"readable\":%s,\"matched\":%s,\"handles_canonical\":%s,\"tracked\":%s,\"family\":\"%s\",\"declare_war\":%s,\"extra60\":%u,\"parameter40\":%d,\"vtable_rva\":\"0x%llx\",\"discriminator\":%d,\"actor10\":\"0x%llx\",\"mirror18\":\"0x%llx\",\"recipient20\":\"0x%llx\",\"date28\":%d,\"date2c\":%d,\"envoy30\":%d,\"state34\":%d,\"variant38\":%u,\"proposal3c\":%d,\"war\":%s,\"peace\":%s}",
+        "{\"addr\":\"0x%llx\",\"readable\":%s,\"matched\":%s,\"handles_canonical\":%s,\"tracked\":%s,\"family\":\"%s\",\"declare_war\":%s,\"extra60\":%u,\"parameter40\":%d,\"favor_cost40\":%d,\"favor_amount44\":%d,\"vtable_rva\":\"0x%llx\",\"discriminator\":%d,\"actor10\":\"0x%llx\",\"mirror18\":\"0x%llx\",\"recipient20\":\"0x%llx\",\"date28\":%d,\"date2c\":%d,\"envoy30\":%d,\"state34\":%d,\"variant38\":%u,\"proposal3c\":%d,\"war\":%s,\"peace\":%s}",
         static_cast<unsigned long long>(shape.address),shape.readable?"true":"false",
         shape.matched?"true":"false",shape.handles_canonical?"true":"false",
         shape.tracked?"true":"false",family,shape.declare_war?"true":"false",
-        static_cast<unsigned>(shape.extra60),shape.parameter40,vtable_rva,
+        static_cast<unsigned>(shape.extra60),shape.parameter40,
+        shape.favor_cost40,shape.favor_amount44,vtable_rva,
         shape.discriminator,
         static_cast<unsigned long long>(shape.actor10),static_cast<unsigned long long>(shape.mirror18),
         static_cast<unsigned long long>(shape.recipient20),shape.date28,shape.date2c,
@@ -549,7 +615,10 @@ extern "C" void bridge_field_reader_observe(void* action,void* context,unsigned 
     // During decoding handles may not yet be initialized. Record exact class
     // snapshots even when incomplete; incomplete handles never grant authority.
     bool known_family=shape.vtable==base+lifecycle_alliance_vtable_rva
-        || shape.royal_marriage || shape.vassalization || shape.declare_war || shape.peace_offer;
+        || shape.royal_marriage || shape.vassalization || shape.favor_gold
+        || shape.favor_trust || shape.favor_men || shape.curry_favors
+        || shape.gift || shape.influence
+        || shape.declare_war || shape.peace_offer;
     if (!shape.readable || !known_family || shape.discriminator!=0x165) return;
     AllianceFieldReadEvent event{};
     event.callback_sequence=lifecycle_next_sequence();
@@ -708,6 +777,8 @@ static bool lifecycle_install_small_action(volatile LONG* install_state,
     *clone_original=reinterpret_cast<LifecycleCloneMethod>(base+clone_rva);
     if (vtable_rva==lifecycle_insult_vtable_rva)
         lifecycle_insult_destructor_original=reinterpret_cast<LifecycleDestructorMethod>(base+destructor_rva);
+    if (vtable_rva==lifecycle_favor_trust_vtable_rva)
+        lifecycle_favor_trust_destructor_original=reinterpret_cast<LifecycleDestructorMethod>(base+destructor_rva);
     if (vtable_rva==lifecycle_peace_vtable_rva)
         lifecycle_peace_destructor_original=reinterpret_cast<LifecycleDestructorMethod>(base+destructor_rva);
     DWORD protection=0,ignored=0;
@@ -823,6 +894,60 @@ static bool lifecycle_install_vassalization() {
     return lifecycle_install_small_action(&lifecycle_vassalization_install_state,
         lifecycle_vassalization_vtable_rva,lifecycle_vassalization_clone_rva,
         &lifecycle_vassalization_clone_original);
+}
+
+// Trade-favors-for-gold uses the common destructor and generic wrapper slots,
+// with its own native clone (RVA 0x4f5c00) and vtable at 0x1c80980.  Keep the
+// original clone separate so a family-specific hook can never forward through
+// another action's ABI.
+static bool lifecycle_install_favor_gold() {
+    return lifecycle_install_small_action(&lifecycle_favor_gold_install_state,
+        lifecycle_favor_gold_vtable_rva,lifecycle_favor_gold_clone_rva,
+        &lifecycle_favor_gold_clone_original);
+}
+
+// Trust and Men use the negotiated favor lifecycle slots.  Trust has the
+// confirmed 0x129500 destructor; Men uses the common 0x129450 destructor.
+static bool lifecycle_install_favor_trust() {
+    return lifecycle_install_small_action(&lifecycle_favor_trust_install_state,
+        lifecycle_favor_trust_vtable_rva,lifecycle_favor_trust_clone_rva,
+        &lifecycle_favor_trust_clone_original,lifecycle_insult_destructor_rva);
+}
+
+static bool lifecycle_install_favor_men() {
+    return lifecycle_install_small_action(&lifecycle_favor_men_install_state,
+        lifecycle_favor_men_vtable_rva,lifecycle_favor_men_clone_rva,
+        &lifecycle_favor_men_clone_original);
+}
+
+// Curry Favors uses the same common destructor/wrapper slots as the other
+// task families, with its confirmed native clone at 0x5ae2e0 and vtable at
+// 0x1c7aef8.  Keep a separate clone original so mixed task traffic cannot
+// cross-family forward through another ABI.
+static bool lifecycle_install_curry_favors() {
+    return lifecycle_install_small_action(&lifecycle_curry_favors_install_state,
+        lifecycle_curry_favors_vtable_rva,lifecycle_curry_favors_clone_rva,
+        &lifecycle_curry_favors_clone_original);
+}
+
+// Send Gift is a one-shot action with the 0x129500 destructor; its clone
+// copies the signed raw amount at +0x40.  Influence uses the common 0x129450
+// destructor and has no bridge-supplied parameter.
+static bool lifecycle_install_gift() {
+    const bool installed=lifecycle_install_small_action(
+        &lifecycle_gift_install_state,lifecycle_gift_vtable_rva,
+        lifecycle_gift_clone_rva,&lifecycle_gift_clone_original,
+        lifecycle_insult_destructor_rva);
+    if (installed)
+        lifecycle_gift_destructor_original=
+            reinterpret_cast<LifecycleDestructorMethod>(base+lifecycle_insult_destructor_rva);
+    return installed;
+}
+
+static bool lifecycle_install_influence() {
+    return lifecycle_install_small_action(&lifecycle_influence_install_state,
+        lifecycle_influence_vtable_rva,lifecycle_influence_clone_rva,
+        &lifecycle_influence_clone_original);
 }
 
 static bool lifecycle_install_insult() {

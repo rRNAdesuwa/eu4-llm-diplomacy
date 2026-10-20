@@ -2,7 +2,7 @@
 """Execute one parameter-bound outbound Peace action through the public API.
 
 The operator is deliberately single-use.  It discovers the one public
-FRA--ENG war context, inspects the selected Peace payload, calls
+FRA--recipient war context, inspects the selected Peace payload, calls
 ``execute_diplomatic_action`` exactly once, and polls only that same request
 identifier.  It never retries, advances time, saves, installs, or restarts
 the game.  A non-terminal or contradictory native result remains unknown in
@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timedelta, timezone
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -41,7 +42,6 @@ from work.run_peace_empty_offer_queries import (  # noqa: E402
     _public_context_contract,
     _single_discovered_war_id,
 )
-from work.run_peace_inbound_response import _war_pair_summary  # noqa: E402
 from work.run_royal_marriage_execution import (  # noqa: E402
     _installation_binding,
     _public_probe_records,
@@ -56,9 +56,20 @@ from work.validate_alliance_reload import (  # noqa: E402
 
 _ACTOR = "FRA"
 _RECIPIENT = "ENG"
+_DEFAULT_RECIPIENT = "ENG"
 _FAMILY = "peace"
 _DISCOVERY_ACTION = "white_peace"
-_ACTIONS = ("white_peace", "demand_ducats", "cede_province", "war_reparations")
+_TRADE_POWER_ACTION = "transfer_trade_power"
+_CONCEDE_DEFEAT_ACTION = "concede_defeat"
+_ANNUL_TREATIES_ACTION = "annul_treaties"
+_HUMILIATE_RIVAL_ACTION = "humiliate_rival"
+_SHOW_STRENGTH_ACTION = "show_strength"
+_FORCE_RELIGION_ACTION = "force_religion"
+_SPECIAL_ACTIONS = (_HUMILIATE_RIVAL_ACTION, _SHOW_STRENGTH_ACTION,
+                    _FORCE_RELIGION_ACTION)
+_ACTIONS = ("white_peace", "demand_ducats", "cede_province",
+            "war_reparations", _TRADE_POWER_ACTION, _CONCEDE_DEFEAT_ACTION,
+            _ANNUL_TREATIES_ACTION, *_SPECIAL_ACTIONS)
 _DIRECTIONS = ("demand", "offer")
 _PLAYER_SLOT = 189  # POR in the controlled observer fixture
 _REQUEST_ID_RE = re.compile(r"[A-Za-z0-9_-]{1,64}\Z")
@@ -73,6 +84,7 @@ _MAX_NATIVE_EVENT_BYTES = 8 * 1024 * 1024
 _MAX_PROVINCE_IDS = 16
 _MIN_PROVINCE_ID = 1
 _MAX_PROVINCE_ID = 2_147_483_647
+_MAX_ANNUL_PARTNERS = 16
 
 
 class PeaceExecutionError(RuntimeError):
@@ -82,6 +94,75 @@ class PeaceExecutionError(RuntimeError):
         super().__init__(message)
         self.code = code
         self.message = message
+
+
+def _recipient_arg(value: str) -> str:
+    """Normalize a target tag while preserving the historical ENG default."""
+
+    value = value.upper()
+    if (len(value) != 3 or not value.isascii() or not value.isalnum()
+            or value == _ACTOR):
+        raise argparse.ArgumentTypeError(
+            "recipient must be a three-character canonical tag other than FRA")
+    return value
+
+
+def _war_pair_summary_for(probes: object,
+                          recipient: str | None = None) -> dict[str, object]:
+    """Summarize the FRA/target pair from tag-bound read-only probe rows.
+
+    The legacy probe only emitted reviewed FRA/ENG slots.  Keep that fallback
+    for the default ENG run, while requiring explicit tag rows for a smaller
+    target such as LEI so an ENG slot can never be mistaken for the target.
+    """
+
+    target = _RECIPIENT if recipient is None else recipient
+    if not isinstance(probes, dict):
+        return {"complete": False, "actor_pair_at_war": None,
+                "recipient_pair_at_war": None, "pair_at_war": None,
+                "actor": _ACTOR, "recipient": target}
+    entry = probes.get("war_state")
+    snapshot = entry.get("snapshot") if isinstance(entry, dict) else None
+    countries = snapshot.get("countries") if isinstance(snapshot, dict) else None
+    if not isinstance(countries, list):
+        return {"complete": False, "actor_pair_at_war": None,
+                "recipient_pair_at_war": None, "pair_at_war": None,
+                "actor": _ACTOR, "recipient": target}
+    by_tag = {
+        item.get("tag"): item for item in countries
+        if isinstance(item, dict) and isinstance(item.get("tag"), str)
+    }
+    by_slot = {
+        item.get("slot"): item for item in countries
+        if isinstance(item, dict) and isinstance(item.get("slot"), int)
+    }
+    actor = by_tag.get(_ACTOR)
+    target_item = by_tag.get(target)
+    if actor is None and _ACTOR == "FRA":
+        actor = by_slot.get(122)
+    if target_item is None and target == "ENG":
+        target_item = by_slot.get(46)
+    actor_value = actor.get("pair_at_war") if isinstance(actor, dict) else None
+    target_value = (target_item.get("pair_at_war")
+                    if isinstance(target_item, dict) else None)
+    complete = type(actor_value) is bool and type(target_value) is bool
+    result: dict[str, object] = {
+        "complete": complete,
+        "actor": _ACTOR,
+        "recipient": target,
+        "actor_pair_at_war": actor_value,
+        "recipient_pair_at_war": target_value,
+        "pair_at_war": (actor_value is True and target_value is True)
+        if complete else None,
+        "both_pair_at_peace": snapshot.get("both_pair_at_peace")
+        if isinstance(snapshot, dict) else None,
+    }
+    # Preserve the old report labels for default ENG artifacts.
+    if _ACTOR == "FRA":
+        result["fra_pair_at_war"] = actor_value
+    if target == "ENG":
+        result["eng_pair_at_war"] = target_value
+    return result
 
 
 def _utc_now() -> datetime:
@@ -145,12 +226,96 @@ def _parse_province_ids_csv(value: str) -> list[int]:
     return _normalize_province_ids(parsed)
 
 
+def _trade_power_source_for_direction(direction: str,
+                                      source: str | None = None) -> str:
+    """Return a canonical trade-power source without guessing third parties."""
+
+    if direction not in _DIRECTIONS:
+        raise PeaceExecutionError("PEACE_DIRECTION_INVALID", direction)
+    if source is None:
+        return _RECIPIENT if direction == "demand" else _ACTOR
+    if not isinstance(source, str) or _TAG_RE.fullmatch(source) is None:
+        raise PeaceExecutionError("TRADE_POWER_SOURCE_INVALID", str(source))
+    return source
+
+
+def _trade_power_term(direction: str,
+                      source: str | None = None) -> dict[str, object]:
+    """Build a trade-power term with an explicit or direction default source."""
+
+    return {
+        "action_id": _TRADE_POWER_ACTION,
+        "source": _trade_power_source_for_direction(direction, source),
+        "beneficiary": _ACTOR if direction == "demand" else _RECIPIENT,
+    }
+
+
+def _annul_treaties_term(country: str | None,
+                         partners: list[str] | tuple[str, ...] | None,
+                         ) -> dict[str, object]:
+    """Build the bounded directed annul-treaties term.
+
+    The native candidate list supplies the legal partners.  This helper only
+    canonicalizes the operator's explicit selection and never invents a
+    default partner.
+    """
+
+    if not isinstance(country, str) or _TAG_RE.fullmatch(country) is None:
+        raise PeaceExecutionError("ANNUL_COUNTRY_INVALID", str(country))
+    if not isinstance(partners, (list, tuple)) or not 1 <= len(partners) <= _MAX_ANNUL_PARTNERS:
+        raise PeaceExecutionError("ANNUL_PARTNERS_INVALID", str(partners))
+    normalized = [str(item).upper() for item in partners]
+    if any(_TAG_RE.fullmatch(item) is None for item in normalized):
+        raise PeaceExecutionError("ANNUL_PARTNER_INVALID", str(partners))
+    if country in normalized:
+        raise PeaceExecutionError("ANNUL_PARTNER_SELF", country)
+    if len(set(normalized)) != len(normalized):
+        raise PeaceExecutionError("ANNUL_PARTNERS_DUPLICATE", str(partners))
+    if normalized != sorted(normalized):
+        raise PeaceExecutionError("ANNUL_PARTNERS_UNSORTED", str(partners))
+    return {
+        "action_id": _ANNUL_TREATIES_ACTION,
+        "country": country,
+        "treaty_partners": normalized,
+    }
+
+
+def _special_term(action: str, direction: str, country: str | None = None,
+                  beneficiary: str | None = None) -> dict[str, object]:
+    """Build one direction-bound H/S/F term.
+
+    The public API names the affected country ``country`` and the reference
+    or beneficiary country ``beneficiary``.  Defaults follow the payer and
+    claimant roles for the selected direction; native legality still decides
+    whether the pair is a legal rival, strength target, or religion reference.
+    """
+    if action not in _SPECIAL_ACTIONS:
+        raise PeaceExecutionError("SPECIAL_ACTION_INVALID", action)
+    expected_country = _ACTOR if direction == "offer" else _RECIPIENT
+    expected_beneficiary = _RECIPIENT if direction == "offer" else _ACTOR
+    country = expected_country if country is None else str(country).upper()
+    beneficiary = expected_beneficiary if beneficiary is None else str(beneficiary).upper()
+    if (_TAG_RE.fullmatch(country) is None
+            or _TAG_RE.fullmatch(beneficiary) is None
+            or country == beneficiary):
+        raise PeaceExecutionError("SPECIAL_PARTIES_INVALID",
+                                  f"{country}/{beneficiary}")
+    return {"action_id": action, "country": country,
+            "beneficiary": beneficiary}
+
+
 def _build_parameters(action_id: str, war_id: str, amount: str,
                       province_id: int | None, beneficiary: str | None = None,
                       direction: str = "demand", *,
                       province_ids: list[int] | tuple[int, ...] | None = None,
                       with_money: str | None = None,
                       with_reparations: bool = False,
+                      with_trade_power: bool = False,
+                      trade_power_source: str | None = None,
+                      annul_country: str | None = None,
+                      annul_partners: list[str] | tuple[str, ...] | None = None,
+                      special_country: str | None = None,
+                      special_beneficiary: str | None = None,
                       ) -> dict[str, object]:
     """Build and normalize the complete public execution parameter object."""
 
@@ -160,11 +325,30 @@ def _build_parameters(action_id: str, war_id: str, amount: str,
         raise PeaceExecutionError("PEACE_DIRECTION_INVALID", direction)
     if action_id not in _ACTIONS:
         raise PeaceExecutionError("ACTION_INVALID", action_id)
+    if (special_country is not None or special_beneficiary is not None) \
+            and action_id not in _SPECIAL_ACTIONS:
+        raise PeaceExecutionError("SPECIAL_PARTIES_ACTION_INVALID",
+                                  action_id)
+    if trade_power_source is not None and not (
+            action_id == _TRADE_POWER_ACTION or with_trade_power):
+        raise PeaceExecutionError(
+            "TRADE_POWER_SOURCE_ACTION_INVALID",
+            "trade_power_source requires a transfer_trade_power term")
+    if (annul_country is None) != (annul_partners is None):
+        raise PeaceExecutionError(
+            "ANNUL_TERM_INCOMPLETE",
+            "annul_country and annul_partners must be supplied together")
+    if action_id == _ANNUL_TREATIES_ACTION and (
+            annul_country is None or annul_partners is None):
+        raise PeaceExecutionError(
+            "ANNUL_TERM_REQUIRED",
+            "annul_treaties requires explicit annul_country and annul_partners")
     if action_id == "white_peace":
-        if with_money is not None or with_reparations or province_ids is not None:
+        if (with_money is not None or with_reparations
+                or province_ids is not None or with_trade_power):
             raise PeaceExecutionError(
                 "WHITE_PEACE_TERMS_INVALID",
-                "white_peace cannot include money, provinces, or reparations")
+                "white_peace cannot include money, provinces, reparations, or trade power")
         terms: list[dict[str, object]] = []
     elif action_id == "demand_ducats":
         if with_money is not None or province_ids is not None:
@@ -183,6 +367,8 @@ def _build_parameters(action_id: str, war_id: str, amount: str,
                 "payer": _ACTOR if direction == "offer" else _RECIPIENT,
                 "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
             })
+        if with_trade_power:
+            terms.append(_trade_power_term(direction, trade_power_source))
     elif action_id == "cede_province":
         selected_ids = _normalize_province_ids(
             province_ids if province_ids is not None else [province_id])
@@ -209,6 +395,8 @@ def _build_parameters(action_id: str, war_id: str, amount: str,
                 "payer": _ACTOR if direction == "offer" else _RECIPIENT,
                 "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
             })
+        if with_trade_power:
+            terms.append(_trade_power_term(direction, trade_power_source))
     elif action_id == "war_reparations":
         if with_reparations:
             raise PeaceExecutionError(
@@ -238,8 +426,140 @@ def _build_parameters(action_id: str, war_id: str, amount: str,
             "payer": _ACTOR if direction == "offer" else _RECIPIENT,
             "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
         })
+        if with_trade_power:
+            terms.append(_trade_power_term(direction, trade_power_source))
+    elif action_id == _TRADE_POWER_ACTION:
+        terms = []
+        if with_money is not None:
+            terms.append({
+                "action_id": "demand_ducats",
+                "amount": with_money,
+                "payer": _ACTOR if direction == "offer" else _RECIPIENT,
+                "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
+            })
+        if province_ids is not None or province_id is not None:
+            selected_ids = _normalize_province_ids(
+                province_ids if province_ids is not None else [province_id])
+            if beneficiary is None:
+                beneficiary = _ACTOR if direction == "demand" else _RECIPIENT
+            if _TAG_RE.fullmatch(beneficiary) is None:
+                raise PeaceExecutionError("BENEFICIARY_INVALID", str(beneficiary))
+            terms.append({
+                "action_id": "cede_province",
+                "province_ids": selected_ids,
+                "beneficiary": beneficiary,
+            })
+        if with_reparations:
+            terms.append({
+                "action_id": "war_reparations",
+                "payer": _ACTOR if direction == "offer" else _RECIPIENT,
+                "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
+            })
+        terms.append(_trade_power_term(direction, trade_power_source))
+    elif action_id == _CONCEDE_DEFEAT_ACTION:
+        # C is a direction-bound non-numeric term.  The native legality
+        # predicate decides whether it may be combined with m/p/R/T; the
+        # public request only needs the canonical parties and term order.
+        terms = []
+        if with_money is not None:
+            terms.append({
+                "action_id": "demand_ducats",
+                "amount": with_money,
+                "payer": _ACTOR if direction == "offer" else _RECIPIENT,
+                "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
+            })
+        if province_ids is not None or province_id is not None:
+            selected_ids = _normalize_province_ids(
+                province_ids if province_ids is not None else [province_id])
+            if beneficiary is None:
+                beneficiary = _ACTOR if direction == "demand" else _RECIPIENT
+            if _TAG_RE.fullmatch(beneficiary) is None:
+                raise PeaceExecutionError("BENEFICIARY_INVALID", str(beneficiary))
+            terms.append({
+                "action_id": "cede_province",
+                "province_ids": selected_ids,
+                "beneficiary": beneficiary,
+            })
+        if with_reparations:
+            terms.append({
+                "action_id": "war_reparations",
+                "payer": _ACTOR if direction == "offer" else _RECIPIENT,
+                "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
+            })
+        if with_trade_power:
+            terms.append(_trade_power_term(direction, trade_power_source))
+        terms.append({
+            "action_id": _CONCEDE_DEFEAT_ACTION,
+            "conceding_country": _ACTOR if direction == "offer" else _RECIPIENT,
+            "beneficiary": _RECIPIENT if direction == "offer" else _ACTOR,
+        })
+    elif action_id == _ANNUL_TREATIES_ACTION:
+        # The native legality predicate decides whether optional m/p/R/T/C
+        # combinations are allowed.  The A term itself always comes last in
+        # this normalized operator request.
+        terms = []
+        if with_money is not None:
+            terms.append({
+                "action_id": "demand_ducats", "amount": with_money,
+                "payer": _ACTOR if direction == "offer" else _RECIPIENT,
+                "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
+            })
+        if province_ids is not None or province_id is not None:
+            selected_ids = _normalize_province_ids(
+                province_ids if province_ids is not None else [province_id])
+            if beneficiary is None:
+                beneficiary = _ACTOR if direction == "demand" else _RECIPIENT
+            if _TAG_RE.fullmatch(beneficiary) is None:
+                raise PeaceExecutionError("BENEFICIARY_INVALID", str(beneficiary))
+            terms.append({
+                "action_id": "cede_province", "province_ids": selected_ids,
+                "beneficiary": beneficiary,
+            })
+        if with_reparations:
+            terms.append({
+                "action_id": "war_reparations",
+                "payer": _ACTOR if direction == "offer" else _RECIPIENT,
+                "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
+            })
+        if with_trade_power:
+            terms.append(_trade_power_term(direction, trade_power_source))
+        terms.append(_annul_treaties_term(annul_country, annul_partners))
+    elif action_id in _SPECIAL_ACTIONS:
+        # H/S/F are direction-bound non-numeric terms.  Native legality owns
+        # rival, strength and religion conditions; optional m/p/R/T terms are
+        # retained here so the canonical mask can represent mixed requests.
+        terms = []
+        if with_money is not None:
+            terms.append({
+                "action_id": "demand_ducats", "amount": with_money,
+                "payer": _ACTOR if direction == "offer" else _RECIPIENT,
+                "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
+            })
+        if province_ids is not None or province_id is not None:
+            selected_ids = _normalize_province_ids(
+                province_ids if province_ids is not None else [province_id])
+            if beneficiary is None:
+                beneficiary = _ACTOR if direction == "demand" else _RECIPIENT
+            if _TAG_RE.fullmatch(beneficiary) is None:
+                raise PeaceExecutionError("BENEFICIARY_INVALID", str(beneficiary))
+            terms.append({
+                "action_id": "cede_province", "province_ids": selected_ids,
+                "beneficiary": beneficiary,
+            })
+        if with_reparations:
+            terms.append({
+                "action_id": "war_reparations",
+                "payer": _ACTOR if direction == "offer" else _RECIPIENT,
+                "claimant": _RECIPIENT if direction == "offer" else _ACTOR,
+            })
+        if with_trade_power:
+            terms.append(_trade_power_term(direction, trade_power_source))
+        terms.append(_special_term(action_id, direction, special_country,
+                                   special_beneficiary))
     else:  # guarded above; keeps the type narrowing explicit for callers
         raise PeaceExecutionError("ACTION_INVALID", action_id)
+    if action_id != _ANNUL_TREATIES_ACTION and annul_country is not None:
+        terms.append(_annul_treaties_term(annul_country, annul_partners))
     raw = {
         "peace_context": {
             "war_id": war_id,
@@ -467,7 +787,12 @@ def _wire_submission_correlation(report: dict[str, object],
         for key in (
             "event", "session_id", "request_id", "family", "action_id",
             "actor", "recipient", "phase", "date_raw", "war_id",
-            "direction", "province_ids", "beneficiary", "submitted",
+            "direction", "amount_raw", "province_ids", "beneficiary",
+            "term_mask", "reparations_payer", "reparations_claimant",
+            "trade_power_source", "trade_power_beneficiary",
+             "conceding_country", "concede_beneficiary",
+             "annul_country", "annul_partners",
+            "submitted",
             "transport_verified", "request_binding_verified", "reason",
             "native_origin", "native_sequence")
         if key in event
@@ -504,6 +829,25 @@ def _wire_submission_correlation(report: dict[str, object],
             and len(actual_ids) == len(set(actual_ids))
             and set(actual_ids) == set(expected_ids)
         )
+    # R48's EXEC2 receipt carries the aggregate mask and the direction-bound
+    # reparations roles.  Derive the expected values from the immutable
+    # execution context so a receipt cannot be accepted merely because its
+    # primary action happened to be ``war_reparations``.
+    parameters = report.get("parameters")
+    execution = parameters.get("execute") if isinstance(parameters, dict) else None
+    expected_native = _expected_native_fields(
+        report.get("action_id"), execution) \
+        if isinstance(report.get("action_id"), str) and isinstance(execution, dict) else {}
+    if expected_native.get("term_mask"):
+        field_checks["amount_raw"] = (
+            event.get("amount_raw") == expected_native.get("amount_raw"))
+    for key in ("beneficiary", "term_mask", "reparations_payer",
+                "reparations_claimant", "trade_power_source",
+                "trade_power_beneficiary", "conceding_country",
+                "concede_beneficiary", "annul_country", "annul_partners"):
+        expected_value = expected_native.get(key)
+        if expected_value is not None:
+            field_checks[key] = event.get(key) == expected_value
     checks.update(field_checks)
     checks["request_binding"] = all(field_checks.values())
     # The exact session/request event proves that the wire reached the DLL;
@@ -589,7 +933,13 @@ def _effects_contract(public: dict[str, object], action_id: str,
     }
     if not isinstance(effects, dict):
         result["checks"] = {"object": False}
-        result["all"] = outcome not in ("accepted", "executed")
+        result["all"] = (
+            outcome not in ("accepted", "executed")
+            and _term_for_action(parameters, _TRADE_POWER_ACTION) is None
+            and _term_for_action(parameters, _CONCEDE_DEFEAT_ACTION) is None
+            and _term_for_action(parameters, _ANNUL_TREATIES_ACTION) is None
+            and not any(_term_for_action(parameters, action)
+                        for action in _SPECIAL_ACTIONS))
         return result
     result["complete"] = effects.get("complete") is True
     result["date_unchanged"] = effects.get("date_unchanged") is True
@@ -603,6 +953,17 @@ def _effects_contract(public: dict[str, object], action_id: str,
     money_term = _term_for_action(parameters, "demand_ducats")
     province_term = _term_for_action(parameters, "cede_province")
     reparations_term = _term_for_action(parameters, "war_reparations")
+    trade_power_term = _term_for_action(parameters, _TRADE_POWER_ACTION)
+    concede_defeat_term = _term_for_action(parameters, _CONCEDE_DEFEAT_ACTION)
+    annul_term = _term_for_action(parameters, _ANNUL_TREATIES_ACTION)
+    special_terms = {
+        action: _term_for_action(parameters, action)
+        for action in _SPECIAL_ACTIONS
+    }
+    trade_power_contract_all: bool | None = None
+    concede_defeat_contract_all: bool | None = None
+    annul_contract_all: bool | None = None
+    special_contract_all: bool | None = None
     if money_term is not None:
         money = effects.get("money")
         expected_amount = _expected_native_fields(action_id, parameters).get("amount_raw")
@@ -684,15 +1045,318 @@ def _effects_contract(public: dict[str, object], action_id: str,
                 and reparations.get("claimant") == reparations_term.get("claimant")),
             "war_reparations_active_before": (
                 isinstance(reparations, dict)
-                and type(reparations.get("active_before")) is bool),
+                and reparations.get("active_before") is False),
             "war_reparations_active_after": (
                 isinstance(reparations, dict)
-                and type(reparations.get("active_after")) is bool),
+                and reparations.get("active_after") is True),
             "war_reparations_verified": (
                 isinstance(reparations, dict)
                 and reparations.get("verified") is True),
         })
-    if money_term is None and province_term is None:
+        # Native R48 may include the raw treaty window.  The fields are
+        # optional for compatibility with the legacy public effect shape, but
+        # if either is present the pair must be complete, integral and ordered
+        # and an active-after relation must contain the result date.
+        date_keys = ("start_date_raw", "end_date_raw")
+        has_date = isinstance(reparations, dict) and any(
+            key in reparations for key in date_keys)
+        if has_date:
+            result_date = public.get("date_raw")
+            start_date = reparations.get("start_date_raw") \
+                if isinstance(reparations, dict) else None
+            end_date = reparations.get("end_date_raw") \
+                if isinstance(reparations, dict) else None
+            valid_dates = (
+                type(start_date) is int and type(end_date) is int
+                and end_date > start_date)
+            checks.update({
+                "war_reparations_dates_complete": valid_dates,
+                "war_reparations_date_window": (
+                    valid_dates
+                    and (reparations.get("active_after") is not True
+                         or (type(result_date) is int
+                             and start_date <= result_date < end_date))),
+            })
+    if trade_power_term is not None:
+        trade_power = effects.get(_TRADE_POWER_ACTION)
+        trade_checks: dict[str, bool] = {
+            "transfer_trade_power_object": isinstance(trade_power, dict),
+            "transfer_trade_power_source": (
+                isinstance(trade_power, dict)
+                and trade_power.get("source") == trade_power_term.get("source")),
+            "transfer_trade_power_beneficiary": (
+                isinstance(trade_power, dict)
+                and trade_power.get("beneficiary") == trade_power_term.get("beneficiary")),
+        }
+        if outcome in ("accepted", "executed"):
+            result_date = public.get("date_raw")
+            start_date = trade_power.get("start_date_raw") \
+                if isinstance(trade_power, dict) else None
+            amount_raw = trade_power.get("amount_raw") \
+                if isinstance(trade_power, dict) else None
+            amount_scale = trade_power.get("amount_scale") \
+                if isinstance(trade_power, dict) else None
+            trade_checks.update({
+                "transfer_trade_power_present_before_bool": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("present_before")) is bool),
+                "transfer_trade_power_present_after": (
+                    isinstance(trade_power, dict)
+                    and trade_power.get("present_after") is True),
+                "transfer_trade_power_start_date": type(start_date) is int,
+                "transfer_trade_power_end_date": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("end_date_raw")) is int),
+                "transfer_trade_power_amount": (
+                    type(amount_raw) is int and amount_raw > 0),
+                "transfer_trade_power_scale": amount_scale == 1000,
+                "transfer_trade_power_peace_treaty": (
+                    isinstance(trade_power, dict)
+                    and trade_power.get("peace_treaty") is True),
+                "transfer_trade_power_verified": (
+                    isinstance(trade_power, dict)
+                    and trade_power.get("verified") is True),
+                "transfer_trade_power_start_before_date": (
+                    type(start_date) is int and type(result_date) is int
+                    and start_date <= result_date),
+            })
+        elif outcome == "rejected":
+            trade_checks.update({
+                "transfer_trade_power_present_before_bool": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("present_before")) is bool),
+                "transfer_trade_power_present_after_bool": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("present_after")) is bool),
+                "transfer_trade_power_start_date": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("start_date_raw")) is int),
+                "transfer_trade_power_end_date": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("end_date_raw")) is int),
+                "transfer_trade_power_amount": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("amount_raw")) is int),
+                "transfer_trade_power_scale": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("amount_scale")) is int),
+                "transfer_trade_power_peace_treaty_bool": (
+                    isinstance(trade_power, dict)
+                    and type(trade_power.get("peace_treaty")) is bool),
+                "transfer_trade_power_verified": (
+                    isinstance(trade_power, dict)
+                    and trade_power.get("verified") is False),
+            })
+        checks.update(trade_checks)
+        trade_power_contract_all = all(trade_checks.values())
+    if concede_defeat_term is not None:
+        concede = effects.get(_CONCEDE_DEFEAT_ACTION)
+        expected_conceding = concede_defeat_term.get("conceding_country")
+        expected_beneficiary = concede_defeat_term.get("beneficiary")
+        c_checks: dict[str, bool] = {
+            "concede_defeat_object": isinstance(concede, dict),
+            "concede_defeat_conceding_country": (
+                isinstance(concede, dict)
+                and concede.get("conceding_country") == expected_conceding),
+            "concede_defeat_beneficiary": (
+                isinstance(concede, dict)
+                and concede.get("beneficiary") == expected_beneficiary),
+            "concede_defeat_prestige_scale": (
+                isinstance(concede, dict)
+                and concede.get("prestige_scale") == 1000),
+            "concede_defeat_values_readable": (
+                isinstance(concede, dict)
+                and concede.get("values_readable") is True),
+            "concede_defeat_verified_bool": (
+                isinstance(concede, dict)
+                and isinstance(concede.get("verified"), bool)),
+        }
+        prestige_fields = (
+            "conceding_prestige_before_raw", "conceding_prestige_after_raw",
+            "conceding_prestige_delta_raw", "beneficiary_prestige_before_raw",
+            "beneficiary_prestige_after_raw", "beneficiary_prestige_delta_raw")
+        if isinstance(concede, dict):
+            c_checks.update({
+                f"concede_defeat_{field}": (
+                    type(concede.get(field)) is int
+                    and not isinstance(concede.get(field), bool))
+                for field in prestige_fields
+            })
+            c_checks.update({
+                "concede_defeat_conceding_delta_consistent": (
+                    type(concede.get("conceding_prestige_before_raw")) is int
+                    and type(concede.get("conceding_prestige_after_raw")) is int
+                    and type(concede.get("conceding_prestige_delta_raw")) is int
+                    and concede.get("conceding_prestige_delta_raw") ==
+                    concede.get("conceding_prestige_after_raw") -
+                    concede.get("conceding_prestige_before_raw")),
+                "concede_defeat_beneficiary_delta_consistent": (
+                    type(concede.get("beneficiary_prestige_before_raw")) is int
+                    and type(concede.get("beneficiary_prestige_after_raw")) is int
+                    and type(concede.get("beneficiary_prestige_delta_raw")) is int
+                    and concede.get("beneficiary_prestige_delta_raw") ==
+                    concede.get("beneficiary_prestige_after_raw") -
+                    concede.get("beneficiary_prestige_before_raw")),
+            })
+            if outcome in ("accepted", "executed"):
+                c_checks["concede_defeat_verified"] = concede.get("verified") is True
+            elif outcome == "rejected":
+                # A refusal may itself incur the native defeat/desperation
+                # prestige penalty.  Preserve and validate the measured
+                # transition; do not impose a fixed zero delta.
+                c_checks["concede_defeat_verified"] = concede.get("verified") is False
+        concede_defeat_contract_all = all(c_checks.values())
+        checks.update(c_checks)
+    if annul_term is not None:
+        annul_effects = effects.get(_ANNUL_TREATIES_ACTION)
+        requested_country = annul_term.get("country")
+        requested_partners = annul_term.get("treaty_partners")
+        requested_pairs = (
+            [(requested_country, partner) for partner in requested_partners]
+            if isinstance(requested_country, str)
+            and isinstance(requested_partners, list) else [])
+        rows = annul_effects if isinstance(annul_effects, list) else []
+        row_pairs = [(row.get("country"), row.get("partner"))
+                     for row in rows if isinstance(row, dict)]
+        a_checks: dict[str, bool] = {
+            "annul_treaties_list": isinstance(annul_effects, list),
+            "annul_treaties_pairs_exact": (
+                len(rows) == len(requested_pairs)
+                and len(row_pairs) == len(set(row_pairs))
+                and set(row_pairs) == set(requested_pairs)),
+        }
+        for index, pair in enumerate(requested_pairs):
+            row = next((item for item in rows
+                        if isinstance(item, dict)
+                        and (item.get("country"), item.get("partner")) == pair), None)
+            prefix = f"annul_treaties_{index}"
+            a_checks.update({
+                f"{prefix}_object": isinstance(row, dict),
+                f"{prefix}_country": isinstance(row, dict) and row.get("country") == pair[0],
+                f"{prefix}_partner": isinstance(row, dict) and row.get("partner") == pair[1],
+                f"{prefix}_present_before": isinstance(row, dict) and type(row.get("present_before")) is bool,
+                f"{prefix}_present_after": isinstance(row, dict) and type(row.get("present_after")) is bool,
+                f"{prefix}_start_date": isinstance(row, dict) and type(row.get("start_date_raw")) is int,
+                f"{prefix}_end_date": isinstance(row, dict) and type(row.get("end_date_raw")) is int,
+                f"{prefix}_alliance_before": isinstance(row, dict) and type(row.get("alliance_before")) is bool,
+                f"{prefix}_alliance_after": isinstance(row, dict) and type(row.get("alliance_after")) is bool,
+                f"{prefix}_values_readable": isinstance(row, dict) and row.get("values_readable") is True,
+                f"{prefix}_verified": isinstance(row, dict) and row.get("verified") is (outcome in ("accepted", "executed")),
+            })
+            if outcome in ("accepted", "executed"):
+                a_checks[f"{prefix}_applied"] = (
+                    isinstance(row, dict)
+                    and row.get("present_after") is True
+                    and row.get("alliance_after") is False)
+        annul_contract_all = all(a_checks.values())
+        checks.update(a_checks)
+    for special_action, special_term in special_terms.items():
+        if special_term is None:
+            checks[f"{special_action}_empty"] = effects.get(special_action) is None
+            continue
+        special = effects.get(special_action)
+        s_checks: dict[str, bool] = {
+            f"{special_action}_object": isinstance(special, dict),
+            f"{special_action}_country": isinstance(special, dict)
+            and special.get("country") == special_term.get("country"),
+            f"{special_action}_beneficiary": isinstance(special, dict)
+            and special.get("beneficiary") == special_term.get("beneficiary"),
+            f"{special_action}_values_readable": isinstance(special, dict)
+            and special.get("values_readable") is True,
+            f"{special_action}_verified_bool": isinstance(special, dict)
+            and isinstance(special.get("verified"), bool),
+        }
+        if special_action == _FORCE_RELIGION_ACTION:
+            # F has a distinct effect schema: the native serializer exposes
+            # canonical religion keys and before/after values for the target,
+            # its beneficiary, and its capital.  It has no prestige or
+            # humiliation fields shared by H/S.
+            religion_fields = (
+                "religion_before", "religion_after",
+                "beneficiary_religion_before", "beneficiary_religion_after",
+                "capital_religion_before", "capital_religion_after")
+            religion_re = re.compile(r"^[A-Za-z0-9_]{1,63}$")
+            s_checks[f"{special_action}_fields"] = (
+                isinstance(special, dict)
+                and set(special) == {
+                    "country", "beneficiary", *religion_fields,
+                    "values_readable", "verified"})
+            for field in religion_fields:
+                s_checks[f"{special_action}_{field}"] = (
+                    isinstance(special, dict)
+                    and isinstance(special.get(field), str)
+                    and religion_re.fullmatch(special[field]) is not None)
+            if outcome in ("accepted", "executed"):
+                s_checks[f"{special_action}_verified"] = (
+                    isinstance(special, dict)
+                    and special.get("verified") is True)
+                s_checks[f"{special_action}_religion_applied"] = (
+                    isinstance(special, dict)
+                    and special.get("religion_after") ==
+                    special.get("beneficiary_religion_after")
+                    and special.get("capital_religion_after") ==
+                    special.get("beneficiary_religion_after"))
+            elif outcome == "rejected":
+                s_checks[f"{special_action}_verified"] = (
+                    isinstance(special, dict)
+                    and special.get("verified") is False)
+        else:
+            # H/S share the prestige and humiliation transition.  S adds the
+            # three bounded power vectors below; H retains the common subset.
+            s_checks[f"{special_action}_prestige_scale"] = (
+                isinstance(special, dict)
+                and special.get("prestige_scale",
+                                special.get("prestige_scale1000")) == 1000)
+            s_checks[f"{special_action}_humiliated_before_bool"] = (
+                isinstance(special, dict)
+                and isinstance(special.get("humiliated_before"), bool))
+            s_checks[f"{special_action}_humiliated_after_bool"] = (
+                isinstance(special, dict)
+                and isinstance(special.get("humiliated_after"), bool))
+            prestige_fields = (
+                "country_prestige_before_raw", "country_prestige_after_raw",
+                "country_prestige_delta_raw", "beneficiary_prestige_before_raw",
+                "beneficiary_prestige_after_raw", "beneficiary_prestige_delta_raw")
+            for field in prestige_fields:
+                s_checks[f"{special_action}_{field}"] = (
+                    isinstance(special, dict)
+                    and type(special.get(field)) is int
+                    and not isinstance(special.get(field), bool))
+            if isinstance(special, dict):
+                s_checks[f"{special_action}_country_delta_consistent"] = (
+                    special.get("country_prestige_delta_raw") ==
+                    special.get("country_prestige_after_raw") -
+                    special.get("country_prestige_before_raw"))
+                s_checks[f"{special_action}_beneficiary_delta_consistent"] = (
+                    special.get("beneficiary_prestige_delta_raw") ==
+                    special.get("beneficiary_prestige_after_raw") -
+                    special.get("beneficiary_prestige_before_raw"))
+                if outcome in ("accepted", "executed"):
+                    s_checks[f"{special_action}_verified"] = (
+                        special.get("verified") is True)
+                    s_checks[f"{special_action}_humiliated_after"] = (
+                        special.get("humiliated_after") is True)
+                elif outcome == "rejected":
+                    s_checks[f"{special_action}_verified"] = (
+                        special.get("verified") is False)
+            if special_action == _SHOW_STRENGTH_ACTION:
+                for field in ("powers_before", "powers_after", "powers_delta"):
+                    s_checks[f"{special_action}_{field}"] = (
+                        isinstance(special, dict)
+                        and isinstance(special.get(field), list)
+                        and len(special[field]) == 3
+                        and all(type(value) is int and not isinstance(value, bool)
+                                for value in special[field]))
+                s_checks[f"{special_action}_powers_requested"] = (
+                    isinstance(special, dict)
+                    and type(special.get("powers_requested")) is int
+                    and special.get("powers_requested") >= 0)
+        checks.update(s_checks)
+        special_contract_all = all(s_checks.values()) if special_contract_all is None else (
+            special_contract_all and all(s_checks.values()))
+    if (money_term is None and province_term is None
+            and trade_power_term is None and concede_defeat_term is None
+            and not any(special_terms.values())):
         # White peace has no selected money/province term.  The native effect
         # object remains required for a claimed successful settlement, while
         # the empty lists are allowed to carry future effect metadata.
@@ -700,10 +1364,31 @@ def _effects_contract(public: dict[str, object], action_id: str,
             "money_empty": effects.get("money") is None,
             "provinces_list": isinstance(effects.get("provinces"), list),
         })
-    if reparations_term is None:
+    if reparations_term is None and trade_power_term is None:
         checks["war_reparations_empty"] = effects.get("war_reparations") is None
+    if trade_power_term is None:
+        checks["transfer_trade_power_empty"] = (
+            effects.get(_TRADE_POWER_ACTION) is None)
+    if concede_defeat_term is None:
+        checks["concede_defeat_empty"] = (
+            effects.get(_CONCEDE_DEFEAT_ACTION) is None)
+    if annul_term is None:
+        checks["annul_treaties_empty"] = effects.get(_ANNUL_TREATIES_ACTION) is None
     result["checks"] = checks
-    result["all"] = all(checks.values()) if outcome in ("accepted", "executed") else True
+    if outcome in ("accepted", "executed"):
+        result["all"] = all(checks.values())
+    elif (trade_power_contract_all is not None
+          or concede_defeat_contract_all is not None
+          or annul_contract_all is not None
+          or special_contract_all is not None):
+        # R50 rejection carries a typed effect object, but no applied-state
+        # transition is required; only its bound rejection contract matters.
+        result["all"] = all(value for value in (
+            trade_power_contract_all, concede_defeat_contract_all,
+            annul_contract_all, special_contract_all)
+            if value is not None)
+    else:
+        result["all"] = True
     return result
 
 
@@ -715,22 +1400,81 @@ def _expected_native_fields(action_id: str, parameters: dict[str, object]) -> di
     amount_raw = -1
     province_ids: list[int] = []
     beneficiary: str | None = None
+    reparations_payer: str | None = None
+    reparations_claimant: str | None = None
+    trade_power_source: str | None = None
+    trade_power_beneficiary: str | None = None
+    concede_defeat_country: str | None = None
+    concede_defeat_beneficiary: str | None = None
+    annul_country: str | None = None
+    annul_partners: list[str] | None = None
+    special_actions: set[str] = set()
+    term_mask: str = ""
     if isinstance(terms, list):
         for term in terms:
             if not isinstance(term, dict):
                 continue
             if term.get("action_id") == "demand_ducats":
+                term_mask += "m"
                 amount = term.get("amount")
                 if isinstance(amount, str) and re.fullmatch(r"[0-9]+\.[0-9]", amount):
                     whole, tenths = amount.split(".")
                     amount_raw = (int(whole) * 10 + int(tenths)) * 100
             elif term.get("action_id") == "cede_province":
+                term_mask += "p"
                 ids = term.get("province_ids")
                 if isinstance(ids, list):
                     province_ids = list(ids)
                 beneficiary = term.get("beneficiary") \
                     if isinstance(term.get("beneficiary"), str) else None
-    return {
+            elif term.get("action_id") == "war_reparations":
+                term_mask += "r"
+                reparations_payer = term.get("payer") \
+                    if isinstance(term.get("payer"), str) else None
+                reparations_claimant = term.get("claimant") \
+                    if isinstance(term.get("claimant"), str) else None
+            elif term.get("action_id") == _TRADE_POWER_ACTION:
+                term_mask += "t"
+                trade_power_source = term.get("source") \
+                    if isinstance(term.get("source"), str) else None
+                trade_power_beneficiary = term.get("beneficiary") \
+                    if isinstance(term.get("beneficiary"), str) else None
+            elif term.get("action_id") == _CONCEDE_DEFEAT_ACTION:
+                term_mask += "c"
+                concede_defeat_country = term.get("conceding_country") \
+                    if isinstance(term.get("conceding_country"), str) else None
+                concede_defeat_beneficiary = term.get("beneficiary") \
+                    if isinstance(term.get("beneficiary"), str) else None
+            elif term.get("action_id") == _ANNUL_TREATIES_ACTION:
+                term_mask += "a"
+                annul_country = term.get("country") \
+                    if isinstance(term.get("country"), str) else None
+                raw_partners = term.get("treaty_partners")
+                if isinstance(raw_partners, list):
+                    annul_partners = list(raw_partners)
+            elif term.get("action_id") in _SPECIAL_ACTIONS:
+                special_actions.add(str(term.get("action_id")))
+    canonical_letters = {
+        "demand_ducats": "m", "cede_province": "p",
+        "war_reparations": "r", _TRADE_POWER_ACTION: "t",
+        _CONCEDE_DEFEAT_ACTION: "c", _ANNUL_TREATIES_ACTION: "a",
+        _HUMILIATE_RIVAL_ACTION: "h", _SHOW_STRENGTH_ACTION: "s",
+        _FORCE_RELIGION_ACTION: "f",
+    }
+    present_actions = {
+        term.get("action_id") for term in terms
+        if isinstance(term, dict) and term.get("action_id") in canonical_letters
+    } if isinstance(terms, list) else set()
+    term_mask = "".join(canonical_letters[action]
+                         for action in ("demand_ducats", "cede_province",
+                                        "war_reparations", _TRADE_POWER_ACTION,
+                                        _CONCEDE_DEFEAT_ACTION,
+                                        _ANNUL_TREATIES_ACTION,
+                                        _HUMILIATE_RIVAL_ACTION,
+                                        _SHOW_STRENGTH_ACTION,
+                                        _FORCE_RELIGION_ACTION)
+                         if action in present_actions)
+    result = {
         "event": "native_peace_execution_result",
         "action_id": action_id,
         "family": _FAMILY,
@@ -743,6 +1487,39 @@ def _expected_native_fields(action_id: str, parameters: dict[str, object]) -> di
         "province_ids": province_ids,
         "beneficiary": beneficiary,
     }
+    # The native result exposes the canonical term mask and direction-bound
+    # roles when a non-legacy term is present.  Keep the legacy result shape
+    # unchanged for money/province-only callers and bind each new field only
+    # when it is actually present in the requested context.
+    if term_mask and (reparations_payer is not None
+                      or trade_power_source is not None
+                      or concede_defeat_country is not None
+                      or annul_country is not None
+                      or special_actions):
+        result["term_mask"] = term_mask
+    if reparations_payer is not None and reparations_claimant is not None:
+        result.update({
+            "reparations_payer": reparations_payer,
+            "reparations_claimant": reparations_claimant,
+        })
+    if trade_power_source is not None and trade_power_beneficiary is not None:
+        result.update({
+            "trade_power_source": trade_power_source,
+            "trade_power_beneficiary": trade_power_beneficiary,
+        })
+    if concede_defeat_country is not None and concede_defeat_beneficiary is not None:
+        result.update({
+            # These are the native receipt names.  The public request keeps
+            # the normalized term names (conceding_country/beneficiary).
+            "conceding_country": concede_defeat_country,
+            "concede_beneficiary": concede_defeat_beneficiary,
+        })
+    if annul_country is not None and annul_partners is not None:
+        result.update({
+            "annul_country": annul_country,
+            "annul_partners": annul_partners,
+        })
+    return result
 
 
 def _province_id_sequence_matches(actual: object, expected: object) -> bool:
@@ -889,6 +1666,100 @@ def _offline_contract_assertions() -> None:
     assert [term["action_id"] for term in mixed["peace_context"]["terms"]] == [
         "demand_ducats", "cede_province"]
     assert mixed["peace_context"]["terms"][0]["amount"] == "1.0"
+    trade_only_demand = _build_parameters(
+        _TRADE_POWER_ACTION, war_id, "10.0", None, None, "demand")
+    trade_only_offer = _build_parameters(
+        _TRADE_POWER_ACTION, war_id, "10.0", None, None, "offer")
+    assert trade_only_demand["peace_context"]["terms"] == [{
+        "action_id": _TRADE_POWER_ACTION,
+        "source": _RECIPIENT,
+        "beneficiary": _ACTOR,
+    }]
+    assert trade_only_offer["peace_context"]["terms"] == [{
+        "action_id": _TRADE_POWER_ACTION,
+        "source": _ACTOR,
+        "beneficiary": _RECIPIENT,
+    }]
+    trade_masks = {
+        "t": (_TRADE_POWER_ACTION, {}),
+        "mt": ("demand_ducats", {"with_trade_power": True}),
+        "pt": ("cede_province", {"with_trade_power": True}),
+        "rt": ("war_reparations", {"with_trade_power": True}),
+        "mpt": ("cede_province", {
+            "with_money": "1.0", "with_trade_power": True}),
+        "mrt": ("demand_ducats", {
+            "with_reparations": True, "with_trade_power": True}),
+        "prt": ("cede_province", {
+            "with_reparations": True, "with_trade_power": True}),
+        "mprt": ("cede_province", {
+            "with_money": "1.0", "with_reparations": True,
+            "with_trade_power": True}),
+    }
+    for mask, (primary, options) in trade_masks.items():
+        trade_parameters = _build_parameters(
+            primary, war_id, "10.0", 177 if "p" in mask else None,
+            _ACTOR, "demand",
+            province_ids=[177] if "p" in mask else None, **options)
+        assert _expected_native_fields(
+            primary, trade_parameters)["term_mask"] == mask
+    # Keep the runner's own offline guard aligned with EXEC2's complete
+    # reparations matrix.  The primary war_reparations form is what the CLI
+    # uses for the combined R48 request, while the other primaries remain
+    # valid normalized contexts for compatibility.
+    r48_province_ids = [4388, 4111, 4112, 4389, 4118]
+    reparations_masks = {
+        "r": {},
+        "mr": {"with_money": "1.0"},
+        "pr": {"province_ids": r48_province_ids, "beneficiary": "ENG"},
+        "mpr": {
+            "with_money": "1.0", "province_ids": r48_province_ids,
+            "beneficiary": "ENG",
+        },
+    }
+    for mask, options in reparations_masks.items():
+        beneficiary = options.get("beneficiary")
+        builder_options = {
+            key: value for key, value in options.items()
+            if key != "beneficiary"
+        }
+        reparations = _build_parameters(
+            "war_reparations", war_id, "10.0", None, beneficiary,
+            "demand", **builder_options)
+        terms = reparations["peace_context"]["terms"]
+        assert "".join({
+            "demand_ducats": "m", "cede_province": "p",
+            "war_reparations": "r",
+        }[term["action_id"]] for term in terms) == mask
+        assert _expected_native_fields(
+            "war_reparations", reparations)["term_mask"] == mask
+    annul = _build_parameters(
+        _ANNUL_TREATIES_ACTION, war_id, "10.0", None, None, "demand",
+        annul_country="FRA", annul_partners=["GEN", "SAV"])
+    assert annul["peace_context"]["terms"] == [{
+        "action_id": _ANNUL_TREATIES_ACTION,
+        "country": "FRA",
+        "treaty_partners": ["GEN", "SAV"],
+    }]
+    annul_expected = _expected_native_fields(_ANNUL_TREATIES_ACTION, annul)
+    assert annul_expected["term_mask"] == "a"
+    assert annul_expected["annul_country"] == "FRA"
+    assert annul_expected["annul_partners"] == ["GEN", "SAV"]
+    for special, letter in ((_HUMILIATE_RIVAL_ACTION, "h"),
+                            (_SHOW_STRENGTH_ACTION, "s"),
+                            (_FORCE_RELIGION_ACTION, "f")):
+        special_parameters = _build_parameters(
+            special, war_id, "10.0", None, None, "demand")
+        assert special_parameters["peace_context"]["terms"] == [{
+            "action_id": special, "country": _RECIPIENT,
+            "beneficiary": _ACTOR,
+        }]
+        assert _expected_native_fields(special, special_parameters)["term_mask"] == letter
+    try:
+        _annul_treaties_term("FRA", ["SAV", "GEN"])
+    except PeaceExecutionError as error:
+        assert error.code == "ANNUL_PARTNERS_UNSORTED"
+    else:
+        raise AssertionError("unsorted annul partners were accepted")
     try:
         _parse_province_ids_csv("177,,178")
     except PeaceExecutionError as error:
@@ -936,6 +1807,9 @@ def _offline_contract_assertions() -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--installation", type=Path, required=True)
+    parser.add_argument("--recipient", type=_recipient_arg,
+                        default=_DEFAULT_RECIPIENT,
+                        help="议和目标国；默认 ENG，FRA 为固定 actor")
     parser.add_argument("--action", choices=_ACTIONS, required=True)
     parser.add_argument("--direction", choices=_DIRECTIONS, default="demand",
                         help="议和方向；demand 为 actor 向 recipient 索取，offer 为 actor 向 recipient 提供")
@@ -947,43 +1821,94 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--with-money", default=None,
                         help="cede_province 或 war_reparations 主动作追加的金额条款（例如 1.0 ducats）")
     parser.add_argument("--with-reparations", action="store_true",
-                        help="给 demand_ducats 或 cede_province 主动作追加战争赔款条款")
+                        help="给 demand_ducats、cede_province 或 transfer_trade_power 主动作追加战争赔款条款")
+    parser.add_argument("--trade-power", action="store_true",
+                        help="附加 transfer_trade_power 条款；该 action 本身默认包含此条款")
+    parser.add_argument("--trade-power-source", default=None,
+                        help="transfer_trade_power 的实际转出国 canonical tag；默认 demand=recipient、offer=FRA")
+    parser.add_argument("--annul-country", default=None,
+                        help="annul_treaties 的关系拥有国；必须显式指定")
+    parser.add_argument("--annul-partners", nargs="+", default=None,
+                        help="annul_treaties 的已排序合法伙伴列表（1..16）")
+    parser.add_argument("--special-country", default=None,
+                        help="humiliate_rival/show_strength/force_religion 的 country；缺省按 direction 推导")
+    parser.add_argument("--special-beneficiary", default=None,
+                        help="H/S/F 的 beneficiary（force_religion 的宗教参照国）；缺省按 direction 推导")
     parser.add_argument("--province-id", type=int, default=None,
                         help="兼容旧调用：cede_province 的单个省份编号；未给出时默认 177")
     parser.add_argument("--province-ids", default=None,
                         help="cede_province 的省份编号 CSV（1..16 个，例如 177,178,185）；与 --province-id 互斥")
     parser.add_argument("--beneficiary", default=None,
-                        help="cede_province 的受益国；默认随 direction 选择 demand=FRA、offer=ENG")
+                        help="cede_province 的受益国；默认随 direction 选择 demand=FRA、offer=recipient")
     args = parser.parse_args(argv)
     _offline_contract_assertions()
+    global _RECIPIENT
+    _RECIPIENT = args.recipient
+    os.environ["EU4_WAR_PAIR_RECIPIENT"] = _RECIPIENT
     if _REQUEST_ID_RE.fullmatch(args.request_id) is None:
         parser.error("--request-id must match [A-Za-z0-9_-]{1,64}")
     try:
-        if args.with_money is not None and args.action not in ("cede_province", "war_reparations"):
+        if args.with_money is not None and args.action not in (
+                "cede_province", "war_reparations", _TRADE_POWER_ACTION,
+                _CONCEDE_DEFEAT_ACTION, _ANNUL_TREATIES_ACTION,
+                *_SPECIAL_ACTIONS):
             raise PeaceExecutionError(
                 "WITH_MONEY_ACTION_INVALID",
-                "--with-money only applies when cede_province or war_reparations is primary")
-        if args.with_reparations and args.action not in ("demand_ducats", "cede_province"):
+                "--with-money only applies when cede_province, war_reparations, transfer_trade_power, or concede_defeat is primary")
+        if args.with_reparations and args.action not in (
+                "demand_ducats", "cede_province", _TRADE_POWER_ACTION,
+                _CONCEDE_DEFEAT_ACTION, _ANNUL_TREATIES_ACTION,
+                *_SPECIAL_ACTIONS):
             raise PeaceExecutionError(
                 "WITH_REPARATIONS_ACTION_INVALID",
-                "--with-reparations only applies when demand_ducats or cede_province is primary")
+                "--with-reparations only applies when demand_ducats, cede_province, transfer_trade_power, or concede_defeat is primary")
+        if args.trade_power and args.action == "white_peace":
+            raise PeaceExecutionError(
+                "TRADE_POWER_ACTION_INVALID",
+                "--trade-power cannot be combined with white_peace")
+        if args.trade_power_source is not None:
+            _trade_power_source_for_direction(
+                args.direction, args.trade_power_source)
+            if not (args.action == _TRADE_POWER_ACTION or args.trade_power):
+                raise PeaceExecutionError(
+                    "TRADE_POWER_SOURCE_ACTION_INVALID",
+                    "--trade-power-source requires --trade-power or transfer_trade_power")
+        if (args.annul_country is None) != (args.annul_partners is None):
+            raise PeaceExecutionError(
+                "ANNUL_TERM_INCOMPLETE",
+                "--annul-country and --annul-partners must be supplied together")
+        if args.action == _ANNUL_TREATIES_ACTION:
+            _annul_treaties_term(args.annul_country, args.annul_partners)
+        elif args.annul_country is not None:
+            # A is also accepted as an explicit mixed term for the existing
+            # primary actions; no implicit candidate is selected here.
+            _annul_treaties_term(args.annul_country, args.annul_partners)
         if args.province_ids is not None and args.province_id is not None:
             raise PeaceExecutionError(
                 "PROVINCE_OPTIONS_CONFLICT", "--province-id and --province-ids are mutually exclusive")
         if args.province_ids is not None:
-            if args.action not in ("cede_province", "war_reparations"):
+            if args.action not in ("cede_province", "war_reparations",
+                                    _TRADE_POWER_ACTION, _CONCEDE_DEFEAT_ACTION,
+                                    _ANNUL_TREATIES_ACTION, *_SPECIAL_ACTIONS):
                 raise PeaceExecutionError(
                     "PROVINCE_IDS_ACTION_INVALID",
-                    "--province-ids only applies to cede_province or war_reparations")
+                    "--province-ids only applies to cede_province, war_reparations, transfer_trade_power, or concede_defeat")
             selected_province_ids = _parse_province_ids_csv(args.province_ids)
         elif args.province_id is not None:
-            if args.action not in ("cede_province", "war_reparations"):
+            if args.action not in ("cede_province", "war_reparations",
+                                    _TRADE_POWER_ACTION, _CONCEDE_DEFEAT_ACTION,
+                                    _ANNUL_TREATIES_ACTION, *_SPECIAL_ACTIONS):
                 raise PeaceExecutionError(
                     "PROVINCE_ID_ACTION_INVALID",
-                    "--province-id only applies to cede_province or war_reparations")
+                    "--province-id only applies to cede_province, war_reparations, transfer_trade_power, or concede_defeat")
             selected_province_ids = _normalize_province_ids([args.province_id])
-        elif args.action == "war_reparations":
-            selected_province_ids = []
+        elif args.action in ("white_peace", "demand_ducats", "war_reparations",
+                             _TRADE_POWER_ACTION, _CONCEDE_DEFEAT_ACTION,
+                             _ANNUL_TREATIES_ACTION, *_SPECIAL_ACTIONS):
+            # These primary actions do not implicitly carry a province term.
+            # ``None`` also keeps the normalized context distinct from an
+            # explicitly supplied (and bounded) province list.
+            selected_province_ids = None
         else:
             selected_province_ids = [177]
     except PeaceExecutionError as error:
@@ -999,6 +1924,14 @@ def main(argv: list[str] | None = None) -> int:
         "installation": str(args.installation),
         "action_id": args.action,
         "direction": args.direction,
+        "trade_power_source_requested": args.trade_power_source,
+        "special_country_requested": args.special_country,
+        "special_beneficiary_requested": args.special_beneficiary,
+        "concede_defeat_requested": args.action == _CONCEDE_DEFEAT_ACTION,
+        "annul_treaties_requested": args.action == _ANNUL_TREATIES_ACTION
+        or args.annul_country is not None,
+        "annul_country_requested": args.annul_country,
+        "annul_partners_requested": args.annul_partners,
         "actor": _ACTOR,
         "recipient": _RECIPIENT,
         "family": _FAMILY,
@@ -1059,7 +1992,7 @@ def main(argv: list[str] | None = None) -> int:
             "health": health_before,
             "control": before_control,
             "probes": _public_probe_records(before),
-            "war_state": _war_pair_summary(before),
+            "war_state": _war_pair_summary_for(before),
         }
         if (health_before.get("status") != "ready"
                 or health_before.get("complete") is not True
@@ -1110,9 +2043,19 @@ def main(argv: list[str] | None = None) -> int:
                 args.beneficiary, args.direction,
                 province_ids=selected_province_ids,
                 with_money=args.with_money,
-                with_reparations=args.with_reparations)
+                with_reparations=args.with_reparations,
+                with_trade_power=args.trade_power,
+                trade_power_source=args.trade_power_source,
+                annul_country=args.annul_country,
+                annul_partners=args.annul_partners,
+                special_country=args.special_country,
+                special_beneficiary=args.special_beneficiary)
             effective_beneficiary = args.beneficiary
-            effective_province_ids = list(selected_province_ids)
+            effective_trade_power_source = None
+            effective_trade_power_beneficiary = None
+            effective_conceding_country = None
+            effective_concede_beneficiary = None
+            effective_province_ids = list(selected_province_ids or [])
             if args.action in ("cede_province", "war_reparations"):
                 effective_term = _term_for_action(
                     execution_parameters, "cede_province")
@@ -1121,6 +2064,40 @@ def main(argv: list[str] | None = None) -> int:
                     term_ids = effective_term.get("province_ids")
                     if isinstance(term_ids, list):
                         effective_province_ids = list(term_ids)
+            if args.action == _TRADE_POWER_ACTION and not effective_province_ids:
+                effective_term = _term_for_action(
+                    execution_parameters, _TRADE_POWER_ACTION)
+                if isinstance(effective_term, dict):
+                    effective_beneficiary = effective_term.get("beneficiary")
+            effective_trade_term = _term_for_action(
+                execution_parameters, _TRADE_POWER_ACTION)
+            if isinstance(effective_trade_term, dict):
+                effective_trade_power_source = effective_trade_term.get("source")
+                effective_trade_power_beneficiary = effective_trade_term.get(
+                    "beneficiary")
+            effective_concede_term = _term_for_action(
+                execution_parameters, _CONCEDE_DEFEAT_ACTION)
+            if isinstance(effective_concede_term, dict):
+                effective_conceding_country = effective_concede_term.get(
+                    "conceding_country")
+                effective_concede_beneficiary = effective_concede_term.get(
+                    "beneficiary")
+            effective_annul_country = None
+            effective_annul_partners: list[str] = []
+            effective_annul_term = _term_for_action(
+                execution_parameters, _ANNUL_TREATIES_ACTION)
+            if isinstance(effective_annul_term, dict):
+                effective_annul_country = effective_annul_term.get("country")
+                raw_partners = effective_annul_term.get("treaty_partners")
+                if isinstance(raw_partners, list):
+                    effective_annul_partners = list(raw_partners)
+            effective_special_country = None
+            effective_special_beneficiary = None
+            effective_special_term = _term_for_action(
+                execution_parameters, args.action)
+            if args.action in _SPECIAL_ACTIONS and isinstance(effective_special_term, dict):
+                effective_special_country = effective_special_term.get("country")
+                effective_special_beneficiary = effective_special_term.get("beneficiary")
             query_parameters = _query_parameters(args.action, execution_parameters)
             selected = api.inspect_diplomatic_action(
                 args.action, _ACTOR, _RECIPIENT,
@@ -1140,9 +2117,19 @@ def main(argv: list[str] | None = None) -> int:
                 if effective_province_ids else None,
                 "province_ids": effective_province_ids,
                 "beneficiary": effective_beneficiary,
+                "trade_power_source": effective_trade_power_source,
+                "trade_power_beneficiary": effective_trade_power_beneficiary,
+                "conceding_country": effective_conceding_country,
+                "concede_beneficiary": effective_concede_beneficiary,
+                "annul_country": effective_annul_country,
+                "annul_partners": effective_annul_partners,
+                "special_country": effective_special_country,
+                "special_beneficiary": effective_special_beneficiary,
                 "direction": args.direction,
                 "with_money": args.with_money,
                 "with_reparations": args.with_reparations,
+                "with_trade_power": (
+                    args.trade_power or args.action == _TRADE_POWER_ACTION),
             }
             if not selected_contract["valid"]:
                 raise PeaceExecutionError(
@@ -1192,11 +2179,11 @@ def main(argv: list[str] | None = None) -> int:
             "health": health_after,
             "control": after_control,
             "probes": _public_probe_records(after),
-            "war_state": _war_pair_summary(after),
+            "war_state": _war_pair_summary_for(after),
         }
         public = _public_result(report.get("result"))
-        before_war = _war_pair_summary(before)
-        after_war = _war_pair_summary(after)
+        before_war = _war_pair_summary_for(before)
+        after_war = _war_pair_summary_for(after)
         result_contract = _result_contract(
             report.get("result"), args.action, execution_parameters,
             expected_date_raw, before_war, after_war)

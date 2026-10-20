@@ -11,6 +11,7 @@ static bool inbound_saved_shape_supported(const LifecycleActionShape& shape,
     uint64_t recipient) noexcept {
     return shape.readable && shape.matched && shape.handles_canonical
         && !shape.improve_relations && !shape.spy_network && !shape.guarantee
+        && !shape.curry_favors
         && !shape.insult && !shape.declare_war
         && (shape.peace_offer ? shape.peace.valid() : shape.peace.empty())
         && shape.extra60==0 && shape.state34==0
@@ -59,11 +60,17 @@ static void inbound_saved_queue_tick() noexcept {
         if (known) continue;
         InboundScope scope{};
         scope.country=country;
+        scope.favor_gold=shape.favor_gold;
+        scope.favor_trust=shape.favor_trust;
+        scope.favor_men=shape.favor_men;
         scope.peace_offer=shape.peace_offer;
         scope.peace=shape.peace;
         InboundOfferEvent event{};
         event.proposal_id=static_cast<uint64_t>(InterlockedIncrement64(&inbound_sequence));
         event.payload_readable=true; event.decision_country_verified=true;
+        event.favor_gold=shape.favor_gold;
+        event.favor_trust=shape.favor_trust;
+        event.favor_men=shape.favor_men;
         event.peace_offer=shape.peace_offer;
         event.peace=shape.peace;
         inbound_pending_record_new(scope,event,nodes[index],clones[index],shape,true);
@@ -71,11 +78,11 @@ static void inbound_saved_queue_tick() noexcept {
         char actor[4]{}; inbound_tag(actor,shape.actor10);
         if (!inbound_pending_lookup(event.proposal_id,actor,view)) continue;
         ++restored_count;
-        const char* action=shape.peace_offer?"peace_offer":shape.vassalization?"offer_vassalization":
+        const char* action=shape.peace_offer?"peace_offer":shape.favor_gold?"trade_favors_for_gold":shape.favor_trust?"trade_favors_for_trust":shape.favor_men?"trade_favors_for_men":shape.vassalization?"offer_vassalization":
             shape.military_access?"ask_military_access":
             shape.support_independence?"support_independence":
             shape.royal_marriage?"offer_royal_marriage":"offer_alliance";
-        const char* family=shape.peace_offer?"peace":shape.vassalization?"vassalization":
+        const char* family=shape.peace_offer?"peace":(shape.favor_gold || shape.favor_trust || shape.favor_men)?"favor_trade":shape.vassalization?"vassalization":
             shape.military_access?"military_access":
             shape.support_independence?"support_independence":
             shape.royal_marriage?"royal_marriage":"alliance";

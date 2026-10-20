@@ -1,0 +1,346 @@
+{
+  "fixture_version": 1,
+  "description": "R53 real Peace inbound Annul Treaties response consumption",
+  "cases": {
+    "reject": {
+      "source": {
+        "path": "work/runtime/diplomacy-query-20261018-r53-peace-d-inbound-reject/inbound-reject-002/report-evidence/native-events-slice.jsonl",
+        "bytes": 48944,
+        "sha256": "d8df7c9b48e3ef08595f86264e81c29c7f377c7db627112a92acd1ea8d3ec0f5"
+      },
+      "report": {
+        "path": "work/runtime/diplomacy-query-20261018-r53-peace-d-inbound-reject/inbound-reject-002/report.json",
+        "bytes": 52648,
+        "sha256": "237170cbfe964f7e6776ef777c34aa878f83ba7c16f914070baf3432b7e37264"
+      },
+      "events": {
+        "inspection": {
+          "line": 5,
+          "event": {
+            "event": "native_alliance_inbound_inspection",
+            "query_id": "inbound_inspect_957a7df0ed3243fa9f55c68ef8edddb4",
+            "session_id": "23952-1dd5ee8335d9e0c",
+            "action_id": "peace_offer",
+            "family": "peace",
+            "extra60": 0,
+            "actor": "ENG",
+            "mirror": "ENG",
+            "recipient": "FRA",
+            "phase": "reject",
+            "native_proposal_id": 1,
+            "date_raw": 56549088,
+            "pending_active": true,
+            "decision_country": "FRA",
+            "decision_country_verified": true,
+            "native_validity": true,
+            "response_rules_complete": true,
+            "war_active": true,
+            "war_readable": true,
+            "war_before": true,
+            "native_current_war": true,
+            "native_current_war_readable": true,
+            "peace_payload_complete": true,
+            "selected_terms_complete": true,
+            "term_count": 84,
+            "selected_term_count": 3,
+            "peace_context": {
+              "war_id": "war_bf308160954276f6_00000001",
+              "direction": "demand",
+              "original_actor": "ENG",
+              "original_recipient": "FRA",
+              "terms": [
+                {
+                  "action_id": "annul_treaties",
+                  "country": "FRA",
+                  "treaty_partners": [
+                    "GEN",
+                    "PAP"
+                  ]
+                }
+              ],
+              "white_peace": false,
+              "complete": true,
+              "selected_terms_complete": true,
+              "reason": "none"
+            },
+            "date28": 56549064,
+            "date2c": 56549064,
+            "envoy30": 3,
+            "state34": 0,
+            "variant38": 1,
+            "token3c": 206,
+            "requested_decision": "reject",
+            "reason": "none"
+          }
+        },
+        "submission": {
+          "line": 27,
+          "event": {
+            "event": "native_peace_inbound_submission_result",
+            "family": "peace",
+            "session_id": "23952-1dd5ee8335d9e0c",
+            "request_id": "r53d_reject_annul_gen_pap_001",
+            "action_id": "peace_offer",
+            "actor": "ENG",
+            "recipient": "FRA",
+            "decision_country": "FRA",
+            "phase": "reject",
+            "date_raw": 56549088,
+            "submitted": true,
+            "transport_verified": true,
+            "request_binding_verified": true
+          }
+        },
+        "response": {
+          "line": 38,
+          "event": {
+            "event": "native_peace_inbound_response_result",
+            "family": "peace",
+            "session_id": "23952-1dd5ee8335d9e0c",
+            "request_id": "r53d_reject_annul_gen_pap_001",
+            "action_id": "peace_offer",
+            "actor": "ENG",
+            "recipient": "FRA",
+            "decision_country": "FRA",
+            "phase": "reject",
+            "date_raw": 56549088,
+            "native_state": 1,
+            "outcome": "rejected",
+            "war_before": true,
+            "war_after": true,
+            "war_state_verified": true,
+            "response_verified": true,
+            "request_binding_verified": true,
+            "execution_verified": true,
+            "pending_removed": true,
+            "terms_verified": false,
+            "peace_context": {
+              "war_id": "war_bf308160954276f6_00000001",
+              "direction": "demand",
+              "original_actor": "ENG",
+              "original_recipient": "FRA",
+              "terms": [
+                {
+                  "action_id": "annul_treaties",
+                  "country": "FRA",
+                  "treaty_partners": [
+                    "GEN",
+                    "PAP"
+                  ]
+                }
+              ],
+              "white_peace": false,
+              "complete": true,
+              "selected_terms_complete": true,
+              "reason": "none"
+            },
+            "effects": {
+              "complete": true,
+              "date_unchanged": true,
+              "currency_scale": 1000,
+              "money": null,
+              "provinces": [],
+              "war_reparations": null,
+              "annul_treaties": [
+                {
+                  "country": "FRA",
+                  "partner": "GEN",
+                  "present_before": false,
+                  "present_after": false,
+                  "start_date_raw": 0,
+                  "end_date_raw": 0,
+                  "alliance_before": true,
+                  "alliance_after": true,
+                  "values_readable": true,
+                  "verified": false
+                },
+                {
+                  "country": "FRA",
+                  "partner": "PAP",
+                  "present_before": false,
+                  "present_after": false,
+                  "start_date_raw": 0,
+                  "end_date_raw": 0,
+                  "alliance_before": true,
+                  "alliance_after": true,
+                  "values_readable": true,
+                  "verified": false
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "accept": {
+      "source": {
+        "path": "work/runtime/diplomacy-query-20261018-r53-peace-e-inbound-accept/inbound-accept-001/report-evidence/native-events-slice.jsonl",
+        "bytes": 48710,
+        "sha256": "69273947b9572a28cd94cdf257e105cace43732e8f22fcd09949a9b96ac0a609"
+      },
+      "report": {
+        "path": "work/runtime/diplomacy-query-20261018-r53-peace-e-inbound-accept/inbound-accept-001/report.json",
+        "bytes": 52959,
+        "sha256": "4fcf28606f1a1a17c1d4422f19d5a6f68e02a1483d4addf2f8ae1bd726c43476"
+      },
+      "events": {
+        "inspection": {
+          "line": 3,
+          "event": {
+            "event": "native_alliance_inbound_inspection",
+            "query_id": "inbound_inspect_1fb46b912317422d927112eaf661d0ff",
+            "session_id": "25780-1dd5ee8b51829f6",
+            "action_id": "peace_offer",
+            "family": "peace",
+            "extra60": 0,
+            "actor": "ENG",
+            "mirror": "ENG",
+            "recipient": "FRA",
+            "phase": "accept",
+            "native_proposal_id": 1,
+            "date_raw": 56549088,
+            "pending_active": true,
+            "decision_country": "FRA",
+            "decision_country_verified": true,
+            "native_validity": true,
+            "response_rules_complete": true,
+            "war_active": true,
+            "war_readable": true,
+            "war_before": true,
+            "native_current_war": true,
+            "native_current_war_readable": true,
+            "peace_payload_complete": true,
+            "selected_terms_complete": true,
+            "term_count": 84,
+            "selected_term_count": 3,
+            "peace_context": {
+              "war_id": "war_c23e9422d40cfdc5_00000001",
+              "direction": "demand",
+              "original_actor": "ENG",
+              "original_recipient": "FRA",
+              "terms": [
+                {
+                  "action_id": "annul_treaties",
+                  "country": "FRA",
+                  "treaty_partners": [
+                    "GEN",
+                    "PAP"
+                  ]
+                }
+              ],
+              "white_peace": false,
+              "complete": true,
+              "selected_terms_complete": true,
+              "reason": "none"
+            },
+            "date28": 56549064,
+            "date2c": 56549064,
+            "envoy30": 3,
+            "state34": 0,
+            "variant38": 1,
+            "token3c": 206,
+            "requested_decision": "accept",
+            "reason": "none"
+          }
+        },
+        "submission": {
+          "line": 25,
+          "event": {
+            "event": "native_peace_inbound_submission_result",
+            "family": "peace",
+            "session_id": "25780-1dd5ee8b51829f6",
+            "request_id": "r53e_accept_annul_gen_pap_001",
+            "action_id": "peace_offer",
+            "actor": "ENG",
+            "recipient": "FRA",
+            "decision_country": "FRA",
+            "phase": "accept",
+            "date_raw": 56549088,
+            "submitted": true,
+            "transport_verified": true,
+            "request_binding_verified": true
+          }
+        },
+        "response": {
+          "line": 36,
+          "event": {
+            "event": "native_peace_inbound_response_result",
+            "family": "peace",
+            "session_id": "25780-1dd5ee8b51829f6",
+            "request_id": "r53e_accept_annul_gen_pap_001",
+            "action_id": "peace_offer",
+            "actor": "ENG",
+            "recipient": "FRA",
+            "decision_country": "FRA",
+            "phase": "accept",
+            "date_raw": 56549088,
+            "native_state": 2,
+            "outcome": "accepted",
+            "war_before": true,
+            "war_after": false,
+            "war_state_verified": true,
+            "response_verified": true,
+            "request_binding_verified": true,
+            "execution_verified": true,
+            "pending_removed": true,
+            "terms_verified": true,
+            "peace_context": {
+              "war_id": "war_c23e9422d40cfdc5_00000001",
+              "direction": "demand",
+              "original_actor": "ENG",
+              "original_recipient": "FRA",
+              "terms": [
+                {
+                  "action_id": "annul_treaties",
+                  "country": "FRA",
+                  "treaty_partners": [
+                    "GEN",
+                    "PAP"
+                  ]
+                }
+              ],
+              "white_peace": false,
+              "complete": true,
+              "selected_terms_complete": true,
+              "reason": "none"
+            },
+            "effects": {
+              "complete": true,
+              "date_unchanged": true,
+              "currency_scale": 1000,
+              "money": null,
+              "provinces": [],
+              "war_reparations": null,
+              "annul_treaties": [
+                {
+                  "country": "FRA",
+                  "partner": "GEN",
+                  "present_before": false,
+                  "present_after": true,
+                  "start_date_raw": 56549088,
+                  "end_date_raw": 43808760,
+                  "alliance_before": true,
+                  "alliance_after": false,
+                  "values_readable": true,
+                  "verified": true
+                },
+                {
+                  "country": "FRA",
+                  "partner": "PAP",
+                  "present_before": false,
+                  "present_after": true,
+                  "start_date_raw": 56549088,
+                  "end_date_raw": 43808760,
+                  "alliance_before": true,
+                  "alliance_after": false,
+                  "values_readable": true,
+                  "verified": true
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

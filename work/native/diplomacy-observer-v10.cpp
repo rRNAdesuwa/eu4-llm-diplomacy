@@ -32,6 +32,10 @@ struct ObservedCommand {
     bool support_independence;
     bool military_access;
     bool vassalization;
+    bool favor_gold;
+    bool favor_trust;
+    bool favor_men;
+    bool curry_favors;
     uint64_t callback_sequence;
     char alliance_shape_json[1200];
 };
@@ -65,7 +69,6 @@ static bool observation_country_handle(uint64_t handle) {
     return slot<4096 && read(base+0x233d8b0,database) && read(database+0x118,array)
         && read(array+static_cast<uintptr_t>(slot)*8,country) && read(country+0x20,actual) && actual==handle;
 }
-
 static bool observation_alliance_validity(void* object,void* diagnostic,unsigned char flags) {
     ObservedAllianceRule event{};
     uintptr_t address=reinterpret_cast<uintptr_t>(object),vtable=0;
@@ -124,11 +127,11 @@ static bool observation_install_alliance_rule() {
 #include "alliance-entry-observer.inc"
 #include "alliance-protocol-observer.inc"
 #include "alliance-transport.inc"
+#include "peace-effects.h"
+#include "peace-execution-wire.h"
 #include "alliance-query.inc"
 #include "alliance-authority-ledger.h"
 #include "alliance-execution-wire.h"
-#include "peace-execution-wire.h"
-#include "peace-effects.h"
 #include "alliance-inbound-response-wire.h"
 #include "alliance-inbound.inc"
 #include "inbound-pending-recovery.inc"
@@ -140,6 +143,7 @@ static void rival_execution_finish(unsigned binding) noexcept;
 #include "rival-authority.inc"
 #include "rival-execution.inc"
 #include "vassal-test-context.inc"
+#include "religion-war-context.inc"
 #include "vassal-inbound-test-context.inc"
 
 static bool observation_rollback_family() {
@@ -172,6 +176,22 @@ static bool observation_rollback_family() {
         {base+0x1c7fd20+0x20,reinterpret_cast<void*>(base+0x4e8b70),reinterpret_cast<void*>(&bridge_field_reader_stub)},
         {base+0x1c7fd20+0x40,reinterpret_cast<void*>(base+0x4e9960),reinterpret_cast<void*>(&lifecycle_wrapper_observe)},
         {base+0x1c7fd20+0xb0,reinterpret_cast<void*>(base+0x51fa30),reinterpret_cast<void*>(&lifecycle_clone_observe)},
+        // Favor-for-gold uses the common lifecycle hooks at +0x00/+0x40 and
+        // its confirmed clone at +0xb0.  Its response-choice gate is a
+        // separate inbound hook at +0xd0; rollback for that hook is handled
+        // by inbound_rollback(), never by the lifecycle slots below.
+        {base+0x1c80980+0x00,reinterpret_cast<void*>(base+0x129450),reinterpret_cast<void*>(&lifecycle_destructor_observe)},
+        {base+0x1c80980+0x40,reinterpret_cast<void*>(base+0x4e9960),reinterpret_cast<void*>(&lifecycle_wrapper_observe)},
+        {base+0x1c80980+0xb0,reinterpret_cast<void*>(base+0x4f5c00),reinterpret_cast<void*>(&lifecycle_clone_observe)},
+        {base+0x1c80c60+0x00,reinterpret_cast<void*>(base+0x129500),reinterpret_cast<void*>(&lifecycle_destructor_observe)},
+        {base+0x1c80c60+0x40,reinterpret_cast<void*>(base+0x4e9960),reinterpret_cast<void*>(&lifecycle_wrapper_observe)},
+        {base+0x1c80c60+0xb0,reinterpret_cast<void*>(base+0x4fe770),reinterpret_cast<void*>(&lifecycle_clone_observe)},
+        {base+0x1c80ff0+0x00,reinterpret_cast<void*>(base+0x129450),reinterpret_cast<void*>(&lifecycle_destructor_observe)},
+        {base+0x1c80ff0+0x40,reinterpret_cast<void*>(base+0x4e9960),reinterpret_cast<void*>(&lifecycle_wrapper_observe)},
+        {base+0x1c80ff0+0xb0,reinterpret_cast<void*>(base+0x4f8420),reinterpret_cast<void*>(&lifecycle_clone_observe)},
+        {base+0x1c7aef8+0x00,reinterpret_cast<void*>(base+0x129450),reinterpret_cast<void*>(&lifecycle_destructor_observe)},
+        {base+0x1c7aef8+0x40,reinterpret_cast<void*>(base+0x4e9960),reinterpret_cast<void*>(&lifecycle_wrapper_observe)},
+        {base+0x1c7aef8+0xb0,reinterpret_cast<void*>(base+0x5ae2e0),reinterpret_cast<void*>(&lifecycle_clone_observe)},
         {base+0x1c7f6b0+0x00,reinterpret_cast<void*>(base+0x129500),reinterpret_cast<void*>(&lifecycle_destructor_observe)},
         {base+0x1c7f6b0+0x40,reinterpret_cast<void*>(base+0x4e9960),reinterpret_cast<void*>(&lifecycle_wrapper_observe)},
         {base+0x1c7f6b0+0xb0,reinterpret_cast<void*>(base+0x538e50),reinterpret_cast<void*>(&lifecycle_clone_observe)},
@@ -233,7 +253,9 @@ extern "C" int bridge_response_observe(void* value) {
     if (event.readable && (event.action_vtable==base+0x1c80720
         || event.action_vtable==base+0x1c80ab0 || event.action_vtable==base+0x1c7dd68
         || event.action_vtable==base+0x1c7cc48 || event.action_vtable==base+0x1c7fe50 || event.action_vtable==base+0x1c805f0
-        || event.action_vtable==base+0x1c7fb70 || event.action_vtable==base+0x1c7fd20)) {
+        || event.action_vtable==base+0x1c7fb70 || event.action_vtable==base+0x1c7fd20
+        || event.action_vtable==base+0x1c80980 || event.action_vtable==base+0x1c80c60
+        || event.action_vtable==base+0x1c80ff0 || event.action_vtable==base+0x1c7aef8)) {
         LifecycleActionShape shape=lifecycle_capture_shape(reinterpret_cast<void*>(event.action));
         event.alliance_identified=shape.matched && shape.tracked;
         if (event.alliance_identified) {
@@ -248,6 +270,10 @@ extern "C" int bridge_response_observe(void* value) {
             event.support_independence=shape.support_independence;
             event.military_access=shape.military_access;
             event.vassalization=shape.vassalization;
+            event.favor_gold=shape.favor_gold;
+            event.favor_trust=shape.favor_trust;
+            event.favor_men=shape.favor_men;
+            event.curry_favors=shape.curry_favors;
             lifecycle_shape_json(event.alliance_shape_json,sizeof(event.alliance_shape_json),shape);
         }
     }
@@ -299,6 +325,8 @@ static void observation_flush() {
                 event.support_independence?(event.alliance_variant?"support_independence":"revoke_support_independence"):
                 event.military_access?(event.alliance_variant?"ask_military_access":"cancel_military_access"):
                 event.vassalization?(event.alliance_variant?"offer_vassalization":"cancel_vassalization"):
+                event.favor_gold?"trade_favors_for_gold":event.favor_trust?"trade_favors_for_trust":event.favor_men?"trade_favors_for_men":
+                event.curry_favors?(event.alliance_variant?"curry_favors":"stop_curry_favors"):
                 event.royal_marriage?(event.alliance_variant?"offer_royal_marriage":"break_royal_ties"):
                     (event.alliance_variant?"offer_alliance":"dissolve_alliance"),event.alliance_state);
             line(alliance);
@@ -343,6 +371,7 @@ extern "C" void bridge_frame_tick(void* context) {
         uintptr_t vassal_context_game=0;
         if (read(base+0x233fe58,vassal_context_game)) {
             vassal_test_context_tick(vassal_context_game);
+            religion_war_context_tick(vassal_context_game);
             vassal_inbound_test_context_tick(vassal_context_game);
         }
         inbound_saved_queue_tick();
@@ -394,6 +423,7 @@ extern "C" __declspec(dllexport) DWORD WINAPI BridgeStart(void* argument) {
     if (!rival_authority_set_paths(module_path)) return 27;
     if (!rival_execution_set_paths(module_path)) return 27;
     if (!vassal_test_context_start(module_path)) return 27;
+    if (!religion_war_context_start(module_path)) return 29;
     if (!vassal_inbound_test_context_start(module_path)) return 27;
     execution_authority_tests_consumed=0;
     if (!inbound_set_test_path(module_path)) return 27;
@@ -403,6 +433,10 @@ extern "C" __declspec(dllexport) DWORD WINAPI BridgeStart(void* argument) {
     if (GetFileAttributesW(execution_request_path)!=INVALID_FILE_ATTRIBUTES && !DeleteFileW(execution_request_path)) return 27;
     DWORD result=ObserverControlStart(argument);
     if (result) return result;
+    const bool coalition_capture_installed=coalition_install();
+    line(coalition_capture_installed
+        ?"{\"event\":\"peace_coalition_capture_installed\",\"all_native_returns_preserved\":true}\n"
+        :"{\"event\":\"peace_coalition_capture_unavailable\",\"other_peace_consequences_available\":true}\n");
     bool rule_installed=observation_install_alliance_rule();
     line(rule_installed?"{\"event\":\"alliance_rule_observer_installed\",\"runtime_verified\":false,\"changes_rule_result\":false}\n":
         "{\"event\":\"alliance_rule_observer_unavailable\",\"base_observer_remains_installed\":true}\n");
@@ -426,7 +460,37 @@ extern "C" __declspec(dllexport) DWORD WINAPI BridgeStart(void* argument) {
         "{\"event\":\"insult_lifecycle_observer_unavailable\"}\n");
     bool vassal_lifecycle_installed=insult_lifecycle_installed && !lifecycle_rollback_incomplete
         && lifecycle_install_vassalization();
-    bool declarewar_lifecycle_installed=vassal_lifecycle_installed && !lifecycle_rollback_incomplete
+    bool favor_gold_lifecycle_installed=vassal_lifecycle_installed && !lifecycle_rollback_incomplete
+        && lifecycle_install_favor_gold();
+    line(favor_gold_lifecycle_installed
+        ?"{\"event\":\"favor_gold_lifecycle_observer_installed\",\"native_vtable_rva\":\"0x1c80980\",\"native_clone_rva\":\"0x4f5c00\",\"slots\":\"0x00,0x40,0xb0\",\"choice_slot\":\"0xd0\",\"choice_method_rva\":\"0x8f440\"}\n"
+        :"{\"event\":\"favor_gold_lifecycle_observer_unavailable\"}\n");
+    bool favor_trust_lifecycle_installed=favor_gold_lifecycle_installed && !lifecycle_rollback_incomplete
+        && lifecycle_install_favor_trust();
+    line(favor_trust_lifecycle_installed
+        ?"{\"event\":\"favor_trust_lifecycle_observer_installed\",\"native_selector\":\"0x3bd3\",\"native_vtable_rva\":\"0x1c80c60\",\"native_rule_rva\":\"0x4fdfd0\",\"native_display_rva\":\"0x4fe2d0\",\"native_effect_rva\":\"0x4fd250\",\"native_clone_rva\":\"0x4fe770\",\"destructor_rva\":\"0x129500\",\"slots\":\"0x00,0x40,0xb0\",\"choice_slot\":\"0xd0\",\"choice_method_rva\":\"0x8f440\"}\n"
+        :"{\"event\":\"favor_trust_lifecycle_observer_unavailable\"}\n");
+    bool favor_men_lifecycle_installed=favor_trust_lifecycle_installed && !lifecycle_rollback_incomplete
+        && lifecycle_install_favor_men();
+    line(favor_men_lifecycle_installed
+        ?"{\"event\":\"favor_men_lifecycle_observer_installed\",\"native_selector\":\"0x3bcf\",\"native_vtable_rva\":\"0x1c80ff0\",\"native_rule_rva\":\"0x4f7600\",\"native_display_rva\":\"0x4f7ca0\",\"native_effect_rva\":\"0x4f67c0\",\"native_clone_rva\":\"0x4f8420\",\"destructor_rva\":\"0x129450\",\"slots\":\"0x00,0x40,0xb0\",\"choice_slot\":\"0xd0\",\"choice_method_rva\":\"0x8f440\"}\n"
+        :"{\"event\":\"favor_men_lifecycle_observer_unavailable\"}\n");
+    bool curry_favors_lifecycle_installed=favor_men_lifecycle_installed && !lifecycle_rollback_incomplete
+        && lifecycle_install_curry_favors();
+    line(curry_favors_lifecycle_installed
+        ?"{\"event\":\"curry_favors_lifecycle_observer_installed\",\"native_selector\":\"0x3acc\",\"native_vtable_rva\":\"0x1c7aef8\",\"native_rule_rva\":\"0x5ade90\",\"native_display_rva\":\"0x5ae140\",\"native_effect_rva\":\"0x5ace80\",\"native_clone_rva\":\"0x5ae2e0\",\"slots\":\"0x00,0x40,0xb0\",\"diplomat_slot\":\"0xf8\",\"diplomat_rva\":\"0x4e4d80\"}\n"
+        :"{\"event\":\"curry_favors_lifecycle_observer_unavailable\"}\n");
+    bool gift_lifecycle_installed=curry_favors_lifecycle_installed && !lifecycle_rollback_incomplete
+        && lifecycle_install_gift();
+    line(gift_lifecycle_installed
+        ?"{\"event\":\"gift_lifecycle_observer_installed\",\"native_selector\":\"0x2948\",\"native_vtable_rva\":\"0x1c7f450\",\"native_rule_rva\":\"0x53a630\",\"native_display_rva\":\"0x53a8d0\",\"native_effect_rva\":\"0x539570\",\"native_clone_rva\":\"0x53b0c0\",\"destructor_rva\":\"0x129500\",\"amount_offset\":\"0x40\"}\n"
+        :"{\"event\":\"gift_lifecycle_observer_unavailable\"}\n");
+    bool influence_lifecycle_installed=gift_lifecycle_installed && !lifecycle_rollback_incomplete
+        && lifecycle_install_influence();
+    line(influence_lifecycle_installed
+        ?"{\"event\":\"influence_lifecycle_observer_installed\",\"native_selector\":\"0x346e\",\"native_vtable_rva\":\"0x1cb3cf8\",\"native_rule_rva\":\"0x7c4430\",\"native_display_rva\":\"0x7c48a0\",\"native_effect_rva\":\"0x7c35b0\",\"native_clone_rva\":\"0x7c4d10\",\"destructor_rva\":\"0x129450\"}\n"
+        :"{\"event\":\"influence_lifecycle_observer_unavailable\"}\n");
+    bool declarewar_lifecycle_installed=influence_lifecycle_installed && !lifecycle_rollback_incomplete
         && lifecycle_install_declarewar();
     bool peace_lifecycle_installed=declarewar_lifecycle_installed && !lifecycle_rollback_incomplete
         && lifecycle_install_peace();
@@ -482,11 +546,16 @@ extern "C" __declspec(dllexport) DWORD WINAPI BridgeStart(void* argument) {
     line(reason_metadata_installed?"{\"event\":\"alliance_reason_metadata_installed\",\"native_alliance_reason_metadata\":true,\"scope\":\"text_bearing_alliance_query_only\"}\n":
         "{\"event\":\"alliance_reason_metadata_unavailable\",\"native_alliance_reason_metadata\":false}\n");
 #endif
-    line(inbound_installed && response_installed && vassal_lifecycle_installed && vassal_field_reader_installed?"{\"event\":\"alliance_execution_handler_installed\",\"native_offer_submission\":true,\"native_dissolve_submission\":true,\"native_guarantee_query\":true,\"native_guarantee_submission\":true,\"native_support_independence_query\":true,\"native_support_independence_submission\":true,\"native_inbound_support_independence_response\":true,\"native_military_access_query\":true,\"native_insult_query\":true,\"native_rival_query\":true,\"native_declare_war_query\":true,\"native_peace_context_query\":true,\"native_peace_empty_offer_query\":true,\"native_peace_offer_evaluation_query\":true,\"native_peace_money_offer_query\":true,\"native_peace_province_offer_query\":true,\"native_peace_combined_query\":true,\"native_peace_war_context_query\":true,\"native_peace_serialized_payload_query\":true,\"native_declare_war_submission\":true,\"native_peace_submission\":true,\"native_peace_wrapper_rule_query\":true,\"native_peace_inbound_pending\":true,\"native_inbound_peace_response\":true,\"native_vassalization_query\":true,\"native_vassalization_submission\":true,\"native_inbound_vassalization_response\":true,\"native_rival_submission\":true,\"native_rival_authority\":true,\"native_insult_submission\":true,\"native_military_access_submission\":true,\"native_inbound_military_access_response\":true,\"native_inbound_alliance\":true,\"native_inbound_alliance_response\":true,\"incoming_offer\":true,\"incoming_mode\":\"state0_deferred_pending_observe;state1_2_llm_response\",\"accept\":true,\"reject\":true,\"withdraw\":false,\"dissolve\":true,\"parameters_empty_only\":false,\"authority_lock_enabled\":true,\"authority_scope\":\"outbound FRA Alliance/Royal/Support/MilitaryAccess/Vassalization requests and revocations require generic-entry authority; FRA Improve/Spy/Guarantee/Insult/DeclareWar unilateral operations require authority; FRA Rival Set/Replace/Remove native handlers deny ungranted choices; Alliance/Royal/Support/MilitaryAccess/Vassalization incoming recipient FRA deferred for LLM accept/reject; Peace incoming recipient FRA retained pending with native AI choice held; Peace incoming responses require a consumed full-payload pending binding; offer_alliance sender SAV|LIT; other implemented senders native-valid canonical recipients; unbound FRA receiver state1/2 blocked\",\"other_actions_forwarded\":true}\n":
+    const bool r74_lifecycle_ready=gift_lifecycle_installed
+        && influence_lifecycle_installed;
+    line(inbound_installed && response_installed && vassal_lifecycle_installed && favor_gold_lifecycle_installed && favor_trust_lifecycle_installed && favor_men_lifecycle_installed && curry_favors_lifecycle_installed && vassal_field_reader_installed?"{\"event\":\"alliance_execution_handler_installed\",\"native_offer_submission\":true,\"native_dissolve_submission\":true,\"native_guarantee_query\":true,\"native_guarantee_submission\":true,\"native_support_independence_query\":true,\"native_support_independence_submission\":true,\"native_inbound_support_independence_response\":true,\"native_military_access_query\":true,\"native_insult_query\":true,\"native_rival_query\":true,\"native_declare_war_query\":true,\"native_peace_context_query\":true,\"native_peace_empty_offer_query\":true,\"native_peace_offer_evaluation_query\":true,\"native_peace_money_offer_query\":true,\"native_peace_province_offer_query\":true,\"native_peace_combined_query\":true,\"native_peace_reparations_query\":true,\"native_peace_reparations_execution\":true,\"native_peace_trade_power_query\":true,\"native_peace_trade_power_execution\":true,\"native_peace_trade_power_sources\":true,\"native_peace_concede_defeat_query\":true,\"native_peace_concede_defeat_execution\":true,\"native_peace_annul_treaties_query\":true,\"native_peace_annul_treaties_execution\":true,\"native_peace_special_terms_query\":true,\"native_peace_special_terms_execution\":true,\"native_peace_core_terms_query\":true,\"native_peace_subject_terms_query\":true,\"native_peace_subject_terms_execution\":true,\"native_peace_country_terms_query\":true,\"native_peace_country_money_query\":true,\"native_peace_country_terms_execution\":true,\"native_peace_core_terms_execution\":true,\"native_peace_subject_terms_execution\":true,\"native_peace_country_terms_execution\":true,\"native_peace_core_terms_execution\":true,\"native_peace_war_context_query\":true,\"native_peace_serialized_payload_query\":true,\"native_declare_war_submission\":true,\"native_declare_war_participants\":true,\"native_declare_war_forces\":true,\"native_declare_war_peace_options\":true,\"native_peace_consequences\":true,\"native_peace_submission\":true,\"native_peace_wrapper_rule_query\":true,\"native_peace_inbound_pending\":true,\"native_inbound_peace_response\":true,\"native_vassalization_query\":true,\"native_vassalization_submission\":true,\"native_inbound_vassalization_response\":true,\"native_favor_gold_query\":true,\"native_favor_gold_submission\":true,\"native_inbound_favor_gold_response\":true,\"native_favor_trust_query\":true,\"native_favor_trust_submission\":true,\"native_inbound_favor_trust_response\":true,\"native_favor_men_query\":true,\"native_favor_men_submission\":true,\"native_inbound_favor_men_response\":true,\"native_curry_favors_query\":true,\"native_curry_favors_submission\":true,\"native_rival_submission\":true,\"native_rival_authority\":true,\"native_insult_submission\":true,\"native_military_access_submission\":true,\"native_inbound_military_access_response\":true,\"native_inbound_alliance\":true,\"native_inbound_alliance_response\":true,\"incoming_offer\":true,\"incoming_mode\":\"state0_deferred_pending_observe;state1_2_llm_response\",\"accept\":true,\"reject\":true,\"withdraw\":false,\"dissolve\":true,\"parameters_empty_only\":false,\"authority_lock_enabled\":true,\"authority_scope\":\"outbound FRA Alliance/Royal/Support/MilitaryAccess/Vassalization requests and revocations require generic-entry authority; FRA Improve/Spy/Guarantee/Insult/DeclareWar/CurryFavors unilateral operations require authority; FRA Rival Set/Replace/Remove native handlers deny ungranted choices; Alliance/Royal/Support/MilitaryAccess/Vassalization incoming recipient FRA deferred for LLM accept/reject; Peace incoming recipient FRA retained pending with native AI choice held; Peace incoming responses require a consumed full-payload pending binding; offer_alliance sender SAV|LIT; other implemented senders native-valid canonical recipients; unbound FRA receiver state1/2 blocked\",\"other_actions_forwarded\":true}\n":
         "{\"event\":\"alliance_execution_handler_unavailable\",\"native_offer_submission\":false}\n");
     if (lifecycle_rollback_incomplete || !lifecycle_installed || !royal_lifecycle_installed || !improve_lifecycle_installed || !spy_lifecycle_installed || !guarantee_lifecycle_installed || !support_lifecycle_installed || !military_lifecycle_installed || !insult_lifecycle_installed || !serializer_installed || !field_reader_installed || !royal_field_reader_installed || !direct_break_installed || !protocol_installed || !transport_installed || !execution_installed || !response_installed || !inbound_installed
         || !rival_authority_installed || !rival_observer_installed || !rival_execution_installed
-        || !vassal_lifecycle_installed || !vassal_field_reader_installed
+        || !vassal_lifecycle_installed || !favor_gold_lifecycle_installed
+        || !favor_trust_lifecycle_installed || !favor_men_lifecycle_installed
+        || !curry_favors_lifecycle_installed || !vassal_field_reader_installed
+        || !r74_lifecycle_ready
         || !declarewar_lifecycle_installed || !declarewar_field_reader_installed
         || !peace_lifecycle_installed || !peace_field_reader_installed
         || !peace_handler_guard_installed
@@ -496,10 +565,28 @@ extern "C" __declspec(dllexport) DWORD WINAPI BridgeStart(void* argument) {
         line(rolled_back?"{\"event\":\"observer_family_install_failed\",\"all_hooks_rolled_back\":true,\"restart_required\":true}\n":
             "{\"event\":\"observer_family_rollback_incomplete\",\"restart_required\":true}\n"); return 28;
     }
-    char message[4096];
-    snprintf(message,sizeof(message),"{\"event\":\"diplomacy_observer_installed\",\"version\":22,\"pid\":%lu,\"session_id\":\"%lu-%llx\",\"creation_filetime\":%llu,\"native_queries_enabled\":true,\"native_spy_network_query\":true,\"native_spy_network_submission\":true,\"native_improve_relations_query\":true,\"native_improve_relations_submission\":true,\"native_guarantee_query\":true,\"native_guarantee_submission\":true,\"native_support_independence_query\":true,\"native_support_independence_submission\":true,\"native_inbound_support_independence_response\":true,\"native_military_access_query\":true,\"native_insult_query\":true,\"native_rival_query\":true,\"native_declare_war_query\":true,\"native_peace_context_query\":true,\"native_peace_empty_offer_query\":true,\"native_peace_offer_evaluation_query\":true,\"native_peace_money_offer_query\":true,\"native_peace_province_offer_query\":true,\"native_peace_combined_query\":true,\"native_peace_war_context_query\":true,\"native_peace_serialized_payload_query\":true,\"native_declare_war_submission\":true,\"native_peace_submission\":true,\"native_peace_wrapper_rule_query\":true,\"native_peace_inbound_pending\":true,\"native_inbound_peace_response\":true,\"native_vassalization_query\":true,\"native_vassalization_submission\":true,\"native_inbound_vassalization_response\":true,\"native_rival_submission\":true,\"native_rival_authority\":true,\"native_insult_submission\":true,\"native_military_access_submission\":true,\"native_inbound_military_access_response\":true,\"native_generic_execution_entry_guard\":true,\"native_royal_marriage_query\":true,\"native_royal_marriage_submission\":true,\"native_inbound_royal_marriage_response\":true,\"native_execution_enabled\":true,\"native_offer_submission\":true,\"native_dissolve_submission\":true,\"native_inbound_alliance\":true,\"native_inbound_alliance_response\":true,\"native_alliance_reason_metadata\":%s,\"incoming_offer\":true,\"incoming_mode\":\"state0_deferred_pending_observe;state1_2_llm_response\",\"accept\":true,\"reject\":true,\"withdraw\":false,\"dissolve\":true,\"authority_lock_enabled\":true,\"authority_scope\":\"outbound FRA Alliance/Royal/Support/MilitaryAccess/Vassalization requests and revocations require generic-entry authority; FRA Improve/Spy/Guarantee/Insult/DeclareWar unilateral operations require authority; FRA Rival Set/Replace/Remove native handlers deny ungranted choices; Alliance/Royal/Support/MilitaryAccess/Vassalization incoming recipient FRA deferred for LLM accept/reject; Peace incoming recipient FRA retained pending with native AI choice held; Peace incoming responses require a consumed full-payload pending binding; offer_alliance sender SAV|LIT; other implemented senders native-valid canonical recipients; unbound FRA receiver state1/2 blocked\",\"other_actions_forwarded\":true,\"all_commands_forwarded\":false}\n",
+    // Keep R74 capability literals in the exact installation ACK consumed by
+    // the Python adapter.  The long legacy format string remains untouched;
+    // bounded insertion avoids duplicating that contract here.
+    auto append_r74_capabilities=[](char* text,size_t capacity) {
+        if (!text || capacity==0) return;
+        constexpr char marker[]="\"native_generic_execution_entry_guard\":true";
+        constexpr char fields[]=",\"native_gift_query\":true,\"native_gift_submission\":true,\"native_influence_query\":true,\"native_influence_submission\":true,\"native_live_war_score_query\":true";
+        char* at=strstr(text,marker);
+        if (!at) return;
+        const size_t marker_size=sizeof(marker)-1;
+        const size_t fields_size=sizeof(fields)-1;
+        const size_t used=strlen(text);
+        const size_t offset=static_cast<size_t>(at-text)+marker_size;
+        if (offset>used || used+fields_size+1>capacity) return;
+        memmove(text+offset+fields_size,text+offset,used-offset+1);
+        memcpy(text+offset,fields,fields_size);
+    };
+    char message[8192];
+    snprintf(message,sizeof(message),"{\"event\":\"diplomacy_observer_installed\",\"version\":22,\"pid\":%lu,\"session_id\":\"%lu-%llx\",\"creation_filetime\":%llu,\"native_queries_enabled\":true,\"native_spy_network_query\":true,\"native_spy_network_submission\":true,\"native_improve_relations_query\":true,\"native_improve_relations_submission\":true,\"native_guarantee_query\":true,\"native_guarantee_submission\":true,\"native_support_independence_query\":true,\"native_support_independence_submission\":true,\"native_inbound_support_independence_response\":true,\"native_military_access_query\":true,\"native_insult_query\":true,\"native_rival_query\":true,\"native_declare_war_query\":true,\"native_peace_context_query\":true,\"native_peace_empty_offer_query\":true,\"native_peace_offer_evaluation_query\":true,\"native_peace_money_offer_query\":true,\"native_peace_province_offer_query\":true,\"native_peace_combined_query\":true,\"native_peace_reparations_query\":true,\"native_peace_reparations_execution\":true,\"native_peace_trade_power_query\":true,\"native_peace_trade_power_execution\":true,\"native_peace_trade_power_sources\":true,\"native_peace_concede_defeat_query\":true,\"native_peace_concede_defeat_execution\":true,\"native_peace_annul_treaties_query\":true,\"native_peace_annul_treaties_execution\":true,\"native_peace_special_terms_query\":true,\"native_peace_special_terms_execution\":true,\"native_peace_core_terms_query\":true,\"native_peace_subject_terms_query\":true,\"native_peace_subject_terms_execution\":true,\"native_peace_country_terms_query\":true,\"native_peace_country_money_query\":true,\"native_peace_country_terms_execution\":true,\"native_peace_core_terms_execution\":true,\"native_peace_war_context_query\":true,\"native_peace_serialized_payload_query\":true,\"native_declare_war_submission\":true,\"native_declare_war_participants\":true,\"native_declare_war_forces\":true,\"native_declare_war_peace_options\":true,\"native_peace_consequences\":true,\"native_peace_submission\":true,\"native_peace_wrapper_rule_query\":true,\"native_peace_inbound_pending\":true,\"native_inbound_peace_response\":true,\"native_vassalization_query\":true,\"native_vassalization_submission\":true,\"native_inbound_vassalization_response\":true,\"native_favor_gold_query\":true,\"native_favor_gold_submission\":true,\"native_inbound_favor_gold_response\":true,\"native_favor_trust_query\":true,\"native_favor_trust_submission\":true,\"native_inbound_favor_trust_response\":true,\"native_favor_men_query\":true,\"native_favor_men_submission\":true,\"native_inbound_favor_men_response\":true,\"native_curry_favors_query\":true,\"native_curry_favors_submission\":true,\"native_rival_submission\":true,\"native_rival_authority\":true,\"native_insult_submission\":true,\"native_military_access_submission\":true,\"native_inbound_military_access_response\":true,\"native_generic_execution_entry_guard\":true,\"native_royal_marriage_query\":true,\"native_royal_marriage_submission\":true,\"native_inbound_royal_marriage_response\":true,\"native_execution_enabled\":true,\"native_offer_submission\":true,\"native_dissolve_submission\":true,\"native_inbound_alliance\":true,\"native_inbound_alliance_response\":true,\"native_alliance_reason_metadata\":%s,\"incoming_offer\":true,\"incoming_mode\":\"state0_deferred_pending_observe;state1_2_llm_response\",\"accept\":true,\"reject\":true,\"withdraw\":false,\"dissolve\":true,\"authority_lock_enabled\":true,\"authority_scope\":\"outbound FRA Alliance/Royal/Support/MilitaryAccess/Vassalization requests and revocations require generic-entry authority; FRA Improve/Spy/Guarantee/Insult/DeclareWar/CurryFavors unilateral operations require authority; FRA Rival Set/Replace/Remove native handlers deny ungranted choices; Alliance/Royal/Support/MilitaryAccess/Vassalization incoming recipient FRA deferred for LLM accept/reject; Peace incoming recipient FRA retained pending with native AI choice held; Peace incoming responses require a consumed full-payload pending binding; offer_alliance sender SAV|LIT; other implemented senders native-valid canonical recipients; unbound FRA receiver state1/2 blocked\",\"other_actions_forwarded\":true,\"all_commands_forwarded\":false}\n",
         static_cast<unsigned long>(GetCurrentProcessId()),static_cast<unsigned long>(GetCurrentProcessId()),
         static_cast<unsigned long long>(observation_creation),static_cast<unsigned long long>(observation_creation),
         reason_metadata_installed?"true":"false");
+    append_r74_capabilities(message,sizeof(message));
     line(message); return 0;
 }

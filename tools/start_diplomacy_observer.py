@@ -1,8 +1,9 @@
 """Operator-only install of one immutable observer build into one game process.
 
 Startup can expose the country database before the world and load-warning
-dialog are ready.  The bounded ready loop retries only read-only probes for
-the same verified PID and creation time.  Once installation is recorded, the
+dialog are ready. The ready loop probes the same verified PID and creation
+time. Repeated missing confirmations permit one window minimize/restore to
+release the observed D3D/DWM startup wait. Once installation is recorded, the
 native installer is called exactly once and its error is terminal.
 """
 from __future__ import annotations
@@ -21,14 +22,38 @@ sys.path.insert(0, str(ROOT / "work"))
 from local_config import game_exe, get_value
 from bridge.diplomacy_session import file_hash, probe_identity
 from acknowledge_startup_error import acknowledge_startup_error
+from work.observer_runtime_ready import (
+    _enumerate_windows_for_pid, _is_iconic, _show_window_async,
+)
 
 
 MAX_WAIT_READY = 300
 PREFLIGHT_TIMEOUT = 30.0
 DIALOG_SCAN_TIMEOUT = 22.0
 DIALOG_ATTEMPT_TIMEOUT = 52.0
-READY_POLL_SECONDS = 1.0
+READY_POLL_SECONDS = 3.0
+IDENTITY_POLL_SECONDS = 1.0
 STARTUP_ERROR_SCAN_SECONDS = 5.0
+TRANSIENT_IDENTITY_WINERRORS = frozenset((6, 299))
+
+
+def _recover_startup_render_window(pid: int) -> dict:
+    """Reset one identified game's presentation once; no game data changes."""
+    windows = _enumerate_windows_for_pid(pid)
+    if len(windows) != 1:
+        return {"attempted": False, "reason": "GAME_WINDOW_NOT_UNIQUE"}
+    hwnd = windows[0]
+    iconic = _is_iconic(hwnd)
+    minimized = False
+    if not iconic:
+        minimized = _show_window_async(hwnd, 6)
+        if not minimized:
+            return {"attempted": True, "window": hwnd,
+                    "minimize_requested": False, "restore_requested": False}
+        time.sleep(0.5)
+    restored = _show_window_async(hwnd, 4)
+    return {"attempted": True, "window": hwnd, "initially_iconic": iconic,
+            "minimize_requested": minimized, "restore_requested": restored}
 
 
 def bounded_wait_ready(value: str) -> int:
@@ -41,13 +66,31 @@ def bounded_wait_ready(value: str) -> int:
     return seconds
 
 
-def _waiting(attempt: int, reason: str, started: float) -> None:
+def _waiting(attempt: int, reason: str, started: float, phase: str = "readiness") -> None:
     print(json.dumps({
         "state": "waiting",
         "attempt": attempt,
+        "phase": phase,
         "reason": reason,
         "elapsed_seconds": round(time.monotonic() - started, 3),
     }, ensure_ascii=False, sort_keys=True), flush=True)
+
+
+def _transient_identity_winerror(error: BaseException) -> int | None:
+    """Return the explicitly retryable Win32 identity-probe error, if any.
+
+    ``probe_identity`` raises the ctypes ``OSError`` produced by
+    ``K32GetModuleFileNameExW``.  The module can briefly be unavailable while
+    the process is starting, which is represented by ERROR_INVALID_HANDLE (6)
+    or, on some Windows builds, ERROR_PARTIAL_COPY (299).  Keep this check
+    narrow so process termination, image/hash mismatches, and arbitrary probe
+    failures remain terminal.
+    """
+
+    if not isinstance(error, OSError):
+        return None
+    winerror = getattr(error, "winerror", None)
+    return winerror if winerror in TRANSIENT_IDENTITY_WINERRORS else None
 
 
 def _attempt_directory(directory: Path, attempt: int) -> Path:
@@ -168,16 +211,49 @@ def _wait_until_ready(pid: int, manifest: dict, directory: Path, confirm_load_wa
 
     started = time.monotonic()
     deadline = started + wait_ready
-    expected = probe_identity(pid, game_exe())
-    if expected["modules"] or expected["game_sha256"] != manifest["game_sha256"]:
-        raise SystemExit("FRESH_VERIFIED_GAME_PROCESS_REQUIRED")
-    python = get_value("EU4_PYTHON")
     attempts: list[dict] = []
+
+    # The first module enumeration can race the game's startup loader.  Keep
+    # these narrowly classified identity errors inside the same overall
+    # readiness deadline; all other probe failures still propagate.
+    expected: dict | None = None
+    identity_attempt = 0
+    while expected is None:
+        if time.monotonic() >= deadline:
+            raise SystemExit("WORLD_NOT_READY_TIMEOUT_NO_INSTALLATION_ATTEMPTED")
+        identity_attempt += 1
+        try:
+            candidate = probe_identity(pid, game_exe())
+        except OSError as error:
+            winerror = _transient_identity_winerror(error)
+            if winerror is None:
+                raise
+            reason = f"IDENTITY_PROBE_TRANSIENT_WINERROR_{winerror}"
+            attempts.append({
+                "attempt": identity_attempt,
+                "phase": "identity_probe",
+                "outcome": "waiting",
+                "reason": reason,
+                "winerror": winerror,
+            })
+            _waiting(identity_attempt, reason, started, phase="identity_probe")
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise SystemExit("WORLD_NOT_READY_TIMEOUT_NO_INSTALLATION_ATTEMPTED")
+            time.sleep(min(IDENTITY_POLL_SECONDS, remaining))
+            continue
+        if candidate["modules"] or candidate["game_sha256"] != manifest["game_sha256"]:
+            raise SystemExit("FRESH_VERIFIED_GAME_PROCESS_REQUIRED")
+        expected = candidate
+
+    python = get_value("EU4_PYTHON")
     attempt_number = 0
     scan_resume_address = 0
     startup_error_acknowledged = False
     startup_error_attempted = False
     next_startup_error_scan = 0.0
+    missing_confirmations = 0
+    render_recovery_attempted = False
 
     def ready_identity() -> dict:
         current = probe_identity(pid, game_exe())
@@ -238,6 +314,11 @@ def _wait_until_ready(pid: int, manifest: dict, directory: Path, confirm_load_wa
                 except Exception as error:
                     scan_resume_address = _read_scan_cursor(attempt_directory, scan_resume_address)
                     attempt.update({"outcome": "not_ready", "reason": str(error)})
+                    if str(error) == "UNIQUE_VERIFIED_LOAD_CONFIRMATION_NOT_FOUND":
+                        missing_confirmations += 1
+                        if missing_confirmations >= 3 and not render_recovery_attempted:
+                            render_recovery_attempted = True
+                            attempt["render_window_recovery"] = _recover_startup_render_window(pid)
                     _waiting(attempt_number, str(error), started)
                 else:
                     scan_resume_address = _read_scan_cursor(attempt_directory, scan_resume_address)

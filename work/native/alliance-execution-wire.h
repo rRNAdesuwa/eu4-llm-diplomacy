@@ -1,10 +1,12 @@
 #pragma once
 
 // Bounded parser for the native alliance, royal-marriage, military-access,
-// vassalization, insult, and one-sided diplomatic execution request channel.  Existing
+// vassalization, favor-for-resource, insult, and one-sided diplomatic execution request channel.  Existing
 // actions use v1; insult actions use v2 with one appended signed parameter;
 // Declare War uses the explicitly versioned v3 record with its bounded war
-// goal fields.  The v3 record intentionally has no call-allies field yet.
+// goal fields.  v4 appends bounded participant CSVs for call-allies,
+// promised land, and co-belligerents.  v5 is reserved for send_gift and
+// binds public ducats to the native raw amount.
 //
 // The parser is deliberately independent from Win32 and the game.  Callers
 // pass an explicit byte length so an embedded NUL cannot be hidden by a C
@@ -15,7 +17,13 @@
 #include <cstring>
 #include <limits>
 
+#include "declarewar-selection.h"
+
 namespace bridge::alliance_execution_wire {
+
+using bridge::CountryTagList;
+using bridge::declarewar_selection::parse_country_tag_csv;
+using bridge::declarewar_selection::validate_participant_selection;
 
 constexpr std::size_t kMaxRequestIdLength=64;
 constexpr std::size_t kMaxSessionIdLength=27; // ten decimal PID digits, '-', sixteen hex digits
@@ -51,6 +59,12 @@ enum class ParseError : std::uint8_t {
     invalid_casus_belli,
     invalid_war_goal_province,
     invalid_war_goal_beneficiary,
+    invalid_call_allies,
+    invalid_promise_land_to,
+    invalid_co_belligerents,
+    invalid_participant_selection,
+    invalid_gift_ducats,
+    invalid_gift_amount_raw,
 };
 
 struct ParseResult {
@@ -95,12 +109,16 @@ struct ExecutionRequest {
     // v2 is reserved for insult actions.  Ordinary insults use -1;
     // scornful insults use a nonnegative signed int32 identifier.
     std::int32_t insult_id=-1;
-    // v3 Declare War fields.  call_allies is intentionally absent from the
-    // current wire contract and is therefore fixed to the empty protocol
-    // state until a bounded representation is specified.
+    // v3 Declare War fields.  EXEC4 appends the participant lists below so
+    // this prefix remains ABI-stable for all earlier callers.
     char casus_belli[129]{};
     std::int32_t war_goal_province=-1;
     char war_goal_beneficiary[4]{};
+    CountryTagList call_allies{};
+    CountryTagList promise_land_to{};
+    CountryTagList co_belligerents{};
+    std::int32_t gift_ducats=0;
+    std::int32_t gift_amount_raw=0;
 };
 
 inline const char* parse_error_name(ParseError error) noexcept {
@@ -129,6 +147,12 @@ inline const char* parse_error_name(ParseError error) noexcept {
     case ParseError::invalid_casus_belli: return "invalid_casus_belli";
     case ParseError::invalid_war_goal_province: return "invalid_war_goal_province";
     case ParseError::invalid_war_goal_beneficiary: return "invalid_war_goal_beneficiary";
+    case ParseError::invalid_call_allies: return "invalid_call_allies";
+    case ParseError::invalid_promise_land_to: return "invalid_promise_land_to";
+    case ParseError::invalid_co_belligerents: return "invalid_co_belligerents";
+    case ParseError::invalid_participant_selection: return "invalid_participant_selection";
+    case ParseError::invalid_gift_ducats: return "invalid_gift_ducats";
+    case ParseError::invalid_gift_amount_raw: return "invalid_gift_amount_raw";
     }
     return "unknown";
 }
@@ -318,31 +342,53 @@ inline ParseResult parse_request(const char* bytes,std::size_t length,
 
     // v1 has nine fields including the version.  v2 appends one insult-id
     // field, making ten total fields.  v3 appends casus-belli, province and
-    // beneficiary fields, making twelve total fields.  Keep the split
+    // beneficiary fields, making twelve total fields.  v4 appends the three
+    // bounded participant CSVs, making fifteen total fields.  v5 appends the
+    // gift ducats/raw pair, making eleven total fields.  Keep the split
     // bounded so a malformed tail cannot grow an unbounded temporary
     // structure.
-    detail::Field fields[12]{};
+    detail::Field fields[15]{};
     std::size_t field_count=1;
     fields[0].data=bytes;
     for (std::size_t index=0;index<content_length;++index) {
         if (bytes[index]!='|') continue;
-        if (field_count>=12) return ParseResult{ParseError::field_count,field_count};
+        if (field_count>=15) return ParseResult{ParseError::field_count,field_count};
         fields[field_count-1].size=bytes+index-fields[field_count-1].data;
         fields[field_count].data=bytes+index+1;
         ++field_count;
     }
     if (field_count>0)
         fields[field_count-1].size=bytes+content_length-fields[field_count-1].data;
-    if (field_count==0 || field_count>12)
+    if (field_count==0 || field_count>15)
         return ParseResult{ParseError::field_count,field_count};
-    const bool v1=detail::equals(fields[0],"v1");
+    // R74 gift/influence execution uses the already-published explicit
+    // command envelopes.  Strip the envelope name while retaining the
+    // ordinary request layout consumed below.  Gift keeps its two payload
+    // fields and therefore uses the v5 shape; influence is the ordinary v1
+    // nine-field shape.
+    const bool gift_envelope=detail::equals(fields[0],"EU4DIP_EXECUTE_GIFT");
+    const bool influence_envelope=detail::equals(fields[0],"EU4DIP_EXECUTE_INFLUENCE");
+    if (gift_envelope || influence_envelope) {
+        const std::size_t expected=gift_envelope?12u:10u;
+        if (field_count!=expected)
+            return ParseResult{ParseError::field_count,field_count};
+        for (std::size_t index=0;index+1<field_count;++index)
+            fields[index]=fields[index+1];
+        --field_count;
+    }
+    const bool v1=detail::equals(fields[0],"v1") && !gift_envelope;
     const bool v2=detail::equals(fields[0],"v2");
     const bool v3=detail::equals(fields[0],"EU4DIP_EXEC3");
-    if (!v1 && !v2 && !v3) return ParseResult{ParseError::invalid_version,0};
+    const bool v4=detail::equals(fields[0],"EU4DIP_EXEC4");
+    const bool v5=gift_envelope || detail::equals(fields[0],"EU4DIP_EXEC5")
+        || detail::equals(fields[0],"v5");
+    if (!v1 && !v2 && !v3 && !v4 && !v5)
+        return ParseResult{ParseError::invalid_version,0};
     if ((v1 && field_count!=9) || (v2 && field_count!=10)
-        || (v3 && field_count!=12))
+        || (v3 && field_count!=12) || (v4 && field_count!=15)
+        || (v5 && field_count!=11))
         return ParseResult{ParseError::field_count,field_count};
-    const std::size_t required_fields=v3?12u:(v2?10u:9u);
+    const std::size_t required_fields=v5?11u:(v4?15u:(v3?12u:(v2?10u:9u)));
     for (std::size_t index=0;index<required_fields;++index)
         if (fields[index].size==0) return ParseResult{ParseError::empty_field,index};
 
@@ -374,21 +420,33 @@ inline ParseResult parse_request(const char* bytes,std::size_t length,
             && !detail::equals(fields[5],"cancel_military_access")
             && !detail::equals(fields[5],"offer_vassalization")
             && !detail::equals(fields[5],"cancel_vassalization")
+            && !detail::equals(fields[5],"trade_favors_for_gold")
+            && !detail::equals(fields[5],"trade_favors_for_trust")
+            && !detail::equals(fields[5],"trade_favors_for_men")
+            && !detail::equals(fields[5],"curry_favors")
+            && !detail::equals(fields[5],"stop_curry_favors")
             && !detail::equals(fields[5],"send_insult")
             && !detail::equals(fields[5],"scornful_insult")
+            && !detail::equals(fields[5],"send_gift")
+            && !detail::equals(fields[5],"influence_nation")
             && !declare_war)
         || !detail::copy_field(output.action_id,sizeof(output.action_id),fields[5]))
         return ParseResult{ParseError::invalid_action,5};
     const bool insult_action=detail::equals(fields[5],"send_insult")
         || detail::equals(fields[5],"scornful_insult");
+    const bool gift_action=detail::equals(fields[5],"send_gift");
+    const bool influence_action=detail::equals(fields[5],"influence_nation");
     // Insults deliberately use v2 because the appended signed parameter is
     // part of their authority identity.  Existing actions remain v1-only.
     if (insult_action!=v2)
         return ParseResult{ParseError::invalid_action,5};
-    // Declare War is deliberately isolated to the v3 shape.  Conversely, a
-    // v3 record cannot smuggle an existing action into the larger field
-    // layout.
-    if (declare_war!=v3)
+    if (gift_action!=v5)
+        return ParseResult{ParseError::invalid_action,5};
+    if (gift_envelope!=gift_action || influence_envelope!=influence_action)
+        return ParseResult{ParseError::invalid_action,5};
+    // Declare War is deliberately isolated to the v3/v4 shapes. Conversely,
+    // those records cannot smuggle an existing action into the larger layout.
+    if (declare_war!=(v3 || v4))
         return ParseResult{ParseError::invalid_action,5};
     if (!detail::equals(fields[6],"FRA")
         || !detail::copy_field(output.actor,sizeof(output.actor),fields[6]))
@@ -408,7 +466,7 @@ inline ParseResult parse_request(const char* bytes,std::size_t length,
                 && output.insult_id<0))
             return ParseResult{ParseError::invalid_insult_id,9};
     }
-    if (v3) {
+    if (v3 || v4) {
         if (!detail::valid_casus_belli(fields[9])
             || !detail::copy_field(output.casus_belli,sizeof(output.casus_belli),
                 fields[9]))
@@ -430,6 +488,37 @@ inline ParseResult parse_request(const char* bytes,std::size_t length,
             && !detail::equals(fields[11],"FRA")
             && !detail::equals(fields[11],"---"))
             return ParseResult{ParseError::invalid_war_goal_beneficiary,11};
+    }
+    if (v4) {
+        const auto call_result=parse_country_tag_csv(
+            fields[12].data,fields[12].size,output.call_allies);
+        if (!call_result.ok())
+            return ParseResult{ParseError::invalid_call_allies,12};
+        const auto promise_result=parse_country_tag_csv(
+            fields[13].data,fields[13].size,output.promise_land_to);
+        if (!promise_result.ok())
+            return ParseResult{ParseError::invalid_promise_land_to,13};
+        const auto co_result=parse_country_tag_csv(
+            fields[14].data,fields[14].size,output.co_belligerents);
+        if (!co_result.ok())
+            return ParseResult{ParseError::invalid_co_belligerents,14};
+        const auto participants=validate_participant_selection(
+            output.call_allies,output.promise_land_to,output.co_belligerents,
+            output.actor,output.recipient);
+        if (!participants.ok())
+            return ParseResult{ParseError::invalid_participant_selection,
+                participants.index};
+    }
+    if (v5) {
+        std::uint64_t ducats=0,raw=0;
+        if (!detail::parse_unsigned_decimal(fields[9],2147475ull,ducats)
+            || ducats==0 || ducats%25u!=0)
+            return ParseResult{ParseError::invalid_gift_ducats,9};
+        if (!detail::parse_unsigned_decimal(fields[10],2147475000ull,raw)
+            || raw!=ducats*1000ull)
+            return ParseResult{ParseError::invalid_gift_amount_raw,10};
+        output.gift_ducats=static_cast<std::int32_t>(ducats);
+        output.gift_amount_raw=static_cast<std::int32_t>(raw);
     }
     return ParseResult{ParseError::ok,0};
 }

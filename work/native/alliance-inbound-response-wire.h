@@ -1,8 +1,8 @@
 #pragma once
 
 // Bounded frame-thread request protocol for inspecting and answering a native
-// inbound Alliance, Royal, Support Independence, Military Access, or
-// Vassalization proposal.
+// inbound Alliance, Royal, Support Independence, Military Access,
+// Vassalization, or favor-for-resource proposal.
 // The wire carries an opaque session-local native
 // proposal number; it never carries an address or a decision-country object.
 
@@ -308,6 +308,9 @@ inline ParseResult parse_fields(const char* bytes,std::size_t length,
         && !equals(fields[5],"support_independence")
         && !equals(fields[5],"ask_military_access")
         && !equals(fields[5],"offer_vassalization")
+        && !equals(fields[5],"trade_favors_for_gold")
+        && !equals(fields[5],"trade_favors_for_trust")
+        && !equals(fields[5],"trade_favors_for_men")
         && !equals(fields[5],"peace_offer"))
         return ParseResult{ParseError::invalid_action,5};
     if (!copy_field(output.action,sizeof(output.action),fields[5])) return ParseResult{ParseError::invalid_action,5};

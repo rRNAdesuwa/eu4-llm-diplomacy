@@ -1,0 +1,198 @@
+{
+  "description": "Portable replay of the real R54A humiliate_rival outbound rejection. The original execute report stopped at the transport submitted state; the raw native consequence is consumed offline by DiplomacyTools.get_diplomatic_result without resubmission.",
+  "execution_event": {
+    "event": {
+      "action_id": "humiliate_rival",
+      "actor": "FRA",
+      "amount_raw": -1,
+      "beneficiary": "-",
+      "date_raw": 56549064,
+      "direction": "demand",
+      "effects": {
+        "complete": true,
+        "currency_scale": 1000,
+        "date_unchanged": true,
+        "humiliate_rival": {
+          "beneficiary": "FRA",
+          "beneficiary_prestige_after_raw": -10990,
+          "beneficiary_prestige_before_raw": -10990,
+          "beneficiary_prestige_delta_raw": 0,
+          "country": "ENG",
+          "country_prestige_after_raw": 62778,
+          "country_prestige_before_raw": 62778,
+          "country_prestige_delta_raw": 0,
+          "humiliated_after": false,
+          "humiliated_before": false,
+          "prestige_scale": 1000,
+          "values_readable": true,
+          "verified": false
+        },
+        "money": null,
+        "provinces": [],
+        "war_reparations": null
+      },
+      "event": "native_peace_execution_result",
+      "execution_verified": false,
+      "family": "peace",
+      "native_state": 1,
+      "outcome": "rejected",
+      "phase": "initiate",
+      "province_ids": [],
+      "recipient": "ENG",
+      "request_binding_verified": true,
+      "request_id": "r54a2_humiliate_demand_001",
+      "response_verified": true,
+      "session_id": "13556-1dd5ef14ed4f793",
+      "term_mask": "h",
+      "terms_verified": false,
+      "war_after": true,
+      "war_before": true,
+      "war_id": "war_cb302699df5570e8_00000001"
+    },
+    "source_byte_end": 174047,
+    "source_byte_start": 172988,
+    "source_line": 259,
+    "source_line_sha256": "2a576c5a5c2223dbbf8622f4e88178d31fcb23f5ed5ebb8939c256cdcb9a1563"
+  },
+  "expected_reconciled": {
+    "execution_verified": false,
+    "game_outcome": "rejected",
+    "humiliate_rival": {
+      "beneficiary": "FRA",
+      "beneficiary_prestige_after_raw": -10990,
+      "beneficiary_prestige_before_raw": -10990,
+      "beneficiary_prestige_delta_raw": 0,
+      "country": "ENG",
+      "country_prestige_after_raw": 62778,
+      "country_prestige_before_raw": 62778,
+      "country_prestige_delta_raw": 0,
+      "humiliated_after": false,
+      "humiliated_before": false,
+      "prestige_scale": 1000,
+      "values_readable": true,
+      "verified": false
+    },
+    "native_state": 1,
+    "outcome": "rejected",
+    "status": "rejected",
+    "term_mask": "h",
+    "terms_verified": false,
+    "war_after": true,
+    "war_before": true
+  },
+  "fixture_version": 1,
+  "journal_reconciliation": {
+    "consumer": "DiplomacyTools.get_diplomatic_result",
+    "reader": "ObserverSession.read_native_peace_execution",
+    "resubmission": false,
+    "write_status": "rejected"
+  },
+  "original_journal": {
+    "receipt": {
+      "action_id": "humiliate_rival",
+      "actor": "FRA",
+      "amount_raw": -1,
+      "beneficiary": null,
+      "date_raw": 56549064,
+      "direction": "demand",
+      "event": "native_peace_submission_result",
+      "family": "peace",
+      "phase": "initiate",
+      "province_ids": [],
+      "recipient": "ENG",
+      "request_binding_verified": true,
+      "request_id": "r54a2_humiliate_demand_001",
+      "submitted": true,
+      "term_mask": "h",
+      "transport_verified": true,
+      "war_id": "war_cb302699df5570e8_00000001"
+    },
+    "result_game_outcome": "unknown",
+    "result_status": null,
+    "status": "submitted"
+  },
+  "request": {
+    "action_id": "humiliate_rival",
+    "actor": "FRA",
+    "date_raw": 56549064,
+    "parameters": {
+      "peace_context": {
+        "direction": "demand",
+        "terms": [
+          {
+            "action_id": "humiliate_rival",
+            "beneficiary": "FRA",
+            "country": "ENG"
+          }
+        ],
+        "war_id": "war_cb302699df5570e8_00000001"
+      }
+    },
+    "phase": "initiate",
+    "recipient": "ENG",
+    "request_id": "r54a2_humiliate_demand_001",
+    "session_id": "13556-1dd5ef14ed4f793"
+  },
+  "sources": {
+    "build_manifest": {
+      "path": "work/runtime/diplomacy-query-20261018-r54-special-a2/build-manifest.json",
+      "sha256": "c4dcb18ba68838fdf5560b5e8d489601a61d13e47e3d8fac14d66943dd509c3f",
+      "size": 10889
+    },
+    "build_manifest_dll_sha256": "9a195af5b619bbdcc9966959abd620d6d61f897aac7b60197b89bed5af439de0",
+    "dll_sha256": "9a195af5b619bbdcc9966959abd620d6d61f897aac7b60197b89bed5af439de0",
+    "event_line_sha256_scope": "UTF-8 JSONL line without trailing newline",
+    "experiment_id": "diplomacy-query-20261018-r54-special-a2",
+    "installation": {
+      "path": "work/runtime/diplomacy-query-20261018-r54-special-a2/installation.json",
+      "sha256": "446a0a9c0bfbd5711c45201c140674647d7d55925733f4958488470529e7bc92",
+      "size": 18450
+    },
+    "native_events": {
+      "path": "work/runtime/diplomacy-query-20261018-r54-special-a2/humiliate-outbound-001/report-evidence/native-events-slice.jsonl",
+      "sha256": "c5487c1d2aa0f376bf35197dfa2bd5a5133a99f57b8cb0dedfde9561cd7da56b",
+      "size": 191151
+    },
+    "report": {
+      "path": "work/runtime/diplomacy-query-20261018-r54-special-a2/humiliate-outbound-001/report.json",
+      "sha256": "9972af1a71318f5f50a18acd17d9944aefd88c0a9e45caa26d93e75bf45e1559",
+      "size": 135443
+    },
+    "session_id": "13556-1dd5ef14ed4f793",
+    "sqlite": {
+      "path": "work/runtime/diplomacy-query-20261018-r54-special-a2/humiliate-outbound-001/report-evidence/diplomacy.sqlite3",
+      "sha256": "4d7e84593de9a69ff01655e5c3086a2071a5c8c5cd1ca2deb76e0b2558a7a546",
+      "size": 53248
+    }
+  },
+  "submission_event": {
+    "event": {
+      "action_id": "humiliate_rival",
+      "actor": "FRA",
+      "amount_raw": -1,
+      "beneficiary": "-",
+      "date_raw": 56549064,
+      "direction": "demand",
+      "event": "native_peace_submission_result",
+      "family": "peace",
+      "native_flags": 0,
+      "native_origin": 65535,
+      "native_sequence": 15,
+      "phase": "initiate",
+      "province_ids": [],
+      "reason": "NATIVE_ENTRY_VERIFIED",
+      "recipient": "ENG",
+      "request_binding_verified": true,
+      "request_id": "r54a2_humiliate_demand_001",
+      "session_id": "13556-1dd5ef14ed4f793",
+      "submitted": true,
+      "term_mask": "h",
+      "transport_verified": true,
+      "war_id": "war_cb302699df5570e8_00000001"
+    },
+    "source_byte_end": 120913,
+    "source_byte_start": 120375,
+    "source_line": 215,
+    "source_line_sha256": "680382bcca076fdc558e08def91000980feea898a83f102cd378e2cad2e8ecb9"
+  }
+}

@@ -1,0 +1,639 @@
+{
+  "fixture_version": 2,
+  "description": "Portable replay of the real R56 force_religion outbound rejection against LEI. The original operator timed out before consuming the native event; this fixture preserves the late event and SQLite for offline readback It also preserves real LEI offer rejection and acceptance inbound response events.",
+  "sources": {
+    "experiment_id": "diplomacy-query-20261018-r56-religion-b-small-context",
+    "native_text_codec": "eu4_escape",
+    "session_id": "8012-1dd5efe17bab611",
+    "dll_sha256": "ad32f741f6e91830a5b6fcc99adac2bf3c647b52cf5faa1d8f7fd4f07a785cb7",
+    "build_manifest_dll_sha256": "ad32f741f6e91830a5b6fcc99adac2bf3c647b52cf5faa1d8f7fd4f07a785cb7",
+    "report": {
+      "path": "work/runtime/diplomacy-query-20261018-r56-religion-b-small-context/religion-outbound-001/report.json",
+      "size": 126440,
+      "sha256": "f8efb2d213723fd744f1dfcb426dc4836ea2e87f85ea7a392389b492aeab26a4"
+    },
+    "native_events": {
+      "path": "work/runtime/diplomacy-query-20261018-r56-religion-b-small-context/religion-outbound-001/report-evidence/native-events-slice.jsonl",
+      "size": 112814,
+      "sha256": "8bdcf91f26f9001fa9aa60ee7726f21a71afa9596b9612b4b697c8def294aa87"
+    },
+    "installation": {
+      "path": "work/runtime/diplomacy-query-20261018-r56-religion-b-small-context/installation.json",
+      "size": 8469,
+      "sha256": "80ee637998699f85d96b5ce4b52fea9a5cdfe336c4488abbc19b80f8d7ab74de"
+    },
+    "build_manifest": {
+      "path": "work/runtime/diplomacy-query-20261018-r56-religion-b-small-context/build-manifest.json",
+      "size": 11220,
+      "sha256": "bf809ae87743a47c7b1e51a9bbba7fc99e2fc879523f520b6b74b7629bc70390"
+    },
+    "dll": {
+      "path": "work/runtime/diplomacy-query-20261018-r56-religion-b-small-context/eu4_bridge_diplomacy_observer_v22.dll",
+      "size": 980320,
+      "sha256": "ad32f741f6e91830a5b6fcc99adac2bf3c647b52cf5faa1d8f7fd4f07a785cb7"
+    },
+    "sqlite": {
+      "path": "work/runtime/diplomacy-query-20261018-r56-religion-b-small-context/religion-outbound-001/report-evidence/diplomacy.sqlite3",
+      "size": 45056,
+      "sha256": "b20f67f3b48907872ee99c703bb229c545eaefd1f04a97fb5ac2ba9e651fbbe1"
+    },
+    "save_observer": {
+      "path": "work/runtime/diplomacy-query-20261018-r56-religion-b-small-context/save-observer-report-1792327879113797300.json",
+      "size": 93085,
+      "sha256": "32ef958e24329b5b3b5d188e7215533025d35bcf080d2b2b6e95e04272964c56"
+    }
+  },
+  "request": {
+    "request_id": "r56b_religion_demand_lei_001",
+    "session_id": "8012-1dd5efe17bab611",
+    "action_id": "force_religion",
+    "actor": "FRA",
+    "recipient": "LEI",
+    "phase": "initiate",
+    "date_raw": 56549088,
+    "parameters": {
+      "peace_context": {
+        "direction": "demand",
+        "terms": [
+          {
+            "action_id": "force_religion",
+            "beneficiary": "FRA",
+            "country": "LEI"
+          }
+        ],
+        "war_id": "war_402d5798329ddab7_00000001"
+      }
+    }
+  },
+  "submission_event": {
+    "event": {
+      "event": "native_peace_submission_result",
+      "family": "peace",
+      "session_id": "8012-1dd5efe17bab611",
+      "request_id": "r56b_religion_demand_lei_001",
+      "action_id": "force_religion",
+      "actor": "FRA",
+      "recipient": "LEI",
+      "phase": "initiate",
+      "date_raw": 56549088,
+      "war_id": "war_402d5798329ddab7_00000001",
+      "direction": "demand",
+      "amount_raw": -1,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "f",
+      "submitted": true,
+      "transport_verified": true,
+      "request_binding_verified": true,
+      "reason": "NATIVE_ENTRY_VERIFIED",
+      "native_origin": 65535,
+      "native_flags": 0,
+      "native_sequence": 16
+    },
+    "source_line": 67,
+    "source_line_bytes": 537,
+    "source_line_sha256": "88c63fe9b4b983f9000c00da9e0b91712d0697ccbfb576918058210a83a6233d"
+  },
+  "execution_event": {
+    "event": {
+      "event": "native_peace_execution_result",
+      "family": "peace",
+      "session_id": "8012-1dd5efe17bab611",
+      "request_id": "r56b_religion_demand_lei_001",
+      "action_id": "force_religion",
+      "actor": "FRA",
+      "recipient": "LEI",
+      "phase": "initiate",
+      "date_raw": 56549088,
+      "war_id": "war_402d5798329ddab7_00000001",
+      "direction": "demand",
+      "amount_raw": -1,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "f",
+      "native_state": 1,
+      "outcome": "rejected",
+      "war_before": true,
+      "war_after": true,
+      "response_verified": true,
+      "request_binding_verified": true,
+      "execution_verified": false,
+      "terms_verified": false,
+      "effects": {
+        "complete": true,
+        "date_unchanged": true,
+        "currency_scale": 1000,
+        "money": null,
+        "provinces": [],
+        "war_reparations": null,
+        "force_religion": {
+          "country": "LEI",
+          "beneficiary": "FRA",
+          "religion_before": "hussite",
+          "religion_after": "hussite",
+          "beneficiary_religion_before": "catholic",
+          "beneficiary_religion_after": "catholic",
+          "capital_religion_before": "hussite",
+          "capital_religion_after": "hussite",
+          "values_readable": true,
+          "verified": false
+        }
+      }
+    },
+    "source_line": 109,
+    "source_line_bytes": 973,
+    "source_line_sha256": "fcbf2718f4ced1a2644dfe0f4ae45d9aa199814aa0b29085a2cbf53052ea1209"
+  },
+  "expected": {
+    "recipient": "LEI",
+    "term_mask": "f",
+    "native_state": 1,
+    "native_outcome": "rejected",
+    "response_verified": true,
+    "request_binding_verified": true,
+    "execution_verified": false,
+    "terms_verified": false,
+    "war_before": true,
+    "war_after": true,
+    "force_religion": {
+      "country": "LEI",
+      "beneficiary": "FRA",
+      "religion_before": "hussite",
+      "religion_after": "hussite",
+      "beneficiary_religion_before": "catholic",
+      "beneficiary_religion_after": "catholic",
+      "capital_religion_before": "hussite",
+      "capital_religion_after": "hussite",
+      "values_readable": true,
+      "verified": false
+    },
+    "source_result_status": "unknown",
+    "source_execute_call_count": 1
+  },
+  "inbound_sources": {
+    "d": {
+      "experiment_id": "diplomacy-query-20261018-r56-religion-d-inbound-reject",
+      "native_text_codec": "eu4_escape",
+      "session_id": "24428-1dd5f0050d8e4cc",
+      "report": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-d-inbound-reject/religion-inbound-reject-001/report.json",
+        "size": 50533,
+        "sha256": "5b0ac53fe449b34668dcd65a908f4ab9e232cce64a81dd780c30a94ba6c04830"
+      },
+      "native_events": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-d-inbound-reject/religion-inbound-reject-001/report-evidence/native-events-slice.jsonl",
+        "size": 62070,
+        "sha256": "85b24a3b80a94fdf476e647186a23a6a009ca03724033adab9745556cb793350"
+      },
+      "installation": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-d-inbound-reject/installation.json",
+        "size": 21064,
+        "sha256": "3859fa431f0fe8c3b0e6669f9904eeb5968c761a33724d1ea723f4af9d536a27"
+      },
+      "build_manifest": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-d-inbound-reject/build-manifest.json",
+        "size": 11597,
+        "sha256": "b290aab9014c4bd0c60c65b2b9ebd76d270bef1574582b176d7c8051a6ea0432"
+      },
+      "dll_sha256": "8d51737d63787a5cde050a8a2262dea054b198c6ccd1611ae2c764c094a41b43",
+      "build_manifest_dll_sha256": "8d51737d63787a5cde050a8a2262dea054b198c6ccd1611ae2c764c094a41b43",
+      "sqlite": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-d-inbound-reject/religion-inbound-reject-001/report-evidence/diplomacy.sqlite3",
+        "size": 36864,
+        "sha256": "d18a83c2f8a5d5cc474609fb332851d28fd16520628598808e7087ac6186bffd"
+      },
+      "save_observer": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-d-inbound-reject/save-observer-report-1792328363028298500.json",
+        "size": 94334,
+        "sha256": "0c95c058ca9c7e0d4c00867d12941b94ac675c19c4b40bea12bdc5ef8cb56686"
+      }
+    },
+    "e": {
+      "experiment_id": "diplomacy-query-20261018-r56-religion-e-inbound-accept",
+      "native_text_codec": "eu4_escape",
+      "session_id": "29328-1dd5f00862fd1d7",
+      "report": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-e-inbound-accept/religion-inbound-accept-001/report.json",
+        "size": 50609,
+        "sha256": "c040c0aeb71ae9e143a0afdf2296fc45790d690eaf239d9cfcdef201fd76f133"
+      },
+      "native_events": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-e-inbound-accept/religion-inbound-accept-001/report-evidence/native-events-slice.jsonl",
+        "size": 61948,
+        "sha256": "6e56ce5030294ab63c1093802d8b57cd2524b94389193b1959a80c9ca3c1a0cb"
+      },
+      "installation": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-e-inbound-accept/installation.json",
+        "size": 21980,
+        "sha256": "f6f17b5ac17c3ef68809d467f4eb06cfa5318956873b1a0211e46abda33b6702"
+      },
+      "build_manifest": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-e-inbound-accept/build-manifest.json",
+        "size": 11597,
+        "sha256": "72a8d25e336a35f925cc41e3c21086f4100f18f5bbf8d8ce80445431fc314494"
+      },
+      "dll_sha256": "8d51737d63787a5cde050a8a2262dea054b198c6ccd1611ae2c764c094a41b43",
+      "build_manifest_dll_sha256": "8d51737d63787a5cde050a8a2262dea054b198c6ccd1611ae2c764c094a41b43",
+      "sqlite": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-e-inbound-accept/religion-inbound-accept-001/report-evidence/diplomacy.sqlite3",
+        "size": 36864,
+        "sha256": "9f96b222cb1f3f0824e885396800bf5ce647c21a9f596562550cb127d0686ded"
+      },
+      "save_observer": {
+        "path": "work/runtime/diplomacy-query-20261018-r56-religion-e-inbound-accept/save-observer-report-1792328453745616200.json",
+        "size": 94968,
+        "sha256": "4a8b46551b009b2e3c81a4977d6563867cd851278f408a536e9126ebcd4c2bcf"
+      }
+    }
+  },
+  "inbound_cases": {
+    "d_reject": {
+      "source": "d",
+      "request_id": "r56d_lei_religion_reject_001",
+      "session_id": "24428-1dd5f0050d8e4cc",
+      "action_id": "peace_offer",
+      "actor": "LEI",
+      "recipient": "FRA",
+      "phase": "reject",
+      "date_raw": 56549112,
+      "native_proposal_id": 1,
+      "proposal_id": "26bd7472a894ef576826273afcff4434",
+      "decision_country": "FRA",
+      "peace_context": {
+        "war_id": "war_3cf9764f992e257a_00000001",
+        "direction": "offer",
+        "original_actor": "LEI",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "force_religion",
+            "country": "LEI",
+            "beneficiary": "FRA"
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      },
+      "inspection_event": {
+        "event": {
+          "event": "native_alliance_inbound_inspection",
+          "query_id": "inbound_inspect_178a48701a804cee91f5d6b7ad2fc5c4",
+          "session_id": "24428-1dd5f0050d8e4cc",
+          "action_id": "peace_offer",
+          "family": "peace",
+          "extra60": 0,
+          "actor": "LEI",
+          "mirror": "LEI",
+          "recipient": "FRA",
+          "phase": "reject",
+          "native_proposal_id": 1,
+          "date_raw": 56549112,
+          "pending_active": true,
+          "decision_country": "FRA",
+          "decision_country_verified": true,
+          "native_validity": true,
+          "response_rules_complete": true,
+          "war_active": true,
+          "war_readable": true,
+          "war_before": true,
+          "native_current_war": true,
+          "native_current_war_readable": true,
+          "peace_payload_complete": true,
+          "selected_terms_complete": true,
+          "term_count": 18,
+          "selected_term_count": 2,
+          "peace_context": {
+            "war_id": "war_3cf9764f992e257a_00000001",
+            "direction": "offer",
+            "original_actor": "LEI",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "force_religion",
+                "country": "LEI",
+                "beneficiary": "FRA"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "date28": 56549088,
+          "date2c": 56549088,
+          "envoy30": 2,
+          "state34": 0,
+          "variant38": 1,
+          "token3c": 207,
+          "requested_decision": "reject",
+          "reason": "none"
+        },
+        "source_line": 32,
+        "source_line_bytes": 1082,
+        "source_line_sha256": "64f27a0acda7ad74be4c59ad16ac49de2e762f7f2b3c73c6365919e1503e089c"
+      },
+      "submission_event": {
+        "event": {
+          "event": "native_peace_inbound_submission_result",
+          "family": "peace",
+          "session_id": "24428-1dd5f0050d8e4cc",
+          "request_id": "r56d_lei_religion_reject_001",
+          "action_id": "peace_offer",
+          "actor": "LEI",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "reject",
+          "date_raw": 56549112,
+          "submitted": true,
+          "transport_verified": true,
+          "request_binding_verified": true
+        },
+        "source_line": 49,
+        "source_line_bytes": 343,
+        "source_line_sha256": "698394a60035e2d97cbbcd581f00049f809514cfb48e4d9ad4cddb0bed11be0e"
+      },
+      "response_event": {
+        "event": {
+          "event": "native_peace_inbound_response_result",
+          "family": "peace",
+          "session_id": "24428-1dd5f0050d8e4cc",
+          "request_id": "r56d_lei_religion_reject_001",
+          "action_id": "peace_offer",
+          "actor": "LEI",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "reject",
+          "date_raw": 56549112,
+          "native_state": 1,
+          "outcome": "rejected",
+          "war_before": true,
+          "war_after": true,
+          "war_state_verified": true,
+          "response_verified": true,
+          "request_binding_verified": true,
+          "execution_verified": true,
+          "pending_removed": true,
+          "terms_verified": false,
+          "peace_context": {
+            "war_id": "war_3cf9764f992e257a_00000001",
+            "direction": "offer",
+            "original_actor": "LEI",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "force_religion",
+                "country": "LEI",
+                "beneficiary": "FRA"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "effects": {
+            "complete": true,
+            "date_unchanged": true,
+            "currency_scale": 1000,
+            "money": null,
+            "provinces": [],
+            "war_reparations": null,
+            "force_religion": {
+              "country": "LEI",
+              "beneficiary": "FRA",
+              "religion_before": "hussite",
+              "religion_after": "hussite",
+              "beneficiary_religion_before": "catholic",
+              "beneficiary_religion_after": "catholic",
+              "capital_religion_before": "hussite",
+              "capital_religion_after": "hussite",
+              "values_readable": true,
+              "verified": false
+            }
+          }
+        },
+        "source_line": 58,
+        "source_line_bytes": 1208,
+        "source_line_sha256": "049d3bd927e4a3ea3242bb323fec2bf3350cfb8ef7ceeae635c40ed89dc011fa"
+      },
+      "expected": {
+        "native_state": 1,
+        "native_outcome": "rejected",
+        "pending_removed": true,
+        "terms_verified": false,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "war_before": true,
+        "war_after": true,
+        "effects": {
+          "country": "LEI",
+          "beneficiary": "FRA",
+          "religion_before": "hussite",
+          "religion_after": "hussite",
+          "beneficiary_religion_before": "catholic",
+          "beneficiary_religion_after": "catholic",
+          "capital_religion_before": "hussite",
+          "capital_religion_after": "hussite",
+          "values_readable": true,
+          "verified": false
+        }
+      }
+    },
+    "e_accept": {
+      "source": "e",
+      "request_id": "r56e_lei_religion_accept_001",
+      "session_id": "29328-1dd5f00862fd1d7",
+      "action_id": "peace_offer",
+      "actor": "LEI",
+      "recipient": "FRA",
+      "phase": "accept",
+      "date_raw": 56549112,
+      "native_proposal_id": 1,
+      "proposal_id": "92312fd485c0cf47d227b860f3989aed",
+      "decision_country": "FRA",
+      "peace_context": {
+        "war_id": "war_3081993412c8bf10_00000001",
+        "direction": "offer",
+        "original_actor": "LEI",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "force_religion",
+            "country": "LEI",
+            "beneficiary": "FRA"
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      },
+      "inspection_event": {
+        "event": {
+          "event": "native_alliance_inbound_inspection",
+          "query_id": "inbound_inspect_20748aec581542a182ba5a163ba82bc2",
+          "session_id": "29328-1dd5f00862fd1d7",
+          "action_id": "peace_offer",
+          "family": "peace",
+          "extra60": 0,
+          "actor": "LEI",
+          "mirror": "LEI",
+          "recipient": "FRA",
+          "phase": "accept",
+          "native_proposal_id": 1,
+          "date_raw": 56549112,
+          "pending_active": true,
+          "decision_country": "FRA",
+          "decision_country_verified": true,
+          "native_validity": true,
+          "response_rules_complete": true,
+          "war_active": true,
+          "war_readable": true,
+          "war_before": true,
+          "native_current_war": true,
+          "native_current_war_readable": true,
+          "peace_payload_complete": true,
+          "selected_terms_complete": true,
+          "term_count": 18,
+          "selected_term_count": 2,
+          "peace_context": {
+            "war_id": "war_3081993412c8bf10_00000001",
+            "direction": "offer",
+            "original_actor": "LEI",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "force_religion",
+                "country": "LEI",
+                "beneficiary": "FRA"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "date28": 56549088,
+          "date2c": 56549088,
+          "envoy30": 2,
+          "state34": 0,
+          "variant38": 1,
+          "token3c": 207,
+          "requested_decision": "accept",
+          "reason": "none"
+        },
+        "source_line": 31,
+        "source_line_bytes": 1082,
+        "source_line_sha256": "9b1a3f61275aeea9c26cec236bcf5944e277b00fee7be9b9a2a88d38d2500425"
+      },
+      "submission_event": {
+        "event": {
+          "event": "native_peace_inbound_submission_result",
+          "family": "peace",
+          "session_id": "29328-1dd5f00862fd1d7",
+          "request_id": "r56e_lei_religion_accept_001",
+          "action_id": "peace_offer",
+          "actor": "LEI",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "accept",
+          "date_raw": 56549112,
+          "submitted": true,
+          "transport_verified": true,
+          "request_binding_verified": true
+        },
+        "source_line": 48,
+        "source_line_bytes": 343,
+        "source_line_sha256": "68a706a266bd58ed686153c72e72fd2d8f676e4b604587549c5b7e8ffe6106d7"
+      },
+      "response_event": {
+        "event": {
+          "event": "native_peace_inbound_response_result",
+          "family": "peace",
+          "session_id": "29328-1dd5f00862fd1d7",
+          "request_id": "r56e_lei_religion_accept_001",
+          "action_id": "peace_offer",
+          "actor": "LEI",
+          "recipient": "FRA",
+          "decision_country": "FRA",
+          "phase": "accept",
+          "date_raw": 56549112,
+          "native_state": 2,
+          "outcome": "accepted",
+          "war_before": true,
+          "war_after": false,
+          "war_state_verified": true,
+          "response_verified": true,
+          "request_binding_verified": true,
+          "execution_verified": true,
+          "pending_removed": true,
+          "terms_verified": true,
+          "peace_context": {
+            "war_id": "war_3081993412c8bf10_00000001",
+            "direction": "offer",
+            "original_actor": "LEI",
+            "original_recipient": "FRA",
+            "terms": [
+              {
+                "action_id": "force_religion",
+                "country": "LEI",
+                "beneficiary": "FRA"
+              }
+            ],
+            "white_peace": false,
+            "complete": true,
+            "selected_terms_complete": true,
+            "reason": "none"
+          },
+          "effects": {
+            "complete": true,
+            "date_unchanged": true,
+            "currency_scale": 1000,
+            "money": null,
+            "provinces": [],
+            "war_reparations": null,
+            "force_religion": {
+              "country": "LEI",
+              "beneficiary": "FRA",
+              "religion_before": "hussite",
+              "religion_after": "catholic",
+              "beneficiary_religion_before": "catholic",
+              "beneficiary_religion_after": "catholic",
+              "capital_religion_before": "hussite",
+              "capital_religion_after": "catholic",
+              "values_readable": true,
+              "verified": true
+            }
+          }
+        },
+        "source_line": 57,
+        "source_line_bytes": 1209,
+        "source_line_sha256": "7543e01de790b62bf3f98bd28f0208bf7fda365a2252c6284b2798003a6629da"
+      },
+      "expected": {
+        "native_state": 2,
+        "native_outcome": "accepted",
+        "pending_removed": true,
+        "terms_verified": true,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "war_before": true,
+        "war_after": false,
+        "effects": {
+          "country": "LEI",
+          "beneficiary": "FRA",
+          "religion_before": "hussite",
+          "religion_after": "catholic",
+          "beneficiary_religion_before": "catholic",
+          "beneficiary_religion_after": "catholic",
+          "capital_religion_before": "hussite",
+          "capital_religion_after": "catholic",
+          "values_readable": true,
+          "verified": true
+        }
+      }
+    }
+  }
+}

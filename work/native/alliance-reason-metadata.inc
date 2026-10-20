@@ -87,6 +87,8 @@ static const KeyBinding kConfirmedKeyBindings[]={
     {0x373114,0x1c5dbb8,"DIPLO_WAR_TIME_PASSED"},
     {0x373496,0x1c5dc08,"DIPLO_MILITARY_STRENGTH"},
     {0x373564,0x1c5dad0,"DIPLO_WAR_FORCE_BALANCE"},
+    // 0x3728dd is conditional on row+0xf8 and is intentionally kept out of
+    // this unconditional table; see kConditionalKeyBindings below.
 
     {0x39f478,0x1c5f880,"DIPLO_ENEMY_ALLIES"},
     {0x39f859,0x1c5f880,"DIPLO_ENEMY_ALLIES"},
@@ -151,7 +153,14 @@ static const KeyBinding kConfirmedKeyBindings[]={
     {0x4f1b3e,0x1c81d58,"DIPLO_MSG_FILTER_NEIGHBOURS"},
     {0x4f1d78,0x1c43ab8,"DIPLO_HAS_PERSONALITY"},
     {0x4f1f84,0x1c5eee0,"DIPLO_DIPLOMATIC_REP"},
-    {0x4f2128,0x1c5f130,"DIPLO_BORDER_DISTANCE"}
+    {0x4f2128,0x1c5f130,"DIPLO_BORDER_DISTANCE"},
+    // Favor-resource previews (trust/men) use the same row constructor;
+    // these four return sites and .rdata keys were independently confirmed
+    // in the cached R73 acceptance contract.
+    {0x4eb3cc,0x1c81a18,"USING_FAVORS"},
+    {0x4eb83e,0x1c5f098,"DIPLO_OPINION"},
+    {0x4f87af,0x1c5f590,"DIPLO_MANPOWER"},
+    {0x4f8926,0x1c82738,"DIPLO_LOW_MANPOWER"}
 };
 
 struct ReasonMetadataRecord {
@@ -241,6 +250,14 @@ static bool reason_metadata_validate_keys() noexcept {
                 || !reason_metadata_read_bytes(base+binding->rdata_rva,actual,bytes)
                 || memcmp(actual,binding->key,bytes)!=0) return false;
         }
+    }
+    for (const auto& conditional:bridge_reason_key_branch::kConditionalKeyBindings) {
+        const KeyBinding& binding=conditional.key;
+        const SIZE_T bytes=static_cast<SIZE_T>(strlen(binding.key)+1);
+        unsigned char actual[64]{};
+        if (bytes>sizeof(actual)
+            || !reason_metadata_read_bytes(base+binding.rdata_rva,actual,bytes)
+            || memcmp(actual,binding.key,bytes)!=0) return false;
     }
     return true;
 }

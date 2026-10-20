@@ -1,0 +1,511 @@
+{
+  "source": {
+    "path": "work/runtime/r60-subject-execution-batch-20261019-001/report-evidence/native-events-slice.jsonl",
+    "size": 1798998,
+    "sha256": "f98de50fe95bd78a2340d404488f498c853104be4bd6dcf806e4c84ff93aa18c",
+    "lines": {
+      "outbound": 1292,
+      "reject": 1688,
+      "accept": 3135
+    },
+    "event_names": {
+      "outbound": "native_peace_execution_result",
+      "reject": "native_peace_inbound_response_result",
+      "accept": "native_peace_inbound_response_result"
+    }
+  },
+  "request": {
+    "action_id": "release_subject",
+    "actor": "FRA",
+    "recipient": "ENG",
+    "phase": "initiate",
+    "date_raw": 56549064,
+    "parameters": {
+      "peace_context": {
+        "war_id": "war_3aaccca7278d5d18_00000001",
+        "direction": "demand",
+        "terms": [
+          {
+            "action_id": "demand_ducats",
+            "amount": "1.0",
+            "payer": "ENG",
+            "claimant": "FRA"
+          },
+          {
+            "action_id": "war_reparations",
+            "payer": "ENG",
+            "claimant": "FRA"
+          },
+          {
+            "action_id": "release_subject",
+            "country": "TYR"
+          },
+          {
+            "action_id": "transfer_subject",
+            "country": "LEI"
+          }
+        ]
+      }
+    }
+  },
+  "events": {
+    "outbound": {
+      "event": "native_peace_execution_result",
+      "family": "peace",
+      "session_id": "36940-1dd5f77ab3c60dc",
+      "request_id": "r60_subject_combined_20261019_001_outbound",
+      "action_id": "release_subject",
+      "actor": "FRA",
+      "recipient": "ENG",
+      "phase": "initiate",
+      "date_raw": 56549064,
+      "war_id": "war_3aaccca7278d5d18_00000001",
+      "direction": "demand",
+      "amount_raw": 1000,
+      "province_ids": [],
+      "beneficiary": "-",
+      "term_mask": "mrlx",
+      "reparations_payer": "ENG",
+      "reparations_claimant": "FRA",
+      "release_subject_countries": "TYR",
+      "release_subject_count": 1,
+      "transfer_subject_countries": "LEI",
+      "transfer_subject_count": 1,
+      "native_state": 1,
+      "outcome": "rejected",
+      "war_before": true,
+      "war_after": true,
+      "response_verified": true,
+      "request_binding_verified": true,
+      "execution_verified": false,
+      "terms_verified": false,
+      "effects": {
+        "complete": true,
+        "date_unchanged": true,
+        "currency_scale": 1000,
+        "money": {
+          "amount_raw": 1000,
+          "payer": "ENG",
+          "paid_raw": 0,
+          "credits": [],
+          "verified": false
+        },
+        "provinces": [],
+        "war_reparations": {
+          "payer": "ENG",
+          "claimant": "FRA",
+          "active_before": false,
+          "active_after": false,
+          "start_date_raw": 0,
+          "end_date_raw": 0,
+          "verified": false
+        },
+        "release_subject": {
+          "requested": true,
+          "count": 1,
+          "complete": true,
+          "rows": [
+            {
+              "country": "TYR",
+              "source": "ENG",
+              "beneficiary": null,
+              "source_relation_active_before": true,
+              "source_relation_active_after": true,
+              "source_is_overlord_before": true,
+              "source_is_overlord_after": true,
+              "source_subject_type_before": "vassal",
+              "source_subject_type_after": "vassal",
+              "beneficiary_relation_active_before": null,
+              "beneficiary_relation_active_after": null,
+              "beneficiary_is_overlord_before": null,
+              "beneficiary_is_overlord_after": null,
+              "beneficiary_subject_type_before": null,
+              "beneficiary_subject_type_after": null,
+              "source_relation_active": true,
+              "source_is_overlord": true,
+              "source_subject_type": "vassal",
+              "beneficiary_relation_active": null,
+              "beneficiary_is_overlord": null,
+              "beneficiary_subject_type": null,
+              "complete": true,
+              "values_readable": true,
+              "verified": false
+            }
+          ],
+          "unchanged": true,
+          "verified": false
+        },
+        "transfer_subject": {
+          "requested": true,
+          "count": 1,
+          "complete": true,
+          "rows": [
+            {
+              "country": "LEI",
+              "source": "ENG",
+              "beneficiary": "FRA",
+              "source_relation_active_before": true,
+              "source_relation_active_after": true,
+              "source_is_overlord_before": true,
+              "source_is_overlord_after": true,
+              "source_subject_type_before": "vassal",
+              "source_subject_type_after": "vassal",
+              "beneficiary_relation_active_before": false,
+              "beneficiary_relation_active_after": false,
+              "beneficiary_is_overlord_before": false,
+              "beneficiary_is_overlord_after": false,
+              "beneficiary_subject_type_before": null,
+              "beneficiary_subject_type_after": null,
+              "source_relation_active": true,
+              "source_is_overlord": true,
+              "source_subject_type": "vassal",
+              "beneficiary_relation_active": false,
+              "beneficiary_is_overlord": false,
+              "beneficiary_subject_type": null,
+              "complete": true,
+              "values_readable": true,
+              "verified": false
+            }
+          ],
+          "unchanged": true,
+          "verified": false
+        }
+      }
+    },
+    "reject": {
+      "event": "native_peace_inbound_response_result",
+      "family": "peace",
+      "session_id": "36940-1dd5f77ab3c60dc",
+      "request_id": "r60_subject_combined_20261019_001_reject",
+      "action_id": "peace_offer",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "decision_country": "FRA",
+      "phase": "reject",
+      "date_raw": 56549064,
+      "native_state": 1,
+      "outcome": "rejected",
+      "war_before": true,
+      "war_after": true,
+      "war_state_verified": true,
+      "response_verified": true,
+      "request_binding_verified": true,
+      "execution_verified": true,
+      "pending_removed": true,
+      "terms_verified": false,
+      "peace_context": {
+        "war_id": "war_3aaccca7278d5d18_00000001",
+        "direction": "offer",
+        "original_actor": "ENG",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "war_reparations",
+            "payer": "ENG",
+            "claimant": "FRA"
+          },
+          {
+            "action_id": "transfer_subject",
+            "country": "LEI"
+          },
+          {
+            "action_id": "release_subject",
+            "country": "TYR"
+          },
+          {
+            "action_id": "demand_ducats",
+            "amount_raw": 1000,
+            "scale": 1000
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      },
+      "effects": {
+        "complete": true,
+        "date_unchanged": true,
+        "currency_scale": 1000,
+        "money": {
+          "amount_raw": 1000,
+          "payer": "ENG",
+          "paid_raw": 0,
+          "credits": [],
+          "verified": false
+        },
+        "provinces": [],
+        "war_reparations": {
+          "payer": "ENG",
+          "claimant": "FRA",
+          "active_before": false,
+          "active_after": false,
+          "start_date_raw": 0,
+          "end_date_raw": 0,
+          "verified": false
+        },
+        "release_subject": {
+          "requested": true,
+          "count": 1,
+          "complete": true,
+          "rows": [
+            {
+              "country": "TYR",
+              "source": "ENG",
+              "beneficiary": null,
+              "source_relation_active_before": true,
+              "source_relation_active_after": true,
+              "source_is_overlord_before": true,
+              "source_is_overlord_after": true,
+              "source_subject_type_before": "vassal",
+              "source_subject_type_after": "vassal",
+              "beneficiary_relation_active_before": null,
+              "beneficiary_relation_active_after": null,
+              "beneficiary_is_overlord_before": null,
+              "beneficiary_is_overlord_after": null,
+              "beneficiary_subject_type_before": null,
+              "beneficiary_subject_type_after": null,
+              "source_relation_active": true,
+              "source_is_overlord": true,
+              "source_subject_type": "vassal",
+              "beneficiary_relation_active": null,
+              "beneficiary_is_overlord": null,
+              "beneficiary_subject_type": null,
+              "complete": true,
+              "values_readable": true,
+              "verified": false
+            }
+          ],
+          "unchanged": true,
+          "verified": false
+        },
+        "transfer_subject": {
+          "requested": true,
+          "count": 1,
+          "complete": true,
+          "rows": [
+            {
+              "country": "LEI",
+              "source": "ENG",
+              "beneficiary": "FRA",
+              "source_relation_active_before": true,
+              "source_relation_active_after": true,
+              "source_is_overlord_before": true,
+              "source_is_overlord_after": true,
+              "source_subject_type_before": "vassal",
+              "source_subject_type_after": "vassal",
+              "beneficiary_relation_active_before": false,
+              "beneficiary_relation_active_after": false,
+              "beneficiary_is_overlord_before": false,
+              "beneficiary_is_overlord_after": false,
+              "beneficiary_subject_type_before": null,
+              "beneficiary_subject_type_after": null,
+              "source_relation_active": true,
+              "source_is_overlord": true,
+              "source_subject_type": "vassal",
+              "beneficiary_relation_active": false,
+              "beneficiary_is_overlord": false,
+              "beneficiary_subject_type": null,
+              "complete": true,
+              "values_readable": true,
+              "verified": false
+            }
+          ],
+          "unchanged": true,
+          "verified": false
+        }
+      }
+    },
+    "accept": {
+      "event": "native_peace_inbound_response_result",
+      "family": "peace",
+      "session_id": "36940-1dd5f77ab3c60dc",
+      "request_id": "r60_subject_combined_20261019_001_accept",
+      "action_id": "peace_offer",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "decision_country": "FRA",
+      "phase": "accept",
+      "date_raw": 56549832,
+      "native_state": 2,
+      "outcome": "accepted",
+      "war_before": true,
+      "war_after": false,
+      "war_state_verified": true,
+      "response_verified": true,
+      "request_binding_verified": true,
+      "execution_verified": true,
+      "pending_removed": true,
+      "terms_verified": false,
+      "peace_context": {
+        "war_id": "war_3aaccca7278d5d18_00000001",
+        "direction": "offer",
+        "original_actor": "ENG",
+        "original_recipient": "FRA",
+        "terms": [
+          {
+            "action_id": "war_reparations",
+            "payer": "ENG",
+            "claimant": "FRA"
+          },
+          {
+            "action_id": "transfer_subject",
+            "country": "LEI"
+          },
+          {
+            "action_id": "release_subject",
+            "country": "TYR"
+          },
+          {
+            "action_id": "demand_ducats",
+            "amount_raw": 1000,
+            "scale": 1000
+          }
+        ],
+        "white_peace": false,
+        "complete": true,
+        "selected_terms_complete": true,
+        "reason": "none"
+      },
+      "effects": {
+        "complete": true,
+        "date_unchanged": true,
+        "currency_scale": 1000,
+        "money": {
+          "amount_raw": 1000,
+          "payer": "ENG",
+          "paid_raw": 1000,
+          "credits": [
+            {
+              "country": "FRA",
+              "amount_raw": 690
+            },
+            {
+              "country": "AMG",
+              "amount_raw": 62
+            },
+            {
+              "country": "AUV",
+              "amount_raw": 14
+            },
+            {
+              "country": "BOU",
+              "amount_raw": 69
+            },
+            {
+              "country": "FOI",
+              "amount_raw": 57
+            },
+            {
+              "country": "ORL",
+              "amount_raw": 108
+            }
+          ],
+          "verified": true
+        },
+        "provinces": [],
+        "war_reparations": {
+          "payer": "ENG",
+          "claimant": "FRA",
+          "active_before": false,
+          "active_after": true,
+          "start_date_raw": 56549832,
+          "end_date_raw": 56637432,
+          "verified": true
+        },
+        "release_subject": {
+          "requested": true,
+          "count": 1,
+          "complete": true,
+          "rows": [
+            {
+              "country": "TYR",
+              "source": "ENG",
+              "beneficiary": null,
+              "source_relation_active_before": true,
+              "source_relation_active_after": false,
+              "source_is_overlord_before": true,
+              "source_is_overlord_after": false,
+              "source_subject_type_before": "vassal",
+              "source_subject_type_after": null,
+              "beneficiary_relation_active_before": null,
+              "beneficiary_relation_active_after": null,
+              "beneficiary_is_overlord_before": null,
+              "beneficiary_is_overlord_after": null,
+              "beneficiary_subject_type_before": null,
+              "beneficiary_subject_type_after": null,
+              "source_relation_active": false,
+              "source_is_overlord": false,
+              "source_subject_type": null,
+              "beneficiary_relation_active": null,
+              "beneficiary_is_overlord": null,
+              "beneficiary_subject_type": null,
+              "complete": true,
+              "values_readable": true,
+              "verified": true
+            }
+          ],
+          "unchanged": false,
+          "verified": true
+        },
+        "transfer_subject": {
+          "requested": true,
+          "count": 1,
+          "complete": true,
+          "rows": [
+            {
+              "country": "LEI",
+              "source": "ENG",
+              "beneficiary": "FRA",
+              "source_relation_active_before": true,
+              "source_relation_active_after": false,
+              "source_is_overlord_before": true,
+              "source_is_overlord_after": false,
+              "source_subject_type_before": "vassal",
+              "source_subject_type_after": null,
+              "beneficiary_relation_active_before": false,
+              "beneficiary_relation_active_after": true,
+              "beneficiary_is_overlord_before": false,
+              "beneficiary_is_overlord_after": true,
+              "beneficiary_subject_type_before": null,
+              "beneficiary_subject_type_after": "vassal",
+              "source_relation_active": false,
+              "source_is_overlord": false,
+              "source_subject_type": null,
+              "beneficiary_relation_active": true,
+              "beneficiary_is_overlord": true,
+              "beneficiary_subject_type": "vassal",
+              "complete": true,
+              "values_readable": true,
+              "verified": true
+            }
+          ],
+          "unchanged": false,
+          "verified": true
+        }
+      }
+    }
+  },
+  "expected": {
+    "outbound": {
+      "outcome": "rejected",
+      "native_state": 1,
+      "terms_verified": false,
+      "war_after": true
+    },
+    "reject": {
+      "native_outcome": "rejected",
+      "terms_verified": false,
+      "war_after": true,
+      "effects_verified": false
+    },
+    "accept": {
+      "native_outcome": "accepted",
+      "native_terms_verified": false,
+      "terms_verification_source": "validated_native_effects",
+      "terms_verified": true,
+      "war_after": false,
+      "effects_verified": true
+    }
+  }
+}

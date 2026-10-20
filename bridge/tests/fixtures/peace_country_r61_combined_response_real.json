@@ -1,0 +1,540 @@
+{
+  "schema": "peace_country_r61_combined_response_real_v1",
+  "description": "Portable replay of the real D combined-country inbound reject and accept responses, with their native inspection and submission receipts.",
+  "source": {
+    "report_path": "work/runtime/r61-country-combined-execution-d-20261019-001/report.json",
+    "report_size": 83712,
+    "report_sha256": "0145da364613e1b7674711ffed32b6151ee403d7bd80e91ddfa2b428252f5c58",
+    "events_path": "work/runtime/r61-country-combined-execution-d-20261019-001/report-evidence/native-events-slice.jsonl",
+    "events_size": 1655343,
+    "events_sha256": "2e1b0e1153efb276d1d8c5bdf5554760203b6af609e7b372514ba513a5174d35"
+  },
+  "cases": {
+    "reject": {
+      "request_id": "r61_country_combined_d_20261019_001_reject",
+      "session_id": "38028-1dd5f8dfc8058a1",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "phase": "reject",
+      "action_id": "peace_offer",
+      "date_raw": 56549064,
+      "native_proposal_id": 1,
+      "source_lines": {
+        "inspection": {
+          "line": 623,
+          "bytes": 1589,
+          "sha256": "e9883ee47eb911cbba880d85f117796f8b9229f8cdbbea9a8821c32a8bd7f694",
+          "event": "native_alliance_inbound_inspection"
+        },
+        "submission": {
+          "line": 650,
+          "bytes": 357,
+          "sha256": "055472fd0ca652e3ffca6b5460f6267a3b4b8d24a5ee1bfabde8538ef377f9b8",
+          "event": "native_peace_inbound_submission_result"
+        },
+        "response": {
+          "line": 661,
+          "bytes": 2289,
+          "sha256": "463be0158cdae66450f44135f940415e36d0704e36087acee66632b851d647da",
+          "event": "native_peace_inbound_response_result"
+        }
+      },
+      "inspection": {
+        "event": "native_alliance_inbound_inspection",
+        "query_id": "inbound_inspect_3883a2d6d0b84ae0b2e6048cd6b236bd",
+        "session_id": "38028-1dd5f8dfc8058a1",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "extra60": 0,
+        "actor": "ENG",
+        "mirror": "ENG",
+        "recipient": "FRA",
+        "phase": "reject",
+        "native_proposal_id": 1,
+        "date_raw": 56549064,
+        "pending_active": true,
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "native_validity": true,
+        "response_rules_complete": true,
+        "war_active": true,
+        "war_readable": true,
+        "war_before": true,
+        "native_current_war": true,
+        "native_current_war_readable": true,
+        "peace_payload_complete": true,
+        "selected_terms_complete": true,
+        "term_count": 92,
+        "selected_term_count": 3,
+        "peace_context": {
+          "war_id": "war_8a21761489dcf8d7_00000001",
+          "direction": "offer",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "release_nation",
+              "country": "FLY",
+              "source": "ENG"
+            },
+            {
+              "action_id": "full_annexation",
+              "country": "TYR",
+              "beneficiary": "FRA"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "full_annex_proof": {
+            "live_offer_present": true,
+            "live_snapshot_complete": true,
+            "sealed_snapshot_equal": true,
+            "selected_cede_complete": true,
+            "selected_cede_unique": true,
+            "owner_owned_ids_complete": true,
+            "native_check_called": true,
+            "native_check_result": true,
+            "preflight_proof_reused": false,
+            "request_identity_matches": false,
+            "derived": true,
+            "owner": "TYR",
+            "beneficiary": "FRA",
+            "selected_cede_count": 1,
+            "owned_count": 1,
+            "reason": "LIVE_NATIVE_FULL_ANNEX_PROVEN"
+          },
+          "reason": "none"
+        },
+        "date28": 56549064,
+        "date2c": 56549064,
+        "envoy30": 3,
+        "state34": 0,
+        "variant38": 1,
+        "token3c": 206,
+        "requested_decision": "reject",
+        "reason": "none"
+      },
+      "submission": {
+        "event": "native_peace_inbound_submission_result",
+        "family": "peace",
+        "session_id": "38028-1dd5f8dfc8058a1",
+        "request_id": "r61_country_combined_d_20261019_001_reject",
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "reject",
+        "date_raw": 56549064,
+        "submitted": true,
+        "transport_verified": true,
+        "request_binding_verified": true
+      },
+      "response": {
+        "event": "native_peace_inbound_response_result",
+        "family": "peace",
+        "session_id": "38028-1dd5f8dfc8058a1",
+        "request_id": "r61_country_combined_d_20261019_001_reject",
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "reject",
+        "date_raw": 56549064,
+        "native_state": 1,
+        "outcome": "rejected",
+        "war_before": true,
+        "war_after": true,
+        "war_state_verified": true,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "execution_verified": true,
+        "pending_removed": true,
+        "terms_verified": false,
+        "peace_context": {
+          "war_id": "war_8a21761489dcf8d7_00000001",
+          "direction": "offer",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "release_nation",
+              "country": "FLY",
+              "source": "ENG"
+            },
+            {
+              "action_id": "full_annexation",
+              "country": "TYR",
+              "beneficiary": "FRA"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "full_annex_proof": {
+            "live_offer_present": false,
+            "live_snapshot_complete": false,
+            "sealed_snapshot_equal": false,
+            "selected_cede_complete": true,
+            "selected_cede_unique": true,
+            "owner_owned_ids_complete": false,
+            "native_check_called": false,
+            "native_check_result": false,
+            "preflight_proof_reused": true,
+            "request_identity_matches": true,
+            "derived": true,
+            "owner": "TYR",
+            "beneficiary": "FRA",
+            "selected_cede_count": 1,
+            "owned_count": 0,
+            "reason": "PREFLIGHT_PROOF_REUSED"
+          },
+          "reason": "none"
+        },
+        "effects": {
+          "complete": true,
+          "date_unchanged": true,
+          "currency_scale": 1000,
+          "money": null,
+          "provinces": [],
+          "war_reparations": null,
+          "country_terms": {
+            "release_nation": {
+              "country": "FLY",
+              "source": "ENG",
+              "owned_count_before": 0,
+              "owned_count_after": 0,
+              "source_owned_count_before": 42,
+              "source_owned_count_after": 42,
+              "province_rows": [
+                {
+                  "province_id": 4379,
+                  "owner_before": "ENG",
+                  "owner_after": "ENG",
+                  "controller_before": "ENG",
+                  "controller_after": "ENG",
+                  "complete": true
+                }
+              ],
+              "complete": true,
+              "values_readable": true,
+              "unchanged": true,
+              "verified": false
+            },
+            "force_vassalization": null,
+            "form_personal_union": null,
+            "grant_independence": null,
+            "full_annexation": {
+              "country": "TYR",
+              "beneficiary": "FRA",
+              "owned_count_before": 1,
+              "owned_count_after": 1,
+              "beneficiary_owned_count_before": 21,
+              "beneficiary_owned_count_after": 21,
+              "province_rows": [
+                {
+                  "province_id": 372,
+                  "owner_before": "TYR",
+                  "owner_after": "TYR",
+                  "controller_before": "TYR",
+                  "controller_after": "TYR",
+                  "complete": true
+                }
+              ],
+              "complete": true,
+              "values_readable": true,
+              "unchanged": true,
+              "verified": false
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "rejected",
+        "native_state": 1,
+        "war_before": true,
+        "war_after": true,
+        "terms_verified": false,
+        "pending_removed": true,
+        "preflight_reason": "PREFLIGHT_PROOF_REUSED",
+        "preflight_reused": true,
+        "request_identity_matches": true,
+        "country_effects": {
+          "release_nation": {
+            "country": "FLY",
+            "unchanged": true,
+            "verified": false
+          },
+          "full_annexation": {
+            "country": "TYR",
+            "unchanged": true,
+            "verified": false
+          }
+        }
+      }
+    },
+    "accept": {
+      "request_id": "r61_country_combined_d_20261019_001_accept",
+      "session_id": "38028-1dd5f8dfc8058a1",
+      "actor": "ENG",
+      "recipient": "FRA",
+      "phase": "accept",
+      "action_id": "peace_offer",
+      "date_raw": 56549832,
+      "native_proposal_id": 4,
+      "source_lines": {
+        "inspection": {
+          "line": 2414,
+          "bytes": 1589,
+          "sha256": "46b962ee57b5d6ad5f6fe02e4afbcf9203b243d23c5861343d09ec764a9a964d",
+          "event": "native_alliance_inbound_inspection"
+        },
+        "submission": {
+          "line": 2440,
+          "bytes": 357,
+          "sha256": "b88f07560c046b463b09ab4745254c5cb40772df30a51d24b6f0da3f0cc4907d",
+          "event": "native_peace_inbound_submission_result"
+        },
+        "response": {
+          "line": 2451,
+          "bytes": 2289,
+          "sha256": "dccc37215b693406a2fdb84666f92c65a03112607487f0f2c442d116c9b732c7",
+          "event": "native_peace_inbound_response_result"
+        }
+      },
+      "inspection": {
+        "event": "native_alliance_inbound_inspection",
+        "query_id": "inbound_inspect_74c224d1462d46c791f5aef2fef09da7",
+        "session_id": "38028-1dd5f8dfc8058a1",
+        "action_id": "peace_offer",
+        "family": "peace",
+        "extra60": 0,
+        "actor": "ENG",
+        "mirror": "ENG",
+        "recipient": "FRA",
+        "phase": "accept",
+        "native_proposal_id": 4,
+        "date_raw": 56549832,
+        "pending_active": true,
+        "decision_country": "FRA",
+        "decision_country_verified": true,
+        "native_validity": true,
+        "response_rules_complete": true,
+        "war_active": true,
+        "war_readable": true,
+        "war_before": true,
+        "native_current_war": true,
+        "native_current_war_readable": true,
+        "peace_payload_complete": true,
+        "selected_terms_complete": true,
+        "term_count": 91,
+        "selected_term_count": 3,
+        "peace_context": {
+          "war_id": "war_8a21761489dcf8d7_00000001",
+          "direction": "offer",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "release_nation",
+              "country": "FLY",
+              "source": "ENG"
+            },
+            {
+              "action_id": "full_annexation",
+              "country": "TYR",
+              "beneficiary": "FRA"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "full_annex_proof": {
+            "live_offer_present": true,
+            "live_snapshot_complete": true,
+            "sealed_snapshot_equal": true,
+            "selected_cede_complete": true,
+            "selected_cede_unique": true,
+            "owner_owned_ids_complete": true,
+            "native_check_called": true,
+            "native_check_result": true,
+            "preflight_proof_reused": false,
+            "request_identity_matches": false,
+            "derived": true,
+            "owner": "TYR",
+            "beneficiary": "FRA",
+            "selected_cede_count": 1,
+            "owned_count": 1,
+            "reason": "LIVE_NATIVE_FULL_ANNEX_PROVEN"
+          },
+          "reason": "none"
+        },
+        "date28": 56549832,
+        "date2c": 56549832,
+        "envoy30": 3,
+        "state34": 0,
+        "variant38": 1,
+        "token3c": 209,
+        "requested_decision": "accept",
+        "reason": "none"
+      },
+      "submission": {
+        "event": "native_peace_inbound_submission_result",
+        "family": "peace",
+        "session_id": "38028-1dd5f8dfc8058a1",
+        "request_id": "r61_country_combined_d_20261019_001_accept",
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "accept",
+        "date_raw": 56549832,
+        "submitted": true,
+        "transport_verified": true,
+        "request_binding_verified": true
+      },
+      "response": {
+        "event": "native_peace_inbound_response_result",
+        "family": "peace",
+        "session_id": "38028-1dd5f8dfc8058a1",
+        "request_id": "r61_country_combined_d_20261019_001_accept",
+        "action_id": "peace_offer",
+        "actor": "ENG",
+        "recipient": "FRA",
+        "decision_country": "FRA",
+        "phase": "accept",
+        "date_raw": 56549832,
+        "native_state": 2,
+        "outcome": "accepted",
+        "war_before": true,
+        "war_after": false,
+        "war_state_verified": true,
+        "response_verified": true,
+        "request_binding_verified": true,
+        "execution_verified": true,
+        "pending_removed": true,
+        "terms_verified": true,
+        "peace_context": {
+          "war_id": "war_8a21761489dcf8d7_00000001",
+          "direction": "offer",
+          "original_actor": "ENG",
+          "original_recipient": "FRA",
+          "terms": [
+            {
+              "action_id": "release_nation",
+              "country": "FLY",
+              "source": "ENG"
+            },
+            {
+              "action_id": "full_annexation",
+              "country": "TYR",
+              "beneficiary": "FRA"
+            }
+          ],
+          "white_peace": false,
+          "complete": true,
+          "selected_terms_complete": true,
+          "full_annex_proof": {
+            "live_offer_present": false,
+            "live_snapshot_complete": false,
+            "sealed_snapshot_equal": false,
+            "selected_cede_complete": true,
+            "selected_cede_unique": true,
+            "owner_owned_ids_complete": false,
+            "native_check_called": false,
+            "native_check_result": false,
+            "preflight_proof_reused": true,
+            "request_identity_matches": true,
+            "derived": true,
+            "owner": "TYR",
+            "beneficiary": "FRA",
+            "selected_cede_count": 1,
+            "owned_count": 0,
+            "reason": "PREFLIGHT_PROOF_REUSED"
+          },
+          "reason": "none"
+        },
+        "effects": {
+          "complete": true,
+          "date_unchanged": true,
+          "currency_scale": 1000,
+          "money": null,
+          "provinces": [],
+          "war_reparations": null,
+          "country_terms": {
+            "release_nation": {
+              "country": "FLY",
+              "source": "ENG",
+              "owned_count_before": 0,
+              "owned_count_after": 1,
+              "source_owned_count_before": 42,
+              "source_owned_count_after": 41,
+              "province_rows": [
+                {
+                  "province_id": 4379,
+                  "owner_before": "ENG",
+                  "owner_after": "FLY",
+                  "controller_before": "ENG",
+                  "controller_after": "FLY",
+                  "complete": true
+                }
+              ],
+              "complete": true,
+              "values_readable": true,
+              "unchanged": false,
+              "verified": true
+            },
+            "force_vassalization": null,
+            "form_personal_union": null,
+            "grant_independence": null,
+            "full_annexation": {
+              "country": "TYR",
+              "beneficiary": "FRA",
+              "owned_count_before": 1,
+              "owned_count_after": 0,
+              "beneficiary_owned_count_before": 21,
+              "beneficiary_owned_count_after": 22,
+              "province_rows": [
+                {
+                  "province_id": 372,
+                  "owner_before": "TYR",
+                  "owner_after": "FRA",
+                  "controller_before": "TYR",
+                  "controller_after": "FRA",
+                  "complete": true
+                }
+              ],
+              "complete": true,
+              "values_readable": true,
+              "unchanged": false,
+              "verified": true
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "accepted",
+        "native_state": 2,
+        "war_before": true,
+        "war_after": false,
+        "terms_verified": true,
+        "pending_removed": true,
+        "preflight_reason": "PREFLIGHT_PROOF_REUSED",
+        "preflight_reused": true,
+        "request_identity_matches": true,
+        "country_effects": {
+          "release_nation": {
+            "country": "FLY",
+            "unchanged": false,
+            "verified": true
+          },
+          "full_annexation": {
+            "country": "TYR",
+            "unchanged": false,
+            "verified": true
+          }
+        }
+      }
+    }
+  }
+}

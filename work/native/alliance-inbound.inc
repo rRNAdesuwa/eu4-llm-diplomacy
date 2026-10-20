@@ -52,6 +52,11 @@ struct InboundScope {
     bool support_independence=false;
     bool military_access=false;
     bool vassalization=false;
+    bool favor_gold=false;
+    bool favor_trust=false;
+    bool favor_men=false;
+    int32_t favor_cost40=0;
+    int32_t favor_amount44=0;
     bool peace_offer=false;
     bridge::peace_payload::PeaceActionPayload peace{};
     unsigned char extra60=0;
@@ -77,6 +82,9 @@ struct InboundOfferEvent {
     bool support_independence=false;
     bool military_access=false;
     bool vassalization=false;
+    bool favor_gold=false;
+    bool favor_trust=false;
+    bool favor_men=false;
     bool peace_offer=false;
     bridge::peace_payload::PeaceActionPayload peace{};
     unsigned char extra60=0;
@@ -114,6 +122,11 @@ struct InboundPendingView {
     bool support_independence=false;
     bool military_access=false;
     bool vassalization=false;
+    bool favor_gold=false;
+    bool favor_trust=false;
+    bool favor_men=false;
+    int32_t favor_cost40=0;
+    int32_t favor_amount44=0;
     bool peace_offer=false;
     bridge::peace_payload::PeaceActionPayload peace{};
     unsigned char extra60=0;
@@ -143,6 +156,11 @@ struct InboundPendingRecord {
     bool support_independence=false;
     bool military_access=false;
     bool vassalization=false;
+    bool favor_gold=false;
+    bool favor_trust=false;
+    bool favor_men=false;
+    int32_t favor_cost40=0;
+    int32_t favor_amount44=0;
     bool peace_offer=false;
     bridge::peace_payload::PeaceActionPayload peace{};
     unsigned char extra60=0;
@@ -169,6 +187,9 @@ struct InboundAiHoldEvent {
     bool support_independence=false;
     bool military_access=false;
     bool vassalization=false;
+    bool favor_gold=false;
+    bool favor_trust=false;
+    bool favor_men=false;
     bool peace_offer=false;
     uintptr_t caller_return_rva=0;
 };
@@ -208,6 +229,12 @@ static InboundChoicePredicate inbound_military_choice_original=nullptr;
 static bool inbound_military_choice_installed=false;
 static InboundChoicePredicate inbound_vassal_choice_original=nullptr;
 static bool inbound_vassal_choice_installed=false;
+static InboundChoicePredicate inbound_favor_gold_choice_original=nullptr;
+static bool inbound_favor_gold_choice_installed=false;
+static InboundChoicePredicate inbound_favor_trust_choice_original=nullptr;
+static bool inbound_favor_trust_choice_installed=false;
+static InboundChoicePredicate inbound_favor_men_choice_original=nullptr;
+static bool inbound_favor_men_choice_installed=false;
 static InboundChoicePredicate inbound_peace_choice_original=nullptr;
 static bool inbound_peace_choice_installed=false;
 
@@ -260,6 +287,11 @@ static void inbound_pending_copy(const InboundPendingRecord& source,
     destination.support_independence=source.support_independence;
     destination.military_access=source.military_access;
     destination.vassalization=source.vassalization;
+    destination.favor_gold=source.favor_gold;
+    destination.favor_trust=source.favor_trust;
+    destination.favor_men=source.favor_men;
+    destination.favor_cost40=source.favor_cost40;
+    destination.favor_amount44=source.favor_amount44;
     destination.peace_offer=source.peace_offer;
     destination.peace=source.peace;
     destination.extra60=source.extra60;
@@ -278,12 +310,18 @@ static bool inbound_pending_shape_matches(const InboundPendingRecord& record,
             ? shape.peace.valid() && record.peace.valid() && shape.peace==record.peace
             : shape.peace.empty() && record.peace.empty());
     return shape.readable && shape.matched && shape.handles_canonical
-        && !shape.improve_relations && !shape.spy_network && !shape.guarantee && !shape.insult
+        && !shape.improve_relations && !shape.spy_network && !shape.guarantee
+        && !shape.curry_favors && !shape.insult
         && !shape.declare_war
         && shape.royal_marriage==record.royal_marriage
         && shape.support_independence==record.support_independence
         && shape.military_access==record.military_access
         && shape.vassalization==record.vassalization
+        && shape.favor_gold==record.favor_gold
+        && shape.favor_trust==record.favor_trust
+        && shape.favor_men==record.favor_men
+        && shape.favor_cost40==record.favor_cost40
+        && shape.favor_amount44==record.favor_amount44
         && peace_payload_match
         && shape.extra60==record.extra60
         && shape.address==record.action && shape.actor10==record.actor
@@ -342,6 +380,11 @@ static void inbound_pending_record_new(const InboundScope& scope,
     candidate.support_independence=shape.support_independence;
     candidate.military_access=shape.military_access;
     candidate.vassalization=shape.vassalization;
+    candidate.favor_gold=shape.favor_gold;
+    candidate.favor_trust=shape.favor_trust;
+    candidate.favor_men=shape.favor_men;
+    candidate.favor_cost40=shape.favor_cost40;
+    candidate.favor_amount44=shape.favor_amount44;
     candidate.peace_offer=shape.peace_offer;
     candidate.peace=shape.peace;
     candidate.extra60=shape.extra60;
@@ -380,6 +423,11 @@ static void inbound_pending_record_new(const InboundScope& scope,
         record.support_independence=shape.support_independence;
         record.military_access=shape.military_access;
         record.vassalization=shape.vassalization;
+        record.favor_gold=shape.favor_gold;
+        record.favor_trust=shape.favor_trust;
+        record.favor_men=shape.favor_men;
+        record.favor_cost40=shape.favor_cost40;
+        record.favor_amount44=shape.favor_amount44;
         record.peace_offer=shape.peace_offer;
         record.peace=shape.peace;
         record.extra60=shape.extra60;
@@ -507,12 +555,17 @@ static bool inbound_read_queue(uintptr_t country,InboundScope& scope,
         && (shape.peace_offer
             ? shape.peace.valid() && scope.peace.valid() && shape.peace==scope.peace
             : shape.peace.empty() && scope.peace.empty());
-    if (!shape.matched || !shape.handles_canonical || shape.guarantee || shape.insult
+    if (!shape.matched || !shape.handles_canonical || shape.guarantee || shape.curry_favors || shape.insult
         || shape.declare_war || !peace_payload_match
         || shape.royal_marriage!=scope.royal_marriage
         || shape.support_independence!=scope.support_independence
         || shape.military_access!=scope.military_access
         || shape.vassalization!=scope.vassalization
+        || shape.favor_gold!=scope.favor_gold
+        || shape.favor_trust!=scope.favor_trust
+        || shape.favor_men!=scope.favor_men
+         || shape.favor_cost40!=scope.favor_cost40
+         || shape.favor_amount44!=scope.favor_amount44
         || shape.extra60!=scope.extra60 || shape.extra60!=0 || shape.variant38!=1
         || shape.state34!=0 || shape.actor10!=scope.actor
         || shape.recipient20!=scope.recipient || shape.mirror18!=scope.actor) return true;
@@ -532,6 +585,9 @@ static bool inbound_read_queue(uintptr_t country,InboundScope& scope,
     event.support_independence=shape.support_independence;
     event.military_access=shape.military_access;
     event.vassalization=shape.vassalization;
+    event.favor_gold=shape.favor_gold;
+    event.favor_trust=shape.favor_trust;
+    event.favor_men=shape.favor_men;
     event.peace_offer=shape.peace_offer;
     event.peace=shape.peace;
     event.extra60=shape.extra60;
@@ -673,11 +729,17 @@ extern "C" void bridge_inbound_scope_begin(void* action,uint64_t actor,
     next.support_independence=shape.support_independence;
     next.military_access=shape.military_access;
     next.vassalization=shape.vassalization;
+    next.favor_gold=shape.favor_gold;
+    next.favor_trust=shape.favor_trust;
+    next.favor_men=shape.favor_men;
+    next.favor_cost40=shape.favor_cost40;
+    next.favor_amount44=shape.favor_amount44;
     next.peace_offer=shape.peace_offer;
     next.peace=shape.peace;
     next.extra60=shape.extra60;
     const bool exact=shape.matched && shape.handles_canonical
-        && !shape.improve_relations && !shape.spy_network && !shape.guarantee && !shape.insult
+        && !shape.improve_relations && !shape.spy_network && !shape.guarantee
+        && !shape.curry_favors && !shape.insult
         && !shape.declare_war
         && (shape.peace_offer ? shape.peace.valid() : shape.peace.empty())
         && shape.address==next.action && shape.actor10==actor
@@ -717,6 +779,11 @@ extern "C" bool bridge_inbound_scope_matches(void* action) noexcept {
         || shape.support_independence!=inbound_scope.support_independence
         || shape.military_access!=inbound_scope.military_access
         || shape.vassalization!=inbound_scope.vassalization
+        || shape.favor_gold!=inbound_scope.favor_gold
+        || shape.favor_trust!=inbound_scope.favor_trust
+        || shape.favor_men!=inbound_scope.favor_men
+         || shape.favor_cost40!=inbound_scope.favor_cost40
+         || shape.favor_amount44!=inbound_scope.favor_amount44
         || shape.peace_offer!=inbound_scope.peace_offer
         || shape.extra60!=inbound_scope.extra60) return false;
     return shape.peace_offer
@@ -746,7 +813,9 @@ static bool inbound_hold_known_pending(const LifecycleActionShape& shape,
                 InboundAiHoldEvent event{record.proposal_id,record.generation,
                     command,action,record.token3c,record.ai_hold_count,date,
                     GetCurrentThreadId(),record.royal_marriage,record.support_independence,
-                    record.military_access,record.vassalization,record.peace_offer,
+                    record.military_access,record.vassalization,record.favor_gold,
+                    record.favor_trust,record.favor_men,
+                    record.peace_offer,
                     caller_return_rva};
                 if (TryAcquireSRWLockExclusive(&inbound_lock)) {
                     if (inbound_hold_size<kQueueCapacity) {
@@ -773,7 +842,7 @@ static unsigned char inbound_negotiated_pending_choice(void* action) noexcept {
     if (caller==base+0xb22a3) {
         const LifecycleActionShape shape=lifecycle_capture_shape(action);
         uintptr_t country=0;
-        if (shape.matched && shape.handles_canonical && (shape.royal_marriage || shape.support_independence || shape.military_access || shape.vassalization || shape.peace_offer)
+        if (shape.matched && shape.handles_canonical && (shape.royal_marriage || shape.support_independence || shape.military_access || shape.vassalization || shape.favor_gold || shape.favor_trust || shape.favor_men || shape.peace_offer)
             && !shape.declare_war
             && (shape.peace_offer ? shape.peace.valid() : shape.peace.empty())
             && shape.extra60==0 && shape.variant38==1 && shape.state34==0
@@ -786,7 +855,10 @@ static unsigned char inbound_negotiated_pending_choice(void* action) noexcept {
         ? inbound_peace_choice_original:vtable==base+lifecycle_vassalization_vtable_rva
         ? inbound_vassal_choice_original:vtable==base+lifecycle_military_access_vtable_rva
         ? inbound_military_choice_original:vtable==base+lifecycle_support_vtable_rva
-        ? inbound_support_choice_original:inbound_royal_choice_original;
+        ? inbound_support_choice_original:vtable==base+lifecycle_favor_gold_vtable_rva
+        ? inbound_favor_gold_choice_original:vtable==base+lifecycle_favor_trust_vtable_rva
+        ? inbound_favor_trust_choice_original:vtable==base+lifecycle_favor_men_vtable_rva
+        ? inbound_favor_men_choice_original:inbound_royal_choice_original;
     return original ? original(action) : 0;
 }
 
@@ -797,7 +869,7 @@ extern "C" unsigned char bridge_inbound_predicate_classify(
     uintptr_t command_vtable=0,command_action=0;
     const LifecycleActionShape shape=lifecycle_capture_shape(
         reinterpret_cast<void*>(action));
-    if (!shape.matched || !shape.handles_canonical || shape.guarantee || shape.insult
+    if (!shape.matched || !shape.handles_canonical || shape.guarantee || shape.curry_favors || shape.insult
         || shape.declare_war
         || (shape.peace_offer ? !shape.peace.valid() : !shape.peace.empty())
         || shape.state34!=0
@@ -818,6 +890,11 @@ extern "C" unsigned char bridge_inbound_predicate_classify(
         || inbound_scope.support_independence!=shape.support_independence
         || inbound_scope.military_access!=shape.military_access
         || inbound_scope.vassalization!=shape.vassalization
+        || inbound_scope.favor_gold!=shape.favor_gold
+        || inbound_scope.favor_trust!=shape.favor_trust
+        || inbound_scope.favor_men!=shape.favor_men
+        || inbound_scope.favor_cost40!=shape.favor_cost40
+        || inbound_scope.favor_amount44!=shape.favor_amount44
         || inbound_scope.peace_offer!=shape.peace_offer
         || (shape.peace_offer
             ? !inbound_scope.peace.valid() || inbound_scope.peace!=shape.peace
@@ -835,6 +912,9 @@ extern "C" void bridge_inbound_observe_pending() noexcept {
     event.support_independence=inbound_scope.support_independence;
     event.military_access=inbound_scope.military_access;
     event.vassalization=inbound_scope.vassalization;
+    event.favor_gold=inbound_scope.favor_gold;
+    event.favor_trust=inbound_scope.favor_trust;
+    event.favor_men=inbound_scope.favor_men;
     event.peace_offer=inbound_scope.peace_offer;
     event.peace=inbound_scope.peace;
     event.extra60=inbound_scope.extra60;
@@ -877,10 +957,19 @@ static bool inbound_test_context(uintptr_t& game,int32_t& date,
 }
 
 static bool inbound_test_native_send(bool marriage,bool support=false,
-    const char* source_tag="SAV",bool military=false,bool vassalization=false) noexcept {
+    const char* source_tag="SAV",bool military=false,bool vassalization=false,
+    bool favor_gold=false,bool favor_trust=false,bool favor_men=false) noexcept {
     uintptr_t game=0; int32_t date=0; uint64_t player=0;
     if (!inbound_test_context(game,date,player)) {
         inbound_test_failure("POR_PAUSED_READY_REQUIRED"); return false;
+    }
+    // The favor fixture is intentionally bounded to the canonical
+    // operator-only source tags requested for this experiment.  It still
+    // goes through the native visibility, rule, factory, wrapper, and world
+    // dispatcher path below; this guard only limits the fixture's scope.
+    if ((favor_gold || favor_trust || favor_men) && strcmp(source_tag,"LIT")!=0 && strcmp(source_tag,"SAV")!=0
+        && strcmp(source_tag,"PAP")!=0) {
+        inbound_test_failure("FAVOR_FIXTURE_SOURCE_UNSUPPORTED"); return false;
     }
     uint64_t source=0,recipient=0;
     uintptr_t source_country=0,recipient_country=0;
@@ -892,7 +981,9 @@ static bool inbound_test_native_send(bool marriage,bool support=false,
         inbound_test_failure("COUNTRY_IDENTITY_UNAVAILABLE"); return false;
     }
     uintptr_t display=0,validity=0,initiation=0,requires_diplomat=0;
-    const FactoryActionQueryMethods* negotiated=vassalization?&vassal_query_methods:
+    const FactoryActionQueryMethods* negotiated=favor_gold?&favor_gold_query_methods:
+        favor_trust?&favor_trust_query_methods:favor_men?&favor_men_query_methods:
+        vassalization?&vassal_query_methods:
         military?&military_query_methods:support?&support_query_methods:nullptr;
     const uintptr_t expected_vtable=base+(negotiated?negotiated->vtable_rva:marriage?0x1c80ab0:0x1c80720);
     if (!read(expected_vtable+0x88,display) || display!=base+(negotiated?negotiated->display_rva:marriage?0x4ef7e0:0x512ca0)
@@ -940,6 +1031,9 @@ static bool inbound_test_native_send(bool marriage,bool support=false,
         || action_shape.support_independence!=support
         || action_shape.military_access!=military
         || action_shape.vassalization!=vassalization
+        || action_shape.favor_gold!=favor_gold
+        || action_shape.favor_trust!=favor_trust
+        || action_shape.favor_men!=favor_men
         || action_shape.extra60!=0) return fail_after_construct("ACTION_SHAPE_INVALID");
     if (marriage || negotiated) {
         std::memcpy(action+0x28,&date,sizeof(date));
@@ -993,15 +1087,17 @@ static bool inbound_test_native_send(bool marriage,bool support=false,
     }
     char message[768];
     snprintf(message,sizeof(message),
-        "{\"event\":\"native_alliance_inbound_test_submitted\",\"session_id\":\"%lu-%llx\",\"source\":\"%.3s\",\"recipient\":\"FRA\",\"phase\":\"initiate\",\"date_raw\":%d,\"submitted\":true,\"dispatcher_accepted\":true,\"native_queue_verified\":false,\"business_result\":\"unknown\",\"defer_observation_expected\":true}\n",
+             "{\"event\":\"native_alliance_inbound_test_submitted\",\"session_id\":\"%lu-%llx\",\"source\":\"%.3s\",\"recipient\":\"FRA\",\"action_id\":\"%s\",\"family\":\"%s\",\"phase\":\"initiate\",\"date_raw\":%d,\"submitted\":true,\"dispatcher_accepted\":true,\"native_queue_verified\":false,\"business_result\":\"unknown\",\"defer_observation_expected\":true}\n",
         static_cast<unsigned long>(GetCurrentProcessId()),
-        static_cast<unsigned long long>(observation_creation),source_tag,date);
+         static_cast<unsigned long long>(observation_creation),source_tag,
+         favor_trust?"trade_favors_for_trust":favor_men?"trade_favors_for_men":favor_gold?"trade_favors_for_gold":"offer_alliance",
+         (favor_gold || favor_trust || favor_men)?"favor_trade":"alliance",date);
     line(message);
     return true;
 }
 
 static void inbound_test_tick() noexcept {
-    if (inbound_test_consumed || !inbound_test_request_path[0]
+    if (!inbound_test_request_path[0]
         || GetFileAttributesW(inbound_test_request_path)==INVALID_FILE_ATTRIBUTES)
         return;
     constexpr char expected[]="TEST_ONLY SAV_TO_FRA\n";
@@ -1014,7 +1110,6 @@ static void inbound_test_tick() noexcept {
     const bool read_ok=size<sizeof(wire)
         && ReadFile(file,wire,size,&got,nullptr) && got==size;
     CloseHandle(file);
-    inbound_test_consumed=true;
     DeleteFileW(inbound_test_request_path);
     const bool marriage=read_ok && size==sizeof(royal)-1
         && !memcmp(wire,royal,sizeof(royal)-1);
@@ -1029,12 +1124,50 @@ static void inbound_test_tick() noexcept {
     char vassal_actor[4]{}; int vassal_consumed=0;
     const bool vassalization=read_ok && sscanf(wire,"TEST_ONLY VASSALIZATION_TO_FRA %3s%n",vassal_actor,&vassal_consumed)==1
         && strcmp(wire+vassal_consumed,"\n")==0 && strlen(vassal_actor)==3;
-    if (!alliance && !marriage && !support && !military && !vassalization) {
+    char favor_actor[4]{}; int favor_consumed=0;
+    const bool favor_gold=read_ok && sscanf(wire,"TEST_ONLY FAVOR_GOLD_TO_FRA %3s%n",favor_actor,&favor_consumed)==1
+        && strcmp(wire+favor_consumed,"\n")==0 && strlen(favor_actor)==3;
+    char favor_trust_actor[4]{}; int favor_trust_consumed=0;
+    const bool favor_trust=read_ok && sscanf(wire,"TEST_ONLY FAVOR_TRUST_TO_FRA %3s%n",
+        favor_trust_actor,&favor_trust_consumed)==1
+        && strcmp(wire+favor_trust_consumed,"\n")==0 && strlen(favor_trust_actor)==3;
+    char favor_men_actor[4]{}; int favor_men_consumed=0;
+    const bool favor_men=read_ok && sscanf(wire,"TEST_ONLY FAVOR_MEN_TO_FRA %3s%n",
+        favor_men_actor,&favor_men_consumed)==1
+        && strcmp(wire+favor_men_consumed,"\n")==0 && strlen(favor_men_actor)==3;
+    // Batch distinct native proposers in one experiment process. Each favor
+    // proposer remains single-use; the legacy fixture retains its one use.
+    static bool favor_used[3]{};
+    static bool favor_trust_used[3]{};
+    static bool favor_men_used[3]{};
+    bool* favor_used_slot=nullptr;
+    if (favor_gold || favor_trust || favor_men) {
+        const char* selected=favor_gold?favor_actor:favor_trust?favor_trust_actor:favor_men_actor;
+        bool* used=favor_gold?favor_used:favor_trust?favor_trust_used:favor_men_used;
+        const unsigned slot=!strcmp(selected,"PAP")?0:!strcmp(selected,"SAV")?1:
+            !strcmp(selected,"LIT")?2:3;
+        if (slot>=3 || used[slot]) {
+            inbound_test_failure(slot>=3?"FAVOR_FIXTURE_SOURCE_UNSUPPORTED":"TEST_ALREADY_CONSUMED");
+            return;
+        }
+        // Consume the token only after the native visibility/rule, factory,
+        // wrapper, and dispatcher path accepts the offer below. A rejected
+        // rule must leave the operator fixture available for the next
+        // eligible proposer in the same process.
+        favor_used_slot=&used[slot];
+    } else {
+        if (inbound_test_consumed) { inbound_test_failure("TEST_ALREADY_CONSUMED"); return; }
+        inbound_test_consumed=true;
+    }
+    if (!alliance && !marriage && !support && !military && !vassalization
+        && !favor_gold && !favor_trust && !favor_men) {
         inbound_test_failure("TEST_WIRE_INVALID"); return;
     }
-    inbound_test_native_send(marriage,support,
-        vassalization?vassal_actor:military?military_actor:support?support_actor:"SAV",
-        military,vassalization);
+    const bool submitted=inbound_test_native_send(marriage,support,
+        favor_gold?favor_actor:favor_trust?favor_trust_actor:favor_men?favor_men_actor:
+            vassalization?vassal_actor:military?military_actor:support?support_actor:"SAV",
+        military,vassalization,favor_gold,favor_trust,favor_men);
+    if (favor_used_slot && submitted) *favor_used_slot=true;
 }
 
 static bool inbound_set_test_path(const wchar_t* directory) noexcept {
@@ -1071,7 +1204,7 @@ static void inbound_flush() noexcept {
             static_cast<unsigned long long>(observation_creation),
             static_cast<unsigned long long>(event.proposal_id),
             static_cast<unsigned long long>(event.generation),
-            event.peace_offer?"peace_offer":event.vassalization?"offer_vassalization":event.military_access?"ask_military_access":event.support_independence?"support_independence":event.royal_marriage?"offer_royal_marriage":"offer_alliance",
+            event.peace_offer?"peace_offer":event.favor_gold?"trade_favors_for_gold":event.favor_trust?"trade_favors_for_trust":event.favor_men?"trade_favors_for_men":event.vassalization?"offer_vassalization":event.military_access?"ask_military_access":event.support_independence?"support_independence":event.royal_marriage?"offer_royal_marriage":"offer_alliance",
             event.date,static_cast<unsigned>(event.token3c),
             static_cast<unsigned>(event.hold_count),
             static_cast<unsigned long long>(event.command),
@@ -1104,8 +1237,8 @@ static void inbound_flush() noexcept {
             static_cast<unsigned long>(GetCurrentProcessId()),
             static_cast<unsigned long long>(observation_creation),
             static_cast<unsigned long long>(event.proposal_id),
-            event.peace_offer?"peace_offer":event.vassalization?"offer_vassalization":event.military_access?"ask_military_access":event.support_independence?"support_independence":event.royal_marriage?"offer_royal_marriage":"offer_alliance",
-            event.peace_offer?"peace":event.vassalization?"vassalization":event.military_access?"military_access":event.support_independence?"support_independence":event.royal_marriage?"royal_marriage":"alliance",peace_json,static_cast<unsigned>(event.extra60),event.actor,event.mirror,event.recipient,
+            event.peace_offer?"peace_offer":event.favor_gold?"trade_favors_for_gold":event.favor_trust?"trade_favors_for_trust":event.favor_men?"trade_favors_for_men":event.vassalization?"offer_vassalization":event.military_access?"ask_military_access":event.support_independence?"support_independence":event.royal_marriage?"offer_royal_marriage":"offer_alliance",
+            event.peace_offer?"peace":(event.favor_gold || event.favor_trust || event.favor_men)?"favor_trade":event.vassalization?"vassalization":event.military_access?"military_access":event.support_independence?"support_independence":event.royal_marriage?"royal_marriage":"alliance",peace_json,static_cast<unsigned>(event.extra60),event.actor,event.mirror,event.recipient,
             event.date28,event.date2c,event.envoy30,event.state34,
             static_cast<unsigned>(event.variant38),event.proposal3c,
             static_cast<unsigned>(event.token3c),event.created2c,event.queue_before,event.queue_after,
@@ -1226,6 +1359,14 @@ static bool inbound_install() {
     // Military Access object identity.
     const unsigned char vassal_choice[18]={0x83,0x79,0x34,0x00,0x75,0x09,0x80,0x79,
         0x38,0x00,0x74,0x03,0xb0,0x01,0xc3,0x32,0xc0,0xc3};
+    // Favor-for-gold +0xd0 is the confirmed native one-byte result gate.
+    // The method bytes are RVA 0x8f440.  Do not substitute the unrelated
+    // vtable +0xb8 acceptance predicate (RVA 0x4ea210); this hook patches
+    // only the response-choice slot at +0xd0 and validates its method bytes.
+    const unsigned char favor_gold_choice[3]={0xb0,0x01,0xc3};
+    // Trust/Men use this same response-choice method at vtable +0xd0.  The
+    // +0xb8 acceptance predicate remains a separate native rule check.
+    const unsigned char favor_trade_choice[3]={0xb0,0x01,0xc3};
     // Peace +0xd0 is the native common-gate predicate at RVA 0x59bb30.
     // Keep the original callback separate from every other family: its ABI
     // is the same one-argument predicate, but its native relation gate is
@@ -1240,6 +1381,12 @@ static bool inbound_install() {
             military_choice,sizeof(military_choice),inbound_military_choice_original,inbound_military_choice_installed)
         && inbound_install_choice(lifecycle_vassalization_vtable_rva,0x51fac0,
             vassal_choice,sizeof(vassal_choice),inbound_vassal_choice_original,inbound_vassal_choice_installed)
+        && inbound_install_choice(lifecycle_favor_gold_vtable_rva,0x8f440,
+            favor_gold_choice,sizeof(favor_gold_choice),inbound_favor_gold_choice_original,inbound_favor_gold_choice_installed)
+        && inbound_install_choice(lifecycle_favor_trust_vtable_rva,0x8f440,
+            favor_trade_choice,sizeof(favor_trade_choice),inbound_favor_trust_choice_original,inbound_favor_trust_choice_installed)
+        && inbound_install_choice(lifecycle_favor_men_vtable_rva,0x8f440,
+            favor_trade_choice,sizeof(favor_trade_choice),inbound_favor_men_choice_original,inbound_favor_men_choice_installed)
         && inbound_install_choice(lifecycle_peace_vtable_rva,0x59bb30,
             peace_choice,sizeof(peace_choice),inbound_peace_choice_original,inbound_peace_choice_installed);
 }
@@ -1254,9 +1401,16 @@ static bool inbound_rollback() {
         inbound_military_choice_original,inbound_military_choice_installed);
     const bool vassal_ok=inbound_rollback_choice(lifecycle_vassalization_vtable_rva,
         inbound_vassal_choice_original,inbound_vassal_choice_installed);
+    const bool favor_gold_ok=inbound_rollback_choice(lifecycle_favor_gold_vtable_rva,
+        inbound_favor_gold_choice_original,inbound_favor_gold_choice_installed);
+    const bool favor_trust_ok=inbound_rollback_choice(lifecycle_favor_trust_vtable_rva,
+        inbound_favor_trust_choice_original,inbound_favor_trust_choice_installed);
+    const bool favor_men_ok=inbound_rollback_choice(lifecycle_favor_men_vtable_rva,
+        inbound_favor_men_choice_original,inbound_favor_men_choice_installed);
     const bool peace_ok=inbound_rollback_choice(lifecycle_peace_vtable_rva,
         inbound_peace_choice_original,inbound_peace_choice_installed);
-    const bool choice_ok=royal_ok && support_ok && military_ok && vassal_ok && peace_ok;
+    const bool choice_ok=royal_ok && support_ok && military_ok && vassal_ok
+        && favor_gold_ok && favor_trust_ok && favor_men_ok && peace_ok;
     if (!inbound_patch_plan.count) return choice_ok;
     unsigned char actual[kPatchBytes]{};
     auto target=reinterpret_cast<unsigned char*>(base+kPredicateCallRva);
