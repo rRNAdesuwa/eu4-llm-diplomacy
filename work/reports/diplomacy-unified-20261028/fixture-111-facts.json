@@ -1,0 +1,81 @@
+{
+ "date": "1444.12.7",
+ "player": "FRA",
+ "FRA": {
+  "treasury": "70.759",
+  "income": "19.113",
+  "overlord": null,
+  "prestige": "8.758",
+  "gp_score": "315.000"
+ },
+ "BRI": {
+  "treasury": "17.832",
+  "income": "4.585",
+  "overlord": null,
+  "prestige": "4.940",
+  "gp_score": "55.000"
+ },
+ "ENG": {
+  "treasury": "7.578",
+  "income": "25.455",
+  "overlord": null,
+  "prestige": "8.917",
+  "gp_score": "338.000"
+ },
+ "PRO": {
+  "treasury": "2.175",
+  "income": "5.553",
+  "overlord": null,
+  "prestige": "6.842",
+  "gp_score": "90.000"
+ },
+ "SAV": {
+  "treasury": "11.813",
+  "income": "6.822",
+  "overlord": null,
+  "prestige": "6.916",
+  "gp_score": "87.500"
+ },
+ "BUR": {
+  "treasury": "36.286",
+  "income": "11.666",
+  "overlord": null,
+  "prestige": "6.921",
+  "gp_score": "231.000"
+ },
+ "CAS": {
+  "treasury": "12.251",
+  "income": "21.863",
+  "overlord": null,
+  "prestige": "8.933",
+  "gp_score": "281.000"
+ },
+ "subjects": [
+  [
+   "LOR",
+   "PRO"
+  ],
+  [
+   "AMG",
+   "FRA"
+  ],
+  [
+   "AUV",
+   "FRA"
+  ],
+  [
+   "BOU",
+   "FRA"
+  ],
+  [
+   "FOI",
+   "FRA"
+  ],
+  [
+   "ORL",
+   "FRA"
+  ]
+ ],
+ "wars": [],
+ "alliances": []
+}

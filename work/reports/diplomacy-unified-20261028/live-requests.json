@@ -1,0 +1,72 @@
+{
+ "tag_host_earlier": [
+  {
+   "request_id": "unified-live-loan-01",
+   "action": "offer_loan",
+   "parameters": {
+    "actor": "FRA",
+    "target": "BRI",
+    "amount": 100,
+    "interest_percent": "1.000",
+    "duration_months": 12
+   },
+   "evidence": "live-unified-live-loan-01.json"
+  },
+  {
+   "request_id": "unified-live-infl-01",
+   "action": "influence_nation",
+   "parameters": {
+    "actor": "FRA",
+    "target": "BRI"
+   },
+   "evidence": "live-unified-live-infl-01.json"
+  }
+ ],
+ "cold_owner_build15": [
+  {
+   "request_id": "owner-query-subject-01",
+   "phase": "query",
+   "action": "subject.divert_trade"
+  },
+  {
+   "request_id": "owner-preview-guard-01",
+   "phase": "preview",
+   "action": "improve_relations",
+   "result": "refused before publication"
+  },
+  {
+   "request_id": "owner-live-infl-02",
+   "phase": "production",
+   "action": "influence_nation",
+   "parameters": {
+    "actor": "FRA",
+    "target": "BRI"
+   },
+   "sequence": 1,
+   "result": "submitted"
+  },
+  {
+   "request_id": "owner-live-loyal-01",
+   "phase": "production",
+   "action": "subject.support_loyalists",
+   "parameters": {
+    "actor": "FRA",
+    "target": "AMG",
+    "enabled": true
+   },
+   "sequence": 2,
+   "result": "native gate rejected"
+  },
+  {
+   "request_id": "owner-live-divert-01",
+   "phase": "production",
+   "action": "subject.divert_trade",
+   "parameters": {
+    "actor": "FRA",
+    "target": "AMG",
+    "enabled": true
+   },
+   "result": "scope_denied (historical success hold)"
+  }
+ ]
+}

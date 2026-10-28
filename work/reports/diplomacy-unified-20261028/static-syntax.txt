@@ -1,0 +1,6 @@
+Python source compilation: 5 files passed. No imports, tests or game calls executed.
+bridge/diplomacy_operations.py
+eu4harness/v32_diplomacy_tools_20261020.py
+eu4harness/diplomacy_owner_v1_20261022.py
+work/candidates/v32-parameterized-tag-1375/unified_api.py
+tests/test_diplomacy_operations.py

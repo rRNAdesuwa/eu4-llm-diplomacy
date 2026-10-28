@@ -1,0 +1,3999 @@
+{
+ "schema": "EU4DIPLOMACYUNIFIEDRESULTS/1",
+ "generated_utc": "2026-10-28T05:24:15+00:00",
+ "scope": "GPT-静态接口统一后：目录/参数/预览/响应/执行/效果 逐项测试",
+ "offline": {
+  "tests": {
+   "command": "python -B -m unittest tests.test_diplomacy_operations -v",
+   "result": "PASS 6/6"
+  },
+  "catalog": {
+   "action_count": 214,
+   "by_route": {
+    "ordinary_tag": 151,
+    "independent_command": 2,
+    "typed_subject": 45,
+    "typed_war": 1,
+    "typed_peace": 1,
+    "typed_government": 3,
+    "typed_war_context": 3,
+    "typed_condottieri": 3,
+    "typed_sell_ships": 1,
+    "typed_rebels": 2,
+    "typed_confirm_tribute": 1,
+    "typed_governor_choice": 1
+   },
+   "parameter_fields_empty": 0,
+   "effect_profile_missing": [
+    "event.choose_governor_option"
+   ],
+   "native_preview_true": 152
+  },
+  "query_coverage": {
+   "ok": 214,
+   "failed": 0,
+   "file": "offline-coverage.json"
+  },
+  "fixes": [
+   {
+    "file": "bridge/diplomacy_operations.py",
+    "change": "catalog rows carry resolved route; native_preview only ordinary_tag/offer_peace; governor event profile note"
+   },
+   {
+    "file": "tests/test_diplomacy_operations.py",
+    "change": "assert route and independent-command preview policy"
+   },
+   {
+    "file": "eu4harness/v32_diplomacy_tools_20261020.py",
+    "change": "preview/peace_preview read loaded build no_send and refuse before publication; build_connects_no_send helper"
+   },
+   {
+    "file": "tests/test_diplomacy_operations.py",
+    "change": "preview send=0 build capability test"
+   }
+  ]
+ },
+ "live": {
+  "host": {
+   "pid": 28704,
+   "creation": "01dd664b54377989",
+   "session": "3318a0b8c43c7b11f9e22e0b3a64e2cd",
+   "backend": "D:/.../v32-common-demo-1375/build-3 (tag command host, 153 ordinary actions)",
+   "requests_before": 6,
+   "terminal": false
+  },
+  "published": [
+   {
+    "request_id": "unified-live-loan-01",
+    "action": "offer_loan",
+    "parameters": {
+     "actor": "FRA",
+     "target": "BRI",
+     "amount": 100,
+     "interest_percent": "1.000",
+     "duration_months": 12
+    },
+    "sequence": 7,
+    "final": "dispatched",
+    "evidence": "live-unified-live-loan-01.json",
+    "response": {
+     "generated_decision": "unavailable through tag backend",
+     "reply": "unavailable while paused"
+    }
+   },
+   {
+    "request_id": "unified-live-infl-01",
+    "action": "influence_nation",
+    "parameters": {
+     "actor": "FRA",
+     "target": "SAV"
+    },
+    "sequence": 8,
+    "final": "dispatched",
+    "evidence": "live-unified-live-infl-01.json",
+    "response": {
+     "generated_decision": "unavailable through tag backend",
+     "reply": "unavailable while paused"
+    }
+   }
+  ],
+  "evidence_reused": {
+   "count": 31,
+   "sources": [
+    "bridge/diplomacy_research_evidence.json (30 actions)",
+    "work/reports/war-peace-connectivity-20261027/war-peace-results.json (declare_war/offer_peace + subject continue actions)"
+   ]
+  },
+  "blocked": [
+   {
+    "kind": "typed_backend_surface",
+    "detail": "loaded tag_command backend exposes 153 ordinary actions; 61 typed routes (subject 45, war context 3, war/peace 2, government 3, condottieri 3, sell_ships 1, rebels 2, confirm_tribute 1, governor 1) validated offline but cannot be published through this backend. Cold owner /v1 facade not running."
+   },
+   {
+    "kind": "native_preview",
+    "detail": "send=0 preview requires the cold owner or a build with check_only; loaded tag build has no check_only source; preview not published."
+   },
+   {
+    "kind": "ai_reply_effect",
+    "detail": "game paused; both live requests ended dispatched with ownership closed; no AI decision/effect observed; effect evidence not claimed."
+   }
+  ],
+  "scope": "historical_tag_host_session"
+ },
+ "action_rows": [
+  {
+   "action": "offer_vassalization",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v7-vassal-fra-nav"
+    ]
+   }
+  },
+  {
+   "action": "cancel_vassalization",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v9-cancel-vassal-fra-nav-saved-reloaded"
+    ]
+   }
+  },
+  {
+   "action": "royal_marriage",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v7-marriage-fra-nav"
+    ]
+   }
+  },
+  {
+   "action": "break_marriage",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v7-break-marriage-fra-nav",
+     "v8-break-marriage-fra-nav-saved",
+     "v8-break-marriage-fra-nav-reloaded"
+    ]
+   }
+  },
+  {
+   "action": "improve_relations",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v5-improve-fra-eng"
+    ]
+   }
+  },
+  {
+   "action": "stop_improving_relations",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v6-improve-stop-fra-eng"
+    ]
+   }
+  },
+  {
+   "action": "guarantee",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v6-guarantee-fra-por"
+    ]
+   }
+  },
+  {
+   "action": "revoke_guarantee",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v6-revoke-guarantee-fra-por"
+    ]
+   }
+  },
+  {
+   "action": "build_spy_network",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v6-spy-start-fra-por"
+    ]
+   }
+  },
+  {
+   "action": "stop_building_spy_network",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v6-spy-stop-fra-por"
+    ]
+   }
+  },
+  {
+   "action": "curry_favors",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "stop_currying_favors",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "offer_fleet_basing_rights",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "insult",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "form_coalition",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "support_independence",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "trade_favors_for_gold",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "trade_favors_for_men",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "trade_favors_for_sailors",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "trade_favors_for_trust",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "trade_favors_for_war_prep",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "abandon_union",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "agitate_for_liberty",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "annex_vassal",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "ask_fleet_basing_rights",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v10-ask-fleet-basing-rights-fra-por-interrupted-session"
+    ]
+   }
+  },
+  {
+   "action": "ask_for_march",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "ask_knowledge_sharing",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "ask_military_access",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v10-ask-military-access-fra-por-interrupted-session"
+    ]
+   }
+  },
+  {
+   "action": "ask_support_independence",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "ask_to_be_tributary",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "call_eyalet_into_wars",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "call_trade_protectorate_into_wars",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "cancel_annexation",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "cancel_fleet_basing_rights",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v14-cancel_fleet_basing_rights-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "cancel_infiltration",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "cancel_integration",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "cancel_military_access",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v14-cancel_military_access-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "cancel_offered_independence_support",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "cancel_requested_independence_support",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "cancel_steer_trade",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v12-cancel-steer-trade-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "cancel_subsidies",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v14-cancel_subsidies-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "cancel_trade_power_transfer",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v12-cancel-trade-power-transfer-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "cancel_tributary",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "claim_throne",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "convert_to_core_personal_union",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "convert_tributary_to_vassal",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "corrupt_officials",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "counterespionage",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "create_european_colony",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "create_pronoia",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "create_soyurghal",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "demand_sacrifices",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "designate_march",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "dissolve_alliance",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v14-dissolve_alliance-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "dissolve_protectorate",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "elevate_influenced_country_to_vassal",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "embargo",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v14-embargo-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "establish_tributary",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "fabricate_ottoman_invasion_cb",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "fabricate_spread_the_true_faith_cb",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "fabricate_tributary_cb",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "grant_autonomy_to_core_eyalet",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "grant_war_rights",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "heathen_royal_marriage",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "incorporate_vassal",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "infiltrate_administration",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "integrate_union",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "invite_into_cultural_sphere_of_influence",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "invite_to_federation",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "invite_to_trade_league",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "invite_to_zoroastrian_community",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "join_coalition",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "join_cultural_sphere_of_influence",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "justify_trade_conflict",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "kick_from_federation",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "kick_from_trade_league",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "knowledge_sharing",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "leave_coalition",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "leave_federation",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "leave_the_cultural_sphere_of_influece",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "leave_trade_league",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "make_pronoia_inheritable",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "mam_export_grain",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "mam_sponsor_hajj",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "offer_alliance",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v10-offer-alliance-fra-por-interrupted-session"
+    ]
+   }
+  },
+  {
+   "action": "offer_military_access",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v10-offer-military-access-fra-por-interrupted-session"
+    ]
+   }
+  },
+  {
+   "action": "offer_protectorate",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "promote_appanage_heir",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "promote_primary_culture",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "promote_vassal_to_eyalet",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "reign_in_eyalet",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "release_nahuatl_tributary",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "release_pronia",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "release_soyurghal",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "remove_them_from_cultural_sphere_of_influece",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "request_access_to_modern_ideas",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "request_protectorate",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "request_to_join_federation",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "request_to_join_trade_league",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "revoke_embargo",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v14-revoke_embargo-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "revoke_fleet_basing_rights",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "revoke_march",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "revoke_military_access",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v14-revoke_military_access-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "revoke_war_rights",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "sabotage_recruitment",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "sabotage_reputation",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "sell_indulgence",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "send_royal_ambassador",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "share_modern_ideas",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "slander_merchants",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "sow_discontent",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "steal_modern_ideas",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "steer_trade",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v12-steer-trade-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "stop_counterespionage",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "stop_supporting_heir",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "support_heir",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "trade_favors_for_heir",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "warn",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v12-warn-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "select_rival",
+   "route": "independent_command",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "remove_rival",
+   "route": "independent_command",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "give_subsidies",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "amount",
+    "duration_years"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v14-give_subsidies-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "break_alliance_favor",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "third_country"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "send_gift",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "amount"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "bridge/diplomacy_research_evidence.json",
+    "experiments": [
+     "v12-send-gift-fra-por-stopped-session"
+    ]
+   }
+  },
+  {
+   "action": "transfer_trade_power",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "trade_power_percent"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "sell_province",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id",
+    "price"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "reduce_relations_favor",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "third_country"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "return_core_favor",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id",
+    "beneficiary"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "offer_loan",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "amount",
+    "interest_percent",
+    "duration_months"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "live_dispatched",
+   "evidence": {
+    "kind": "new_request",
+    "file": "live-unified-live-loan-01.json",
+    "request_id": "unified-live-loan-01",
+    "sequence": 7,
+    "final": "dispatched"
+   }
+  },
+  {
+   "action": "fabricate_claim",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "charter_company",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id",
+    "price"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "request_maps",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "region_id"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "steal_maps",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "region_id"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "call_crusade",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "excommunicate",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "lift_excommunication",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "grant_electorate",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "grant_freecity",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "declare_reichskrieg",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "bestow_imperial_grace",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "influence_nation",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "live_effect_observed",
+   "evidence": {
+    "source": "live-owner-results.json",
+    "request_id": "owner-live-infl-02",
+    "status": {
+     "status": "submitted",
+     "terminal": true,
+     "native_status": 4,
+     "reason": "normal_dispatch_slot_consumed",
+     "submitted": true,
+     "submit_value": true,
+     "ownership_closed": true,
+     "native_calls": 8
+    },
+    "effect": {
+     "tool": "diplomacy_effect_v32",
+     "profile_completion_stage": "selected_named_pair_opinion_changed",
+     "before": {
+      "selected": null,
+      "entries": []
+     },
+     "after": {
+      "opinion_milli": 25000,
+      "opinion": 25,
+      "months": 120,
+      "decay": 0,
+      "stack": 1
+     },
+     "baseline": "work/runtime/effect-observations-v1/43212-01dd669e18c7a307-b5355527e33f7c35b82cdee23ec86fca/request-6f776e65722d6c6976652d696e666c2d3032/baseline.json",
+     "observation": "work/runtime/effect-observations-v1/43212-01dd669e18c7a307-b5355527e33f7c35b82cdee23ec86fca/request-6f776e65722d6c6976652d696e666c2d3032/observation-1793165926562404100.json",
+     "native_calls": 0,
+     "memory_written": false,
+     "requests_published": 0
+    }
+   },
+   "prior_evidence": {
+    "kind": "new_request",
+    "file": "live-unified-live-infl-01.json",
+    "request_id": "unified-live-infl-01",
+    "sequence": 8,
+    "final": "dispatched"
+   }
+  },
+  {
+   "action": "invite_to_hre",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "enforce_religious_unity",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "remove_electorate",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "remove_freecity",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "take_on_debt",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "unconditional_surrender",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "recruit_foreign_general",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "scornful_insult",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "insult_id"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "fabricate_state_claim",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "area_id"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "demand_unlawful_territory",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "threaten_war",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id",
+    "taker"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "appoint_cardinal",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "curia_treasury"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "break_alliance",
+   "route": "ordinary_tag",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "third_country"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.divert_trade",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "enabled"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "work/reports/war-peace-connectivity-20261027/war-peace-results.json"
+   }
+  },
+  {
+   "action": "subject.embargo_rivals",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "enabled"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.scutage",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "enabled"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.set_military_focus",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "focus"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.subsidize_armies",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "enabled"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.support_loyalists",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "enabled"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "live_native_rejected",
+   "evidence": {
+    "source": "live-owner-results.json",
+    "request_id": "owner-live-loyal-01",
+    "status": {
+     "status": "not_submitted",
+     "terminal": true,
+     "native_status": 3,
+     "reason": "native gate rejected",
+     "submitted": false,
+     "submitted_attempted": false,
+     "ownership_closed": true,
+     "native_calls": 3
+    },
+    "effect": {
+     "observed": false,
+     "reason": "native gate rejected before submit"
+    }
+   },
+   "prior_evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.send_officers",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "enabled"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.allow_settlement_growth",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.bestow_gifts",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.block_settlement_growth",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.conscript_general",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.contribute_to_capital",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.decrease_tariffs",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.demand_additional_tribute",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.demand_artifacts",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.enforce_culture",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.enforce_religion",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.force_seppuku",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.grant_administrative_autonomy",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.increase_tariffs",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.knowledge_sharing",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.placate_rulers",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "work/reports/war-peace-connectivity-20261027/war-peace-results.json"
+   }
+  },
+  {
+   "action": "subject.place_relative_on_throne",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.press_sailors",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.replace_governor",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.request_extra_levies",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.sacrifice_heir",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.sacrifice_ruler",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.seize_court_resources",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.send_additional_troops",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.siphon_income",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.takeondebt",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.set_tribute",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "tribute"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.release_colony",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "play_as_released"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.change_colonial_type",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "subject_type"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.upgrade_subject_type",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "subject_type"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.fortify_march",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.grant_core_claim",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.grant_province",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.return_land",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.seize_territory",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "province_id"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.start_colonial_war",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "enemy"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.force_isolation",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "direction"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "create_vassal",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "play_as_released"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.customize_subject",
+   "route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "name",
+    "adjective"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "declare_war",
+   "route": "typed_war",
+   "parameter_fields": [
+    "actor",
+    "call_allies",
+    "casus_belli",
+    "target",
+    "war_goal_province"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "work/reports/war-peace-connectivity-20261027/war-peace-results.json"
+   }
+  },
+  {
+   "action": "offer_peace",
+   "route": "typed_peace",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "direction",
+    "terms"
+   ],
+   "native_preview": true,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "evidence_reused",
+   "evidence": {
+    "kind": "historical",
+    "source": "work/reports/war-peace-connectivity-20261027/war-peace-results.json"
+   }
+  },
+  {
+   "action": "subject.expel_ronin",
+   "route": "typed_government",
+   "parameter_fields": [
+    "actor"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.sankin_kotai",
+   "route": "typed_government",
+   "parameter_fields": [
+    "actor"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "subject.sword_hunt",
+   "route": "typed_government",
+   "parameter_fields": [
+    "actor"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "call_to_arms",
+   "route": "typed_war_context",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "war"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "enforce_peace",
+   "route": "typed_war_context",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "war"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "intervene_in_war",
+   "route": "typed_war_context",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "war"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "offer_condottieri",
+   "route": "typed_condottieri",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "army_id",
+    "rent_multiplier"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "cancel_condottieri",
+   "route": "typed_condottieri",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "revoke_condottieri",
+   "route": "typed_condottieri",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "sell_ships",
+   "route": "typed_sell_ships",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "fleet_id",
+    "price"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "support_rebels",
+   "route": "typed_rebels",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "faction_id"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "stop_supporting_rebels",
+   "route": "typed_rebels",
+   "parameter_fields": [
+    "actor",
+    "target"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "confirm_tribute_action",
+   "route": "typed_confirm_tribute",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "accept"
+   ],
+   "native_preview": false,
+   "effect_profile": true,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  },
+  {
+   "action": "event.choose_governor_option",
+   "route": "typed_governor_choice",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "parent_request_id",
+    "event_instance_id",
+    "event_id",
+    "option_index"
+   ],
+   "native_preview": false,
+   "effect_profile": false,
+   "query_ok": true,
+   "live_state": "offline_validated",
+   "evidence": {
+    "kind": "offline_contract",
+    "source": "offline-coverage.json"
+   }
+  }
+ ],
+ "summary": {
+  "by_live_state": {
+   "evidence_reused": 31,
+   "offline_validated": 180,
+   "live_dispatched": 1,
+   "live_effect_observed": 1,
+   "live_native_rejected": 1
+  },
+  "offline_query_ok": 214,
+  "actions": 214,
+  "current_evidence_source": "live-owner-results.json"
+ },
+ "followups": [
+  "Connect send=0 to the current release build before live preview testing.",
+  "Choose an eligible subject action using the actual subject type and ability; support_loyalists was rejected.",
+  "Cover call_to_arms, enforce_peace and intervene_in_war in real wars; the latest saved fixture has no wars.",
+  "Use actual units, fleets, rebel factions, tributary pending objects and governor events for typed action coverage.",
+  "Join governor-option execution to its selected-effect evidence.",
+  "Reuse successful evidence; perform one concentrated regression before final release."
+ ],
+ "artifacts": {
+  "modified_files": "work/reports/diplomacy-unified-20261028/modified-files.txt",
+  "report": "work/reports/diplomacy-unified-20261028/REPORT.md",
+  "offline_coverage": "work/reports/diplomacy-unified-20261028/offline-coverage.json",
+  "owner_live": "work/reports/diplomacy-unified-20261028/live-owner-results.json",
+  "fixture_facts": "work/reports/diplomacy-unified-20261028/fixture-111-facts.json"
+ },
+ "owner_live": {
+  "schema": "EU4DIPLOMACYOWNERLIVE/1",
+  "captured_utc": "2026-10-28T05:41:10.264Z",
+  "host": {
+   "pid": 43212,
+   "creation": "01dd669e18c7a307",
+   "session": "b5355527e33f7c35b82cdee23ec86fca",
+   "dll_sha256": "3dcc9ae6a9579c314be11dc5ee40ec879d8720376774ab6984dd1a3a635f6190",
+   "build": "v32-cold-20261022/build-15 (eu4_diplomacy_cold.dll)",
+   "port": 63988,
+   "save": "eullm-fixtures/111.eu4",
+   "date": "1444.12.7",
+   "player": "FRA"
+  },
+  "save_facts": {
+   "FRA": {
+    "treasury": "70.759",
+    "income": "19.113",
+    "overlord": null,
+    "prestige": "8.758",
+    "gp_score": "315.000"
+   },
+   "BRI": {
+    "treasury": "17.832",
+    "income": "4.585",
+    "overlord": null,
+    "prestige": "4.940",
+    "gp_score": "55.000"
+   },
+   "ENG": {
+    "treasury": "7.578",
+    "income": "25.455",
+    "overlord": null,
+    "prestige": "8.917",
+    "gp_score": "338.000"
+   },
+   "subjects": [
+    [
+     "LOR",
+     "PRO"
+    ],
+    [
+     "AMG",
+     "FRA"
+    ],
+    [
+     "AUV",
+     "FRA"
+    ],
+    [
+     "BOU",
+     "FRA"
+    ],
+    [
+     "FOI",
+     "FRA"
+    ],
+    [
+     "ORL",
+     "FRA"
+    ]
+   ],
+   "wars": []
+  },
+  "catalog": {
+   "action_count": 214,
+   "routes": {
+    "ordinary_tag": 151,
+    "independent_command": 2,
+    "typed_subject": 45,
+    "typed_war": 1,
+    "typed_peace": 1,
+    "typed_government": 3,
+    "typed_war_context": 3,
+    "typed_condottieri": 3,
+    "typed_sell_ships": 1,
+    "typed_rebels": 2,
+    "typed_confirm_tribute": 1,
+    "typed_governor_choice": 1
+   },
+   "governor_effect_profile_note": "Event option execution; selected-effect evidence is handled by the subject.replace_governor pending-election profile."
+  },
+  "query": {
+   "request_id": "owner-query-subject-01",
+   "action": "subject.divert_trade",
+   "parameters_valid": true,
+   "contract_route": "typed_subject",
+   "parameter_fields": [
+    "actor",
+    "target",
+    "enabled"
+   ],
+   "requests_published": 0
+  },
+  "preview_guard": {
+   "request_id": "owner-preview-guard-01",
+   "action": "improve_relations",
+   "loaded_build_no_send": false,
+   "result": "ToolError before publication: Loaded native build does not connect send=0 preview",
+   "backend_publication_called": false,
+   "owner_remained_healthy": true,
+   "followup_query": "influence_nation query succeeded after refusal"
+  },
+  "preview_hold_incident": {
+   "session": "v32-resident-session-20261021-r27",
+   "request_id": "owner-preview-improve-01",
+   "status": "dispatch_unknown",
+   "test_only": true,
+   "error": {
+    "automatic_retry": false,
+    "message": "Unknown history outcome permanently holds this owner",
+    "type": "CentralHistoryUnavailable"
+   },
+   "evidence": "work/reports/v32-resident-session-20261021-r27/op-pub-d83e972f27604a612a9fa9375c27a91d.error.json",
+   "cause": "check_only preview was published by build15 whose manifest no_send=false; the owner could not join a history outcome and was permanently held",
+   "fix": "preview_action/peace_preview now read the loaded build.json no_send flag and refuse before any publication"
+  },
+  "production": [
+   {
+    "request_id": "owner-live-infl-02",
+    "action": "influence_nation",
+    "parameters": {
+     "actor": "FRA",
+     "target": "BRI"
+    },
+    "sequence": 1,
+    "scope_ordinal": 149,
+    "op_id": "pub-5103139b59f02542d51241e98d3858f5",
+    "submit_status": "queued",
+    "native_state": "private_queue_ack",
+    "status": {
+     "status": "submitted",
+     "terminal": true,
+     "native_status": 4,
+     "reason": "normal_dispatch_slot_consumed",
+     "submitted": true,
+     "submit_value": true,
+     "ownership_closed": true,
+     "native_calls": 8
+    },
+    "response": {
+     "tool": "diplomacy_response_v32",
+     "evidence": "work/reports/v32-resident-session-20261021-r28/op-status-f2528a25762119f821e8625444848e2d.native-observation.json",
+     "generated_decisions": [],
+     "acceptance": "unobserved",
+     "effect_completion": "unobserved"
+    },
+    "effect": {
+     "tool": "diplomacy_effect_v32",
+     "profile_completion_stage": "selected_named_pair_opinion_changed",
+     "before": {
+      "selected": null,
+      "entries": []
+     },
+     "after": {
+      "opinion_milli": 25000,
+      "opinion": 25,
+      "months": 120,
+      "decay": 0,
+      "stack": 1
+     },
+     "baseline": "work/runtime/effect-observations-v1/43212-01dd669e18c7a307-b5355527e33f7c35b82cdee23ec86fca/request-6f776e65722d6c6976652d696e666c2d3032/baseline.json",
+     "observation": "work/runtime/effect-observations-v1/43212-01dd669e18c7a307-b5355527e33f7c35b82cdee23ec86fca/request-6f776e65722d6c6976652d696e666c2d3032/observation-1793165926562404100.json",
+     "native_calls": 0,
+     "memory_written": false,
+     "requests_published": 0
+    },
+    "evidence": "work/reports/v32-resident-session-20261021-r28/op-status-f0c78c7df675012f53efc657712154ce.result.json"
+   },
+   {
+    "request_id": "owner-live-loyal-01",
+    "action": "subject.support_loyalists",
+    "parameters": {
+     "actor": "FRA",
+     "target": "AMG",
+     "enabled": true
+    },
+    "sequence": 2,
+    "scope_ordinal": 150,
+    "op_id": "pub-6215b9b2812e7b72a0b744a36d60b9fc",
+    "submit_status": "queued",
+    "native_state": "private_queue_ack",
+    "status": {
+     "status": "not_submitted",
+     "terminal": true,
+     "native_status": 3,
+     "reason": "native gate rejected",
+     "submitted": false,
+     "submitted_attempted": false,
+     "ownership_closed": true,
+     "native_calls": 3
+    },
+    "response": {
+     "generated_decisions": [],
+     "acceptance": "unobserved"
+    },
+    "effect": {
+     "observed": false,
+     "reason": "native gate rejected before submit"
+    },
+    "evidence": "work/reports/v32-resident-session-20261021-r28/op-status-3832559d8ac686540948633d0bb764cd.result.json"
+   }
+  ],
+  "production_denied_historical_success": {
+   "request_id": "owner-live-divert-01",
+   "action": "subject.divert_trade",
+   "event": "scope_denied",
+   "error": {
+    "automatic_retry": false,
+    "message": "Permanent request/OP or conflicting safety hold; no reservation made",
+    "type": "ScopeDenied"
+   },
+   "backend_publication_called": false,
+   "evidence": "work/reports/v32-resident-session-20261021-r28/op-pub-5337d127e51aff6369e754d8f9045396.denied.json",
+   "disposition": "historical successful action is a permanent production safety hold; evidence reused, no rerun"
+  },
+  "owner_after_tests": {
+   "terminal_unknown_holds": false,
+   "healthy": true
+  }
+ }
+}

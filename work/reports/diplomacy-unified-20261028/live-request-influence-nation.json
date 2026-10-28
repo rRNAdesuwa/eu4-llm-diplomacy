@@ -1,0 +1,8 @@
+{
+ "request_id": "unified-live-infl-01",
+ "action": "influence_nation",
+ "parameters": {
+  "actor": "FRA",
+  "target": "SAV"
+ }
+}

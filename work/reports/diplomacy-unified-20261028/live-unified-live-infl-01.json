@@ -1,0 +1,82 @@
+{
+ "request": {
+  "request_id": "unified-live-infl-01",
+  "action": "influence_nation",
+  "parameters": {
+   "actor": "FRA",
+   "target": "SAV"
+  }
+ },
+ "submission": {
+  "identity": {
+   "creation": "01dd664b54377989",
+   "dll_sha256": "30eac794d9dd811871eaa4611ff548b79f84f88cc2b4998af6da869ab168a367",
+   "manifest_sha256": "b193c19eae78ff0b5c2a18356d28d00d0572468c6f3af3e2e7856464737d31f4",
+   "pid": 28704,
+   "session": "3318a0b8c43c7b11f9e22e0b3a64e2cd"
+  },
+  "reused": false,
+  "automatic_retry": false,
+  "gameplay_effects_verified": false,
+  "native_publication": {
+   "identity": {
+    "creation": "01dd664b54377989",
+    "dll_sha256": "30eac794d9dd811871eaa4611ff548b79f84f88cc2b4998af6da869ab168a367",
+    "manifest_sha256": "b193c19eae78ff0b5c2a18356d28d00d0572468c6f3af3e2e7856464737d31f4",
+    "pid": 28704,
+    "session": "3318a0b8c43c7b11f9e22e0b3a64e2cd"
+   },
+   "published": [
+    {
+     "request_id": "unified-live-infl-01",
+     "action": "influence_nation",
+     "actor": "FRA",
+     "target": "SAV",
+     "sequence": 8
+    }
+   ],
+   "expires": 160574937,
+   "reused": false,
+   "hashes_performed": 0,
+   "gameplay_effects_verified": false
+  },
+  "results": [
+   {
+    "request_id": "unified-live-infl-01",
+    "request": {
+     "request_id": "unified-live-infl-01",
+     "action": "influence_nation",
+     "parameters": {
+      "actor": "FRA",
+      "target": "SAV"
+     }
+    },
+    "status": "queued",
+    "native_state": "published",
+    "identity": {
+     "creation": "01dd664b54377989",
+     "dll_sha256": "30eac794d9dd811871eaa4611ff548b79f84f88cc2b4998af6da869ab168a367",
+     "manifest_sha256": "b193c19eae78ff0b5c2a18356d28d00d0572468c6f3af3e2e7856464737d31f4",
+     "pid": 28704,
+     "session": "3318a0b8c43c7b11f9e22e0b3a64e2cd"
+    },
+    "sequence": 8,
+    "automatic_retry": false,
+    "gameplay_effects_verified": false
+   }
+  ]
+ },
+ "status_states": [
+  {
+   "t": 1793165006.3,
+   "status": "queued",
+   "reason": null
+  },
+  {
+   "t": 1793165021.5,
+   "status": "dispatched",
+   "reason": "normal_dispatch_slot_consumed"
+  }
+ ],
+ "final": "dispatched"
+}

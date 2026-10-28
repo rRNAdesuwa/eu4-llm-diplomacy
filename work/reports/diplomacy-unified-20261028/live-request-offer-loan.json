@@ -1,0 +1,11 @@
+{
+ "request_id": "unified-live-loan-01",
+ "action": "offer_loan",
+ "parameters": {
+  "actor": "FRA",
+  "target": "BRI",
+  "amount": 100,
+  "interest_percent": "1.000",
+  "duration_months": 12
+ }
+}

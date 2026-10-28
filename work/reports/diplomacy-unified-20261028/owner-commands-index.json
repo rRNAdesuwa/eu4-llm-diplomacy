@@ -1,0 +1,67 @@
+[
+ {
+  "n": 1,
+  "name": "diplomacy_actions_v32",
+  "request": null
+ },
+ {
+  "n": 2,
+  "name": "diplomacy_preview_v32",
+  "request": "owner-preview-guard-01"
+ },
+ {
+  "n": 3,
+  "name": "diplomacy_query_v32",
+  "request": "owner-query-alive-02"
+ },
+ {
+  "n": 4,
+  "name": "diplomacy_prepare_effect_v32",
+  "request": "owner-live-divert-01"
+ },
+ {
+  "n": 5,
+  "name": "diplomacy_submit_production_v32",
+  "request": "owner-live-divert-01"
+ },
+ {
+  "n": 6,
+  "name": "diplomacy_prepare_effect_v32",
+  "request": "owner-live-infl-02"
+ },
+ {
+  "n": 7,
+  "name": "diplomacy_submit_production_v32",
+  "request": "owner-live-infl-02"
+ },
+ {
+  "n": 8,
+  "name": "diplomacy_status_v32",
+  "request": "owner-live-infl-02"
+ },
+ {
+  "n": 9,
+  "name": "diplomacy_response_v32",
+  "request": "owner-live-infl-02"
+ },
+ {
+  "n": 10,
+  "name": "diplomacy_effect_v32",
+  "request": "owner-live-infl-02"
+ },
+ {
+  "n": 11,
+  "name": "diplomacy_prepare_effect_v32",
+  "request": "owner-live-loyal-01"
+ },
+ {
+  "n": 12,
+  "name": "diplomacy_submit_production_v32",
+  "request": "owner-live-loyal-01"
+ },
+ {
+  "n": 13,
+  "name": "diplomacy_status_v32",
+  "request": "owner-live-loyal-01"
+ }
+]

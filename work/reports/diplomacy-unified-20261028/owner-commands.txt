@@ -1,0 +1,13 @@
+{"operation":"api-tool","name":"diplomacy_actions_v32","arguments":{"action":"subject.divert_trade"},"allow_writes":false}
+{"operation":"api-tool","name":"diplomacy_preview_v32","arguments":{"request":{"request_id":"owner-preview-guard-01","action":"improve_relations","parameters":{"actor":"FRA","target":"BRI"}},"ttl_ms":60000},"allow_writes":true}
+{"operation":"api-tool","name":"diplomacy_query_v32","arguments":{"request":{"request_id":"owner-query-alive-02","action":"influence_nation","parameters":{"actor":"FRA","target":"BRI"}}},"allow_writes":false}
+{"operation":"api-tool","name":"diplomacy_prepare_effect_v32","arguments":{"request":{"request_id":"owner-live-divert-01","action":"subject.divert_trade","parameters":{"actor":"FRA","target":"AMG","enabled":true}}},"allow_writes":false}
+{"operation":"api-tool","name":"diplomacy_submit_production_v32","arguments":{"request":{"request_id":"owner-live-divert-01","action":"subject.divert_trade","parameters":{"actor":"FRA","target":"AMG","enabled":true}},"ttl_ms":60000},"allow_writes":true}
+{"operation":"api-tool","name":"diplomacy_prepare_effect_v32","arguments":{"request":{"request_id":"owner-live-infl-02","action":"influence_nation","parameters":{"actor":"FRA","target":"BRI"}}},"allow_writes":false}
+{"operation":"api-tool","name":"diplomacy_submit_production_v32","arguments":{"request":{"request_id":"owner-live-infl-02","action":"influence_nation","parameters":{"actor":"FRA","target":"BRI"}},"ttl_ms":60000},"allow_writes":true}
+{"operation":"api-tool","name":"diplomacy_status_v32","arguments":{"request_id":"owner-live-infl-02"},"allow_writes":false}
+{"operation":"api-tool","name":"diplomacy_response_v32","arguments":{"request_id":"owner-live-infl-02"},"allow_writes":false}
+{"operation":"api-tool","name":"diplomacy_effect_v32","arguments":{"request_id":"owner-live-infl-02"},"allow_writes":false}
+{"operation":"api-tool","name":"diplomacy_prepare_effect_v32","arguments":{"request":{"request_id":"owner-live-loyal-01","action":"subject.support_loyalists","parameters":{"actor":"FRA","target":"AMG","enabled":true}}},"allow_writes":false}
+{"operation":"api-tool","name":"diplomacy_submit_production_v32","arguments":{"request":{"request_id":"owner-live-loyal-01","action":"subject.support_loyalists","parameters":{"actor":"FRA","target":"AMG","enabled":true}},"ttl_ms":60000},"allow_writes":true}
+{"operation":"api-tool","name":"diplomacy_status_v32","arguments":{"request_id":"owner-live-loyal-01"},"allow_writes":false}

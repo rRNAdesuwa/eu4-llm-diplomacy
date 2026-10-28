@@ -1,0 +1,221 @@
+{
+ "schema": "EU4DIPLOMACYOWNERLIVE/1",
+ "captured_utc": "2026-10-28T05:41:10.264Z",
+ "host": {
+  "pid": 43212,
+  "creation": "01dd669e18c7a307",
+  "session": "b5355527e33f7c35b82cdee23ec86fca",
+  "dll_sha256": "3dcc9ae6a9579c314be11dc5ee40ec879d8720376774ab6984dd1a3a635f6190",
+  "build": "v32-cold-20261022/build-15 (eu4_diplomacy_cold.dll)",
+  "port": 63988,
+  "save": "eullm-fixtures/111.eu4",
+  "date": "1444.12.7",
+  "player": "FRA"
+ },
+ "save_facts": {
+  "FRA": {
+   "treasury": "70.759",
+   "income": "19.113",
+   "overlord": null,
+   "prestige": "8.758",
+   "gp_score": "315.000"
+  },
+  "BRI": {
+   "treasury": "17.832",
+   "income": "4.585",
+   "overlord": null,
+   "prestige": "4.940",
+   "gp_score": "55.000"
+  },
+  "ENG": {
+   "treasury": "7.578",
+   "income": "25.455",
+   "overlord": null,
+   "prestige": "8.917",
+   "gp_score": "338.000"
+  },
+  "subjects": [
+   [
+    "LOR",
+    "PRO"
+   ],
+   [
+    "AMG",
+    "FRA"
+   ],
+   [
+    "AUV",
+    "FRA"
+   ],
+   [
+    "BOU",
+    "FRA"
+   ],
+   [
+    "FOI",
+    "FRA"
+   ],
+   [
+    "ORL",
+    "FRA"
+   ]
+  ],
+  "wars": []
+ },
+ "catalog": {
+  "action_count": 214,
+  "routes": {
+   "ordinary_tag": 151,
+   "independent_command": 2,
+   "typed_subject": 45,
+   "typed_war": 1,
+   "typed_peace": 1,
+   "typed_government": 3,
+   "typed_war_context": 3,
+   "typed_condottieri": 3,
+   "typed_sell_ships": 1,
+   "typed_rebels": 2,
+   "typed_confirm_tribute": 1,
+   "typed_governor_choice": 1
+  },
+  "governor_effect_profile_note": "Event option execution; selected-effect evidence is handled by the subject.replace_governor pending-election profile."
+ },
+ "query": {
+  "request_id": "owner-query-subject-01",
+  "action": "subject.divert_trade",
+  "parameters_valid": true,
+  "contract_route": "typed_subject",
+  "parameter_fields": [
+   "actor",
+   "target",
+   "enabled"
+  ],
+  "requests_published": 0
+ },
+ "preview_guard": {
+  "request_id": "owner-preview-guard-01",
+  "action": "improve_relations",
+  "loaded_build_no_send": false,
+  "result": "ToolError before publication: Loaded native build does not connect send=0 preview",
+  "backend_publication_called": false,
+  "owner_remained_healthy": true,
+  "followup_query": "influence_nation query succeeded after refusal"
+ },
+ "preview_hold_incident": {
+  "session": "v32-resident-session-20261021-r27",
+  "request_id": "owner-preview-improve-01",
+  "status": "dispatch_unknown",
+  "test_only": true,
+  "error": {
+   "automatic_retry": false,
+   "message": "Unknown history outcome permanently holds this owner",
+   "type": "CentralHistoryUnavailable"
+  },
+  "evidence": "work/reports/v32-resident-session-20261021-r27/op-pub-d83e972f27604a612a9fa9375c27a91d.error.json",
+  "cause": "check_only preview was published by build15 whose manifest no_send=false; the owner could not join a history outcome and was permanently held",
+  "fix": "preview_action/peace_preview now read the loaded build.json no_send flag and refuse before any publication"
+ },
+ "production": [
+  {
+   "request_id": "owner-live-infl-02",
+   "action": "influence_nation",
+   "parameters": {
+    "actor": "FRA",
+    "target": "BRI"
+   },
+   "sequence": 1,
+   "scope_ordinal": 149,
+   "op_id": "pub-5103139b59f02542d51241e98d3858f5",
+   "submit_status": "queued",
+   "native_state": "private_queue_ack",
+   "status": {
+    "status": "submitted",
+    "terminal": true,
+    "native_status": 4,
+    "reason": "normal_dispatch_slot_consumed",
+    "submitted": true,
+    "submit_value": true,
+    "ownership_closed": true,
+    "native_calls": 8
+   },
+   "response": {
+    "tool": "diplomacy_response_v32",
+    "evidence": "work/reports/v32-resident-session-20261021-r28/op-status-f2528a25762119f821e8625444848e2d.native-observation.json",
+    "generated_decisions": [],
+    "acceptance": "unobserved",
+    "effect_completion": "unobserved"
+   },
+   "effect": {
+    "tool": "diplomacy_effect_v32",
+    "profile_completion_stage": "selected_named_pair_opinion_changed",
+    "before": {
+     "selected": null,
+     "entries": []
+    },
+    "after": {
+     "opinion_milli": 25000,
+     "opinion": 25,
+     "months": 120,
+     "decay": 0,
+     "stack": 1
+    },
+    "baseline": "work/runtime/effect-observations-v1/43212-01dd669e18c7a307-b5355527e33f7c35b82cdee23ec86fca/request-6f776e65722d6c6976652d696e666c2d3032/baseline.json",
+    "observation": "work/runtime/effect-observations-v1/43212-01dd669e18c7a307-b5355527e33f7c35b82cdee23ec86fca/request-6f776e65722d6c6976652d696e666c2d3032/observation-1793165926562404100.json",
+    "native_calls": 0,
+    "memory_written": false,
+    "requests_published": 0
+   },
+   "evidence": "work/reports/v32-resident-session-20261021-r28/op-status-f0c78c7df675012f53efc657712154ce.result.json"
+  },
+  {
+   "request_id": "owner-live-loyal-01",
+   "action": "subject.support_loyalists",
+   "parameters": {
+    "actor": "FRA",
+    "target": "AMG",
+    "enabled": true
+   },
+   "sequence": 2,
+   "scope_ordinal": 150,
+   "op_id": "pub-6215b9b2812e7b72a0b744a36d60b9fc",
+   "submit_status": "queued",
+   "native_state": "private_queue_ack",
+   "status": {
+    "status": "not_submitted",
+    "terminal": true,
+    "native_status": 3,
+    "reason": "native gate rejected",
+    "submitted": false,
+    "submitted_attempted": false,
+    "ownership_closed": true,
+    "native_calls": 3
+   },
+   "response": {
+    "generated_decisions": [],
+    "acceptance": "unobserved"
+   },
+   "effect": {
+    "observed": false,
+    "reason": "native gate rejected before submit"
+   },
+   "evidence": "work/reports/v32-resident-session-20261021-r28/op-status-3832559d8ac686540948633d0bb764cd.result.json"
+  }
+ ],
+ "production_denied_historical_success": {
+  "request_id": "owner-live-divert-01",
+  "action": "subject.divert_trade",
+  "event": "scope_denied",
+  "error": {
+   "automatic_retry": false,
+   "message": "Permanent request/OP or conflicting safety hold; no reservation made",
+   "type": "ScopeDenied"
+  },
+  "backend_publication_called": false,
+  "evidence": "work/reports/v32-resident-session-20261021-r28/op-pub-5337d127e51aff6369e754d8f9045396.denied.json",
+  "disposition": "historical successful action is a permanent production safety hold; evidence reused, no rerun"
+ },
+ "owner_after_tests": {
+  "terminal_unknown_holds": false,
+  "healthy": true
+ }
+}

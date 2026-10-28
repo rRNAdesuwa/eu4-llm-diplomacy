@@ -1,0 +1,54 @@
+{
+ "date": "1455.1.1",
+ "FRA": {
+  "treasury": "1000000.000",
+  "prestige": "-8.116",
+  "income": "49.610",
+  "overlord": null,
+  "gp_score": "493.506",
+  "num_loans": null,
+  "monarch": "\n\t\t\t\t\tid={\n\t\t\t\t\t\tid=3049\n\t\t\t\t\t\ttype=48\n\t\t\t\t\t"
+ },
+ "BRI": {
+  "treasury": "5.621",
+  "prestige": "-4.171",
+  "income": "1.400",
+  "overlord": "\"FRA\"",
+  "gp_score": "55.000",
+  "num_loans": null,
+  "monarch": "\n\t\t\t\t\tid={\n\t\t\t\t\t\tid=1628\n\t\t\t\t\t\ttype=48\n\t\t\t\t\t"
+ },
+ "SAV": {
+  "treasury": "24.914",
+  "prestige": "4.983",
+  "income": "8.126",
+  "overlord": null,
+  "gp_score": "56.277",
+  "num_loans": null,
+  "monarch": "\n\t\t\t\t\tid={\n\t\t\t\t\t\tid=9681\n\t\t\t\t\t\ttype=48\n\t\t\t\t\t"
+ },
+ "PRO": {
+  "treasury": "75.353",
+  "prestige": "-2.559",
+  "income": "1.254",
+  "overlord": null,
+  "gp_score": "59.274",
+  "num_loans": null,
+  "monarch": "\n\t\t\t\t\tid={\n\t\t\t\t\t\tid=9103\n\t\t\t\t\t\ttype=48\n\t\t\t\t\t"
+ },
+ "ENG": {
+  "treasury": "57.716",
+  "prestige": "64.498",
+  "income": "30.500",
+  "overlord": null,
+  "gp_score": "239.094",
+  "num_loans": null,
+  "monarch": "\n\t\t\t\t\tid={\n\t\t\t\t\t\tid=2843\n\t\t\t\t\t\ttype=48\n\t\t\t\t\t"
+ },
+ "alliances": [],
+ "wars_with_FRA": [
+  "{ \tname=\"\u0010nf\u0010W\u0010úe\u0010¯e\u0012V\u0011\u001bgBro Naoned\u0010KN\u0010\u0018b\" \thistory={ \t\t1448.4.1={ \t\t\tadd_attacker=\"PRO\" \t\t} \t\t1448.4.1={ \t\t\tadd_defender=\"BRI\" \t\t} \t\t1448.4.1={ \t\t\tadd_attack"
+ ],
+ "rm_count_FRA": 0,
+ "hre_emperor": "HAB"
+}

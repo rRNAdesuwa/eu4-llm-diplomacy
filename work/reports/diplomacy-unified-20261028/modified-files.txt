@@ -1,0 +1,46 @@
+# 精确修改文件清单（2026-10-28）
+# 产品代码
+bridge/diplomacy_operations.py
+eu4harness/v32_diplomacy_tools_20261020.py
+tests/test_diplomacy_operations.py
+docs/unified-diplomacy-operations-1375.md
+# 交接
+HANDOFF.md
+# 报告证据
+work/reports/diplomacy-unified-20261028/REPORT.md
+work/reports/diplomacy-unified-20261028/results.json
+work/reports/diplomacy-unified-20261028/modified-files.txt
+work/reports/diplomacy-unified-20261028/live-owner-results.json
+work/reports/diplomacy-unified-20261028/fixture-111-facts.json
+work/reports/diplomacy-unified-20261028/offline-coverage.json
+work/reports/diplomacy-unified-20261028/offline_coverage.py
+work/reports/diplomacy-unified-20261028/live-requests.json
+work/reports/diplomacy-unified-20261028/owner-commands.txt
+work/reports/diplomacy-unified-20261028/dismiss_loaded_game.py
+work/reports/diplomacy-unified-20261028/list_windows.py
+work/reports/diplomacy-unified-20261028/live_publish.py
+work/reports/diplomacy-unified-20261028/live-request-offer-loan.json
+work/reports/diplomacy-unified-20261028/live-request-influence-nation.json
+work/reports/diplomacy-unified-20261028/live-unified-live-loan-01.json
+work/reports/diplomacy-unified-20261028/live-unified-live-infl-01.json
+work/reports/diplomacy-unified-20261028/live-state-facts.json
+work/reports/diplomacy-unified-20261028/live-active-wars.json
+work/reports/diplomacy-unified-20261028/final_check.py
+work/reports/diplomacy-unified-20261028/make_results.py
+# 辅助探针（保留取证过程，不纳入产品代码）
+work/reports/diplomacy-unified-20261028/save_facts.py
+work/reports/diplomacy-unified-20261028/war_facts.py
+work/reports/diplomacy-unified-20261028/fixture_facts.py
+work/reports/diplomacy-unified-20261028/probe_live_api.py
+work/reports/diplomacy-unified-20261028/probe_fields.py
+work/reports/diplomacy-unified-20261028/probe_rows.py
+work/reports/diplomacy-unified-20261028/probe_rows2.py
+work/reports/diplomacy-unified-20261028/probe_typed.py
+work/reports/diplomacy-unified-20261028/owner-commands-index.json
+
+# 静态接入与汇总补齐
+eu4harness/diplomacy_owner_v1_20261022.py
+work/candidates/v32-parameterized-tag-1375/unified_api.py
+work/reports/diplomacy-unified-20261028/HANDOFF-DEEPSEEK.md
+work/reports/diplomacy-unified-20261028/static-syntax.txt
+work/reports/diplomacy-unified-20261028/reconcile_results.py
